@@ -1,0 +1,97 @@
+<svg width="960" height="560" viewBox="0 0 960 560" xmlns="http://www.w3.org/2000/svg" font-family="'Apple SD Gothic Neo','Malgun Gothic',sans-serif">
+  <rect width="960" height="560" fill="#f8f1df"/>
+  <rect x="10" y="10" width="940" height="540" fill="none" stroke="#c9b98f" stroke-width="1"/>
+
+  <text x="30" y="42" font-size="24" font-weight="700" fill="#2a2118">삼재검법 1보 — 무공 트리</text>
+  <text x="30" y="62" font-size="13" fill="#6b5f4c">기수식(뿌리)에서 3갈래로 분기 → 삼재합일(오의)로 합류. 잠긴 노드는 회색 + 자물쇠, 상위 노드 레벨로 게이팅.</text>
+  <g transform="translate(886,26) rotate(-4)">
+    <rect x="-22" y="-22" width="44" height="44" rx="4" fill="none" stroke="#8c2f2f" stroke-width="2"/>
+    <text x="0" y="8" font-size="20" font-weight="700" fill="#8c2f2f" text-anchor="middle">貳</text>
+  </g>
+
+  <!-- connecting lines -->
+  <g stroke="#c9b98f" stroke-width="2" fill="none">
+    <path d="M150,180 H210 V90 H270"/>
+    <path d="M150,180 H210 H270"/>
+    <path d="M150,180 H210 V270 H270"/>
+    <path d="M390,90 H450"/>
+    <path d="M390,270 H450"/>
+    <path d="M570,90 H630 V150 H690"/>
+    <path d="M570,270 H630 V210 H690"/>
+  </g>
+
+  <!-- root -->
+  <g transform="translate(30,140)">
+    <rect width="120" height="80" rx="8" fill="#eae0c7" stroke="#c9b98f" stroke-width="1.5"/>
+    <circle cx="60" cy="26" r="17" fill="#93691a" fill-opacity="0.22" stroke="#b98f2e" stroke-width="1.5"/>
+    <text x="60" y="31" font-size="13" fill="#b98f2e" text-anchor="middle">起</text>
+    <text x="60" y="56" font-size="12" font-weight="700" fill="#2a2118" text-anchor="middle">기수식</text>
+    <text x="60" y="70" font-size="8.5" fill="#6b5f4c" text-anchor="middle">Lv1 · 자동 습득</text>
+  </g>
+
+  <!-- tier 1 -->
+  <g transform="translate(270,50)">
+    <rect width="120" height="80" rx="8" fill="#eae0c7" stroke="#c9b98f" stroke-width="1.5"/>
+    <circle cx="60" cy="26" r="17" fill="#93691a" fill-opacity="0.22" stroke="#b98f2e" stroke-width="1.5"/>
+    <text x="60" y="31" font-size="13" fill="#b98f2e" text-anchor="middle">揮</text>
+    <text x="60" y="56" font-size="12" font-weight="700" fill="#2a2118" text-anchor="middle">휘두르기</text>
+    <text x="60" y="70" font-size="8.5" fill="#6b5f4c" text-anchor="middle">Lv 12 / 50</text>
+  </g>
+  <g transform="translate(270,140)">
+    <rect width="120" height="80" rx="8" fill="#eae0c7" stroke="#c9b98f" stroke-width="1.5"/>
+    <circle cx="60" cy="26" r="17" fill="#93691a" fill-opacity="0.22" stroke="#b98f2e" stroke-width="1.5"/>
+    <text x="60" y="31" font-size="13" fill="#b98f2e" text-anchor="middle">刺</text>
+    <text x="60" y="56" font-size="12" font-weight="700" fill="#2a2118" text-anchor="middle">찌르기</text>
+    <text x="60" y="70" font-size="8.5" fill="#6b5f4c" text-anchor="middle">Lv 7 / 50</text>
+  </g>
+  <g transform="translate(270,230)">
+    <rect width="120" height="80" rx="8" fill="#eae0c7" stroke="#c9b98f" stroke-width="1.5"/>
+    <circle cx="60" cy="26" r="17" fill="#93691a" fill-opacity="0.22" stroke="#b98f2e" stroke-width="1.5"/>
+    <text x="60" y="31" font-size="13" fill="#b98f2e" text-anchor="middle">避</text>
+    <text x="60" y="56" font-size="12" font-weight="700" fill="#2a2118" text-anchor="middle">회피</text>
+    <text x="60" y="70" font-size="8.5" fill="#6b5f4c" text-anchor="middle">Lv 5 / 50</text>
+  </g>
+
+  <!-- tier 2 -->
+  <g transform="translate(450,50)">
+    <rect width="120" height="80" rx="8" fill="#eae0c7" stroke="#c9b98f" stroke-width="1.5"/>
+    <circle cx="60" cy="26" r="17" fill="#93691a" fill-opacity="0.22" stroke="#b98f2e" stroke-width="1.5"/>
+    <text x="60" y="31" font-size="13" fill="#b98f2e" text-anchor="middle">反</text>
+    <text x="60" y="56" font-size="12" font-weight="700" fill="#2a2118" text-anchor="middle">반격</text>
+    <text x="60" y="70" font-size="8.5" fill="#6b5f4c" text-anchor="middle">Lv 3 / 30</text>
+  </g>
+  <g transform="translate(450,230)" opacity="0.6">
+    <rect width="120" height="80" rx="8" fill="#eae0c7" stroke="#9a8f78" stroke-width="1.5"/>
+    <circle cx="60" cy="26" r="17" fill="none" stroke="#9a8f78" stroke-width="1.5"/>
+    <text x="60" y="31" font-size="13" fill="#9a8f78" text-anchor="middle">🔒</text>
+    <text x="60" y="56" font-size="11" font-weight="700" fill="#2a2118" text-anchor="middle">보법·경신술</text>
+    <text x="60" y="70" font-size="8" fill="#9a8f78" text-anchor="middle">회피 Lv10 필요</text>
+  </g>
+
+  <!-- capstone -->
+  <g transform="translate(690,140)">
+    <rect width="140" height="90" rx="8" fill="#eae0c7" stroke="#8c2f2f" stroke-width="1.5"/>
+    <circle cx="70" cy="28" r="18" fill="#8c2f2f" fill-opacity="0.16" stroke="#a85a4a" stroke-width="1.5"/>
+    <text x="70" y="34" font-size="14" fill="#a85a4a" text-anchor="middle">🔒</text>
+    <text x="70" y="60" font-size="13" font-weight="700" fill="#2a2118" text-anchor="middle">삼재합일</text>
+    <text x="70" y="76" font-size="8" fill="#9a8f78" text-anchor="middle">오의 · 2차 노드 전부 Lv30</text>
+  </g>
+
+  <!-- callout card -->
+  <g transform="translate(230,380)">
+    <rect width="500" height="150" rx="8" fill="#eae0c7" stroke="#c9b98f"/>
+    <text x="24" y="30" font-size="12" fill="#6b5f4c">초식명</text>
+    <text x="476" y="30" font-size="12" font-weight="700" fill="#2a2118" text-anchor="end">휘두르기</text>
+    <line x1="24" y1="40" x2="476" y2="40" stroke="#c9b98f" stroke-dasharray="2,2"/>
+    <text x="24" y="58" font-size="12" fill="#6b5f4c">현재 레벨 / 최대</text>
+    <text x="476" y="58" font-size="12" font-weight="700" fill="#2a2118" text-anchor="end">Lv 12 / 50</text>
+    <line x1="24" y1="68" x2="476" y2="68" stroke="#c9b98f" stroke-dasharray="2,2"/>
+    <text x="24" y="86" font-size="12" fill="#6b5f4c">다음 레벨</text>
+    <text x="476" y="86" font-size="12" font-weight="700" fill="#2a2118" text-anchor="end">Lv13 → 공격력 +25% (+1%p)</text>
+    <line x1="24" y1="96" x2="476" y2="96" stroke="#c9b98f" stroke-dasharray="2,2"/>
+    <text x="24" y="114" font-size="12" fill="#6b5f4c">강화 비용</text>
+    <text x="476" y="114" font-size="12" font-weight="700" fill="#2a2118" text-anchor="end">내공 1,200</text>
+    <rect x="376" y="122" width="100" height="20" rx="3" fill="#93691a"/>
+    <text x="426" y="136" font-size="10" font-weight="700" fill="#f8f1df" text-anchor="middle">연마하기</text>
+  </g>
+</svg>
