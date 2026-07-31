@@ -20,6 +20,12 @@
 - [[환골탈태-시스템]] — 프레스티지 서사/UX/수치(리셋 조건, 영구 버프 공식)
 - [[상점-기연-시스템]] — 일반상점/가챠 서사·UX, 등급 확률표, 천장 시스템
 
+## Design
+
+(확정 전 자유 탐색 디자인 — `wiki/CLAUDE.md`의 `design/` 정의 참고)
+
+- `design/ux-목업-05-메인화면-다크리디자인.svg` — 메인 화면 다크 무협 톤 + 전체화면 캔버스 HUD 리디자인 시안(방치형 장르 표준 UI 패턴 참고). 아직 `concepts/ux-시나리오-기획서`에 미반영, Figma 파일([링크](https://www.figma.com/design/iNS58fZPmN5bK3jJHQIrEg))에서 편집 가능 버전 작업 중(MCP 호출 한도로 일부 섹션 미완성).
+
 ## Sources
 
 (ingest한 원본 소스 요약 — 아직 없음)
