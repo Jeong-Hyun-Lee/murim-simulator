@@ -1,0 +1,96 @@
+<svg viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif">
+  <!--
+    source: wiki/concepts/배경-아트-컨셉.md 컨셉2 "혈랑채(血狼寨)" — 대1 스테이지 전투 배경
+    tone: wiki/concepts/비주얼-디자인-시스템.md 다크 무협 HUD 공식 팔레트
+    created: 2026-07-31
+  -->
+  <defs>
+    <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#140d0c"/>
+      <stop offset="60%" stop-color="#3a1f16"/>
+      <stop offset="100%" stop-color="#5c2f1e"/>
+    </linearGradient>
+    <radialGradient id="fireGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e8934a" stop-opacity="0.9"/>
+      <stop offset="45%" stop-color="#c97b34" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#c97b34" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow2" x="-150%" y="-150%" width="400%" height="400%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- sky -->
+  <rect x="0" y="0" width="960" height="540" fill="url(#sky2)"/>
+
+  <!-- 까마귀 실루엣 -->
+  <g stroke="#1c1310" stroke-width="2" fill="none" opacity="0.6">
+    <path d="M120,60 q8,-8 16,0 q8,-8 16,0"/>
+    <path d="M700,40 q7,-7 14,0 q7,-7 14,0"/>
+    <path d="M760,70 q6,-6 12,0 q6,-6 12,0"/>
+  </g>
+
+  <!-- 연기 -->
+  <g fill="#4a3a30">
+    <ellipse cx="230" cy="230" rx="14" ry="60" opacity="0.3"/>
+    <ellipse cx="700" cy="210" rx="16" ry="70" opacity="0.35"/>
+    <ellipse cx="760" cy="250" rx="10" ry="45" opacity="0.25"/>
+  </g>
+
+  <!-- 원경: 각지고 날카로운 산 -->
+  <polygon points="0,320 80,260 150,300 240,240 330,290 430,250 520,300 620,255 710,295 800,245 880,285 960,260 960,540 0,540" fill="#241612"/>
+  <polygon points="0,360 100,320 200,350 300,310 400,345 500,305 610,350 720,315 830,345 960,320 960,540 0,540" fill="#331d16"/>
+
+  <!-- 중경: 목책/망루/깃발 -->
+  <g>
+    <!-- 기울어진 망루 -->
+    <g transform="translate(560,300) rotate(-3)">
+      <rect x="-10" y="0" width="20" height="90" fill="#2e2015"/>
+      <polygon points="-30,0 40,0 20,-30 -10,-30" fill="#5a3f26"/>
+      <polygon points="20,-25 60,10 40,10" fill="#3a1310"/>
+    </g>
+    <!-- 목책 라인 -->
+    <g fill="#2e2015">
+      <polygon points="40,420 55,340 70,420"/>
+      <polygon points="70,420 85,335 100,420"/>
+      <polygon points="100,420 115,345 130,420"/>
+      <polygon points="820,420 835,335 850,420"/>
+      <polygon points="850,420 865,345 880,420"/>
+      <polygon points="880,420 895,340 910,420"/>
+    </g>
+    <!-- 깃발 -->
+    <polygon points="620,270 660,280 650,300 620,296" fill="#5c1f1a" opacity="0.85"/>
+    <!-- 짐수레(방치) -->
+    <rect x="740" y="400" width="60" height="24" fill="#2e2015"/>
+    <circle cx="748" cy="428" r="8" fill="#1c1310"/>
+    <circle cx="792" cy="428" r="8" fill="#1c1310"/>
+  </g>
+
+  <!-- 근경: 화톳불 + 늑대 토템 -->
+  <g>
+    <circle cx="160" cy="440" r="70" fill="url(#fireGlow)"/>
+    <circle cx="160" cy="440" r="14" fill="#e8934a" filter="url(#softGlow2)"/>
+    <circle cx="800" cy="440" r="70" fill="url(#fireGlow)"/>
+    <circle cx="800" cy="440" r="14" fill="#e8934a" filter="url(#softGlow2)"/>
+    <circle cx="200" cy="410" r="2" fill="#f2ece0" opacity="0.8"/>
+    <circle cx="140" cy="400" r="1.6" fill="#e8934a" opacity="0.8"/>
+    <circle cx="840" cy="400" r="2" fill="#f2ece0" opacity="0.8"/>
+
+    <!-- 늑대 두개골 토템 -->
+    <g transform="translate(90,470)">
+      <rect x="-3" y="-40" width="6" height="40" fill="#3a1310"/>
+      <ellipse cx="0" cy="-52" rx="16" ry="12" fill="#c9bfa8"/>
+      <polygon points="-16,-58 -8,-70 0,-58" fill="#c9bfa8"/>
+      <polygon points="16,-58 8,-70 0,-58" fill="#c9bfa8"/>
+      <circle cx="-5" cy="-52" r="2" fill="#1c1310"/>
+      <circle cx="5" cy="-52" r="2" fill="#1c1310"/>
+      <rect x="-14" y="-30" width="28" height="8" fill="#7a1f18"/>
+    </g>
+  </g>
+
+  <!-- 바닥 -->
+  <rect x="0" y="470" width="960" height="70" fill="#20140f"/>
+  <ellipse cx="160" cy="472" rx="90" ry="8" fill="#e8934a" opacity="0.12"/>
+  <ellipse cx="800" cy="472" rx="90" ry="8" fill="#e8934a" opacity="0.12"/>
+</svg>
