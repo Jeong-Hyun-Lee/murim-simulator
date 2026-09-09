@@ -6,7 +6,7 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 96, "h": 64 },
     "sourceSize": { "w": 96, "h": 64 },
-    "duration": 130
+    "duration": 110
    },
    {
     "filename": "mokhyeon-attack 1.aseprite",
@@ -15,11 +15,47 @@
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 96, "h": 64 },
     "sourceSize": { "w": 96, "h": 64 },
-    "duration": 70
+    "duration": 90
    },
    {
     "filename": "mokhyeon-attack 2.aseprite",
     "frame": { "x": 192, "y": 0, "w": 96, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 96, "h": 64 },
+    "sourceSize": { "w": 96, "h": 64 },
+    "duration": 70
+   },
+   {
+    "filename": "mokhyeon-attack 3.aseprite",
+    "frame": { "x": 288, "y": 0, "w": 96, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 96, "h": 64 },
+    "sourceSize": { "w": 96, "h": 64 },
+    "duration": 45
+   },
+   {
+    "filename": "mokhyeon-attack 4.aseprite",
+    "frame": { "x": 384, "y": 0, "w": 96, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 96, "h": 64 },
+    "sourceSize": { "w": 96, "h": 64 },
+    "duration": 70
+   },
+   {
+    "filename": "mokhyeon-attack 5.aseprite",
+    "frame": { "x": 480, "y": 0, "w": 96, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 96, "h": 64 },
+    "sourceSize": { "w": 96, "h": 64 },
+    "duration": 90
+   },
+   {
+    "filename": "mokhyeon-attack 6.aseprite",
+    "frame": { "x": 576, "y": 0, "w": 96, "h": 64 },
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 96, "h": 64 },
@@ -32,10 +68,10 @@
   "version": "1.3.18.1-6-g717ab76b2-dev",
   "image": "mokhyeon-attack-sheet.png",
   "format": "RGBA8888",
-  "size": { "w": 288, "h": 64 },
+  "size": { "w": 672, "h": 64 },
   "scale": "1",
   "frameTags": [
-   { "name": "attack", "from": 0, "to": 2, "direction": "forward", "color": "#000000ff" }
+   { "name": "attack", "from": 0, "to": 6, "direction": "forward", "color": "#000000ff" }
   ]
  }
 }
