@@ -44,6 +44,21 @@ function todayString(): string {
   return new Date().toISOString().slice(0, 10);
 }
 
+const PLAYER_X = 280;
+const PLAYER_Y = 400;
+const ENEMY_X = 700;
+const ENEMY_Y = 340;
+const HIT_FLASH_MS = 140;
+const POPUP_LIFETIME_MS = 800;
+
+interface DamagePopup {
+  x: number;
+  y: number;
+  text: string;
+  color: string;
+  age: number;
+}
+
 let toastTimer: number | undefined;
 function showToast(msg: string) {
   el.toast.textContent = msg;
@@ -75,6 +90,13 @@ async function main() {
   let enemyAttackClock = 0;
   let isAttacking = false;
   let attackElapsed = 0;
+  let enemyFlashMs = 0;
+  let playerFlashMs = 0;
+  const popups: DamagePopup[] = [];
+
+  function spawnPopup(x: number, y: number, text: string, color: string) {
+    popups.push({ x, y, text, color, age: 0 });
+  }
 
   function persist() {
     saveState({ level, exp, gold, chi, stage, gongLevels, lastLoginDate });
@@ -213,6 +235,8 @@ async function main() {
 
     const dmg = damage(player.atk, enemy.def);
     enemyHp -= dmg;
+    enemyFlashMs = HIT_FLASH_MS;
+    spawnPopup(ENEMY_X, ENEMY_Y - 70, `-${dmg}`, "#ffe27a");
     if (enemyHp <= 0) onVictory();
   }
 
@@ -220,15 +244,37 @@ async function main() {
     if (enemyHp <= 0) return;
     const dmg = damage(enemy.atk, player.def);
     playerHp -= dmg;
+    playerFlashMs = HIT_FLASH_MS;
+    spawnPopup(PLAYER_X, PLAYER_Y - 110, `-${dmg}`, "#ff6b6b");
     if (playerHp <= 0) onDefeat();
   }
 
   function drawEnemyPlaceholder() {
     const boxSize = isBossStage(stage) ? 90 : 60;
-    const cx = 700;
-    const cy = 340;
-    ctx.fillStyle = isBossStage(stage) ? "#7a2fb0" : "#b03a3a";
-    ctx.fillRect(cx - boxSize / 2, cy - boxSize, boxSize, boxSize);
+    ctx.fillStyle = enemyFlashMs > 0 ? "#ffffff" : isBossStage(stage) ? "#7a2fb0" : "#b03a3a";
+    ctx.fillRect(ENEMY_X - boxSize / 2, ENEMY_Y - boxSize, boxSize, boxSize);
+  }
+
+  function drawPlayerFlash() {
+    if (playerFlashMs <= 0) return;
+    ctx.save();
+    ctx.globalAlpha = 0.5 * (playerFlashMs / HIT_FLASH_MS);
+    ctx.fillStyle = "#ff4444";
+    ctx.fillRect(PLAYER_X - 40, PLAYER_Y - 130, 80, 130);
+    ctx.restore();
+  }
+
+  function drawPopups() {
+    for (const p of popups) {
+      const t = p.age / POPUP_LIFETIME_MS;
+      ctx.save();
+      ctx.globalAlpha = 1 - t;
+      ctx.fillStyle = p.color;
+      ctx.font = "bold 22px sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText(p.text, p.x, p.y - t * 40);
+      ctx.restore();
+    }
   }
 
   refreshHud();
@@ -261,14 +307,21 @@ async function main() {
       idleAnim.update(deltaMs);
     }
 
+    enemyFlashMs = Math.max(0, enemyFlashMs - deltaMs);
+    playerFlashMs = Math.max(0, playerFlashMs - deltaMs);
+    for (const p of popups) p.age += deltaMs;
+    while (popups.length && popups[0].age >= POPUP_LIFETIME_MS) popups.shift();
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#242430";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#141419";
     ctx.fillRect(0, 400, canvas.width, canvas.height - 400);
 
-    (isAttacking ? attackAnim : idleAnim).draw(ctx, 280, 400, 3, false);
+    (isAttacking ? attackAnim : idleAnim).draw(ctx, PLAYER_X, PLAYER_Y, 3, false);
+    drawPlayerFlash();
     drawEnemyPlaceholder();
+    drawPopups();
 
     refreshHud();
     requestAnimationFrame(frame);
