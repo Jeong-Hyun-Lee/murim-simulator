@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>무림인 키우기</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="game-root">
+      <canvas id="battle-canvas" width="960" height="540"></canvas>
+      <div id="ui-overlay">
+        <div id="top-bar">
+          <span id="stage-label">1-1</span>
+          <span id="gold-label">전 0</span>
+          <span id="chi-label">내공 0</span>
+        </div>
+        <div id="player-status">
+          <span id="level-label">Lv.1</span>
+          <div class="bar hp-bar"><div id="player-hp-fill" class="bar-fill"></div></div>
+          <div class="bar exp-bar"><div id="player-exp-fill" class="bar-fill"></div></div>
+        </div>
+        <div id="enemy-status">
+          <span id="enemy-name-label"></span>
+          <div class="bar hp-bar"><div id="enemy-hp-fill" class="bar-fill"></div></div>
+        </div>
+        <div id="log-toast"></div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

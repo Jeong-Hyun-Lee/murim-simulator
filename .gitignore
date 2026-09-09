@@ -1,1 +1,5 @@
 wiki/.obsidian/
+node_modules/
+dist/
+*.tsbuildinfo
+.claude/settings.local.json
