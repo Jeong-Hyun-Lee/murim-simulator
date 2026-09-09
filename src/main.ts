@@ -90,8 +90,8 @@ interface DamagePopup {
 // pointerup/이탈/포커스아웃 시 정지. 버튼 비활성(최대강화/재화부족) 시엔 action 자체가 no-op.
 let holdTimer: number | undefined;
 let holdInterval: number | undefined;
-const HOLD_INITIAL_DELAY_MS = 350;
-const HOLD_REPEAT_MS = 120;
+const HOLD_INITIAL_DELAY_MS = 200;
+const HOLD_REPEAT_MS = 40;
 
 function stopHold() {
   window.clearTimeout(holdTimer);
