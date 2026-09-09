@@ -36,6 +36,7 @@ const el = {
   equipCloseBtn: document.querySelector<HTMLButtonElement>("#equip-close-btn")!,
   equipPanel: document.querySelector<HTMLElement>("#equip-panel")!,
   equipNodeList: document.querySelector<HTMLElement>("#equip-node-list")!,
+  pauseBtn: document.querySelector<HTMLButtonElement>("#pause-toggle-btn")!,
 };
 
 const ATTACK_INTERVAL_MS = 1300;
@@ -102,7 +103,13 @@ async function main() {
   let attackElapsed = 0;
   let enemyFlashMs = 0;
   let playerFlashMs = 0;
+  let paused = false;
   const popups: DamagePopup[] = [];
+
+  el.pauseBtn.onclick = () => {
+    paused = !paused;
+    el.pauseBtn.textContent = paused ? "재개" : "일시정지";
+  };
 
   function spawnPopup(x: number, y: number, text: string, color: string) {
     popups.push({ x, y, text, color, age: 0 });
@@ -344,33 +351,35 @@ async function main() {
     const deltaMs = Math.min(100, time - lastTime);
     lastTime = time;
 
-    attackClock += deltaMs;
-    enemyAttackClock += deltaMs;
+    if (!paused) {
+      attackClock += deltaMs;
+      enemyAttackClock += deltaMs;
 
-    if (attackClock >= ATTACK_INTERVAL_MS) {
-      attackClock = 0;
-      playerAttack();
-    }
-    if (enemyAttackClock >= ENEMY_ATTACK_INTERVAL_MS) {
-      enemyAttackClock = 0;
-      enemyAttack();
-    }
-
-    if (isAttacking) {
-      attackElapsed += deltaMs;
-      attackAnim.update(deltaMs);
-      if (attackElapsed >= attackAnim.totalDurationMs) {
-        isAttacking = false;
-        idleAnim.reset();
+      if (attackClock >= ATTACK_INTERVAL_MS) {
+        attackClock = 0;
+        playerAttack();
       }
-    } else {
-      idleAnim.update(deltaMs);
-    }
+      if (enemyAttackClock >= ENEMY_ATTACK_INTERVAL_MS) {
+        enemyAttackClock = 0;
+        enemyAttack();
+      }
 
-    enemyFlashMs = Math.max(0, enemyFlashMs - deltaMs);
-    playerFlashMs = Math.max(0, playerFlashMs - deltaMs);
-    for (const p of popups) p.age += deltaMs;
-    while (popups.length && popups[0].age >= POPUP_LIFETIME_MS) popups.shift();
+      if (isAttacking) {
+        attackElapsed += deltaMs;
+        attackAnim.update(deltaMs);
+        if (attackElapsed >= attackAnim.totalDurationMs) {
+          isAttacking = false;
+          idleAnim.reset();
+        }
+      } else {
+        idleAnim.update(deltaMs);
+      }
+
+      enemyFlashMs = Math.max(0, enemyFlashMs - deltaMs);
+      playerFlashMs = Math.max(0, playerFlashMs - deltaMs);
+      for (const p of popups) p.age += deltaMs;
+      while (popups.length && popups[0].age >= POPUP_LIFETIME_MS) popups.shift();
+    }
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "#242430";
