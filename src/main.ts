@@ -86,6 +86,35 @@ interface DamagePopup {
   age: number;
 }
 
+// 강화 버튼 꾹 누르기 연속 실행 — pointerdown 후 일정 시간 지나면 반복 트리거,
+// pointerup/이탈/포커스아웃 시 정지. 버튼 비활성(최대강화/재화부족) 시엔 action 자체가 no-op.
+let holdTimer: number | undefined;
+let holdInterval: number | undefined;
+const HOLD_INITIAL_DELAY_MS = 350;
+const HOLD_REPEAT_MS = 120;
+
+function stopHold() {
+  window.clearTimeout(holdTimer);
+  window.clearInterval(holdInterval);
+  holdTimer = undefined;
+  holdInterval = undefined;
+}
+window.addEventListener("pointerup", stopHold);
+window.addEventListener("pointercancel", stopHold);
+window.addEventListener("blur", stopHold);
+
+function bindHoldRepeat(btn: HTMLButtonElement, action: () => void) {
+  btn.addEventListener("pointerdown", (e) => {
+    if (btn.disabled) return;
+    e.preventDefault();
+    stopHold();
+    action();
+    holdTimer = window.setTimeout(() => {
+      holdInterval = window.setInterval(action, HOLD_REPEAT_MS);
+    }, HOLD_INITIAL_DELAY_MS);
+  });
+}
+
 let toastTimer: number | undefined;
 function showToast(msg: string) {
   el.toast.textContent = msg;
@@ -257,15 +286,18 @@ async function main() {
       } else {
         btn.textContent = `강화 (내공 ${cost.toLocaleString()})`;
         btn.disabled = chi < cost;
-        btn.onclick = () => {
-          if (chi < cost || (gongLevels[node.id] ?? 0) >= node.maxLevel) return;
-          chi -= cost;
-          gongLevels[node.id] = (gongLevels[node.id] ?? 0) + 1;
+        bindHoldRepeat(btn, () => {
+          // 연속 강화 중 레벨이 오를 때마다 비용도 오르므로 매 호출마다 현재 레벨 기준으로 재계산.
+          const curLevel = nodeLevel(node, gongLevels);
+          const curCost = nodeUpgradeCost(node, curLevel);
+          if (chi < curCost || curLevel >= node.maxLevel) return;
+          chi -= curCost;
+          gongLevels[node.id] = curLevel + 1;
           recomputePlayerStats();
           persist();
           renderGongPanel();
           refreshHud();
-        };
+        });
       }
 
       row.append(name, tier, lvSpan, btn);
@@ -301,15 +333,16 @@ async function main() {
     } else {
       btn.textContent = `강화 (전 ${cost.toLocaleString()})`;
       btn.disabled = gold < cost;
-      btn.onclick = () => {
-        if (gold < cost || weaponLevel >= WEAPON_MAX_LEVEL) return;
-        gold -= cost;
+      bindHoldRepeat(btn, () => {
+        const curCost = weaponUpgradeCost(weaponLevel);
+        if (gold < curCost || weaponLevel >= WEAPON_MAX_LEVEL) return;
+        gold -= curCost;
         weaponLevel += 1;
         recomputePlayerStats();
         persist();
         renderEquipPanel();
         refreshHud();
-      };
+      });
     }
 
     row.append(name, tier, lvSpan, btn);
