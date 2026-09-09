@@ -15,6 +15,7 @@
           <span id="gold-label">전 0</span>
           <span id="chi-label">내공 0</span>
           <button id="gong-toggle-btn">무공</button>
+          <button id="equip-toggle-btn">장구</button>
         </div>
         <div id="player-status">
           <span id="level-label">Lv.1</span>
@@ -27,12 +28,19 @@
         </div>
         <div id="log-toast"></div>
       </div>
-      <div id="gong-panel" hidden>
+      <div id="gong-panel" class="stat-panel" hidden>
         <div id="gong-panel-header">
           <span>삼재검법 1보</span>
           <button id="gong-close-btn">닫기</button>
         </div>
         <div id="gong-node-list"></div>
+      </div>
+      <div id="equip-panel" class="stat-panel" hidden>
+        <div id="gong-panel-header">
+          <span>장구 — 무기</span>
+          <button id="equip-close-btn">닫기</button>
+        </div>
+        <div id="equip-node-list"></div>
       </div>
     </div>
     <script type="module" src="/src/main.ts"></script>

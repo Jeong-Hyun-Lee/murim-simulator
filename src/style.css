@@ -96,6 +96,8 @@ body {
 
 #gong-toggle-btn,
 #gong-close-btn,
+#equip-toggle-btn,
+#equip-close-btn,
 .gong-upgrade-btn {
   pointer-events: auto;
   cursor: pointer;
@@ -108,6 +110,8 @@ body {
 
 #gong-toggle-btn:hover,
 #gong-close-btn:hover,
+#equip-toggle-btn:hover,
+#equip-close-btn:hover,
 .gong-upgrade-btn:not(:disabled):hover {
   background: #3a3020;
 }
@@ -117,11 +121,11 @@ body {
   cursor: default;
 }
 
-#gong-panel[hidden] {
+.stat-panel[hidden] {
   display: none;
 }
 
-#gong-panel {
+.stat-panel {
   position: absolute;
   inset: 40px 60px;
   pointer-events: auto;

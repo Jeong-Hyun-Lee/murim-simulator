@@ -12,6 +12,7 @@ import {
 } from "./combat";
 import { loadState, saveState, type GameState } from "./state";
 import { SAMJAE_BOARD, nodeLevel, nodeUpgradeCost, isNodeUnlocked, totalGongBuffPercent } from "./gongData";
+import { WEAPON_MAX_LEVEL, weaponUpgradeCost, weaponBuffPercent } from "./equipData";
 import "./style.css";
 
 const canvas = document.querySelector<HTMLCanvasElement>("#battle-canvas")!;
@@ -31,6 +32,10 @@ const el = {
   gongCloseBtn: document.querySelector<HTMLButtonElement>("#gong-close-btn")!,
   gongPanel: document.querySelector<HTMLElement>("#gong-panel")!,
   gongNodeList: document.querySelector<HTMLElement>("#gong-node-list")!,
+  equipToggleBtn: document.querySelector<HTMLButtonElement>("#equip-toggle-btn")!,
+  equipCloseBtn: document.querySelector<HTMLButtonElement>("#equip-close-btn")!,
+  equipPanel: document.querySelector<HTMLElement>("#equip-panel")!,
+  equipNodeList: document.querySelector<HTMLElement>("#equip-node-list")!,
 };
 
 const ATTACK_INTERVAL_MS = 1300;
@@ -79,9 +84,14 @@ async function main() {
   let gold = saved.gold;
   let chi = saved.chi;
   const gongLevels = saved.gongLevels;
+  let weaponLevel = saved.weaponLevel;
   let lastLoginDate = saved.lastLoginDate;
 
-  let player = playerStats(level, totalGongBuffPercent(gongLevels));
+  function totalBuffPercent(): number {
+    return totalGongBuffPercent(gongLevels) + weaponBuffPercent(weaponLevel);
+  }
+
+  let player = playerStats(level, totalBuffPercent());
   let playerHp = player.hp;
   let enemy = monsterStats(stage);
   let enemyHp = enemy.hp;
@@ -99,11 +109,11 @@ async function main() {
   }
 
   function persist() {
-    saveState({ level, exp, gold, chi, stage, gongLevels, lastLoginDate });
+    saveState({ level, exp, gold, chi, stage, gongLevels, weaponLevel, lastLoginDate });
   }
 
   function recomputePlayerStats() {
-    const newPlayer = playerStats(level, totalGongBuffPercent(gongLevels));
+    const newPlayer = playerStats(level, totalBuffPercent());
     playerHp = Math.min(newPlayer.hp, playerHp + Math.max(0, newPlayer.hp - player.hp));
     player = newPlayer;
   }
@@ -168,12 +178,62 @@ async function main() {
     }
   }
 
+  function renderEquipPanel() {
+    el.equipNodeList.innerHTML = "";
+    const maxed = weaponLevel >= WEAPON_MAX_LEVEL;
+    const cost = weaponUpgradeCost(weaponLevel);
+
+    const row = document.createElement("div");
+    row.className = "gong-node";
+
+    const name = document.createElement("span");
+    name.className = "gong-node-name";
+    name.textContent = "무기 (병기)";
+
+    const tier = document.createElement("span");
+    tier.className = "gong-node-tier";
+    tier.textContent = "+강화";
+
+    const lvSpan = document.createElement("span");
+    lvSpan.className = "gong-node-level";
+    lvSpan.textContent = `+${weaponLevel}/${WEAPON_MAX_LEVEL}`;
+
+    const btn = document.createElement("button");
+    btn.className = "gong-upgrade-btn";
+    if (maxed) {
+      btn.textContent = "대성";
+      btn.disabled = true;
+    } else {
+      btn.textContent = `강화 (전 ${cost.toLocaleString()})`;
+      btn.disabled = gold < cost;
+      btn.onclick = () => {
+        if (gold < cost || weaponLevel >= WEAPON_MAX_LEVEL) return;
+        gold -= cost;
+        weaponLevel += 1;
+        recomputePlayerStats();
+        persist();
+        renderEquipPanel();
+        refreshHud();
+      };
+    }
+
+    row.append(name, tier, lvSpan, btn);
+    el.equipNodeList.appendChild(row);
+  }
+
   el.gongToggleBtn.onclick = () => {
     el.gongPanel.hidden = !el.gongPanel.hidden;
     if (!el.gongPanel.hidden) renderGongPanel();
   };
   el.gongCloseBtn.onclick = () => {
     el.gongPanel.hidden = true;
+  };
+  el.equipToggleBtn.onclick = () => {
+    el.equipPanel.hidden = !el.equipPanel.hidden;
+    if (!el.equipPanel.hidden) renderEquipPanel();
+  };
+  el.equipCloseBtn.onclick = () => {
+    el.equipPanel.hidden = true;
   };
 
   claimDailyBonusIfNeeded();
