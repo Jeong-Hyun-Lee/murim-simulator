@@ -7,6 +7,7 @@ import {
   stageLabel,
   expToNextLevel,
   damage,
+  rollPlayerDamage,
   isBossStage,
   type StageId,
 } from "./combat";
@@ -300,10 +301,10 @@ async function main() {
     attackElapsed = 0;
     attackAnim.reset();
 
-    const dmg = damage(player.atk, enemy.def);
+    const { amount: dmg, isCrit } = rollPlayerDamage(player.atk, enemy.def);
     enemyHp -= dmg;
     enemyFlashMs = HIT_FLASH_MS;
-    spawnPopup(ENEMY_X, ENEMY_Y - 70, `-${dmg}`, "#ffe27a");
+    spawnPopup(ENEMY_X, ENEMY_Y - 70, isCrit ? `치명타! -${dmg}` : `-${dmg}`, isCrit ? "#ff9800" : "#ffe27a");
     if (enemyHp <= 0) onVictory();
   }
 

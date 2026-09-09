@@ -125,3 +125,19 @@ export function expToNextLevel(level: number): number {
 export function damage(attackerAtk: number, defenderDef: number): number {
   return Math.max(1, attackerAtk - defenderDef);
 }
+
+// ponytail: 장구-시스템의 슬롯별 치명타율/치명타피해 스탯은 v1 인벤토리가 없어 아직 반영 못함 —
+// 플레이어 공격에만 고정 확률/배율 크리티컬 적용한 축소판.
+const CRIT_CHANCE = 0.1;
+const CRIT_MULTIPLIER = 1.5;
+
+export interface DamageResult {
+  amount: number;
+  isCrit: boolean;
+}
+
+export function rollPlayerDamage(attackerAtk: number, defenderDef: number): DamageResult {
+  const base = damage(attackerAtk, defenderDef);
+  const isCrit = Math.random() < CRIT_CHANCE;
+  return { amount: isCrit ? Math.round(base * CRIT_MULTIPLIER) : base, isCrit };
+}
