@@ -15,6 +15,7 @@ import { loadState, saveState, type GameState } from "./state";
 import { SAMJAE_BOARD, nodeLevel, nodeUpgradeCost, isNodeUnlocked, totalGongBuffPercent } from "./gongData";
 import { WEAPON_MAX_LEVEL, weaponUpgradeCost, weaponBuffPercent } from "./equipData";
 import { realmName, rebirthGateMajor, rebirthBuffPercent } from "./rebirthData";
+import { SECT_NAME, SECT_MAX_LEVEL, CHI_PER_CONTRIBUTION, sectExpToNextLevel, sectBuffPercent } from "./sectData";
 import "./style.css";
 
 const canvas = document.querySelector<HTMLCanvasElement>("#battle-canvas")!;
@@ -43,6 +44,10 @@ const el = {
   rebirthCloseBtn: document.querySelector<HTMLButtonElement>("#rebirth-close-btn")!,
   rebirthPanel: document.querySelector<HTMLElement>("#rebirth-panel")!,
   rebirthBody: document.querySelector<HTMLElement>("#rebirth-body")!,
+  sectToggleBtn: document.querySelector<HTMLButtonElement>("#sect-toggle-btn")!,
+  sectCloseBtn: document.querySelector<HTMLButtonElement>("#sect-close-btn")!,
+  sectPanel: document.querySelector<HTMLElement>("#sect-panel")!,
+  sectBody: document.querySelector<HTMLElement>("#sect-body")!,
 };
 
 const ATTACK_INTERVAL_MS = 1300;
@@ -94,10 +99,18 @@ async function main() {
   let weaponLevel = saved.weaponLevel;
   let rebirthCount = saved.rebirthCount;
   let highestMajorCleared = saved.highestMajorCleared;
+  let sectLevel = saved.sectLevel;
+  let sectExp = saved.sectExp;
+  let sectTotalContribution = saved.sectTotalContribution;
   let lastLoginDate = saved.lastLoginDate;
 
   function totalBuffPercent(): number {
-    return totalGongBuffPercent(gongLevels) + weaponBuffPercent(weaponLevel) + rebirthBuffPercent(rebirthCount);
+    return (
+      totalGongBuffPercent(gongLevels) +
+      weaponBuffPercent(weaponLevel) +
+      rebirthBuffPercent(rebirthCount) +
+      sectBuffPercent(sectLevel)
+    );
   }
 
   let player = playerStats(level, totalBuffPercent());
@@ -134,8 +147,49 @@ async function main() {
       weaponLevel,
       rebirthCount,
       highestMajorCleared,
+      sectLevel,
+      sectExp,
+      sectTotalContribution,
       lastLoginDate,
     });
+  }
+
+  function donateChiToSect() {
+    const donatable = Math.floor(chi / CHI_PER_CONTRIBUTION);
+    if (donatable <= 0 || sectLevel >= SECT_MAX_LEVEL) return;
+    chi -= donatable * CHI_PER_CONTRIBUTION;
+    sectTotalContribution += donatable;
+    sectExp += donatable;
+    while (sectLevel < SECT_MAX_LEVEL && sectExp >= sectExpToNextLevel(sectLevel)) {
+      sectExp -= sectExpToNextLevel(sectLevel);
+      sectLevel += 1;
+    }
+    recomputePlayerStats();
+    persist();
+    renderSectPanel();
+    refreshHud();
+  }
+
+  function renderSectPanel() {
+    el.sectBody.innerHTML = "";
+    const donatable = Math.floor(chi / CHI_PER_CONTRIBUTION);
+    const maxed = sectLevel >= SECT_MAX_LEVEL;
+
+    const info = document.createElement("div");
+    info.innerHTML =
+      `소속: <b>${SECT_NAME}</b><br>` +
+      `문파 Lv.${sectLevel}/${SECT_MAX_LEVEL} (${sectExp}/${maxed ? "-" : sectExpToNextLevel(sectLevel)})<br>` +
+      `문파 특전: 전투력 +${sectBuffPercent(sectLevel)}%<br>` +
+      `누적 기여도: ${sectTotalContribution.toLocaleString()}<br>` +
+      `내공 ${CHI_PER_CONTRIBUTION.toLocaleString()} = 기여도 1 (보유 내공 ${chi.toLocaleString()})`;
+    el.sectBody.appendChild(info);
+
+    const btn = document.createElement("button");
+    btn.className = "gong-upgrade-btn";
+    btn.textContent = maxed ? "대성" : `내공 기부 (기여도 +${donatable})`;
+    btn.disabled = maxed || donatable <= 0;
+    btn.onclick = donateChiToSect;
+    el.sectBody.appendChild(btn);
   }
 
   function recomputePlayerStats() {
@@ -306,6 +360,13 @@ async function main() {
   };
   el.rebirthCloseBtn.onclick = () => {
     el.rebirthPanel.hidden = true;
+  };
+  el.sectToggleBtn.onclick = () => {
+    el.sectPanel.hidden = !el.sectPanel.hidden;
+    if (!el.sectPanel.hidden) renderSectPanel();
+  };
+  el.sectCloseBtn.onclick = () => {
+    el.sectPanel.hidden = true;
   };
 
   claimDailyBonusIfNeeded();

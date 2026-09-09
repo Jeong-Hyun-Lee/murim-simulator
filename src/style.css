@@ -101,6 +101,8 @@ body {
 #pause-toggle-btn,
 #rebirth-toggle-btn,
 #rebirth-close-btn,
+#sect-toggle-btn,
+#sect-close-btn,
 .gong-upgrade-btn {
   pointer-events: auto;
   cursor: pointer;
@@ -118,6 +120,8 @@ body {
 #pause-toggle-btn:hover,
 #rebirth-toggle-btn:hover,
 #rebirth-close-btn:hover,
+#sect-toggle-btn:hover,
+#sect-close-btn:hover,
 .gong-upgrade-btn:not(:disabled):hover {
   background: #3a3020;
 }
@@ -180,7 +184,8 @@ body {
   color: #6a6a72;
 }
 
-#rebirth-body {
+#rebirth-body,
+#sect-body {
   display: flex;
   flex-direction: column;
   gap: 10px;

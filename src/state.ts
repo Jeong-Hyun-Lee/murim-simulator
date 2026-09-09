@@ -13,6 +13,9 @@ export interface GameState {
   weaponLevel: number;
   rebirthCount: number;
   highestMajorCleared: number;
+  sectLevel: number;
+  sectExp: number;
+  sectTotalContribution: number;
   lastLoginDate: string; // YYYY-MM-DD, 로컬 날짜 기준 1일 1회 재접속 보너스 판정용
 }
 
@@ -27,6 +30,9 @@ function defaultState(): GameState {
     weaponLevel: 0,
     rebirthCount: 0,
     highestMajorCleared: 0,
+    sectLevel: 1,
+    sectExp: 0,
+    sectTotalContribution: 0,
     lastLoginDate: "",
   };
 }
