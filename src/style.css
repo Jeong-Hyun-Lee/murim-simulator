@@ -93,3 +93,79 @@ body {
   color: #ffd76a;
   text-shadow: 0 1px 3px #000;
 }
+
+#gong-toggle-btn,
+#gong-close-btn,
+.gong-upgrade-btn {
+  pointer-events: auto;
+  cursor: pointer;
+  background: #2a2418;
+  color: #e8e0cf;
+  border: 1px solid #5a4a2a;
+  font-size: 14px;
+  padding: 4px 10px;
+}
+
+#gong-toggle-btn:hover,
+#gong-close-btn:hover,
+.gong-upgrade-btn:not(:disabled):hover {
+  background: #3a3020;
+}
+
+.gong-upgrade-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+#gong-panel[hidden] {
+  display: none;
+}
+
+#gong-panel {
+  position: absolute;
+  inset: 40px 60px;
+  pointer-events: auto;
+  background: #16161e;
+  border: 1px solid #5a4a2a;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+#gong-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #3a3a46;
+  padding-bottom: 8px;
+}
+
+.gong-node {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 4px;
+  border-bottom: 1px solid #26262f;
+}
+
+.gong-node-name {
+  min-width: 140px;
+}
+
+.gong-node-tier {
+  font-size: 12px;
+  color: #9a8f78;
+  min-width: 60px;
+}
+
+.gong-node-level {
+  min-width: 90px;
+}
+
+.gong-node-locked {
+  color: #6a6a72;
+}

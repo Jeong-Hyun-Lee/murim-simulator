@@ -1,4 +1,5 @@
 import type { StageId } from "./combat";
+import type { GongLevels } from "./gongData";
 
 const SAVE_KEY = "murim-simulator-save-v1";
 
@@ -8,15 +9,21 @@ export interface GameState {
   gold: number;
   chi: number;
   stage: StageId;
+  gongLevels: GongLevels;
+  lastLoginDate: string; // YYYY-MM-DD, 로컬 날짜 기준 1일 1회 재접속 보너스 판정용
+}
+
+function defaultState(): GameState {
+  return { level: 1, exp: 0, gold: 0, chi: 0, stage: { major: 1, sub: 1 }, gongLevels: {}, lastLoginDate: "" };
 }
 
 export function loadState(): GameState {
   const raw = localStorage.getItem(SAVE_KEY);
-  if (!raw) return { level: 1, exp: 0, gold: 0, chi: 0, stage: { major: 1, sub: 1 } };
+  if (!raw) return defaultState();
   try {
-    return JSON.parse(raw) as GameState;
+    return { ...defaultState(), ...(JSON.parse(raw) as Partial<GameState>) };
   } catch {
-    return { level: 1, exp: 0, gold: 0, chi: 0, stage: { major: 1, sub: 1 } };
+    return defaultState();
   }
 }
 

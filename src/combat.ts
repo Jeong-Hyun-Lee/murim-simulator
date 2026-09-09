@@ -108,8 +108,8 @@ const PLAYER_BASE_HP = 60;
 const PLAYER_BASE_ATK = 8;
 const PLAYER_BASE_DEF = 3;
 
-export function playerStats(level: number): UnitStats {
-  const mult = 1.052 ** (level - 1);
+export function playerStats(level: number, gongBuffPercent = 0): UnitStats {
+  const mult = 1.052 ** (level - 1) * (1 + gongBuffPercent / 100);
   return {
     name: "목현",
     hp: Math.round(PLAYER_BASE_HP * mult),
