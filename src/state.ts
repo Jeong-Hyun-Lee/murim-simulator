@@ -16,6 +16,8 @@ export interface GameState {
   sectLevel: number;
   sectExp: number;
   sectTotalContribution: number;
+  elixir: number;
+  gachaPity: number;
   lastLoginDate: string; // YYYY-MM-DD, 로컬 날짜 기준 1일 1회 재접속 보너스 판정용
 }
 
@@ -33,6 +35,8 @@ function defaultState(): GameState {
     sectLevel: 1,
     sectExp: 0,
     sectTotalContribution: 0,
+    elixir: 0,
+    gachaPity: 0,
     lastLoginDate: "",
   };
 }

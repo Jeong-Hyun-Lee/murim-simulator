@@ -41,15 +41,21 @@ body {
 
 #top-bar {
   display: flex;
-  gap: 24px;
-  font-size: 18px;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 15px;
   text-shadow: 0 1px 2px #000;
 }
 
 #top-bar span {
   background: rgba(0, 0, 0, 0.5);
-  padding: 4px 10px;
+  padding: 4px 8px;
   border: 1px solid #5a4a2a;
+  white-space: nowrap;
+}
+
+#top-bar button {
+  white-space: nowrap;
 }
 
 #player-status,
@@ -103,6 +109,8 @@ body {
 #rebirth-close-btn,
 #sect-toggle-btn,
 #sect-close-btn,
+#gacha-toggle-btn,
+#gacha-close-btn,
 .gong-upgrade-btn {
   pointer-events: auto;
   cursor: pointer;
@@ -122,6 +130,8 @@ body {
 #rebirth-close-btn:hover,
 #sect-toggle-btn:hover,
 #sect-close-btn:hover,
+#gacha-toggle-btn:hover,
+#gacha-close-btn:hover,
 .gong-upgrade-btn:not(:disabled):hover {
   background: #3a3020;
 }
@@ -185,9 +195,29 @@ body {
 }
 
 #rebirth-body,
-#sect-body {
+#sect-body,
+#gacha-body {
   display: flex;
   flex-direction: column;
   gap: 10px;
   line-height: 1.6;
+}
+
+#gacha-body {
+  flex-direction: row;
+  gap: 12px;
+}
+
+#gacha-result {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.gacha-result-card {
+  border: 1px solid #5a4a2a;
+  padding: 6px 10px;
+  background: rgba(0, 0, 0, 0.4);
+  font-size: 13px;
 }

@@ -16,6 +16,7 @@ import { SAMJAE_BOARD, nodeLevel, nodeUpgradeCost, isNodeUnlocked, totalGongBuff
 import { WEAPON_MAX_LEVEL, weaponUpgradeCost, weaponBuffPercent } from "./equipData";
 import { realmName, rebirthGateMajor, rebirthBuffPercent } from "./rebirthData";
 import { SECT_NAME, SECT_MAX_LEVEL, CHI_PER_CONTRIBUTION, sectExpToNextLevel, sectBuffPercent } from "./sectData";
+import { PULL_COST, PULL_10_COST, HARD_PITY, pullSingle, pullTen, type PullResult } from "./gachaData";
 import "./style.css";
 
 const canvas = document.querySelector<HTMLCanvasElement>("#battle-canvas")!;
@@ -25,6 +26,7 @@ const el = {
   stage: document.querySelector<HTMLElement>("#stage-label")!,
   gold: document.querySelector<HTMLElement>("#gold-label")!,
   chi: document.querySelector<HTMLElement>("#chi-label")!,
+  elixir: document.querySelector<HTMLElement>("#elixir-label")!,
   level: document.querySelector<HTMLElement>("#level-label")!,
   playerHpFill: document.querySelector<HTMLElement>("#player-hp-fill")!,
   playerExpFill: document.querySelector<HTMLElement>("#player-exp-fill")!,
@@ -48,6 +50,11 @@ const el = {
   sectCloseBtn: document.querySelector<HTMLButtonElement>("#sect-close-btn")!,
   sectPanel: document.querySelector<HTMLElement>("#sect-panel")!,
   sectBody: document.querySelector<HTMLElement>("#sect-body")!,
+  gachaToggleBtn: document.querySelector<HTMLButtonElement>("#gacha-toggle-btn")!,
+  gachaCloseBtn: document.querySelector<HTMLButtonElement>("#gacha-close-btn")!,
+  gachaPanel: document.querySelector<HTMLElement>("#gacha-panel")!,
+  gachaBody: document.querySelector<HTMLElement>("#gacha-body")!,
+  gachaResult: document.querySelector<HTMLElement>("#gacha-result")!,
 };
 
 const ATTACK_INTERVAL_MS = 1300;
@@ -56,6 +63,9 @@ const DEFEAT_CONSOLATION_RATIO = 0.2;
 // wiki/concepts/ux-시나리오-기획서.md §3-4: 오프라인 방치 성장 없음, 1일 1회 정액 재접속 보너스만.
 const DAILY_BONUS_GOLD = 50;
 const DAILY_BONUS_CHI = 30;
+const DAILY_BONUS_ELIXIR = 5;
+// wiki/concepts/상점-기연-시스템.md: 대보스(X-10) 최초 클리어 시 영약 3개 확정 지급.
+const BOSS_FIRST_CLEAR_ELIXIR = 3;
 
 function todayString(): string {
   return new Date().toISOString().slice(0, 10);
@@ -102,6 +112,8 @@ async function main() {
   let sectLevel = saved.sectLevel;
   let sectExp = saved.sectExp;
   let sectTotalContribution = saved.sectTotalContribution;
+  let elixir = saved.elixir;
+  let gachaPity = saved.gachaPity;
   let lastLoginDate = saved.lastLoginDate;
 
   function totalBuffPercent(): number {
@@ -150,6 +162,8 @@ async function main() {
       sectLevel,
       sectExp,
       sectTotalContribution,
+      elixir,
+      gachaPity,
       lastLoginDate,
     });
   }
@@ -204,7 +218,8 @@ async function main() {
     lastLoginDate = today;
     gold += DAILY_BONUS_GOLD;
     chi += DAILY_BONUS_CHI;
-    showToast(`재접속 환영 보너스! +전 ${DAILY_BONUS_GOLD} +내공 ${DAILY_BONUS_CHI}`);
+    elixir += DAILY_BONUS_ELIXIR;
+    showToast(`재접속 환영 보너스! +전 ${DAILY_BONUS_GOLD} +내공 ${DAILY_BONUS_CHI} +영약 ${DAILY_BONUS_ELIXIR}`);
     persist();
   }
 
@@ -340,6 +355,66 @@ async function main() {
     el.rebirthBody.appendChild(btn);
   }
 
+  function showGachaResults(results: PullResult[]) {
+    el.gachaResult.innerHTML = "";
+    let totalReward = 0;
+    for (const r of results) {
+      totalReward += r.reward;
+      const card = document.createElement("div");
+      card.className = "gacha-result-card";
+      card.textContent = `${r.grade} +내공${r.reward}`;
+      el.gachaResult.appendChild(card);
+    }
+    chi += totalReward;
+  }
+
+  function renderGachaPanel() {
+    el.gachaBody.innerHTML = "";
+
+    const info = document.createElement("div");
+    info.innerHTML =
+      `보유 영약: ${elixir.toLocaleString()}<br>` + `천장 진행: ${gachaPity}/${HARD_PITY} (선품 확정까지)`;
+    el.gachaBody.appendChild(info);
+
+    const btnGroup = document.createElement("div");
+    btnGroup.style.display = "flex";
+    btnGroup.style.flexDirection = "column";
+    btnGroup.style.gap = "8px";
+
+    const btn1 = document.createElement("button");
+    btn1.className = "gong-upgrade-btn";
+    btn1.textContent = `1회 뽑기 (영약 ${PULL_COST})`;
+    btn1.disabled = elixir < PULL_COST;
+    btn1.onclick = () => {
+      if (elixir < PULL_COST) return;
+      elixir -= PULL_COST;
+      const { result, nextPity } = pullSingle(gachaPity);
+      gachaPity = nextPity;
+      showGachaResults([result]);
+      persist();
+      renderGachaPanel();
+      refreshHud();
+    };
+
+    const btn10 = document.createElement("button");
+    btn10.className = "gong-upgrade-btn";
+    btn10.textContent = `10회 뽑기 (영약 ${PULL_10_COST})`;
+    btn10.disabled = elixir < PULL_10_COST;
+    btn10.onclick = () => {
+      if (elixir < PULL_10_COST) return;
+      elixir -= PULL_10_COST;
+      const { results, nextPity } = pullTen(gachaPity);
+      gachaPity = nextPity;
+      showGachaResults(results);
+      persist();
+      renderGachaPanel();
+      refreshHud();
+    };
+
+    btnGroup.append(btn1, btn10);
+    el.gachaBody.appendChild(btnGroup);
+  }
+
   el.gongToggleBtn.onclick = () => {
     el.gongPanel.hidden = !el.gongPanel.hidden;
     if (!el.gongPanel.hidden) renderGongPanel();
@@ -368,6 +443,16 @@ async function main() {
   el.sectCloseBtn.onclick = () => {
     el.sectPanel.hidden = true;
   };
+  el.gachaToggleBtn.onclick = () => {
+    el.gachaPanel.hidden = !el.gachaPanel.hidden;
+    if (!el.gachaPanel.hidden) {
+      el.gachaResult.innerHTML = "";
+      renderGachaPanel();
+    }
+  };
+  el.gachaCloseBtn.onclick = () => {
+    el.gachaPanel.hidden = true;
+  };
 
   claimDailyBonusIfNeeded();
 
@@ -375,6 +460,7 @@ async function main() {
     el.stage.textContent = stageLabel(stage) + (isBossStage(stage) ? " (보스)" : "");
     el.gold.textContent = `전 ${gold.toLocaleString()}`;
     el.chi.textContent = `내공 ${chi.toLocaleString()}`;
+    el.elixir.textContent = `영약 ${elixir.toLocaleString()}`;
     el.level.textContent = `Lv.${level}`;
     el.playerHpFill.style.width = `${Math.max(0, (playerHp / player.hp) * 100)}%`;
     el.playerExpFill.style.width = `${Math.min(100, (exp / expToNextLevel(level)) * 100)}%`;
@@ -403,7 +489,10 @@ async function main() {
     levelUp();
     playerHp = player.hp;
     showToast(`${stageLabel(stage)} 클리어! +EXP ${reward.exp} +전 ${reward.gold}`);
-    if (isBossStage(stage)) highestMajorCleared = Math.max(highestMajorCleared, stage.major);
+    if (isBossStage(stage) && stage.major > highestMajorCleared) {
+      highestMajorCleared = stage.major;
+      elixir += BOSS_FIRST_CLEAR_ELIXIR;
+    }
     stage = nextStage(stage);
     spawnEnemy();
     persist();
