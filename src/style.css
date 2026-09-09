@@ -99,6 +99,8 @@ body {
 #equip-toggle-btn,
 #equip-close-btn,
 #pause-toggle-btn,
+#rebirth-toggle-btn,
+#rebirth-close-btn,
 .gong-upgrade-btn {
   pointer-events: auto;
   cursor: pointer;
@@ -114,6 +116,8 @@ body {
 #equip-toggle-btn:hover,
 #equip-close-btn:hover,
 #pause-toggle-btn:hover,
+#rebirth-toggle-btn:hover,
+#rebirth-close-btn:hover,
 .gong-upgrade-btn:not(:disabled):hover {
   background: #3a3020;
 }
@@ -174,4 +178,11 @@ body {
 
 .gong-node-locked {
   color: #6a6a72;
+}
+
+#rebirth-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  line-height: 1.6;
 }

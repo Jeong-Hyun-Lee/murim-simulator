@@ -14,6 +14,7 @@ import {
 import { loadState, saveState, type GameState } from "./state";
 import { SAMJAE_BOARD, nodeLevel, nodeUpgradeCost, isNodeUnlocked, totalGongBuffPercent } from "./gongData";
 import { WEAPON_MAX_LEVEL, weaponUpgradeCost, weaponBuffPercent } from "./equipData";
+import { realmName, rebirthGateMajor, rebirthBuffPercent } from "./rebirthData";
 import "./style.css";
 
 const canvas = document.querySelector<HTMLCanvasElement>("#battle-canvas")!;
@@ -38,6 +39,10 @@ const el = {
   equipPanel: document.querySelector<HTMLElement>("#equip-panel")!,
   equipNodeList: document.querySelector<HTMLElement>("#equip-node-list")!,
   pauseBtn: document.querySelector<HTMLButtonElement>("#pause-toggle-btn")!,
+  rebirthToggleBtn: document.querySelector<HTMLButtonElement>("#rebirth-toggle-btn")!,
+  rebirthCloseBtn: document.querySelector<HTMLButtonElement>("#rebirth-close-btn")!,
+  rebirthPanel: document.querySelector<HTMLElement>("#rebirth-panel")!,
+  rebirthBody: document.querySelector<HTMLElement>("#rebirth-body")!,
 };
 
 const ATTACK_INTERVAL_MS = 1300;
@@ -87,10 +92,12 @@ async function main() {
   let chi = saved.chi;
   const gongLevels = saved.gongLevels;
   let weaponLevel = saved.weaponLevel;
+  let rebirthCount = saved.rebirthCount;
+  let highestMajorCleared = saved.highestMajorCleared;
   let lastLoginDate = saved.lastLoginDate;
 
   function totalBuffPercent(): number {
-    return totalGongBuffPercent(gongLevels) + weaponBuffPercent(weaponLevel);
+    return totalGongBuffPercent(gongLevels) + weaponBuffPercent(weaponLevel) + rebirthBuffPercent(rebirthCount);
   }
 
   let player = playerStats(level, totalBuffPercent());
@@ -117,7 +124,18 @@ async function main() {
   }
 
   function persist() {
-    saveState({ level, exp, gold, chi, stage, gongLevels, weaponLevel, lastLoginDate });
+    saveState({
+      level,
+      exp,
+      gold,
+      chi,
+      stage,
+      gongLevels,
+      weaponLevel,
+      rebirthCount,
+      highestMajorCleared,
+      lastLoginDate,
+    });
   }
 
   function recomputePlayerStats() {
@@ -229,6 +247,45 @@ async function main() {
     el.equipNodeList.appendChild(row);
   }
 
+  function performRebirth() {
+    if (!window.confirm("환골탈태를 진행하시겠습니까? 레벨/스테이지/무공/내공이 초기화되고 되돌릴 수 없습니다.")) return;
+    rebirthCount += 1;
+    level = 1;
+    exp = 0;
+    chi = 0;
+    stage = { major: 1, sub: 1 };
+    for (const key of Object.keys(gongLevels)) delete gongLevels[key];
+    recomputePlayerStats();
+    playerHp = player.hp;
+    spawnEnemy();
+    showToast(`환골탈태! ${realmName(rebirthCount)} 경지에 올랐다 (+전체 스탯 15%)`);
+    persist();
+    renderRebirthPanel();
+    refreshHud();
+  }
+
+  function renderRebirthPanel() {
+    el.rebirthBody.innerHTML = "";
+    const gateMajor = rebirthGateMajor(rebirthCount);
+    const eligible = highestMajorCleared >= gateMajor;
+
+    const info = document.createElement("div");
+    info.innerHTML =
+      `현재 경지: <b>${realmName(rebirthCount)}</b> (${rebirthCount}회)<br>` +
+      `영구 스탯 버프: +${rebirthBuffPercent(rebirthCount)}%<br>` +
+      `다음 환골탈태 조건: 대${gateMajor} 보스 클리어 (현재 최고 클리어: 대${highestMajorCleared})<br>` +
+      `초기화됨: 레벨/스테이지 진행도/무공 노드/소지 내공<br>` +
+      `유지됨: 전(錢), 장구 강화 단계, 누적 환골탈태 횟수`;
+    el.rebirthBody.appendChild(info);
+
+    const btn = document.createElement("button");
+    btn.className = "gong-upgrade-btn";
+    btn.textContent = eligible ? "환골탈태 진행하기" : "조건 미충족";
+    btn.disabled = !eligible;
+    btn.onclick = performRebirth;
+    el.rebirthBody.appendChild(btn);
+  }
+
   el.gongToggleBtn.onclick = () => {
     el.gongPanel.hidden = !el.gongPanel.hidden;
     if (!el.gongPanel.hidden) renderGongPanel();
@@ -242,6 +299,13 @@ async function main() {
   };
   el.equipCloseBtn.onclick = () => {
     el.equipPanel.hidden = true;
+  };
+  el.rebirthToggleBtn.onclick = () => {
+    el.rebirthPanel.hidden = !el.rebirthPanel.hidden;
+    if (!el.rebirthPanel.hidden) renderRebirthPanel();
+  };
+  el.rebirthCloseBtn.onclick = () => {
+    el.rebirthPanel.hidden = true;
   };
 
   claimDailyBonusIfNeeded();
@@ -278,6 +342,7 @@ async function main() {
     levelUp();
     playerHp = player.hp;
     showToast(`${stageLabel(stage)} 클리어! +EXP ${reward.exp} +전 ${reward.gold}`);
+    if (isBossStage(stage)) highestMajorCleared = Math.max(highestMajorCleared, stage.major);
     stage = nextStage(stage);
     spawnEnemy();
     persist();

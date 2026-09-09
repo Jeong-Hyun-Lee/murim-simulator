@@ -11,6 +11,8 @@ export interface GameState {
   stage: StageId;
   gongLevels: GongLevels;
   weaponLevel: number;
+  rebirthCount: number;
+  highestMajorCleared: number;
   lastLoginDate: string; // YYYY-MM-DD, 로컬 날짜 기준 1일 1회 재접속 보너스 판정용
 }
 
@@ -23,6 +25,8 @@ function defaultState(): GameState {
     stage: { major: 1, sub: 1 },
     gongLevels: {},
     weaponLevel: 0,
+    rebirthCount: 0,
+    highestMajorCleared: 0,
     lastLoginDate: "",
   };
 }
