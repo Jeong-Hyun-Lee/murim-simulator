@@ -133,6 +133,16 @@ body {
   color: #9a8f78;
 }
 
+.topbar-btn:disabled,
+.panel-close-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.topbar-btn-locked {
+  color: #6a6a72;
+}
+
 .stat-panel {
   position: absolute;
   inset: 40px 60px;
@@ -180,6 +190,26 @@ body {
 
 .gong-node-locked {
   color: #6a6a72;
+}
+
+.gong-node-tutorial-highlight {
+  background: rgba(255, 215, 106, 0.12);
+  box-shadow: 0 0 8px 1px #ffd76a;
+  animation: tutorial-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes tutorial-pulse {
+  0%, 100% { box-shadow: 0 0 6px 1px #ffd76a; }
+  50% { box-shadow: 0 0 12px 3px #ffd76a; }
+}
+
+.tutorial-banner {
+  background: rgba(255, 215, 106, 0.15);
+  border: 1px solid #8a6a2c;
+  color: #ffd76a;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  font-size: 13px;
 }
 
 #gong-body {
@@ -407,4 +437,55 @@ body {
   padding: 6px;
   font-size: 11px;
   line-height: 1.4;
+}
+
+.onboarding-overlay {
+  position: absolute;
+  inset: 0;
+  background: #0b0b10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  z-index: 20;
+}
+
+.onboarding-box {
+  position: relative;
+  background: #16161e;
+  border: 1px solid #8a6a2c;
+  padding: 32px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 560px;
+  text-align: center;
+}
+
+.onboarding-text {
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+.onboarding-input {
+  background: #201c14;
+  color: #e8e0cf;
+  border: 1px solid #5a4a2a;
+  padding: 6px 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.onboarding-skip-btn {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  pointer-events: auto;
+  cursor: pointer;
+  background: transparent;
+  color: #9a8f78;
+  border: 1px solid #5a4a2a;
+  font-size: 11px;
+  padding: 3px 8px;
 }

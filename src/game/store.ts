@@ -109,6 +109,8 @@ interface GameStoreState extends GameState {
   exchangeGoldForElixir: () => void;
   confirmBossChallenge: () => void;
   confirmBossReward: () => void;
+  completeOnboarding: (nickname: string) => void;
+  markTutorialGongDone: () => void;
   playerAttack: () => { dmg: number; isCrit: boolean; enemyDefeated: boolean };
   enemyAttack: () => { dmg: number; playerDefeated: boolean; evaded: boolean } | null;
 }
@@ -127,20 +129,25 @@ function totalBuffPercent(
 
 function computePlayerStats(
   level: number,
-  s: Pick<GameStoreState, "gongLevels" | "rebirthCount" | "sectLevel" | "equippedItems">,
+  s: Pick<GameStoreState, "gongLevels" | "rebirthCount" | "sectLevel" | "equippedItems" | "nickname">,
 ): PlayerStats {
   const agg = aggregateEquipStats(s.equippedItems);
   const buffPercent = totalBuffPercent(s, agg.enhanceBuffPercent);
-  return playerStats(level, buffPercent, {
-    atk: agg.atk,
-    def: agg.def,
-    hp: agg.hp,
-    critChancePercent: agg.critChancePercent,
-    critDamagePercent: agg.critDamagePercent,
-    attackSpeedPercent: agg.attackSpeedPercent,
-    evasionPercent: agg.evasionPercent,
-    chiGainPercent: agg.chiGainPercent,
-  });
+  return playerStats(
+    level,
+    buffPercent,
+    {
+      atk: agg.atk,
+      def: agg.def,
+      hp: agg.hp,
+      critChancePercent: agg.critChancePercent,
+      critDamagePercent: agg.critDamagePercent,
+      attackSpeedPercent: agg.attackSpeedPercent,
+      evasionPercent: agg.evasionPercent,
+      chiGainPercent: agg.chiGainPercent,
+    },
+    s.nickname || "목현",
+  );
 }
 
 // HP 최대치가 바뀔 때 이미 입은 피해량은 그대로 유지하고 최대치 증가분만 회복분으로 반영.
@@ -169,6 +176,9 @@ function persist(s: GameStoreState) {
     elixirExchangeCount: s.elixirExchangeCount,
     gachaPity: s.gachaPity,
     lastLoginDate: s.lastLoginDate,
+    nickname: s.nickname,
+    onboardingDone: s.onboardingDone,
+    tutorialGongDone: s.tutorialGongDone,
   };
   saveState(state);
 }
@@ -610,6 +620,21 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         awaitingBossReward: null,
         toastMessage: `${stage.major}-${stage.sub} 클리어! +EXP ${reward.exp} +전 ${reward.gold}${drop.dropSummary}`,
       });
+      persist(get());
+    },
+
+    // wiki/concepts/ux-시나리오-기획서.md 4장 2절: 도호(별명) 입력, 미입력/스킵 시 기본값.
+    completeOnboarding: (nickname) => {
+      const s = get();
+      const finalName = nickname.trim() || "목현";
+      const newPlayer = computePlayerStats(s.level, { ...s, nickname: finalName });
+      set({ nickname: finalName, onboardingDone: true, player: newPlayer });
+      persist(get());
+    },
+
+    // wiki/concepts/ux-시나리오-기획서.md 4장 5절: 첫 성장보드 강제 개방 튜토리얼 완료 처리.
+    markTutorialGongDone: () => {
+      set({ tutorialGongDone: true });
       persist(get());
     },
 

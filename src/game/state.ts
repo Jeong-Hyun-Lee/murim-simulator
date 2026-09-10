@@ -24,6 +24,9 @@ export interface GameState {
   elixirExchangeCount: number;
   gachaPity: number;
   lastLoginDate: string; // YYYY-MM-DD, 로컬 날짜 기준 1일 1회 재접속 보너스 판정용
+  nickname: string;
+  onboardingDone: boolean;
+  tutorialGongDone: boolean;
 }
 
 function defaultState(): GameState {
@@ -47,6 +50,9 @@ function defaultState(): GameState {
     elixirExchangeCount: 0,
     gachaPity: 0,
     lastLoginDate: "",
+    nickname: "",
+    onboardingDone: false,
+    tutorialGongDone: false,
   };
 }
 

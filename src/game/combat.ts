@@ -151,12 +151,12 @@ function clamp(x: number, min: number, max: number): number {
   return Math.max(min, Math.min(max, x));
 }
 
-export function playerStats(level: number, buffPercent = 0, gear: GearStatBonus = NO_GEAR): PlayerStats {
+export function playerStats(level: number, buffPercent = 0, gear: GearStatBonus = NO_GEAR, name = "목현"): PlayerStats {
   const charMult = 1.052 ** (level - 1);
   const buffMult = 1 + buffPercent / 100;
 
   return {
-    name: "목현",
+    name,
     hp: Math.round((PLAYER_BASE_HP * charMult + gear.hp) * buffMult),
     atk: Math.round((PLAYER_BASE_ATK * charMult + gear.atk) * buffMult),
     def: Math.round((PLAYER_BASE_DEF * charMult + gear.def) * buffMult),

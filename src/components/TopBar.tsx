@@ -5,6 +5,8 @@ interface Props {
   onTogglePanel: (key: PanelKey) => void;
 }
 
+// wiki/concepts/ux-시나리오-기획서.md 6절 "온보딩 노출 순서" — 스테이지/무공은 항상 노출,
+// 나머지 4개 탭은 진행도에 따라 순차 해금. 일일 퀘스트/문파채팅 NEW배지 등 부가 연출은 범위 밖.
 export function TopBar({ onTogglePanel }: Props) {
   const stage = useGameStore((s) => s.stage);
   const gold = useGameStore((s) => s.gold);
@@ -13,6 +15,18 @@ export function TopBar({ onTogglePanel }: Props) {
   const paused = useGameStore((s) => s.paused);
   const togglePause = useGameStore((s) => s.togglePause);
   const bulkUpgradeAllGong = useGameStore((s) => s.bulkUpgradeAllGong);
+  const showToast = useGameStore((s) => s.showToast);
+  const hasAnyGear = useGameStore((s) => s.inventory.length > 0 || Object.keys(s.equippedItems).length > 0);
+  const highestMajorCleared = useGameStore((s) => s.highestMajorCleared);
+
+  const equipUnlocked = hasAnyGear;
+  const sectUnlocked = highestMajorCleared >= 2;
+  const shopUnlocked = highestMajorCleared >= 1;
+  const rebirthUnlocked = highestMajorCleared >= 7;
+
+  function handleLockedClick(reason: string) {
+    showToast(reason);
+  }
 
   return (
     <div id="top-bar">
@@ -24,10 +38,37 @@ export function TopBar({ onTogglePanel }: Props) {
       <span>내공 {chi.toLocaleString()}</span>
       <span>영약 {elixir.toLocaleString()}</span>
       <button className="topbar-btn" onClick={() => onTogglePanel("gong")}>무공</button>
-      <button className="topbar-btn" onClick={() => onTogglePanel("equip")}>장구</button>
-      <button className="topbar-btn" onClick={() => onTogglePanel("rebirth")}>환골탈태</button>
-      <button className="topbar-btn" onClick={() => onTogglePanel("sect")}>문파</button>
-      <button className="topbar-btn" onClick={() => onTogglePanel("shop")}>상점</button>
+      {equipUnlocked ? (
+        <button className="topbar-btn" onClick={() => onTogglePanel("equip")}>장구</button>
+      ) : (
+        <button className="topbar-btn topbar-btn-locked" onClick={() => handleLockedClick("장구 아이템을 처음 획득하면 열립니다.")}>
+          🔒 장구
+        </button>
+      )}
+      {rebirthUnlocked ? (
+        <button className="topbar-btn" onClick={() => onTogglePanel("rebirth")}>환골탈태</button>
+      ) : (
+        <button
+          className="topbar-btn topbar-btn-locked"
+          onClick={() => handleLockedClick("대7 보스 클리어 후 열립니다.")}
+        >
+          🔒 환골탈태
+        </button>
+      )}
+      {sectUnlocked ? (
+        <button className="topbar-btn" onClick={() => onTogglePanel("sect")}>문파</button>
+      ) : (
+        <button className="topbar-btn topbar-btn-locked" onClick={() => handleLockedClick("대2 클리어 후 열립니다.")}>
+          🔒 문파
+        </button>
+      )}
+      {shopUnlocked ? (
+        <button className="topbar-btn" onClick={() => onTogglePanel("shop")}>상점</button>
+      ) : (
+        <button className="topbar-btn topbar-btn-locked" onClick={() => handleLockedClick("대1 보스 클리어 후 열립니다.")}>
+          🔒 상점
+        </button>
+      )}
       <button className="topbar-btn" onClick={bulkUpgradeAllGong}>일괄 연마</button>
       <button className="topbar-btn" onClick={togglePause}>{paused ? "재개" : "일시정지"}</button>
     </div>
