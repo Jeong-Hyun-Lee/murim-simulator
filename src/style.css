@@ -176,6 +176,54 @@ body {
   color: #6a6a72;
 }
 
+#gong-body {
+  display: flex;
+  gap: 16px;
+  min-height: 0;
+  flex: 1;
+}
+
+#gong-board-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 150px;
+}
+
+.gong-board-tab {
+  pointer-events: auto;
+  cursor: pointer;
+  text-align: left;
+  background: #201c14;
+  color: #e8e0cf;
+  border: 1px solid #5a4a2a;
+  font-size: 13px;
+  padding: 8px 10px;
+}
+
+.gong-board-tab-active {
+  background: #3a3020;
+  border-color: #8a6a2c;
+}
+
+.gong-board-tab-locked {
+  color: #6a6a72;
+}
+
+.gong-board-tab-percent {
+  color: #9a8f78;
+}
+
+#gong-node-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.gong-board-locked-message {
+  color: #9a8f78;
+  padding: 16px 4px;
+}
+
 #rebirth-body,
 #sect-body,
 #gacha-body {

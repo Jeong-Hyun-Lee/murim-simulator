@@ -12,7 +12,18 @@ import {
   type UnitStats,
 } from "./combat";
 import { loadState, saveState, type GameState } from "./state";
-import { SAMJAE_BOARD, nodeLevel, nodeUpgradeCost, isNodeUnlocked, totalGongBuffPercent, type GongLevels } from "./gongData";
+import {
+  GONG_BOARDS,
+  nodeLevel,
+  nodeUpgradeCost,
+  isNodeUnlocked,
+  isBoardUnlocked,
+  findBoardByNodeId,
+  boardCompletionPercent,
+  totalGongBuffPercent,
+  type GongLevels,
+  type GongBoard,
+} from "./gongData";
 import { WEAPON_MAX_LEVEL, weaponUpgradeCost, weaponBuffPercent } from "./equipData";
 import { realmName, rebirthGateMajor, rebirthBuffPercent } from "./rebirthData";
 import { SECT_NAME, SECT_MAX_LEVEL, CHI_PER_CONTRIBUTION, sectExpToNextLevel, sectBuffPercent } from "./sectData";
@@ -130,12 +141,19 @@ export const useGameStore = create<GameStoreState>((set, get) => {
     },
 
     buyGongUpgrade: (nodeId) => {
-      const node = SAMJAE_BOARD.find((n) => n.id === nodeId);
-      if (!node) return;
+      const board = findBoardByNodeId(nodeId);
+      const node = board?.nodes.find((n) => n.id === nodeId);
+      if (!board || !node) return;
       const s = get();
       const curLevel = nodeLevel(node, s.gongLevels);
       const curCost = nodeUpgradeCost(node, curLevel);
-      if (s.chi < curCost || curLevel >= node.maxLevel || !isNodeUnlocked(node, s.gongLevels)) return;
+      if (
+        s.chi < curCost ||
+        curLevel >= node.maxLevel ||
+        !isBoardUnlocked(board, s.highestMajorCleared) ||
+        !isNodeUnlocked(node, s.gongLevels)
+      )
+        return;
 
       const gongLevels = { ...s.gongLevels, [nodeId]: curLevel + 1 };
       const newPlayer = playerStats(s.level, totalBuffPercent({ ...s, gongLevels }));
@@ -321,10 +339,10 @@ export const useGameStore = create<GameStoreState>((set, get) => {
   };
 });
 
-export { SAMJAE_BOARD, nodeLevel, nodeUpgradeCost, isNodeUnlocked };
+export { GONG_BOARDS, nodeLevel, nodeUpgradeCost, isNodeUnlocked, isBoardUnlocked, boardCompletionPercent };
 export { WEAPON_MAX_LEVEL, weaponUpgradeCost, weaponBuffPercent };
 export { realmName, rebirthGateMajor, rebirthBuffPercent };
 export { SECT_NAME, SECT_MAX_LEVEL, CHI_PER_CONTRIBUTION, sectExpToNextLevel, sectBuffPercent };
 export { PULL_COST, PULL_10_COST, HARD_PITY };
 export { expToNextLevel, isBossStage };
-export type { PullResult, StageId };
+export type { PullResult, StageId, GongBoard };
