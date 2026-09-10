@@ -8,69 +8,7 @@
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
-    <div id="game-root">
-      <canvas id="battle-canvas" width="960" height="540"></canvas>
-      <div id="ui-overlay">
-        <div id="top-bar">
-          <span id="stage-label">1-1</span>
-          <span id="gold-label">전 0</span>
-          <span id="chi-label">내공 0</span>
-          <span id="elixir-label">영약 0</span>
-          <button id="gong-toggle-btn">무공</button>
-          <button id="equip-toggle-btn">장구</button>
-          <button id="rebirth-toggle-btn">환골탈태</button>
-          <button id="sect-toggle-btn">문파</button>
-          <button id="gacha-toggle-btn">기연</button>
-          <button id="pause-toggle-btn">일시정지</button>
-        </div>
-        <div id="player-status">
-          <span id="level-label">Lv.1</span>
-          <div class="bar hp-bar"><div id="player-hp-fill" class="bar-fill"></div></div>
-          <div class="bar exp-bar"><div id="player-exp-fill" class="bar-fill"></div></div>
-        </div>
-        <div id="enemy-status">
-          <span id="enemy-name-label"></span>
-          <div class="bar hp-bar"><div id="enemy-hp-fill" class="bar-fill"></div></div>
-        </div>
-        <div id="log-toast"></div>
-      </div>
-      <div id="gong-panel" class="stat-panel" hidden>
-        <div id="gong-panel-header">
-          <span>삼재검법 1보</span>
-          <button id="gong-close-btn">닫기</button>
-        </div>
-        <div id="gong-node-list"></div>
-      </div>
-      <div id="equip-panel" class="stat-panel" hidden>
-        <div id="gong-panel-header">
-          <span>장구 — 무기</span>
-          <button id="equip-close-btn">닫기</button>
-        </div>
-        <div id="equip-node-list"></div>
-      </div>
-      <div id="rebirth-panel" class="stat-panel" hidden>
-        <div id="gong-panel-header">
-          <span>환골탈태(換骨奪胎)</span>
-          <button id="rebirth-close-btn">닫기</button>
-        </div>
-        <div id="rebirth-body"></div>
-      </div>
-      <div id="sect-panel" class="stat-panel" hidden>
-        <div id="gong-panel-header">
-          <span>문파</span>
-          <button id="sect-close-btn">닫기</button>
-        </div>
-        <div id="sect-body"></div>
-      </div>
-      <div id="gacha-panel" class="stat-panel" hidden>
-        <div id="gong-panel-header">
-          <span>기연(奇緣)</span>
-          <button id="gacha-close-btn">닫기</button>
-        </div>
-        <div id="gacha-body"></div>
-        <div id="gacha-result"></div>
-      </div>
-    </div>
-    <script type="module" src="/src/main.ts"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

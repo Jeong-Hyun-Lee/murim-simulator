@@ -1,0 +1,44 @@
+import { useEffect, useState } from "react";
+import { BattleCanvas } from "./canvas/BattleCanvas";
+import { TopBar } from "./components/TopBar";
+import { PlayerStatus } from "./components/PlayerStatus";
+import { EnemyStatus } from "./components/EnemyStatus";
+import { Toast } from "./components/Toast";
+import { GongPanel } from "./components/panels/GongPanel";
+import { EquipPanel } from "./components/panels/EquipPanel";
+import { RebirthPanel } from "./components/panels/RebirthPanel";
+import { SectPanel } from "./components/panels/SectPanel";
+import { GachaPanel } from "./components/panels/GachaPanel";
+import { useGameStore } from "./game/store";
+
+export type PanelKey = "gong" | "equip" | "rebirth" | "sect" | "gacha";
+
+export function App() {
+  const claimDailyBonusIfNeeded = useGameStore((s) => s.claimDailyBonusIfNeeded);
+  const [openPanel, setOpenPanel] = useState<PanelKey | null>(null);
+
+  useEffect(() => {
+    claimDailyBonusIfNeeded();
+  }, [claimDailyBonusIfNeeded]);
+
+  function togglePanel(key: PanelKey) {
+    setOpenPanel((cur) => (cur === key ? null : key));
+  }
+
+  return (
+    <div id="game-root">
+      <BattleCanvas />
+      <div id="ui-overlay">
+        <TopBar onTogglePanel={togglePanel} />
+        <PlayerStatus />
+        <EnemyStatus />
+        <Toast />
+      </div>
+      {openPanel === "gong" && <GongPanel onClose={() => setOpenPanel(null)} />}
+      {openPanel === "equip" && <EquipPanel onClose={() => setOpenPanel(null)} />}
+      {openPanel === "rebirth" && <RebirthPanel onClose={() => setOpenPanel(null)} />}
+      {openPanel === "sect" && <SectPanel onClose={() => setOpenPanel(null)} />}
+      {openPanel === "gacha" && <GachaPanel onClose={() => setOpenPanel(null)} />}
+    </div>
+  );
+}
