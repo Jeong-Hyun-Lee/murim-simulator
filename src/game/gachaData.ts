@@ -1,6 +1,7 @@
 // wiki/concepts/상점-기연-시스템.md "수치" 절 축소 구현.
 // ponytail: 장구 인벤토리가 없어 뽑기 보상은 아이템 대신 등급 배율(장구-시스템 6단계)을 곱한
-// 내공 지급으로 대체. 일반상점(재화 구매)·연출 등급별 이펙트는 v1 범위 밖.
+// 내공 지급으로 대체. 일반상점은 shopData.ts(전→영약 교환 1종)로 v1 범위 축소 구현,
+// 결과 카드 등급별 색상/글로우는 GRADE_COLOR·GRADE_TIER로 GachaPanel에서 적용.
 
 export const PULL_COST = 100; // 영약
 export const PULL_10_COST = 900;
@@ -18,6 +19,23 @@ const GRADE_TABLE: { grade: Grade; chance: number; mult: number }[] = [
   { grade: "신품", chance: 0.0045, mult: 3.0 },
   { grade: "선품", chance: 0.0005, mult: 4.0 },
 ];
+
+// wiki/concepts/장구-시스템.md 등급 체계 통합 표의 색상 그대로 사용.
+export const GRADE_COLOR: Record<Grade, string> = {
+  하품: "#9e9e9e",
+  중품: "#4caf50",
+  상품: "#2196f3",
+  절품: "#9c27b0",
+  신품: "#ff9800",
+  선품: "#ffd76a",
+};
+
+// 뽑기 결과 연출 강도(0=하품 ~ 5=선품) — wiki "뽑기 결과 연출" 표의 등급별 차등을
+// 카드 테두리 글로우 강도로 단순화 구현(파티클/화면 진동 등은 캔버스 연출 인프라
+// 없는 v1에서 범위 밖).
+export function gradeTier(grade: Grade): number {
+  return GRADE_TABLE.findIndex((g) => g.grade === grade);
+}
 
 function multFor(grade: Grade): number {
   return GRADE_TABLE.find((g) => g.grade === grade)!.mult;

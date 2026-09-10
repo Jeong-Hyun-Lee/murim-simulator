@@ -27,7 +27,17 @@ import {
 import { WEAPON_MAX_LEVEL, weaponUpgradeCost, weaponBuffPercent } from "./equipData";
 import { realmName, rebirthGateMajor, rebirthBuffPercent } from "./rebirthData";
 import { SECT_NAME, SECT_MAX_LEVEL, CHI_PER_CONTRIBUTION, sectExpToNextLevel, sectBuffPercent } from "./sectData";
-import { PULL_COST, PULL_10_COST, HARD_PITY, pullSingle, pullTen, type PullResult } from "./gachaData";
+import {
+  PULL_COST,
+  PULL_10_COST,
+  HARD_PITY,
+  pullSingle,
+  pullTen,
+  GRADE_COLOR,
+  gradeTier,
+  type PullResult,
+} from "./gachaData";
+import { elixirExchangeCost } from "./shopData";
 
 // wiki/concepts/ux-시나리오-기획서.md §3-4: 오프라인 방치 성장 없음, 1일 1회 정액 재접속 보너스만.
 const DAILY_BONUS_GOLD = 50;
@@ -65,6 +75,7 @@ interface GameStoreState extends GameState {
   pullGachaSingle: () => void;
   pullGachaTen: () => void;
   resetGachaOutcome: () => void;
+  exchangeGoldForElixir: () => void;
   playerAttack: () => { dmg: number; isCrit: boolean; enemyDefeated: boolean };
   enemyAttack: () => { dmg: number; playerDefeated: boolean } | null;
 }
@@ -93,6 +104,7 @@ function persist(s: GameStoreState) {
     sectExp: s.sectExp,
     sectTotalContribution: s.sectTotalContribution,
     elixir: s.elixir,
+    elixirExchangeCount: s.elixirExchangeCount,
     gachaPity: s.gachaPity,
     lastLoginDate: s.lastLoginDate,
   };
@@ -262,6 +274,19 @@ export const useGameStore = create<GameStoreState>((set, get) => {
 
     resetGachaOutcome: () => set({ lastGachaOutcome: null }),
 
+    exchangeGoldForElixir: () => {
+      const s = get();
+      const cost = elixirExchangeCost(s.elixirExchangeCount);
+      if (s.gold < cost) return;
+      set({
+        gold: s.gold - cost,
+        elixir: s.elixir + 1,
+        elixirExchangeCount: s.elixirExchangeCount + 1,
+        toastMessage: `일반상점: 전 ${cost.toLocaleString()} → 영약 1개 교환`,
+      });
+      persist(get());
+    },
+
     playerAttack: () => {
       const s = get();
       const { amount: dmg, isCrit } = rollPlayerDamage(s.player.atk, s.enemy.def);
@@ -343,6 +368,7 @@ export { GONG_BOARDS, nodeLevel, nodeUpgradeCost, isNodeUnlocked, isBoardUnlocke
 export { WEAPON_MAX_LEVEL, weaponUpgradeCost, weaponBuffPercent };
 export { realmName, rebirthGateMajor, rebirthBuffPercent };
 export { SECT_NAME, SECT_MAX_LEVEL, CHI_PER_CONTRIBUTION, sectExpToNextLevel, sectBuffPercent };
-export { PULL_COST, PULL_10_COST, HARD_PITY };
+export { PULL_COST, PULL_10_COST, HARD_PITY, GRADE_COLOR, gradeTier };
+export { elixirExchangeCost };
 export { expToNextLevel, isBossStage };
 export type { PullResult, StageId, GongBoard };
