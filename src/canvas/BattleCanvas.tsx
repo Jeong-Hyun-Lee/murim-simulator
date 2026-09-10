@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Application, Graphics, Text } from "pixi.js";
 import { loadAnimatedSprite } from "./sprite";
-import { useGameStore, isBossStage } from "../game/store";
+import { useGameStore, isBossStage, type StageId } from "../game/store";
 
 const CANVAS_WIDTH = 960;
 const CANVAS_HEIGHT = 540;
@@ -88,7 +88,7 @@ export function BattleCanvas() {
         popups.push({ text, baseY: y, age: 0 });
       }
 
-      function drawEnemyBox(stage: { major: number; sub: number }) {
+      function drawEnemyBox(stage: StageId) {
         const boxSize = isBossStage(stage) ? 90 : 60;
         const color = enemyFlashMs > 0 ? 0xffffff : isBossStage(stage) ? 0x7a2fb0 : 0xb03a3a;
         enemyBox.clear().rect(ENEMY_X - boxSize / 2, ENEMY_Y - boxSize, boxSize, boxSize).fill(color);
