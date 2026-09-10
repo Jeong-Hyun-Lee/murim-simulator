@@ -1,8 +1,12 @@
 // wiki/concepts/무공-시스템.md "수치" 절 그대로 구현 — 챕터1 5개 보드 전부.
 // 보드 2~5(회선장법/유운경신술/태을혼원공/폭뢰도법)의 개별 초식명은 위키에 정의돼 있지 않아
 // 2026-09-10 신규 명명(장법/경신술/심법/도법 각 계열 테마에 맞춰 작명), 위키에도 동일 반영.
+// 삼재검법 2보(문파무공, 2026-09-10 추가)는 wiki/concepts/ux-시나리오-기획서.md 2-4절이 예고한
+// "삼재검법 1보 오의(캡스톤) 대성 시 개방"을 그대로 구현, 강화 재화는 문파-시스템.md 스펙대로
+// 기여도(내공 아님) — GongBoard.currency/unlock으로 일반화.
 
 export type NodeTier = "primary" | "secondary" | "capstone";
+export type GongCurrency = "chi" | "contribution";
 
 export interface GongNode {
   id: string;
@@ -15,10 +19,15 @@ export interface GongNode {
   requires?: { nodeId: string; level: number }[];
 }
 
+export type BoardUnlockCondition =
+  | { type: "stage"; major: number } // highestMajorCleared >= major
+  | { type: "nodeMaxed"; boardId: string; nodeId: string }; // 다른 보드의 특정 노드가 대성이어야 함
+
 export interface GongBoard {
   id: string;
   name: string;
-  unlockMajor: number; // highestMajorCleared >= 이 값이어야 보드 자체가 잠금 해제 (0 = 시작부터 개방)
+  currency: GongCurrency;
+  unlock: BoardUnlockCondition;
   nodes: GongNode[];
 }
 
@@ -26,11 +35,18 @@ const PRIMARY_COST = { baseCost: 30, growthRate: 1.12, effectPerLevel: 0.06, max
 const SECONDARY_COST = { baseCost: 200, growthRate: 1.15, effectPerLevel: 0.12, maxLevel: 50 } as const;
 const CAPSTONE_COST = { baseCost: 2000, growthRate: 1.25, effectPerLevel: 0.4, maxLevel: 20 } as const;
 
+// wiki/concepts/문파-시스템.md "문파무공(태극권 등) 해금 총량" 표 — BaseCost/최대Lv만 명시,
+// 레벨당 효과%는 명시 없어 다른 보드와 동일 표(0.06/0.12/0.4%)를 그대로 재사용.
+const SECT_PRIMARY_COST = { baseCost: 20, growthRate: 1.13, effectPerLevel: 0.06, maxLevel: 30 } as const;
+const SECT_SECONDARY_COST = { baseCost: 100, growthRate: 1.13, effectPerLevel: 0.12, maxLevel: 30 } as const;
+const SECT_CAPSTONE_COST = { baseCost: 800, growthRate: 1.13, effectPerLevel: 0.4, maxLevel: 10 } as const;
+
 export const GONG_BOARDS: GongBoard[] = [
   {
     id: "samjae1",
     name: "삼재검법 1보",
-    unlockMajor: 0,
+    currency: "chi",
+    unlock: { type: "stage", major: 0 },
     nodes: [
       { id: "cheon", name: "제1식 천(天)", tier: "primary", ...PRIMARY_COST },
       { id: "ji", name: "제2식 지(地)", tier: "primary", ...PRIMARY_COST },
@@ -72,7 +88,8 @@ export const GONG_BOARDS: GongBoard[] = [
   {
     id: "hoeseon",
     name: "회선장법",
-    unlockMajor: 3,
+    currency: "chi",
+    unlock: { type: "stage", major: 3 },
     nodes: [
       { id: "hoeseon_seonpung", name: "선풍장(旋風掌)", tier: "primary", ...PRIMARY_COST },
       { id: "hoeseon_bungsan", name: "붕산장(崩山掌)", tier: "primary", ...PRIMARY_COST },
@@ -114,7 +131,8 @@ export const GONG_BOARDS: GongBoard[] = [
   {
     id: "yuun",
     name: "유운경신술",
-    unlockMajor: 5,
+    currency: "chi",
+    unlock: { type: "stage", major: 5 },
     nodes: [
       { id: "yuun_dabun", name: "답운보(踏雲步)", tier: "primary", ...PRIMARY_COST },
       { id: "yuun_yeonja", name: "연자보(燕子步)", tier: "primary", ...PRIMARY_COST },
@@ -156,7 +174,8 @@ export const GONG_BOARDS: GongBoard[] = [
   {
     id: "taeeul",
     name: "태을혼원공",
-    unlockMajor: 7,
+    currency: "chi",
+    unlock: { type: "stage", major: 7 },
     nodes: [
       { id: "taeeul_josik", name: "태을조식법(太乙調息法)", tier: "primary", ...PRIMARY_COST },
       { id: "taeeul_danjeon", name: "혼원단전공(混元丹田功)", tier: "primary", ...PRIMARY_COST },
@@ -198,7 +217,8 @@ export const GONG_BOARDS: GongBoard[] = [
   {
     id: "poklloe",
     name: "폭뢰도법",
-    unlockMajor: 9,
+    currency: "chi",
+    unlock: { type: "stage", major: 9 },
     nodes: [
       { id: "poklloe_byeokroe", name: "벽뢰도(霹雷刀)", tier: "primary", ...PRIMARY_COST },
       { id: "poklloe_pasan", name: "파산도(破山刀)", tier: "primary", ...PRIMARY_COST },
@@ -237,6 +257,54 @@ export const GONG_BOARDS: GongBoard[] = [
       },
     ],
   },
+  {
+    // wiki/concepts/ux-시나리오-기획서.md 2-4절 "상위 보드(삼재검법 2보)는 하위 보드(삼재검법
+    // 1보)의 오의 노드(삼재합일)가 대성 상태여야 개방" 그대로 구현. 문파-시스템.md의
+    // 문파무공(청운문 전용 심화 무공) 해금 스펙(기여도 재화, BaseCost/최대Lv)을 이 보드로 구현 —
+    // 청운문의 시그니처는 이미 삼재검법 계열이므로 "화산검법" 같은 별도 문파무공명 대신
+    // 삼재검법의 심화판으로 자연스럽게 이어지도록 명명.
+    id: "samjae2",
+    name: "삼재검법 2보",
+    currency: "contribution",
+    unlock: { type: "nodeMaxed", boardId: "samjae1", nodeId: "capstone" },
+    nodes: [
+      { id: "samjae2_cheonoe", name: "제1식 천외(天外)", tier: "primary", ...SECT_PRIMARY_COST },
+      { id: "samjae2_jimaek", name: "제2식 지맥(地脈)", tier: "primary", ...SECT_PRIMARY_COST },
+      { id: "samjae2_inyeong", name: "제3식 인영(人影)", tier: "primary", ...SECT_PRIMARY_COST },
+      {
+        id: "samjae2_hyeonhap",
+        name: "천지현합(天地玄合)",
+        tier: "secondary",
+        ...SECT_SECONDARY_COST,
+        requires: [
+          { nodeId: "samjae2_cheonoe", level: 10 },
+          { nodeId: "samjae2_jimaek", level: 10 },
+          { nodeId: "samjae2_inyeong", level: 10 },
+        ],
+      },
+      {
+        id: "samjae2_ilche",
+        name: "인검일체(人劍一體)",
+        tier: "secondary",
+        ...SECT_SECONDARY_COST,
+        requires: [
+          { nodeId: "samjae2_cheonoe", level: 10 },
+          { nodeId: "samjae2_jimaek", level: 10 },
+          { nodeId: "samjae2_inyeong", level: 10 },
+        ],
+      },
+      {
+        id: "samjae2_capstone",
+        name: "삼재무극검(三才無極劍)",
+        tier: "capstone",
+        ...SECT_CAPSTONE_COST,
+        requires: [
+          { nodeId: "samjae2_hyeonhap", level: 20 },
+          { nodeId: "samjae2_ilche", level: 20 },
+        ],
+      },
+    ],
+  },
 ];
 
 export type GongLevels = Record<string, number>;
@@ -269,12 +337,30 @@ export function isNodeUnlocked(node: GongNode, levels: GongLevels): boolean {
   return node.requires.every((r) => (levels[r.nodeId] ?? 0) >= r.level);
 }
 
-export function isBoardUnlocked(board: GongBoard, highestMajorCleared: number): boolean {
-  return highestMajorCleared >= board.unlockMajor;
+export interface BoardUnlockContext {
+  highestMajorCleared: number;
+  gongLevels: GongLevels;
+}
+
+export function isBoardUnlocked(board: GongBoard, ctx: BoardUnlockContext): boolean {
+  const { unlock } = board;
+  if (unlock.type === "stage") return ctx.highestMajorCleared >= unlock.major;
+  const sourceBoard = GONG_BOARDS.find((b) => b.id === unlock.boardId);
+  const sourceNode = sourceBoard?.nodes.find((n) => n.id === unlock.nodeId);
+  if (!sourceNode) return false;
+  return nodeLevel(sourceNode, ctx.gongLevels) >= sourceNode.maxLevel;
 }
 
 export function findBoardByNodeId(nodeId: string): GongBoard | undefined {
   return GONG_BOARDS.find((board) => board.nodes.some((n) => n.id === nodeId));
+}
+
+export function boardUnlockLabel(board: GongBoard): string {
+  const { unlock } = board;
+  if (unlock.type === "stage") return `대${unlock.major} 보스 클리어 후 해금됩니다.`;
+  const sourceBoard = GONG_BOARDS.find((b) => b.id === unlock.boardId);
+  const sourceNode = sourceBoard?.nodes.find((n) => n.id === unlock.nodeId);
+  return `${sourceBoard?.name ?? ""} "${sourceNode?.name ?? ""}" 대성 후 해금됩니다.`;
 }
 
 export function boardCompletionPercent(board: GongBoard, levels: GongLevels): number {

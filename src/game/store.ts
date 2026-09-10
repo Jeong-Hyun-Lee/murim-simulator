@@ -23,9 +23,11 @@ import {
   isBoardUnlocked,
   findBoardByNodeId,
   boardCompletionPercent,
+  boardUnlockLabel,
   totalGongBuffPercent,
   type GongLevels,
   type GongBoard,
+  type GongCurrency,
 } from "./gongData";
 import {
   ALL_SLOTS,
@@ -163,6 +165,15 @@ function carryOverHp(prevMaxHp: number, prevHp: number, newMaxHp: number): numbe
   return Math.min(newMaxHp, prevHp + Math.max(0, newMaxHp - prevMaxHp));
 }
 
+// 무공 보드는 내공(chi) 또는 문파무공은 기여도(sectContributionPoints) 두 재화 중 하나를 쓴다.
+function gongCurrencyBalance(board: GongBoard, s: Pick<GameStoreState, "chi" | "sectContributionPoints">): number {
+  return board.currency === "contribution" ? s.sectContributionPoints : s.chi;
+}
+
+function gongCurrencyPatch(board: GongBoard, newBalance: number): Partial<GameStoreState> {
+  return board.currency === "contribution" ? { sectContributionPoints: newBalance } : { chi: newBalance };
+}
+
 function applySectContribution(sectLevel: number, sectExp: number, contribution: number): { sectLevel: number; sectExp: number } {
   let level = sectLevel;
   let exp = sectExp + contribution;
@@ -190,6 +201,7 @@ function persist(s: GameStoreState) {
     sectLevel: s.sectLevel,
     sectExp: s.sectExp,
     sectTotalContribution: s.sectTotalContribution,
+    sectContributionPoints: s.sectContributionPoints,
     elixir: s.elixir,
     elixirExchangeCount: s.elixirExchangeCount,
     gachaPity: s.gachaPity,
@@ -281,10 +293,11 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       const s = get();
       const curLevel = nodeLevel(node, s.gongLevels);
       const curCost = nodeUpgradeCost(node, curLevel);
+      const balance = gongCurrencyBalance(board, s);
       if (
-        s.chi < curCost ||
+        balance < curCost ||
         curLevel >= node.maxLevel ||
-        !isBoardUnlocked(board, s.highestMajorCleared) ||
+        !isBoardUnlocked(board, { highestMajorCleared: s.highestMajorCleared, gongLevels: s.gongLevels }) ||
         !isNodeUnlocked(node, s.gongLevels)
       )
         return;
@@ -292,7 +305,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       const gongLevels = { ...s.gongLevels, [nodeId]: curLevel + 1 };
       const newPlayer = computePlayerStats(s.level, { ...s, gongLevels });
       set({
-        chi: s.chi - curCost,
+        ...gongCurrencyPatch(board, balance - curCost),
         gongLevels,
         player: newPlayer,
         playerHp: carryOverHp(s.player.hp, s.playerHp, newPlayer.hp),
@@ -307,10 +320,11 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       const s = get();
       const curLevel = nodeLevel(node, s.gongLevels);
       const { levelsGained, cost } = nodeBulkUpgrade(node, curLevel);
+      const balance = gongCurrencyBalance(board, s);
       if (
         levelsGained <= 0 ||
-        s.chi < cost ||
-        !isBoardUnlocked(board, s.highestMajorCleared) ||
+        balance < cost ||
+        !isBoardUnlocked(board, { highestMajorCleared: s.highestMajorCleared, gongLevels: s.gongLevels }) ||
         !isNodeUnlocked(node, s.gongLevels)
       )
         return;
@@ -318,7 +332,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       const gongLevels = { ...s.gongLevels, [nodeId]: curLevel + levelsGained };
       const newPlayer = computePlayerStats(s.level, { ...s, gongLevels });
       set({
-        chi: s.chi - cost,
+        ...gongCurrencyPatch(board, balance - cost),
         gongLevels,
         player: newPlayer,
         playerHp: carryOverHp(s.player.hp, s.playerHp, newPlayer.hp),
@@ -328,17 +342,19 @@ export const useGameStore = create<GameStoreState>((set, get) => {
 
     // wiki/concepts/ux-시나리오-기획서.md 1절 하단 액션바 "일괄 연마(모든 보드에 자동으로
     // 재화 소비)" — 해금된 모든 보드의 해금된 노드 중 가장 싼 강화부터 순서대로, 내공이
-    // 바닥날 때까지 반복 구매하는 탐욕(greedy) 방식으로 구현.
+    // 바닥날 때까지 반복 구매하는 탐욕(greedy) 방식으로 구현. 기여도 재화 보드(문파무공)는
+    // 서로 다른 재화라 "가장 싸다" 비교가 성립하지 않아 이 일괄 연마 대상에서 제외.
     bulkUpgradeAllGong: () => {
       const s = get();
       let chi = s.chi;
       const gongLevels = { ...s.gongLevels };
       let purchased = 0;
+      const unlockCtx = { highestMajorCleared: s.highestMajorCleared, gongLevels };
 
       for (let i = 0; i < 100000; i++) {
         let cheapest: { nodeId: string; cost: number; level: number } | null = null;
         for (const board of GONG_BOARDS) {
-          if (!isBoardUnlocked(board, s.highestMajorCleared)) continue;
+          if (board.currency !== "chi" || !isBoardUnlocked(board, unlockCtx)) continue;
           for (const node of board.nodes) {
             const level = nodeLevel(node, gongLevels);
             if (level >= node.maxLevel || !isNodeUnlocked(node, gongLevels)) continue;
@@ -462,13 +478,14 @@ export const useGameStore = create<GameStoreState>((set, get) => {
     donateChiToSect: () => {
       const s = get();
       const donatable = Math.floor(s.chi / CHI_PER_CONTRIBUTION);
-      if (donatable <= 0 || s.sectLevel >= SECT_MAX_LEVEL) return;
+      if (donatable <= 0) return;
 
       const { sectLevel, sectExp } = applySectContribution(s.sectLevel, s.sectExp, donatable);
       const newPlayer = computePlayerStats(s.level, { ...s, sectLevel });
       set({
         chi: s.chi - donatable * CHI_PER_CONTRIBUTION,
         sectTotalContribution: s.sectTotalContribution + donatable,
+        sectContributionPoints: s.sectContributionPoints + donatable,
         sectExp,
         sectLevel,
         player: newPlayer,
@@ -480,7 +497,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
     // wiki/concepts/문파-시스템.md "기여도 획득" 표: 영약 1개 = 10 기여도.
     donateElixirToSect: () => {
       const s = get();
-      if (s.elixir <= 0 || s.sectLevel >= SECT_MAX_LEVEL) return;
+      if (s.elixir <= 0) return;
       const contribution = s.elixir * ELIXIR_CONTRIBUTION_RATE;
 
       const { sectLevel, sectExp } = applySectContribution(s.sectLevel, s.sectExp, contribution);
@@ -488,6 +505,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       set({
         elixir: 0,
         sectTotalContribution: s.sectTotalContribution + contribution,
+        sectContributionPoints: s.sectContributionPoints + contribution,
         sectExp,
         sectLevel,
         player: newPlayer,
@@ -714,6 +732,7 @@ export {
   isNodeUnlocked,
   isBoardUnlocked,
   boardCompletionPercent,
+  boardUnlockLabel,
 };
 export {
   ALL_SLOTS,
@@ -737,4 +756,4 @@ export {
 export { PULL_COST, PULL_10_COST, HARD_PITY, GRADE_COLOR, gradeTier };
 export { elixirExchangeCost };
 export { expToNextLevel, isBossStage };
-export type { PullResult, StageId, GongBoard, SlotId, EquipItem };
+export type { PullResult, StageId, GongBoard, GongCurrency, SlotId, EquipItem };

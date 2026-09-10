@@ -8,23 +8,27 @@ import {
   isNodeUnlocked,
   isBoardUnlocked,
   boardCompletionPercent,
+  boardUnlockLabel,
   type GongBoard,
+  type GongCurrency,
 } from "../../game/store";
 import { useHoldRepeat } from "../../hooks/useHoldRepeat";
 
 const TIER_LABEL = { primary: "1차", secondary: "2차", capstone: "캡스톤" } as const;
+const CURRENCY_LABEL: Record<GongCurrency, string> = { chi: "내공", contribution: "기여도" };
 // wiki/concepts/ux-시나리오-기획서.md 4장 5단계: 튜토리얼 강제 개방 대상 노드("휘두르기" 역할).
 const TUTORIAL_NODE_ID = "cheon";
 
 interface RowProps {
   node: GongBoard["nodes"][number];
+  currency: GongCurrency;
   tutorialLocked: boolean;
   tutorialHighlight: boolean;
 }
 
-function GongNodeRow({ node, tutorialLocked, tutorialHighlight }: RowProps) {
+function GongNodeRow({ node, currency, tutorialLocked, tutorialHighlight }: RowProps) {
   const gongLevels = useGameStore((s) => s.gongLevels);
-  const chi = useGameStore((s) => s.chi);
+  const balance = useGameStore((s) => (currency === "contribution" ? s.sectContributionPoints : s.chi));
   const buyGongUpgrade = useGameStore((s) => s.buyGongUpgrade);
   const buyGongUpgradeBulk10 = useGameStore((s) => s.buyGongUpgradeBulk10);
 
@@ -32,17 +36,18 @@ function GongNodeRow({ node, tutorialLocked, tutorialHighlight }: RowProps) {
   const unlocked = isNodeUnlocked(node, gongLevels);
   const maxed = lv >= node.maxLevel;
   const cost = nodeUpgradeCost(node, lv);
-  const disabled = !unlocked || maxed || chi < cost || tutorialLocked;
+  const disabled = !unlocked || maxed || balance < cost || tutorialLocked;
 
   const bulk = nodeBulkUpgrade(node, lv);
-  const bulkDisabled = !unlocked || bulk.levelsGained <= 0 || chi < bulk.cost || tutorialLocked;
+  const bulkDisabled = !unlocked || bulk.levelsGained <= 0 || balance < bulk.cost || tutorialLocked;
 
   const hold = useHoldRepeat(() => buyGongUpgrade(node.id), disabled);
+  const currencyLabel = CURRENCY_LABEL[currency];
 
   let label: string;
   if (!unlocked) label = "잠금";
   else if (maxed) label = "대성";
-  else label = `강화 (내공 ${cost.toLocaleString()})`;
+  else label = `강화 (${currencyLabel} ${cost.toLocaleString()})`;
 
   return (
     <div
@@ -59,7 +64,7 @@ function GongNodeRow({ node, tutorialLocked, tutorialHighlight }: RowProps) {
           disabled={bulkDisabled}
           onClick={() => buyGongUpgradeBulk10(node.id)}
         >
-          {bulk.levelsGained}연마 (내공 {bulk.cost.toLocaleString()})
+          {bulk.levelsGained}연마 ({currencyLabel} {bulk.cost.toLocaleString()})
         </button>
       )}
       <button className="gong-upgrade-btn" disabled={disabled} {...hold}>
@@ -84,7 +89,8 @@ export function GongPanel({ onClose }: Props) {
   const tutorialActive = onboardingDone && !tutorialGongDone;
   const effectiveSelectedId = tutorialActive ? GONG_BOARDS[0].id : selectedId;
   const selectedBoard = GONG_BOARDS.find((b) => b.id === effectiveSelectedId) ?? GONG_BOARDS[0];
-  const selectedUnlocked = isBoardUnlocked(selectedBoard, highestMajorCleared);
+  const unlockCtx = { highestMajorCleared, gongLevels };
+  const selectedUnlocked = isBoardUnlocked(selectedBoard, unlockCtx);
 
   useEffect(() => {
     if (tutorialActive && (gongLevels[TUTORIAL_NODE_ID] ?? 0) >= 1) {
@@ -104,7 +110,7 @@ export function GongPanel({ onClose }: Props) {
       <div id="gong-body">
         <div id="gong-board-tabs">
           {GONG_BOARDS.map((board) => {
-            const unlocked = isBoardUnlocked(board, highestMajorCleared);
+            const unlocked = isBoardUnlocked(board, unlockCtx);
             return (
               <button
                 key={board.id}
@@ -128,12 +134,13 @@ export function GongPanel({ onClose }: Props) {
               <GongNodeRow
                 key={node.id}
                 node={node}
+                currency={selectedBoard.currency}
                 tutorialLocked={tutorialActive && node.id !== TUTORIAL_NODE_ID}
                 tutorialHighlight={tutorialActive && node.id === TUTORIAL_NODE_ID}
               />
             ))
           ) : (
-            <div className="gong-board-locked-message">대{selectedBoard.unlockMajor} 보스 클리어 후 해금됩니다.</div>
+            <div className="gong-board-locked-message">{boardUnlockLabel(selectedBoard)}</div>
           )}
         </div>
       </div>

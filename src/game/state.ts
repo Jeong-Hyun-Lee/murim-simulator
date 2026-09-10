@@ -20,6 +20,7 @@ export interface GameState {
   sectLevel: number;
   sectExp: number;
   sectTotalContribution: number;
+  sectContributionPoints: number; // 문파무공(삼재검법 2보) 강화에 쓰는 소모 가능 기여도 잔액
   elixir: number;
   elixirExchangeCount: number;
   gachaPity: number;
@@ -46,6 +47,7 @@ function defaultState(): GameState {
     sectLevel: 1,
     sectExp: 0,
     sectTotalContribution: 0,
+    sectContributionPoints: 0,
     elixir: 0,
     elixirExchangeCount: 0,
     gachaPity: 0,
