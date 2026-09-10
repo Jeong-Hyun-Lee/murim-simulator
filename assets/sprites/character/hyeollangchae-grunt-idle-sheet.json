@@ -1,68 +1,156 @@
-{ "frames": [
-   {
-    "filename": "hyeollangchae-grunt-idle 0.aseprite",
-    "frame": { "x": 0, "y": 0, "w": 64, "h": 64 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 64 },
-    "sourceSize": { "w": 64, "h": 64 },
-    "duration": 160
+{
+ "frames": [
+  {
+   "filename": "hyeollangchae-grunt-idle 0.png",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
    },
-   {
-    "filename": "hyeollangchae-grunt-idle 1.aseprite",
-    "frame": { "x": 64, "y": 0, "w": 64, "h": 64 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 64 },
-    "sourceSize": { "w": 64, "h": 64 },
-    "duration": 160
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
    },
-   {
-    "filename": "hyeollangchae-grunt-idle 2.aseprite",
-    "frame": { "x": 128, "y": 0, "w": 64, "h": 64 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 64 },
-    "sourceSize": { "w": 64, "h": 64 },
-    "duration": 160
+   "sourceSize": {
+    "w": 256,
+    "h": 256
    },
-   {
-    "filename": "hyeollangchae-grunt-idle 3.aseprite",
-    "frame": { "x": 192, "y": 0, "w": 64, "h": 64 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 64 },
-    "sourceSize": { "w": 64, "h": 64 },
-    "duration": 160
+   "duration": 160
+  },
+  {
+   "filename": "hyeollangchae-grunt-idle 1.png",
+   "frame": {
+    "x": 256,
+    "y": 0,
+    "w": 256,
+    "h": 256
    },
-   {
-    "filename": "hyeollangchae-grunt-idle 4.aseprite",
-    "frame": { "x": 256, "y": 0, "w": 64, "h": 64 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 64 },
-    "sourceSize": { "w": 64, "h": 64 },
-    "duration": 160
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
    },
-   {
-    "filename": "hyeollangchae-grunt-idle 5.aseprite",
-    "frame": { "x": 320, "y": 0, "w": 64, "h": 64 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 64 },
-    "sourceSize": { "w": 64, "h": 64 },
-    "duration": 160
-   }
+   "sourceSize": {
+    "w": 256,
+    "h": 256
+   },
+   "duration": 160
+  },
+  {
+   "filename": "hyeollangchae-grunt-idle 2.png",
+   "frame": {
+    "x": 512,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   },
+   "sourceSize": {
+    "w": 256,
+    "h": 256
+   },
+   "duration": 160
+  },
+  {
+   "filename": "hyeollangchae-grunt-idle 3.png",
+   "frame": {
+    "x": 768,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   },
+   "sourceSize": {
+    "w": 256,
+    "h": 256
+   },
+   "duration": 160
+  },
+  {
+   "filename": "hyeollangchae-grunt-idle 4.png",
+   "frame": {
+    "x": 1024,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   },
+   "sourceSize": {
+    "w": 256,
+    "h": 256
+   },
+   "duration": 160
+  },
+  {
+   "filename": "hyeollangchae-grunt-idle 5.png",
+   "frame": {
+    "x": 1280,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   },
+   "sourceSize": {
+    "w": 256,
+    "h": 256
+   },
+   "duration": 160
+  }
  ],
  "meta": {
-  "app": "https://www.aseprite.org/",
-  "version": "1.3.18.1-6-g717ab76b2-dev",
+  "app": "raw-preview-script",
+  "version": "1.0",
   "image": "hyeollangchae-grunt-idle-sheet.png",
   "format": "RGBA8888",
-  "size": { "w": 384, "h": 64 },
+  "size": {
+   "w": 1536,
+   "h": 256
+  },
   "scale": "1",
   "frameTags": [
-   { "name": "idle", "from": 0, "to": 5, "direction": "forward", "color": "#000000ff" }
+   {
+    "name": "idle",
+    "from": 0,
+    "to": 5,
+    "direction": "forward",
+    "color": "#000000ff"
+   }
   ]
  }
 }

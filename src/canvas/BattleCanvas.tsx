@@ -9,9 +9,10 @@ const PLAYER_X = 280;
 const PLAYER_Y = 400;
 const ENEMY_X = 700;
 const ENEMY_Y = 340;
-const PLAYER_SCALE = 3;
-const ENEMY_BOSS_SCALE = 3;
-const ENEMY_MOB_SCALE = 2.2;
+// 스프라이트시트가 64x64/96x64 표시 규격보다 4배 큰 캔버스로 제작돼 있어(저해상도 확대 시 흐려지는 것 방지) 배율을 그만큼 낮춘다.
+const PLAYER_SCALE = 0.75;
+const ENEMY_BOSS_SCALE = 0.75;
+const ENEMY_MOB_SCALE = 0.55;
 const ENEMY_HIT_TINT = 0xff6666;
 const HIT_FLASH_MS = 140;
 const POPUP_LIFETIME_MS = 800;
@@ -90,7 +91,8 @@ export function BattleCanvas() {
         const attack = enemyAttackByKind[kind];
         for (const anim of [idle, attack]) {
           anim.position.set(ENEMY_X, ENEMY_Y);
-          anim.scale.set(-enemyScaleByKind[kind], enemyScaleByKind[kind]); // 플레이어를 마주보도록 좌우 반전
+          const s = enemyScaleByKind[kind];
+          anim.scale.set(-s, s); // 플레이어를 마주보도록 좌우 반전
           anim.visible = false;
         }
         attack.loop = false;

@@ -1,11 +1,11 @@
 {
  "frames": [
   {
-   "filename": "hyeollangchae-grunt-attack 0.png",
+   "filename": "hyeollangchae-archer-idle 0.png",
    "frame": {
     "x": 0,
     "y": 0,
-    "w": 384,
+    "w": 256,
     "h": 256
    },
    "rotated": false,
@@ -13,21 +13,21 @@
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 384,
+    "w": 256,
     "h": 256
    },
    "sourceSize": {
-    "w": 384,
+    "w": 256,
     "h": 256
    },
-   "duration": 90
+   "duration": 160
   },
   {
-   "filename": "hyeollangchae-grunt-attack 1.png",
+   "filename": "hyeollangchae-archer-idle 1.png",
    "frame": {
-    "x": 384,
+    "x": 256,
     "y": 0,
-    "w": 384,
+    "w": 256,
     "h": 256
    },
    "rotated": false,
@@ -35,21 +35,43 @@
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 384,
+    "w": 256,
     "h": 256
    },
    "sourceSize": {
-    "w": 384,
+    "w": 256,
     "h": 256
    },
-   "duration": 90
+   "duration": 160
   },
   {
-   "filename": "hyeollangchae-grunt-attack 2.png",
+   "filename": "hyeollangchae-archer-idle 2.png",
+   "frame": {
+    "x": 512,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   },
+   "sourceSize": {
+    "w": 256,
+    "h": 256
+   },
+   "duration": 160
+  },
+  {
+   "filename": "hyeollangchae-archer-idle 3.png",
    "frame": {
     "x": 768,
     "y": 0,
-    "w": 384,
+    "w": 256,
     "h": 256
    },
    "rotated": false,
@@ -57,21 +79,21 @@
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 384,
+    "w": 256,
     "h": 256
    },
    "sourceSize": {
-    "w": 384,
+    "w": 256,
     "h": 256
    },
-   "duration": 90
+   "duration": 160
   },
   {
-   "filename": "hyeollangchae-grunt-attack 3.png",
+   "filename": "hyeollangchae-archer-idle 4.png",
    "frame": {
-    "x": 1152,
+    "x": 1024,
     "y": 0,
-    "w": 384,
+    "w": 256,
     "h": 256
    },
    "rotated": false,
@@ -79,21 +101,21 @@
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 384,
+    "w": 256,
     "h": 256
    },
    "sourceSize": {
-    "w": 384,
+    "w": 256,
     "h": 256
    },
-   "duration": 90
+   "duration": 160
   },
   {
-   "filename": "hyeollangchae-grunt-attack 4.png",
+   "filename": "hyeollangchae-archer-idle 5.png",
    "frame": {
-    "x": 1536,
+    "x": 1280,
     "y": 0,
-    "w": 384,
+    "w": 256,
     "h": 256
    },
    "rotated": false,
@@ -101,33 +123,11 @@
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 384,
+    "w": 256,
     "h": 256
    },
    "sourceSize": {
-    "w": 384,
-    "h": 256
-   },
-   "duration": 90
-  },
-  {
-   "filename": "hyeollangchae-grunt-attack 5.png",
-   "frame": {
-    "x": 1920,
-    "y": 0,
-    "w": 384,
-    "h": 256
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 384,
-    "h": 256
-   },
-   "sourceSize": {
-    "w": 384,
+    "w": 256,
     "h": 256
    },
    "duration": 160
@@ -136,16 +136,16 @@
  "meta": {
   "app": "raw-preview-script",
   "version": "1.0",
-  "image": "hyeollangchae-grunt-attack-sheet.png",
+  "image": "hyeollangchae-archer-idle-sheet.png",
   "format": "RGBA8888",
   "size": {
-   "w": 2304,
+   "w": 1536,
    "h": 256
   },
   "scale": "1",
   "frameTags": [
    {
-    "name": "attack",
+    "name": "idle",
     "from": 0,
     "to": 5,
     "direction": "forward",
