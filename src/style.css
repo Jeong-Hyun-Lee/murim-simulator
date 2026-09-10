@@ -127,6 +127,12 @@ body {
   cursor: default;
 }
 
+.gong-bulk-btn {
+  font-size: 12px;
+  padding: 3px 8px;
+  color: #9a8f78;
+}
+
 .stat-panel {
   position: absolute;
   inset: 40px 60px;

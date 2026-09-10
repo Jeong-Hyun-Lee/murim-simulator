@@ -16,6 +16,7 @@ import {
   GONG_BOARDS,
   nodeLevel,
   nodeUpgradeCost,
+  nodeBulkUpgrade,
   isNodeUnlocked,
   isBoardUnlocked,
   findBoardByNodeId,
@@ -80,6 +81,7 @@ interface GameStoreState extends GameState {
   togglePause: () => void;
   claimDailyBonusIfNeeded: () => void;
   buyGongUpgrade: (nodeId: string) => void;
+  buyGongUpgradeBulk10: (nodeId: string) => void;
   upgradeWeapon: () => void;
   donateChiToSect: () => void;
   performRebirth: () => void;
@@ -186,6 +188,32 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       const newPlayer = playerStats(s.level, totalBuffPercent({ ...s, gongLevels }));
       set({
         chi: s.chi - curCost,
+        gongLevels,
+        player: newPlayer,
+        playerHp: Math.min(newPlayer.hp, s.playerHp + Math.max(0, newPlayer.hp - s.player.hp)),
+      });
+      persist(get());
+    },
+
+    buyGongUpgradeBulk10: (nodeId) => {
+      const board = findBoardByNodeId(nodeId);
+      const node = board?.nodes.find((n) => n.id === nodeId);
+      if (!board || !node) return;
+      const s = get();
+      const curLevel = nodeLevel(node, s.gongLevels);
+      const { levelsGained, cost } = nodeBulkUpgrade(node, curLevel);
+      if (
+        levelsGained <= 0 ||
+        s.chi < cost ||
+        !isBoardUnlocked(board, s.highestMajorCleared) ||
+        !isNodeUnlocked(node, s.gongLevels)
+      )
+        return;
+
+      const gongLevels = { ...s.gongLevels, [nodeId]: curLevel + levelsGained };
+      const newPlayer = playerStats(s.level, totalBuffPercent({ ...s, gongLevels }));
+      set({
+        chi: s.chi - cost,
         gongLevels,
         player: newPlayer,
         playerHp: Math.min(newPlayer.hp, s.playerHp + Math.max(0, newPlayer.hp - s.player.hp)),
@@ -414,7 +442,15 @@ export const useGameStore = create<GameStoreState>((set, get) => {
   };
 });
 
-export { GONG_BOARDS, nodeLevel, nodeUpgradeCost, isNodeUnlocked, isBoardUnlocked, boardCompletionPercent };
+export {
+  GONG_BOARDS,
+  nodeLevel,
+  nodeUpgradeCost,
+  nodeBulkUpgrade,
+  isNodeUnlocked,
+  isBoardUnlocked,
+  boardCompletionPercent,
+};
 export { WEAPON_MAX_LEVEL, weaponUpgradeCost, weaponBuffPercent };
 export { realmName, rebirthGateMajor, rebirthBuffPercent };
 export { SECT_NAME, SECT_MAX_LEVEL, CHI_PER_CONTRIBUTION, sectExpToNextLevel, sectBuffPercent };

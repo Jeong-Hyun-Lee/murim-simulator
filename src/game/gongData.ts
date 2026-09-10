@@ -249,6 +249,21 @@ export function nodeUpgradeCost(node: GongNode, currentLevel: number): number {
   return Math.round(node.baseCost * node.growthRate ** currentLevel);
 }
 
+// wiki/concepts/ux-시나리오-기획서.md 2-3절 "10연마"(비용 10배로 즉시 10레벨 강화) 보조 버튼.
+// "10배"는 다음 레벨 1회분 비용 기준 정액 할인/할증이 아니라, 실제로 오를 각 레벨의 개별
+// 비용을 그대로 합산 — 위키의 "대성 총 내공" 표와 동일한 계산 방식을 재사용해 이중 기준이
+// 생기지 않도록 함. 최대 레벨 근처에서는 남은 레벨만큼만 적용.
+export const BULK_UPGRADE_SIZE = 10;
+
+export function nodeBulkUpgrade(node: GongNode, currentLevel: number): { levelsGained: number; cost: number } {
+  const levelsGained = Math.min(BULK_UPGRADE_SIZE, node.maxLevel - currentLevel);
+  let cost = 0;
+  for (let i = 0; i < levelsGained; i++) {
+    cost += nodeUpgradeCost(node, currentLevel + i);
+  }
+  return { levelsGained, cost };
+}
+
 export function isNodeUnlocked(node: GongNode, levels: GongLevels): boolean {
   if (!node.requires) return true;
   return node.requires.every((r) => (levels[r.nodeId] ?? 0) >= r.level);

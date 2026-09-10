@@ -4,6 +4,7 @@ import {
   GONG_BOARDS,
   nodeLevel,
   nodeUpgradeCost,
+  nodeBulkUpgrade,
   isNodeUnlocked,
   isBoardUnlocked,
   boardCompletionPercent,
@@ -21,12 +22,16 @@ function GongNodeRow({ node }: RowProps) {
   const gongLevels = useGameStore((s) => s.gongLevels);
   const chi = useGameStore((s) => s.chi);
   const buyGongUpgrade = useGameStore((s) => s.buyGongUpgrade);
+  const buyGongUpgradeBulk10 = useGameStore((s) => s.buyGongUpgradeBulk10);
 
   const lv = nodeLevel(node, gongLevels);
   const unlocked = isNodeUnlocked(node, gongLevels);
   const maxed = lv >= node.maxLevel;
   const cost = nodeUpgradeCost(node, lv);
   const disabled = !unlocked || maxed || chi < cost;
+
+  const bulk = nodeBulkUpgrade(node, lv);
+  const bulkDisabled = !unlocked || bulk.levelsGained <= 0 || chi < bulk.cost;
 
   const hold = useHoldRepeat(() => buyGongUpgrade(node.id), disabled);
 
@@ -42,6 +47,15 @@ function GongNodeRow({ node }: RowProps) {
       <span className="gong-node-level">
         Lv.{lv}/{node.maxLevel}
       </span>
+      {unlocked && !maxed && (
+        <button
+          className="gong-upgrade-btn gong-bulk-btn"
+          disabled={bulkDisabled}
+          onClick={() => buyGongUpgradeBulk10(node.id)}
+        >
+          {bulk.levelsGained}연마 (내공 {bulk.cost.toLocaleString()})
+        </button>
+      )}
       <button className="gong-upgrade-btn" disabled={disabled} {...hold}>
         {label}
       </button>
