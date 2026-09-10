@@ -1,14 +1,15 @@
 import { useEffect, useRef } from "react";
-import { Application, Graphics, Text } from "pixi.js";
+import { Application, Assets, Graphics, Sprite, Text } from "pixi.js";
 import { loadAnimatedSprite } from "./sprite";
 import { useGameStore, isBossStage, type StageId } from "../game/store";
 
 const CANVAS_WIDTH = 960;
 const CANVAS_HEIGHT = 540;
 const PLAYER_X = 280;
-const PLAYER_Y = 400;
+const PLAYER_Y = 470;
 const ENEMY_X = 700;
-const ENEMY_Y = 340;
+const ENEMY_Y = 410;
+const HIT_BURST_LIFETIME_MS = 260;
 // 스프라이트시트가 64x64/96x64 표시 규격보다 4배 큰 캔버스로 제작돼 있어(저해상도 확대 시 흐려지는 것 방지) 배율을 그만큼 낮춘다.
 const PLAYER_SCALE = 0.75;
 const ENEMY_BOSS_SCALE = 0.75;
@@ -23,6 +24,11 @@ const ENEMY_ATTACK_INTERVAL_MS = 1600;
 interface DamagePopup {
   text: Text;
   baseY: number;
+  age: number;
+}
+
+interface HitBurst {
+  gfx: Graphics;
   age: number;
 }
 
@@ -45,8 +51,15 @@ export function BattleCanvas() {
       }
       container.appendChild(app.canvas);
 
-      const ground = new Graphics().rect(0, 400, CANVAS_WIDTH, CANVAS_HEIGHT - 400).fill(0x141419);
-      app.stage.addChild(ground);
+      // ponytail: 임시 배경 — wiki/raw/assets/배경-아트-02-혈랑채.svg를 그대로 래스터화한 자체 제작 플레이스홀더.
+      // 실제 이미지 생성 AI 산출물로 교체 예정(디자인-프롬프트-큐.md "대1 스테이지 배경" 항목 참고).
+      const bgTexture = await Assets.load("/backgrounds/stage1-hyeollangchae.png");
+      const background = new Sprite(bgTexture);
+      app.stage.addChild(background);
+      if (disposed) {
+        app.destroy(true, { children: true });
+        return;
+      }
 
       const [idleAnim, attackAnim, bossIdle, bossAttack, gruntIdle, gruntAttack] = await Promise.all([
         loadAnimatedSprite("/sprites/character/mokhyeon-idle-sheet.json", "idle"),
@@ -121,6 +134,15 @@ export function BattleCanvas() {
       app.stage.addChild(enemyBox);
 
       const popups: DamagePopup[] = [];
+      const hitBursts: HitBurst[] = [];
+
+      function spawnHitBurst(x: number, y: number, color: number) {
+        const gfx = new Graphics().circle(0, 0, 10).fill(color);
+        gfx.position.set(x, y);
+        gfx.alpha = 0.85;
+        app.stage.addChild(gfx);
+        hitBursts.push({ gfx, age: 0 });
+      }
 
       let attackClock = 0;
       let enemyAttackClock = 0;
@@ -158,6 +180,7 @@ export function BattleCanvas() {
             const { dmg, isCrit } = s.playerAttack();
             enemyFlashMs = HIT_FLASH_MS;
             spawnPopup(ENEMY_X, ENEMY_Y - 70, isCrit ? `치명타! -${dmg}` : `-${dmg}`, isCrit ? 0xff9800 : 0xffe27a);
+            spawnHitBurst(ENEMY_X, ENEMY_Y - 40, isCrit ? 0xff9800 : 0xffe27a);
             idleAnim.visible = false;
             attackAnim.visible = true;
             attackAnim.gotoAndPlay(0);
@@ -170,6 +193,7 @@ export function BattleCanvas() {
             } else if (result) {
               playerFlashMs = HIT_FLASH_MS;
               spawnPopup(PLAYER_X, PLAYER_Y - 110, `-${result.dmg}`, 0xff6b6b);
+              spawnHitBurst(PLAYER_X, PLAYER_Y - 70, 0xff6b6b);
             }
             if (currentEnemyKind !== "none") {
               enemyIdleByKind[currentEnemyKind].visible = false;
@@ -184,6 +208,10 @@ export function BattleCanvas() {
           for (const p of popups) p.age += deltaMs;
           while (popups.length && popups[0].age >= POPUP_LIFETIME_MS) {
             popups.shift()!.text.destroy();
+          }
+          for (const b of hitBursts) b.age += deltaMs;
+          while (hitBursts.length && hitBursts[0].age >= HIT_BURST_LIFETIME_MS) {
+            hitBursts.shift()!.gfx.destroy();
           }
         }
 
@@ -210,6 +238,12 @@ export function BattleCanvas() {
           const t = p.age / POPUP_LIFETIME_MS;
           p.text.alpha = 1 - t;
           p.text.position.y = p.baseY - t * 40;
+        }
+
+        for (const b of hitBursts) {
+          const t = b.age / HIT_BURST_LIFETIME_MS;
+          b.gfx.scale.set(1 + t * 2.5);
+          b.gfx.alpha = 0.85 * (1 - t);
         }
       };
 
