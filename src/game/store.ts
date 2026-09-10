@@ -82,6 +82,7 @@ interface GameStoreState extends GameState {
   claimDailyBonusIfNeeded: () => void;
   buyGongUpgrade: (nodeId: string) => void;
   buyGongUpgradeBulk10: (nodeId: string) => void;
+  bulkUpgradeAllGong: () => void;
   upgradeWeapon: () => void;
   donateChiToSect: () => void;
   performRebirth: () => void;
@@ -217,6 +218,44 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         gongLevels,
         player: newPlayer,
         playerHp: Math.min(newPlayer.hp, s.playerHp + Math.max(0, newPlayer.hp - s.player.hp)),
+      });
+      persist(get());
+    },
+
+    // wiki/concepts/ux-시나리오-기획서.md 1절 하단 액션바 "일괄 연마(모든 보드에 자동으로
+    // 재화 소비)" — 해금된 모든 보드의 해금된 노드 중 가장 싼 강화부터 순서대로, 내공이
+    // 바닥날 때까지 반복 구매하는 탐욕(greedy) 방식으로 구현.
+    bulkUpgradeAllGong: () => {
+      const s = get();
+      let chi = s.chi;
+      const gongLevels = { ...s.gongLevels };
+      let purchased = 0;
+
+      for (let i = 0; i < 100000; i++) {
+        let cheapest: { nodeId: string; cost: number; level: number } | null = null;
+        for (const board of GONG_BOARDS) {
+          if (!isBoardUnlocked(board, s.highestMajorCleared)) continue;
+          for (const node of board.nodes) {
+            const level = nodeLevel(node, gongLevels);
+            if (level >= node.maxLevel || !isNodeUnlocked(node, gongLevels)) continue;
+            const cost = nodeUpgradeCost(node, level);
+            if (!cheapest || cost < cheapest.cost) cheapest = { nodeId: node.id, cost, level };
+          }
+        }
+        if (!cheapest || chi < cheapest.cost) break;
+        chi -= cheapest.cost;
+        gongLevels[cheapest.nodeId] = cheapest.level + 1;
+        purchased++;
+      }
+
+      if (purchased === 0) return;
+      const newPlayer = playerStats(s.level, totalBuffPercent({ ...s, gongLevels }));
+      set({
+        chi,
+        gongLevels,
+        player: newPlayer,
+        playerHp: Math.min(newPlayer.hp, s.playerHp + Math.max(0, newPlayer.hp - s.player.hp)),
+        toastMessage: `일괄 연마: ${purchased}회 강화 완료`,
       });
       persist(get());
     },

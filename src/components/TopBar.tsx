@@ -12,6 +12,7 @@ export function TopBar({ onTogglePanel }: Props) {
   const elixir = useGameStore((s) => s.elixir);
   const paused = useGameStore((s) => s.paused);
   const togglePause = useGameStore((s) => s.togglePause);
+  const bulkUpgradeAllGong = useGameStore((s) => s.bulkUpgradeAllGong);
 
   return (
     <div id="top-bar">
@@ -27,6 +28,7 @@ export function TopBar({ onTogglePanel }: Props) {
       <button className="topbar-btn" onClick={() => onTogglePanel("rebirth")}>환골탈태</button>
       <button className="topbar-btn" onClick={() => onTogglePanel("sect")}>문파</button>
       <button className="topbar-btn" onClick={() => onTogglePanel("shop")}>상점</button>
+      <button className="topbar-btn" onClick={bulkUpgradeAllGong}>일괄 연마</button>
       <button className="topbar-btn" onClick={togglePause}>{paused ? "재개" : "일시정지"}</button>
     </div>
   );
