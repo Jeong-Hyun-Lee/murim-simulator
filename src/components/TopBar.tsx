@@ -26,7 +26,7 @@ export function TopBar({ onTogglePanel }: Props) {
       <button className="topbar-btn" onClick={() => onTogglePanel("equip")}>장구</button>
       <button className="topbar-btn" onClick={() => onTogglePanel("rebirth")}>환골탈태</button>
       <button className="topbar-btn" onClick={() => onTogglePanel("sect")}>문파</button>
-      <button className="topbar-btn" onClick={() => onTogglePanel("gacha")}>기연</button>
+      <button className="topbar-btn" onClick={() => onTogglePanel("shop")}>상점</button>
       <button className="topbar-btn" onClick={togglePause}>{paused ? "재개" : "일시정지"}</button>
     </div>
   );

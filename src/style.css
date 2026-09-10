@@ -226,11 +226,33 @@ body {
 
 #rebirth-body,
 #sect-body,
-#gacha-body {
+#gacha-body,
+#general-shop-body {
   display: flex;
   flex-direction: column;
   gap: 10px;
   line-height: 1.6;
+}
+
+#shop-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.shop-tab {
+  pointer-events: auto;
+  cursor: pointer;
+  background: #201c14;
+  color: #e8e0cf;
+  border: 1px solid #5a4a2a;
+  font-size: 14px;
+  padding: 6px 12px;
+}
+
+.shop-tab-active {
+  background: #3a3020;
+  border-color: #8a6a2c;
 }
 
 #gacha-body {

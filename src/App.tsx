@@ -8,10 +8,10 @@ import { GongPanel } from "./components/panels/GongPanel";
 import { EquipPanel } from "./components/panels/EquipPanel";
 import { RebirthPanel } from "./components/panels/RebirthPanel";
 import { SectPanel } from "./components/panels/SectPanel";
-import { GachaPanel } from "./components/panels/GachaPanel";
+import { ShopPanel } from "./components/panels/ShopPanel";
 import { useGameStore } from "./game/store";
 
-export type PanelKey = "gong" | "equip" | "rebirth" | "sect" | "gacha";
+export type PanelKey = "gong" | "equip" | "rebirth" | "sect" | "shop";
 
 export function App() {
   const claimDailyBonusIfNeeded = useGameStore((s) => s.claimDailyBonusIfNeeded);
@@ -38,7 +38,7 @@ export function App() {
       {openPanel === "equip" && <EquipPanel onClose={() => setOpenPanel(null)} />}
       {openPanel === "rebirth" && <RebirthPanel onClose={() => setOpenPanel(null)} />}
       {openPanel === "sect" && <SectPanel onClose={() => setOpenPanel(null)} />}
-      {openPanel === "gacha" && <GachaPanel onClose={() => setOpenPanel(null)} />}
+      {openPanel === "shop" && <ShopPanel onClose={() => setOpenPanel(null)} />}
     </div>
   );
 }
