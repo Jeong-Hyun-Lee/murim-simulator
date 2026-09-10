@@ -13,6 +13,7 @@ const PLAYER_SCALE = 3;
 const HIT_FLASH_MS = 140;
 const POPUP_LIFETIME_MS = 800;
 const ATTACK_INTERVAL_MS = 1300;
+const MIN_ATTACK_INTERVAL_MS = 300; // 장구 공격속도% 최대치에서도 공격이 순간이동처럼 보이지 않게 하는 하한
 const ENEMY_ATTACK_INTERVAL_MS = 1600;
 
 interface DamagePopup {
@@ -102,7 +103,11 @@ export function BattleCanvas() {
           attackClock += deltaMs;
           enemyAttackClock += deltaMs;
 
-          if (attackClock >= ATTACK_INTERVAL_MS) {
+          const effectiveAttackInterval = Math.max(
+            MIN_ATTACK_INTERVAL_MS,
+            ATTACK_INTERVAL_MS / (1 + s.player.attackSpeedPercent / 100),
+          );
+          if (attackClock >= effectiveAttackInterval) {
             attackClock = 0;
             const { dmg, isCrit } = s.playerAttack();
             enemyFlashMs = HIT_FLASH_MS;
@@ -114,7 +119,9 @@ export function BattleCanvas() {
           if (enemyAttackClock >= ENEMY_ATTACK_INTERVAL_MS) {
             enemyAttackClock = 0;
             const result = s.enemyAttack();
-            if (result) {
+            if (result?.evaded) {
+              spawnPopup(PLAYER_X, PLAYER_Y - 110, "회피!", 0x8ad0ff);
+            } else if (result) {
               playerFlashMs = HIT_FLASH_MS;
               spawnPopup(PLAYER_X, PLAYER_Y - 110, `-${result.dmg}`, 0xff6b6b);
             }

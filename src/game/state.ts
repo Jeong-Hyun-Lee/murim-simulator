@@ -1,5 +1,6 @@
 import type { StageId } from "./combat";
 import type { GongLevels } from "./gongData";
+import type { EquipItem, SlotId } from "./equipData";
 
 const SAVE_KEY = "murim-simulator-save-v1";
 
@@ -10,7 +11,10 @@ export interface GameState {
   chi: number;
   stage: StageId;
   gongLevels: GongLevels;
-  weaponLevel: number;
+  equippedItems: Partial<Record<SlotId, EquipItem>>;
+  inventory: EquipItem[];
+  enhanceStones: number;
+  protectionCharms: number;
   rebirthCount: number;
   highestMajorCleared: number;
   sectLevel: number;
@@ -30,7 +34,10 @@ function defaultState(): GameState {
     chi: 0,
     stage: { major: 1, sub: 1 },
     gongLevels: {},
-    weaponLevel: 0,
+    equippedItems: {},
+    inventory: [],
+    enhanceStones: 0,
+    protectionCharms: 0,
     rebirthCount: 0,
     highestMajorCleared: 0,
     sectLevel: 1,

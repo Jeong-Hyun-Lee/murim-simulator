@@ -1,5 +1,5 @@
 import { useEffect, type CSSProperties } from "react";
-import { useGameStore, PULL_COST, PULL_10_COST, HARD_PITY, GRADE_COLOR, gradeTier } from "../../game/store";
+import { useGameStore, PULL_COST, PULL_10_COST, HARD_PITY, GRADE_COLOR, gradeTier, SLOT_INFO } from "../../game/store";
 
 // wiki "뽑기 결과 연출" 표: 등급이 높을수록(신품 이상) 카드 글로우를 강하게 — 파티클/화면
 // 진동 등 캔버스 연출은 v1 범위 밖(gachaData.ts 주석 참고).
@@ -44,7 +44,7 @@ export function GachaPanel() {
       <div id="gacha-result">
         {lastGachaOutcome?.results.map((r, i) => (
           <div key={i} className="gacha-result-card" style={resultCardStyle(gradeTier(r.grade), GRADE_COLOR[r.grade])}>
-            {r.grade} +내공{r.reward}
+            {r.grade} · {SLOT_INFO[r.slot].name}
           </div>
         ))}
       </div>

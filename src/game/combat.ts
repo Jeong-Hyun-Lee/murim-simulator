@@ -108,13 +108,63 @@ const PLAYER_BASE_HP = 60;
 const PLAYER_BASE_ATK = 8;
 const PLAYER_BASE_DEF = 3;
 
-export function playerStats(level: number, gongBuffPercent = 0): UnitStats {
-  const mult = 1.052 ** (level - 1) * (1 + gongBuffPercent / 100);
+// 장구-시스템 슬롯 스탯(치명타율/치명타피해/공격속도/회피율/내공획득량) 인게임 반영 기준값.
+// 위키 BaseStat 공식(ItemLevel×Coeff×SlotWeight×GradeMultiplier)을 %스탯에 그대로 적용하면
+// 고레벨에서 100%를 가볍게 넘으므로, 실제 전투 계산에 쓰일 때만 안전 상한을 둔다(원본 합산치
+// 자체는 equipData.ts에 그대로 보존 — 인벤토리/강화 UI 수치 표시는 원본을 그대로 보여준다).
+const BASE_CRIT_CHANCE = 0.1;
+const BASE_CRIT_MULTIPLIER = 1.5;
+const MAX_CRIT_CHANCE = 0.9;
+const MAX_EVASION = 0.75;
+
+export interface GearStatBonus {
+  atk: number;
+  def: number;
+  hp: number;
+  critChancePercent: number;
+  critDamagePercent: number;
+  attackSpeedPercent: number;
+  evasionPercent: number;
+  chiGainPercent: number;
+}
+
+const NO_GEAR: GearStatBonus = {
+  atk: 0,
+  def: 0,
+  hp: 0,
+  critChancePercent: 0,
+  critDamagePercent: 0,
+  attackSpeedPercent: 0,
+  evasionPercent: 0,
+  chiGainPercent: 0,
+};
+
+export interface PlayerStats extends UnitStats {
+  critChance: number; // 0~1
+  critMultiplier: number; // 예: 1.5 = 치명타 시 150% 피해
+  attackSpeedPercent: number; // BattleCanvas가 공격 주기 계산에 사용
+  evasion: number; // 0~1
+  chiGainMultiplier: number; // 1 = 기본
+}
+
+function clamp(x: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, x));
+}
+
+export function playerStats(level: number, buffPercent = 0, gear: GearStatBonus = NO_GEAR): PlayerStats {
+  const charMult = 1.052 ** (level - 1);
+  const buffMult = 1 + buffPercent / 100;
+
   return {
     name: "목현",
-    hp: Math.round(PLAYER_BASE_HP * mult),
-    atk: Math.round(PLAYER_BASE_ATK * mult),
-    def: Math.round(PLAYER_BASE_DEF * mult),
+    hp: Math.round((PLAYER_BASE_HP * charMult + gear.hp) * buffMult),
+    atk: Math.round((PLAYER_BASE_ATK * charMult + gear.atk) * buffMult),
+    def: Math.round((PLAYER_BASE_DEF * charMult + gear.def) * buffMult),
+    critChance: clamp(BASE_CRIT_CHANCE + gear.critChancePercent / 100, 0, MAX_CRIT_CHANCE),
+    critMultiplier: BASE_CRIT_MULTIPLIER + gear.critDamagePercent / 100,
+    attackSpeedPercent: gear.attackSpeedPercent,
+    evasion: clamp(gear.evasionPercent / 100, 0, MAX_EVASION),
+    chiGainMultiplier: 1 + gear.chiGainPercent / 100,
   };
 }
 
@@ -126,18 +176,17 @@ export function damage(attackerAtk: number, defenderDef: number): number {
   return Math.max(1, attackerAtk - defenderDef);
 }
 
-// ponytail: 장구-시스템의 슬롯별 치명타율/치명타피해 스탯은 v1 인벤토리가 없어 아직 반영 못함 —
-// 플레이어 공격에만 고정 확률/배율 크리티컬 적용한 축소판.
-const CRIT_CHANCE = 0.1;
-const CRIT_MULTIPLIER = 1.5;
-
 export interface DamageResult {
   amount: number;
   isCrit: boolean;
 }
 
-export function rollPlayerDamage(attackerAtk: number, defenderDef: number): DamageResult {
+export function rollPlayerDamage(attackerAtk: number, defenderDef: number, critChance: number, critMultiplier: number): DamageResult {
   const base = damage(attackerAtk, defenderDef);
-  const isCrit = Math.random() < CRIT_CHANCE;
-  return { amount: isCrit ? Math.round(base * CRIT_MULTIPLIER) : base, isCrit };
+  const isCrit = Math.random() < critChance;
+  return { amount: isCrit ? Math.round(base * critMultiplier) : base, isCrit };
+}
+
+export function rollEvaded(evasion: number): boolean {
+  return Math.random() < evasion;
 }
