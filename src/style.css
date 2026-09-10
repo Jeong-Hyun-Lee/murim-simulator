@@ -23,10 +23,14 @@ body {
   border: 1px solid #3a3a46;
 }
 
-#battle-canvas {
+#battle-canvas-mount {
   position: absolute;
   inset: 0;
   image-rendering: pixelated;
+}
+
+#battle-canvas-mount canvas {
+  display: block;
 }
 
 #ui-overlay {
@@ -141,10 +145,6 @@ body {
   cursor: default;
 }
 
-.stat-panel[hidden] {
-  display: none;
-}
-
 .stat-panel {
   position: absolute;
   inset: 40px 60px;
@@ -157,7 +157,7 @@ body {
   overflow-y: auto;
 }
 
-#gong-panel-header {
+.panel-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
