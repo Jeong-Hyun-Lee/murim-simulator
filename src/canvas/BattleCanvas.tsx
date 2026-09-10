@@ -98,7 +98,7 @@ export function BattleCanvas() {
         const deltaMs = app.ticker.deltaMS;
         const s = useGameStore.getState();
 
-        if (!s.paused) {
+        if (!s.paused && !s.awaitingBossChallenge && !s.awaitingBossReward) {
           attackClock += deltaMs;
           enemyAttackClock += deltaMs;
 

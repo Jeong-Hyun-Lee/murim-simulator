@@ -56,6 +56,13 @@ export interface GachaOutcome {
   totalReward: number;
 }
 
+export interface BossRewardOutcome {
+  stage: StageId;
+  bossName: string;
+  reward: { exp: number; gold: number; chi: number };
+  elixirGained: number;
+}
+
 interface GameStoreState extends GameState {
   player: UnitStats;
   playerHp: number;
@@ -64,6 +71,10 @@ interface GameStoreState extends GameState {
   toastMessage: string;
   lastGachaOutcome: GachaOutcome | null;
   paused: boolean;
+  // wiki/concepts/ux-시나리오-기획서.md 3-3절: 보스 조우 직전 [도전] 확인, 보스 격파 후
+  // [계속하기] 확인 — 둘 다 사용자 확인 전까지 자동전투를 멈춘다.
+  awaitingBossChallenge: boolean;
+  awaitingBossReward: BossRewardOutcome | null;
 
   showToast: (msg: string) => void;
   togglePause: () => void;
@@ -76,6 +87,8 @@ interface GameStoreState extends GameState {
   pullGachaTen: () => void;
   resetGachaOutcome: () => void;
   exchangeGoldForElixir: () => void;
+  confirmBossChallenge: () => void;
+  confirmBossReward: () => void;
   playerAttack: () => { dmg: number; isCrit: boolean; enemyDefeated: boolean };
   enemyAttack: () => { dmg: number; playerDefeated: boolean } | null;
 }
@@ -134,6 +147,8 @@ export const useGameStore = create<GameStoreState>((set, get) => {
     toastMessage: "",
     lastGachaOutcome: null,
     paused: false,
+    awaitingBossChallenge: isBossStage(saved.stage),
+    awaitingBossReward: null,
 
     showToast: (msg) => set({ toastMessage: msg }),
     togglePause: () => set((s) => ({ paused: !s.paused })),
@@ -293,17 +308,20 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       const enemyHp = s.enemyHp - dmg;
       const enemyDefeated = enemyHp <= 0;
 
-      if (enemyDefeated) {
+      if (enemyDefeated && isBossStage(s.stage)) {
+        // 보스 격파 직후에는 즉시 다음 스테이지로 넘기지 않고, 사용자가 [계속하기]를
+        // 확인할 때까지 보류(confirmBossReward에서 실제 적용).
+        const reward = stageReward(s.stage);
+        const elixirGained = s.stage.major > s.highestMajorCleared ? BOSS_FIRST_CLEAR_ELIXIR : 0;
+        set({
+          enemyHp: 0,
+          awaitingBossReward: { stage: s.stage, bossName: s.enemy.name, reward, elixirGained },
+        });
+      } else if (enemyDefeated) {
         const reward = stageReward(s.stage);
         const { level, exp } = levelUp(s.level, s.exp + reward.exp);
         const gold = s.gold + reward.gold;
         const chi = s.chi + reward.chi;
-        let highestMajorCleared = s.highestMajorCleared;
-        let elixir = s.elixir;
-        if (isBossStage(s.stage) && s.stage.major > highestMajorCleared) {
-          highestMajorCleared = s.stage.major;
-          elixir += BOSS_FIRST_CLEAR_ELIXIR;
-        }
         const stage = nextStage(s.stage);
         const newPlayer = playerStats(level, totalBuffPercent(s));
         const newEnemy = monsterStats(stage);
@@ -312,13 +330,12 @@ export const useGameStore = create<GameStoreState>((set, get) => {
           exp,
           gold,
           chi,
-          highestMajorCleared,
-          elixir,
           stage,
           player: newPlayer,
           playerHp: newPlayer.hp,
           enemy: newEnemy,
           enemyHp: newEnemy.hp,
+          awaitingBossChallenge: isBossStage(stage),
           toastMessage: `${s.stage.major}-${s.stage.sub} 클리어! +EXP ${reward.exp} +전 ${reward.gold}`,
         });
         persist(get());
@@ -327,6 +344,39 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       }
 
       return { dmg, isCrit, enemyDefeated };
+    },
+
+    confirmBossChallenge: () => set({ awaitingBossChallenge: false }),
+
+    confirmBossReward: () => {
+      const s = get();
+      const pending = s.awaitingBossReward;
+      if (!pending) return;
+      const { stage, reward, elixirGained } = pending;
+      const { level, exp } = levelUp(s.level, s.exp + reward.exp);
+      const gold = s.gold + reward.gold;
+      const chi = s.chi + reward.chi;
+      const highestMajorCleared = Math.max(s.highestMajorCleared, stage.major);
+      const elixir = s.elixir + elixirGained;
+      const nextStg = nextStage(stage);
+      const newPlayer = playerStats(level, totalBuffPercent(s));
+      const newEnemy = monsterStats(nextStg);
+      set({
+        level,
+        exp,
+        gold,
+        chi,
+        highestMajorCleared,
+        elixir,
+        stage: nextStg,
+        player: newPlayer,
+        playerHp: newPlayer.hp,
+        enemy: newEnemy,
+        enemyHp: newEnemy.hp,
+        awaitingBossReward: null,
+        toastMessage: `${stage.major}-${stage.sub} 클리어! +EXP ${reward.exp} +전 ${reward.gold}`,
+      });
+      persist(get());
     },
 
     enemyAttack: () => {

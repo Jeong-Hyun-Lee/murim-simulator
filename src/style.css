@@ -273,3 +273,36 @@ body {
   background: rgba(0, 0, 0, 0.4);
   font-size: 13px;
 }
+
+.boss-dialog-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  z-index: 10;
+}
+
+.boss-dialog-box {
+  background: #16161e;
+  border: 1px solid #8a6a2c;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  min-width: 320px;
+  text-align: center;
+}
+
+.boss-dialog-title {
+  font-size: 22px;
+  color: #ffd76a;
+  text-shadow: 0 1px 3px #000;
+}
+
+.boss-dialog-body {
+  line-height: 1.6;
+}

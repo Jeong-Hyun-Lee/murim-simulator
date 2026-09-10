@@ -9,6 +9,7 @@ import { EquipPanel } from "./components/panels/EquipPanel";
 import { RebirthPanel } from "./components/panels/RebirthPanel";
 import { SectPanel } from "./components/panels/SectPanel";
 import { ShopPanel } from "./components/panels/ShopPanel";
+import { BossDialog } from "./components/BossDialog";
 import { useGameStore } from "./game/store";
 
 export type PanelKey = "gong" | "equip" | "rebirth" | "sect" | "shop";
@@ -39,6 +40,7 @@ export function App() {
       {openPanel === "rebirth" && <RebirthPanel onClose={() => setOpenPanel(null)} />}
       {openPanel === "sect" && <SectPanel onClose={() => setOpenPanel(null)} />}
       {openPanel === "shop" && <ShopPanel onClose={() => setOpenPanel(null)} />}
+      <BossDialog />
     </div>
   );
 }
