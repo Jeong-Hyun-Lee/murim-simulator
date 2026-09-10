@@ -42,7 +42,14 @@ import {
 } from "./equipData";
 import { rollStageDrops } from "./dropData";
 import { realmName, rebirthGateMajor, rebirthBuffPercent } from "./rebirthData";
-import { SECT_NAME, SECT_MAX_LEVEL, CHI_PER_CONTRIBUTION, sectExpToNextLevel, sectBuffPercent } from "./sectData";
+import {
+  SECT_NAME,
+  SECT_MAX_LEVEL,
+  CHI_PER_CONTRIBUTION,
+  ELIXIR_CONTRIBUTION_RATE,
+  sectExpToNextLevel,
+  sectBuffPercent,
+} from "./sectData";
 import {
   PULL_COST,
   PULL_10_COST,
@@ -102,6 +109,7 @@ interface GameStoreState extends GameState {
   enhanceItem: (itemId: string, useProtection: boolean) => void;
   disassembleItems: (itemIds: string[]) => void;
   donateChiToSect: () => void;
+  donateElixirToSect: () => void;
   performRebirth: () => void;
   pullGachaSingle: () => void;
   pullGachaTen: () => void;
@@ -153,6 +161,16 @@ function computePlayerStats(
 // HP 최대치가 바뀔 때 이미 입은 피해량은 그대로 유지하고 최대치 증가분만 회복분으로 반영.
 function carryOverHp(prevMaxHp: number, prevHp: number, newMaxHp: number): number {
   return Math.min(newMaxHp, prevHp + Math.max(0, newMaxHp - prevMaxHp));
+}
+
+function applySectContribution(sectLevel: number, sectExp: number, contribution: number): { sectLevel: number; sectExp: number } {
+  let level = sectLevel;
+  let exp = sectExp + contribution;
+  while (level < SECT_MAX_LEVEL && exp >= sectExpToNextLevel(level)) {
+    exp -= sectExpToNextLevel(level);
+    level += 1;
+  }
+  return { sectLevel: level, sectExp: exp };
 }
 
 function persist(s: GameStoreState) {
@@ -446,17 +464,30 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       const donatable = Math.floor(s.chi / CHI_PER_CONTRIBUTION);
       if (donatable <= 0 || s.sectLevel >= SECT_MAX_LEVEL) return;
 
-      let sectLevel = s.sectLevel;
-      let sectExp = s.sectExp + donatable;
-      while (sectLevel < SECT_MAX_LEVEL && sectExp >= sectExpToNextLevel(sectLevel)) {
-        sectExp -= sectExpToNextLevel(sectLevel);
-        sectLevel += 1;
-      }
-
+      const { sectLevel, sectExp } = applySectContribution(s.sectLevel, s.sectExp, donatable);
       const newPlayer = computePlayerStats(s.level, { ...s, sectLevel });
       set({
         chi: s.chi - donatable * CHI_PER_CONTRIBUTION,
         sectTotalContribution: s.sectTotalContribution + donatable,
+        sectExp,
+        sectLevel,
+        player: newPlayer,
+        playerHp: carryOverHp(s.player.hp, s.playerHp, newPlayer.hp),
+      });
+      persist(get());
+    },
+
+    // wiki/concepts/문파-시스템.md "기여도 획득" 표: 영약 1개 = 10 기여도.
+    donateElixirToSect: () => {
+      const s = get();
+      if (s.elixir <= 0 || s.sectLevel >= SECT_MAX_LEVEL) return;
+      const contribution = s.elixir * ELIXIR_CONTRIBUTION_RATE;
+
+      const { sectLevel, sectExp } = applySectContribution(s.sectLevel, s.sectExp, contribution);
+      const newPlayer = computePlayerStats(s.level, { ...s, sectLevel });
+      set({
+        elixir: 0,
+        sectTotalContribution: s.sectTotalContribution + contribution,
         sectExp,
         sectLevel,
         player: newPlayer,
@@ -695,7 +726,14 @@ export {
   needsProtectionEligible,
 } from "./equipData";
 export { realmName, rebirthGateMajor, rebirthBuffPercent };
-export { SECT_NAME, SECT_MAX_LEVEL, CHI_PER_CONTRIBUTION, sectExpToNextLevel, sectBuffPercent };
+export {
+  SECT_NAME,
+  SECT_MAX_LEVEL,
+  CHI_PER_CONTRIBUTION,
+  ELIXIR_CONTRIBUTION_RATE,
+  sectExpToNextLevel,
+  sectBuffPercent,
+};
 export { PULL_COST, PULL_10_COST, HARD_PITY, GRADE_COLOR, gradeTier };
 export { elixirExchangeCost };
 export { expToNextLevel, isBossStage };

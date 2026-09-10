@@ -1,4 +1,12 @@
-import { useGameStore, SECT_NAME, SECT_MAX_LEVEL, CHI_PER_CONTRIBUTION, sectExpToNextLevel, sectBuffPercent } from "../../game/store";
+import {
+  useGameStore,
+  SECT_NAME,
+  SECT_MAX_LEVEL,
+  CHI_PER_CONTRIBUTION,
+  ELIXIR_CONTRIBUTION_RATE,
+  sectExpToNextLevel,
+  sectBuffPercent,
+} from "../../game/store";
 
 interface Props {
   onClose: () => void;
@@ -9,9 +17,12 @@ export function SectPanel({ onClose }: Props) {
   const sectExp = useGameStore((s) => s.sectExp);
   const sectTotalContribution = useGameStore((s) => s.sectTotalContribution);
   const chi = useGameStore((s) => s.chi);
+  const elixir = useGameStore((s) => s.elixir);
   const donateChiToSect = useGameStore((s) => s.donateChiToSect);
+  const donateElixirToSect = useGameStore((s) => s.donateElixirToSect);
 
-  const donatable = Math.floor(chi / CHI_PER_CONTRIBUTION);
+  const donatableChi = Math.floor(chi / CHI_PER_CONTRIBUTION);
+  const elixirContribution = elixir * ELIXIR_CONTRIBUTION_RATE;
   const maxed = sectLevel >= SECT_MAX_LEVEL;
 
   return (
@@ -30,11 +41,16 @@ export function SectPanel({ onClose }: Props) {
           <br />
           누적 기여도: {sectTotalContribution.toLocaleString()}
           <br />
-          내공 {CHI_PER_CONTRIBUTION.toLocaleString()} = 기여도 1 (보유 내공 {chi.toLocaleString()})
+          내공 {CHI_PER_CONTRIBUTION.toLocaleString()} = 기여도 1 (보유 내공 {chi.toLocaleString()}) · 영약 1개 = 기여도 {ELIXIR_CONTRIBUTION_RATE} (보유 영약 {elixir.toLocaleString()})
         </div>
-        <button className="gong-upgrade-btn" disabled={maxed || donatable <= 0} onClick={donateChiToSect}>
-          {maxed ? "대성" : `내공 기부 (기여도 +${donatable})`}
-        </button>
+        <div className="equip-detail-actions">
+          <button className="gong-upgrade-btn" disabled={maxed || donatableChi <= 0} onClick={donateChiToSect}>
+            {maxed ? "대성" : `내공 기부 (기여도 +${donatableChi})`}
+          </button>
+          <button className="gong-upgrade-btn" disabled={maxed || elixir <= 0} onClick={donateElixirToSect}>
+            {maxed ? "대성" : `영약 기부 (기여도 +${elixirContribution})`}
+          </button>
+        </div>
       </div>
     </div>
   );
