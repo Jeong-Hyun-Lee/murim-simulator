@@ -48,7 +48,7 @@ export function GongPanel({ onClose }: Props) {
     <div id="gong-panel" className="stat-panel">
       <div className="panel-header">
         <span>삼재검법 1보</span>
-        <button onClick={onClose}>닫기</button>
+        <button className="panel-close-btn" onClick={onClose}>닫기</button>
       </div>
       <div id="gong-node-list">
         {SAMJAE_BOARD.map((node) => (

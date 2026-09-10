@@ -21,7 +21,7 @@ export function GachaPanel({ onClose }: Props) {
     <div id="gacha-panel" className="stat-panel">
       <div className="panel-header">
         <span>기연(奇緣)</span>
-        <button onClick={onClose}>닫기</button>
+        <button className="panel-close-btn" onClick={onClose}>닫기</button>
       </div>
       <div id="gacha-body">
         <div>

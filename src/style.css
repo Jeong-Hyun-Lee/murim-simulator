@@ -104,17 +104,8 @@ body {
   text-shadow: 0 1px 3px #000;
 }
 
-#gong-toggle-btn,
-#gong-close-btn,
-#equip-toggle-btn,
-#equip-close-btn,
-#pause-toggle-btn,
-#rebirth-toggle-btn,
-#rebirth-close-btn,
-#sect-toggle-btn,
-#sect-close-btn,
-#gacha-toggle-btn,
-#gacha-close-btn,
+.topbar-btn,
+.panel-close-btn,
 .gong-upgrade-btn {
   pointer-events: auto;
   cursor: pointer;
@@ -125,17 +116,8 @@ body {
   padding: 4px 10px;
 }
 
-#gong-toggle-btn:hover,
-#gong-close-btn:hover,
-#equip-toggle-btn:hover,
-#equip-close-btn:hover,
-#pause-toggle-btn:hover,
-#rebirth-toggle-btn:hover,
-#rebirth-close-btn:hover,
-#sect-toggle-btn:hover,
-#sect-close-btn:hover,
-#gacha-toggle-btn:hover,
-#gacha-close-btn:hover,
+.topbar-btn:hover,
+.panel-close-btn:hover,
 .gong-upgrade-btn:not(:disabled):hover {
   background: #3a3020;
 }

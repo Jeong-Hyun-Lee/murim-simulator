@@ -22,12 +22,12 @@ export function TopBar({ onTogglePanel }: Props) {
       <span>전 {gold.toLocaleString()}</span>
       <span>내공 {chi.toLocaleString()}</span>
       <span>영약 {elixir.toLocaleString()}</span>
-      <button onClick={() => onTogglePanel("gong")}>무공</button>
-      <button onClick={() => onTogglePanel("equip")}>장구</button>
-      <button onClick={() => onTogglePanel("rebirth")}>환골탈태</button>
-      <button onClick={() => onTogglePanel("sect")}>문파</button>
-      <button onClick={() => onTogglePanel("gacha")}>기연</button>
-      <button onClick={togglePause}>{paused ? "재개" : "일시정지"}</button>
+      <button className="topbar-btn" onClick={() => onTogglePanel("gong")}>무공</button>
+      <button className="topbar-btn" onClick={() => onTogglePanel("equip")}>장구</button>
+      <button className="topbar-btn" onClick={() => onTogglePanel("rebirth")}>환골탈태</button>
+      <button className="topbar-btn" onClick={() => onTogglePanel("sect")}>문파</button>
+      <button className="topbar-btn" onClick={() => onTogglePanel("gacha")}>기연</button>
+      <button className="topbar-btn" onClick={togglePause}>{paused ? "재개" : "일시정지"}</button>
     </div>
   );
 }

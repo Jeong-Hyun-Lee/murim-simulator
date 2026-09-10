@@ -19,7 +19,7 @@ export function EquipPanel({ onClose }: Props) {
     <div id="equip-panel" className="stat-panel">
       <div className="panel-header">
         <span>장구 — 무기</span>
-        <button onClick={onClose}>닫기</button>
+        <button className="panel-close-btn" onClick={onClose}>닫기</button>
       </div>
       <div id="equip-node-list">
         <div className="gong-node">
