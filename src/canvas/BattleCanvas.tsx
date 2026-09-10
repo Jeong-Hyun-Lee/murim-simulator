@@ -10,6 +10,9 @@ const PLAYER_Y = 400;
 const ENEMY_X = 700;
 const ENEMY_Y = 340;
 const PLAYER_SCALE = 3;
+const ENEMY_BOSS_SCALE = 3;
+const ENEMY_MOB_SCALE = 2.2;
+const ENEMY_HIT_TINT = 0xff6666;
 const HIT_FLASH_MS = 140;
 const POPUP_LIFETIME_MS = 800;
 const ATTACK_INTERVAL_MS = 1300;
@@ -44,9 +47,13 @@ export function BattleCanvas() {
       const ground = new Graphics().rect(0, 400, CANVAS_WIDTH, CANVAS_HEIGHT - 400).fill(0x141419);
       app.stage.addChild(ground);
 
-      const [idleAnim, attackAnim] = await Promise.all([
+      const [idleAnim, attackAnim, bossIdle, bossAttack, gruntIdle, gruntAttack] = await Promise.all([
         loadAnimatedSprite("/sprites/character/mokhyeon-idle-sheet.json", "idle"),
         loadAnimatedSprite("/sprites/character/mokhyeon-attack-sheet.json", "attack"),
+        loadAnimatedSprite("/sprites/character/hyeollangchae-boss-idle-sheet.json", "idle"),
+        loadAnimatedSprite("/sprites/character/hyeollangchae-boss-attack-sheet.json", "attack"),
+        loadAnimatedSprite("/sprites/character/hyeollangchae-grunt-idle-sheet.json", "idle"),
+        loadAnimatedSprite("/sprites/character/hyeollangchae-grunt-attack-sheet.json", "attack"),
       ]);
       if (disposed) {
         app.destroy(true, { children: true });
@@ -70,6 +77,43 @@ export function BattleCanvas() {
       const playerFlash = new Graphics().rect(PLAYER_X - 40, PLAYER_Y - 130, 80, 130).fill(0xff4444);
       playerFlash.alpha = 0;
       app.stage.addChild(playerFlash);
+
+      // 혈랑채(스테이지 1) 전용 스프라이트. 그 외 스테이지는 아직 아트가 없어 enemyBox 플레이스홀더로 대체.
+      type EnemyKind = "none" | "boss" | "grunt";
+      const enemyIdleByKind = { boss: bossIdle, grunt: gruntIdle };
+      const enemyAttackByKind = { boss: bossAttack, grunt: gruntAttack };
+      const enemyScaleByKind = { boss: ENEMY_BOSS_SCALE, grunt: ENEMY_MOB_SCALE };
+      let currentEnemyKind: EnemyKind = "none";
+
+      for (const kind of ["boss", "grunt"] as const) {
+        const idle = enemyIdleByKind[kind];
+        const attack = enemyAttackByKind[kind];
+        for (const anim of [idle, attack]) {
+          anim.position.set(ENEMY_X, ENEMY_Y);
+          anim.scale.set(-enemyScaleByKind[kind], enemyScaleByKind[kind]); // 플레이어를 마주보도록 좌우 반전
+          anim.visible = false;
+        }
+        attack.loop = false;
+        attack.onComplete = () => {
+          attack.visible = false;
+          if (currentEnemyKind === kind) {
+            idle.visible = true;
+            idle.gotoAndPlay(0);
+          }
+        };
+        app.stage.addChild(idle, attack);
+      }
+
+      function enemyKindForStage(stage: StageId): EnemyKind {
+        if (stage.major !== 1) return "none";
+        return isBossStage(stage) ? "boss" : "grunt";
+      }
+
+      function activeEnemySprite() {
+        if (currentEnemyKind === "none") return null;
+        const idle = enemyIdleByKind[currentEnemyKind];
+        return idle.visible ? idle : enemyAttackByKind[currentEnemyKind];
+      }
 
       const enemyBox = new Graphics();
       app.stage.addChild(enemyBox);
@@ -125,6 +169,12 @@ export function BattleCanvas() {
               playerFlashMs = HIT_FLASH_MS;
               spawnPopup(PLAYER_X, PLAYER_Y - 110, `-${result.dmg}`, 0xff6b6b);
             }
+            if (currentEnemyKind !== "none") {
+              enemyIdleByKind[currentEnemyKind].visible = false;
+              const attack = enemyAttackByKind[currentEnemyKind];
+              attack.visible = true;
+              attack.gotoAndPlay(0);
+            }
           }
 
           enemyFlashMs = Math.max(0, enemyFlashMs - deltaMs);
@@ -136,7 +186,24 @@ export function BattleCanvas() {
         }
 
         playerFlash.alpha = 0.5 * (playerFlashMs / HIT_FLASH_MS);
-        drawEnemyBox(s.stage);
+
+        const kind = enemyKindForStage(s.stage);
+        if (kind !== currentEnemyKind) {
+          for (const k of ["boss", "grunt"] as const) {
+            enemyIdleByKind[k].visible = k === kind;
+            enemyAttackByKind[k].visible = false;
+          }
+          if (kind !== "none") enemyIdleByKind[kind].gotoAndPlay(0);
+          currentEnemyKind = kind;
+        }
+        enemyBox.visible = kind === "none";
+        if (kind === "none") {
+          drawEnemyBox(s.stage);
+        } else {
+          const sprite = activeEnemySprite();
+          if (sprite) sprite.tint = enemyFlashMs > 0 ? ENEMY_HIT_TINT : 0xffffff;
+        }
+
         for (const p of popups) {
           const t = p.age / POPUP_LIFETIME_MS;
           p.text.alpha = 1 - t;
