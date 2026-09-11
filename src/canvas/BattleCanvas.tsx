@@ -4,6 +4,7 @@ import { loadAnimatedSprite } from "./sprite";
 import { loadDamageFont, createDamageNumber, createCriticalLabel } from "./damageFont";
 import { loadNormalHitEffect, normalHitEffectFrames, loadCriticalHitEffect, criticalHitEffectFrames } from "./hitEffect";
 import { useGameStore, isBossStage, type StageId } from "../game/store";
+import { playHit, playCrit, playVictory, playDefeat } from "../audio/sfx";
 
 const CANVAS_WIDTH = 960;
 const CANVAS_HEIGHT = 540;
@@ -260,14 +261,17 @@ export function BattleCanvas() {
           );
           if (attackClock >= effectiveAttackInterval) {
             attackClock = 0;
-            const { dmg, isCrit } = s.playerAttack();
+            const { dmg, isCrit, enemyDefeated } = s.playerAttack();
             enemyFlashMs = HIT_FLASH_MS;
             spawnDamageNumberPopup(ENEMY_X, ENEMY_Y - 70, dmg, isCrit);
             if (isCrit) {
               spawnCriticalHitEffect(ENEMY_X, ENEMY_Y - 40);
+              playCrit();
             } else {
               spawnNormalHitEffect(ENEMY_X, ENEMY_Y - 40);
+              playHit();
             }
+            if (enemyDefeated) playVictory();
             idleAnim.visible = false;
             attackAnim.visible = true;
             attackAnim.gotoAndPlay(0);
@@ -281,6 +285,7 @@ export function BattleCanvas() {
               playerFlashMs = HIT_FLASH_MS;
               spawnHitNumberPopup(PLAYER_X, PLAYER_Y - 110, result.dmg);
               spawnHitBurst(PLAYER_X, PLAYER_Y - 70, 0xff6b6b);
+              if (result.playerDefeated) playDefeat();
             }
             if (currentEnemyKind !== "none") {
               enemyIdleByKind[currentEnemyKind].visible = false;

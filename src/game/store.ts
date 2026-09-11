@@ -115,7 +115,7 @@ interface GameStoreState extends GameState {
   bulkUpgradeAllGong: () => void;
   equipItem: (itemId: string) => void;
   unequipItem: (slot: SlotId) => void;
-  enhanceItem: (itemId: string, useProtection: boolean) => void;
+  enhanceItem: (itemId: string, useProtection: boolean) => { success: boolean } | undefined;
   disassembleItems: (itemIds: string[]) => void;
   donateChiToSect: () => void;
   donateElixirToSect: () => void;
@@ -468,6 +468,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         toastMessage: message,
       });
       persist(get());
+      return { success: result.success };
     },
 
     disassembleItems: (itemIds) => {

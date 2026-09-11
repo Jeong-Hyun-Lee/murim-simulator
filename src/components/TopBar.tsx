@@ -1,5 +1,6 @@
 import { useGameStore, isBossStage } from "../game/store";
 import type { PanelKey } from "../App";
+import { useSfxEnabled } from "../audio/sfx";
 
 interface Props {
   onTogglePanel: (key: PanelKey) => void;
@@ -20,6 +21,7 @@ export function TopBar({ onTogglePanel }: Props) {
   const highestMajorCleared = useGameStore((s) => s.highestMajorCleared);
   const farmReturnStage = useGameStore((s) => s.farmReturnStage);
   const stopFarming = useGameStore((s) => s.stopFarming);
+  const [sfxEnabled, toggleSfx] = useSfxEnabled();
 
   const gearUnlocked = hasAnyGear;
   const sectUnlocked = highestMajorCleared >= 2;
@@ -81,6 +83,7 @@ export function TopBar({ onTogglePanel }: Props) {
       )}
       <button className="topbar-btn" onClick={bulkUpgradeAllGong}>일괄 연마</button>
       <button className="topbar-btn" onClick={togglePause}>{paused ? "재개" : "일시정지"}</button>
+      <button className="topbar-btn" onClick={toggleSfx}>{sfxEnabled ? "효과음 ON" : "효과음 OFF"}</button>
     </div>
   );
 }

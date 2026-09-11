@@ -13,6 +13,7 @@ import {
   type SlotId,
 } from "../../game/store";
 import type { PanelKey } from "../../App";
+import { playEnhanceSuccess, playEnhanceFail } from "../../audio/sfx";
 
 interface Props {
   onClose: () => void;
@@ -121,7 +122,15 @@ export function GearPanel({ onClose, onNavigate }: Props) {
                         </label>
                       )}
                       <div className="equip-detail-actions">
-                        <button className="gong-upgrade-btn" disabled={enhanceDisabled} onClick={() => enhanceItem(selectedItem.id, useProtection)}>
+                        <button
+                          className="gong-upgrade-btn"
+                          disabled={enhanceDisabled}
+                          onClick={() => {
+                            const result = enhanceItem(selectedItem.id, useProtection);
+                            if (result?.success) playEnhanceSuccess();
+                            else if (result) playEnhanceFail();
+                          }}
+                        >
                           {maxed ? "대성" : "강화하기"}
                         </button>
                         <button className="panel-close-btn" onClick={() => unequipItem(slot)}>해제</button>
