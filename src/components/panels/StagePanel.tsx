@@ -16,7 +16,8 @@ export function StagePanel({ onClose }: Props) {
   const startFarming = useGameStore((s) => s.startFarming);
 
   const frontier = farmReturnStage ?? stage;
-  const [selectedMajor, setSelectedMajor] = useState(frontier.major);
+  // 사냥 중 재선택 시에는 현재 사냥 중인 스테이지의 대스테이지 탭이 먼저 보이게 한다.
+  const [selectedMajor, setSelectedMajor] = useState(stage.major);
 
   function handlePick(sub: number) {
     const target: StageId = { major: selectedMajor, sub };
