@@ -450,53 +450,6 @@ body {
   line-height: 1.6;
 }
 
-#equip-body {
-  display: flex;
-  gap: 16px;
-  min-height: 0;
-  max-height: 55%;
-}
-
-#equip-slot-list {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-width: 170px;
-  overflow-y: auto;
-}
-
-.equip-slot-btn {
-  pointer-events: auto;
-  cursor: pointer;
-  text-align: left;
-  background: #201c14;
-  color: #e8e0cf;
-  border: 1px solid #5a4a2a;
-  font-size: 12px;
-  padding: 6px 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.equip-slot-btn-active {
-  background: #3a3020;
-  border-color: #8a6a2c;
-}
-
-.equip-slot-summary {
-  color: #9a8f78;
-  font-size: 11px;
-}
-
-#equip-detail {
-  flex: 1;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
 .panel-subheader {
   font-size: 14px;
   color: #9a8f78;
@@ -505,29 +458,101 @@ body {
   padding-bottom: 4px;
 }
 
-.equip-enhance-info {
-  font-size: 12px;
-  color: #9a8f78;
-}
-
-.equip-protection-label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-}
-
 .equip-detail-actions {
   display: flex;
   gap: 8px;
 }
 
-#equip-candidate-list {
-  display: flex;
-  flex-direction: column;
+#gear-doll {
+  position: relative;
+  display: grid;
+  grid-template-columns: 72px 100px 72px;
+  grid-template-rows: repeat(5, auto);
+  grid-template-areas:
+    ".     head   ."
+    "neck  char   weapon"
+    "arm   char   body"
+    "waist char   ringR"
+    "ringL foot   .";
+  gap: 6px;
+  justify-items: center;
+  align-items: center;
+  margin: 12px auto;
+  max-width: 280px;
 }
 
-#equip-inventory-grid {
+.gear-doll-char {
+  grid-area: char;
+  width: 96px;
+  height: 96px;
+  background-image: url("/sprites/character/mokhyeon-idle-sheet.png");
+  background-position: 0 0;
+  background-size: 576px 96px;
+  image-rendering: pixelated;
+}
+
+.gear-doll-slot-wrap {
+  position: relative;
+}
+
+.gear-doll-slot {
+  pointer-events: auto;
+  cursor: pointer;
+  background: #201c14;
+  color: #e8e0cf;
+  border: 1px solid #5a4a2a;
+  font-size: 10px;
+  padding: 4px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 56px;
+}
+
+.gear-doll-slot-active {
+  background: #3a3020;
+  border-color: #8a6a2c;
+}
+
+.gear-doll-slot-summary {
+  color: #9a8f78;
+  font-size: 10px;
+}
+
+.gear-popover {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 6px;
+  z-index: 5;
+  width: 220px;
+  background: #16161e;
+  border: 1px solid #8a6a2c;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.gear-popover-up {
+  top: auto;
+  bottom: 100%;
+  margin-top: 0;
+  margin-bottom: 6px;
+}
+
+.gear-popover-candidates {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+#gear-inventory-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 6px;
@@ -536,7 +561,7 @@ body {
   flex: 1;
 }
 
-.equip-inventory-card {
+.gear-inventory-card {
   pointer-events: auto;
   cursor: pointer;
   border: 1px solid #5a4a2a;

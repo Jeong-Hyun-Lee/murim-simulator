@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   useGameStore,
   ALL_SLOTS,
@@ -19,6 +19,8 @@ interface Props {
   onNavigate: (key: PanelKey) => void;
 }
 
+const BOTTOM_ROW: ReadonlySet<SlotId> = new Set(["foot", "ringL"]);
+
 export function GearPanel({ onClose, onNavigate }: Props) {
   const equippedGear = useGameStore((s) => s.equippedGear);
   const inventory = useGameStore((s) => s.inventory);
@@ -30,11 +32,28 @@ export function GearPanel({ onClose, onNavigate }: Props) {
   const enhanceItem = useGameStore((s) => s.enhanceItem);
   const disassembleItems = useGameStore((s) => s.disassembleItems);
 
-  const [selectedSlot, setSelectedSlot] = useState<SlotId>("weapon");
+  const [openSlot, setOpenSlot] = useState<SlotId | null>(null);
   const [useProtection, setUseProtection] = useState(false);
   const [checkedIds, setCheckedIds] = useState<Set<string>>(new Set());
+  const popoverRef = useRef<HTMLDivElement>(null);
 
-  const selectedItem = equippedGear[selectedSlot];
+  useEffect(() => {
+    if (!openSlot) return;
+    function handlePointerDown(e: MouseEvent) {
+      if (popoverRef.current && !popoverRef.current.contains(e.target as Node)) setOpenSlot(null);
+    }
+    function handleKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpenSlot(null);
+    }
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("keydown", handleKey);
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("keydown", handleKey);
+    };
+  }, [openSlot]);
+
+  const selectedItem = openSlot ? equippedGear[openSlot] : undefined;
   const targetLevel = selectedItem ? selectedItem.enhanceLevel + 1 : 0;
   const maxed = !!selectedItem && selectedItem.enhanceLevel >= ENHANCE_MAX_LEVEL;
   const cost = selectedItem ? enhanceCost(selectedItem.enhanceLevel) : 0;
@@ -42,8 +61,7 @@ export function GearPanel({ onClose, onNavigate }: Props) {
   const protectEligible = !!selectedItem && needsProtectionEligible(targetLevel);
   const enhanceDisabled =
     !selectedItem || maxed || gold < cost || enhanceStones < stoneCost || (useProtection && protectionCharms < 1);
-
-  const candidateItems = inventory.filter((it) => it.slot === selectedSlot);
+  const candidateItems = openSlot ? inventory.filter((it) => it.slot === openSlot) : [];
   const sortedInventory = [...inventory].sort((a, b) => gradeTier(b.grade) - gradeTier(a.grade));
 
   function toggleCheck(id: string) {
@@ -55,82 +73,92 @@ export function GearPanel({ onClose, onNavigate }: Props) {
     });
   }
 
+  function toggleSlot(slot: SlotId) {
+    setUseProtection(false);
+    setOpenSlot((cur) => (cur === slot ? null : slot));
+  }
+
   return (
     <div id="gear-panel" className="stat-panel">
       <div className="panel-header">
         <span>장비</span>
         <button className="panel-close-btn" onClick={onClose}>닫기</button>
       </div>
-      <div id="equip-body">
-        <div id="equip-slot-list">
-          {ALL_SLOTS.map((slot) => {
-            const item = equippedGear[slot];
-            return (
+
+      <div id="gear-doll">
+        <div className="gear-doll-char" />
+        {ALL_SLOTS.map((slot) => {
+          const item = equippedGear[slot];
+          const isOpen = openSlot === slot;
+          return (
+            <div key={slot} className="gear-doll-slot-wrap" style={{ gridArea: slot }}>
               <button
-                key={slot}
-                className={"equip-slot-btn" + (slot === selectedSlot ? " equip-slot-btn-active" : "")}
-                onClick={() => setSelectedSlot(slot)}
+                className={"gear-doll-slot" + (isOpen ? " gear-doll-slot-active" : "")}
                 style={item ? { borderColor: GRADE_COLOR[item.grade] } : undefined}
+                onClick={() => toggleSlot(slot)}
               >
-                <span className="equip-slot-name">{SLOT_INFO[slot].name}</span>
-                <span className="equip-slot-summary">{item ? `${item.grade} +${item.enhanceLevel}` : "비어있음"}</span>
+                <span>{SLOT_INFO[slot].name}</span>
+                {item && <span className="gear-doll-slot-summary">{item.grade} +{item.enhanceLevel}</span>}
               </button>
-            );
-          })}
-        </div>
-        <div id="equip-detail">
-          <div className="panel-subheader">{SLOT_INFO[selectedSlot].name}</div>
-          {selectedItem ? (
-            <>
-              <div style={{ color: GRADE_COLOR[selectedItem.grade] }}>
-                {selectedItem.grade} · 강화 +{selectedItem.enhanceLevel}/{ENHANCE_MAX_LEVEL}
-              </div>
-              {!maxed && (
-                <div className="equip-enhance-info">
-                  강화 성공확률 {Math.round(enhanceSuccessChance(targetLevel) * 100)}% · 비용 전 {cost.toLocaleString()}
-                  {stoneCost > 0 && ` + 강화석 ${stoneCost}`}
+              {isOpen && (
+                <div ref={popoverRef} className={"gear-popover" + (BOTTOM_ROW.has(slot) ? " gear-popover-up" : "")}>
+                  <div className="panel-subheader">{SLOT_INFO[slot].name}</div>
+                  {selectedItem ? (
+                    <>
+                      <div style={{ color: GRADE_COLOR[selectedItem.grade] }}>
+                        {selectedItem.grade} · 강화 +{selectedItem.enhanceLevel}/{ENHANCE_MAX_LEVEL}
+                      </div>
+                      {!maxed && (
+                        <div>
+                          강화 성공확률 {Math.round(enhanceSuccessChance(targetLevel) * 100)}% · 비용 전 {cost.toLocaleString()}
+                          {stoneCost > 0 && ` + 강화석 ${stoneCost}`}
+                        </div>
+                      )}
+                      {protectEligible && (
+                        <label style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                          <input type="checkbox" checked={useProtection} onChange={(e) => setUseProtection(e.target.checked)} />
+                          보호부적 사용(보유 {protectionCharms}) — 실패 시 단계 하락 방지
+                        </label>
+                      )}
+                      <div className="equip-detail-actions">
+                        <button className="gong-upgrade-btn" disabled={enhanceDisabled} onClick={() => enhanceItem(selectedItem.id, useProtection)}>
+                          {maxed ? "대성" : "강화하기"}
+                        </button>
+                        <button className="panel-close-btn" onClick={() => unequipItem(slot)}>해제</button>
+                        {!maxed && gold < cost && (
+                          <button className="gong-upgrade-btn" onClick={() => onNavigate("stage")}>전 부족 · 사냥터로</button>
+                        )}
+                      </div>
+                    </>
+                  ) : (
+                    <div className="gong-board-locked-message">장착된 장비가 없습니다.</div>
+                  )}
+                  {candidateItems.length > 0 && (
+                    <>
+                      <div className="panel-subheader">인벤토리 후보</div>
+                      <div className="gear-popover-candidates">
+                        {candidateItems.map((item) => (
+                          <div key={item.id} className="gong-node">
+                            <span className="gong-node-name" style={{ color: GRADE_COLOR[item.grade] }}>
+                              {item.grade} +{item.enhanceLevel}
+                            </span>
+                            <button className="gong-upgrade-btn" onClick={() => equipItem(item.id)}>장착</button>
+                          </div>
+                        ))}
+                      </div>
+                    </>
+                  )}
                 </div>
               )}
-              {protectEligible && (
-                <label className="equip-protection-label">
-                  <input type="checkbox" checked={useProtection} onChange={(e) => setUseProtection(e.target.checked)} />
-                  보호부적 사용(보유 {protectionCharms}) — 실패 시 단계 하락 방지
-                </label>
-              )}
-              <div className="equip-detail-actions">
-                <button className="gong-upgrade-btn" disabled={enhanceDisabled} onClick={() => enhanceItem(selectedItem.id, useProtection)}>
-                  {maxed ? "대성" : "강화하기"}
-                </button>
-                <button className="panel-close-btn" onClick={() => unequipItem(selectedSlot)}>해제</button>
-                {!maxed && gold < cost && (
-                  <button className="gong-upgrade-btn" onClick={() => onNavigate("stage")}>전 부족 · 사냥터로</button>
-                )}
-              </div>
-            </>
-          ) : (
-            <div className="gong-board-locked-message">장착된 장비가 없습니다.</div>
-          )}
-          {candidateItems.length > 0 && (
-            <>
-              <div className="panel-subheader">인벤토리 — {SLOT_INFO[selectedSlot].name}</div>
-              <div id="equip-candidate-list">
-                {candidateItems.map((item) => (
-                  <div key={item.id} className="gong-node">
-                    <span className="gong-node-name" style={{ color: GRADE_COLOR[item.grade] }}>
-                      {item.grade} +{item.enhanceLevel}
-                    </span>
-                    <button className="gong-upgrade-btn" onClick={() => equipItem(item.id)}>장착</button>
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
-        </div>
+            </div>
+          );
+        })}
       </div>
+
       <div className="panel-subheader">전체 인벤토리 ({inventory.length}) · 강화석 {enhanceStones} · 보호부적 {protectionCharms}</div>
-      <div id="equip-inventory-grid">
+      <div id="gear-inventory-grid">
         {sortedInventory.map((item) => (
-          <label key={item.id} className="equip-inventory-card" style={{ borderColor: GRADE_COLOR[item.grade] }}>
+          <label key={item.id} className="gear-inventory-card" style={{ borderColor: GRADE_COLOR[item.grade] }}>
             <input type="checkbox" checked={checkedIds.has(item.id)} onChange={() => toggleCheck(item.id)} />
             {SLOT_INFO[item.slot].name}
             <br />
