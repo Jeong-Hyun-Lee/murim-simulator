@@ -91,7 +91,7 @@ export function GearPanel({ onClose, onNavigate }: Props) {
           const item = equippedGear[slot];
           const isOpen = openSlot === slot;
           return (
-            <div key={slot} className="gear-doll-slot-wrap" style={{ gridArea: slot }}>
+            <div key={slot} ref={isOpen ? popoverRef : undefined} className="gear-doll-slot-wrap" style={{ gridArea: slot }}>
               <button
                 className={"gear-doll-slot" + (isOpen ? " gear-doll-slot-active" : "")}
                 style={item ? { borderColor: GRADE_COLOR[item.grade] } : undefined}
@@ -101,7 +101,7 @@ export function GearPanel({ onClose, onNavigate }: Props) {
                 {item && <span className="gear-doll-slot-summary">{item.grade} +{item.enhanceLevel}</span>}
               </button>
               {isOpen && (
-                <div ref={popoverRef} className={"gear-popover" + (BOTTOM_ROW.has(slot) ? " gear-popover-up" : "")}>
+                <div className={"gear-popover" + (BOTTOM_ROW.has(slot) ? " gear-popover-up" : "")}>
                   <div className="panel-subheader">{SLOT_INFO[slot].name}</div>
                   {selectedItem ? (
                     <>
