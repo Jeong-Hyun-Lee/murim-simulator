@@ -8,16 +8,18 @@ import { useGameStore, isBossStage, type StageId } from "../game/store";
 const CANVAS_WIDTH = 960;
 const CANVAS_HEIGHT = 540;
 const PLAYER_X = 280;
-const PLAYER_Y = 470;
 const ENEMY_X = 700;
-const ENEMY_Y = 410;
+const GROUND_Y = 470; // 플레이어·적 스프라이트가 같은 바닥선에 서도록 공유하는 좌표(앵커가 바닥-중앙이라 이 값이 곧 발 위치)
+const PLAYER_Y = GROUND_Y;
+const ENEMY_Y = GROUND_Y;
 const HIT_BURST_LIFETIME_MS = 260;
 const NORMAL_HIT_EFFECT_SCALE = 0.22;
 const CRITICAL_HIT_EFFECT_SCALE = 0.16;
 // 스프라이트시트가 64x64/96x64 표시 규격보다 4배 큰 캔버스로 제작돼 있어(저해상도 확대 시 흐려지는 것 방지) 배율을 그만큼 낮춘다.
+// 원화상 실루엣 크기(idle 프레임 기준 목현 215px, 혈랑채 두목 207px, 혈랑채 잡몹 204px)가 서로 비슷해 동일 배율로 통일.
 const PLAYER_SCALE = 0.75;
 const ENEMY_BOSS_SCALE = 0.75;
-const ENEMY_MOB_SCALE = 0.55;
+const ENEMY_MOB_SCALE = 0.75;
 const ENEMY_HIT_TINT = 0xff6666;
 const HIT_FLASH_MS = 140;
 const POPUP_LIFETIME_MS = 800;

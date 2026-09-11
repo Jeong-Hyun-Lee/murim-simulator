@@ -39,8 +39,10 @@ export function App() {
       <BattleCanvas />
       <div id="ui-overlay">
         <TopBar onTogglePanel={togglePanel} />
-        <PlayerStatus />
-        <EnemyStatus />
+        <div id="status-row">
+          <PlayerStatus />
+          <EnemyStatus />
+        </div>
         <Toast />
       </div>
       {openPanel === "gong" && <GongPanel onClose={() => setOpenPanel(null)} />}

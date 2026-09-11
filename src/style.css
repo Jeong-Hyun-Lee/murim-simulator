@@ -62,6 +62,12 @@ body {
   white-space: nowrap;
 }
 
+#status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 #player-status,
 #enemy-status {
   width: 260px;
@@ -71,7 +77,6 @@ body {
 }
 
 #enemy-status {
-  align-self: flex-end;
   align-items: flex-end;
 }
 
