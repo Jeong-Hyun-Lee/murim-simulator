@@ -90,10 +90,23 @@ export const stageReward = (stage: StageId): StageReward => {
   return { exp: Math.round(exp), gold: Math.round(gold), chi: Math.round(chi) };
 };
 
+const FINAL_MAJOR = 10;
+
 export const nextStage = (stage: StageId): StageId => {
-  if (stage.major === 10 && stage.sub === 10) return stage; // 챕터1 최종 스테이지는 계속 반복 파밍
+  if (stage.major === FINAL_MAJOR && stage.sub === 10) return stage; // 챕터1 최종 스테이지는 계속 반복 파밍
   if (stage.sub < 10) return { major: stage.major, sub: stage.sub + 1 };
   return { major: stage.major + 1, sub: 1 };
+};
+
+// 챕터1 마지막 스테이지(다음 스토리가 아직 없어 nextStage가 같은 자리를 반환하는 지점).
+export const isFinalStage = (stage: StageId): boolean =>
+  stage.major === FINAL_MAJOR && stage.sub === 10;
+
+// 정상 진행 순서상 이 스테이지 직전에 클리어했어야 하는 스테이지 — 패배 시 후퇴 지점으로 사용.
+export const previousStage = (stage: StageId): StageId => {
+  if (stage.sub > 1) return { major: stage.major, sub: stage.sub - 1 };
+  if (stage.major > 1) return { major: stage.major - 1, sub: 10 };
+  return stage; // 1-1은 더 이전 스테이지가 없음
 };
 
 export const stageLabel = (stage: StageId): string => `${stage.major}-${stage.sub}`;

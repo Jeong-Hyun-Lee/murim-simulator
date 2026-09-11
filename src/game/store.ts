@@ -4,6 +4,8 @@ import {
   playerStats,
   stageReward,
   nextStage,
+  isFinalStage,
+  previousStage,
   expToNextLevel,
   isBossStage,
   damage,
@@ -716,6 +718,33 @@ export const useGameStore = create<GameStoreState>((set, get) => {
           toastMessage: `사냥: ${s.stage.major}-${s.stage.sub} 처치! +EXP ${reward.exp} +전 ${reward.gold}${drop.dropSummary}`,
         });
         persist(get());
+      } else if (enemyDefeated && isFinalStage(s.stage) && s.highestMajorCleared >= s.stage.major) {
+        // 최종 스테이지(10-10)는 다음 스토리가 없어 nextStage()가 같은 자리를 반환한다 —
+        // 최초 클리어 이후에도 기존 보스 보상 팝업 분기를 그대로 타면 처치할 때마다 팝업이
+        // 무한 재발생한다. 최초 클리어(highestMajorCleared 갱신) 이후로는 사냥터 모드와
+        // 동일하게 팝업 없이 즉시 보상만 반복 지급.
+        const reward = stageReward(s.stage);
+        const { level, exp } = levelUp(s.level, s.exp + reward.exp);
+        const gold = s.gold + reward.gold;
+        const chi = s.chi + Math.round(reward.chi * s.player.chiGainMultiplier);
+        const drop = applyStageDrops(s, s.stage, s.level, false);
+        const newPlayer = computePlayerStats(level, s);
+        const newEnemy = monsterStats(s.stage);
+        set({
+          level,
+          exp,
+          gold,
+          chi,
+          inventory: drop.inventory,
+          enhanceStones: drop.enhanceStones,
+          protectionCharms: drop.protectionCharms,
+          player: newPlayer,
+          playerHp: newPlayer.hp,
+          enemy: newEnemy,
+          enemyHp: newEnemy.hp,
+          toastMessage: `${s.stage.major}-${s.stage.sub} 반복 처치! +EXP ${reward.exp} +전 ${reward.gold}${drop.dropSummary} (다음 이야기는 준비 중입니다)`,
+        });
+        persist(get());
       } else if (enemyDefeated && isBossStage(s.stage)) {
         // 보스 격파 직후에는 즉시 다음 스테이지로 넘기지 않고, 사용자가 [계속하기]를
         // 확인할 때까지 보류(confirmBossReward에서 실제 적용) — 드랍도 그때 함께 지급.
@@ -872,16 +901,26 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         const { level, exp } = levelUp(s.level, s.exp + consolationExp);
         const gold = s.gold + consolationGold;
         const newPlayer = computePlayerStats(level, s);
-        const newEnemy = monsterStats(s.stage);
+        // 사냥터 모드는 사용자가 직접 고른 스테이지라 그대로 재도전, 자동 등반 중 패배했을
+        // 때만 직전에 클리어했던 스테이지로 후퇴시켜 막힌 곳에 계속 갇히지 않게 한다.
+        const retreatStage = s.farmReturnStage ? s.stage : previousStage(s.stage);
+        const retreated =
+          !s.farmReturnStage &&
+          (retreatStage.major !== s.stage.major || retreatStage.sub !== s.stage.sub);
+        const newEnemy = monsterStats(retreatStage);
         set({
           playerHp: newPlayer.hp,
           level,
           exp,
           gold,
           player: newPlayer,
+          stage: retreatStage,
           enemy: newEnemy,
           enemyHp: newEnemy.hp,
-          toastMessage: `패배... 수련 후 재도전 (+EXP ${consolationExp})`,
+          awaitingBossChallenge: retreated ? isBossStage(retreatStage) : s.awaitingBossChallenge,
+          toastMessage: retreated
+            ? `패배... ${retreatStage.major}-${retreatStage.sub}(으)로 후퇴 (+EXP ${consolationExp})`
+            : `패배... 수련 후 재도전 (+EXP ${consolationExp})`,
         });
         persist(get());
       } else {
