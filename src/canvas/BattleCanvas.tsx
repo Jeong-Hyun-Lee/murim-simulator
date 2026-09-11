@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
-import { Application, Assets, Container, Graphics, Sprite, Text } from "pixi.js";
+import { Application, Assets, Container, Graphics, Sprite, Text, Texture } from "pixi.js";
 import { loadAnimatedSprite } from "./sprite";
 import { loadDamageFont, createDamageNumber, createCriticalLabel } from "./damageFont";
-import { loadNormalHitEffect, normalHitEffectFrames } from "./hitEffect";
+import { loadNormalHitEffect, normalHitEffectFrames, loadCriticalHitEffect, criticalHitEffectFrames } from "./hitEffect";
 import { useGameStore, isBossStage, type StageId } from "../game/store";
 
 const CANVAS_WIDTH = 960;
@@ -13,6 +13,7 @@ const ENEMY_X = 700;
 const ENEMY_Y = 410;
 const HIT_BURST_LIFETIME_MS = 260;
 const NORMAL_HIT_EFFECT_SCALE = 0.22;
+const CRITICAL_HIT_EFFECT_SCALE = 0.16;
 // 스프라이트시트가 64x64/96x64 표시 규격보다 4배 큰 캔버스로 제작돼 있어(저해상도 확대 시 흐려지는 것 방지) 배율을 그만큼 낮춘다.
 const PLAYER_SCALE = 0.75;
 const ENEMY_BOSS_SCALE = 0.75;
@@ -36,8 +37,9 @@ interface HitBurst {
   age: number;
 }
 
-interface NormalHitEffect {
+interface FramedHitEffect {
   sprite: Sprite;
+  frames: Texture[];
   age: number;
 }
 
@@ -79,8 +81,10 @@ export function BattleCanvas() {
         loadAnimatedSprite("/sprites/character/hyeollangchae-grunt-attack-sheet.json", "attack"),
         loadDamageFont(),
         loadNormalHitEffect(),
+        loadCriticalHitEffect(),
       ]);
       const normalHitFrames = normalHitEffectFrames();
+      const criticalHitFrames = criticalHitEffectFrames();
       if (disposed) {
         app.destroy(true, { children: true });
         return;
@@ -147,7 +151,7 @@ export function BattleCanvas() {
 
       const popups: DamagePopup[] = [];
       const hitBursts: HitBurst[] = [];
-      const normalHitEffects: NormalHitEffect[] = [];
+      const framedHitEffects: FramedHitEffect[] = [];
 
       function spawnHitBurst(x: number, y: number, color: number) {
         const gfx = new Graphics().circle(0, 0, 10).fill(color);
@@ -157,6 +161,15 @@ export function BattleCanvas() {
         hitBursts.push({ gfx, age: 0 });
       }
 
+      function spawnFramedHitEffect(x: number, y: number, frames: Texture[], scale: number) {
+        const sprite = new Sprite(frames[0]);
+        sprite.anchor.set(0.5);
+        sprite.scale.set(scale);
+        sprite.position.set(x, y);
+        app.stage.addChild(sprite);
+        framedHitEffects.push({ sprite, frames, age: 0 });
+      }
+
       // wiki/raw/assets/일반 타격 이펙트.png 기반 3프레임(ignite/peak/fadeout)을 순서대로 재생.
       // 로딩 실패/미완료 시(이론상 발생 안 함) 기존 프로시저럴 원형 확산으로 대체.
       function spawnNormalHitEffect(x: number, y: number) {
@@ -164,12 +177,17 @@ export function BattleCanvas() {
           spawnHitBurst(x, y, 0xffe27a);
           return;
         }
-        const sprite = new Sprite(normalHitFrames[0]);
-        sprite.anchor.set(0.5);
-        sprite.scale.set(NORMAL_HIT_EFFECT_SCALE);
-        sprite.position.set(x, y);
-        app.stage.addChild(sprite);
-        normalHitEffects.push({ sprite, age: 0 });
+        spawnFramedHitEffect(x, y, normalHitFrames, NORMAL_HIT_EFFECT_SCALE);
+      }
+
+      // wiki/raw/assets/크리티컬 히트 이펙트.png 기반 4프레임(ignite/peak/fade1/fade2)을 순서대로 재생.
+      // 로딩 실패/미완료 시(이론상 발생 안 함) 기존 프로시저럴 원형 확산으로 대체.
+      function spawnCriticalHitEffect(x: number, y: number) {
+        if (!criticalHitFrames) {
+          spawnHitBurst(x, y, 0xff9800);
+          return;
+        }
+        spawnFramedHitEffect(x, y, criticalHitFrames, CRITICAL_HIT_EFFECT_SCALE);
       }
 
       let attackClock = 0;
@@ -243,7 +261,7 @@ export function BattleCanvas() {
             enemyFlashMs = HIT_FLASH_MS;
             spawnDamageNumberPopup(ENEMY_X, ENEMY_Y - 70, dmg, isCrit);
             if (isCrit) {
-              spawnHitBurst(ENEMY_X, ENEMY_Y - 40, 0xff9800);
+              spawnCriticalHitEffect(ENEMY_X, ENEMY_Y - 40);
             } else {
               spawnNormalHitEffect(ENEMY_X, ENEMY_Y - 40);
             }
@@ -279,9 +297,9 @@ export function BattleCanvas() {
           while (hitBursts.length && hitBursts[0].age >= HIT_BURST_LIFETIME_MS) {
             hitBursts.shift()!.gfx.destroy();
           }
-          for (const e of normalHitEffects) e.age += deltaMs;
-          while (normalHitEffects.length && normalHitEffects[0].age >= HIT_BURST_LIFETIME_MS) {
-            normalHitEffects.shift()!.sprite.destroy();
+          for (const e of framedHitEffects) e.age += deltaMs;
+          while (framedHitEffects.length && framedHitEffects[0].age >= HIT_BURST_LIFETIME_MS) {
+            framedHitEffects.shift()!.sprite.destroy();
           }
         }
 
@@ -317,13 +335,13 @@ export function BattleCanvas() {
           b.gfx.alpha = 0.85 * (1 - t);
         }
 
-        if (normalHitFrames) {
-          for (const e of normalHitEffects) {
-            const t = e.age / HIT_BURST_LIFETIME_MS;
-            const frameIndex = t < 1 / 3 ? 0 : t < 2 / 3 ? 1 : 2;
-            e.sprite.texture = normalHitFrames[frameIndex];
-            e.sprite.alpha = frameIndex === 2 ? 1 - (t - 2 / 3) / (1 / 3) : 1;
-          }
+        for (const e of framedHitEffects) {
+          const t = e.age / HIT_BURST_LIFETIME_MS;
+          const lastIndex = e.frames.length - 1;
+          const frameIndex = Math.min(lastIndex, Math.floor(t * e.frames.length));
+          e.sprite.texture = e.frames[frameIndex];
+          const frameStartT = frameIndex / e.frames.length;
+          e.sprite.alpha = frameIndex === lastIndex ? 1 - (t - frameStartT) * e.frames.length : 1;
         }
       };
 
