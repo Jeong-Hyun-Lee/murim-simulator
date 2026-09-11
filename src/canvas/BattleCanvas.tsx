@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { Application, Assets, Container, Graphics, Sprite, Text } from "pixi.js";
 import { loadAnimatedSprite } from "./sprite";
 import { loadDamageFont, createDamageNumber, createCriticalLabel } from "./damageFont";
+import { loadNormalHitEffect, normalHitEffectFrames } from "./hitEffect";
 import { useGameStore, isBossStage, type StageId } from "../game/store";
 
 const CANVAS_WIDTH = 960;
@@ -11,6 +12,7 @@ const PLAYER_Y = 470;
 const ENEMY_X = 700;
 const ENEMY_Y = 410;
 const HIT_BURST_LIFETIME_MS = 260;
+const NORMAL_HIT_EFFECT_SCALE = 0.22;
 // 스프라이트시트가 64x64/96x64 표시 규격보다 4배 큰 캔버스로 제작돼 있어(저해상도 확대 시 흐려지는 것 방지) 배율을 그만큼 낮춘다.
 const PLAYER_SCALE = 0.75;
 const ENEMY_BOSS_SCALE = 0.75;
@@ -31,6 +33,11 @@ interface DamagePopup {
 
 interface HitBurst {
   gfx: Graphics;
+  age: number;
+}
+
+interface NormalHitEffect {
+  sprite: Sprite;
   age: number;
 }
 
@@ -71,7 +78,9 @@ export function BattleCanvas() {
         loadAnimatedSprite("/sprites/character/hyeollangchae-grunt-idle-sheet.json", "idle"),
         loadAnimatedSprite("/sprites/character/hyeollangchae-grunt-attack-sheet.json", "attack"),
         loadDamageFont(),
+        loadNormalHitEffect(),
       ]);
+      const normalHitFrames = normalHitEffectFrames();
       if (disposed) {
         app.destroy(true, { children: true });
         return;
@@ -138,6 +147,7 @@ export function BattleCanvas() {
 
       const popups: DamagePopup[] = [];
       const hitBursts: HitBurst[] = [];
+      const normalHitEffects: NormalHitEffect[] = [];
 
       function spawnHitBurst(x: number, y: number, color: number) {
         const gfx = new Graphics().circle(0, 0, 10).fill(color);
@@ -145,6 +155,21 @@ export function BattleCanvas() {
         gfx.alpha = 0.85;
         app.stage.addChild(gfx);
         hitBursts.push({ gfx, age: 0 });
+      }
+
+      // wiki/raw/assets/일반 타격 이펙트.png 기반 3프레임(ignite/peak/fadeout)을 순서대로 재생.
+      // 로딩 실패/미완료 시(이론상 발생 안 함) 기존 프로시저럴 원형 확산으로 대체.
+      function spawnNormalHitEffect(x: number, y: number) {
+        if (!normalHitFrames) {
+          spawnHitBurst(x, y, 0xffe27a);
+          return;
+        }
+        const sprite = new Sprite(normalHitFrames[0]);
+        sprite.anchor.set(0.5);
+        sprite.scale.set(NORMAL_HIT_EFFECT_SCALE);
+        sprite.position.set(x, y);
+        app.stage.addChild(sprite);
+        normalHitEffects.push({ sprite, age: 0 });
       }
 
       let attackClock = 0;
@@ -217,7 +242,11 @@ export function BattleCanvas() {
             const { dmg, isCrit } = s.playerAttack();
             enemyFlashMs = HIT_FLASH_MS;
             spawnDamageNumberPopup(ENEMY_X, ENEMY_Y - 70, dmg, isCrit);
-            spawnHitBurst(ENEMY_X, ENEMY_Y - 40, isCrit ? 0xff9800 : 0xffe27a);
+            if (isCrit) {
+              spawnHitBurst(ENEMY_X, ENEMY_Y - 40, 0xff9800);
+            } else {
+              spawnNormalHitEffect(ENEMY_X, ENEMY_Y - 40);
+            }
             idleAnim.visible = false;
             attackAnim.visible = true;
             attackAnim.gotoAndPlay(0);
@@ -249,6 +278,10 @@ export function BattleCanvas() {
           for (const b of hitBursts) b.age += deltaMs;
           while (hitBursts.length && hitBursts[0].age >= HIT_BURST_LIFETIME_MS) {
             hitBursts.shift()!.gfx.destroy();
+          }
+          for (const e of normalHitEffects) e.age += deltaMs;
+          while (normalHitEffects.length && normalHitEffects[0].age >= HIT_BURST_LIFETIME_MS) {
+            normalHitEffects.shift()!.sprite.destroy();
           }
         }
 
@@ -282,6 +315,15 @@ export function BattleCanvas() {
           const t = b.age / HIT_BURST_LIFETIME_MS;
           b.gfx.scale.set(1 + t * 2.5);
           b.gfx.alpha = 0.85 * (1 - t);
+        }
+
+        if (normalHitFrames) {
+          for (const e of normalHitEffects) {
+            const t = e.age / HIT_BURST_LIFETIME_MS;
+            const frameIndex = t < 1 / 3 ? 0 : t < 2 / 3 ? 1 : 2;
+            e.sprite.texture = normalHitFrames[frameIndex];
+            e.sprite.alpha = frameIndex === 2 ? 1 - (t - 2 / 3) / (1 / 3) : 1;
+          }
         }
       };
 
