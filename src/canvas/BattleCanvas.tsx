@@ -1,5 +1,14 @@
 import { useEffect, useRef } from 'react';
-import { Application, Assets, Container, Graphics, Sprite, Text, Texture } from 'pixi.js';
+import {
+  Application,
+  Assets,
+  Container,
+  Graphics,
+  Sprite,
+  Text,
+  Texture,
+  type AnimatedSprite,
+} from 'pixi.js';
 import { loadAnimatedSprite } from './sprite';
 import { loadDamageFont, createDamageNumber, createCriticalLabel } from './damageFont';
 import {
@@ -53,6 +62,17 @@ interface FramedHitEffect {
   age: number;
 }
 
+// 6모션(idle/공격1/공격2/피격/쓰러짐/승리) 에셋을 확보한 캐릭터만 attack2~victory를 채운다 —
+// 아직 idle/attack 2종뿐인 캐릭터(예: 혈랑채 졸개)는 옵셔널 필드를 비워두면 기존 2모션 그대로 동작.
+interface EnemyAnimSet {
+  idle: AnimatedSprite;
+  attack1: AnimatedSprite;
+  attack2?: AnimatedSprite;
+  hurt?: AnimatedSprite;
+  death?: AnimatedSprite;
+  victory?: AnimatedSprite;
+}
+
 export const BattleCanvas = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -91,18 +111,46 @@ export const BattleCanvas = () => {
         return;
       }
 
-      const [idleAnim, attackAnim, bossIdle, bossAttack, gruntIdle, gruntAttack] =
-        await Promise.all([
-          loadAnimatedSprite('/sprites/character/mokhyeon-idle-sheet.json', 'idle'),
-          loadAnimatedSprite('/sprites/character/mokhyeon-attack-sheet.json', 'attack'),
-          loadAnimatedSprite('/sprites/character/hyeollangchae-boss-idle-sheet.json', 'idle'),
-          loadAnimatedSprite('/sprites/character/hyeollangchae-boss-attack-sheet.json', 'attack'),
-          loadAnimatedSprite('/sprites/character/hyeollangchae-grunt-idle-sheet.json', 'idle'),
-          loadAnimatedSprite('/sprites/character/hyeollangchae-grunt-attack-sheet.json', 'attack'),
-          loadDamageFont(),
-          loadNormalHitEffect(),
-          loadCriticalHitEffect(),
-        ]);
+      // 6모션 중 attack2/피격/쓰러짐/승리는 아직 일부 캐릭터만 에셋이 있음 — 파일이 없으면
+      // null을 반환해 Promise.all 전체가 실패하지 않게 한다(에셋 없는 캐릭터는 기존 2모션 그대로).
+      const tryLoadAnimatedSprite = async (jsonUrl: string, tagName: string) => {
+        try {
+          return await loadAnimatedSprite(jsonUrl, tagName);
+        } catch {
+          return null;
+        }
+      };
+
+      const [
+        idleAnim,
+        attackAnim,
+        bossIdle,
+        bossAttack1,
+        bossAttack2,
+        bossHurt,
+        bossDeath,
+        bossVictory,
+        gruntIdle,
+        gruntAttack,
+      ] = await Promise.all([
+        loadAnimatedSprite('/sprites/character/mokhyeon-idle-sheet.json', 'idle'),
+        loadAnimatedSprite('/sprites/character/mokhyeon-attack-sheet.json', 'attack'),
+        loadAnimatedSprite('/sprites/character/hyeollangchae-boss-idle-sheet.json', 'idle'),
+        loadAnimatedSprite('/sprites/character/hyeollangchae-boss-attack-sheet.json', 'attack'),
+        tryLoadAnimatedSprite(
+          '/sprites/character/hyeollangchae-boss-attack2-sheet.json',
+          'attack2',
+        ),
+        tryLoadAnimatedSprite('/sprites/character/hyeollangchae-boss-hurt-sheet.json', 'hurt'),
+        tryLoadAnimatedSprite('/sprites/character/hyeollangchae-boss-death-sheet.json', 'death'),
+        tryLoadAnimatedSprite(
+          '/sprites/character/hyeollangchae-boss-victory-sheet.json',
+          'victory',
+        ),
+        loadAnimatedSprite('/sprites/character/hyeollangchae-grunt-idle-sheet.json', 'idle'),
+        loadAnimatedSprite('/sprites/character/hyeollangchae-grunt-attack-sheet.json', 'attack'),
+      ]);
+      await Promise.all([loadDamageFont(), loadNormalHitEffect(), loadCriticalHitEffect()]);
       const normalHitFrames = normalHitEffectFrames();
       const criticalHitFrames = criticalHitEffectFrames();
       if (disposed) {
@@ -132,32 +180,86 @@ export const BattleCanvas = () => {
 
       // 혈랑채(스테이지 1) 전용 스프라이트. 그 외 스테이지는 아직 아트가 없어 enemyBox 플레이스홀더로 대체.
       type EnemyKind = 'none' | 'boss' | 'grunt';
-      const enemyIdleByKind = { boss: bossIdle, grunt: gruntIdle };
-      const enemyAttackByKind = { boss: bossAttack, grunt: gruntAttack };
+      const enemyAnimByKind: Record<'boss' | 'grunt', EnemyAnimSet> = {
+        boss: {
+          idle: bossIdle,
+          attack1: bossAttack1,
+          attack2: bossAttack2 ?? undefined,
+          hurt: bossHurt ?? undefined,
+          death: bossDeath ?? undefined,
+          victory: bossVictory ?? undefined,
+        },
+        grunt: { idle: gruntIdle, attack1: gruntAttack },
+      };
       const enemyScaleByKind = { boss: ENEMY_BOSS_SCALE, grunt: ENEMY_MOB_SCALE };
       let currentEnemyKind: EnemyKind = 'none';
 
-      for (const kind of ['boss', 'grunt'] as const) {
-        const idle = enemyIdleByKind[kind];
-        const attack = enemyAttackByKind[kind];
-        for (const anim of [idle, attack]) {
-          anim.position.set(ENEMY_X, ENEMY_Y);
-          const s = enemyScaleByKind[kind];
-          anim.scale.set(-s, s); // 플레이어를 마주보도록 좌우 반전
-          anim.visible = false;
+      const enemySpritesOf = (kind: 'boss' | 'grunt'): AnimatedSprite[] => {
+        const set = enemyAnimByKind[kind];
+        return [set.idle, set.attack1, set.attack2, set.hurt, set.death, set.victory].filter(
+          (a): a is AnimatedSprite => a !== undefined,
+        );
+      };
+
+      const hideAllEnemySprites = () => {
+        for (const kind of ['boss', 'grunt'] as const) {
+          for (const sprite of enemySpritesOf(kind)) sprite.visible = false;
         }
-        attack.loop = false;
+      };
+
+      const returnToIdle = (kind: 'boss' | 'grunt') => {
+        if (currentEnemyKind !== kind) return;
+        const { idle } = enemyAnimByKind[kind];
+        idle.visible = true;
+        idle.gotoAndPlay(0);
+      };
+
+      // hurt/승리는 재생 후 idle로 복귀('idle'), 쓰러짐은 리워드 연출 동안 마지막 프레임을 유지('hold').
+      const playEnemyOneShot = (
+        kind: 'boss' | 'grunt',
+        sprite: AnimatedSprite | undefined,
+        onDone: 'idle' | 'hold',
+      ) => {
+        if (!sprite) return;
+        const anim = sprite;
+        for (const s of enemySpritesOf(kind)) s.visible = false;
+        anim.visible = true;
+        anim.gotoAndPlay(0);
+        anim.onComplete = () => {
+          if (onDone === 'idle') {
+            anim.visible = false;
+            returnToIdle(kind);
+          }
+        };
+      };
+
+      for (const kind of ['boss', 'grunt'] as const) {
+        const set = enemyAnimByKind[kind];
+        const scale = enemyScaleByKind[kind];
+        for (const anim of enemySpritesOf(kind)) {
+          anim.position.set(ENEMY_X, ENEMY_Y);
+          anim.scale.set(-scale, scale); // 플레이어를 마주보도록 좌우 반전
+          anim.visible = false;
+          anim.loop = false;
+        }
+        set.idle.loop = true;
+        set.idle.visible = false;
         // currentEnemyKind는 호출 시점(공격 애니메이션 종료 시)의 최신값을 읽어야 하는 의도적 참조 —
         // 클로저 생성 시점이 아니라 실제 재생 완료 시점의 활성 적 종류를 확인한다.
         // eslint-disable-next-line @typescript-eslint/no-loop-func
-        attack.onComplete = () => {
-          attack.visible = false;
-          if (currentEnemyKind === kind) {
-            idle.visible = true;
-            idle.gotoAndPlay(0);
-          }
+        set.attack1.onComplete = () => {
+          set.attack1.visible = false;
+          returnToIdle(kind);
         };
-        app.stage.addChild(idle, attack);
+        if (set.attack2) {
+          const { attack2 } = set;
+          // eslint-disable-next-line @typescript-eslint/no-loop-func
+          attack2.onComplete = () => {
+            attack2.visible = false;
+            returnToIdle(kind);
+          };
+        }
+        app.stage.addChild(...enemySpritesOf(kind));
       }
 
       const enemyKindForStage = (stage: StageId): EnemyKind => {
@@ -167,8 +269,7 @@ export const BattleCanvas = () => {
 
       const activeEnemySprite = () => {
         if (currentEnemyKind === 'none') return null;
-        const idle = enemyIdleByKind[currentEnemyKind];
-        return idle.visible ? idle : enemyAttackByKind[currentEnemyKind];
+        return enemySpritesOf(currentEnemyKind).find((sprite) => sprite.visible) ?? null;
       };
 
       const enemyBox = new Graphics();
@@ -300,6 +401,14 @@ export const BattleCanvas = () => {
               playHit();
             }
             if (enemyDefeated) playVictory();
+            if (currentEnemyKind !== 'none') {
+              const set = enemyAnimByKind[currentEnemyKind];
+              if (enemyDefeated) {
+                playEnemyOneShot(currentEnemyKind, set.death, 'hold');
+              } else {
+                playEnemyOneShot(currentEnemyKind, set.hurt, 'idle');
+              }
+            }
             idleAnim.visible = false;
             attackAnim.visible = true;
             attackAnim.gotoAndPlay(0);
@@ -316,10 +425,15 @@ export const BattleCanvas = () => {
               if (result.playerDefeated) playDefeat();
             }
             if (currentEnemyKind !== 'none') {
-              enemyIdleByKind[currentEnemyKind].visible = false;
-              const attack = enemyAttackByKind[currentEnemyKind];
-              attack.visible = true;
-              attack.gotoAndPlay(0);
+              const set = enemyAnimByKind[currentEnemyKind];
+              if (result?.playerDefeated && set.victory) {
+                playEnemyOneShot(currentEnemyKind, set.victory, 'idle');
+              } else {
+                for (const sprite of enemySpritesOf(currentEnemyKind)) sprite.visible = false;
+                const attack = set.attack2 && Math.random() < 0.5 ? set.attack2 : set.attack1;
+                attack.visible = true;
+                attack.gotoAndPlay(0);
+              }
             }
           }
 
@@ -343,12 +457,13 @@ export const BattleCanvas = () => {
 
         const kind = enemyKindForStage(s.stage);
         if (kind !== currentEnemyKind) {
-          for (const k of ['boss', 'grunt'] as const) {
-            enemyIdleByKind[k].visible = k === kind;
-            enemyAttackByKind[k].visible = false;
-          }
-          if (kind !== 'none') enemyIdleByKind[kind].gotoAndPlay(0);
+          hideAllEnemySprites();
           currentEnemyKind = kind;
+          if (kind !== 'none') {
+            const { idle } = enemyAnimByKind[kind];
+            idle.visible = true;
+            idle.gotoAndPlay(0);
+          }
         }
         enemyBox.visible = kind === 'none';
         if (kind === 'none') {

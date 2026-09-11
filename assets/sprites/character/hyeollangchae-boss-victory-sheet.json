@@ -4,64 +4,55 @@
    "frame": {
     "x": 0,
     "y": 0,
-    "w": 362,
+    "w": 434,
     "h": 724
    },
    "duration": 160
   },
   {
    "frame": {
-    "x": 362,
+    "x": 434,
     "y": 0,
-    "w": 362,
+    "w": 434,
     "h": 724
    },
    "duration": 160
   },
   {
    "frame": {
-    "x": 724,
+    "x": 868,
     "y": 0,
-    "w": 362,
+    "w": 434,
     "h": 724
    },
    "duration": 160
   },
   {
    "frame": {
-    "x": 1086,
+    "x": 1302,
     "y": 0,
-    "w": 362,
+    "w": 434,
     "h": 724
    },
    "duration": 160
   },
   {
    "frame": {
-    "x": 1448,
+    "x": 1736,
     "y": 0,
-    "w": 362,
-    "h": 724
-   },
-   "duration": 160
-  },
-  {
-   "frame": {
-    "x": 1810,
-    "y": 0,
-    "w": 362,
+    "w": 436,
     "h": 724
    },
    "duration": 160
   }
  ],
  "meta": {
-  "image": "hyeollangchae-boss-idle-sheet.png",
+  "image": "hyeollangchae-boss-victory-sheet.png",
   "frameTags": [
    {
-    "name": "idle",
+    "name": "victory",
     "from": 0,
-    "to": 5
+    "to": 4
    }
   ]
  }

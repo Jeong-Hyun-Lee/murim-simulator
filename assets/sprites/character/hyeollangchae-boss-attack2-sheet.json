@@ -4,71 +4,71 @@
    "frame": {
     "x": 0,
     "y": 0,
-    "w": 309,
-    "h": 727
+    "w": 310,
+    "h": 724
    },
    "duration": 90
   },
   {
    "frame": {
-    "x": 309,
-    "y": 0,
-    "w": 309,
-    "h": 727
-   },
-   "duration": 90
-  },
-  {
-   "frame": {
-    "x": 618,
-    "y": 0,
-    "w": 309,
-    "h": 727
-   },
-   "duration": 90
-  },
-  {
-   "frame": {
-    "x": 927,
-    "y": 0,
-    "w": 309,
-    "h": 727
-   },
-   "duration": 90
-  },
-  {
-   "frame": {
-    "x": 1236,
-    "y": 0,
-    "w": 309,
-    "h": 727
-   },
-   "duration": 90
-  },
-  {
-   "frame": {
-    "x": 1545,
-    "y": 0,
-    "w": 309,
-    "h": 727
-   },
-   "duration": 90
-  },
-  {
-   "frame": {
-    "x": 1854,
+    "x": 310,
     "y": 0,
     "w": 310,
-    "h": 727
+    "h": 724
+   },
+   "duration": 90
+  },
+  {
+   "frame": {
+    "x": 620,
+    "y": 0,
+    "w": 310,
+    "h": 724
+   },
+   "duration": 90
+  },
+  {
+   "frame": {
+    "x": 930,
+    "y": 0,
+    "w": 310,
+    "h": 724
+   },
+   "duration": 90
+  },
+  {
+   "frame": {
+    "x": 1240,
+    "y": 0,
+    "w": 310,
+    "h": 724
+   },
+   "duration": 90
+  },
+  {
+   "frame": {
+    "x": 1550,
+    "y": 0,
+    "w": 310,
+    "h": 724
+   },
+   "duration": 90
+  },
+  {
+   "frame": {
+    "x": 1860,
+    "y": 0,
+    "w": 312,
+    "h": 724
    },
    "duration": 90
   }
  ],
  "meta": {
-  "image": "hyeollangchae-boss-attack-sheet.png",
+  "image": "hyeollangchae-boss-attack2-sheet.png",
   "frameTags": [
    {
-    "name": "attack",
+    "name": "attack2",
     "from": 0,
     "to": 6
    }

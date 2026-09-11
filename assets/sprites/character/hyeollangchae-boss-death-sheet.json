@@ -7,7 +7,7 @@
     "w": 362,
     "h": 724
    },
-   "duration": 160
+   "duration": 140
   },
   {
    "frame": {
@@ -16,7 +16,7 @@
     "w": 362,
     "h": 724
    },
-   "duration": 160
+   "duration": 140
   },
   {
    "frame": {
@@ -25,7 +25,7 @@
     "w": 362,
     "h": 724
    },
-   "duration": 160
+   "duration": 140
   },
   {
    "frame": {
@@ -34,7 +34,7 @@
     "w": 362,
     "h": 724
    },
-   "duration": 160
+   "duration": 140
   },
   {
    "frame": {
@@ -43,7 +43,7 @@
     "w": 362,
     "h": 724
    },
-   "duration": 160
+   "duration": 140
   },
   {
    "frame": {
@@ -52,14 +52,14 @@
     "w": 362,
     "h": 724
    },
-   "duration": 160
+   "duration": 140
   }
  ],
  "meta": {
-  "image": "hyeollangchae-boss-idle-sheet.png",
+  "image": "hyeollangchae-boss-death-sheet.png",
   "frameTags": [
    {
-    "name": "idle",
+    "name": "death",
     "from": 0,
     "to": 5
    }

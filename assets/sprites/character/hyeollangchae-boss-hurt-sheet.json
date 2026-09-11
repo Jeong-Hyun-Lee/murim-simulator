@@ -1,0 +1,41 @@
+{
+ "frames": [
+  {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 724,
+    "h": 724
+   },
+   "duration": 90
+  },
+  {
+   "frame": {
+    "x": 724,
+    "y": 0,
+    "w": 724,
+    "h": 724
+   },
+   "duration": 90
+  },
+  {
+   "frame": {
+    "x": 1448,
+    "y": 0,
+    "w": 724,
+    "h": 724
+   },
+   "duration": 90
+  }
+ ],
+ "meta": {
+  "image": "hyeollangchae-boss-hurt-sheet.png",
+  "frameTags": [
+   {
+    "name": "hurt",
+    "from": 0,
+    "to": 2
+   }
+  ]
+ }
+}
