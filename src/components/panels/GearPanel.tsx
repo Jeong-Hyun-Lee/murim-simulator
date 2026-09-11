@@ -29,6 +29,7 @@ export const GearPanel = ({ onClose, onNavigate }: Props) => {
   const enhanceStones = useGameStore((s) => s.enhanceStones);
   const protectionCharms = useGameStore((s) => s.protectionCharms);
   const equipItem = useGameStore((s) => s.equipItem);
+  const equipBestAll = useGameStore((s) => s.equipBestAll);
   const unequipItem = useGameStore((s) => s.unequipItem);
   const enhanceItem = useGameStore((s) => s.enhanceItem);
   const disassembleItems = useGameStore((s) => s.disassembleItems);
@@ -87,9 +88,14 @@ export const GearPanel = ({ onClose, onNavigate }: Props) => {
     <div id="gear-panel" className="stat-panel">
       <div className="panel-header">
         <span>장비</span>
-        <button type="button" className="panel-close-btn" onClick={onClose}>
-          닫기
-        </button>
+        <div style={{ display: 'flex', gap: 6 }}>
+          <button type="button" className="gong-upgrade-btn" onClick={equipBestAll}>
+            최고 장비 일괄 장착
+          </button>
+          <button type="button" className="panel-close-btn" onClick={onClose}>
+            닫기
+          </button>
+        </div>
       </div>
 
       <div id="gear-doll">

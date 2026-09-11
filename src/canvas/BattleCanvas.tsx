@@ -31,6 +31,7 @@ const ENEMY_HIT_TINT = 0xff6666;
 const HIT_FLASH_MS = 140;
 const POPUP_LIFETIME_MS = 800;
 const POPUP_HOLD_RATIO = 0.6; // 전체 수명의 앞 60%는 투명도 유지, 이후에만 페이드아웃
+const POPUP_RISE_PX = 64; // 데미지 숫자가 사라지기까지 위로 이동하는 거리
 const ATTACK_INTERVAL_MS = 1300;
 const MIN_ATTACK_INTERVAL_MS = 300; // 장구 공격속도% 최대치에서도 공격이 순간이동처럼 보이지 않게 하는 하한
 const ENEMY_ATTACK_INTERVAL_MS = 1600;
@@ -361,7 +362,7 @@ export const BattleCanvas = () => {
           const t = p.age / POPUP_LIFETIME_MS;
           const fadeT = Math.max(0, (t - POPUP_HOLD_RATIO) / (1 - POPUP_HOLD_RATIO));
           p.text.alpha = 1 - fadeT;
-          p.text.position.y = p.baseY - t * 40;
+          p.text.position.y = p.baseY - t * POPUP_RISE_PX;
         }
 
         for (const b of hitBursts) {

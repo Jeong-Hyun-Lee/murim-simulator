@@ -111,6 +111,7 @@ interface GameStoreState extends GameState {
   buyGongUpgradeBulk10: (nodeId: string) => void;
   bulkUpgradeAllGong: () => void;
   equipItem: (itemId: string) => void;
+  equipBestAll: () => void;
   unequipItem: (slot: SlotId) => void;
   enhanceItem: (itemId: string, useProtection: boolean) => { success: boolean } | undefined;
   disassembleItems: (itemIds: string[]) => void;
@@ -239,6 +240,12 @@ const levelUp = (startLevel: number, startExp: number): { level: number; exp: nu
 
 type ItemLocation =
   { item: GearItem; source: 'equipped' } | { item: GearItem; source: 'inventory' };
+
+// 등급이 높을수록, 등급이 같으면 강화단계가 높을수록 "더 좋은" 장비로 취급(인벤토리 정렬 기준과 동일).
+const isBetterGear = (a: GearItem, b: GearItem): boolean =>
+  gradeTier(a.grade) !== gradeTier(b.grade)
+    ? gradeTier(a.grade) > gradeTier(b.grade)
+    : a.enhanceLevel > b.enhanceLevel;
 
 const findItemLocation = (s: GameStoreState, itemId: string): ItemLocation | null => {
   for (const slot of ALL_SLOTS) {
@@ -430,6 +437,45 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         player: newPlayer,
         playerHp: carryOverHp(s.player.hp, s.playerHp, newPlayer.hp),
         toastMessage: `${SLOT_INFO[item.slot].name} 장착: ${item.grade} +${item.enhanceLevel}`,
+      });
+      persist(get());
+    },
+
+    // 슬롯별로 인벤토리 후보와 현재 착용 장비를 비교해 더 좋은 쪽을 일괄 장착.
+    equipBestAll: () => {
+      const s = get();
+      let inventory = [...s.inventory];
+      const equippedGear = { ...s.equippedGear };
+      let changed = 0;
+
+      for (const slot of ALL_SLOTS) {
+        const current = equippedGear[slot];
+        const best = inventory
+          .filter((it) => it.slot === slot)
+          .reduce<GearItem | undefined>(
+            (acc, candidate) => (!acc || isBetterGear(candidate, acc) ? candidate : acc),
+            current,
+          );
+        if (best && best.id !== current?.id) {
+          inventory = inventory.filter((it) => it.id !== best.id);
+          if (current) inventory.push(current);
+          equippedGear[slot] = best;
+          changed += 1;
+        }
+      }
+
+      if (changed === 0) {
+        set({ toastMessage: '이미 보유 중인 장비 중 가장 좋은 상태입니다.' });
+        return;
+      }
+
+      const newPlayer = computePlayerStats(s.level, { ...s, equippedGear });
+      set({
+        equippedGear,
+        inventory,
+        player: newPlayer,
+        playerHp: carryOverHp(s.player.hp, s.playerHp, newPlayer.hp),
+        toastMessage: `일괄 장착: ${changed}개 슬롯 교체`,
       });
       persist(get());
     },
