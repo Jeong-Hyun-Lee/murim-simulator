@@ -168,6 +168,13 @@ export function playerStats(level: number, buffPercent = 0, gear: GearStatBonus 
   };
 }
 
+// wiki/concepts/스테이지-레벨링-기획서.md 7장 "전투력 지수" 표시용 근사치.
+// player.hp/atk/def는 이미 버프가 곱연산된 최종치라 별도 가중합만 하면 된다.
+// ponytail: 가중치(0.5/8/8)는 위키 §7 "Lv1 ≈ 100" 앵커에 근접시킨 자리표시자 — 실측 밸런싱 시 조정.
+export function combatPower(stats: Pick<PlayerStats, "hp" | "atk" | "def">): number {
+  return Math.round(stats.hp * 0.5 + stats.atk * 8 + stats.def * 8);
+}
+
 export function expToNextLevel(level: number): number {
   return Math.round(40 * 1.15 ** (level - 1));
 }

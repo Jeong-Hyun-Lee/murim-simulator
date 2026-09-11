@@ -6,6 +6,7 @@ import {
   rebirthBuffPercent,
   sectBuffPercent,
 } from "../../game/store";
+import { combatPower } from "../../game/combat";
 
 interface Props {
   onClose: () => void;
@@ -41,6 +42,7 @@ export function StatPanel({ onClose }: Props) {
         <div className="stat-section">
           <div className="stat-section-title">기본</div>
           <div className="stat-row"><span>레벨</span><span>{level}</span></div>
+          <div className="stat-row"><span>전투력</span><span>{combatPower(player).toLocaleString()}</span></div>
           <div className="stat-row"><span>체력</span><span>{Math.max(0, Math.round(playerHp)).toLocaleString()} / {player.hp.toLocaleString()}</span></div>
           <div className="stat-row"><span>공격력</span><span>{player.atk.toLocaleString()}</span></div>
           <div className="stat-row"><span>방어력</span><span>{player.def.toLocaleString()}</span></div>
