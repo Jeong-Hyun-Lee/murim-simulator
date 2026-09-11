@@ -717,6 +717,13 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       const frontier = s.farmReturnStage ?? s.stage;
       if (!isStageAtOrBefore(stage, frontier)) return;
 
+      // 자동 등반이 멈춰 있는 프론티어 스테이지 자체를 고르면 사냥터 모드가 아니라 자동 등반
+      // 모드가 되어야 한다 — 이미 사냥 중이었다면 복귀 처리, 아니라면 그대로 둔다.
+      if (stage.major === frontier.major && stage.sub === frontier.sub) {
+        if (s.farmReturnStage) get().stopFarming();
+        return;
+      }
+
       const farmReturnStage = s.farmReturnStage ?? s.stage;
       const newEnemy = monsterStats(stage);
       set({
