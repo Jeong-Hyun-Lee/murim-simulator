@@ -16,7 +16,14 @@ interface DamageFontSheet {
 
 export type DamageFontVariant = "normal" | "crit" | "hit";
 
-const DIGIT_SCALE = 0.2;
+// 변형별 원본 글리프 해상도가 서로 달라(평균 높이: normal 165px, crit 186px, hit 253px) 배율도 변형별로
+// 다르게 잡아야 화면 표시 크기가 맞는다. 플레이어가 적에게 주는 피해(normal/crit)가 적이 플레이어에게
+// 주는 피해(hit)보다 화면에서 더 크게 보이도록 배율 조정(2026-09-11).
+const DIGIT_SCALE: Record<DamageFontVariant, number> = {
+  normal: 0.36,
+  crit: 0.38,
+  hit: 0.2,
+};
 const CRIT_LABEL_SCALE = 0.16;
 const GLYPH_GAP = 2;
 
@@ -62,7 +69,7 @@ export function createDamageNumber(text: string, variant: DamageFontVariant = "n
     const tex = glyphTexture(ch, variant);
     if (!tex) return null;
     const sprite = new Sprite(tex);
-    sprite.scale.set(DIGIT_SCALE);
+    sprite.scale.set(DIGIT_SCALE[variant]);
     sprite.position.set(xCursor, 0);
     container.addChild(sprite);
     xCursor += sprite.width + GLYPH_GAP;
