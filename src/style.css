@@ -10,8 +10,15 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
   color: #e8e0cf;
+}
+
+/* 기본 해상도 FHD(1920x1080) — 내부 레이아웃/좌표는 960x540 그대로 두고 화면 표시 크기만
+   transform: scale(2)로 실제 FHD로 키운다(레이아웃 수치를 전부 고치는 대신 화면 출력만 확대). */
+#game-viewport {
+  width: 1920px;
+  height: 1080px;
 }
 
 #game-root {
@@ -21,6 +28,8 @@ body {
   background: #1a1a22;
   overflow: hidden;
   border: 1px solid #3a3a46;
+  transform: scale(2);
+  transform-origin: top left;
 }
 
 #battle-canvas-mount {
@@ -209,8 +218,13 @@ body {
 }
 
 @keyframes tutorial-pulse {
-  0%, 100% { box-shadow: 0 0 6px 1px #ffd76a; }
-  50% { box-shadow: 0 0 12px 3px #ffd76a; }
+  0%,
+  100% {
+    box-shadow: 0 0 6px 1px #ffd76a;
+  }
+  50% {
+    box-shadow: 0 0 12px 3px #ffd76a;
+  }
 }
 
 .tutorial-banner {
@@ -468,11 +482,11 @@ body {
   grid-template-columns: 72px 100px 72px;
   grid-template-rows: repeat(5, auto);
   grid-template-areas:
-    ".     head   ."
-    "neck  char   weapon"
-    "arm   char   body"
-    "waist char   ringR"
-    "ringL foot   .";
+    '.     head   .'
+    'neck  char   weapon'
+    'arm   char   body'
+    'waist char   ringR'
+    'ringL foot   .';
   gap: 6px;
   justify-items: center;
   align-items: center;
@@ -484,7 +498,7 @@ body {
   grid-area: char;
   width: 96px;
   height: 96px;
-  background-image: url("/sprites/character/mokhyeon-idle-sheet.png");
+  background-image: url('/sprites/character/mokhyeon-idle-sheet.png');
   background-position: 0 0;
   background-size: 576px 96px;
   image-rendering: pixelated;

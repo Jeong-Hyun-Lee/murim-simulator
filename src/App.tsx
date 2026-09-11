@@ -37,29 +37,31 @@ export const App = () => {
   };
 
   return (
-    <div id="game-root">
-      <BattleCanvas />
-      <div id="ui-overlay">
-        <TopBar onTogglePanel={togglePanel} />
-        <div id="status-row">
-          <PlayerStatus />
-          <EnemyStatus />
+    <div id="game-viewport">
+      <div id="game-root">
+        <BattleCanvas />
+        <div id="ui-overlay">
+          <TopBar onTogglePanel={togglePanel} />
+          <div id="status-row">
+            <PlayerStatus />
+            <EnemyStatus />
+          </div>
+          <Toast />
         </div>
-        <Toast />
+        {openPanel === 'gong' && (
+          <GongPanel onClose={() => setOpenPanel(null)} onNavigate={setOpenPanel} />
+        )}
+        {openPanel === 'gear' && (
+          <GearPanel onClose={() => setOpenPanel(null)} onNavigate={setOpenPanel} />
+        )}
+        {openPanel === 'rebirth' && <RebirthPanel onClose={() => setOpenPanel(null)} />}
+        {openPanel === 'sect' && <SectPanel onClose={() => setOpenPanel(null)} />}
+        {openPanel === 'shop' && <ShopPanel onClose={() => setOpenPanel(null)} />}
+        {openPanel === 'stage' && <StagePanel onClose={() => setOpenPanel(null)} />}
+        {openPanel === 'stat' && <StatPanel onClose={() => setOpenPanel(null)} />}
+        <BossDialog />
+        {!onboardingDone && <OnboardingFlow />}
       </div>
-      {openPanel === 'gong' && (
-        <GongPanel onClose={() => setOpenPanel(null)} onNavigate={setOpenPanel} />
-      )}
-      {openPanel === 'gear' && (
-        <GearPanel onClose={() => setOpenPanel(null)} onNavigate={setOpenPanel} />
-      )}
-      {openPanel === 'rebirth' && <RebirthPanel onClose={() => setOpenPanel(null)} />}
-      {openPanel === 'sect' && <SectPanel onClose={() => setOpenPanel(null)} />}
-      {openPanel === 'shop' && <ShopPanel onClose={() => setOpenPanel(null)} />}
-      {openPanel === 'stage' && <StagePanel onClose={() => setOpenPanel(null)} />}
-      {openPanel === 'stat' && <StatPanel onClose={() => setOpenPanel(null)} />}
-      <BossDialog />
-      {!onboardingDone && <OnboardingFlow />}
     </div>
   );
 };
