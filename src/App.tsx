@@ -47,8 +47,8 @@ export function App() {
         </div>
         <Toast />
       </div>
-      {openPanel === "gong" && <GongPanel onClose={() => setOpenPanel(null)} />}
-      {openPanel === "equip" && <EquipPanel onClose={() => setOpenPanel(null)} />}
+      {openPanel === "gong" && <GongPanel onClose={() => setOpenPanel(null)} onNavigate={setOpenPanel} />}
+      {openPanel === "equip" && <EquipPanel onClose={() => setOpenPanel(null)} onNavigate={setOpenPanel} />}
       {openPanel === "rebirth" && <RebirthPanel onClose={() => setOpenPanel(null)} />}
       {openPanel === "sect" && <SectPanel onClose={() => setOpenPanel(null)} />}
       {openPanel === "shop" && <ShopPanel onClose={() => setOpenPanel(null)} />}

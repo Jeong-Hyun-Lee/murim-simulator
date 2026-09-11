@@ -13,6 +13,7 @@ import {
   type GongCurrency,
 } from "../../game/store";
 import { useHoldRepeat } from "../../hooks/useHoldRepeat";
+import type { PanelKey } from "../../App";
 
 const TIER_LABEL = { primary: "1차", secondary: "2차", capstone: "캡스톤" } as const;
 const CURRENCY_LABEL: Record<GongCurrency, string> = { chi: "내공", contribution: "기여도" };
@@ -76,9 +77,10 @@ function GongNodeRow({ node, currency, tutorialLocked, tutorialHighlight }: RowP
 
 interface Props {
   onClose: () => void;
+  onNavigate: (key: PanelKey) => void;
 }
 
-export function GongPanel({ onClose }: Props) {
+export function GongPanel({ onClose, onNavigate }: Props) {
   const gongLevels = useGameStore((s) => s.gongLevels);
   const highestMajorCleared = useGameStore((s) => s.highestMajorCleared);
   const onboardingDone = useGameStore((s) => s.onboardingDone);
@@ -91,6 +93,13 @@ export function GongPanel({ onClose }: Props) {
   const selectedBoard = GONG_BOARDS.find((b) => b.id === effectiveSelectedId) ?? GONG_BOARDS[0];
   const unlockCtx = { highestMajorCleared, gongLevels };
   const selectedUnlocked = isBoardUnlocked(selectedBoard, unlockCtx);
+  const boardBalance = useGameStore((s) => (selectedBoard.currency === "contribution" ? s.sectContributionPoints : s.chi));
+  const cheapestCost = Math.min(
+    ...selectedBoard.nodes
+      .filter((n) => isNodeUnlocked(n, gongLevels) && nodeLevel(n, gongLevels) < n.maxLevel)
+      .map((n) => nodeUpgradeCost(n, nodeLevel(n, gongLevels))),
+  );
+  const showCurrencyCta = selectedUnlocked && Number.isFinite(cheapestCost) && boardBalance < cheapestCost;
 
   useEffect(() => {
     if (tutorialActive && (gongLevels[TUTORIAL_NODE_ID] ?? 0) >= 1) {
@@ -106,6 +115,16 @@ export function GongPanel({ onClose }: Props) {
       </div>
       {tutorialActive && (
         <div className="tutorial-banner">첫 강화를 체험해보세요! "제1식 천(天)"을 강화하면 다음으로 넘어갑니다.</div>
+      )}
+      {showCurrencyCta && (
+        <div className="tutorial-banner">
+          {CURRENCY_LABEL[selectedBoard.currency]}이 부족합니다.{" "}
+          {selectedBoard.currency === "contribution" ? (
+            <button className="gong-upgrade-btn" onClick={() => onNavigate("sect")}>문파에 기부하기</button>
+          ) : (
+            <button className="gong-upgrade-btn" onClick={() => onNavigate("stage")}>사냥터에서 파밍하기</button>
+          )}
+        </div>
       )}
       <div id="gong-body">
         <div id="gong-board-tabs">

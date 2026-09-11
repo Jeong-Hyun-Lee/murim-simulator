@@ -12,12 +12,14 @@ import {
   gradeTier,
   type SlotId,
 } from "../../game/store";
+import type { PanelKey } from "../../App";
 
 interface Props {
   onClose: () => void;
+  onNavigate: (key: PanelKey) => void;
 }
 
-export function EquipPanel({ onClose }: Props) {
+export function EquipPanel({ onClose, onNavigate }: Props) {
   const equippedItems = useGameStore((s) => s.equippedItems);
   const inventory = useGameStore((s) => s.inventory);
   const gold = useGameStore((s) => s.gold);
@@ -100,6 +102,9 @@ export function EquipPanel({ onClose }: Props) {
                   {maxed ? "대성" : "강화하기"}
                 </button>
                 <button className="panel-close-btn" onClick={() => unequipItem(selectedSlot)}>해제</button>
+                {!maxed && gold < cost && (
+                  <button className="gong-upgrade-btn" onClick={() => onNavigate("stage")}>전 부족 · 사냥터로</button>
+                )}
               </div>
             </>
           ) : (
