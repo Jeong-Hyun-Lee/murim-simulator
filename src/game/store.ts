@@ -25,6 +25,7 @@ import {
   boardCompletionPercent,
   boardUnlockLabel,
   totalGongBuffPercent,
+  totalGongSecondaryStats,
   type GongLevels,
   type GongBoard,
   type GongCurrency,
@@ -150,6 +151,7 @@ function computePlayerStats(
   s: Pick<GameStoreState, "gongLevels" | "rebirthCount" | "sectLevel" | "equippedItems" | "nickname">,
 ): PlayerStats {
   const agg = aggregateEquipStats(s.equippedItems);
+  const gongSecondary = totalGongSecondaryStats(s.gongLevels);
   const buffPercent = totalBuffPercent(s, agg.enhanceBuffPercent);
   return playerStats(
     level,
@@ -158,11 +160,11 @@ function computePlayerStats(
       atk: agg.atk,
       def: agg.def,
       hp: agg.hp,
-      critChancePercent: agg.critChancePercent,
-      critDamagePercent: agg.critDamagePercent,
-      attackSpeedPercent: agg.attackSpeedPercent,
-      evasionPercent: agg.evasionPercent,
-      chiGainPercent: agg.chiGainPercent,
+      critChancePercent: agg.critChancePercent + gongSecondary.critChancePercent,
+      critDamagePercent: agg.critDamagePercent + gongSecondary.critDamagePercent,
+      attackSpeedPercent: agg.attackSpeedPercent + gongSecondary.attackSpeedPercent,
+      evasionPercent: agg.evasionPercent + gongSecondary.evasionPercent,
+      chiGainPercent: agg.chiGainPercent + gongSecondary.chiGainPercent,
     },
     s.nickname || "목현",
   );
@@ -806,12 +808,15 @@ export {
   isBoardUnlocked,
   boardCompletionPercent,
   boardUnlockLabel,
+  totalGongBuffPercent,
+  totalGongSecondaryStats,
 };
 export {
   ALL_SLOTS,
   SLOT_INFO,
   ENHANCE_MAX_LEVEL,
   itemBaseStats,
+  aggregateEquipStats,
   enhanceCost,
   enhanceSuccessChance,
   enhanceStoneCost,

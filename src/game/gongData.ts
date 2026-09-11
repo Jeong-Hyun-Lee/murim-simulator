@@ -8,6 +8,11 @@
 export type NodeTier = "primary" | "secondary" | "capstone";
 export type GongCurrency = "chi" | "contribution";
 
+// 노드가 어느 스탯을 키우는지. "power"(기본값)는 기존 방식대로 ATK/DEF/HP 공통 가산버프
+// 버킷(totalGongBuffPercent)에 합산되고, 그 외는 장구와 동일한 방식으로 해당 보조 스탯에
+// 직접 가산된다(totalGongSecondaryStats 참고, 2026-09-11 추가 — 질풍살검 보드).
+export type GongStatKey = "power" | "critChance" | "critDamage" | "attackSpeed" | "evasion" | "chiGain";
+
 export interface GongNode {
   id: string;
   name: string;
@@ -15,7 +20,8 @@ export interface GongNode {
   maxLevel: number;
   baseCost: number;
   growthRate: number;
-  effectPerLevel: number; // 레벨당 전투력 버프 %
+  effectPerLevel: number; // 레벨당 효과 % (statKey가 가리키는 스탯 기준)
+  statKey?: GongStatKey; // 생략 시 "power"
   requires?: { nodeId: string; level: number }[];
 }
 
@@ -258,6 +264,60 @@ export const GONG_BOARDS: GongBoard[] = [
     ],
   },
   {
+    // wiki/concepts/무공-시스템.md "질풍살검" 절 — 챕터1 5개 보드가 전부 ATK/DEF/HP 공통
+    // 버프%(power)만 주는 것과 달리, 이 보드는 치명타확률/치명타피해/공격속도/회피를 장구와
+    // 동일한 방식으로 직접 가산(2026-09-11 추가). 대스테이지 번호에 직접 걸지 않고 폭뢰도법
+    // 대성(챕터1 마지막 보드)을 조건으로 삼아, 이후 챕터/스테이지 번호 체계가 바뀌어도
+    // "챕터1 전 보드 마스터 후 개방"이라는 의미가 그대로 유지되게 함.
+    id: "jilpungsalgeom",
+    name: "질풍살검(疾風殺劍)",
+    currency: "chi",
+    unlock: { type: "nodeMaxed", boardId: "poklloe", nodeId: "poklloe_capstone" },
+    nodes: [
+      { id: "jpsg_kwaesu", name: "쾌수(快手)", tier: "primary", statKey: "attackSpeed", ...PRIMARY_COST, effectPerLevel: 0.2 },
+      { id: "jpsg_yean", name: "예안(銳眼)", tier: "primary", statKey: "critChance", ...PRIMARY_COST, effectPerLevel: 0.1 },
+      { id: "jpsg_pilsal", name: "필살(必殺)", tier: "primary", statKey: "critDamage", ...PRIMARY_COST, effectPerLevel: 0.3 },
+      {
+        id: "jpsg_ilgyeok",
+        name: "일격필살(一擊必殺)",
+        tier: "secondary",
+        statKey: "critDamage",
+        ...SECONDARY_COST,
+        effectPerLevel: 0.4,
+        requires: [
+          { nodeId: "jpsg_kwaesu", level: 10 },
+          { nodeId: "jpsg_yean", level: 10 },
+          { nodeId: "jpsg_pilsal", level: 10 },
+        ],
+      },
+      {
+        id: "jpsg_soaeyeong",
+        name: "쇄영보(碎影步)",
+        tier: "secondary",
+        statKey: "evasion",
+        ...SECONDARY_COST,
+        effectPerLevel: 0.15,
+        requires: [
+          { nodeId: "jpsg_kwaesu", level: 10 },
+          { nodeId: "jpsg_yean", level: 10 },
+          { nodeId: "jpsg_pilsal", level: 10 },
+        ],
+      },
+      {
+        id: "jpsg_capstone",
+        name: "무영쾌검(無影快劍)",
+        tier: "capstone",
+        statKey: "attackSpeed",
+        ...CAPSTONE_COST,
+        effectPerLevel: 0.5,
+        requires: [
+          { nodeId: "jpsg_ilgyeok", level: 30 },
+          { nodeId: "jpsg_soaeyeong", level: 30 },
+        ],
+      },
+    ],
+  },
+  {
     // wiki/concepts/ux-시나리오-기획서.md 2-4절 "상위 보드(삼재검법 2보)는 하위 보드(삼재검법
     // 1보)의 오의 노드(삼재합일)가 대성 상태여야 개방" 그대로 구현. 문파-시스템.md의
     // 문파무공(청운문 전용 심화 무공) 해금 스펙(기여도 재화, BaseCost/최대Lv)을 이 보드로 구현 —
@@ -371,7 +431,48 @@ export function boardCompletionPercent(board: GongBoard, levels: GongLevels): nu
 
 export function totalGongBuffPercent(levels: GongLevels): number {
   return GONG_BOARDS.reduce(
-    (sum, board) => sum + board.nodes.reduce((s, node) => s + nodeLevel(node, levels) * node.effectPerLevel, 0),
+    (sum, board) =>
+      sum +
+      board.nodes.reduce(
+        (s, node) => ((node.statKey ?? "power") === "power" ? s + nodeLevel(node, levels) * node.effectPerLevel : s),
+        0,
+      ),
     0,
   );
+}
+
+export interface GongSecondaryStats {
+  critChancePercent: number;
+  critDamagePercent: number;
+  attackSpeedPercent: number;
+  evasionPercent: number;
+  chiGainPercent: number;
+}
+
+const SECONDARY_STAT_FIELD: Record<Exclude<GongStatKey, "power">, keyof GongSecondaryStats> = {
+  critChance: "critChancePercent",
+  critDamage: "critDamagePercent",
+  attackSpeed: "attackSpeedPercent",
+  evasion: "evasionPercent",
+  chiGain: "chiGainPercent",
+};
+
+// 질풍살검처럼 ATK/DEF/HP 공통 버프가 아니라 치명타/공격속도/회피 등 개별 스탯을 직접 키우는
+// 노드의 합계 — 장구와 동일한 방식(playerStats의 gear 인자)으로 합산된다.
+export function totalGongSecondaryStats(levels: GongLevels): GongSecondaryStats {
+  const stats: GongSecondaryStats = {
+    critChancePercent: 0,
+    critDamagePercent: 0,
+    attackSpeedPercent: 0,
+    evasionPercent: 0,
+    chiGainPercent: 0,
+  };
+  for (const board of GONG_BOARDS) {
+    for (const node of board.nodes) {
+      const key = node.statKey ?? "power";
+      if (key === "power") continue;
+      stats[SECONDARY_STAT_FIELD[key]] += nodeLevel(node, levels) * node.effectPerLevel;
+    }
+  }
+  return stats;
 }

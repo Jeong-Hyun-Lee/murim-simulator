@@ -10,11 +10,12 @@ import { RebirthPanel } from "./components/panels/RebirthPanel";
 import { SectPanel } from "./components/panels/SectPanel";
 import { ShopPanel } from "./components/panels/ShopPanel";
 import { StagePanel } from "./components/panels/StagePanel";
+import { StatPanel } from "./components/panels/StatPanel";
 import { BossDialog } from "./components/BossDialog";
 import { OnboardingFlow } from "./components/OnboardingFlow";
 import { useGameStore } from "./game/store";
 
-export type PanelKey = "gong" | "equip" | "rebirth" | "sect" | "shop" | "stage";
+export type PanelKey = "gong" | "equip" | "rebirth" | "sect" | "shop" | "stage" | "stat";
 
 export function App() {
   const claimDailyBonusIfNeeded = useGameStore((s) => s.claimDailyBonusIfNeeded);
@@ -52,6 +53,7 @@ export function App() {
       {openPanel === "sect" && <SectPanel onClose={() => setOpenPanel(null)} />}
       {openPanel === "shop" && <ShopPanel onClose={() => setOpenPanel(null)} />}
       {openPanel === "stage" && <StagePanel onClose={() => setOpenPanel(null)} />}
+      {openPanel === "stat" && <StatPanel onClose={() => setOpenPanel(null)} />}
       <BossDialog />
       {!onboardingDone && <OnboardingFlow />}
     </div>

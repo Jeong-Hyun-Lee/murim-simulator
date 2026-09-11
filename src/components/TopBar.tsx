@@ -41,6 +41,7 @@ export function TopBar({ onTogglePanel }: Props) {
       <span>내공 {chi.toLocaleString()}</span>
       <span>영약 {elixir.toLocaleString()}</span>
       <button className="topbar-btn" onClick={() => onTogglePanel("stage")}>사냥터</button>
+      <button className="topbar-btn" onClick={() => onTogglePanel("stat")}>스탯</button>
       {farmReturnStage && (
         <button className="topbar-btn" onClick={stopFarming}>
           자동 등반 복귀 ({farmReturnStage.major}-{farmReturnStage.sub})

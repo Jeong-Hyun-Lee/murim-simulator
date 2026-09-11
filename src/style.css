@@ -327,6 +327,41 @@ body {
   color: #ffd76a;
 }
 
+#stat-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+.stat-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-section-title {
+  font-size: 13px;
+  color: #9a8f78;
+  border-bottom: 1px solid #3a3a46;
+  padding-bottom: 4px;
+  margin-bottom: 2px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 4px;
+}
+
+.stat-row-sub {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 4px;
+  font-size: 12px;
+  color: #9a8f78;
+}
+
 #rebirth-body,
 #sect-body,
 #gacha-body,
