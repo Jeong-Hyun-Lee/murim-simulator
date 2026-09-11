@@ -35,7 +35,7 @@ export const ALL_SLOTS: SlotId[] = Object.keys(SLOT_INFO) as SlotId[];
 
 const ITEM_STAT_COEFF = 20; // wiki 예시계수
 
-export interface EquipItem {
+export interface GearItem {
   id: string;
   slot: SlotId;
   grade: Grade;
@@ -44,13 +44,13 @@ export interface EquipItem {
 }
 
 let nextItemSeq = 1;
-export function createEquipItem(slot: SlotId, grade: Grade, itemLevel: number): EquipItem {
+export function createGearItem(slot: SlotId, grade: Grade, itemLevel: number): GearItem {
   return { id: `item-${Date.now()}-${nextItemSeq++}`, slot, grade, itemLevel: Math.max(1, itemLevel), enhanceLevel: 0 };
 }
 
 // BaseStat_슬롯 = ItemLevel × Coeff × SlotWeight × GradeMultiplier — 강화 단계는 포함하지 않음
 // (강화는 별도로 Σ가산버프 버킷에 더해짐, enhanceBuffPercent 참고. 이중계산 방지 규정).
-export function itemBaseStats(item: EquipItem): Partial<Record<StatKey, number>> {
+export function itemBaseStats(item: GearItem): Partial<Record<StatKey, number>> {
   const weights = SLOT_INFO[item.slot].weights;
   const gradeMult = GRADE_MULTIPLIER[item.grade];
   const result: Partial<Record<StatKey, number>> = {};
@@ -105,7 +105,7 @@ export function rollEnhance(currentLevel: number, useProtection: boolean): Enhan
   return { success: false, downgraded: canDowngrade, newLevel: canDowngrade ? currentLevel - 1 : currentLevel };
 }
 
-export interface EquipDerivedStats {
+export interface GearDerivedStats {
   atk: number;
   def: number;
   hp: number;
@@ -118,8 +118,8 @@ export interface EquipDerivedStats {
   enhanceBuffPercent: number; // Σ가산버프 버킷에 합산되는 항목(스테이지-레벨링-기획서 7장)
 }
 
-export function aggregateEquipStats(equipped: Partial<Record<SlotId, EquipItem>>): EquipDerivedStats {
-  const stats: EquipDerivedStats = {
+export function aggregateGearStats(equipped: Partial<Record<SlotId, GearItem>>): GearDerivedStats {
+  const stats: GearDerivedStats = {
     atk: 0,
     def: 0,
     hp: 0,

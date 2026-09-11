@@ -2,7 +2,7 @@ import {
   useGameStore,
   totalGongBuffPercent,
   totalGongSecondaryStats,
-  aggregateEquipStats,
+  aggregateGearStats,
   rebirthBuffPercent,
   sectBuffPercent,
 } from "../../game/store";
@@ -16,19 +16,19 @@ function pct(n: number, digits = 1): string {
   return `${n.toFixed(digits)}%`;
 }
 
-// 성장 요소(레벨/무공/장구/문파/환골탈태)를 한 화면에서 확인할 수 있는 종합 스탯창.
+// 성장 요소(레벨/무공/장비/문파/환골탈태)를 한 화면에서 확인할 수 있는 종합 스탯창.
 export function StatPanel({ onClose }: Props) {
   const player = useGameStore((s) => s.player);
   const playerHp = useGameStore((s) => s.playerHp);
   const level = useGameStore((s) => s.level);
   const gongLevels = useGameStore((s) => s.gongLevels);
-  const equippedItems = useGameStore((s) => s.equippedItems);
+  const equippedGear = useGameStore((s) => s.equippedGear);
   const rebirthCount = useGameStore((s) => s.rebirthCount);
   const sectLevel = useGameStore((s) => s.sectLevel);
 
   const gongPower = totalGongBuffPercent(gongLevels);
   const gongSecondary = totalGongSecondaryStats(gongLevels);
-  const equip = aggregateEquipStats(equippedItems);
+  const gear = aggregateGearStats(equippedGear);
   const rebirthPower = rebirthBuffPercent(rebirthCount);
   const sectPower = sectBuffPercent(sectLevel);
 
@@ -62,9 +62,9 @@ export function StatPanel({ onClose }: Props) {
           <div className="stat-row"><span>무공 (ATK/DEF/HP 버프)</span><span>+{pct(gongPower)}</span></div>
           <div className="stat-row"><span>문파 버프</span><span>+{pct(sectPower)}</span></div>
           <div className="stat-row"><span>환골탈태 버프</span><span>+{pct(rebirthPower)}</span></div>
-          <div className="stat-row"><span>장구 강화 버프</span><span>+{pct(equip.enhanceBuffPercent)}</span></div>
+          <div className="stat-row"><span>장비 강화 버프</span><span>+{pct(gear.enhanceBuffPercent)}</span></div>
           <div className="stat-row-sub"><span>· 무공(질풍살검) 치명타확률/피해/공속/회피</span><span>+{pct(gongSecondary.critChancePercent)} / +{pct(gongSecondary.critDamagePercent)} / +{pct(gongSecondary.attackSpeedPercent)} / +{pct(gongSecondary.evasionPercent)}</span></div>
-          <div className="stat-row-sub"><span>· 장구 치명타확률/피해/공속/회피/내공획득</span><span>+{pct(equip.critChancePercent)} / +{pct(equip.critDamagePercent)} / +{pct(equip.attackSpeedPercent)} / +{pct(equip.evasionPercent)} / +{pct(equip.chiGainPercent)}</span></div>
+          <div className="stat-row-sub"><span>· 장비 치명타확률/피해/공속/회피/내공획득</span><span>+{pct(gear.critChancePercent)} / +{pct(gear.critDamagePercent)} / +{pct(gear.attackSpeedPercent)} / +{pct(gear.evasionPercent)} / +{pct(gear.chiGainPercent)}</span></div>
         </div>
       </div>
     </div>

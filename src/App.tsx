@@ -5,7 +5,7 @@ import { PlayerStatus } from "./components/PlayerStatus";
 import { EnemyStatus } from "./components/EnemyStatus";
 import { Toast } from "./components/Toast";
 import { GongPanel } from "./components/panels/GongPanel";
-import { EquipPanel } from "./components/panels/EquipPanel";
+import { GearPanel } from "./components/panels/GearPanel";
 import { RebirthPanel } from "./components/panels/RebirthPanel";
 import { SectPanel } from "./components/panels/SectPanel";
 import { ShopPanel } from "./components/panels/ShopPanel";
@@ -15,7 +15,7 @@ import { BossDialog } from "./components/BossDialog";
 import { OnboardingFlow } from "./components/OnboardingFlow";
 import { useGameStore } from "./game/store";
 
-export type PanelKey = "gong" | "equip" | "rebirth" | "sect" | "shop" | "stage" | "stat";
+export type PanelKey = "gong" | "gear" | "rebirth" | "sect" | "shop" | "stage" | "stat";
 
 export function App() {
   const claimDailyBonusIfNeeded = useGameStore((s) => s.claimDailyBonusIfNeeded);
@@ -48,7 +48,7 @@ export function App() {
         <Toast />
       </div>
       {openPanel === "gong" && <GongPanel onClose={() => setOpenPanel(null)} onNavigate={setOpenPanel} />}
-      {openPanel === "equip" && <EquipPanel onClose={() => setOpenPanel(null)} onNavigate={setOpenPanel} />}
+      {openPanel === "gear" && <GearPanel onClose={() => setOpenPanel(null)} onNavigate={setOpenPanel} />}
       {openPanel === "rebirth" && <RebirthPanel onClose={() => setOpenPanel(null)} />}
       {openPanel === "sect" && <SectPanel onClose={() => setOpenPanel(null)} />}
       {openPanel === "shop" && <ShopPanel onClose={() => setOpenPanel(null)} />}

@@ -19,8 +19,8 @@ interface Props {
   onNavigate: (key: PanelKey) => void;
 }
 
-export function EquipPanel({ onClose, onNavigate }: Props) {
-  const equippedItems = useGameStore((s) => s.equippedItems);
+export function GearPanel({ onClose, onNavigate }: Props) {
+  const equippedGear = useGameStore((s) => s.equippedGear);
   const inventory = useGameStore((s) => s.inventory);
   const gold = useGameStore((s) => s.gold);
   const enhanceStones = useGameStore((s) => s.enhanceStones);
@@ -34,7 +34,7 @@ export function EquipPanel({ onClose, onNavigate }: Props) {
   const [useProtection, setUseProtection] = useState(false);
   const [checkedIds, setCheckedIds] = useState<Set<string>>(new Set());
 
-  const selectedItem = equippedItems[selectedSlot];
+  const selectedItem = equippedGear[selectedSlot];
   const targetLevel = selectedItem ? selectedItem.enhanceLevel + 1 : 0;
   const maxed = !!selectedItem && selectedItem.enhanceLevel >= ENHANCE_MAX_LEVEL;
   const cost = selectedItem ? enhanceCost(selectedItem.enhanceLevel) : 0;
@@ -56,15 +56,15 @@ export function EquipPanel({ onClose, onNavigate }: Props) {
   }
 
   return (
-    <div id="equip-panel" className="stat-panel">
+    <div id="gear-panel" className="stat-panel">
       <div className="panel-header">
-        <span>장구</span>
+        <span>장비</span>
         <button className="panel-close-btn" onClick={onClose}>닫기</button>
       </div>
       <div id="equip-body">
         <div id="equip-slot-list">
           {ALL_SLOTS.map((slot) => {
-            const item = equippedItems[slot];
+            const item = equippedGear[slot];
             return (
               <button
                 key={slot}
@@ -108,7 +108,7 @@ export function EquipPanel({ onClose, onNavigate }: Props) {
               </div>
             </>
           ) : (
-            <div className="gong-board-locked-message">장착된 장구가 없습니다.</div>
+            <div className="gong-board-locked-message">장착된 장비가 없습니다.</div>
           )}
           {candidateItems.length > 0 && (
             <>

@@ -33,7 +33,7 @@ export function RebirthPanel({ onClose }: Props) {
           <br />
           초기화됨: 레벨/스테이지 진행도/무공 노드/소지 내공
           <br />
-          유지됨: 전(錢), 장구 강화 단계, 누적 환골탈태 횟수
+          유지됨: 전(錢), 장비 강화 단계, 누적 환골탈태 횟수
         </div>
         <button className="gong-upgrade-btn" disabled={!eligible} onClick={handleClick}>
           {eligible ? "환골탈태 진행하기" : "조건 미충족"}

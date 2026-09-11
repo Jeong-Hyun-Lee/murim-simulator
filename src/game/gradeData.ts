@@ -1,5 +1,5 @@
 // wiki/concepts/장구-시스템.md 등급 체계 통합 표 — 장구/기연 전 시스템 공통 6단계.
-// gachaData.ts와 equipData.ts가 공유하므로 별도 모듈로 분리(기존엔 gachaData.ts에만 있었음).
+// gachaData.ts와 gearData.ts가 공유하므로 별도 모듈로 분리(기존엔 gachaData.ts에만 있었음).
 
 export type Grade = "하품" | "중품" | "상품" | "절품" | "신품" | "선품";
 

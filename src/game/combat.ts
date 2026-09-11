@@ -111,7 +111,7 @@ const PLAYER_BASE_DEF = 3;
 // 장구-시스템 슬롯 스탯(치명타율/치명타피해/공격속도/회피율/내공획득량) 인게임 반영 기준값.
 // 위키 BaseStat 공식(ItemLevel×Coeff×SlotWeight×GradeMultiplier)을 %스탯에 그대로 적용하면
 // 고레벨에서 100%를 가볍게 넘으므로, 실제 전투 계산에 쓰일 때만 안전 상한을 둔다(원본 합산치
-// 자체는 equipData.ts에 그대로 보존 — 인벤토리/강화 UI 수치 표시는 원본을 그대로 보여준다).
+// 자체는 gearData.ts에 그대로 보존 — 인벤토리/강화 UI 수치 표시는 원본을 그대로 보여준다).
 const BASE_CRIT_CHANCE = 0.1;
 const BASE_CRIT_MULTIPLIER = 1.5;
 const MAX_CRIT_CHANCE = 0.9;

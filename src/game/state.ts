@@ -1,8 +1,8 @@
 import type { StageId } from "./combat";
 import type { GongLevels } from "./gongData";
-import type { EquipItem, SlotId } from "./equipData";
+import type { GearItem, SlotId } from "./gearData";
 
-const SAVE_KEY = "murim-simulator-save-v1";
+const SAVE_KEY = "murim-simulator-save-v2";
 
 export interface GameState {
   level: number;
@@ -11,8 +11,8 @@ export interface GameState {
   chi: number;
   stage: StageId;
   gongLevels: GongLevels;
-  equippedItems: Partial<Record<SlotId, EquipItem>>;
-  inventory: EquipItem[];
+  equippedGear: Partial<Record<SlotId, GearItem>>;
+  inventory: GearItem[];
   enhanceStones: number;
   protectionCharms: number;
   rebirthCount: number;
@@ -40,7 +40,7 @@ function defaultState(): GameState {
     chi: 0,
     stage: { major: 1, sub: 1 },
     gongLevels: {},
-    equippedItems: {},
+    equippedGear: {},
     inventory: [],
     enhanceStones: 0,
     protectionCharms: 0,

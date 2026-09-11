@@ -2,10 +2,10 @@
 // ponytail: 일반상점은 shopData.ts(전→영약 교환 1종)로 v1 범위 축소 구현. 결과 카드 등급별
 // 색상/글로우는 GRADE_COLOR·gradeTier(gradeData.ts, 재노출)로 GachaPanel에서 적용.
 // 2026-09-10: 장구 인벤토리 도입에 맞춰 기연 보상을 내공 환산 대신 실제 장구 아이템으로
-// 변경 — 여기서는 등급/슬롯만 정하고, 실제 EquipItem 생성(플레이어 레벨 필요)은 store.ts에서.
+// 변경 — 여기서는 등급/슬롯만 정하고, 실제 GearItem 생성(플레이어 레벨 필요)은 store.ts에서.
 
 import { GRADE_COLOR, gradeAtLeast, gradeTier, type Grade } from "./gradeData";
-import { ALL_SLOTS, type SlotId } from "./equipData";
+import { ALL_SLOTS, type SlotId } from "./gearData";
 
 export { GRADE_COLOR, gradeTier };
 export type { Grade };

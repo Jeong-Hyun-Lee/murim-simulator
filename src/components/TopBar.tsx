@@ -16,12 +16,12 @@ export function TopBar({ onTogglePanel }: Props) {
   const togglePause = useGameStore((s) => s.togglePause);
   const bulkUpgradeAllGong = useGameStore((s) => s.bulkUpgradeAllGong);
   const showToast = useGameStore((s) => s.showToast);
-  const hasAnyGear = useGameStore((s) => s.inventory.length > 0 || Object.keys(s.equippedItems).length > 0);
+  const hasAnyGear = useGameStore((s) => s.inventory.length > 0 || Object.keys(s.equippedGear).length > 0);
   const highestMajorCleared = useGameStore((s) => s.highestMajorCleared);
   const farmReturnStage = useGameStore((s) => s.farmReturnStage);
   const stopFarming = useGameStore((s) => s.stopFarming);
 
-  const equipUnlocked = hasAnyGear;
+  const gearUnlocked = hasAnyGear;
   const sectUnlocked = highestMajorCleared >= 2;
   const shopUnlocked = highestMajorCleared >= 1;
   const rebirthUnlocked = highestMajorCleared >= 7;
@@ -48,11 +48,11 @@ export function TopBar({ onTogglePanel }: Props) {
         </button>
       )}
       <button className="topbar-btn" onClick={() => onTogglePanel("gong")}>무공</button>
-      {equipUnlocked ? (
-        <button className="topbar-btn" onClick={() => onTogglePanel("equip")}>장구</button>
+      {gearUnlocked ? (
+        <button className="topbar-btn" onClick={() => onTogglePanel("gear")}>장비</button>
       ) : (
-        <button className="topbar-btn topbar-btn-locked" onClick={() => handleLockedClick("장구 아이템을 처음 획득하면 열립니다.")}>
-          🔒 장구
+        <button className="topbar-btn topbar-btn-locked" onClick={() => handleLockedClick("장비 아이템을 처음 획득하면 열립니다.")}>
+          🔒 장비
         </button>
       )}
       {rebirthUnlocked ? (

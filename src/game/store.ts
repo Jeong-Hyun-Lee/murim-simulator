@@ -34,15 +34,15 @@ import {
   ALL_SLOTS,
   SLOT_INFO,
   ENHANCE_MAX_LEVEL,
-  createEquipItem,
-  aggregateEquipStats,
+  createGearItem,
+  aggregateGearStats,
   enhanceCost,
   enhanceStoneCost,
   needsProtectionEligible,
   rollEnhance,
   type SlotId,
-  type EquipItem,
-} from "./equipData";
+  type GearItem,
+} from "./gearData";
 import { rollStageDrops } from "./dropData";
 import { realmName, rebirthGateMajor, rebirthBuffPercent } from "./rebirthData";
 import {
@@ -148,9 +148,9 @@ function totalBuffPercent(
 
 function computePlayerStats(
   level: number,
-  s: Pick<GameStoreState, "gongLevels" | "rebirthCount" | "sectLevel" | "equippedItems" | "nickname">,
+  s: Pick<GameStoreState, "gongLevels" | "rebirthCount" | "sectLevel" | "equippedGear" | "nickname">,
 ): PlayerStats {
-  const agg = aggregateEquipStats(s.equippedItems);
+  const agg = aggregateGearStats(s.equippedGear);
   const gongSecondary = totalGongSecondaryStats(s.gongLevels);
   const buffPercent = totalBuffPercent(s, agg.enhanceBuffPercent);
   return playerStats(
@@ -202,7 +202,7 @@ function persist(s: GameStoreState) {
     chi: s.chi,
     stage: s.stage,
     gongLevels: s.gongLevels,
-    equippedItems: s.equippedItems,
+    equippedGear: s.equippedGear,
     inventory: s.inventory,
     enhanceStones: s.enhanceStones,
     protectionCharms: s.protectionCharms,
@@ -232,11 +232,11 @@ function levelUp(level: number, exp: number): { level: number; exp: number } {
   return { level, exp };
 }
 
-type ItemLocation = { item: EquipItem; source: "equipped" } | { item: EquipItem; source: "inventory" };
+type ItemLocation = { item: GearItem; source: "equipped" } | { item: GearItem; source: "inventory" };
 
 function findItemLocation(s: GameStoreState, itemId: string): ItemLocation | null {
   for (const slot of ALL_SLOTS) {
-    const item = s.equippedItems[slot];
+    const item = s.equippedGear[slot];
     if (item && item.id === itemId) return { item, source: "equipped" };
   }
   const item = s.inventory.find((it) => it.id === itemId);
@@ -248,10 +248,10 @@ function applyStageDrops(
   stage: StageId,
   playerLevel: number,
   isFirstMajorClear: boolean,
-): { inventory: EquipItem[]; enhanceStones: number; protectionCharms: number; dropSummary: string } {
+): { inventory: GearItem[]; enhanceStones: number; protectionCharms: number; dropSummary: string } {
   const drop = rollStageDrops(stage, playerLevel, isFirstMajorClear);
   const dropParts: string[] = [];
-  if (drop.items.length > 0) dropParts.push(`장구 ${drop.items.length}개`);
+  if (drop.items.length > 0) dropParts.push(`장비 ${drop.items.length}개`);
   if (drop.stones > 0) dropParts.push(`강화석 +${drop.stones}`);
   if (drop.protectionCharms > 0) dropParts.push(`보호부적 +${drop.protectionCharms}`);
   return {
@@ -396,14 +396,14 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       const idx = s.inventory.findIndex((it) => it.id === itemId);
       if (idx < 0) return;
       const item = s.inventory[idx];
-      const prevEquipped = s.equippedItems[item.slot];
+      const prevEquipped = s.equippedGear[item.slot];
       const inventory = s.inventory.filter((it) => it.id !== itemId);
       if (prevEquipped) inventory.push(prevEquipped);
-      const equippedItems = { ...s.equippedItems, [item.slot]: item };
+      const equippedGear = { ...s.equippedGear, [item.slot]: item };
 
-      const newPlayer = computePlayerStats(s.level, { ...s, equippedItems });
+      const newPlayer = computePlayerStats(s.level, { ...s, equippedGear });
       set({
-        equippedItems,
+        equippedGear,
         inventory,
         player: newPlayer,
         playerHp: carryOverHp(s.player.hp, s.playerHp, newPlayer.hp),
@@ -414,15 +414,15 @@ export const useGameStore = create<GameStoreState>((set, get) => {
 
     unequipItem: (slot) => {
       const s = get();
-      const item = s.equippedItems[slot];
+      const item = s.equippedGear[slot];
       if (!item) return;
-      const equippedItems = { ...s.equippedItems };
-      delete equippedItems[slot];
+      const equippedGear = { ...s.equippedGear };
+      delete equippedGear[slot];
       const inventory = [...s.inventory, item];
 
-      const newPlayer = computePlayerStats(s.level, { ...s, equippedItems });
+      const newPlayer = computePlayerStats(s.level, { ...s, equippedGear });
       set({
-        equippedItems,
+        equippedGear,
         inventory,
         player: newPlayer,
         playerHp: carryOverHp(s.player.hp, s.playerHp, newPlayer.hp),
@@ -444,14 +444,14 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       if (s.gold < cost || s.enhanceStones < stoneCost || (wantsProtection && s.protectionCharms < 1)) return;
 
       const result = rollEnhance(item.enhanceLevel, wantsProtection);
-      const updatedItem: EquipItem = { ...item, enhanceLevel: result.newLevel };
+      const updatedItem: GearItem = { ...item, enhanceLevel: result.newLevel };
 
-      const equippedItems =
-        location.source === "equipped" ? { ...s.equippedItems, [item.slot]: updatedItem } : s.equippedItems;
+      const equippedGear =
+        location.source === "equipped" ? { ...s.equippedGear, [item.slot]: updatedItem } : s.equippedGear;
       const inventory =
         location.source === "inventory" ? s.inventory.map((it) => (it.id === itemId ? updatedItem : it)) : s.inventory;
 
-      const newPlayer = computePlayerStats(s.level, { ...s, equippedItems });
+      const newPlayer = computePlayerStats(s.level, { ...s, equippedGear });
       const message = result.success
         ? `강화 성공! ${SLOT_INFO[item.slot].name} +${result.newLevel}`
         : result.downgraded
@@ -461,7 +461,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         gold: s.gold - cost,
         enhanceStones: s.enhanceStones - stoneCost,
         protectionCharms: wantsProtection ? s.protectionCharms - 1 : s.protectionCharms,
-        equippedItems,
+        equippedGear,
         inventory,
         player: newPlayer,
         playerHp: carryOverHp(s.player.hp, s.playerHp, newPlayer.hp),
@@ -559,7 +559,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       const s = get();
       if (s.elixir < PULL_COST) return;
       const { result, nextPity } = pullSingle(s.gachaPity);
-      const item = createEquipItem(result.slot, result.grade, s.level);
+      const item = createGearItem(result.slot, result.grade, s.level);
       set({
         elixir: s.elixir - PULL_COST,
         gachaPity: nextPity,
@@ -573,7 +573,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       const s = get();
       if (s.elixir < PULL_10_COST) return;
       const { results, nextPity } = pullTen(s.gachaPity);
-      const items = results.map((r) => createEquipItem(r.slot, r.grade, s.level));
+      const items = results.map((r) => createGearItem(r.slot, r.grade, s.level));
       set({
         elixir: s.elixir - PULL_10_COST,
         gachaPity: nextPity,
@@ -823,12 +823,12 @@ export {
   SLOT_INFO,
   ENHANCE_MAX_LEVEL,
   itemBaseStats,
-  aggregateEquipStats,
+  aggregateGearStats,
   enhanceCost,
   enhanceSuccessChance,
   enhanceStoneCost,
   needsProtectionEligible,
-} from "./equipData";
+} from "./gearData";
 export { realmName, rebirthGateMajor, rebirthBuffPercent };
 export {
   SECT_NAME,
@@ -841,4 +841,4 @@ export {
 export { PULL_COST, PULL_10_COST, HARD_PITY, GRADE_COLOR, gradeTier };
 export { elixirExchangeCost };
 export { expToNextLevel, isBossStage };
-export type { PullResult, StageId, GongBoard, GongCurrency, SlotId, EquipItem };
+export type { PullResult, StageId, GongBoard, GongCurrency, SlotId, GearItem };
