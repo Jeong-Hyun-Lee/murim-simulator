@@ -1,7 +1,7 @@
-import { useGameStore, expToNextLevel } from "../game/store";
-import { combatPower } from "../game/combat";
+import { useGameStore, expToNextLevel } from '../game/store';
+import { combatPower } from '../game/combat';
 
-export function PlayerStatus() {
+export const PlayerStatus = () => {
   const level = useGameStore((s) => s.level);
   const exp = useGameStore((s) => s.exp);
   const playerHp = useGameStore((s) => s.playerHp);
@@ -14,7 +14,9 @@ export function PlayerStatus() {
 
   return (
     <div id="player-status">
-      <span>{playerName} · Lv.{level}</span>
+      <span>
+        {playerName} · Lv.{level}
+      </span>
       <span className="combat-power">전투력 {combatPower(player).toLocaleString()}</span>
       <div className="bar hp-bar">
         <div className="bar-fill" style={{ width: `${hpPercent}%` }} />
@@ -24,4 +26,4 @@ export function PlayerStatus() {
       </div>
     </div>
   );
-}
+};

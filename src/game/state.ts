@@ -1,8 +1,8 @@
-import type { StageId } from "./combat";
-import type { GongLevels } from "./gongData";
-import type { GearItem, SlotId } from "./gearData";
+import type { StageId } from './combat';
+import type { GongLevels } from './gongData';
+import type { GearItem, SlotId } from './gearData';
 
-const SAVE_KEY = "murim-simulator-save-v2";
+const SAVE_KEY = 'murim-simulator-save-v2';
 
 export interface GameState {
   level: number;
@@ -32,36 +32,34 @@ export interface GameState {
   farmReturnStage: StageId | null;
 }
 
-function defaultState(): GameState {
-  return {
-    level: 1,
-    exp: 0,
-    gold: 0,
-    chi: 0,
-    stage: { major: 1, sub: 1 },
-    gongLevels: {},
-    equippedGear: {},
-    inventory: [],
-    enhanceStones: 0,
-    protectionCharms: 0,
-    rebirthCount: 0,
-    highestMajorCleared: 0,
-    sectLevel: 1,
-    sectExp: 0,
-    sectTotalContribution: 0,
-    sectContributionPoints: 0,
-    elixir: 0,
-    elixirExchangeCount: 0,
-    gachaPity: 0,
-    lastLoginDate: "",
-    nickname: "",
-    onboardingDone: false,
-    tutorialGongDone: false,
-    farmReturnStage: null,
-  };
-}
+const defaultState = (): GameState => ({
+  level: 1,
+  exp: 0,
+  gold: 0,
+  chi: 0,
+  stage: { major: 1, sub: 1 },
+  gongLevels: {},
+  equippedGear: {},
+  inventory: [],
+  enhanceStones: 0,
+  protectionCharms: 0,
+  rebirthCount: 0,
+  highestMajorCleared: 0,
+  sectLevel: 1,
+  sectExp: 0,
+  sectTotalContribution: 0,
+  sectContributionPoints: 0,
+  elixir: 0,
+  elixirExchangeCount: 0,
+  gachaPity: 0,
+  lastLoginDate: '',
+  nickname: '',
+  onboardingDone: false,
+  tutorialGongDone: false,
+  farmReturnStage: null,
+});
 
-export function loadState(): GameState {
+export const loadState = (): GameState => {
   const raw = localStorage.getItem(SAVE_KEY);
   if (!raw) return defaultState();
   try {
@@ -69,8 +67,8 @@ export function loadState(): GameState {
   } catch {
     return defaultState();
   }
-}
+};
 
-export function saveState(state: GameState) {
+export const saveState = (state: GameState) => {
   localStorage.setItem(SAVE_KEY, JSON.stringify(state));
-}
+};

@@ -6,6 +6,5 @@
 export const ELIXIR_EXCHANGE_BASE_COST = 500; // 전(錢)
 const ELIXIR_EXCHANGE_GROWTH = 1.2;
 
-export function elixirExchangeCost(purchaseCount: number): number {
-  return Math.round(ELIXIR_EXCHANGE_BASE_COST * ELIXIR_EXCHANGE_GROWTH ** purchaseCount);
-}
+export const elixirExchangeCost = (purchaseCount: number): number =>
+  Math.round(ELIXIR_EXCHANGE_BASE_COST * ELIXIR_EXCHANGE_GROWTH ** purchaseCount);

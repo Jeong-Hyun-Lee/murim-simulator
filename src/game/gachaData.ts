@@ -4,8 +4,8 @@
 // 2026-09-10: 장구 인벤토리 도입에 맞춰 기연 보상을 내공 환산 대신 실제 장구 아이템으로
 // 변경 — 여기서는 등급/슬롯만 정하고, 실제 GearItem 생성(플레이어 레벨 필요)은 store.ts에서.
 
-import { GRADE_COLOR, gradeAtLeast, gradeTier, type Grade } from "./gradeData";
-import { ALL_SLOTS, type SlotId } from "./gearData";
+import { GRADE_COLOR, gradeAtLeast, gradeTier, type Grade } from './gradeData';
+import { ALL_SLOTS, type SlotId } from './gearData';
 
 export { GRADE_COLOR, gradeTier };
 export type { Grade };
@@ -24,11 +24,12 @@ const GRADE_CHANCE: Record<Grade, number> = {
   선품: 0.0005,
 };
 
-const GRADE_ORDER_TABLE = (Object.keys(GRADE_CHANCE) as Grade[]).map((grade) => ({ grade, chance: GRADE_CHANCE[grade] }));
+const GRADE_ORDER_TABLE = (Object.keys(GRADE_CHANCE) as Grade[]).map((grade) => ({
+  grade,
+  chance: GRADE_CHANCE[grade],
+}));
 
-function randomSlot(): SlotId {
-  return ALL_SLOTS[Math.floor(Math.random() * ALL_SLOTS.length)];
-}
+const randomSlot = (): SlotId => ALL_SLOTS[Math.floor(Math.random() * ALL_SLOTS.length)];
 
 export interface PullResult {
   grade: Grade;
@@ -36,16 +37,16 @@ export interface PullResult {
 }
 
 // pityCounter: 마지막 선품 이후 굴린 횟수(0부터 시작, 이번 굴림 전 값을 전달).
-function rollOnce(pityCounter: number): { grade: Grade; nextPity: number } {
+const rollOnce = (pityCounter: number): { grade: Grade; nextPity: number } => {
   if (pityCounter >= HARD_PITY - 1) {
-    return { grade: "선품", nextPity: 0 };
+    return { grade: '선품', nextPity: 0 };
   }
 
   const table = GRADE_ORDER_TABLE.map((g) => ({ ...g }));
   if (pityCounter + 1 >= SOFT_PITY_START) {
     const bonus = (pityCounter + 1 - SOFT_PITY_START + 1) * 0.005;
-    const sun = table.find((g) => g.grade === "선품")!;
-    const ha = table.find((g) => g.grade === "하품")!;
+    const sun = table.find((g) => g.grade === '선품')!;
+    const ha = table.find((g) => g.grade === '하품')!;
     const applied = Math.min(bonus, ha.chance);
     sun.chance += applied;
     ha.chance -= applied;
@@ -53,28 +54,29 @@ function rollOnce(pityCounter: number): { grade: Grade; nextPity: number } {
 
   let roll = Math.random();
   for (const g of table) {
-    if (roll < g.chance) return { grade: g.grade, nextPity: g.grade === "선품" ? 0 : pityCounter + 1 };
+    if (roll < g.chance)
+      return { grade: g.grade, nextPity: g.grade === '선품' ? 0 : pityCounter + 1 };
     roll -= g.chance;
   }
   const last = table[table.length - 1];
-  return { grade: last.grade, nextPity: last.grade === "선품" ? 0 : pityCounter + 1 };
-}
+  return { grade: last.grade, nextPity: last.grade === '선품' ? 0 : pityCounter + 1 };
+};
 
-export function pullSingle(pityCounter: number): { result: PullResult; nextPity: number } {
+export const pullSingle = (pityCounter: number): { result: PullResult; nextPity: number } => {
   const { grade, nextPity } = rollOnce(pityCounter);
   return { result: { grade, slot: randomSlot() }, nextPity };
-}
+};
 
-export function pullTen(pityCounter: number): { results: PullResult[]; nextPity: number } {
+export const pullTen = (pityCounter: number): { results: PullResult[]; nextPity: number } => {
   let pity = pityCounter;
   const results: PullResult[] = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 10; i += 1) {
     const { grade, nextPity } = rollOnce(pity);
     pity = nextPity;
     results.push({ grade, slot: randomSlot() });
   }
-  if (!results.some((r) => gradeAtLeast(r.grade, "상품"))) {
-    results[results.length - 1] = { grade: "상품", slot: randomSlot() };
+  if (!results.some((r) => gradeAtLeast(r.grade, '상품'))) {
+    results[results.length - 1] = { grade: '상품', slot: randomSlot() };
   }
   return { results, nextPity: pity };
-}
+};

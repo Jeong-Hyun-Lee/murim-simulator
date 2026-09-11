@@ -8,29 +8,29 @@ export interface StageId {
 }
 
 export const BOSS_NAMES: Record<number, string> = {
-  1: "혈랑채 두목",
-  2: "흑시장 조직 두목",
-  3: "팽가 소공자",
-  4: "사공(邪功) 사용자",
-  5: "혈교 살수 두목",
-  6: "마두",
-  7: "심마(心魔)",
-  8: "혈교 선봉대장",
-  9: "청운문 배신자",
-  10: "혈교 하남지단주 척망",
+  1: '혈랑채 두목',
+  2: '흑시장 조직 두목',
+  3: '팽가 소공자',
+  4: '사공(邪功) 사용자',
+  5: '혈교 살수 두목',
+  6: '마두',
+  7: '심마(心魔)',
+  8: '혈교 선봉대장',
+  9: '청운문 배신자',
+  10: '혈교 하남지단주 척망',
 };
 
 const MOB_NAMES: Record<number, string> = {
-  1: "혈랑채 졸개",
-  2: "흑시장 하수인",
-  3: "팽가 무사",
-  4: "사공 추종자",
-  5: "혈교 살수",
-  6: "마두의 수하",
-  7: "심마의 환영",
-  8: "혈교 선봉병",
-  9: "배신자의 수하",
-  10: "혈교 정예병",
+  1: '혈랑채 졸개',
+  2: '흑시장 하수인',
+  3: '팽가 무사',
+  4: '사공 추종자',
+  5: '혈교 살수',
+  6: '마두의 수하',
+  7: '심마의 환영',
+  8: '혈교 선봉병',
+  9: '배신자의 수하',
+  10: '혈교 정예병',
 };
 
 const BASE_HP_1 = 30;
@@ -47,11 +47,9 @@ export interface UnitStats {
   def: number;
 }
 
-export function isBossStage(stage: StageId): boolean {
-  return stage.sub === 10;
-}
+export const isBossStage = (stage: StageId): boolean => stage.sub === 10;
 
-export function monsterStats(stage: StageId): UnitStats {
+export const monsterStats = (stage: StageId): UnitStats => {
   const effSub = Math.min(stage.sub, 9);
   const baseHp = BASE_HP_1 * 1.8 ** (stage.major - 1);
   const baseAtk = BASE_ATK_1 * 1.6 ** (stage.major - 1);
@@ -69,7 +67,7 @@ export function monsterStats(stage: StageId): UnitStats {
 
   const name = isBossStage(stage) ? BOSS_NAMES[stage.major] : MOB_NAMES[stage.major];
   return { name, hp: Math.round(hp), atk: Math.round(atk), def: Math.round(def) };
-}
+};
 
 export interface StageReward {
   exp: number;
@@ -77,7 +75,7 @@ export interface StageReward {
   chi: number;
 }
 
-export function stageReward(stage: StageId): StageReward {
+export const stageReward = (stage: StageId): StageReward => {
   const effSub = Math.min(stage.sub, 9);
   let exp = BASE_EXP_1 * 1.8 ** (stage.major - 1) * (1 + 0.15 * (effSub - 1));
   let gold = BASE_GOLD_1 * 1.6 ** (stage.major - 1) * (1 + 0.12 * (effSub - 1));
@@ -90,17 +88,15 @@ export function stageReward(stage: StageId): StageReward {
   }
 
   return { exp: Math.round(exp), gold: Math.round(gold), chi: Math.round(chi) };
-}
+};
 
-export function nextStage(stage: StageId): StageId {
+export const nextStage = (stage: StageId): StageId => {
   if (stage.major === 10 && stage.sub === 10) return stage; // 챕터1 최종 스테이지는 계속 반복 파밍
   if (stage.sub < 10) return { major: stage.major, sub: stage.sub + 1 };
   return { major: stage.major + 1, sub: 1 };
-}
+};
 
-export function stageLabel(stage: StageId): string {
-  return `${stage.major}-${stage.sub}`;
-}
+export const stageLabel = (stage: StageId): string => `${stage.major}-${stage.sub}`;
 
 // 플레이어 기본 스탯 곡선 — 스테이지-레벨링-기획서 §7-1의 1.052^(Lv-1) 곡선을
 // HP/ATK/DEF 각각에 동일 비율로 적용한 v1 근사치.
@@ -147,11 +143,14 @@ export interface PlayerStats extends UnitStats {
   chiGainMultiplier: number; // 1 = 기본
 }
 
-function clamp(x: number, min: number, max: number): number {
-  return Math.max(min, Math.min(max, x));
-}
+const clamp = (x: number, min: number, max: number): number => Math.max(min, Math.min(max, x));
 
-export function playerStats(level: number, buffPercent = 0, gear: GearStatBonus = NO_GEAR, name = "목현"): PlayerStats {
+export const playerStats = (
+  level: number,
+  buffPercent = 0,
+  gear: GearStatBonus = NO_GEAR,
+  name = '목현',
+): PlayerStats => {
   const charMult = 1.052 ** (level - 1);
   const buffMult = 1 + buffPercent / 100;
 
@@ -166,34 +165,33 @@ export function playerStats(level: number, buffPercent = 0, gear: GearStatBonus 
     evasion: clamp(gear.evasionPercent / 100, 0, MAX_EVASION),
     chiGainMultiplier: 1 + gear.chiGainPercent / 100,
   };
-}
+};
 
 // wiki/concepts/스테이지-레벨링-기획서.md 7장 "전투력 지수" 표시용 근사치.
 // player.hp/atk/def는 이미 버프가 곱연산된 최종치라 별도 가중합만 하면 된다.
 // ponytail: 가중치(0.5/8/8)는 위키 §7 "Lv1 ≈ 100" 앵커에 근접시킨 자리표시자 — 실측 밸런싱 시 조정.
-export function combatPower(stats: Pick<PlayerStats, "hp" | "atk" | "def">): number {
-  return Math.round(stats.hp * 0.5 + stats.atk * 8 + stats.def * 8);
-}
+export const combatPower = (stats: Pick<PlayerStats, 'hp' | 'atk' | 'def'>): number =>
+  Math.round(stats.hp * 0.5 + stats.atk * 8 + stats.def * 8);
 
-export function expToNextLevel(level: number): number {
-  return Math.round(40 * 1.15 ** (level - 1));
-}
+export const expToNextLevel = (level: number): number => Math.round(40 * 1.15 ** (level - 1));
 
-export function damage(attackerAtk: number, defenderDef: number): number {
-  return Math.max(1, attackerAtk - defenderDef);
-}
+export const damage = (attackerAtk: number, defenderDef: number): number =>
+  Math.max(1, attackerAtk - defenderDef);
 
 export interface DamageResult {
   amount: number;
   isCrit: boolean;
 }
 
-export function rollPlayerDamage(attackerAtk: number, defenderDef: number, critChance: number, critMultiplier: number): DamageResult {
+export const rollPlayerDamage = (
+  attackerAtk: number,
+  defenderDef: number,
+  critChance: number,
+  critMultiplier: number,
+): DamageResult => {
   const base = damage(attackerAtk, defenderDef);
   const isCrit = Math.random() < critChance;
   return { amount: isCrit ? Math.round(base * critMultiplier) : base, isCrit };
-}
+};
 
-export function rollEvaded(evasion: number): boolean {
-  return Math.random() < evasion;
-}
+export const rollEvaded = (evasion: number): boolean => Math.random() < evasion;

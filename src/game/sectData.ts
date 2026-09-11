@@ -5,7 +5,7 @@
 // 문파무공(화산검법 등) 보드는 청운문 전용 시그니처 초식명이 위키에 없어(청운문 특전은 이미
 // 삼재검법 계열로 무공 탭에 구현됨) 후속 확장으로 계속 보류.
 
-export const SECT_NAME = "청운문";
+export const SECT_NAME = '청운문';
 export const SECT_MAX_LEVEL = 50;
 export const CHI_PER_CONTRIBUTION = 1000;
 export const ELIXIR_CONTRIBUTION_RATE = 10; // 영약 1개 = 10 기여도
@@ -13,9 +13,8 @@ export const ELIXIR_CONTRIBUTION_RATE = 10; // 영약 1개 = 10 기여도
 const BASE_SECT_EXP = 50;
 const SECT_GROWTH = 1.08;
 
-export function sectExpToNextLevel(level: number): number {
-  return Math.round(BASE_SECT_EXP * SECT_GROWTH ** (level - 1));
-}
+export const sectExpToNextLevel = (level: number): number =>
+  Math.round(BASE_SECT_EXP * SECT_GROWTH ** (level - 1));
 
 const BONUS_TABLE: [number, number][] = [
   [10, 3],
@@ -25,10 +24,10 @@ const BONUS_TABLE: [number, number][] = [
   [50, 25],
 ];
 
-export function sectBuffPercent(level: number): number {
+export const sectBuffPercent = (level: number): number => {
   let result = 0;
   for (const [lvl, pct] of BONUS_TABLE) {
     if (level >= lvl) result = pct;
   }
   return result;
-}
+};

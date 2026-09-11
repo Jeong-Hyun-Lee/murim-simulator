@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 import {
   monsterStats,
   playerStats,
@@ -12,8 +12,8 @@ import {
   type StageId,
   type UnitStats,
   type PlayerStats,
-} from "./combat";
-import { loadState, saveState, type GameState } from "./state";
+} from './combat';
+import { loadState, saveState, type GameState } from './state';
 import {
   GONG_BOARDS,
   nodeLevel,
@@ -29,7 +29,7 @@ import {
   type GongLevels,
   type GongBoard,
   type GongCurrency,
-} from "./gongData";
+} from './gongData';
 import {
   ALL_SLOTS,
   SLOT_INFO,
@@ -42,9 +42,9 @@ import {
   rollEnhance,
   type SlotId,
   type GearItem,
-} from "./gearData";
-import { rollStageDrops } from "./dropData";
-import { realmName, rebirthGateMajor, rebirthBuffPercent } from "./rebirthData";
+} from './gearData';
+import { rollStageDrops } from './dropData';
+import { realmName, rebirthGateMajor, rebirthBuffPercent } from './rebirthData';
 import {
   SECT_NAME,
   SECT_MAX_LEVEL,
@@ -52,7 +52,7 @@ import {
   ELIXIR_CONTRIBUTION_RATE,
   sectExpToNextLevel,
   sectBuffPercent,
-} from "./sectData";
+} from './sectData';
 import {
   PULL_COST,
   PULL_10_COST,
@@ -62,8 +62,8 @@ import {
   GRADE_COLOR,
   gradeTier,
   type PullResult,
-} from "./gachaData";
-import { elixirExchangeCost } from "./shopData";
+} from './gachaData';
+import { elixirExchangeCost } from './shopData';
 
 // wiki/concepts/ux-시나리오-기획서.md §3-4: 오프라인 방치 성장 없음, 1일 1회 정액 재접속 보너스만.
 const DAILY_BONUS_GOLD = 50;
@@ -73,15 +73,12 @@ const DAILY_BONUS_ELIXIR = 5;
 const BOSS_FIRST_CLEAR_ELIXIR = 3;
 const DEFEAT_CONSOLATION_RATIO = 0.2;
 
-function todayString(): string {
-  return new Date().toISOString().slice(0, 10);
-}
+const todayString = (): string => new Date().toISOString().slice(0, 10);
 
 // 사냥터 모드는 이미 도달한(자동 등반이 지나온) 스테이지만 farming 대상으로 허용 — 현재 막힌
 // 스테이지보다 앞선 곳을 미리 사냥하는 우회를 막는다.
-export function isStageAtOrBefore(a: StageId, b: StageId): boolean {
-  return a.major < b.major || (a.major === b.major && a.sub <= b.sub);
-}
+export const isStageAtOrBefore = (a: StageId, b: StageId): boolean =>
+  a.major < b.major || (a.major === b.major && a.sub <= b.sub);
 
 export interface GachaOutcome {
   results: PullResult[];
@@ -137,19 +134,22 @@ interface GameStoreState extends GameState {
 // wiki/concepts/스테이지-레벨링-기획서.md 7장 전투력 공식: 무공/장구강화/문파특전/환골탈태
 // 4항목을 하나의 가산버프 버킷에 합산 후 BaseStat_총합에 한 번만 곱한다. 장구의 원본 스탯
 // (ATK/DEF/HP/치명타율 등)은 별도로 BaseStat_총합에 가산(computePlayerStats 참고).
-function totalBuffPercent(
-  s: Pick<GameStoreState, "gongLevels" | "rebirthCount" | "sectLevel">,
+const totalBuffPercent = (
+  s: Pick<GameStoreState, 'gongLevels' | 'rebirthCount' | 'sectLevel'>,
   gearEnhanceBuffPercent: number,
-): number {
-  return (
-    totalGongBuffPercent(s.gongLevels) + gearEnhanceBuffPercent + rebirthBuffPercent(s.rebirthCount) + sectBuffPercent(s.sectLevel)
-  );
-}
+): number =>
+  totalGongBuffPercent(s.gongLevels) +
+  gearEnhanceBuffPercent +
+  rebirthBuffPercent(s.rebirthCount) +
+  sectBuffPercent(s.sectLevel);
 
-function computePlayerStats(
+const computePlayerStats = (
   level: number,
-  s: Pick<GameStoreState, "gongLevels" | "rebirthCount" | "sectLevel" | "equippedGear" | "nickname">,
-): PlayerStats {
+  s: Pick<
+    GameStoreState,
+    'gongLevels' | 'rebirthCount' | 'sectLevel' | 'equippedGear' | 'nickname'
+  >,
+): PlayerStats => {
   const agg = aggregateGearStats(s.equippedGear);
   const gongSecondary = totalGongSecondaryStats(s.gongLevels);
   const buffPercent = totalBuffPercent(s, agg.enhanceBuffPercent);
@@ -166,25 +166,28 @@ function computePlayerStats(
       evasionPercent: agg.evasionPercent + gongSecondary.evasionPercent,
       chiGainPercent: agg.chiGainPercent + gongSecondary.chiGainPercent,
     },
-    s.nickname || "목현",
+    s.nickname || '목현',
   );
-}
+};
 
 // HP 최대치가 바뀔 때 이미 입은 피해량은 그대로 유지하고 최대치 증가분만 회복분으로 반영.
-function carryOverHp(prevMaxHp: number, prevHp: number, newMaxHp: number): number {
-  return Math.min(newMaxHp, prevHp + Math.max(0, newMaxHp - prevMaxHp));
-}
+const carryOverHp = (prevMaxHp: number, prevHp: number, newMaxHp: number): number =>
+  Math.min(newMaxHp, prevHp + Math.max(0, newMaxHp - prevMaxHp));
 
 // 무공 보드는 내공(chi) 또는 문파무공은 기여도(sectContributionPoints) 두 재화 중 하나를 쓴다.
-function gongCurrencyBalance(board: GongBoard, s: Pick<GameStoreState, "chi" | "sectContributionPoints">): number {
-  return board.currency === "contribution" ? s.sectContributionPoints : s.chi;
-}
+const gongCurrencyBalance = (
+  board: GongBoard,
+  s: Pick<GameStoreState, 'chi' | 'sectContributionPoints'>,
+): number => (board.currency === 'contribution' ? s.sectContributionPoints : s.chi);
 
-function gongCurrencyPatch(board: GongBoard, newBalance: number): Partial<GameStoreState> {
-  return board.currency === "contribution" ? { sectContributionPoints: newBalance } : { chi: newBalance };
-}
+const gongCurrencyPatch = (board: GongBoard, newBalance: number): Partial<GameStoreState> =>
+  board.currency === 'contribution' ? { sectContributionPoints: newBalance } : { chi: newBalance };
 
-function applySectContribution(sectLevel: number, sectExp: number, contribution: number): { sectLevel: number; sectExp: number } {
+const applySectContribution = (
+  sectLevel: number,
+  sectExp: number,
+  contribution: number,
+): { sectLevel: number; sectExp: number } => {
   let level = sectLevel;
   let exp = sectExp + contribution;
   while (level < SECT_MAX_LEVEL && exp >= sectExpToNextLevel(level)) {
@@ -192,9 +195,9 @@ function applySectContribution(sectLevel: number, sectExp: number, contribution:
     level += 1;
   }
   return { sectLevel: level, sectExp: exp };
-}
+};
 
-function persist(s: GameStoreState) {
+const persist = (s: GameStoreState) => {
   const state: GameState = {
     level: s.level,
     exp: s.exp,
@@ -222,33 +225,41 @@ function persist(s: GameStoreState) {
     farmReturnStage: s.farmReturnStage,
   };
   saveState(state);
-}
+};
 
-function levelUp(level: number, exp: number): { level: number; exp: number } {
+const levelUp = (startLevel: number, startExp: number): { level: number; exp: number } => {
+  let level = startLevel;
+  let exp = startExp;
   while (exp >= expToNextLevel(level)) {
     exp -= expToNextLevel(level);
     level += 1;
   }
   return { level, exp };
-}
+};
 
-type ItemLocation = { item: GearItem; source: "equipped" } | { item: GearItem; source: "inventory" };
+type ItemLocation =
+  { item: GearItem; source: 'equipped' } | { item: GearItem; source: 'inventory' };
 
-function findItemLocation(s: GameStoreState, itemId: string): ItemLocation | null {
+const findItemLocation = (s: GameStoreState, itemId: string): ItemLocation | null => {
   for (const slot of ALL_SLOTS) {
     const item = s.equippedGear[slot];
-    if (item && item.id === itemId) return { item, source: "equipped" };
+    if (item && item.id === itemId) return { item, source: 'equipped' };
   }
   const item = s.inventory.find((it) => it.id === itemId);
-  return item ? { item, source: "inventory" } : null;
-}
+  return item ? { item, source: 'inventory' } : null;
+};
 
-function applyStageDrops(
-  s: Pick<GameStoreState, "inventory" | "enhanceStones" | "protectionCharms">,
+const applyStageDrops = (
+  s: Pick<GameStoreState, 'inventory' | 'enhanceStones' | 'protectionCharms'>,
   stage: StageId,
   playerLevel: number,
   isFirstMajorClear: boolean,
-): { inventory: GearItem[]; enhanceStones: number; protectionCharms: number; dropSummary: string } {
+): {
+  inventory: GearItem[];
+  enhanceStones: number;
+  protectionCharms: number;
+  dropSummary: string;
+} => {
   const drop = rollStageDrops(stage, playerLevel, isFirstMajorClear);
   const dropParts: string[] = [];
   if (drop.items.length > 0) dropParts.push(`장비 ${drop.items.length}개`);
@@ -258,9 +269,9 @@ function applyStageDrops(
     inventory: drop.items.length > 0 ? [...s.inventory, ...drop.items] : s.inventory,
     enhanceStones: s.enhanceStones + drop.stones,
     protectionCharms: s.protectionCharms + drop.protectionCharms,
-    dropSummary: dropParts.length > 0 ? ` (드랍: ${dropParts.join(", ")})` : "",
+    dropSummary: dropParts.length > 0 ? ` (드랍: ${dropParts.join(', ')})` : '',
   };
-}
+};
 
 const saved: GameState = loadState();
 
@@ -274,7 +285,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
     playerHp: initialPlayer.hp,
     enemy: initialEnemy,
     enemyHp: initialEnemy.hp,
-    toastMessage: "",
+    toastMessage: '',
     lastGachaOutcome: null,
     paused: false,
     awaitingBossChallenge: isBossStage(saved.stage),
@@ -308,7 +319,10 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       if (
         balance < curCost ||
         curLevel >= node.maxLevel ||
-        !isBoardUnlocked(board, { highestMajorCleared: s.highestMajorCleared, gongLevels: s.gongLevels }) ||
+        !isBoardUnlocked(board, {
+          highestMajorCleared: s.highestMajorCleared,
+          gongLevels: s.gongLevels,
+        }) ||
         !isNodeUnlocked(node, s.gongLevels)
       )
         return;
@@ -335,7 +349,10 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       if (
         levelsGained <= 0 ||
         balance < cost ||
-        !isBoardUnlocked(board, { highestMajorCleared: s.highestMajorCleared, gongLevels: s.gongLevels }) ||
+        !isBoardUnlocked(board, {
+          highestMajorCleared: s.highestMajorCleared,
+          gongLevels: s.gongLevels,
+        }) ||
         !isNodeUnlocked(node, s.gongLevels)
       )
         return;
@@ -357,18 +374,23 @@ export const useGameStore = create<GameStoreState>((set, get) => {
     // 서로 다른 재화라 "가장 싸다" 비교가 성립하지 않아 이 일괄 연마 대상에서 제외.
     bulkUpgradeAllGong: () => {
       const s = get();
-      let chi = s.chi;
+      let { chi } = s;
       const gongLevels = { ...s.gongLevels };
       let purchased = 0;
       const unlockCtx = { highestMajorCleared: s.highestMajorCleared, gongLevels };
 
-      for (let i = 0; i < 100000; i++) {
+      for (let i = 0; i < 100000; i += 1) {
         let cheapest: { nodeId: string; cost: number; level: number } | null = null;
-        for (const board of GONG_BOARDS) {
-          if (board.currency !== "chi" || !isBoardUnlocked(board, unlockCtx)) continue;
-          for (const node of board.nodes) {
+        const unlockedChiBoards = GONG_BOARDS.filter(
+          (board) => board.currency === 'chi' && isBoardUnlocked(board, unlockCtx),
+        );
+        for (const board of unlockedChiBoards) {
+          const upgradableNodes = board.nodes.filter(
+            (node) =>
+              nodeLevel(node, gongLevels) < node.maxLevel && isNodeUnlocked(node, gongLevels),
+          );
+          for (const node of upgradableNodes) {
             const level = nodeLevel(node, gongLevels);
-            if (level >= node.maxLevel || !isNodeUnlocked(node, gongLevels)) continue;
             const cost = nodeUpgradeCost(node, level);
             if (!cheapest || cost < cheapest.cost) cheapest = { nodeId: node.id, cost, level };
           }
@@ -376,7 +398,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         if (!cheapest || chi < cheapest.cost) break;
         chi -= cheapest.cost;
         gongLevels[cheapest.nodeId] = cheapest.level + 1;
-        purchased++;
+        purchased += 1;
       }
 
       if (purchased === 0) return;
@@ -433,30 +455,43 @@ export const useGameStore = create<GameStoreState>((set, get) => {
     enhanceItem: (itemId, useProtection) => {
       const s = get();
       const location = findItemLocation(s, itemId);
-      if (!location) return;
+      if (!location) return undefined;
       const { item } = location;
-      if (item.enhanceLevel >= ENHANCE_MAX_LEVEL) return;
+      if (item.enhanceLevel >= ENHANCE_MAX_LEVEL) return undefined;
 
       const targetLevel = item.enhanceLevel + 1;
       const cost = enhanceCost(item.enhanceLevel);
       const stoneCost = enhanceStoneCost(targetLevel);
       const wantsProtection = useProtection && needsProtectionEligible(targetLevel);
-      if (s.gold < cost || s.enhanceStones < stoneCost || (wantsProtection && s.protectionCharms < 1)) return;
+      if (
+        s.gold < cost ||
+        s.enhanceStones < stoneCost ||
+        (wantsProtection && s.protectionCharms < 1)
+      ) {
+        return undefined;
+      }
 
       const result = rollEnhance(item.enhanceLevel, wantsProtection);
       const updatedItem: GearItem = { ...item, enhanceLevel: result.newLevel };
 
       const equippedGear =
-        location.source === "equipped" ? { ...s.equippedGear, [item.slot]: updatedItem } : s.equippedGear;
+        location.source === 'equipped'
+          ? { ...s.equippedGear, [item.slot]: updatedItem }
+          : s.equippedGear;
       const inventory =
-        location.source === "inventory" ? s.inventory.map((it) => (it.id === itemId ? updatedItem : it)) : s.inventory;
+        location.source === 'inventory'
+          ? s.inventory.map((it) => (it.id === itemId ? updatedItem : it))
+          : s.inventory;
 
       const newPlayer = computePlayerStats(s.level, { ...s, equippedGear });
-      const message = result.success
-        ? `강화 성공! ${SLOT_INFO[item.slot].name} +${result.newLevel}`
-        : result.downgraded
-          ? `강화 실패... 단계 하락 (현재 +${result.newLevel})`
-          : `강화 실패 (현재 +${result.newLevel} 유지)`;
+      let message: string;
+      if (result.success) {
+        message = `강화 성공! ${SLOT_INFO[item.slot].name} +${result.newLevel}`;
+      } else if (result.downgraded) {
+        message = `강화 실패... 단계 하락 (현재 +${result.newLevel})`;
+      } else {
+        message = `강화 실패 (현재 +${result.newLevel} 유지)`;
+      }
       set({
         gold: s.gold - cost,
         enhanceStones: s.enhanceStones - stoneCost,
@@ -601,7 +636,12 @@ export const useGameStore = create<GameStoreState>((set, get) => {
 
     playerAttack: () => {
       const s = get();
-      const { amount: dmg, isCrit } = rollPlayerDamage(s.player.atk, s.enemy.def, s.player.critChance, s.player.critMultiplier);
+      const { amount: dmg, isCrit } = rollPlayerDamage(
+        s.player.atk,
+        s.enemy.def,
+        s.player.critChance,
+        s.player.critMultiplier,
+      );
       const enemyHp = s.enemyHp - dmg;
       const enemyDefeated = enemyHp <= 0;
 
@@ -758,7 +798,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
     // wiki/concepts/ux-시나리오-기획서.md 4장 2절: 도호(별명) 입력, 미입력/스킵 시 기본값.
     completeOnboarding: (nickname) => {
       const s = get();
-      const finalName = nickname.trim() || "목현";
+      const finalName = nickname.trim() || '목현';
       const newPlayer = computePlayerStats(s.level, { ...s, nickname: finalName });
       set({ nickname: finalName, onboardingDone: true, player: newPlayer });
       persist(get());
@@ -829,7 +869,7 @@ export {
   enhanceSuccessChance,
   enhanceStoneCost,
   needsProtectionEligible,
-} from "./gearData";
+} from './gearData';
 export { realmName, rebirthGateMajor, rebirthBuffPercent };
 export {
   SECT_NAME,

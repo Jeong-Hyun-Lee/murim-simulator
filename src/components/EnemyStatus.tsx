@@ -1,6 +1,6 @@
-import { useGameStore } from "../game/store";
+import { useGameStore } from '../game/store';
 
-export function EnemyStatus() {
+export const EnemyStatus = () => {
   const name = useGameStore((s) => s.enemy.name);
   const hp = useGameStore((s) => s.enemyHp);
   const maxHp = useGameStore((s) => s.enemy.hp);
@@ -15,4 +15,4 @@ export function EnemyStatus() {
       </div>
     </div>
   );
-}
+};

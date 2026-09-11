@@ -6,13 +6,13 @@ import {
   ELIXIR_CONTRIBUTION_RATE,
   sectExpToNextLevel,
   sectBuffPercent,
-} from "../../game/store";
+} from '../../game/store';
 
 interface Props {
   onClose: () => void;
 }
 
-export function SectPanel({ onClose }: Props) {
+export const SectPanel = ({ onClose }: Props) => {
   const sectLevel = useGameStore((s) => s.sectLevel);
   const sectExp = useGameStore((s) => s.sectExp);
   const sectTotalContribution = useGameStore((s) => s.sectTotalContribution);
@@ -30,29 +30,44 @@ export function SectPanel({ onClose }: Props) {
     <div id="sect-panel" className="stat-panel">
       <div className="panel-header">
         <span>문파</span>
-        <button className="panel-close-btn" onClick={onClose}>닫기</button>
+        <button type="button" className="panel-close-btn" onClick={onClose}>
+          닫기
+        </button>
       </div>
       <div id="sect-body">
         <div>
           소속: <b>{SECT_NAME}</b>
           <br />
-          문파 Lv.{sectLevel}/{SECT_MAX_LEVEL} ({sectExp}/{levelMaxed ? "-" : sectExpToNextLevel(sectLevel)})
+          문파 Lv.{sectLevel}/{SECT_MAX_LEVEL} ({sectExp}/
+          {levelMaxed ? '-' : sectExpToNextLevel(sectLevel)})
           <br />
           문파 특전: 전투력 +{sectBuffPercent(sectLevel)}%
           <br />
-          누적 기여도: {sectTotalContribution.toLocaleString()} · 사용 가능 기여도(삼재검법 2보 강화용): {sectContributionPoints.toLocaleString()}
+          누적 기여도: {sectTotalContribution.toLocaleString()} · 사용 가능 기여도(삼재검법 2보
+          강화용): {sectContributionPoints.toLocaleString()}
           <br />
-          내공 {CHI_PER_CONTRIBUTION.toLocaleString()} = 기여도 1 (보유 내공 {chi.toLocaleString()}) · 영약 1개 = 기여도 {ELIXIR_CONTRIBUTION_RATE} (보유 영약 {elixir.toLocaleString()})
+          내공 {CHI_PER_CONTRIBUTION.toLocaleString()} = 기여도 1 (보유 내공 {chi.toLocaleString()})
+          · 영약 1개 = 기여도 {ELIXIR_CONTRIBUTION_RATE} (보유 영약 {elixir.toLocaleString()})
         </div>
         <div className="equip-detail-actions">
-          <button className="gong-upgrade-btn" disabled={donatableChi <= 0} onClick={donateChiToSect}>
+          <button
+            type="button"
+            className="gong-upgrade-btn"
+            disabled={donatableChi <= 0}
+            onClick={donateChiToSect}
+          >
             내공 기부 (기여도 +{donatableChi})
           </button>
-          <button className="gong-upgrade-btn" disabled={elixir <= 0} onClick={donateElixirToSect}>
+          <button
+            type="button"
+            className="gong-upgrade-btn"
+            disabled={elixir <= 0}
+            onClick={donateElixirToSect}
+          >
             영약 기부 (기여도 +{elixirContribution})
           </button>
         </div>
       </div>
     </div>
   );
-}
+};
