@@ -6,19 +6,20 @@
 
 body {
   background: #0b0b10;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
   font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
   color: #e8e0cf;
 }
 
-/* 기본 해상도 FHD(1920x1080) — 내부 레이아웃/좌표는 960x540 그대로 두고 화면 표시 크기만
-   transform: scale(2)로 실제 FHD로 키운다(레이아웃 수치를 전부 고치는 대신 화면 출력만 확대). */
+/* 뷰포트를 화면 전체(100%)로 채우고 그 안에서 #game-root를 중앙 정렬 — 내부 레이아웃/좌표는
+   960x540 그대로 두고, App.tsx가 리사이즈마다 계산해 넣는 --game-scale 변수로 화면 출력
+   크기만 비율 유지한 채 여러 해상도에 반응형으로 대응(고정 FHD 확대 방식 폐기). */
 #game-viewport {
-  width: 1920px;
-  height: 1080px;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 #game-root {
@@ -28,8 +29,8 @@ body {
   background: #1a1a22;
   overflow: hidden;
   border: 1px solid #3a3a46;
-  transform: scale(2);
-  transform-origin: top left;
+  transform: scale(var(--game-scale, 1));
+  flex-shrink: 0;
 }
 
 #battle-canvas-mount {

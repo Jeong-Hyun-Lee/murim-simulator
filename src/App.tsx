@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { BattleCanvas } from './canvas/BattleCanvas';
 import { TopBar } from './components/TopBar';
 import { PlayerStatus } from './components/PlayerStatus';
@@ -17,11 +17,28 @@ import { useGameStore } from './game/store';
 
 export type PanelKey = 'gong' | 'gear' | 'rebirth' | 'sect' | 'shop' | 'stage' | 'stat';
 
+// #game-root의 내부 좌표 기준 논리 해상도(BattleCanvas.tsx의 CANVAS_WIDTH/HEIGHT와 동일 비율 16:9).
+const GAME_WIDTH = 960;
+const GAME_HEIGHT = 540;
+
 export const App = () => {
   const claimDailyBonusIfNeeded = useGameStore((s) => s.claimDailyBonusIfNeeded);
   const onboardingDone = useGameStore((s) => s.onboardingDone);
   const tutorialGongDone = useGameStore((s) => s.tutorialGongDone);
   const [openPanel, setOpenPanel] = useState<PanelKey | null>(null);
+  const gameRootRef = useRef<HTMLDivElement>(null);
+
+  // 뷰포트 크기에 맞춰 960x540 논리 레이아웃을 비율 유지한 채 꽉 채우는 배율 계산 —
+  // 내부 좌표/CSS 수치는 그대로 두고 화면 출력 크기만 여러 해상도에 반응형으로 대응.
+  useEffect(() => {
+    const updateScale = () => {
+      const scale = Math.min(window.innerWidth / GAME_WIDTH, window.innerHeight / GAME_HEIGHT);
+      gameRootRef.current?.style.setProperty('--game-scale', String(scale));
+    };
+    updateScale();
+    window.addEventListener('resize', updateScale);
+    return () => window.removeEventListener('resize', updateScale);
+  }, []);
 
   useEffect(() => {
     claimDailyBonusIfNeeded();
@@ -38,7 +55,7 @@ export const App = () => {
 
   return (
     <div id="game-viewport">
-      <div id="game-root">
+      <div id="game-root" ref={gameRootRef}>
         <BattleCanvas />
         <div id="ui-overlay">
           <TopBar onTogglePanel={togglePanel} />
