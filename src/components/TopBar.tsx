@@ -18,6 +18,8 @@ export function TopBar({ onTogglePanel }: Props) {
   const showToast = useGameStore((s) => s.showToast);
   const hasAnyGear = useGameStore((s) => s.inventory.length > 0 || Object.keys(s.equippedItems).length > 0);
   const highestMajorCleared = useGameStore((s) => s.highestMajorCleared);
+  const farmReturnStage = useGameStore((s) => s.farmReturnStage);
+  const stopFarming = useGameStore((s) => s.stopFarming);
 
   const equipUnlocked = hasAnyGear;
   const sectUnlocked = highestMajorCleared >= 2;
@@ -33,10 +35,18 @@ export function TopBar({ onTogglePanel }: Props) {
       <span>
         {stage.major}-{stage.sub}
         {isBossStage(stage) ? " (보스)" : ""}
+        {farmReturnStage ? " (사냥중)" : ""}
       </span>
       <span>전 {gold.toLocaleString()}</span>
       <span>내공 {chi.toLocaleString()}</span>
       <span>영약 {elixir.toLocaleString()}</span>
+      {farmReturnStage ? (
+        <button className="topbar-btn" onClick={stopFarming}>
+          자동 등반 복귀 ({farmReturnStage.major}-{farmReturnStage.sub})
+        </button>
+      ) : (
+        <button className="topbar-btn" onClick={() => onTogglePanel("stage")}>사냥터</button>
+      )}
       <button className="topbar-btn" onClick={() => onTogglePanel("gong")}>무공</button>
       {equipUnlocked ? (
         <button className="topbar-btn" onClick={() => onTogglePanel("equip")}>장구</button>

@@ -28,6 +28,8 @@ export interface GameState {
   nickname: string;
   onboardingDone: boolean;
   tutorialGongDone: boolean;
+  // 사냥터 모드로 진입하기 전, 자동 등반이 멈춰 있던 원래 스테이지(복귀 대상). null이면 사냥터 모드가 아님.
+  farmReturnStage: StageId | null;
 }
 
 function defaultState(): GameState {
@@ -55,6 +57,7 @@ function defaultState(): GameState {
     nickname: "",
     onboardingDone: false,
     tutorialGongDone: false,
+    farmReturnStage: null,
   };
 }
 

@@ -266,6 +266,67 @@ body {
   padding: 16px 4px;
 }
 
+#stage-body-desc {
+  color: #9a8f78;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+#stage-body {
+  display: flex;
+  gap: 16px;
+  min-height: 0;
+  flex: 1;
+}
+
+#stage-major-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 90px;
+  overflow-y: auto;
+}
+
+#stage-sub-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  align-content: start;
+  overflow-y: auto;
+}
+
+.stage-cell {
+  pointer-events: auto;
+  cursor: pointer;
+  background: #201c14;
+  color: #e8e0cf;
+  border: 1px solid #5a4a2a;
+  font-size: 13px;
+  padding: 10px 6px;
+}
+
+.stage-cell:not(:disabled):hover {
+  background: #3a3020;
+}
+
+.stage-cell-locked {
+  color: #6a6a72;
+  cursor: default;
+}
+
+.stage-cell-boss {
+  border-color: #8a2a20;
+  color: #ff9a8a;
+}
+
+.stage-cell-active {
+  background: #3a3020;
+  border-color: #ffd76a;
+  color: #ffd76a;
+}
+
 #rebirth-body,
 #sect-body,
 #gacha-body,

@@ -76,6 +76,12 @@ function todayString(): string {
   return new Date().toISOString().slice(0, 10);
 }
 
+// 사냥터 모드는 이미 도달한(자동 등반이 지나온) 스테이지만 farming 대상으로 허용 — 현재 막힌
+// 스테이지보다 앞선 곳을 미리 사냥하는 우회를 막는다.
+export function isStageAtOrBefore(a: StageId, b: StageId): boolean {
+  return a.major < b.major || (a.major === b.major && a.sub <= b.sub);
+}
+
 export interface GachaOutcome {
   results: PullResult[];
 }
@@ -119,6 +125,8 @@ interface GameStoreState extends GameState {
   exchangeGoldForElixir: () => void;
   confirmBossChallenge: () => void;
   confirmBossReward: () => void;
+  startFarming: (stage: StageId) => void;
+  stopFarming: () => void;
   completeOnboarding: (nickname: string) => void;
   markTutorialGongDone: () => void;
   playerAttack: () => { dmg: number; isCrit: boolean; enemyDefeated: boolean };
@@ -209,6 +217,7 @@ function persist(s: GameStoreState) {
     nickname: s.nickname,
     onboardingDone: s.onboardingDone,
     tutorialGongDone: s.tutorialGongDone,
+    farmReturnStage: s.farmReturnStage,
   };
   saveState(state);
 }
@@ -538,6 +547,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         enemyHp: newEnemy.hp,
         awaitingBossChallenge: false,
         awaitingBossReward: null,
+        farmReturnStage: null,
         toastMessage: `환골탈태! ${realmName(rebirthCount)} 경지에 올랐다 (+전체 스탯 15%)`,
       });
       persist(get());
@@ -592,7 +602,32 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       const enemyHp = s.enemyHp - dmg;
       const enemyDefeated = enemyHp <= 0;
 
-      if (enemyDefeated && isBossStage(s.stage)) {
+      if (enemyDefeated && s.farmReturnStage) {
+        // 사냥터 모드: 스테이지를 넘기지 않고 같은 스테이지에서 계속 사냥 — 보스 조우 연출 없이
+        // 처치할 때마다 파밍용 보상만 지급(최초 클리어 확정 보상·highestMajorCleared 갱신 없음).
+        const reward = stageReward(s.stage);
+        const { level, exp } = levelUp(s.level, s.exp + reward.exp);
+        const gold = s.gold + reward.gold;
+        const chi = s.chi + Math.round(reward.chi * s.player.chiGainMultiplier);
+        const drop = applyStageDrops(s, s.stage, s.level, false);
+        const newPlayer = computePlayerStats(level, s);
+        const newEnemy = monsterStats(s.stage);
+        set({
+          level,
+          exp,
+          gold,
+          chi,
+          inventory: drop.inventory,
+          enhanceStones: drop.enhanceStones,
+          protectionCharms: drop.protectionCharms,
+          player: newPlayer,
+          playerHp: newPlayer.hp,
+          enemy: newEnemy,
+          enemyHp: newEnemy.hp,
+          toastMessage: `사냥: ${s.stage.major}-${s.stage.sub} 처치! +EXP ${reward.exp} +전 ${reward.gold}${drop.dropSummary}`,
+        });
+        persist(get());
+      } else if (enemyDefeated && isBossStage(s.stage)) {
         // 보스 격파 직후에는 즉시 다음 스테이지로 넘기지 않고, 사용자가 [계속하기]를
         // 확인할 때까지 보류(confirmBossReward에서 실제 적용) — 드랍도 그때 함께 지급.
         const reward = stageReward(s.stage);
@@ -668,6 +703,44 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         enemyHp: newEnemy.hp,
         awaitingBossReward: null,
         toastMessage: `${stage.major}-${stage.sub} 클리어! +EXP ${reward.exp} +전 ${reward.gold}${drop.dropSummary}`,
+      });
+      persist(get());
+    },
+
+    // 보스(혹은 잡몹)에게 막혀 강해질 필요가 있을 때, 이미 지나온 스테이지를 골라 반복 사냥하기
+    // 위한 진입점 — 자동 등반 스테이지는 그대로 두고 전투만 선택한 스테이지로 옮긴다.
+    startFarming: (stage) => {
+      const s = get();
+      if (s.awaitingBossChallenge || s.awaitingBossReward) return;
+      const frontier = s.farmReturnStage ?? s.stage;
+      if (!isStageAtOrBefore(stage, frontier)) return;
+
+      const farmReturnStage = s.farmReturnStage ?? s.stage;
+      const newEnemy = monsterStats(stage);
+      set({
+        stage,
+        farmReturnStage,
+        enemy: newEnemy,
+        enemyHp: newEnemy.hp,
+        awaitingBossChallenge: false,
+        toastMessage: `사냥터 이동: ${stage.major}-${stage.sub}`,
+      });
+      persist(get());
+    },
+
+    // 사냥터 모드 종료 — 자동 등반이 멈춰 있던 스테이지로 복귀해 등반을 재개한다.
+    stopFarming: () => {
+      const s = get();
+      const returnStage = s.farmReturnStage;
+      if (!returnStage) return;
+      const newEnemy = monsterStats(returnStage);
+      set({
+        stage: returnStage,
+        farmReturnStage: null,
+        enemy: newEnemy,
+        enemyHp: newEnemy.hp,
+        awaitingBossChallenge: isBossStage(returnStage),
+        toastMessage: `자동 등반 복귀: ${returnStage.major}-${returnStage.sub}`,
       });
       persist(get());
     },
