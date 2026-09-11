@@ -33,8 +33,9 @@ const CRITICAL_HIT_EFFECT_SCALE = 0.16;
 // 스프라이트시트가 64x64/96x64 표시 규격보다 4배 큰 캔버스로 제작돼 있어(저해상도 확대 시 흐려지는 것 방지) 배율을 그만큼 낮춘다.
 // 원화상 실루엣 크기(idle 프레임 기준 목현 215px, 혈랑채 두목 207px, 혈랑채 잡몹 204px)가 서로 비슷해 동일 배율로 통일.
 const PLAYER_SCALE = 0.75;
-// 보스는 플레이어의 1.7배 크기로 보이도록 원화 실루엣 크기 차이(215px/207px)를 보정해 배율 산출: 0.75 * 1.7 * (215/207).
-const ENEMY_BOSS_SCALE = 1.32;
+// 혈랑채 두목 6모션 재설계판(2026-09-12)은 캔버스(362x724)가 이전 원화보다 훨씬 커져 기존 배율이
+// 화면 위로 크게 잘려나갔다 — 캔버스 상단을 벗어나지 않으면서 플레이어보다 크게 보이도록 재산정.
+const ENEMY_BOSS_SCALE = 0.6;
 const ENEMY_MOB_SCALE = 0.75;
 const ENEMY_HIT_TINT = 0xff6666;
 const HIT_FLASH_MS = 140;
@@ -192,6 +193,9 @@ export const BattleCanvas = () => {
         grunt: { idle: gruntIdle, attack1: gruntAttack },
       };
       const enemyScaleByKind = { boss: ENEMY_BOSS_SCALE, grunt: ENEMY_MOB_SCALE };
+      // 혈랑채 두목 6모션 원화(2026-09-12 재생성)는 이미 화면 왼쪽을 보도록 그려져 좌우 반전이 불필요하다 —
+      // 졸개는 아직 이전(우향) 원화 그대로라 반전을 유지한다.
+      const enemyFacesLeftNativelyByKind = { boss: true, grunt: false };
       let currentEnemyKind: EnemyKind = 'none';
 
       const enemySpritesOf = (kind: 'boss' | 'grunt'): AnimatedSprite[] => {
@@ -236,9 +240,10 @@ export const BattleCanvas = () => {
       for (const kind of ['boss', 'grunt'] as const) {
         const set = enemyAnimByKind[kind];
         const scale = enemyScaleByKind[kind];
+        const xScale = enemyFacesLeftNativelyByKind[kind] ? scale : -scale;
         for (const anim of enemySpritesOf(kind)) {
           anim.position.set(ENEMY_X, ENEMY_Y);
-          anim.scale.set(-scale, scale); // 플레이어를 마주보도록 좌우 반전
+          anim.scale.set(xScale, scale); // 원화가 이미 왼쪽을 보면 반전 생략, 아니면 반전해 플레이어를 마주보게 함
           anim.visible = false;
           anim.loop = false;
         }
