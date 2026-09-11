@@ -59,7 +59,16 @@ export function BattleCanvas() {
     const app = new Application();
 
     (async () => {
-      await app.init({ width: CANVAS_WIDTH, height: CANVAS_HEIGHT, background: 0x242430, antialias: false });
+      // 기본 해상도 FHD(1920x1080) — 논리 캔버스는 960x540(레이아웃/좌표 그대로 유지)지만
+      // resolution:2로 실제 렌더 버퍼는 2배(FHD)로 그려 페인터리 아트가 흐려지지 않게 함.
+      await app.init({
+        width: CANVAS_WIDTH,
+        height: CANVAS_HEIGHT,
+        background: 0x242430,
+        antialias: true,
+        resolution: 2,
+        autoDensity: true,
+      });
       if (disposed) {
         app.destroy(true, { children: true });
         return;

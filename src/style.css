@@ -26,7 +26,6 @@ body {
 #battle-canvas-mount {
   position: absolute;
   inset: 0;
-  image-rendering: pixelated;
 }
 
 #battle-canvas-mount canvas {
