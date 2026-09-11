@@ -182,6 +182,18 @@ export function BattleCanvas() {
         popups.push({ text: root, baseY: y, age: 0 });
       }
 
+      // wiki/raw/assets/피격 데미지 폰트.png 기반 비트맵 숫자 폰트로 플레이어가 입는 피해를 표시.
+      function spawnHitNumberPopup(x: number, y: number, dmg: number) {
+        const numberContainer = createDamageNumber(`-${dmg}`, "hit");
+        if (!numberContainer) {
+          spawnPopup(x, y, `-${dmg}`, 0xff6b6b);
+          return;
+        }
+        numberContainer.position.set(x, y);
+        app.stage.addChild(numberContainer);
+        popups.push({ text: numberContainer, baseY: y, age: 0 });
+      }
+
       function drawEnemyBox(stage: StageId) {
         const boxSize = isBossStage(stage) ? 90 : 60;
         const color = enemyFlashMs > 0 ? 0xffffff : isBossStage(stage) ? 0x7a2fb0 : 0xb03a3a;
@@ -217,7 +229,7 @@ export function BattleCanvas() {
               spawnPopup(PLAYER_X, PLAYER_Y - 110, "회피!", 0x8ad0ff);
             } else if (result) {
               playerFlashMs = HIT_FLASH_MS;
-              spawnPopup(PLAYER_X, PLAYER_Y - 110, `-${result.dmg}`, 0xff6b6b);
+              spawnHitNumberPopup(PLAYER_X, PLAYER_Y - 110, result.dmg);
               spawnHitBurst(PLAYER_X, PLAYER_Y - 70, 0xff6b6b);
             }
             if (currentEnemyKind !== "none") {
