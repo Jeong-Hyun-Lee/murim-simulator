@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
-import { Application, Assets, Graphics, Sprite, Text } from "pixi.js";
+import { Application, Assets, Container, Graphics, Sprite, Text } from "pixi.js";
 import { loadAnimatedSprite } from "./sprite";
+import { loadDamageFont, createDamageNumber, createCriticalLabel } from "./damageFont";
 import { useGameStore, isBossStage, type StageId } from "../game/store";
 
 const CANVAS_WIDTH = 960;
@@ -17,12 +18,13 @@ const ENEMY_MOB_SCALE = 0.55;
 const ENEMY_HIT_TINT = 0xff6666;
 const HIT_FLASH_MS = 140;
 const POPUP_LIFETIME_MS = 800;
+const POPUP_HOLD_RATIO = 0.6; // 전체 수명의 앞 60%는 투명도 유지, 이후에만 페이드아웃
 const ATTACK_INTERVAL_MS = 1300;
 const MIN_ATTACK_INTERVAL_MS = 300; // 장구 공격속도% 최대치에서도 공격이 순간이동처럼 보이지 않게 하는 하한
 const ENEMY_ATTACK_INTERVAL_MS = 1600;
 
 interface DamagePopup {
-  text: Text;
+  text: Container;
   baseY: number;
   age: number;
 }
@@ -68,6 +70,7 @@ export function BattleCanvas() {
         loadAnimatedSprite("/sprites/character/hyeollangchae-boss-attack-sheet.json", "attack"),
         loadAnimatedSprite("/sprites/character/hyeollangchae-grunt-idle-sheet.json", "idle"),
         loadAnimatedSprite("/sprites/character/hyeollangchae-grunt-attack-sheet.json", "attack"),
+        loadDamageFont(),
       ]);
       if (disposed) {
         app.destroy(true, { children: true });
@@ -157,6 +160,28 @@ export function BattleCanvas() {
         popups.push({ text, baseY: y, age: 0 });
       }
 
+      // wiki/raw/assets/데미지 폰트.png 기반 비트맵 숫자 폰트로 플레이어의 공격 데미지를 표시.
+      // 폰트 로딩 실패/미완료 시(이론상 발생 안 함, Promise.all로 이미 대기함) 기존 텍스트로 대체.
+      function spawnDamageNumberPopup(x: number, y: number, dmg: number, isCrit: boolean) {
+        const numberContainer = createDamageNumber(`-${dmg}`, isCrit ? "crit" : "normal");
+        if (!numberContainer) {
+          spawnPopup(x, y, isCrit ? `치명타! -${dmg}` : `-${dmg}`, isCrit ? 0xff9800 : 0xffe27a);
+          return;
+        }
+        const root = new Container();
+        root.addChild(numberContainer);
+        if (isCrit) {
+          const label = createCriticalLabel();
+          if (label) {
+            label.position.set(0, -numberContainer.height / 2 - label.height / 2 - 4);
+            root.addChild(label);
+          }
+        }
+        root.position.set(x, y);
+        app.stage.addChild(root);
+        popups.push({ text: root, baseY: y, age: 0 });
+      }
+
       function drawEnemyBox(stage: StageId) {
         const boxSize = isBossStage(stage) ? 90 : 60;
         const color = enemyFlashMs > 0 ? 0xffffff : isBossStage(stage) ? 0x7a2fb0 : 0xb03a3a;
@@ -179,7 +204,7 @@ export function BattleCanvas() {
             attackClock = 0;
             const { dmg, isCrit } = s.playerAttack();
             enemyFlashMs = HIT_FLASH_MS;
-            spawnPopup(ENEMY_X, ENEMY_Y - 70, isCrit ? `치명타! -${dmg}` : `-${dmg}`, isCrit ? 0xff9800 : 0xffe27a);
+            spawnDamageNumberPopup(ENEMY_X, ENEMY_Y - 70, dmg, isCrit);
             spawnHitBurst(ENEMY_X, ENEMY_Y - 40, isCrit ? 0xff9800 : 0xffe27a);
             idleAnim.visible = false;
             attackAnim.visible = true;
@@ -236,7 +261,8 @@ export function BattleCanvas() {
 
         for (const p of popups) {
           const t = p.age / POPUP_LIFETIME_MS;
-          p.text.alpha = 1 - t;
+          const fadeT = Math.max(0, (t - POPUP_HOLD_RATIO) / (1 - POPUP_HOLD_RATIO));
+          p.text.alpha = 1 - fadeT;
           p.text.position.y = p.baseY - t * 40;
         }
 
