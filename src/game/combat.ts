@@ -3,7 +3,7 @@
 // 만한 수준으로 임의 지정한 자리표시자 — 실측 밸런싱 시 여기만 바꾸면 전체 곡선이 따라 움직인다.
 
 export interface StageId {
-  major: number; // 1~10
+  major: number; // 1~20 (챕터1: 1~10, 챕터2: 11~20)
   sub: number; // 1~10
 }
 
@@ -18,6 +18,17 @@ export const BOSS_NAMES: Record<number, string> = {
   8: '혈교 선봉대장',
   9: '청운문 배신자',
   10: '혈교 하남지단주 척망',
+  // wiki/concepts/스토리보드-기획서-챕터2.md 2장 — 대11~20.
+  11: '혈교 밀사',
+  12: '장강 수로채 채주',
+  13: '남궁세가 방계 장로',
+  14: '화산 마검',
+  15: '혈교 이장로',
+  16: '천외 술사',
+  17: '타락한 전이자',
+  18: '혈교 호법',
+  19: '혈교 부교주',
+  20: '혈교주',
 };
 
 const MOB_NAMES: Record<number, string> = {
@@ -31,6 +42,16 @@ const MOB_NAMES: Record<number, string> = {
   8: '혈교 선봉병',
   9: '배신자의 수하',
   10: '혈교 정예병',
+  11: '혈교 척후병',
+  12: '수로채 뱃도적',
+  13: '남궁세가 방계 무사',
+  14: '화산파 잠입 세작',
+  15: '혈교 정예 호위',
+  16: '천외 견습 술사',
+  17: '타락한 전이자의 잔영',
+  18: '혈교 정사대전 병사',
+  19: '총단 수문장',
+  20: '혈교 친위대',
 };
 
 const BASE_HP_1 = 30;
@@ -90,15 +111,16 @@ export const stageReward = (stage: StageId): StageReward => {
   return { exp: Math.round(exp), gold: Math.round(gold), chi: Math.round(chi) };
 };
 
-const FINAL_MAJOR = 10;
+// wiki/concepts/스테이지-레벨링-기획서.md 1.1절 — 챕터2(대11~20) 신설로 10→20 상향(2026-09-12).
+const FINAL_MAJOR = 20;
 
 export const nextStage = (stage: StageId): StageId => {
-  if (stage.major === FINAL_MAJOR && stage.sub === 10) return stage; // 챕터1 최종 스테이지는 계속 반복 파밍
+  if (stage.major === FINAL_MAJOR && stage.sub === 10) return stage; // 최종 스테이지는 계속 반복 파밍
   if (stage.sub < 10) return { major: stage.major, sub: stage.sub + 1 };
   return { major: stage.major + 1, sub: 1 };
 };
 
-// 챕터1 마지막 스테이지(다음 스토리가 아직 없어 nextStage가 같은 자리를 반환하는 지점).
+// 현재 기획된 마지막 스테이지(다음 스토리가 아직 없어 nextStage가 같은 자리를 반환하는 지점).
 export const isFinalStage = (stage: StageId): boolean =>
   stage.major === FINAL_MAJOR && stage.sub === 10;
 

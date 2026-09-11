@@ -10,7 +10,9 @@ export const realmName = (count: number): string => {
 export const rebirthGateMajor = (count: number): number => {
   if (count === 0) return 7;
   if (count === 1) return 9;
-  return 10;
+  if (count === 2) return 10;
+  if (count === 3) return 15;
+  return 20;
 };
 
 export const rebirthBuffPercent = (count: number): number => count * 15;

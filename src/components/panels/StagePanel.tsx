@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useGameStore, isBossStage, isStageAtOrBefore, type StageId } from '../../game/store';
 
-const MAJORS = Array.from({ length: 10 }, (_, i) => i + 1);
+const MAJORS = Array.from({ length: 20 }, (_, i) => i + 1);
 const SUBS = Array.from({ length: 10 }, (_, i) => i + 1);
 
 interface Props {
