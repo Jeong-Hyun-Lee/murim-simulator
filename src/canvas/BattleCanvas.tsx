@@ -18,7 +18,8 @@ const CRITICAL_HIT_EFFECT_SCALE = 0.16;
 // 스프라이트시트가 64x64/96x64 표시 규격보다 4배 큰 캔버스로 제작돼 있어(저해상도 확대 시 흐려지는 것 방지) 배율을 그만큼 낮춘다.
 // 원화상 실루엣 크기(idle 프레임 기준 목현 215px, 혈랑채 두목 207px, 혈랑채 잡몹 204px)가 서로 비슷해 동일 배율로 통일.
 const PLAYER_SCALE = 0.75;
-const ENEMY_BOSS_SCALE = 0.75;
+// 보스는 플레이어의 2배 크기로 보이도록 원화 실루엣 크기 차이(215px/207px)를 보정해 배율 산출: 0.75 * 2 * (215/207).
+const ENEMY_BOSS_SCALE = 1.56;
 const ENEMY_MOB_SCALE = 0.75;
 const ENEMY_HIT_TINT = 0xff6666;
 const HIT_FLASH_MS = 140;
