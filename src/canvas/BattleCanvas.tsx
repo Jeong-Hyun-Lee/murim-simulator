@@ -526,8 +526,10 @@ export const BattleCanvas = () => {
             if (enemyDefeated && !useGameStore.getState().awaitingBossReward) {
               defeatPauseMs = DEFEAT_PAUSE_MS;
             }
+            // 상대가 쓰러지면 승리 포즈를 잡은 채로 유지한다('hold') — 다음 전투가 시작될 때
+            // (연출 종료·보스 보상 확인 후) idle로 되돌려지므로 포즈가 그대로 남지 않는다.
             if (enemyDefeated && playerAnim.victory) {
-              playPlayerOneShot(playerAnim.victory, 'idle');
+              playPlayerOneShot(playerAnim.victory, 'hold');
             } else {
               for (const sprite of playerSprites()) stopAndHide(sprite);
               const attack =
@@ -553,10 +555,11 @@ export const BattleCanvas = () => {
                 playPlayerOneShot(playerAnim.hurt, 'idle');
               }
             }
-            if (currentEnemyKind !== 'none') {
+            // result가 null이면 적이 이미 쓰러진 프레임이라 공격 모션을 재생하면 안 된다.
+            if (currentEnemyKind !== 'none' && result) {
               const set = enemyAnimByKind[currentEnemyKind];
-              if (result?.playerDefeated && set.victory) {
-                playEnemyOneShot(currentEnemyKind, set.victory, 'idle');
+              if (result.playerDefeated && set.victory) {
+                playEnemyOneShot(currentEnemyKind, set.victory, 'hold');
               } else {
                 for (const sprite of enemySpritesOf(currentEnemyKind)) stopAndHide(sprite);
                 const attack = set.attack2 && Math.random() < 0.5 ? set.attack2 : set.attack1;
