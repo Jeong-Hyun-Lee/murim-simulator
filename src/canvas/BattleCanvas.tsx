@@ -478,12 +478,16 @@ export const BattleCanvas = () => {
 
         if (!s.paused && !s.awaitingBossChallenge && !s.awaitingBossReward && s.onboardingDone) {
           if (defeatPauseMs > 0) {
-            // 쓰러짐 연출이 끝날 때까지 전투를 멈춰두고, 끝나면 양쪽 모두 idle로 세워 다음 판을 시작.
+            // 쓰러짐 연출이 끝날 때까지 전투를 멈춰두고, 끝나는 프레임에 다음 전투(스테이지 이동·HP
+            // 회복)를 반영하면서 양쪽을 idle로 세운다 — 연출과 HP 바가 같은 시점에 바뀌도록.
             defeatPauseMs = Math.max(0, defeatPauseMs - deltaMs);
             if (defeatPauseMs === 0) {
+              useGameStore.getState().startPendingEncounter();
               for (const sprite of playerSprites()) stopAndHide(sprite);
               returnPlayerToIdle();
-              if (currentEnemyKind !== 'none') {
+              // 적 종류가 바뀌는 경우는 아래 스테이지 전환 처리가 새 적을 세우므로 여기선 건드리지 않는다.
+              const nextKind = enemyKindForStage(useGameStore.getState().stage);
+              if (currentEnemyKind !== 'none' && nextKind === currentEnemyKind) {
                 for (const sprite of enemySpritesOf(currentEnemyKind)) stopAndHide(sprite);
                 returnToIdle(currentEnemyKind);
               }
@@ -627,6 +631,10 @@ export const BattleCanvas = () => {
           e.sprite.alpha = frameIndex === lastIndex ? 1 - (t - frameStartT) * e.frames.length : 1;
         }
       };
+
+      // 연출 대기 중에 캔버스가 다시 마운트되면(핫리로드 등) 연출 타이머가 사라져 예약이 영영
+      // 반영되지 않는다 — 시작 시 남아 있는 예약을 먼저 적용해 0 HP로 멈춘 상태를 방지.
+      useGameStore.getState().startPendingEncounter();
 
       app.ticker.add(onTick);
       removeTicker = () => app.ticker.remove(onTick);

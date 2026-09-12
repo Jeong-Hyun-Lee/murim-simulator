@@ -93,6 +93,17 @@ export interface BossRewardOutcome {
   elixirGained: number;
 }
 
+// 쓰러짐 연출이 끝난 뒤에 적용할 다음 전투 상태. 연출 중에는 쓰러진 쪽 HP를 0으로 남겨둬
+// 화면(HP 바·스테이지 표시)과 쓰러짐 모션이 같은 시점에 바뀌도록 맞춘다.
+export interface PendingEncounter {
+  stage: StageId;
+  enemy: UnitStats;
+  enemyHp: number;
+  playerHp: number;
+  awaitingBossChallenge: boolean;
+  farmReturnStage: StageId | null;
+}
+
 interface GameStoreState extends GameState {
   player: PlayerStats;
   playerHp: number;
@@ -105,6 +116,8 @@ interface GameStoreState extends GameState {
   // [계속하기] 확인 — 둘 다 사용자 확인 전까지 자동전투를 멈춘다.
   awaitingBossChallenge: boolean;
   awaitingBossReward: BossRewardOutcome | null;
+  // null이 아니면 쓰러짐 연출 대기 중 — BattleCanvas가 연출을 끝낼 때 startPendingEncounter()로 반영.
+  pendingEncounter: PendingEncounter | null;
 
   showToast: (msg: string) => void;
   togglePause: () => void;
@@ -132,6 +145,7 @@ interface GameStoreState extends GameState {
   markTutorialGongDone: () => void;
   playerAttack: () => { dmg: number; isCrit: boolean; enemyDefeated: boolean };
   enemyAttack: () => { dmg: number; playerDefeated: boolean; evaded: boolean } | null;
+  startPendingEncounter: () => void;
 }
 
 // wiki/concepts/스테이지-레벨링-기획서.md 7장 전투력 공식: 무공/장구강화/문파특전/환골탈태
@@ -299,6 +313,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
     paused: false,
     awaitingBossChallenge: isBossStage(saved.stage),
     awaitingBossReward: null,
+    pendingEncounter: null,
 
     showToast: (msg) => set({ toastMessage: msg }),
     togglePause: () => set((s) => ({ paused: !s.paused })),
@@ -634,6 +649,8 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         awaitingBossChallenge: false,
         awaitingBossReward: null,
         farmReturnStage: null,
+        // 쓰러짐 연출 대기 중이었다면 그 예약은 버린다 — 사용자가 직접 고른 전투가 우선.
+        pendingEncounter: null,
         toastMessage: `환골탈태! ${realmName(rebirthCount)} 경지에 올랐다 (+전체 스탯 15%)`,
       });
       persist(get());
@@ -712,9 +729,15 @@ export const useGameStore = create<GameStoreState>((set, get) => {
           enhanceStones: drop.enhanceStones,
           protectionCharms: drop.protectionCharms,
           player: newPlayer,
-          playerHp: newPlayer.hp,
-          enemy: newEnemy,
-          enemyHp: newEnemy.hp,
+          enemyHp: 0,
+          pendingEncounter: {
+            stage: s.stage,
+            enemy: newEnemy,
+            enemyHp: newEnemy.hp,
+            playerHp: newPlayer.hp,
+            awaitingBossChallenge: false,
+            farmReturnStage: s.farmReturnStage,
+          },
           toastMessage: `사냥: ${s.stage.major}-${s.stage.sub} 처치! +EXP ${reward.exp} +전 ${reward.gold}${drop.dropSummary}`,
         });
         persist(get());
@@ -739,9 +762,15 @@ export const useGameStore = create<GameStoreState>((set, get) => {
           enhanceStones: drop.enhanceStones,
           protectionCharms: drop.protectionCharms,
           player: newPlayer,
-          playerHp: newPlayer.hp,
-          enemy: newEnemy,
-          enemyHp: newEnemy.hp,
+          enemyHp: 0,
+          pendingEncounter: {
+            stage: s.stage,
+            enemy: newEnemy,
+            enemyHp: newEnemy.hp,
+            playerHp: newPlayer.hp,
+            awaitingBossChallenge: false,
+            farmReturnStage: s.farmReturnStage,
+          },
           toastMessage: `${s.stage.major}-${s.stage.sub} 반복 처치! +EXP ${reward.exp} +전 ${reward.gold}${drop.dropSummary} (다음 이야기는 준비 중입니다)`,
         });
         persist(get());
@@ -768,15 +797,20 @@ export const useGameStore = create<GameStoreState>((set, get) => {
           exp,
           gold,
           chi,
-          stage,
           inventory: drop.inventory,
           enhanceStones: drop.enhanceStones,
           protectionCharms: drop.protectionCharms,
           player: newPlayer,
-          playerHp: newPlayer.hp,
-          enemy: newEnemy,
-          enemyHp: newEnemy.hp,
-          awaitingBossChallenge: isBossStage(stage),
+          enemyHp: 0,
+          // 스테이지 이동·HP 회복은 쓰러짐 연출이 끝날 때 한꺼번에 반영한다.
+          pendingEncounter: {
+            stage,
+            enemy: newEnemy,
+            enemyHp: newEnemy.hp,
+            playerHp: newPlayer.hp,
+            awaitingBossChallenge: isBossStage(stage),
+            farmReturnStage: s.farmReturnStage,
+          },
           toastMessage: `${s.stage.major}-${s.stage.sub} 클리어! +EXP ${reward.exp} +전 ${reward.gold}${drop.dropSummary}`,
         });
         persist(get());
@@ -848,6 +882,8 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         enemy: newEnemy,
         enemyHp: newEnemy.hp,
         awaitingBossChallenge: false,
+        // 쓰러짐 연출 대기 중이었다면 그 예약은 버린다 — 사용자가 직접 고른 전투가 우선.
+        pendingEncounter: null,
         toastMessage: `사냥터 이동: ${stage.major}-${stage.sub}`,
       });
       persist(get());
@@ -865,6 +901,8 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         enemy: newEnemy,
         enemyHp: newEnemy.hp,
         awaitingBossChallenge: isBossStage(returnStage),
+        // 쓰러짐 연출 대기 중이었다면 그 예약은 버린다 — 사용자가 직접 고른 전투가 우선.
+        pendingEncounter: null,
         toastMessage: `자동 등반 복귀: ${returnStage.major}-${returnStage.sub}`,
       });
       persist(get());
@@ -909,18 +947,22 @@ export const useGameStore = create<GameStoreState>((set, get) => {
           (retreatStage.major !== s.stage.major || retreatStage.sub !== s.stage.sub);
         const newEnemy = monsterStats(retreatStage);
         set({
-          playerHp: newPlayer.hp,
+          playerHp: 0,
           level,
           exp,
           gold,
           player: newPlayer,
-          stage: retreatStage,
-          // 후퇴하면 자동 등반을 멈추고 막혔던 스테이지를 복귀 지점으로 잡아 사냥터 모드로 전환한다 —
-          // 그대로 두면 후퇴한 스테이지를 깨자마자 다시 막힌 곳으로 올라가 패배만 반복한다.
-          farmReturnStage: retreated ? s.stage : s.farmReturnStage,
-          enemy: newEnemy,
-          enemyHp: newEnemy.hp,
-          awaitingBossChallenge: retreated ? false : s.awaitingBossChallenge,
+          // 후퇴·HP 회복은 쓰러짐 연출이 끝날 때 반영한다. 후퇴하면 자동 등반을 멈추고 막혔던
+          // 스테이지를 복귀 지점으로 잡아 사냥터 모드로 전환 — 그대로 두면 후퇴한 스테이지를
+          // 깨자마자 다시 막힌 곳으로 올라가 패배만 반복한다.
+          pendingEncounter: {
+            stage: retreatStage,
+            enemy: newEnemy,
+            enemyHp: newEnemy.hp,
+            playerHp: newPlayer.hp,
+            awaitingBossChallenge: retreated ? false : s.awaitingBossChallenge,
+            farmReturnStage: retreated ? s.stage : s.farmReturnStage,
+          },
           toastMessage: retreated
             ? `패배... ${retreatStage.major}-${retreatStage.sub}(으)로 후퇴, 자동 등반 중단 (+EXP ${consolationExp})`
             : `패배... 수련 후 재도전 (+EXP ${consolationExp})`,
@@ -931,6 +973,22 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       }
 
       return { dmg, playerDefeated, evaded: false };
+    },
+
+    // 쓰러짐 연출이 끝나는 시점에 BattleCanvas가 호출 — 스테이지 이동과 HP 회복이 연출과 같이 맞물린다.
+    startPendingEncounter: () => {
+      const pending = get().pendingEncounter;
+      if (!pending) return;
+      set({
+        stage: pending.stage,
+        enemy: pending.enemy,
+        enemyHp: pending.enemyHp,
+        playerHp: pending.playerHp,
+        awaitingBossChallenge: pending.awaitingBossChallenge,
+        farmReturnStage: pending.farmReturnStage,
+        pendingEncounter: null,
+      });
+      persist(get());
     },
   };
 });
