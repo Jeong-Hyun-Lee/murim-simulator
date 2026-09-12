@@ -1,7 +1,7 @@
 // 타격 이펙트 스프라이트시트 로더. 각 시트는 폭발 진행 단계를 잘라 붙인 필름스트립이며,
 // BattleCanvas가 프레임을 순서대로 재생해 기존 프로시저럴 원형 확산을 대체한다.
-// - normal: wiki/raw/assets/일반 타격 이펙트.png(디자인-프롬프트-큐.md "일반 타격 이펙트" 산출물, ignite/peak/fadeout 3단계)
-// - critical: wiki/raw/assets/크리티컬 히트 이펙트.png(디자인-프롬프트-큐.md "크리티컬 히트 이펙트" 산출물, ignite/peak/fade1/fade2 4단계)
+// - normal: wiki/raw/assets/일반 타격 이펙트.png("일반 타격 이펙트" 산출물, ignite/peak/fadeout 3단계)
+// - critical: wiki/raw/assets/크리티컬 히트 이펙트.png("크리티컬 히트 이펙트" 산출물, ignite/peak/fade1/fade2 4단계)
 import { Assets, Texture, Rectangle } from 'pixi.js';
 
 interface EffectFrame {

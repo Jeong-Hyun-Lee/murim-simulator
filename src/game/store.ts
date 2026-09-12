@@ -69,7 +69,7 @@ import {
 } from './gachaData';
 import { elixirExchangeCost } from './shopData';
 
-// wiki/concepts/ux-시나리오-기획서.md §3-4: 오프라인 방치 성장 없음, 1일 1회 정액 재접속 보너스만.
+// UX 기획 §3-4: 오프라인 방치 성장 없음, 1일 1회 정액 재접속 보너스만.
 const DAILY_BONUS_GOLD = 50;
 const DAILY_BONUS_CHI = 30;
 const DAILY_BONUS_ELIXIR = 5;
@@ -114,7 +114,7 @@ interface GameStoreState extends GameState {
   toastMessage: string;
   lastGachaOutcome: GachaOutcome | null;
   paused: boolean;
-  // wiki/concepts/ux-시나리오-기획서.md 3-3절: 보스 조우 직전 [도전] 확인, 보스 격파 후
+  // UX 기획 3-3절: 보스 조우 직전 [도전] 확인, 보스 격파 후
   // [계속하기] 확인 — 둘 다 사용자 확인 전까지 자동전투를 멈춘다.
   awaitingBossChallenge: boolean;
   awaitingBossReward: BossRewardOutcome | null;
@@ -394,7 +394,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       persist(get());
     },
 
-    // wiki/concepts/ux-시나리오-기획서.md 1절 하단 액션바 "일괄 연마(모든 보드에 자동으로
+    // UX 기획 1절 하단 액션바 "일괄 연마(모든 보드에 자동으로
     // 재화 소비)" — 해금된 모든 보드의 해금된 노드 중 가장 싼 강화부터 순서대로, 내공이
     // 바닥날 때까지 반복 구매하는 탐욕(greedy) 방식으로 구현. 기여도 재화 보드(문파무공)는
     // 서로 다른 재화라 "가장 싸다" 비교가 성립하지 않아 이 일괄 연마 대상에서 제외.
@@ -910,7 +910,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       persist(get());
     },
 
-    // wiki/concepts/ux-시나리오-기획서.md 4장 2절: 도호(별명) 입력, 미입력/스킵 시 기본값.
+    // UX 기획 4장 2절: 도호(별명) 입력, 미입력/스킵 시 기본값.
     completeOnboarding: (nickname) => {
       const s = get();
       const finalName = nickname.trim() || '목현';
@@ -919,7 +919,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       persist(get());
     },
 
-    // wiki/concepts/ux-시나리오-기획서.md 4장 5절: 첫 성장보드 강제 개방 튜토리얼 완료 처리.
+    // UX 기획 4장 5절: 첫 성장보드 강제 개방 튜토리얼 완료 처리.
     markTutorialGongDone: () => {
       set({ tutorialGongDone: true });
       persist(get());

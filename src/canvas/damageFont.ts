@@ -1,6 +1,6 @@
 // 두 종류의 비트맵 숫자 폰트를 가로로 이어붙여 데미지 숫자를 렌더링한다(PIXI.Text 시스템 폰트 대신).
-// - normal/crit: wiki/raw/assets/데미지 폰트.png(디자인-프롬프트-큐.md "데미지 숫자 폰트 스타일" 산출물, 플레이어→적 타격)
-// - hit: wiki/raw/assets/피격 데미지 폰트.png(디자인-프롬프트-큐.md "피격 데미지 숫자 폰트 스타일" 산출물, 적→플레이어 피격)
+// - normal/crit: wiki/raw/assets/데미지 폰트.png("데미지 숫자 폰트 스타일" 산출물, 플레이어→적 타격)
+// - hit: wiki/raw/assets/피격 데미지 폰트.png("피격 데미지 숫자 폰트 스타일" 산출물, 적→플레이어 피격)
 import { Assets, Container, Sprite, Texture, Rectangle } from 'pixi.js';
 
 interface GlyphFrame {

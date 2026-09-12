@@ -114,7 +114,7 @@ export const BattleCanvas = () => {
       container.appendChild(app.canvas);
 
       // ponytail: 임시 배경 — wiki/raw/assets/배경-아트-02-혈랑채.svg를 그대로 래스터화한 자체 제작 플레이스홀더.
-      // 실제 이미지 생성 AI 산출물로 교체 예정(디자인-프롬프트-큐.md "대1 스테이지 배경" 항목 참고).
+      // 실제 이미지 생성 AI 산출물로 교체 예정(배경 아트는 외부 AI 작업 대기).
       const bgTexture = await Assets.load('/backgrounds/stage1-hyeollangchae.png');
       const background = new Sprite(bgTexture);
       app.stage.addChild(background);

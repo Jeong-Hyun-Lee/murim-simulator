@@ -17,7 +17,7 @@ import type { PanelKey } from '../../App';
 
 const TIER_LABEL = { primary: '1차', secondary: '2차', capstone: '캡스톤' } as const;
 const CURRENCY_LABEL: Record<GongCurrency, string> = { chi: '내공', contribution: '기여도' };
-// wiki/concepts/ux-시나리오-기획서.md 4장 5단계: 튜토리얼 강제 개방 대상 노드("휘두르기" 역할).
+// UX 기획 4장 5단계: 튜토리얼 강제 개방 대상 노드("휘두르기" 역할).
 const TUTORIAL_NODE_ID = 'cheon';
 
 interface RowProps {

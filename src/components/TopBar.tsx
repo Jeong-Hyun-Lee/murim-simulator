@@ -6,7 +6,7 @@ interface Props {
   onTogglePanel: (key: PanelKey) => void;
 }
 
-// wiki/concepts/ux-시나리오-기획서.md 6절 "온보딩 노출 순서" — 스테이지/무공은 항상 노출,
+// UX 기획 6절 "온보딩 노출 순서" — 스테이지/무공은 항상 노출,
 // 나머지 4개 탭은 진행도에 따라 순차 해금. 일일 퀘스트/문파채팅 NEW배지 등 부가 연출은 범위 밖.
 export const TopBar = ({ onTogglePanel }: Props) => {
   const stage = useGameStore((s) => s.stage);

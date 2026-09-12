@@ -44,7 +44,7 @@ export const App = () => {
     claimDailyBonusIfNeeded();
   }, [claimDailyBonusIfNeeded]);
 
-  // wiki/concepts/ux-시나리오-기획서.md 4장 5단계: 첫 성장보드 강제 개방.
+  // UX 기획 4장 5단계: 첫 성장보드 강제 개방.
   useEffect(() => {
     if (onboardingDone && !tutorialGongDone) setOpenPanel('gong');
   }, [onboardingDone, tutorialGongDone]);
