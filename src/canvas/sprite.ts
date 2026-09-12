@@ -33,6 +33,7 @@ export const loadAnimatedSprite = async (
   }));
 
   const sprite = new AnimatedSprite(textures);
-  sprite.anchor.set(0.5, 1);
+  // 셀 규격은 IMPLEMENTATION-SPEC.md 권장안(서 있는 기준점 셀 내부 (0.5, 0.875), 발밑 12.5% 안전 여백).
+  sprite.anchor.set(0.5, 0.875);
   return sprite;
 };

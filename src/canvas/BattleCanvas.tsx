@@ -30,11 +30,12 @@ const ENEMY_Y = GROUND_Y;
 const HIT_BURST_LIFETIME_MS = 260;
 const NORMAL_HIT_EFFECT_SCALE = 0.22;
 const CRITICAL_HIT_EFFECT_SCALE = 0.16;
-// 모든 생성 원화는 프레임별 투명 여백을 제거한 뒤 896px 고정 셀·공통 바닥선으로 재패킹한다.
+// IMPLEMENTATION-SPEC.md 규격대로 재패킹(캐릭터별 idle 신체 높이 256px 정규화, 앵커 (0.5,0.875)).
+// 신체 높이가 모든 캐릭터에서 256px로 통일됐으므로 화면 배율은 이 값 기준 목표 표시 높이로 역산했다.
 // 화면에서는 두 인물의 몸통 간 거리를 좁히되, 두목은 잡몹보다 조금 크게 유지한다.
-const PLAYER_SCALE = 0.5;
-const ENEMY_BOSS_SCALE = 0.55;
-const ENEMY_MOB_SCALE = 0.48;
+const PLAYER_SCALE = 0.92;
+const ENEMY_BOSS_SCALE = 1.07;
+const ENEMY_MOB_SCALE = 0.82;
 const ENEMY_HIT_TINT = 0xff6666;
 const HIT_FLASH_MS = 140;
 const POPUP_LIFETIME_MS = 800;
