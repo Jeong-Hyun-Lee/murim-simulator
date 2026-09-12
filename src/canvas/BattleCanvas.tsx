@@ -17,7 +17,7 @@ import {
   loadCriticalHitEffect,
   criticalHitEffectFrames,
 } from './hitEffect';
-import { useGameStore, isBossStage, type StageId } from '../game/store';
+import { useGameStore, isBossStage, enemyKind, type StageId, type EnemyKind } from '../game/store';
 import { playHit, playCrit, playVictory, playDefeat } from '../audio/sfx';
 
 const CANVAS_WIDTH = 960;
@@ -36,6 +36,7 @@ const CRITICAL_HIT_EFFECT_SCALE = 0.16;
 const PLAYER_SCALE = 0.92;
 const ENEMY_BOSS_SCALE = 1.07;
 const ENEMY_MOB_SCALE = 0.82;
+const ENEMY_ELITE_SCALE = 0.92; // 정예산적은 졸개·궁수와 두목 사이 체급
 const ENEMY_HIT_TINT = 0xff6666;
 const HIT_FLASH_MS = 140;
 const POPUP_LIFETIME_MS = 800;
@@ -66,16 +67,7 @@ interface FramedHitEffect {
 
 // 6모션(idle/공격1/공격2/피격/쓰러짐/승리) 에셋을 확보한 캐릭터만 attack2~victory를 채운다 —
 // 아직 idle/attack 2종뿐인 캐릭터는 옵셔널 필드를 비워두면 기존 2모션 그대로 동작.
-interface EnemyAnimSet {
-  idle: AnimatedSprite;
-  attack1: AnimatedSprite;
-  attack2?: AnimatedSprite;
-  hurt?: AnimatedSprite;
-  death?: AnimatedSprite;
-  victory?: AnimatedSprite;
-}
-
-interface PlayerAnimSet {
+interface AnimSet {
   idle: AnimatedSprite;
   attack1: AnimatedSprite;
   attack2?: AnimatedSprite;
@@ -141,51 +133,34 @@ export const BattleCanvas = () => {
         }
       };
 
-      const [
-        idleAnim,
-        attackAnim,
-        playerAttack2,
-        playerHurt,
-        playerDeath,
-        playerVictory,
-        bossIdle,
-        bossAttack1,
-        bossAttack2,
-        bossHurt,
-        bossDeath,
-        bossVictory,
-        gruntIdle,
-        gruntAttack,
-        gruntAttack2,
-        gruntHurt,
-        gruntDeath,
-      ] = await Promise.all([
-        loadAnimatedSprite('/sprites/character/mokhyeon-idle-sheet.json', 'idle'),
-        loadAnimatedSprite('/sprites/character/mokhyeon-attack-sheet.json', 'attack'),
-        tryLoadAnimatedSprite('/sprites/character/mokhyeon-attack2-sheet.json', 'attack2'),
-        tryLoadAnimatedSprite('/sprites/character/mokhyeon-hurt-sheet.json', 'hurt'),
-        tryLoadAnimatedSprite('/sprites/character/mokhyeon-death-sheet.json', 'death'),
-        tryLoadAnimatedSprite('/sprites/character/mokhyeon-victory-sheet.json', 'victory'),
-        loadAnimatedSprite('/sprites/character/hyeollangchae-boss-idle-sheet.json', 'idle'),
-        loadAnimatedSprite('/sprites/character/hyeollangchae-boss-attack-sheet.json', 'attack'),
-        tryLoadAnimatedSprite(
-          '/sprites/character/hyeollangchae-boss-attack2-sheet.json',
-          'attack2',
-        ),
-        tryLoadAnimatedSprite('/sprites/character/hyeollangchae-boss-hurt-sheet.json', 'hurt'),
-        tryLoadAnimatedSprite('/sprites/character/hyeollangchae-boss-death-sheet.json', 'death'),
-        tryLoadAnimatedSprite(
-          '/sprites/character/hyeollangchae-boss-victory-sheet.json',
-          'victory',
-        ),
-        loadAnimatedSprite('/sprites/character/hyeollangchae-grunt-idle-sheet.json', 'idle'),
-        loadAnimatedSprite('/sprites/character/hyeollangchae-grunt-attack-sheet.json', 'attack'),
-        tryLoadAnimatedSprite(
-          '/sprites/character/hyeollangchae-grunt-attack2-sheet.json',
-          'attack2',
-        ),
-        tryLoadAnimatedSprite('/sprites/character/hyeollangchae-grunt-hurt-sheet.json', 'hurt'),
-        tryLoadAnimatedSprite('/sprites/character/hyeollangchae-grunt-death-sheet.json', 'death'),
+      // 시트 파일명 규칙(<접두>-<모션>-sheet.json)이 캐릭터마다 같아 한 번에 모션 세트를 읽는다.
+      // idle/attack은 필수, 나머지는 에셋이 있는 캐릭터만 채워진다(궁수·정예산적은 승리 모션 없음).
+      const loadAnimSet = async (prefix: string): Promise<AnimSet> => {
+        const base = `/sprites/character/${prefix}`;
+        const [idle, attack1, attack2, hurt, death, victory] = await Promise.all([
+          loadAnimatedSprite(`${base}-idle-sheet.json`, 'idle'),
+          loadAnimatedSprite(`${base}-attack-sheet.json`, 'attack'),
+          tryLoadAnimatedSprite(`${base}-attack2-sheet.json`, 'attack2'),
+          tryLoadAnimatedSprite(`${base}-hurt-sheet.json`, 'hurt'),
+          tryLoadAnimatedSprite(`${base}-death-sheet.json`, 'death'),
+          tryLoadAnimatedSprite(`${base}-victory-sheet.json`, 'victory'),
+        ]);
+        return {
+          idle,
+          attack1,
+          attack2: attack2 ?? undefined,
+          hurt: hurt ?? undefined,
+          death: death ?? undefined,
+          victory: victory ?? undefined,
+        };
+      };
+
+      const [playerAnim, bossSet, gruntSet, archerSet, eliteSet] = await Promise.all([
+        loadAnimSet('mokhyeon'),
+        loadAnimSet('hyeollangchae-boss'),
+        loadAnimSet('hyeollangchae-grunt'),
+        loadAnimSet('hyeollangchae-archer'),
+        loadAnimSet('hyeollangchae-elite'),
       ]);
       await Promise.all([loadDamageFont(), loadNormalHitEffect(), loadCriticalHitEffect()]);
       const normalHitFrames = normalHitEffectFrames();
@@ -195,14 +170,8 @@ export const BattleCanvas = () => {
         return;
       }
 
-      const playerAnim: PlayerAnimSet = {
-        idle: idleAnim,
-        attack1: attackAnim,
-        attack2: playerAttack2 ?? undefined,
-        hurt: playerHurt ?? undefined,
-        death: playerDeath ?? undefined,
-        victory: playerVictory ?? undefined,
-      };
+      const idleAnim = playerAnim.idle;
+      const attackAnim = playerAnim.attack1;
       const playerSprites = (): AnimatedSprite[] =>
         [
           playerAnim.idle,
@@ -265,30 +234,24 @@ export const BattleCanvas = () => {
       app.stage.addChild(playerFlash);
 
       // 혈랑채(스테이지 1) 전용 스프라이트. 그 외 스테이지는 아직 아트가 없어 enemyBox 플레이스홀더로 대체.
-      type EnemyKind = 'none' | 'boss' | 'grunt';
-      const enemyAnimByKind: Record<'boss' | 'grunt', EnemyAnimSet> = {
-        boss: {
-          idle: bossIdle,
-          attack1: bossAttack1,
-          attack2: bossAttack2 ?? undefined,
-          hurt: bossHurt ?? undefined,
-          death: bossDeath ?? undefined,
-          victory: bossVictory ?? undefined,
-        },
-        grunt: {
-          idle: gruntIdle,
-          attack1: gruntAttack,
-          attack2: gruntAttack2 ?? undefined,
-          hurt: gruntHurt ?? undefined,
-          death: gruntDeath ?? undefined,
-        },
+      type ActiveEnemyKind = EnemyKind | 'none';
+      const ENEMY_KINDS = ['boss', 'grunt', 'archer', 'elite'] as const;
+      const enemyAnimByKind: Record<EnemyKind, AnimSet> = {
+        boss: bossSet,
+        grunt: gruntSet,
+        archer: archerSet,
+        elite: eliteSet,
       };
-      const enemyScaleByKind = { boss: ENEMY_BOSS_SCALE, grunt: ENEMY_MOB_SCALE };
+      const enemyScaleByKind: Record<EnemyKind, number> = {
+        boss: ENEMY_BOSS_SCALE,
+        grunt: ENEMY_MOB_SCALE,
+        archer: ENEMY_MOB_SCALE,
+        elite: ENEMY_ELITE_SCALE,
+      };
       // 재패킹한 혈랑채 원화는 모두 화면 왼쪽을 보므로 런타임 좌우 반전이 필요 없다.
-      const enemyFacesLeftNativelyByKind = { boss: true, grunt: true };
-      let currentEnemyKind: EnemyKind = 'none';
+      let currentEnemyKind: ActiveEnemyKind = 'none';
 
-      const enemySpritesOf = (kind: 'boss' | 'grunt'): AnimatedSprite[] => {
+      const enemySpritesOf = (kind: EnemyKind): AnimatedSprite[] => {
         const set = enemyAnimByKind[kind];
         return [set.idle, set.attack1, set.attack2, set.hurt, set.death, set.victory].filter(
           (a): a is AnimatedSprite => a !== undefined,
@@ -296,12 +259,12 @@ export const BattleCanvas = () => {
       };
 
       const hideAllEnemySprites = () => {
-        for (const kind of ['boss', 'grunt'] as const) {
+        for (const kind of ENEMY_KINDS) {
           for (const sprite of enemySpritesOf(kind)) stopAndHide(sprite);
         }
       };
 
-      const returnToIdle = (kind: 'boss' | 'grunt') => {
+      const returnToIdle = (kind: EnemyKind) => {
         if (currentEnemyKind !== kind) return;
         const { idle } = enemyAnimByKind[kind];
         idle.visible = true;
@@ -310,7 +273,7 @@ export const BattleCanvas = () => {
 
       // hurt/승리는 재생 후 idle로 복귀('idle'), 쓰러짐은 리워드 연출 동안 마지막 프레임을 유지('hold').
       const playEnemyOneShot = (
-        kind: 'boss' | 'grunt',
+        kind: EnemyKind,
         sprite: AnimatedSprite | undefined,
         onDone: 'idle' | 'hold',
       ) => {
@@ -327,13 +290,12 @@ export const BattleCanvas = () => {
         };
       };
 
-      for (const kind of ['boss', 'grunt'] as const) {
+      for (const kind of ENEMY_KINDS) {
         const set = enemyAnimByKind[kind];
         const scale = enemyScaleByKind[kind];
-        const xScale = enemyFacesLeftNativelyByKind[kind] ? scale : -scale;
         for (const anim of enemySpritesOf(kind)) {
           anim.position.set(ENEMY_X, ENEMY_Y);
-          anim.scale.set(xScale, scale); // 원화가 이미 왼쪽을 보면 반전 생략, 아니면 반전해 플레이어를 마주보게 함
+          anim.scale.set(scale);
           anim.visible = false;
           anim.loop = false;
         }
@@ -357,10 +319,9 @@ export const BattleCanvas = () => {
         app.stage.addChild(...enemySpritesOf(kind));
       }
 
-      const enemyKindForStage = (stage: StageId): EnemyKind => {
-        if (stage.major !== 1) return 'none';
-        return isBossStage(stage) ? 'boss' : 'grunt';
-      };
+      // 스테이지별 적 종류는 combat.ts가 단일 기준 — 이름(monsterStats)과 스프라이트가 같은 규칙을 쓴다.
+      const enemyKindForStage = (stage: StageId): ActiveEnemyKind =>
+        stage.major === 1 ? enemyKind(stage) : 'none';
 
       const activeEnemySprite = () => {
         if (currentEnemyKind === 'none') return null;

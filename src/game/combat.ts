@@ -70,6 +70,23 @@ export interface UnitStats {
 
 export const isBossStage = (stage: StageId): boolean => stage.sub === 10;
 
+export type EnemyKind = 'grunt' | 'archer' | 'elite' | 'boss';
+
+// 대1(혈랑채)은 보스 직전 구간에 궁수·정예산적을 배치해 난이도 결을 만든다. 나머지 대스테이지는
+// 아직 종류별 아트가 없어 잡몹 1종 + 보스 구성 그대로다.
+export const enemyKind = (stage: StageId): EnemyKind => {
+  if (isBossStage(stage)) return 'boss';
+  if (stage.major !== 1) return 'grunt';
+  if (stage.sub >= 9) return 'elite';
+  if (stage.sub >= 7) return 'archer';
+  return 'grunt';
+};
+
+// 잡몹 이름이 종류별로 갈리는 대스테이지만 등록 — 없으면 MOB_NAMES의 대표 이름을 쓴다.
+const MOB_VARIANT_NAMES: Record<number, Partial<Record<EnemyKind, string>>> = {
+  1: { archer: '혈랑채 궁수', elite: '혈랑채 정예산적' },
+};
+
 export const monsterStats = (stage: StageId): UnitStats => {
   const effSub = Math.min(stage.sub, 9);
   const baseHp = BASE_HP_1 * 1.8 ** (stage.major - 1);
@@ -86,7 +103,11 @@ export const monsterStats = (stage: StageId): UnitStats => {
     def *= 1.5;
   }
 
-  const name = isBossStage(stage) ? BOSS_NAMES[stage.major] : MOB_NAMES[stage.major];
+  const kind = enemyKind(stage);
+  const name =
+    kind === 'boss'
+      ? BOSS_NAMES[stage.major]
+      : (MOB_VARIANT_NAMES[stage.major]?.[kind] ?? MOB_NAMES[stage.major]);
   return { name, hp: Math.round(hp), atk: Math.round(atk), def: Math.round(def) };
 };
 

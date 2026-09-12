@@ -8,12 +8,14 @@ import {
   previousStage,
   expToNextLevel,
   isBossStage,
+  enemyKind,
   damage,
   rollPlayerDamage,
   rollEvaded,
   type StageId,
   type UnitStats,
   type PlayerStats,
+  type EnemyKind,
 } from './combat';
 import { loadState, saveState, type GameState } from './state';
 import {
@@ -1027,5 +1029,5 @@ export {
 };
 export { PULL_COST, PULL_10_COST, HARD_PITY, GRADE_COLOR, gradeTier };
 export { elixirExchangeCost };
-export { expToNextLevel, isBossStage };
-export type { PullResult, StageId, GongBoard, GongCurrency, SlotId, GearItem };
+export { expToNextLevel, isBossStage, enemyKind };
+export type { PullResult, StageId, GongBoard, GongCurrency, SlotId, GearItem, EnemyKind };
