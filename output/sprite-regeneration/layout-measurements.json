@@ -1,0 +1,3533 @@
+{
+  "status": "measurement-only-not-runtime-atlas",
+  "coordinateSystem": "pixel; origin top-left; rectangles right/bottom exclusive",
+  "alphaThreshold": 0,
+  "warning": "Nominal grid intersections, not verified pose crops. Bounds can contain background residue or crop a pose at a cell boundary. Do not directly use as animation atlas.",
+  "sheets": [
+    {
+      "file": "mokhyeon-idle.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 6,
+      "alphaBounds": [103, 114, 1634, 857],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [121, 114, 304, 414],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 183,
+            "h": 300
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 121,
+            "top": 114,
+            "right": 139,
+            "bottom": 29
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [121, 114, 309, 414],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 188,
+            "h": 300
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 121,
+            "top": 114,
+            "right": 135,
+            "bottom": 29
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [119, 114, 305, 414],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 186,
+            "h": 300
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 119,
+            "top": 114,
+            "right": 138,
+            "bottom": 29
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [104, 115, 304, 414],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 200,
+            "h": 299
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 104,
+            "top": 115,
+            "right": 140,
+            "bottom": 29
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [103, 114, 307, 414],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 204,
+            "h": 300
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 103,
+            "top": 114,
+            "right": 136,
+            "bottom": 30
+          }
+        },
+        {
+          "index": 5,
+          "nominalRect": {
+            "x": 443,
+            "y": 443,
+            "w": 444,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [118, 114, 308, 414],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 190,
+            "h": 300
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 118,
+            "top": 114,
+            "right": 136,
+            "bottom": 30
+          }
+        }
+      ]
+    },
+    {
+      "file": "mokhyeon-attack1.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 7,
+      "alphaBounds": [37, 27, 1710, 853],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [128, 96, 443, 395],
+          "opaquePixelsOnCellEdge": 4,
+          "contentSizeWithinNominalCell": {
+            "w": 315,
+            "h": 299
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 128,
+            "top": 96,
+            "right": 0,
+            "bottom": 48
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [0, 84, 416, 395],
+          "opaquePixelsOnCellEdge": 3,
+          "contentSizeWithinNominalCell": {
+            "w": 416,
+            "h": 311
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 0,
+            "top": 84,
+            "right": 28,
+            "bottom": 48
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [9, 37, 443, 411],
+          "opaquePixelsOnCellEdge": 1,
+          "contentSizeWithinNominalCell": {
+            "w": 434,
+            "h": 374
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 9,
+            "top": 37,
+            "right": 0,
+            "bottom": 32
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [0, 27, 378, 443],
+          "opaquePixelsOnCellEdge": 3,
+          "contentSizeWithinNominalCell": {
+            "w": 378,
+            "h": 416
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 0,
+            "top": 27,
+            "right": 66,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [37, 18, 424, 410],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 387,
+            "h": 392
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 37,
+            "top": 18,
+            "right": 19,
+            "bottom": 34
+          }
+        },
+        {
+          "index": 5,
+          "nominalRect": {
+            "x": 443,
+            "y": 443,
+            "w": 444,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [1, 1, 442, 392],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 441,
+            "h": 391
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 1,
+            "top": 1,
+            "right": 2,
+            "bottom": 52
+          }
+        },
+        {
+          "index": 6,
+          "nominalRect": {
+            "x": 887,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [17, 1, 443, 394],
+          "opaquePixelsOnCellEdge": 2,
+          "contentSizeWithinNominalCell": {
+            "w": 426,
+            "h": 393
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 17,
+            "top": 1,
+            "right": 0,
+            "bottom": 50
+          }
+        }
+      ]
+    },
+    {
+      "file": "mokhyeon-attack2.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 7,
+      "alphaBounds": [0, 9, 1755, 847],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [98, 140, 440, 403],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 342,
+            "h": 263
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 98,
+            "top": 140,
+            "right": 3,
+            "bottom": 40
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [7, 71, 440, 443],
+          "opaquePixelsOnCellEdge": 3,
+          "contentSizeWithinNominalCell": {
+            "w": 433,
+            "h": 372
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 7,
+            "top": 71,
+            "right": 4,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [9, 37, 443, 442],
+          "opaquePixelsOnCellEdge": 1,
+          "contentSizeWithinNominalCell": {
+            "w": 434,
+            "h": 405
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 9,
+            "top": 37,
+            "right": 0,
+            "bottom": 1
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [1, 9, 425, 419],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 424,
+            "h": 410
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 1,
+            "top": 9,
+            "right": 19,
+            "bottom": 24
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [0, 16, 438, 380],
+          "opaquePixelsOnCellEdge": 4,
+          "contentSizeWithinNominalCell": {
+            "w": 438,
+            "h": 364
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 0,
+            "top": 16,
+            "right": 5,
+            "bottom": 64
+          }
+        },
+        {
+          "index": 5,
+          "nominalRect": {
+            "x": 443,
+            "y": 443,
+            "w": 444,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [7, 0, 444, 382],
+          "opaquePixelsOnCellEdge": 17,
+          "contentSizeWithinNominalCell": {
+            "w": 437,
+            "h": 382
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 7,
+            "top": 0,
+            "right": 0,
+            "bottom": 62
+          }
+        },
+        {
+          "index": 6,
+          "nominalRect": {
+            "x": 887,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [0, 18, 436, 404],
+          "opaquePixelsOnCellEdge": 1,
+          "contentSizeWithinNominalCell": {
+            "w": 436,
+            "h": 386
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 0,
+            "top": 18,
+            "right": 7,
+            "bottom": 40
+          }
+        }
+      ]
+    },
+    {
+      "file": "mokhyeon-hurt.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 3,
+      "alphaBounds": [110, 143, 1230, 428],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [110, 148, 382, 428],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 272,
+            "h": 280
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 110,
+            "top": 148,
+            "right": 61,
+            "bottom": 15
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [74, 143, 414, 428],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 340,
+            "h": 285
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 74,
+            "top": 143,
+            "right": 30,
+            "bottom": 15
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [93, 148, 343, 428],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 250,
+            "h": 280
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 93,
+            "top": 148,
+            "right": 100,
+            "bottom": 15
+          }
+        }
+      ]
+    },
+    {
+      "file": "mokhyeon-death.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 6,
+      "alphaBounds": [23, 38, 1754, 863],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [23, 96, 443, 434],
+          "opaquePixelsOnCellEdge": 1,
+          "contentSizeWithinNominalCell": {
+            "w": 420,
+            "h": 338
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 23,
+            "top": 96,
+            "right": 0,
+            "bottom": 9
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [0, 132, 414, 434],
+          "opaquePixelsOnCellEdge": 1,
+          "contentSizeWithinNominalCell": {
+            "w": 414,
+            "h": 302
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 0,
+            "top": 132,
+            "right": 30,
+            "bottom": 9
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [9, 38, 429, 443],
+          "opaquePixelsOnCellEdge": 39,
+          "contentSizeWithinNominalCell": {
+            "w": 420,
+            "h": 405
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 9,
+            "top": 38,
+            "right": 14,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [32, 41, 417, 440],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 385,
+            "h": 399
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 32,
+            "top": 41,
+            "right": 27,
+            "bottom": 3
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [61, 16, 442, 398],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 381,
+            "h": 382
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 61,
+            "top": 16,
+            "right": 1,
+            "bottom": 46
+          }
+        },
+        {
+          "index": 5,
+          "nominalRect": {
+            "x": 443,
+            "y": 443,
+            "w": 444,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [9, 45, 444, 365],
+          "opaquePixelsOnCellEdge": 16,
+          "contentSizeWithinNominalCell": {
+            "w": 435,
+            "h": 320
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 9,
+            "top": 45,
+            "right": 0,
+            "bottom": 79
+          }
+        }
+      ]
+    },
+    {
+      "file": "mokhyeon-victory.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 5,
+      "alphaBounds": [2, 21, 1750, 860],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [35, 120, 443, 440],
+          "opaquePixelsOnCellEdge": 1,
+          "contentSizeWithinNominalCell": {
+            "w": 408,
+            "h": 320
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 35,
+            "top": 120,
+            "right": 0,
+            "bottom": 3
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [0, 21, 416, 438],
+          "opaquePixelsOnCellEdge": 1,
+          "contentSizeWithinNominalCell": {
+            "w": 416,
+            "h": 417
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 0,
+            "top": 21,
+            "right": 28,
+            "bottom": 5
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [9, 37, 443, 438],
+          "opaquePixelsOnCellEdge": 1,
+          "contentSizeWithinNominalCell": {
+            "w": 434,
+            "h": 401
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 9,
+            "top": 37,
+            "right": 0,
+            "bottom": 5
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [0, 120, 396, 440],
+          "opaquePixelsOnCellEdge": 1,
+          "contentSizeWithinNominalCell": {
+            "w": 396,
+            "h": 320
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 0,
+            "top": 120,
+            "right": 48,
+            "bottom": 3
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [2, 55, 431, 417],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 429,
+            "h": 362
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 2,
+            "top": 55,
+            "right": 12,
+            "bottom": 27
+          }
+        }
+      ]
+    },
+    {
+      "file": "boss-idle.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 6,
+      "alphaBounds": [50, 60, 1671, 853],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [50, 66, 344, 436],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 294,
+            "h": 370
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 50,
+            "top": 66,
+            "right": 99,
+            "bottom": 7
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [45, 64, 335, 436],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 290,
+            "h": 372
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 45,
+            "top": 64,
+            "right": 109,
+            "bottom": 7
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [25, 72, 337, 436],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 312,
+            "h": 364
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 25,
+            "top": 72,
+            "right": 106,
+            "bottom": 7
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [39, 60, 341, 436],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 302,
+            "h": 376
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 39,
+            "top": 60,
+            "right": 103,
+            "bottom": 7
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [50, 59, 406, 410],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 356,
+            "h": 351
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 50,
+            "top": 59,
+            "right": 37,
+            "bottom": 34
+          }
+        },
+        {
+          "index": 5,
+          "nominalRect": {
+            "x": 443,
+            "y": 443,
+            "w": 444,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [58, 45, 354, 410],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 296,
+            "h": 365
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 58,
+            "top": 45,
+            "right": 90,
+            "bottom": 34
+          }
+        }
+      ]
+    },
+    {
+      "file": "boss-attack1.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 7,
+      "alphaBounds": [0, 17, 1743, 854],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [0, 140, 325, 443],
+          "opaquePixelsOnCellEdge": 42,
+          "contentSizeWithinNominalCell": {
+            "w": 325,
+            "h": 303
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 0,
+            "top": 140,
+            "right": 118,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [63, 17, 444, 443],
+          "opaquePixelsOnCellEdge": 202,
+          "contentSizeWithinNominalCell": {
+            "w": 381,
+            "h": 426
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 63,
+            "top": 17,
+            "right": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [0, 80, 399, 443],
+          "opaquePixelsOnCellEdge": 197,
+          "contentSizeWithinNominalCell": {
+            "w": 399,
+            "h": 363
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 0,
+            "top": 80,
+            "right": 44,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [3, 180, 413, 443],
+          "opaquePixelsOnCellEdge": 35,
+          "contentSizeWithinNominalCell": {
+            "w": 410,
+            "h": 263
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 3,
+            "top": 180,
+            "right": 31,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [36, 0, 385, 410],
+          "opaquePixelsOnCellEdge": 22,
+          "contentSizeWithinNominalCell": {
+            "w": 349,
+            "h": 410
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 36,
+            "top": 0,
+            "right": 58,
+            "bottom": 34
+          }
+        },
+        {
+          "index": 5,
+          "nominalRect": {
+            "x": 443,
+            "y": 443,
+            "w": 444,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [47, 0, 324, 411],
+          "opaquePixelsOnCellEdge": 23,
+          "contentSizeWithinNominalCell": {
+            "w": 277,
+            "h": 411
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 47,
+            "top": 0,
+            "right": 120,
+            "bottom": 33
+          }
+        },
+        {
+          "index": 6,
+          "nominalRect": {
+            "x": 887,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [39, 0, 386, 410],
+          "opaquePixelsOnCellEdge": 26,
+          "contentSizeWithinNominalCell": {
+            "w": 347,
+            "h": 410
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 39,
+            "top": 0,
+            "right": 57,
+            "bottom": 34
+          }
+        }
+      ]
+    },
+    {
+      "file": "boss-attack2.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 7,
+      "alphaBounds": [0, 0, 1768, 871],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [0, 18, 314, 443],
+          "opaquePixelsOnCellEdge": 6,
+          "contentSizeWithinNominalCell": {
+            "w": 314,
+            "h": 425
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 0,
+            "top": 18,
+            "right": 129,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [11, 14, 444, 435],
+          "opaquePixelsOnCellEdge": 100,
+          "contentSizeWithinNominalCell": {
+            "w": 433,
+            "h": 421
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 11,
+            "top": 14,
+            "right": 0,
+            "bottom": 8
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [0, 0, 414, 443],
+          "opaquePixelsOnCellEdge": 102,
+          "contentSizeWithinNominalCell": {
+            "w": 414,
+            "h": 443
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 0,
+            "top": 0,
+            "right": 29,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [81, 0, 438, 443],
+          "opaquePixelsOnCellEdge": 4,
+          "contentSizeWithinNominalCell": {
+            "w": 357,
+            "h": 443
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 81,
+            "top": 0,
+            "right": 6,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [0, 0, 403, 418],
+          "opaquePixelsOnCellEdge": 8,
+          "contentSizeWithinNominalCell": {
+            "w": 403,
+            "h": 418
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 0,
+            "top": 0,
+            "right": 40,
+            "bottom": 26
+          }
+        },
+        {
+          "index": 5,
+          "nominalRect": {
+            "x": 443,
+            "y": 443,
+            "w": 444,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [71, 38, 373, 428],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 302,
+            "h": 390
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 71,
+            "top": 38,
+            "right": 71,
+            "bottom": 16
+          }
+        },
+        {
+          "index": 6,
+          "nominalRect": {
+            "x": 887,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [0, 38, 353, 425],
+          "opaquePixelsOnCellEdge": 4,
+          "contentSizeWithinNominalCell": {
+            "w": 353,
+            "h": 387
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 0,
+            "top": 38,
+            "right": 90,
+            "bottom": 19
+          }
+        }
+      ]
+    },
+    {
+      "file": "boss-hurt.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 3,
+      "alphaBounds": [38, 46, 1516, 845],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [38, 129, 388, 443],
+          "opaquePixelsOnCellEdge": 228,
+          "contentSizeWithinNominalCell": {
+            "w": 350,
+            "h": 314
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 38,
+            "top": 129,
+            "right": 55,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [50, 46, 432, 443],
+          "opaquePixelsOnCellEdge": 205,
+          "contentSizeWithinNominalCell": {
+            "w": 382,
+            "h": 397
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 50,
+            "top": 46,
+            "right": 12,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [72, 109, 380, 443],
+          "opaquePixelsOnCellEdge": 239,
+          "contentSizeWithinNominalCell": {
+            "w": 308,
+            "h": 334
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 72,
+            "top": 109,
+            "right": 63,
+            "bottom": 0
+          }
+        }
+      ]
+    },
+    {
+      "file": "boss-death.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 6,
+      "alphaBounds": [10, 74, 1720, 840],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [62, 74, 362, 443],
+          "opaquePixelsOnCellEdge": 110,
+          "contentSizeWithinNominalCell": {
+            "w": 300,
+            "h": 369
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 62,
+            "top": 74,
+            "right": 81,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [39, 127, 385, 443],
+          "opaquePixelsOnCellEdge": 115,
+          "contentSizeWithinNominalCell": {
+            "w": 346,
+            "h": 316
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 39,
+            "top": 127,
+            "right": 59,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [34, 149, 357, 443],
+          "opaquePixelsOnCellEdge": 147,
+          "contentSizeWithinNominalCell": {
+            "w": 323,
+            "h": 294
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 34,
+            "top": 149,
+            "right": 86,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [10, 211, 386, 443],
+          "opaquePixelsOnCellEdge": 362,
+          "contentSizeWithinNominalCell": {
+            "w": 376,
+            "h": 232
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 10,
+            "top": 211,
+            "right": 58,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [10, 0, 411, 397],
+          "opaquePixelsOnCellEdge": 116,
+          "contentSizeWithinNominalCell": {
+            "w": 401,
+            "h": 397
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 10,
+            "top": 0,
+            "right": 32,
+            "bottom": 47
+          }
+        },
+        {
+          "index": 5,
+          "nominalRect": {
+            "x": 443,
+            "y": 443,
+            "w": 444,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [1, 0, 444, 394],
+          "opaquePixelsOnCellEdge": 160,
+          "contentSizeWithinNominalCell": {
+            "w": 443,
+            "h": 394
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 1,
+            "top": 0,
+            "right": 0,
+            "bottom": 50
+          }
+        }
+      ]
+    },
+    {
+      "file": "boss-victory.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 5,
+      "alphaBounds": [31, 102, 1749, 849],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [31, 120, 366, 443],
+          "opaquePixelsOnCellEdge": 127,
+          "contentSizeWithinNominalCell": {
+            "w": 335,
+            "h": 323
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 31,
+            "top": 120,
+            "right": 77,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [42, 132, 417, 443],
+          "opaquePixelsOnCellEdge": 113,
+          "contentSizeWithinNominalCell": {
+            "w": 375,
+            "h": 311
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 42,
+            "top": 132,
+            "right": 27,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [89, 102, 365, 443],
+          "opaquePixelsOnCellEdge": 113,
+          "contentSizeWithinNominalCell": {
+            "w": 276,
+            "h": 341
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 89,
+            "top": 102,
+            "right": 78,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [37, 123, 419, 443],
+          "opaquePixelsOnCellEdge": 131,
+          "contentSizeWithinNominalCell": {
+            "w": 382,
+            "h": 320
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 37,
+            "top": 123,
+            "right": 25,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [78, 0, 387, 406],
+          "opaquePixelsOnCellEdge": 125,
+          "contentSizeWithinNominalCell": {
+            "w": 309,
+            "h": 406
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 78,
+            "top": 0,
+            "right": 56,
+            "bottom": 38
+          }
+        }
+      ]
+    },
+    {
+      "file": "grunt-idle.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 6,
+      "alphaBounds": [70, 145, 1680, 851],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [70, 145, 328, 443],
+          "opaquePixelsOnCellEdge": 35,
+          "contentSizeWithinNominalCell": {
+            "w": 258,
+            "h": 298
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 70,
+            "top": 145,
+            "right": 115,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [92, 145, 350, 443],
+          "opaquePixelsOnCellEdge": 34,
+          "contentSizeWithinNominalCell": {
+            "w": 258,
+            "h": 298
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 92,
+            "top": 145,
+            "right": 94,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [91, 146, 350, 443],
+          "opaquePixelsOnCellEdge": 35,
+          "contentSizeWithinNominalCell": {
+            "w": 259,
+            "h": 297
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 91,
+            "top": 146,
+            "right": 93,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [93, 145, 350, 443],
+          "opaquePixelsOnCellEdge": 36,
+          "contentSizeWithinNominalCell": {
+            "w": 257,
+            "h": 298
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 93,
+            "top": 145,
+            "right": 94,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [71, 0, 328, 408],
+          "opaquePixelsOnCellEdge": 30,
+          "contentSizeWithinNominalCell": {
+            "w": 257,
+            "h": 408
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 71,
+            "top": 0,
+            "right": 115,
+            "bottom": 36
+          }
+        },
+        {
+          "index": 5,
+          "nominalRect": {
+            "x": 443,
+            "y": 443,
+            "w": 444,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [92, 0, 349, 408],
+          "opaquePixelsOnCellEdge": 28,
+          "contentSizeWithinNominalCell": {
+            "w": 257,
+            "h": 408
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 92,
+            "top": 0,
+            "right": 95,
+            "bottom": 36
+          }
+        }
+      ]
+    },
+    {
+      "file": "grunt-attack1.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 7,
+      "alphaBounds": [31, 100, 1708, 833],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [116, 155, 349, 421],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 233,
+            "h": 266
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 116,
+            "top": 155,
+            "right": 94,
+            "bottom": 22
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [125, 109, 351, 421],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 226,
+            "h": 312
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 125,
+            "top": 109,
+            "right": 93,
+            "bottom": 22
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [72, 100, 374, 421],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 302,
+            "h": 321
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 72,
+            "top": 100,
+            "right": 69,
+            "bottom": 22
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [70, 183, 378, 421],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 308,
+            "h": 238
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 70,
+            "top": 183,
+            "right": 66,
+            "bottom": 22
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [31, 151, 408, 390],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 377,
+            "h": 239
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 31,
+            "top": 151,
+            "right": 35,
+            "bottom": 54
+          }
+        },
+        {
+          "index": 5,
+          "nominalRect": {
+            "x": 443,
+            "y": 443,
+            "w": 444,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [64, 155, 396, 389],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 332,
+            "h": 234
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 64,
+            "top": 155,
+            "right": 48,
+            "bottom": 55
+          }
+        },
+        {
+          "index": 6,
+          "nominalRect": {
+            "x": 887,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [78, 151, 350, 390],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 272,
+            "h": 239
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 78,
+            "top": 151,
+            "right": 93,
+            "bottom": 54
+          }
+        }
+      ]
+    },
+    {
+      "file": "grunt-attack2.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 7,
+      "alphaBounds": [19, 134, 1765, 831],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [70, 143, 353, 418],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 283,
+            "h": 275
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 70,
+            "top": 143,
+            "right": 90,
+            "bottom": 25
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [33, 134, 395, 417],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 362,
+            "h": 283
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 33,
+            "top": 134,
+            "right": 49,
+            "bottom": 26
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [14, 147, 418, 418],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 404,
+            "h": 271
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 14,
+            "top": 147,
+            "right": 25,
+            "bottom": 25
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [16, 144, 435, 418],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 419,
+            "h": 274
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 16,
+            "top": 144,
+            "right": 9,
+            "bottom": 25
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [19, 118, 408, 388],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 389,
+            "h": 270
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 19,
+            "top": 118,
+            "right": 35,
+            "bottom": 56
+          }
+        },
+        {
+          "index": 5,
+          "nominalRect": {
+            "x": 443,
+            "y": 443,
+            "w": 444,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [102, 99, 417, 387],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 315,
+            "h": 288
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 102,
+            "top": 99,
+            "right": 27,
+            "bottom": 57
+          }
+        },
+        {
+          "index": 6,
+          "nominalRect": {
+            "x": 887,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [101, 119, 359, 387],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 258,
+            "h": 268
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 101,
+            "top": 119,
+            "right": 84,
+            "bottom": 57
+          }
+        }
+      ]
+    },
+    {
+      "file": "grunt-hurt.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 3,
+      "alphaBounds": [88, 128, 1276, 705],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [88, 161, 396, 443],
+          "opaquePixelsOnCellEdge": 83,
+          "contentSizeWithinNominalCell": {
+            "w": 308,
+            "h": 282
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 88,
+            "top": 161,
+            "right": 47,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [2, 128, 444, 443],
+          "opaquePixelsOnCellEdge": 75,
+          "contentSizeWithinNominalCell": {
+            "w": 442,
+            "h": 315
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 2,
+            "top": 128,
+            "right": 0,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [0, 160, 389, 443],
+          "opaquePixelsOnCellEdge": 100,
+          "contentSizeWithinNominalCell": {
+            "w": 389,
+            "h": 283
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 0,
+            "top": 160,
+            "right": 54,
+            "bottom": 0
+          }
+        }
+      ]
+    },
+    {
+      "file": "grunt-death.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 6,
+      "alphaBounds": [20, 120, 1711, 824],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [74, 120, 357, 413],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 283,
+            "h": 293
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 74,
+            "top": 120,
+            "right": 86,
+            "bottom": 30
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [70, 142, 354, 414],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 284,
+            "h": 272
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 70,
+            "top": 142,
+            "right": 90,
+            "bottom": 29
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [42, 182, 355, 413],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 313,
+            "h": 231
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 42,
+            "top": 182,
+            "right": 88,
+            "bottom": 30
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [64, 209, 381, 412],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 317,
+            "h": 203
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 64,
+            "top": 209,
+            "right": 63,
+            "bottom": 31
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [20, 234, 428, 380],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 408,
+            "h": 146
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 20,
+            "top": 234,
+            "right": 15,
+            "bottom": 64
+          }
+        },
+        {
+          "index": 5,
+          "nominalRect": {
+            "x": 443,
+            "y": 443,
+            "w": 444,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [23, 285, 444, 381],
+          "opaquePixelsOnCellEdge": 26,
+          "contentSizeWithinNominalCell": {
+            "w": 421,
+            "h": 96
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 23,
+            "top": 285,
+            "right": 0,
+            "bottom": 63
+          }
+        }
+      ]
+    },
+    {
+      "file": "archer-idle.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 6,
+      "alphaBounds": [79, 72, 1663, 859],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [79, 72, 344, 438],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 265,
+            "h": 366
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 79,
+            "top": 72,
+            "right": 99,
+            "bottom": 5
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [84, 73, 344, 438],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 260,
+            "h": 365
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 84,
+            "top": 73,
+            "right": 100,
+            "bottom": 5
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [73, 77, 336, 438],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 263,
+            "h": 361
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 73,
+            "top": 77,
+            "right": 107,
+            "bottom": 5
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [74, 72, 333, 438],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 259,
+            "h": 366
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 74,
+            "top": 72,
+            "right": 111,
+            "bottom": 5
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [79, 54, 344, 416],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 265,
+            "h": 362
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 79,
+            "top": 54,
+            "right": 99,
+            "bottom": 28
+          }
+        },
+        {
+          "index": 5,
+          "nominalRect": {
+            "x": 443,
+            "y": 443,
+            "w": 444,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [84, 51, 344, 416],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 260,
+            "h": 365
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 84,
+            "top": 51,
+            "right": 100,
+            "bottom": 28
+          }
+        }
+      ]
+    },
+    {
+      "file": "archer-attack1.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 7,
+      "alphaBounds": [88, 121, 1730, 831],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [88, 148, 341, 422],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 253,
+            "h": 274
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 88,
+            "top": 148,
+            "right": 102,
+            "bottom": 21
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [89, 137, 377, 422],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 288,
+            "h": 285
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 89,
+            "top": 137,
+            "right": 67,
+            "bottom": 21
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [59, 121, 350, 422],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 291,
+            "h": 301
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 59,
+            "top": 121,
+            "right": 93,
+            "bottom": 21
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [18, 121, 400, 422],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 382,
+            "h": 301
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 18,
+            "top": 121,
+            "right": 44,
+            "bottom": 21
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [108, 85, 370, 388],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 262,
+            "h": 303
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 108,
+            "top": 85,
+            "right": 73,
+            "bottom": 56
+          }
+        },
+        {
+          "index": 5,
+          "nominalRect": {
+            "x": 443,
+            "y": 443,
+            "w": 444,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [107, 109, 359, 388],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 252,
+            "h": 279
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 107,
+            "top": 109,
+            "right": 85,
+            "bottom": 56
+          }
+        },
+        {
+          "index": 6,
+          "nominalRect": {
+            "x": 887,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [107, 109, 350, 388],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 243,
+            "h": 279
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 107,
+            "top": 109,
+            "right": 93,
+            "bottom": 56
+          }
+        }
+      ]
+    },
+    {
+      "file": "archer-attack2.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 7,
+      "alphaBounds": [18, 57, 1750, 844],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [88, 129, 372, 418],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 284,
+            "h": 289
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 88,
+            "top": 129,
+            "right": 71,
+            "bottom": 25
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [92, 57, 370, 418],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 278,
+            "h": 361
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 92,
+            "top": 57,
+            "right": 74,
+            "bottom": 25
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [53, 121, 443, 420],
+          "opaquePixelsOnCellEdge": 9,
+          "contentSizeWithinNominalCell": {
+            "w": 390,
+            "h": 299
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 53,
+            "top": 121,
+            "right": 0,
+            "bottom": 23
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [0, 141, 420, 420],
+          "opaquePixelsOnCellEdge": 8,
+          "contentSizeWithinNominalCell": {
+            "w": 420,
+            "h": 279
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 0,
+            "top": 141,
+            "right": 24,
+            "bottom": 23
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [18, 113, 389, 398],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 371,
+            "h": 285
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 18,
+            "top": 113,
+            "right": 54,
+            "bottom": 46
+          }
+        },
+        {
+          "index": 5,
+          "nominalRect": {
+            "x": 443,
+            "y": 443,
+            "w": 444,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [85, 109, 384, 398],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 299,
+            "h": 289
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 85,
+            "top": 109,
+            "right": 60,
+            "bottom": 46
+          }
+        },
+        {
+          "index": 6,
+          "nominalRect": {
+            "x": 887,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [85, 109, 370, 401],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 285,
+            "h": 292
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 85,
+            "top": 109,
+            "right": 73,
+            "bottom": 43
+          }
+        }
+      ]
+    },
+    {
+      "file": "archer-hurt.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 3,
+      "alphaBounds": [80, 120, 1248, 466],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [80, 141, 369, 443],
+          "opaquePixelsOnCellEdge": 70,
+          "contentSizeWithinNominalCell": {
+            "w": 289,
+            "h": 302
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 80,
+            "top": 141,
+            "right": 74,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [75, 120, 384, 443],
+          "opaquePixelsOnCellEdge": 70,
+          "contentSizeWithinNominalCell": {
+            "w": 309,
+            "h": 323
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 75,
+            "top": 120,
+            "right": 60,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [78, 127, 351, 443],
+          "opaquePixelsOnCellEdge": 74,
+          "contentSizeWithinNominalCell": {
+            "w": 273,
+            "h": 316
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 78,
+            "top": 127,
+            "right": 92,
+            "bottom": 0
+          }
+        }
+      ]
+    },
+    {
+      "file": "archer-death.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 6,
+      "alphaBounds": [40, 143, 1705, 825],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [97, 143, 364, 443],
+          "opaquePixelsOnCellEdge": 92,
+          "contentSizeWithinNominalCell": {
+            "w": 267,
+            "h": 300
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 97,
+            "top": 143,
+            "right": 79,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [124, 177, 376, 443],
+          "opaquePixelsOnCellEdge": 93,
+          "contentSizeWithinNominalCell": {
+            "w": 252,
+            "h": 266
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 124,
+            "top": 177,
+            "right": 68,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [49, 218, 377, 443],
+          "opaquePixelsOnCellEdge": 23,
+          "contentSizeWithinNominalCell": {
+            "w": 328,
+            "h": 225
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 49,
+            "top": 218,
+            "right": 66,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [47, 255, 375, 443],
+          "opaquePixelsOnCellEdge": 51,
+          "contentSizeWithinNominalCell": {
+            "w": 328,
+            "h": 188
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 47,
+            "top": 255,
+            "right": 69,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [40, 0, 413, 381],
+          "opaquePixelsOnCellEdge": 85,
+          "contentSizeWithinNominalCell": {
+            "w": 373,
+            "h": 381
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 40,
+            "top": 0,
+            "right": 30,
+            "bottom": 63
+          }
+        },
+        {
+          "index": 5,
+          "nominalRect": {
+            "x": 443,
+            "y": 443,
+            "w": 444,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [39, 0, 422, 382],
+          "opaquePixelsOnCellEdge": 90,
+          "contentSizeWithinNominalCell": {
+            "w": 383,
+            "h": 382
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 39,
+            "top": 0,
+            "right": 22,
+            "bottom": 62
+          }
+        }
+      ]
+    },
+    {
+      "file": "elite-idle.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 6,
+      "alphaBounds": [77, 86, 1667, 869],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [81, 91, 339, 434],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 258,
+            "h": 343
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 81,
+            "top": 91,
+            "right": 104,
+            "bottom": 9
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [72, 86, 333, 434],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 261,
+            "h": 348
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 72,
+            "top": 86,
+            "right": 111,
+            "bottom": 9
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [77, 102, 336, 434],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 259,
+            "h": 332
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 77,
+            "top": 102,
+            "right": 107,
+            "bottom": 9
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [81, 102, 337, 434],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 256,
+            "h": 332
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 81,
+            "top": 102,
+            "right": 107,
+            "bottom": 9
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [77, 95, 339, 426],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 262,
+            "h": 331
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 77,
+            "top": 95,
+            "right": 104,
+            "bottom": 18
+          }
+        },
+        {
+          "index": 5,
+          "nominalRect": {
+            "x": 443,
+            "y": 443,
+            "w": 444,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [79, 83, 337, 425],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 258,
+            "h": 342
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 79,
+            "top": 83,
+            "right": 107,
+            "bottom": 19
+          }
+        }
+      ]
+    },
+    {
+      "file": "elite-attack1.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 7,
+      "alphaBounds": [24, 102, 1752, 850],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [105, 131, 369, 407],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 264,
+            "h": 276
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 105,
+            "top": 131,
+            "right": 74,
+            "bottom": 36
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [58, 139, 364, 407],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 306,
+            "h": 268
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 58,
+            "top": 139,
+            "right": 80,
+            "bottom": 36
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [28, 139, 416, 408],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 388,
+            "h": 269
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 28,
+            "top": 139,
+            "right": 27,
+            "bottom": 35
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [16, 102, 422, 408],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 406,
+            "h": 306
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 16,
+            "top": 102,
+            "right": 22,
+            "bottom": 35
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [24, 114, 418, 407],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 394,
+            "h": 293
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 24,
+            "top": 114,
+            "right": 25,
+            "bottom": 37
+          }
+        },
+        {
+          "index": 5,
+          "nominalRect": {
+            "x": 443,
+            "y": 443,
+            "w": 444,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [49, 129, 425, 407],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 376,
+            "h": 278
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 49,
+            "top": 129,
+            "right": 19,
+            "bottom": 37
+          }
+        },
+        {
+          "index": 6,
+          "nominalRect": {
+            "x": 887,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [101, 124, 361, 407],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 260,
+            "h": 283
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 101,
+            "top": 124,
+            "right": 82,
+            "bottom": 37
+          }
+        }
+      ]
+    },
+    {
+      "file": "elite-attack2.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 7,
+      "alphaBounds": [37, 51, 1687, 828],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [95, 172, 383, 438],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 288,
+            "h": 266
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 95,
+            "top": 172,
+            "right": 60,
+            "bottom": 5
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [110, 51, 353, 439],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 243,
+            "h": 388
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 110,
+            "top": 51,
+            "right": 91,
+            "bottom": 4
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [101, 85, 334, 440],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 233,
+            "h": 355
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 101,
+            "top": 85,
+            "right": 109,
+            "bottom": 3
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [51, 66, 357, 439],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 306,
+            "h": 373
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 51,
+            "top": 66,
+            "right": 87,
+            "bottom": 4
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [37, 16, 424, 369],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 387,
+            "h": 353
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 37,
+            "top": 16,
+            "right": 19,
+            "bottom": 75
+          }
+        },
+        {
+          "index": 5,
+          "nominalRect": {
+            "x": 443,
+            "y": 443,
+            "w": 444,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [56, 95, 391, 370],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 335,
+            "h": 275
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 56,
+            "top": 95,
+            "right": 53,
+            "bottom": 74
+          }
+        },
+        {
+          "index": 6,
+          "nominalRect": {
+            "x": 887,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [91, 112, 367, 385],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 276,
+            "h": 273
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 91,
+            "top": 112,
+            "right": 76,
+            "bottom": 59
+          }
+        }
+      ]
+    },
+    {
+      "file": "elite-hurt.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 3,
+      "alphaBounds": [66, 101, 1261, 480],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [66, 139, 384, 443],
+          "opaquePixelsOnCellEdge": 78,
+          "contentSizeWithinNominalCell": {
+            "w": 318,
+            "h": 304
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 66,
+            "top": 139,
+            "right": 59,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [58, 101, 438, 443],
+          "opaquePixelsOnCellEdge": 94,
+          "contentSizeWithinNominalCell": {
+            "w": 380,
+            "h": 342
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 58,
+            "top": 101,
+            "right": 6,
+            "bottom": 0
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [49, 123, 368, 443],
+          "opaquePixelsOnCellEdge": 83,
+          "contentSizeWithinNominalCell": {
+            "w": 319,
+            "h": 320
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 49,
+            "top": 123,
+            "right": 75,
+            "bottom": 0
+          }
+        }
+      ]
+    },
+    {
+      "file": "elite-death.png",
+      "width": 1774,
+      "height": 887,
+      "frameCount": 6,
+      "alphaBounds": [69, 138, 1672, 812],
+      "safeForUniformSlicing": false,
+      "nominalCells": [
+        {
+          "index": 0,
+          "nominalRect": {
+            "x": 0,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [138, 138, 364, 423],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 226,
+            "h": 285
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 138,
+            "top": 138,
+            "right": 79,
+            "bottom": 20
+          }
+        },
+        {
+          "index": 1,
+          "nominalRect": {
+            "x": 443,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [38, 147, 352, 423],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 314,
+            "h": 276
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 38,
+            "top": 147,
+            "right": 92,
+            "bottom": 20
+          }
+        },
+        {
+          "index": 2,
+          "nominalRect": {
+            "x": 887,
+            "y": 0,
+            "w": 443,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [65, 190, 363, 426],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 298,
+            "h": 236
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 65,
+            "top": 190,
+            "right": 80,
+            "bottom": 17
+          }
+        },
+        {
+          "index": 3,
+          "nominalRect": {
+            "x": 1330,
+            "y": 0,
+            "w": 444,
+            "h": 443
+          },
+          "alphaBoundsWithinNominalCell": [63, 193, 342, 428],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 279,
+            "h": 235
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 63,
+            "top": 193,
+            "right": 102,
+            "bottom": 15
+          }
+        },
+        {
+          "index": 4,
+          "nominalRect": {
+            "x": 0,
+            "y": 443,
+            "w": 443,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [69, 207, 425, 364],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 356,
+            "h": 157
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 69,
+            "top": 207,
+            "right": 18,
+            "bottom": 80
+          }
+        },
+        {
+          "index": 5,
+          "nominalRect": {
+            "x": 443,
+            "y": 443,
+            "w": 444,
+            "h": 444
+          },
+          "alphaBoundsWithinNominalCell": [31, 244, 426, 369],
+          "opaquePixelsOnCellEdge": 0,
+          "contentSizeWithinNominalCell": {
+            "w": 395,
+            "h": 125
+          },
+          "transparentMarginsWithinNominalCell": {
+            "left": 31,
+            "top": 244,
+            "right": 18,
+            "bottom": 75
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "frames": [
+    {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 896,
+        "h": 896
+      },
+      "duration": 90
+    },
+    {
+      "frame": {
+        "x": 896,
+        "y": 0,
+        "w": 896,
+        "h": 896
+      },
+      "duration": 90
+    },
+    {
+      "frame": {
+        "x": 1792,
+        "y": 0,
+        "w": 896,
+        "h": 896
+      },
+      "duration": 90
+    },
+    {
+      "frame": {
+        "x": 2688,
+        "y": 0,
+        "w": 896,
+        "h": 896
+      },
+      "duration": 90
+    },
+    {
+      "frame": {
+        "x": 3584,
+        "y": 0,
+        "w": 896,
+        "h": 896
+      },
+      "duration": 90
+    },
+    {
+      "frame": {
+        "x": 4480,
+        "y": 0,
+        "w": 896,
+        "h": 896
+      },
+      "duration": 90
+    },
+    {
+      "frame": {
+        "x": 5376,
+        "y": 0,
+        "w": 896,
+        "h": 896
+      },
+      "duration": 90
+    }
+  ],
+  "meta": {
+    "image": "hyeollangchae-elite-attack2-sheet.png",
+    "frameTags": [
+      {
+        "name": "attack2",
+        "from": 0,
+        "to": 6
+      }
+    ]
+  }
+}

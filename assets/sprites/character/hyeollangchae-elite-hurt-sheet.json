@@ -1,0 +1,41 @@
+{
+  "frames": [
+    {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 896,
+        "h": 896
+      },
+      "duration": 100
+    },
+    {
+      "frame": {
+        "x": 896,
+        "y": 0,
+        "w": 896,
+        "h": 896
+      },
+      "duration": 100
+    },
+    {
+      "frame": {
+        "x": 1792,
+        "y": 0,
+        "w": 896,
+        "h": 896
+      },
+      "duration": 100
+    }
+  ],
+  "meta": {
+    "image": "hyeollangchae-elite-hurt-sheet.png",
+    "frameTags": [
+      {
+        "name": "hurt",
+        "from": 0,
+        "to": 2
+      }
+    ]
+  }
+}

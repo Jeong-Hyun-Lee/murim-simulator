@@ -1,0 +1,218 @@
+[
+  {
+    "file": "archer-attack1.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1341390,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "archer-attack2.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1285106,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "archer-death.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1407876,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "archer-hurt.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1438994,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "archer-idle.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1283849,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "boss-attack1.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1198645,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "boss-attack2.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1130381,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "boss-death.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1269073,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "boss-hurt.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1343142,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "boss-idle.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1168028,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "boss-victory.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1276000,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "elite-attack1.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1288000,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "elite-attack2.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1305606,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "elite-death.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1380316,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "elite-hurt.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1402139,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "elite-idle.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1307218,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "grunt-attack1.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1360875,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "grunt-attack2.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1319886,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "grunt-death.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1401572,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "grunt-hurt.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1454982,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "grunt-idle.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1364273,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "mokhyeon-attack1.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1340712,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "mokhyeon-attack2.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1279895,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "mokhyeon-death.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1365294,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "mokhyeon-hurt.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1437817,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "mokhyeon-idle.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1355030,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  },
+  {
+    "file": "mokhyeon-victory.png",
+    "size": [1774, 887],
+    "mode": "RGBA",
+    "fully_transparent_pixels": 1353596,
+    "rgb_pixels_unchanged": true,
+    "resized_or_repositioned": false
+  }
+]

@@ -1,0 +1,164 @@
+[
+  {
+    "character": "mokhyeon",
+    "motion": "idle",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-6c8140f9-ba21-44b5-9f20-844f539b4a2c.png",
+    "frames": 6
+  },
+  {
+    "character": "mokhyeon",
+    "motion": "attack1",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-f43ec85a-0228-4cb8-a848-d276948fa4ab.png",
+    "frames": 7
+  },
+  {
+    "character": "mokhyeon",
+    "motion": "attack2",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-e4c9f360-7e18-4990-bca2-f4b26c20b443.png",
+    "frames": 7
+  },
+  {
+    "character": "mokhyeon",
+    "motion": "hurt",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-a81f9541-266c-4298-a34e-432b1a50b7bd.png",
+    "frames": 3
+  },
+  {
+    "character": "mokhyeon",
+    "motion": "death",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-4385b25f-ff02-4ad9-a4a8-ff50e6129ae5.png",
+    "frames": 6
+  },
+  {
+    "character": "mokhyeon",
+    "motion": "victory",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-b0650110-dee2-4c81-9d09-a0c34c38b693.png",
+    "frames": 5
+  },
+  {
+    "character": "boss",
+    "motion": "idle",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-aaed90d2-d049-4094-a48c-b7bb2cc1dea4.png",
+    "frames": 6
+  },
+  {
+    "character": "boss",
+    "motion": "attack1",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-b657d033-f333-4341-85e2-9285bbd63795.png",
+    "frames": 7
+  },
+  {
+    "character": "boss",
+    "motion": "attack2",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-6165a19f-5c99-4d93-9868-707c2c336677.png",
+    "frames": 7
+  },
+  {
+    "character": "boss",
+    "motion": "hurt",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-224a5a83-109c-4655-8164-ca9cc35bf9ba.png",
+    "frames": 3
+  },
+  {
+    "character": "boss",
+    "motion": "death",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-3c2f7049-0c01-4cd2-aa19-84a6792a3ef9.png",
+    "frames": 6
+  },
+  {
+    "character": "boss",
+    "motion": "victory",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-a39bc5ca-993a-4723-9fb5-1ac0156c800b.png",
+    "frames": 5
+  },
+  {
+    "character": "grunt",
+    "motion": "idle",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-407fd4e5-d237-40de-bcab-8cd913141aa9.png",
+    "frames": 6
+  },
+  {
+    "character": "grunt",
+    "motion": "attack1",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-524cb8f0-964f-4d06-9d36-54dfecc28a26.png",
+    "frames": 7
+  },
+  {
+    "character": "grunt",
+    "motion": "attack2",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-cd679111-5871-49cd-a7e4-1af1ecbeca04.png",
+    "frames": 7
+  },
+  {
+    "character": "grunt",
+    "motion": "hurt",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-50dac4a0-d966-4e46-bbf4-7be0a2afbdf2.png",
+    "frames": 3
+  },
+  {
+    "character": "grunt",
+    "motion": "death",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-13648202-a086-4711-9b64-49f2431ccacd.png",
+    "frames": 6
+  },
+  {
+    "character": "archer",
+    "motion": "idle",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-7a8c299e-e52f-45fa-a5ab-4145ebc1c20e.png",
+    "frames": 6
+  },
+  {
+    "character": "archer",
+    "motion": "attack1",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-8ac32325-081d-4700-923f-d83e3f227296.png",
+    "frames": 7
+  },
+  {
+    "character": "archer",
+    "motion": "attack2",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-47315d53-f923-458e-ba93-49e3526c91c1.png",
+    "frames": 7
+  },
+  {
+    "character": "archer",
+    "motion": "hurt",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-bd0dd29f-5b9f-4da6-9b1b-84ab3117967b.png",
+    "frames": 3
+  },
+  {
+    "character": "archer",
+    "motion": "death",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-10d0aa26-eb3b-4596-bb75-4448b3dfed73.png",
+    "frames": 6
+  },
+  {
+    "character": "elite",
+    "motion": "idle",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-6477113e-7cc5-4b37-a741-0194d0e8d18e.png",
+    "frames": 6
+  },
+  {
+    "character": "elite",
+    "motion": "attack1",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-e85325c6-dc24-45d4-b02d-15ab68430825.png",
+    "frames": 7
+  },
+  {
+    "character": "elite",
+    "motion": "attack2",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-0ce651a5-a8b4-472d-b070-bcd363938d82.png",
+    "frames": 7
+  },
+  {
+    "character": "elite",
+    "motion": "hurt",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-fdecc148-2157-49b6-a5b2-187a307f38df.png",
+    "frames": 3
+  },
+  {
+    "character": "elite",
+    "motion": "death",
+    "source": "C:\\Users\\이정현\\.codex\\generated_images\\01a0911d-8f00-7933-a310-cb79e185d29e\\exec-26ef5397-06e2-4d5e-823f-11c2c8020ddc.png",
+    "frames": 6
+  }
+]
