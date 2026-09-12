@@ -915,11 +915,14 @@ export const useGameStore = create<GameStoreState>((set, get) => {
           gold,
           player: newPlayer,
           stage: retreatStage,
+          // 후퇴하면 자동 등반을 멈추고 막혔던 스테이지를 복귀 지점으로 잡아 사냥터 모드로 전환한다 —
+          // 그대로 두면 후퇴한 스테이지를 깨자마자 다시 막힌 곳으로 올라가 패배만 반복한다.
+          farmReturnStage: retreated ? s.stage : s.farmReturnStage,
           enemy: newEnemy,
           enemyHp: newEnemy.hp,
-          awaitingBossChallenge: retreated ? isBossStage(retreatStage) : s.awaitingBossChallenge,
+          awaitingBossChallenge: retreated ? false : s.awaitingBossChallenge,
           toastMessage: retreated
-            ? `패배... ${retreatStage.major}-${retreatStage.sub}(으)로 후퇴 (+EXP ${consolationExp})`
+            ? `패배... ${retreatStage.major}-${retreatStage.sub}(으)로 후퇴, 자동 등반 중단 (+EXP ${consolationExp})`
             : `패배... 수련 후 재도전 (+EXP ${consolationExp})`,
         });
         persist(get());

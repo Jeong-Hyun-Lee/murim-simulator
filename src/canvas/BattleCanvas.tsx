@@ -44,6 +44,8 @@ const POPUP_RISE_PX = 64; // 데미지 숫자가 사라지기까지 위로 이�
 const ATTACK_INTERVAL_MS = 1300;
 const MIN_ATTACK_INTERVAL_MS = 300; // 장구 공격속도% 최대치에서도 공격이 순간이동처럼 보이지 않게 하는 하한
 const ENEMY_ATTACK_INTERVAL_MS = 1600;
+// 쓰러짐 모션(6프레임 x 120ms = 720ms)이 끝까지 보이도록 다음 전투를 잠깐 멈추는 시간.
+const DEFEAT_PAUSE_MS = 900;
 
 interface DamagePopup {
   text: Container;
@@ -413,6 +415,7 @@ export const BattleCanvas = () => {
       let enemyAttackClock = 0;
       let playerFlashMs = 0;
       let enemyFlashMs = 0;
+      let defeatPauseMs = 0;
 
       const spawnPopup = (x: number, y: number, msg: string, color: number) => {
         const text = new Text({
@@ -474,14 +477,27 @@ export const BattleCanvas = () => {
         const s = useGameStore.getState();
 
         if (!s.paused && !s.awaitingBossChallenge && !s.awaitingBossReward && s.onboardingDone) {
-          attackClock += deltaMs;
-          enemyAttackClock += deltaMs;
+          if (defeatPauseMs > 0) {
+            // 쓰러짐 연출이 끝날 때까지 전투를 멈춰두고, 끝나면 양쪽 모두 idle로 세워 다음 판을 시작.
+            defeatPauseMs = Math.max(0, defeatPauseMs - deltaMs);
+            if (defeatPauseMs === 0) {
+              for (const sprite of playerSprites()) stopAndHide(sprite);
+              returnPlayerToIdle();
+              if (currentEnemyKind !== 'none') {
+                for (const sprite of enemySpritesOf(currentEnemyKind)) stopAndHide(sprite);
+                returnToIdle(currentEnemyKind);
+              }
+            }
+          } else {
+            attackClock += deltaMs;
+            enemyAttackClock += deltaMs;
+          }
 
           const effectiveAttackInterval = Math.max(
             MIN_ATTACK_INTERVAL_MS,
             ATTACK_INTERVAL_MS / (1 + s.player.attackSpeedPercent / 100),
           );
-          if (attackClock >= effectiveAttackInterval) {
+          if (defeatPauseMs === 0 && attackClock >= effectiveAttackInterval) {
             attackClock = 0;
             const { dmg, isCrit, enemyDefeated } = s.playerAttack();
             enemyFlashMs = HIT_FLASH_MS;
@@ -502,6 +518,10 @@ export const BattleCanvas = () => {
                 playEnemyOneShot(currentEnemyKind, set.hurt, 'idle');
               }
             }
+            // 보스 처치는 보상 팝업이 이미 화면을 멈추므로 별도 텀이 필요 없다.
+            if (enemyDefeated && !useGameStore.getState().awaitingBossReward) {
+              defeatPauseMs = DEFEAT_PAUSE_MS;
+            }
             if (enemyDefeated && playerAnim.victory) {
               playPlayerOneShot(playerAnim.victory, 'idle');
             } else {
@@ -512,7 +532,7 @@ export const BattleCanvas = () => {
               attack.gotoAndPlay(0);
             }
           }
-          if (enemyAttackClock >= ENEMY_ATTACK_INTERVAL_MS) {
+          if (defeatPauseMs === 0 && enemyAttackClock >= ENEMY_ATTACK_INTERVAL_MS) {
             enemyAttackClock = 0;
             const result = s.enemyAttack();
             if (result?.evaded) {
@@ -524,6 +544,7 @@ export const BattleCanvas = () => {
               if (result.playerDefeated) {
                 playDefeat();
                 playPlayerOneShot(playerAnim.death, 'hold');
+                defeatPauseMs = DEFEAT_PAUSE_MS;
               } else {
                 playPlayerOneShot(playerAnim.hurt, 'idle');
               }
@@ -568,10 +589,13 @@ export const BattleCanvas = () => {
             idle.visible = true;
             idle.gotoAndPlay(0);
           }
-          // 전투 대상이 바뀔 때(승리/패배 연출 종료 포함) 플레이어도 idle로 초기화.
-          for (const sprite of playerSprites()) stopAndHide(sprite);
-          idleAnim.visible = true;
-          idleAnim.gotoAndPlay(0);
+          // 전투 대상이 바뀔 때 플레이어도 idle로 초기화 — 단 쓰러짐 연출 중이면 그 자세를
+          // 유지하고(패배 후퇴로 적이 바뀌는 경우) 연출이 끝날 때 idle로 되돌린다.
+          if (defeatPauseMs === 0) {
+            for (const sprite of playerSprites()) stopAndHide(sprite);
+            idleAnim.visible = true;
+            idleAnim.gotoAndPlay(0);
+          }
         }
         enemyBox.visible = kind === 'none';
         if (kind === 'none') {
