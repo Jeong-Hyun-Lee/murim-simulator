@@ -82,6 +82,15 @@ interface PlayerAnimSet {
   victory?: AnimatedSprite;
 }
 
+// visible=false만으로는 재생 중이던 AnimatedSprite의 내부 타이머가 멈추지 않아, 이미 화면에서
+// 숨긴 뒤에도 그 onComplete가 뒤늦게 발동해 idle을 다시 보이게 만든다(다른 모션과 겹쳐 보이는 원인).
+// 숨길 때는 반드시 stop()도 같이 호출해 그 onComplete가 아예 발동하지 않게 한다.
+const stopAndHide = (target: AnimatedSprite) => {
+  const anim = target;
+  anim.visible = false;
+  anim.stop();
+};
+
 export const BattleCanvas = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -222,25 +231,25 @@ export const BattleCanvas = () => {
       const playPlayerOneShot = (sprite: AnimatedSprite | undefined, onDone: 'idle' | 'hold') => {
         if (!sprite) return;
         const anim = sprite;
-        for (const s of playerSprites()) s.visible = false;
+        for (const s of playerSprites()) stopAndHide(s);
         anim.visible = true;
         anim.gotoAndPlay(0);
         anim.onComplete = () => {
           if (onDone === 'idle') {
-            anim.visible = false;
+            stopAndHide(anim);
             returnPlayerToIdle();
           }
         };
       };
 
       attackAnim.onComplete = () => {
-        attackAnim.visible = false;
+        stopAndHide(attackAnim);
         returnPlayerToIdle();
       };
       if (playerAnim.attack2) {
         const { attack2 } = playerAnim;
         attack2.onComplete = () => {
-          attack2.visible = false;
+          stopAndHide(attack2);
           returnPlayerToIdle();
         };
       }
@@ -286,7 +295,7 @@ export const BattleCanvas = () => {
 
       const hideAllEnemySprites = () => {
         for (const kind of ['boss', 'grunt'] as const) {
-          for (const sprite of enemySpritesOf(kind)) sprite.visible = false;
+          for (const sprite of enemySpritesOf(kind)) stopAndHide(sprite);
         }
       };
 
@@ -305,12 +314,12 @@ export const BattleCanvas = () => {
       ) => {
         if (!sprite) return;
         const anim = sprite;
-        for (const s of enemySpritesOf(kind)) s.visible = false;
+        for (const s of enemySpritesOf(kind)) stopAndHide(s);
         anim.visible = true;
         anim.gotoAndPlay(0);
         anim.onComplete = () => {
           if (onDone === 'idle') {
-            anim.visible = false;
+            stopAndHide(anim);
             returnToIdle(kind);
           }
         };
@@ -332,14 +341,14 @@ export const BattleCanvas = () => {
         // 클로저 생성 시점이 아니라 실제 재생 완료 시점의 활성 적 종류를 확인한다.
         // eslint-disable-next-line @typescript-eslint/no-loop-func
         set.attack1.onComplete = () => {
-          set.attack1.visible = false;
+          stopAndHide(set.attack1);
           returnToIdle(kind);
         };
         if (set.attack2) {
           const { attack2 } = set;
           // eslint-disable-next-line @typescript-eslint/no-loop-func
           attack2.onComplete = () => {
-            attack2.visible = false;
+            stopAndHide(attack2);
             returnToIdle(kind);
           };
         }
@@ -496,7 +505,7 @@ export const BattleCanvas = () => {
             if (enemyDefeated && playerAnim.victory) {
               playPlayerOneShot(playerAnim.victory, 'idle');
             } else {
-              for (const sprite of playerSprites()) sprite.visible = false;
+              for (const sprite of playerSprites()) stopAndHide(sprite);
               const attack =
                 playerAnim.attack2 && Math.random() < 0.5 ? playerAnim.attack2 : playerAnim.attack1;
               attack.visible = true;
@@ -524,7 +533,7 @@ export const BattleCanvas = () => {
               if (result?.playerDefeated && set.victory) {
                 playEnemyOneShot(currentEnemyKind, set.victory, 'idle');
               } else {
-                for (const sprite of enemySpritesOf(currentEnemyKind)) sprite.visible = false;
+                for (const sprite of enemySpritesOf(currentEnemyKind)) stopAndHide(sprite);
                 const attack = set.attack2 && Math.random() < 0.5 ? set.attack2 : set.attack1;
                 attack.visible = true;
                 attack.gotoAndPlay(0);
@@ -560,7 +569,7 @@ export const BattleCanvas = () => {
             idle.gotoAndPlay(0);
           }
           // 전투 대상이 바뀔 때(승리/패배 연출 종료 포함) 플레이어도 idle로 초기화.
-          for (const sprite of playerSprites()) sprite.visible = false;
+          for (const sprite of playerSprites()) stopAndHide(sprite);
           idleAnim.visible = true;
           idleAnim.gotoAndPlay(0);
         }
