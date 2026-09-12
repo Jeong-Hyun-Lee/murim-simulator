@@ -87,23 +87,29 @@ const MOB_VARIANT_NAMES: Record<number, Partial<Record<EnemyKind, string>>> = {
   1: { archer: '혈랑채 궁수', elite: '혈랑채 정예산적' },
 };
 
+// 종류별 가중치 — 소스테이지 기본 공식(§2.1) 위에 곱한다. 보스 값은 기존 배율을 그대로 옮긴 것.
+// 궁수는 잘 죽지만 아프게 때리고(유리 대포), 정예산적은 보스 앞을 막는 벽 역할이라 체력·방어가 높다.
+// 보상은 체력(=처치에 걸리는 시간)에 맞춰 잡아 특정 종류가 파밍 최적 구간이 되지 않게 한다 —
+// 궁수는 피해를 더 받는 대신 조금 이득(0.95/0.85), 정예산적은 보스 관문이라 조금 손해(1.5/1.6).
+const KIND_WEIGHTS: Record<EnemyKind, { hp: number; atk: number; def: number; reward: number }> = {
+  grunt: { hp: 1.0, atk: 1.0, def: 1.0, reward: 1.0 },
+  archer: { hp: 0.85, atk: 1.35, def: 0.85, reward: 0.95 },
+  elite: { hp: 1.6, atk: 1.25, def: 1.3, reward: 1.5 },
+  boss: { hp: 3.0, atk: 2.0, def: 1.5, reward: 5.0 },
+};
+
 export const monsterStats = (stage: StageId): UnitStats => {
   const effSub = Math.min(stage.sub, 9);
   const baseHp = BASE_HP_1 * 1.8 ** (stage.major - 1);
   const baseAtk = BASE_ATK_1 * 1.6 ** (stage.major - 1);
   const baseDef = BASE_DEF_1 * 1.5 ** (stage.major - 1);
 
-  let hp = baseHp * (1 + 0.15 * (effSub - 1));
-  let atk = baseAtk * (1 + 0.12 * (effSub - 1));
-  let def = baseDef * (1 + 0.1 * (effSub - 1));
-
-  if (isBossStage(stage)) {
-    hp *= 3.0;
-    atk *= 2.0;
-    def *= 1.5;
-  }
-
   const kind = enemyKind(stage);
+  const weight = KIND_WEIGHTS[kind];
+  const hp = baseHp * (1 + 0.15 * (effSub - 1)) * weight.hp;
+  const atk = baseAtk * (1 + 0.12 * (effSub - 1)) * weight.atk;
+  const def = baseDef * (1 + 0.1 * (effSub - 1)) * weight.def;
+
   const name =
     kind === 'boss'
       ? BOSS_NAMES[stage.major]
@@ -119,15 +125,10 @@ export interface StageReward {
 
 export const stageReward = (stage: StageId): StageReward => {
   const effSub = Math.min(stage.sub, 9);
-  let exp = BASE_EXP_1 * 1.8 ** (stage.major - 1) * (1 + 0.15 * (effSub - 1));
-  let gold = BASE_GOLD_1 * 1.6 ** (stage.major - 1) * (1 + 0.12 * (effSub - 1));
-  let chi = BASE_CHI_1 * 1.8 ** (stage.major - 1) * (1 + 0.15 * (effSub - 1));
-
-  if (isBossStage(stage)) {
-    exp *= 5.0;
-    gold *= 5.0;
-    chi *= 5.0;
-  }
+  const rewardWeight = KIND_WEIGHTS[enemyKind(stage)].reward;
+  const exp = BASE_EXP_1 * 1.8 ** (stage.major - 1) * (1 + 0.15 * (effSub - 1)) * rewardWeight;
+  const gold = BASE_GOLD_1 * 1.6 ** (stage.major - 1) * (1 + 0.12 * (effSub - 1)) * rewardWeight;
+  const chi = BASE_CHI_1 * 1.8 ** (stage.major - 1) * (1 + 0.15 * (effSub - 1)) * rewardWeight;
 
   return { exp: Math.round(exp), gold: Math.round(gold), chi: Math.round(chi) };
 };
