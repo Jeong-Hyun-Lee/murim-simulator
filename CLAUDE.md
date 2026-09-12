@@ -10,6 +10,8 @@
 
 위키 사서 역할: `wiki/` 내 산출물 추가·수정 시 기존 문서와 중복·모순 없는지 확인, 알맞은 폴더(`concepts/`, `design/`, `entities/`, `sources/`, `synthesis/`, `raw/`)에 분류, `wiki/index.md`와 `wiki/log.md` 최신 상태 유지 책임진다.
 
+폐기 처리 원칙: 문서·에셋·기능을 폐기하면 **폐기했다는 기록을 남기지 않는다**. "(폐기)" 표기나 취소선으로 흔적을 남기지 말고 관련 서술·링크·색인 항목·로그 항목을 전부 제거하며, 남는 문장은 현재 사실만 말하도록 고친다. 코드 주석이 사라진 문서를 가리키면 경로만 걷어내고 규칙 설명은 남긴다. 문서가 폐기 이력으로 계속 길어지는 것을 막기 위함이다.
+
 ## 코딩 컨벤션 (2026-09-11부터)
 
 - Airbnb JavaScript/React 스타일 가이드 준수. `.eslintrc.cjs`(`eslint-config-airbnb` + `airbnb-typescript` + `airbnb/hooks`) + `.prettierrc.json`(single quote/세미콜론/trailing comma)로 강제.
