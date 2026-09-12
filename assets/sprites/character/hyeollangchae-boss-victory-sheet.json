@@ -1,59 +1,59 @@
 {
- "frames": [
-  {
-   "frame": {
-    "x": 0,
-    "y": 0,
-    "w": 434,
-    "h": 724
-   },
-   "duration": 160
-  },
-  {
-   "frame": {
-    "x": 434,
-    "y": 0,
-    "w": 434,
-    "h": 724
-   },
-   "duration": 160
-  },
-  {
-   "frame": {
-    "x": 868,
-    "y": 0,
-    "w": 434,
-    "h": 724
-   },
-   "duration": 160
-  },
-  {
-   "frame": {
-    "x": 1302,
-    "y": 0,
-    "w": 434,
-    "h": 724
-   },
-   "duration": 160
-  },
-  {
-   "frame": {
-    "x": 1736,
-    "y": 0,
-    "w": 436,
-    "h": 724
-   },
-   "duration": 160
+  "frames": [
+    {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 896,
+        "h": 896
+      },
+      "duration": 140
+    },
+    {
+      "frame": {
+        "x": 896,
+        "y": 0,
+        "w": 896,
+        "h": 896
+      },
+      "duration": 140
+    },
+    {
+      "frame": {
+        "x": 1792,
+        "y": 0,
+        "w": 896,
+        "h": 896
+      },
+      "duration": 140
+    },
+    {
+      "frame": {
+        "x": 2688,
+        "y": 0,
+        "w": 896,
+        "h": 896
+      },
+      "duration": 140
+    },
+    {
+      "frame": {
+        "x": 3584,
+        "y": 0,
+        "w": 896,
+        "h": 896
+      },
+      "duration": 140
+    }
+  ],
+  "meta": {
+    "image": "hyeollangchae-boss-victory-sheet.png",
+    "frameTags": [
+      {
+        "name": "victory",
+        "from": 0,
+        "to": 4
+      }
+    ]
   }
- ],
- "meta": {
-  "image": "hyeollangchae-boss-victory-sheet.png",
-  "frameTags": [
-   {
-    "name": "victory",
-    "from": 0,
-    "to": 4
-   }
-  ]
- }
 }

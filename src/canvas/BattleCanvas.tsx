@@ -22,21 +22,19 @@ import { playHit, playCrit, playVictory, playDefeat } from '../audio/sfx';
 
 const CANVAS_WIDTH = 960;
 const CANVAS_HEIGHT = 540;
-const PLAYER_X = 280;
-const ENEMY_X = 700;
+const PLAYER_X = 310;
+const ENEMY_X = 650;
 const GROUND_Y = 470; // 플레이어·적 스프라이트가 같은 바닥선에 서도록 공유하는 좌표(앵커가 바닥-중앙이라 이 값이 곧 발 위치)
 const PLAYER_Y = GROUND_Y;
 const ENEMY_Y = GROUND_Y;
 const HIT_BURST_LIFETIME_MS = 260;
 const NORMAL_HIT_EFFECT_SCALE = 0.22;
 const CRITICAL_HIT_EFFECT_SCALE = 0.16;
-// 스프라이트시트가 64x64/96x64 표시 규격보다 4배 큰 캔버스로 제작돼 있어(저해상도 확대 시 흐려지는 것 방지) 배율을 그만큼 낮춘다.
-// 원화상 실루엣 크기(idle 프레임 기준 목현 215px, 혈랑채 두목 207px, 혈랑채 잡몹 204px)가 서로 비슷해 동일 배율로 통일.
-const PLAYER_SCALE = 0.75;
-// 혈랑채 두목 6모션 재설계판(2026-09-12)은 캔버스(362x724)가 이전 원화보다 훨씬 커져 기존 배율이
-// 화면 위로 크게 잘려나갔다 — 캔버스 상단을 벗어나지 않으면서 플레이어보다 크게 보이도록 재산정.
-const ENEMY_BOSS_SCALE = 0.6;
-const ENEMY_MOB_SCALE = 0.75;
+// 모든 생성 원화는 프레임별 투명 여백을 제거한 뒤 896px 고정 셀·공통 바닥선으로 재패킹한다.
+// 화면에서는 두 인물의 몸통 간 거리를 좁히되, 두목은 잡몹보다 조금 크게 유지한다.
+const PLAYER_SCALE = 0.5;
+const ENEMY_BOSS_SCALE = 0.55;
+const ENEMY_MOB_SCALE = 0.48;
 const ENEMY_HIT_TINT = 0xff6666;
 const HIT_FLASH_MS = 140;
 const POPUP_LIFETIME_MS = 800;
@@ -64,8 +62,17 @@ interface FramedHitEffect {
 }
 
 // 6모션(idle/공격1/공격2/피격/쓰러짐/승리) 에셋을 확보한 캐릭터만 attack2~victory를 채운다 —
-// 아직 idle/attack 2종뿐인 캐릭터(예: 혈랑채 졸개)는 옵셔널 필드를 비워두면 기존 2모션 그대로 동작.
+// 아직 idle/attack 2종뿐인 캐릭터는 옵셔널 필드를 비워두면 기존 2모션 그대로 동작.
 interface EnemyAnimSet {
+  idle: AnimatedSprite;
+  attack1: AnimatedSprite;
+  attack2?: AnimatedSprite;
+  hurt?: AnimatedSprite;
+  death?: AnimatedSprite;
+  victory?: AnimatedSprite;
+}
+
+interface PlayerAnimSet {
   idle: AnimatedSprite;
   attack1: AnimatedSprite;
   attack2?: AnimatedSprite;
@@ -125,6 +132,10 @@ export const BattleCanvas = () => {
       const [
         idleAnim,
         attackAnim,
+        playerAttack2,
+        playerHurt,
+        playerDeath,
+        playerVictory,
         bossIdle,
         bossAttack1,
         bossAttack2,
@@ -133,9 +144,16 @@ export const BattleCanvas = () => {
         bossVictory,
         gruntIdle,
         gruntAttack,
+        gruntAttack2,
+        gruntHurt,
+        gruntDeath,
       ] = await Promise.all([
         loadAnimatedSprite('/sprites/character/mokhyeon-idle-sheet.json', 'idle'),
         loadAnimatedSprite('/sprites/character/mokhyeon-attack-sheet.json', 'attack'),
+        tryLoadAnimatedSprite('/sprites/character/mokhyeon-attack2-sheet.json', 'attack2'),
+        tryLoadAnimatedSprite('/sprites/character/mokhyeon-hurt-sheet.json', 'hurt'),
+        tryLoadAnimatedSprite('/sprites/character/mokhyeon-death-sheet.json', 'death'),
+        tryLoadAnimatedSprite('/sprites/character/mokhyeon-victory-sheet.json', 'victory'),
         loadAnimatedSprite('/sprites/character/hyeollangchae-boss-idle-sheet.json', 'idle'),
         loadAnimatedSprite('/sprites/character/hyeollangchae-boss-attack-sheet.json', 'attack'),
         tryLoadAnimatedSprite(
@@ -150,6 +168,12 @@ export const BattleCanvas = () => {
         ),
         loadAnimatedSprite('/sprites/character/hyeollangchae-grunt-idle-sheet.json', 'idle'),
         loadAnimatedSprite('/sprites/character/hyeollangchae-grunt-attack-sheet.json', 'attack'),
+        tryLoadAnimatedSprite(
+          '/sprites/character/hyeollangchae-grunt-attack2-sheet.json',
+          'attack2',
+        ),
+        tryLoadAnimatedSprite('/sprites/character/hyeollangchae-grunt-hurt-sheet.json', 'hurt'),
+        tryLoadAnimatedSprite('/sprites/character/hyeollangchae-grunt-death-sheet.json', 'death'),
       ]);
       await Promise.all([loadDamageFont(), loadNormalHitEffect(), loadCriticalHitEffect()]);
       const normalHitFrames = normalHitEffectFrames();
@@ -159,19 +183,68 @@ export const BattleCanvas = () => {
         return;
       }
 
-      for (const anim of [idleAnim, attackAnim]) {
+      const playerAnim: PlayerAnimSet = {
+        idle: idleAnim,
+        attack1: attackAnim,
+        attack2: playerAttack2 ?? undefined,
+        hurt: playerHurt ?? undefined,
+        death: playerDeath ?? undefined,
+        victory: playerVictory ?? undefined,
+      };
+      const playerSprites = (): AnimatedSprite[] =>
+        [
+          playerAnim.idle,
+          playerAnim.attack1,
+          playerAnim.attack2,
+          playerAnim.hurt,
+          playerAnim.death,
+          playerAnim.victory,
+        ].filter((a): a is AnimatedSprite => a !== undefined);
+
+      for (const anim of playerSprites()) {
         anim.position.set(PLAYER_X, PLAYER_Y);
         anim.scale.set(PLAYER_SCALE);
       }
-      attackAnim.loop = false;
-      attackAnim.visible = false;
-      attackAnim.onComplete = () => {
-        attackAnim.visible = false;
+      for (const anim of playerSprites()) {
+        if (anim !== idleAnim) {
+          anim.loop = false;
+          anim.visible = false;
+        }
+      }
+
+      const returnPlayerToIdle = () => {
         idleAnim.visible = true;
         idleAnim.gotoAndPlay(0);
       };
+
+      // hurt/승리는 재생 후 idle로 복귀('idle'), 쓰러짐은 리워드 연출 동안 마지막 프레임을 유지('hold').
+      const playPlayerOneShot = (sprite: AnimatedSprite | undefined, onDone: 'idle' | 'hold') => {
+        if (!sprite) return;
+        const anim = sprite;
+        for (const s of playerSprites()) s.visible = false;
+        anim.visible = true;
+        anim.gotoAndPlay(0);
+        anim.onComplete = () => {
+          if (onDone === 'idle') {
+            anim.visible = false;
+            returnPlayerToIdle();
+          }
+        };
+      };
+
+      attackAnim.onComplete = () => {
+        attackAnim.visible = false;
+        returnPlayerToIdle();
+      };
+      if (playerAnim.attack2) {
+        const { attack2 } = playerAnim;
+        attack2.onComplete = () => {
+          attack2.visible = false;
+          returnPlayerToIdle();
+        };
+      }
       idleAnim.play();
-      app.stage.addChild(idleAnim, attackAnim);
+      app.stage.addChild(...playerSprites());
 
       const playerFlash = new Graphics()
         .rect(PLAYER_X - 40, PLAYER_Y - 130, 80, 130)
@@ -190,12 +263,17 @@ export const BattleCanvas = () => {
           death: bossDeath ?? undefined,
           victory: bossVictory ?? undefined,
         },
-        grunt: { idle: gruntIdle, attack1: gruntAttack },
+        grunt: {
+          idle: gruntIdle,
+          attack1: gruntAttack,
+          attack2: gruntAttack2 ?? undefined,
+          hurt: gruntHurt ?? undefined,
+          death: gruntDeath ?? undefined,
+        },
       };
       const enemyScaleByKind = { boss: ENEMY_BOSS_SCALE, grunt: ENEMY_MOB_SCALE };
-      // 혈랑채 두목 6모션 원화(2026-09-12 재생성)는 이미 화면 왼쪽을 보도록 그려져 좌우 반전이 불필요하다 —
-      // 졸개는 아직 이전(우향) 원화 그대로라 반전을 유지한다.
-      const enemyFacesLeftNativelyByKind = { boss: true, grunt: false };
+      // 재패킹한 혈랑채 원화는 모두 화면 왼쪽을 보므로 런타임 좌우 반전이 필요 없다.
+      const enemyFacesLeftNativelyByKind = { boss: true, grunt: true };
       let currentEnemyKind: EnemyKind = 'none';
 
       const enemySpritesOf = (kind: 'boss' | 'grunt'): AnimatedSprite[] => {
@@ -414,9 +492,15 @@ export const BattleCanvas = () => {
                 playEnemyOneShot(currentEnemyKind, set.hurt, 'idle');
               }
             }
-            idleAnim.visible = false;
-            attackAnim.visible = true;
-            attackAnim.gotoAndPlay(0);
+            if (enemyDefeated && playerAnim.victory) {
+              playPlayerOneShot(playerAnim.victory, 'idle');
+            } else {
+              for (const sprite of playerSprites()) sprite.visible = false;
+              const attack =
+                playerAnim.attack2 && Math.random() < 0.5 ? playerAnim.attack2 : playerAnim.attack1;
+              attack.visible = true;
+              attack.gotoAndPlay(0);
+            }
           }
           if (enemyAttackClock >= ENEMY_ATTACK_INTERVAL_MS) {
             enemyAttackClock = 0;
@@ -427,7 +511,12 @@ export const BattleCanvas = () => {
               playerFlashMs = HIT_FLASH_MS;
               spawnHitNumberPopup(PLAYER_X, PLAYER_Y - 110, result.dmg);
               spawnHitBurst(PLAYER_X, PLAYER_Y - 70, 0xff6b6b);
-              if (result.playerDefeated) playDefeat();
+              if (result.playerDefeated) {
+                playDefeat();
+                playPlayerOneShot(playerAnim.death, 'hold');
+              } else {
+                playPlayerOneShot(playerAnim.hurt, 'idle');
+              }
             }
             if (currentEnemyKind !== 'none') {
               const set = enemyAnimByKind[currentEnemyKind];
@@ -469,6 +558,10 @@ export const BattleCanvas = () => {
             idle.visible = true;
             idle.gotoAndPlay(0);
           }
+          // 전투 대상이 바뀔 때(승리/패배 연출 종료 포함) 플레이어도 idle로 초기화.
+          for (const sprite of playerSprites()) sprite.visible = false;
+          idleAnim.visible = true;
+          idleAnim.gotoAndPlay(0);
         }
         enemyBox.visible = kind === 'none';
         if (kind === 'none') {

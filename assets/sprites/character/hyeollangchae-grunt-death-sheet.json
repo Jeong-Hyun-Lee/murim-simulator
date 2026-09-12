@@ -7,7 +7,7 @@
         "w": 896,
         "h": 896
       },
-      "duration": 90
+      "duration": 120
     },
     {
       "frame": {
@@ -16,7 +16,7 @@
         "w": 896,
         "h": 896
       },
-      "duration": 90
+      "duration": 120
     },
     {
       "frame": {
@@ -25,7 +25,7 @@
         "w": 896,
         "h": 896
       },
-      "duration": 90
+      "duration": 120
     },
     {
       "frame": {
@@ -34,7 +34,7 @@
         "w": 896,
         "h": 896
       },
-      "duration": 90
+      "duration": 120
     },
     {
       "frame": {
@@ -43,7 +43,7 @@
         "w": 896,
         "h": 896
       },
-      "duration": 90
+      "duration": 120
     },
     {
       "frame": {
@@ -52,25 +52,16 @@
         "w": 896,
         "h": 896
       },
-      "duration": 90
-    },
-    {
-      "frame": {
-        "x": 5376,
-        "y": 0,
-        "w": 896,
-        "h": 896
-      },
-      "duration": 90
+      "duration": 120
     }
   ],
   "meta": {
-    "image": "hyeollangchae-boss-attack-sheet.png",
+    "image": "hyeollangchae-grunt-death-sheet.png",
     "frameTags": [
       {
-        "name": "attack",
+        "name": "death",
         "from": 0,
-        "to": 6
+        "to": 5
       }
     ]
   }

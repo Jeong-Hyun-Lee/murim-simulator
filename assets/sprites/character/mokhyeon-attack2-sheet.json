@@ -65,10 +65,10 @@
     }
   ],
   "meta": {
-    "image": "hyeollangchae-boss-attack-sheet.png",
+    "image": "mokhyeon-attack2-sheet.png",
     "frameTags": [
       {
-        "name": "attack",
+        "name": "attack2",
         "from": 0,
         "to": 6
       }
