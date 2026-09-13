@@ -474,6 +474,44 @@ export const boardUnlockLabel = (board: GongBoard): string => {
   return `${sourceBoard?.name ?? ''} "${sourceNode?.name ?? ''}" 대성 후 해금됩니다.`;
 };
 
+// 전체 내공 연마 계획 — 해금된 내공 보드 전체에서 가장 싼 초식부터 내공이 바닥날 때까지 구매하는
+// 탐욕(greedy) 방식. 실행(store)과 실행 전 미리보기(UI)가 같은 계산을 쓰도록 순수 함수로 둔다.
+// 기여도 재화 보드(문파무공)는 재화가 달라 "가장 싸다" 비교가 성립하지 않아 제외.
+export const planChiBulkUpgrade = (
+  chi: number,
+  levels: GongLevels,
+  highestMajorCleared: number,
+): { purchased: number; spent: number; gongLevels: GongLevels } => {
+  let remaining = chi;
+  const gongLevels = { ...levels };
+  let purchased = 0;
+  // gongLevels를 그대로 참조해 구매 도중 대성으로 열리는 보드도 반영한다.
+  const unlockCtx = { highestMajorCleared, gongLevels };
+
+  for (let i = 0; i < 100000; i += 1) {
+    let cheapest: { nodeId: string; cost: number; level: number } | null = null;
+    const unlockedChiBoards = GONG_BOARDS.filter(
+      (board) => board.currency === 'chi' && isBoardUnlocked(board, unlockCtx),
+    );
+    for (const board of unlockedChiBoards) {
+      const upgradableNodes = board.nodes.filter(
+        (node) => nodeLevel(node, gongLevels) < node.maxLevel && isNodeUnlocked(node, gongLevels),
+      );
+      for (const node of upgradableNodes) {
+        const level = nodeLevel(node, gongLevels);
+        const cost = nodeUpgradeCost(node, level);
+        if (!cheapest || cost < cheapest.cost) cheapest = { nodeId: node.id, cost, level };
+      }
+    }
+    if (!cheapest || remaining < cheapest.cost) break;
+    remaining -= cheapest.cost;
+    gongLevels[cheapest.nodeId] = cheapest.level + 1;
+    purchased += 1;
+  }
+
+  return { purchased, spent: chi - remaining, gongLevels };
+};
+
 export const boardCompletionPercent = (board: GongBoard, levels: GongLevels): number => {
   const total = board.nodes.reduce((sum, n) => sum + n.maxLevel, 0);
   const current = board.nodes.reduce((sum, n) => sum + nodeLevel(n, levels), 0);

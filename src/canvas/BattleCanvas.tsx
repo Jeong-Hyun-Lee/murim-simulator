@@ -20,11 +20,16 @@ import {
 import { useGameStore, isBossStage, enemyKind, type StageId, type EnemyKind } from '../game/store';
 import { playHit, playCrit, playVictory, playDefeat } from '../audio/sfx';
 
-const CANVAS_WIDTH = 960;
-const CANVAS_HEIGHT = 540;
-const PLAYER_X = 310;
-const ENEMY_X = 650;
-const GROUND_Y = 470; // 플레이어·적 스프라이트가 같은 바닥선에 서도록 공유하는 좌표(앵커가 바닥-중앙이라 이 값이 곧 발 위치)
+// 모바일 세로 화면의 전투 영역 비율(약 1.45:1) — 16:9 화면을 잘라 맞추지 않고 인물 간격·배경을
+// 이 비율에 맞춰 재구성한다. CSS가 너비 100%로 늘려 390px 폭에서 높이 약 270px로 보인다.
+const CANVAS_WIDTH = 640;
+const CANVAS_HEIGHT = 440;
+// 두 인물의 몸통 간 거리(340)는 기존 배치와 같게 유지해 공격 모션 범위가 겹치지 않게 한다.
+const PLAYER_X = 150;
+const ENEMY_X = 490;
+// 960x540 배경을 높이 기준으로 맞춘 배율 — 배경 속 바닥선(원본 y=470)과 발 위치를 일치시킨다.
+const BG_SCALE = CANVAS_HEIGHT / 540;
+const GROUND_Y = Math.round(470 * BG_SCALE); // 플레이어·적 스프라이트가 같은 바닥선에 서도록 공유하는 좌표(앵커가 바닥-중앙이라 이 값이 곧 발 위치)
 const PLAYER_Y = GROUND_Y;
 const ENEMY_Y = GROUND_Y;
 const HIT_BURST_LIFETIME_MS = 260;
@@ -97,8 +102,8 @@ export const BattleCanvas = () => {
     const app = new Application();
 
     (async () => {
-      // 기본 해상도 FHD(1920x1080) — 논리 캔버스는 960x540(레이아웃/좌표 그대로 유지)지만
-      // resolution:2로 실제 렌더 버퍼는 2배(FHD)로 그려 페인터리 아트가 흐려지지 않게 함.
+      // resolution:2로 실제 렌더 버퍼를 논리 크기의 2배로 그려 고밀도 화면에서 페인터리 아트가
+      // 흐려지지 않게 함.
       await app.init({
         width: CANVAS_WIDTH,
         height: CANVAS_HEIGHT,
@@ -117,6 +122,9 @@ export const BattleCanvas = () => {
       // 실제 이미지 생성 AI 산출물로 교체 예정(배경 아트는 외부 AI 작업 대기).
       const bgTexture = await Assets.load('/backgrounds/stage1-hyeollangchae.png');
       const background = new Sprite(bgTexture);
+      // 높이에 맞춰 확대하고 가로는 인물 중심(두 인물 중간점)이 배경 중앙에 오도록 배치.
+      background.scale.set(BG_SCALE);
+      background.x = (PLAYER_X + ENEMY_X) / 2 - (bgTexture.width * BG_SCALE) / 2;
       app.stage.addChild(background);
       if (disposed) {
         app.destroy(true, { children: true });

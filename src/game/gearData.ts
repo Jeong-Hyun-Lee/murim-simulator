@@ -92,7 +92,7 @@ export const needsProtectionEligible = (targetLevel: number): boolean =>
   targetLevel >= PROTECTION_THRESHOLD && targetLevel <= ENHANCE_MAX_LEVEL;
 
 // 실패 시 -1 하락 확률(보호부적 미사용 시). +11 이상 구간에서만 적용.
-const DOWNGRADE_CHANCE_ON_FAIL = 0.3;
+export const DOWNGRADE_CHANCE_ON_FAIL = 0.3;
 
 export interface EnhanceResult {
   success: boolean;

@@ -15,7 +15,7 @@ export const PULL_10_COST = 900;
 export const SOFT_PITY_START = 75; // 76번째 굴림부터 선품 확률 가산 시작
 export const HARD_PITY = 90;
 
-const GRADE_CHANCE: Record<Grade, number> = {
+export const GRADE_CHANCE: Record<Grade, number> = {
   하품: 0.55,
   중품: 0.3,
   상품: 0.12,

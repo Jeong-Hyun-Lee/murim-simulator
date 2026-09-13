@@ -28,6 +28,7 @@ import {
   findBoardByNodeId,
   boardCompletionPercent,
   boardUnlockLabel,
+  planChiBulkUpgrade,
   totalGongBuffPercent,
   totalGongSecondaryStats,
   type GongLevels,
@@ -83,6 +84,11 @@ const todayString = (): string => new Date().toISOString().slice(0, 10);
 // 스테이지보다 앞선 곳을 미리 사냥하는 우회를 막는다.
 export const isStageAtOrBefore = (a: StageId, b: StageId): boolean =>
   a.major < b.major || (a.major === b.major && a.sub <= b.sub);
+
+// wiki에 분해 환급량 수치가 없어 v1 근사치: 등급 1단계당 강화석 1개씩 증가(하품 1개~선품 6개).
+// 실행 전 확인 화면과 실제 분해가 같은 값을 쓰도록 공유.
+export const disassembleStoneYield = (items: GearItem[]): number =>
+  items.reduce((sum, it) => sum + 1 + gradeTier(it.grade), 0);
 
 export interface GachaOutcome {
   results: PullResult[];
@@ -260,7 +266,7 @@ type ItemLocation =
   { item: GearItem; source: 'equipped' } | { item: GearItem; source: 'inventory' };
 
 // 등급이 높을수록, 등급이 같으면 강화단계가 높을수록 "더 좋은" 장비로 취급(인벤토리 정렬 기준과 동일).
-const isBetterGear = (a: GearItem, b: GearItem): boolean =>
+export const isBetterGear = (a: GearItem, b: GearItem): boolean =>
   gradeTier(a.grade) !== gradeTier(b.grade)
     ? gradeTier(a.grade) > gradeTier(b.grade)
     : a.enhanceLevel > b.enhanceLevel;
@@ -329,7 +335,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         gold: s.gold + DAILY_BONUS_GOLD,
         chi: s.chi + DAILY_BONUS_CHI,
         elixir: s.elixir + DAILY_BONUS_ELIXIR,
-        toastMessage: `재접속 환영 보너스! +전 ${DAILY_BONUS_GOLD} +내공 ${DAILY_BONUS_CHI} +영약 ${DAILY_BONUS_ELIXIR}`,
+        toastMessage: `오늘의 접속 보너스 자동 지급: +전 ${DAILY_BONUS_GOLD} +내공 ${DAILY_BONUS_CHI} +영약 ${DAILY_BONUS_ELIXIR}`,
       });
       persist(get());
     },
@@ -394,47 +400,22 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       persist(get());
     },
 
-    // UX 기획 1절 하단 액션바 "일괄 연마(모든 보드에 자동으로
-    // 재화 소비)" — 해금된 모든 보드의 해금된 노드 중 가장 싼 강화부터 순서대로, 내공이
-    // 바닥날 때까지 반복 구매하는 탐욕(greedy) 방식으로 구현. 기여도 재화 보드(문파무공)는
-    // 서로 다른 재화라 "가장 싸다" 비교가 성립하지 않아 이 일괄 연마 대상에서 제외.
+    // 전체 내공 연마 — 계산은 planChiBulkUpgrade(gongData.ts)가 단일 기준.
     bulkUpgradeAllGong: () => {
       const s = get();
-      let { chi } = s;
-      const gongLevels = { ...s.gongLevels };
-      let purchased = 0;
-      const unlockCtx = { highestMajorCleared: s.highestMajorCleared, gongLevels };
-
-      for (let i = 0; i < 100000; i += 1) {
-        let cheapest: { nodeId: string; cost: number; level: number } | null = null;
-        const unlockedChiBoards = GONG_BOARDS.filter(
-          (board) => board.currency === 'chi' && isBoardUnlocked(board, unlockCtx),
-        );
-        for (const board of unlockedChiBoards) {
-          const upgradableNodes = board.nodes.filter(
-            (node) =>
-              nodeLevel(node, gongLevels) < node.maxLevel && isNodeUnlocked(node, gongLevels),
-          );
-          for (const node of upgradableNodes) {
-            const level = nodeLevel(node, gongLevels);
-            const cost = nodeUpgradeCost(node, level);
-            if (!cheapest || cost < cheapest.cost) cheapest = { nodeId: node.id, cost, level };
-          }
-        }
-        if (!cheapest || chi < cheapest.cost) break;
-        chi -= cheapest.cost;
-        gongLevels[cheapest.nodeId] = cheapest.level + 1;
-        purchased += 1;
-      }
-
+      const { purchased, spent, gongLevels } = planChiBulkUpgrade(
+        s.chi,
+        s.gongLevels,
+        s.highestMajorCleared,
+      );
       if (purchased === 0) return;
       const newPlayer = computePlayerStats(s.level, { ...s, gongLevels });
       set({
-        chi,
+        chi: s.chi - spent,
         gongLevels,
         player: newPlayer,
         playerHp: carryOverHp(s.player.hp, s.playerHp, newPlayer.hp),
-        toastMessage: `일괄 연마: ${purchased}회 강화 완료`,
+        toastMessage: `전체 내공 연마: ${purchased}회 연마 완료`,
       });
       persist(get());
     },
@@ -577,8 +558,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       const toDisassemble = s.inventory.filter((it) => idSet.has(it.id));
       if (toDisassemble.length === 0) return;
       const inventory = s.inventory.filter((it) => !idSet.has(it.id));
-      // wiki에 분해 환급량 수치가 없어 v1 근사치: 등급 1단계당 강화석 1개씩 증가(하품 1개~선품 6개).
-      const stonesGained = toDisassemble.reduce((sum, it) => sum + 1 + gradeTier(it.grade), 0);
+      const stonesGained = disassembleStoneYield(toDisassemble);
       set({
         inventory,
         enhanceStones: s.enhanceStones + stonesGained,
@@ -1004,6 +984,7 @@ export {
   isBoardUnlocked,
   boardCompletionPercent,
   boardUnlockLabel,
+  planChiBulkUpgrade,
   totalGongBuffPercent,
   totalGongSecondaryStats,
 };
@@ -1017,6 +998,7 @@ export {
   enhanceSuccessChance,
   enhanceStoneCost,
   needsProtectionEligible,
+  DOWNGRADE_CHANCE_ON_FAIL,
 } from './gearData';
 export { realmName, rebirthGateMajor, rebirthBuffPercent };
 export {
@@ -1028,6 +1010,7 @@ export {
   sectBuffPercent,
 };
 export { PULL_COST, PULL_10_COST, HARD_PITY, GRADE_COLOR, gradeTier };
+export { GRADE_CHANCE, SOFT_PITY_START } from './gachaData';
 export { elixirExchangeCost };
 export { expToNextLevel, isBossStage, enemyKind };
 export type { PullResult, StageId, GongBoard, GongCurrency, SlotId, GearItem, EnemyKind };

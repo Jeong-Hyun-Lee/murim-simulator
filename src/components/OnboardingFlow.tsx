@@ -3,7 +3,7 @@ import { useGameStore } from '../game/store';
 
 // UX 기획 4장(핵심 사용자 플로우) 1~2단계 v1 구현.
 // ponytail: "3~4장의 정지 일러스트" 연출은 캐릭터 컨셉아트 외 별도 일러스트 자산이 없어
-// 텍스트 대사 카드로 축소(배경/이펙트 없이). 3단계("수련 시작" 버튼)는 BossDialog와 동일한
+// 텍스트 대사 카드로 축소(배경/이펙트 없이). 3단계("수련 시작" 버튼)는 보스 확인과 동일한
 // "확인 전까지 자동전투 정지" 게이팅(App.tsx의 !onboardingDone 조건)으로 대체.
 const INTRO_CARDS = [
   '정신을 차리니 낯선 절벽 위였다. 방금까지 도시 한복판에 있었는데...',
@@ -29,10 +29,10 @@ export const OnboardingFlow = () => {
       {step === 'intro' ? (
         <div className="onboarding-box">
           <button type="button" className="onboarding-skip-btn" onClick={() => setStep('nickname')}>
-            SKIP
+            건너뛰기
           </button>
           <p className="onboarding-text">{INTRO_CARDS[cardIndex]}</p>
-          <button type="button" className="gong-upgrade-btn" onClick={nextCard}>
+          <button type="button" className="btn btn-primary btn-block" onClick={nextCard}>
             다음
           </button>
         </div>
@@ -40,26 +40,23 @@ export const OnboardingFlow = () => {
         <div className="onboarding-box">
           <p className="onboarding-text">그대의 도호(별명)를 무엇이라 부르면 되겠소?</p>
           <input
+            aria-label="도호"
             className="onboarding-input"
             value={nicknameInput}
             onChange={(e) => setNicknameInput(e.target.value)}
             placeholder="목현"
             maxLength={8}
           />
-          <div className="equip-detail-actions">
-            <button
-              type="button"
-              className="gong-upgrade-btn"
-              onClick={() => completeOnboarding(nicknameInput)}
-            >
-              확인
+          <div className="btn-row">
+            <button type="button" className="btn" onClick={() => completeOnboarding('')}>
+              기본값 사용
             </button>
             <button
               type="button"
-              className="panel-close-btn"
-              onClick={() => completeOnboarding('')}
+              className="btn btn-primary"
+              onClick={() => completeOnboarding(nicknameInput)}
             >
-              스킵(기본값)
+              확인
             </button>
           </div>
         </div>

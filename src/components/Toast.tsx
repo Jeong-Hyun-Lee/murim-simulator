@@ -13,5 +13,10 @@ export const Toast = () => {
     return () => window.clearTimeout(id);
   }, [toastMessage, showToast]);
 
-  return <div id="log-toast">{toastMessage}</div>;
+  // 처치마다 바뀌는 짧은 알림이라 화면 읽기 라이브 영역으로 두지 않는다(중요 상태는 요약줄이 전달).
+  return (
+    <div id="log-toast" hidden={!toastMessage}>
+      {toastMessage}
+    </div>
+  );
 };

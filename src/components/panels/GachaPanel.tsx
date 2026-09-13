@@ -1,17 +1,20 @@
-import { useEffect, type CSSProperties } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import {
   useGameStore,
   PULL_COST,
   PULL_10_COST,
   HARD_PITY,
+  SOFT_PITY_START,
+  GRADE_CHANCE,
   GRADE_COLOR,
   gradeTier,
   SLOT_INFO,
 } from '../../game/store';
+import { GRADE_ORDER } from '../../game/gradeData';
 import { playGachaReveal } from '../../audio/sfx';
+import { Sheet } from '../Sheet';
 
-// wiki "뽑기 결과 연출" 표: 등급이 높을수록(신품 이상) 카드 글로우를 강하게 — 파티클/화면
-// 진동 등 캔버스 연출은 v1 범위 밖(gachaData.ts 주석 참고).
+// 등급이 높을수록(신품 이상) 카드 글로우를 강하게.
 const glowForTier = (tier: number): string => {
   if (tier >= 5) return '0 0 16px 4px';
   if (tier >= 4) return '0 0 10px 2px';
@@ -23,10 +26,31 @@ const resultCardStyle = (tier: number, color: string): CSSProperties => {
   const glow = glowForTier(tier);
   return {
     borderColor: color,
-    color,
     boxShadow: glow === 'none' ? undefined : `${glow} ${color}`,
   };
 };
+
+// 결과 연출 동안 연타로 추가 뽑기가 실행되지 않게 막는 시간.
+const REVEAL_LOCK_MS = 600;
+
+type PullKind = 'single' | 'ten';
+
+const RatesSheet = ({ onClose }: { onClose: () => void }) => (
+  <Sheet title="기연 확률" onClose={onClose}>
+    <dl className="stat-list">
+      {GRADE_ORDER.map((grade) => (
+        <div key={grade} className="stat-row">
+          <dt>{grade}</dt>
+          <dd>{(GRADE_CHANCE[grade] * 100).toFixed(2)}%</dd>
+        </div>
+      ))}
+    </dl>
+    <p className="muted">
+      {SOFT_PITY_START + 1}회째부터 선품 확률이 조금씩 오르고, {HARD_PITY}회째에는 선품이
+      확정됩니다. 10회 뽑기는 상품 이상 1개가 보장됩니다. 슬롯은 9종 중 무작위입니다.
+    </p>
+  </Sheet>
+);
 
 export const GachaPanel = () => {
   const elixir = useGameStore((s) => s.elixir);
@@ -35,55 +59,115 @@ export const GachaPanel = () => {
   const pullGachaSingle = useGameStore((s) => s.pullGachaSingle);
   const pullGachaTen = useGameStore((s) => s.pullGachaTen);
   const resetGachaOutcome = useGameStore((s) => s.resetGachaOutcome);
+  const [revealing, setRevealing] = useState(false);
+  const [lastKind, setLastKind] = useState<PullKind>('single');
+  const [ratesOpen, setRatesOpen] = useState(false);
 
+  // 결과가 새로 생길 때만 연출 — 탭을 오가도 컴포넌트가 유지돼 재생·재지급이 없다.
   useEffect(() => {
-    resetGachaOutcome();
-  }, [resetGachaOutcome]);
-
-  useEffect(() => {
-    if (lastGachaOutcome) playGachaReveal();
+    if (!lastGachaOutcome) return undefined;
+    playGachaReveal();
+    setRevealing(true);
+    const id = window.setTimeout(() => setRevealing(false), REVEAL_LOCK_MS);
+    return () => window.clearTimeout(id);
   }, [lastGachaOutcome]);
 
+  const pull = (kind: PullKind) => {
+    if (revealing) return;
+    setLastKind(kind);
+    if (kind === 'single') pullGachaSingle();
+    else pullGachaTen();
+  };
+
+  const lastCost = lastKind === 'single' ? PULL_COST : PULL_10_COST;
+  const summary = lastGachaOutcome
+    ? GRADE_ORDER.map((grade) => ({
+        grade,
+        count: lastGachaOutcome.results.filter((r) => r.grade === grade).length,
+      })).filter((g) => g.count > 0)
+    : [];
+
   return (
-    <>
-      <div id="gacha-body">
-        <div>
-          보유 영약: {elixir.toLocaleString()}
-          <br />
-          천장 진행: {gachaPity}/{HARD_PITY} (선품 확정까지)
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          <button
-            type="button"
-            className="gong-upgrade-btn"
-            disabled={elixir < PULL_COST}
-            onClick={pullGachaSingle}
-          >
-            1회 뽑기 (영약 {PULL_COST})
-          </button>
-          <button
-            type="button"
-            className="gong-upgrade-btn"
-            disabled={elixir < PULL_10_COST}
-            onClick={pullGachaTen}
-          >
-            10회 뽑기 (영약 {PULL_10_COST})
-          </button>
-        </div>
-      </div>
-      <div id="gacha-result">
-        {lastGachaOutcome?.results.map((r, i) => (
-          // 뽑기 결과는 자체 id가 없고 재정렬/필터링 없이 append-only로만 렌더되므로 index key가 안전함.
-          <div
-            // eslint-disable-next-line react/no-array-index-key
-            key={i}
-            className="gacha-result-card"
-            style={resultCardStyle(gradeTier(r.grade), GRADE_COLOR[r.grade])}
-          >
-            {r.grade} · {SLOT_INFO[r.slot].name}
+    <div className="gacha">
+      <section className="card">
+        <dl className="stat-list">
+          <div className="stat-row">
+            <dt>보유 영약</dt>
+            <dd>{elixir.toLocaleString()}</dd>
           </div>
-        ))}
-      </div>
-    </>
+          <div className="stat-row">
+            <dt>천장 진행</dt>
+            <dd>
+              {gachaPity}/{HARD_PITY} (선품 확정까지)
+            </dd>
+          </div>
+        </dl>
+        <div className="btn-row">
+          <button
+            type="button"
+            className="btn btn-primary"
+            disabled={elixir < PULL_COST || revealing}
+            onClick={() => pull('single')}
+          >
+            1회 뽑기
+            <small>영약 {PULL_COST}</small>
+          </button>
+          <button
+            type="button"
+            className="btn btn-primary"
+            disabled={elixir < PULL_10_COST || revealing}
+            onClick={() => pull('ten')}
+          >
+            10회 뽑기
+            <small>영약 {PULL_10_COST}</small>
+          </button>
+        </div>
+        <button
+          type="button"
+          className="btn btn-ghost btn-block"
+          onClick={() => setRatesOpen(true)}
+        >
+          확률 정보 보기
+        </button>
+      </section>
+
+      {lastGachaOutcome && (
+        <section className="card" aria-live="polite">
+          <h3>뽑기 결과</h3>
+          <p className="muted">
+            {summary.map((g) => `${g.grade} ${g.count}`).join(' · ')} — 소지품에 추가됨
+          </p>
+          <div className="gacha-result-grid">
+            {lastGachaOutcome.results.map((r, i) => (
+              // 뽑기 결과는 자체 id가 없고 재정렬 없이 렌더만 하므로 index key가 안전함.
+              <div
+                // eslint-disable-next-line react/no-array-index-key
+                key={i}
+                className="gacha-result-card"
+                style={resultCardStyle(gradeTier(r.grade), GRADE_COLOR[r.grade])}
+              >
+                <span className="grade-dot" style={{ background: GRADE_COLOR[r.grade] }} />
+                {r.grade} · {SLOT_INFO[r.slot].name}
+              </div>
+            ))}
+          </div>
+          <div className="btn-row">
+            <button type="button" className="btn" onClick={resetGachaOutcome}>
+              닫기
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              disabled={elixir < lastCost || revealing}
+              onClick={() => pull(lastKind)}
+            >
+              다시 뽑기
+              <small>영약 {lastCost}</small>
+            </button>
+          </div>
+        </section>
+      )}
+      {ratesOpen && <RatesSheet onClose={() => setRatesOpen(false)} />}
+    </div>
   );
 };
