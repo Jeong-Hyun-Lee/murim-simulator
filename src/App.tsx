@@ -8,7 +8,7 @@ import {
   SettingsSheet,
   TabBar,
 } from './components/AppChrome';
-import { BattleTab } from './components/BattleTab';
+import { BattleTab, BossSheet } from './components/BattleTab';
 import { Toast } from './components/Toast';
 import { OnboardingFlow } from './components/OnboardingFlow';
 import { StoryCutscene } from './components/StoryCutscene';
@@ -229,7 +229,7 @@ export const App = () => {
             </div>
           </div>,
         )}
-        {page('gear', <GearPanel onNavigate={navigate} />)}
+        {page('gear', <GearPanel />)}
         {page('sect', <SectPanel onOpenBoard={openBoard} />)}
         {page('shop', <ShopPanel />)}
         {topView && topView !== 'stagePicker' && (
@@ -258,6 +258,7 @@ export const App = () => {
       {lockedSheetTab && lockedReason && (
         <LockedTabSheet tab={lockedSheetTab} reason={lockedReason} onClose={closeSheet} />
       )}
+      {onboardingDone && !storyCutscene && <BossSheet />}
       {!onboardingDone && <OnboardingFlow />}
       {storyCutscene && <StoryCutscene key={storyCutscene[0]} cards={storyCutscene} />}
     </div>

@@ -20,7 +20,6 @@ import {
 import type { StatKey } from '../../game/gearData';
 import { playEnhanceSuccess, playEnhanceFail } from '../../audio/sfx';
 import { Sheet } from '../Sheet';
-import type { NavTarget } from '../common';
 
 const STAT_LABEL: Record<StatKey, string> = {
   atk: '공격',
@@ -69,11 +68,12 @@ const StatDiff = ({ from, to }: { from: GearItem | undefined; to: GearItem }) =>
   );
 };
 
-const EnhanceBlock = ({ item, onNavigate }: { item: GearItem; onNavigate: () => void }) => {
+const EnhanceBlock = ({ item }: { item: GearItem }) => {
   const gold = useGameStore((s) => s.gold);
   const enhanceStones = useGameStore((s) => s.enhanceStones);
   const protectionCharms = useGameStore((s) => s.protectionCharms);
   const enhanceItem = useGameStore((s) => s.enhanceItem);
+  const showToast = useGameStore((s) => s.showToast);
   const [useProtection, setUseProtection] = useState(false);
   const [lastResult, setLastResult] = useState<string | null>(null);
 
@@ -90,9 +90,14 @@ const EnhanceBlock = ({ item, onNavigate }: { item: GearItem; onNavigate: () => 
   if (protectEligible && !protecting) {
     failText = `실패 시 ${Math.round(DOWNGRADE_CHANCE_ON_FAIL * 100)}% 확률로 1단계 하락`;
   }
-  const disabled = gold < cost || enhanceStones < stoneCost || (protecting && protectionCharms < 1);
+  // 전이 모자라도 버튼은 눌리게 두고, 누르면 토스트로 알린다.
+  const disabled = enhanceStones < stoneCost || (protecting && protectionCharms < 1);
 
   const enhance = () => {
+    if (gold < cost) {
+      showToast('전이 부족합니다');
+      return;
+    }
     const before = item.enhanceLevel;
     const result = enhanceItem(item.id, protecting);
     if (!result) return;
@@ -143,11 +148,6 @@ const EnhanceBlock = ({ item, onNavigate }: { item: GearItem; onNavigate: () => 
         <button type="button" className="btn btn-primary" disabled={disabled} onClick={enhance}>
           +{targetLevel} 강화하기
         </button>
-        {gold < cost && (
-          <button type="button" className="btn" onClick={onNavigate}>
-            전 부족 · 사냥터 보기
-          </button>
-        )}
       </div>
     </div>
   );
@@ -156,11 +156,10 @@ const EnhanceBlock = ({ item, onNavigate }: { item: GearItem; onNavigate: () => 
 interface SlotSheetProps {
   slot: SlotId;
   onClose: () => void;
-  onNavigate: (target: NavTarget) => void;
 }
 
 // 슬롯 비교 시트 — 현재 장비와 후보 장비를 위아래로 비교하고 목록에서 바로 장착.
-const SlotSheet = ({ slot, onClose, onNavigate }: SlotSheetProps) => {
+const SlotSheet = ({ slot, onClose }: SlotSheetProps) => {
   const equipped = useGameStore((s) => s.equippedGear[slot]);
   const inventory = useGameStore((s) => s.inventory);
   const equipItem = useGameStore((s) => s.equipItem);
@@ -168,10 +167,6 @@ const SlotSheet = ({ slot, onClose, onNavigate }: SlotSheetProps) => {
   const candidates = inventory
     .filter((it) => it.slot === slot)
     .sort((a, b) => (isBetterGear(a, b) ? -1 : 1));
-  const goFarm = () => {
-    onClose();
-    onNavigate('stagePicker');
-  };
 
   return (
     <Sheet title={SLOT_INFO[slot].name} onClose={onClose}>
@@ -185,7 +180,7 @@ const SlotSheet = ({ slot, onClose, onNavigate }: SlotSheetProps) => {
                 해제
               </button>
             </div>
-            <EnhanceBlock key={equipped.id} item={equipped} onNavigate={goFarm} />
+            <EnhanceBlock key={equipped.id} item={equipped} />
           </>
         ) : (
           <p className="muted">장착한 장비가 없습니다.</p>
@@ -214,7 +209,7 @@ const SlotSheet = ({ slot, onClose, onNavigate }: SlotSheetProps) => {
 
 type SortKey = 'grade' | 'enhance';
 
-export const GearPanel = ({ onNavigate }: { onNavigate: (target: NavTarget) => void }) => {
+export const GearPanel = () => {
   const equippedGear = useGameStore((s) => s.equippedGear);
   const inventory = useGameStore((s) => s.inventory);
   const equipBestAll = useGameStore((s) => s.equipBestAll);
@@ -242,6 +237,16 @@ export const GearPanel = ({ onNavigate }: { onNavigate: (target: NavTarget) => v
       const next = new Set(cur);
       if (next.has(id)) next.delete(id);
       else next.add(id);
+      return next;
+    });
+  };
+
+  // 현재 필터로 보이는 소지품 전체를 선택하고, 이미 전부 선택돼 있으면 해제한다.
+  const allShownChecked = shown.length > 0 && shown.every((it) => checkedIds.has(it.id));
+  const toggleAllShown = () => {
+    setCheckedIds((cur) => {
+      const next = new Set(cur);
+      shown.forEach((it) => (allShownChecked ? next.delete(it.id) : next.add(it.id)));
       return next;
     });
   };
@@ -354,6 +359,14 @@ export const GearPanel = ({ onNavigate }: { onNavigate: (target: NavTarget) => v
               </button>
               <button
                 type="button"
+                className="btn"
+                disabled={shown.length === 0}
+                onClick={toggleAllShown}
+              >
+                {allShownChecked ? '전체 해제' : '전체 선택'}
+              </button>
+              <button
+                type="button"
                 className="btn btn-primary"
                 disabled={checkedItems.length === 0}
                 onClick={() => setConfirmDisassemble(true)}
@@ -384,9 +397,7 @@ export const GearPanel = ({ onNavigate }: { onNavigate: (target: NavTarget) => v
         )}
       </div>
 
-      {openSlot && (
-        <SlotSheet slot={openSlot} onClose={() => setOpenSlot(null)} onNavigate={onNavigate} />
-      )}
+      {openSlot && <SlotSheet slot={openSlot} onClose={() => setOpenSlot(null)} />}
       {confirmDisassemble && (
         <Sheet title="장비 분해" onClose={() => setConfirmDisassemble(false)}>
           <p>

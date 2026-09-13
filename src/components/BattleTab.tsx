@@ -57,99 +57,69 @@ const StoryIntroCard = ({ major }: { major: number }) => {
   );
 };
 
-// 화면을 가리지 않고 상태를 먼저 알린 뒤, 보스·환골탈태 행동을 열 때만 팝업으로 확인한다.
-const BattleActionContents = ({ onNavigate, onClose }: Props & { onClose: () => void }) => {
+// 보스 도전·격파 팝업 — 전투가 멈추는 순간 어느 탭에 있든 바로 띄운다(App에서 렌더).
+// 도전 팝업을 닫으면 직전 스테이지 반복 사냥, 격파 팝업을 닫으면 보상 수령으로 처리한다.
+export const BossSheet = () => {
   const enemyName = useGameStore((s) => s.enemy.name);
   const stageMajor = useGameStore((s) => s.stage.major);
   const bossReward = useGameStore((s) => s.awaitingBossReward);
   const awaitingBossChallenge = useGameStore((s) => s.awaitingBossChallenge);
+  const pendingEncounter = useGameStore((s) => s.pendingEncounter);
   const chiGainMultiplier = useGameStore((s) => s.player.chiGainMultiplier);
   const confirmBossChallenge = useGameStore((s) => s.confirmBossChallenge);
+  const declineBossChallenge = useGameStore((s) => s.declineBossChallenge);
   const confirmBossReward = useGameStore((s) => s.confirmBossReward);
-  const rebirthCount = useGameStore((s) => s.rebirthCount);
-  const highestMajorCleared = useGameStore((s) => s.highestMajorCleared);
 
   if (bossReward) {
     const { stage, bossName, reward, elixirGained, firstClear } = bossReward;
     const defeatLine = firstClear ? MAJOR_STORIES[stage.major]?.bossDefeat : undefined;
     return (
-      <section className="card action-card-reward">
-        <h3>{bossName} 격파!</h3>
-        <p>{stageLabel(stage)} 클리어</p>
-        {defeatLine && <p className="story-line">{defeatLine}</p>}
-        <ul className="reward-list">
-          <li>경험치 +{reward.exp.toLocaleString()}</li>
-          <li>전 +{reward.gold.toLocaleString()}</li>
-          <li>내공 +{Math.round(reward.chi * chiGainMultiplier).toLocaleString()}</li>
-          {elixirGained > 0 && <li>영약 +{elixirGained} (대스테이지 최초 클리어)</li>}
-        </ul>
-        <button
-          type="button"
-          className="btn btn-primary btn-block"
-          onClick={() => {
-            onClose();
-            confirmBossReward();
-          }}
-        >
-          계속하기
-        </button>
-      </section>
+      <Sheet key="reward" title="보스 격파" onClose={confirmBossReward}>
+        <section className="card action-card-reward">
+          <h3>{bossName} 격파!</h3>
+          <p>{stageLabel(stage)} 클리어</p>
+          {defeatLine && <p className="story-line">{defeatLine}</p>}
+          <ul className="reward-list">
+            <li>경험치 +{reward.exp.toLocaleString()}</li>
+            <li>전 +{reward.gold.toLocaleString()}</li>
+            <li>내공 +{Math.round(reward.chi * chiGainMultiplier).toLocaleString()}</li>
+            {elixirGained > 0 && <li>영약 +{elixirGained} (대스테이지 최초 클리어)</li>}
+          </ul>
+          <button type="button" className="btn btn-primary btn-block" onClick={confirmBossReward}>
+            계속하기
+          </button>
+        </section>
+      </Sheet>
     );
   }
 
-  if (awaitingBossChallenge) {
-    const encounterLine = MAJOR_STORIES[stageMajor]?.bossEncounter;
-    return (
+  // 쓰러짐 연출 중에는 아직 앞 전투가 화면에 남아 있으므로 연출이 끝난 뒤 띄운다.
+  if (!awaitingBossChallenge || pendingEncounter) return null;
+  const encounterLine = MAJOR_STORIES[stageMajor]?.bossEncounter;
+  return (
+    <Sheet key="challenge" title="보스 도전" onClose={declineBossChallenge}>
       <section className="card">
-        <h3>보스 도전 대기</h3>
+        <h3>{enemyName}</h3>
         {encounterLine && (
           <p className="story-line">
             {enemyName}: {encounterLine}
           </p>
         )}
         <p>
-          {enemyName}이(가) 앞을 막아선다. 도전을 누르기 전까지 전투가 멈춰 있으며, 그동안 성장
-          화면을 이용할 수 있습니다.
+          도전하거나, 직전 스테이지에서 사냥하며 수련할 수 있습니다. 수련 중에는 사냥터 옆 [등반]
+          버튼으로 다시 도전합니다.
         </p>
         <div className="btn-row">
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => {
-              onClose();
-              confirmBossChallenge();
-            }}
-          >
+          <button type="button" className="btn btn-primary" onClick={confirmBossChallenge}>
             도전
           </button>
-          <button type="button" className="btn" onClick={onClose}>
-            무공 수련하기
+          <button type="button" className="btn" onClick={declineBossChallenge}>
+            수련하기
           </button>
         </div>
       </section>
-    );
-  }
-
-  if (highestMajorCleared >= Math.max(REBIRTH_ENTRY_MAJOR, rebirthGateMajor(rebirthCount))) {
-    return (
-      <section className="card">
-        <h3>환골탈태 가능</h3>
-        <p>경지를 올려 영구 능력치를 얻을 수 있습니다. 실행 전 초기화·유지 항목을 확인하세요.</p>
-        <button
-          type="button"
-          className="btn btn-primary btn-block"
-          onClick={() => {
-            onClose();
-            onNavigate('rebirth');
-          }}
-        >
-          환골탈태 보기
-        </button>
-      </section>
-    );
-  }
-
-  return null;
+    </Sheet>
+  );
 };
 
 export const BattleTab = ({ onNavigate }: Props) => {
@@ -163,37 +133,32 @@ export const BattleTab = ({ onNavigate }: Props) => {
   const exp = useGameStore((s) => s.exp);
   const paused = useGameStore((s) => s.paused);
   const farmReturnStage = useGameStore((s) => s.farmReturnStage);
-  const bossReward = useGameStore((s) => s.awaitingBossReward);
-  const awaitingBossChallenge = useGameStore((s) => s.awaitingBossChallenge);
+  const stopFarming = useGameStore((s) => s.stopFarming);
   const rebirthCount = useGameStore((s) => s.rebirthCount);
   const highestMajorCleared = useGameStore((s) => s.highestMajorCleared);
   const storyIntroMajor = useGameStore((s) => s.storyIntroMajor);
   const storySubtitle = useGameStore((s) => s.storySubtitle);
   const storyCutscene = useGameStore((s) => s.storyCutscene);
-  const [actionOpen, setActionOpen] = useState(false);
+  const [rebirthOpen, setRebirthOpen] = useState(false);
   const status = useBattleStatus();
 
   const expPercent = Math.min(100, (exp / expToNextLevel(level)) * 100);
-  let actionTitle = '';
-  if (bossReward) actionTitle = '보스 보상 확인';
-  else if (awaitingBossChallenge) actionTitle = '보스 도전';
-  else if (highestMajorCleared >= Math.max(REBIRTH_ENTRY_MAJOR, rebirthGateMajor(rebirthCount))) {
-    actionTitle = '환골탈태 가능';
-  }
+  const canRebirth =
+    highestMajorCleared >= Math.max(REBIRTH_ENTRY_MAJOR, rebirthGateMajor(rebirthCount));
 
   return (
     <div className="battle-tab">
       <div className="battle-state-row">
         <span aria-live="polite">{status}</span>
         {farmReturnStage && <span>등반 위치 {stageLabel(farmReturnStage)}</span>}
-        {actionTitle && (
+        {canRebirth && (
           <button
             type="button"
             className="battle-event-button"
             aria-haspopup="dialog"
-            onClick={() => setActionOpen(true)}
+            onClick={() => setRebirthOpen(true)}
           >
-            {actionTitle} ›
+            환골탈태 가능 ›
           </button>
         )}
       </div>
@@ -205,15 +170,27 @@ export const BattleTab = ({ onNavigate }: Props) => {
 
       <div className="battle-stage-frame">
         <BattleCanvas />
-        <button
-          type="button"
-          className="battle-stage-select"
-          aria-haspopup="dialog"
-          aria-label={`사냥터 선택, 현재 ${stageLabel(stage)}`}
-          onClick={() => onNavigate('stagePicker')}
-        >
-          사냥터 {stageLabel(stage)} ▾
-        </button>
+        <div className="battle-stage-controls">
+          <button
+            type="button"
+            className="battle-stage-select"
+            aria-haspopup="dialog"
+            aria-label={`사냥터 선택, 현재 ${stageLabel(stage)}`}
+            onClick={() => onNavigate('stagePicker')}
+          >
+            사냥터 {stageLabel(stage)} ▾
+          </button>
+          {farmReturnStage && (
+            <button
+              type="button"
+              className="battle-stage-select"
+              aria-label={`등반 위치 ${stageLabel(farmReturnStage)}로 복귀`}
+              onClick={stopFarming}
+            >
+              등반
+            </button>
+          )}
+        </div>
         {paused && <div className="battle-paused">일시정지</div>}
         {/* 컷이 떠 있는 동안에는 자막·진입 카드 타이머가 흘러가지 않도록 컷을 닫은 뒤 띄운다. */}
         {storySubtitle && !storyCutscene && (
@@ -237,9 +214,24 @@ export const BattleTab = ({ onNavigate }: Props) => {
         </div>
       </div>
 
-      {actionOpen && actionTitle && (
-        <Sheet title={actionTitle} onClose={() => setActionOpen(false)}>
-          <BattleActionContents onNavigate={onNavigate} onClose={() => setActionOpen(false)} />
+      {rebirthOpen && canRebirth && (
+        <Sheet title="환골탈태 가능" onClose={() => setRebirthOpen(false)}>
+          <section className="card">
+            <h3>환골탈태 가능</h3>
+            <p>
+              경지를 올려 영구 능력치를 얻을 수 있습니다. 실행 전 초기화·유지 항목을 확인하세요.
+            </p>
+            <button
+              type="button"
+              className="btn btn-primary btn-block"
+              onClick={() => {
+                setRebirthOpen(false);
+                onNavigate('rebirth');
+              }}
+            >
+              환골탈태 보기
+            </button>
+          </section>
         </Sheet>
       )}
     </div>

@@ -84,6 +84,10 @@ const todayString = (): string => new Date().toISOString().slice(0, 10);
 
 // 사냥터 모드는 이미 도달한(자동 등반이 지나온) 스테이지만 farming 대상으로 허용 — 현재 막힌
 // 스테이지보다 앞선 곳을 미리 사냥하는 우회를 막는다.
+// 아직 최초 클리어하지 않은 대스테이지의 보스만 도전 확인 팝업으로 멈춘다 — 이미 잡은 보스는 바로 싸운다.
+const needsBossChallenge = (stage: StageId, highestMajorCleared: number): boolean =>
+  isBossStage(stage) && stage.major > highestMajorCleared;
+
 export const isStageAtOrBefore = (a: StageId, b: StageId): boolean =>
   a.major < b.major || (a.major === b.major && a.sub <= b.sub);
 
@@ -155,6 +159,7 @@ interface GameStoreState extends GameState {
   resetGachaOutcome: () => void;
   exchangeGoldForElixir: () => void;
   confirmBossChallenge: () => void;
+  declineBossChallenge: () => void;
   confirmBossReward: () => void;
   startFarming: (stage: StageId) => void;
   stopFarming: () => void;
@@ -338,7 +343,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
     toastMessage: '',
     lastGachaOutcome: null,
     paused: false,
-    awaitingBossChallenge: isBossStage(saved.stage),
+    awaitingBossChallenge: needsBossChallenge(saved.stage, saved.highestMajorCleared),
     awaitingBossReward: null,
     pendingEncounter: null,
     storyIntroMajor: null,
@@ -814,7 +819,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
             enemy: newEnemy,
             enemyHp: newEnemy.hp,
             playerHp: newPlayer.hp,
-            awaitingBossChallenge: isBossStage(stage),
+            awaitingBossChallenge: needsBossChallenge(stage, s.highestMajorCleared),
             farmReturnStage: s.farmReturnStage,
           },
           toastMessage: `${s.stage.major}-${s.stage.sub} 클리어! +EXP ${reward.exp} +전 ${reward.gold}${drop.dropSummary}`,
@@ -828,6 +833,25 @@ export const useGameStore = create<GameStoreState>((set, get) => {
     },
 
     confirmBossChallenge: () => set({ awaitingBossChallenge: false }),
+
+    // 보스 도전 팝업을 닫으면 직전 스테이지에서 반복 사냥하며 수련한다 — 보스 스테이지를 복귀 지점으로
+    // 잡아 두어 전투 화면의 [등반] 버튼으로 다시 도전 팝업을 연다.
+    declineBossChallenge: () => {
+      const s = get();
+      if (!s.awaitingBossChallenge) return;
+      const stage = previousStage(s.stage);
+      const newEnemy = monsterStats(stage);
+      set({
+        stage,
+        farmReturnStage: s.farmReturnStage ?? s.stage,
+        enemy: newEnemy,
+        enemyHp: newEnemy.hp,
+        awaitingBossChallenge: false,
+        pendingEncounter: null,
+        toastMessage: `${stage.major}-${stage.sub}에서 수련 — [등반]으로 보스에 다시 도전`,
+      });
+      persist(get());
+    },
 
     confirmBossReward: () => {
       const s = get();
@@ -911,7 +935,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         farmReturnStage: null,
         enemy: newEnemy,
         enemyHp: newEnemy.hp,
-        awaitingBossChallenge: isBossStage(returnStage),
+        awaitingBossChallenge: needsBossChallenge(returnStage, s.highestMajorCleared),
         // 쓰러짐 연출 대기 중이었다면 그 예약은 버린다 — 사용자가 직접 고른 전투가 우선.
         pendingEncounter: null,
         toastMessage: `자동 등반 복귀: ${returnStage.major}-${returnStage.sub}`,
