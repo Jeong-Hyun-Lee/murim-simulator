@@ -31,6 +31,9 @@ export interface GameState {
   tutorialGongDone: boolean;
   // 사냥터 모드로 진입하기 전, 자동 등반이 멈춰 있던 원래 스테이지(복귀 대상). null이면 사냥터 모드가 아님.
   farmReturnStage: StageId | null;
+  // 스토리 연출 최초 1회 판정 — 환골탈태로 1-1에 돌아가도 유지한다.
+  storySeenMajor: number; // 진입 카드를 본 가장 높은 대스테이지
+  storySeenStage: number; // 자막을 본 가장 먼 소스테이지(storyStageIndex 일렬 번호)
 }
 
 const defaultState = (): GameState => ({
@@ -58,6 +61,8 @@ const defaultState = (): GameState => ({
   onboardingDone: false,
   tutorialGongDone: false,
   farmReturnStage: null,
+  storySeenMajor: 0,
+  storySeenStage: 0,
 });
 
 // 저장 실패(저장 공간 부족·브라우저 저장 차단 등)를 화면에 알리기 위한 상태 — 실패를 성공처럼 숨기지 않는다.
@@ -67,7 +72,15 @@ export const loadState = (): GameState => {
   try {
     const raw = localStorage.getItem(SAVE_KEY);
     if (!raw) return defaultState();
-    return { ...defaultState(), ...(JSON.parse(raw) as Partial<GameState>) };
+    const parsed = JSON.parse(raw) as Partial<GameState>;
+    // 연출 필드가 없는 기존 저장은 이미 클리어한 대스테이지까지 본 것으로 취급 — 지나온 연출을 다시 띄우지 않는다.
+    const cleared = parsed.highestMajorCleared ?? 0;
+    return {
+      ...defaultState(),
+      storySeenMajor: cleared,
+      storySeenStage: cleared * 10,
+      ...parsed,
+    };
   } catch {
     return defaultState();
   }

@@ -11,6 +11,7 @@ import {
 import { BattleTab } from './components/BattleTab';
 import { Toast } from './components/Toast';
 import { OnboardingFlow } from './components/OnboardingFlow';
+import { StoryCutscene } from './components/StoryCutscene';
 import { GongPanel } from './components/panels/GongPanel';
 import { GearPanel } from './components/panels/GearPanel';
 import { SectPanel } from './components/panels/SectPanel';
@@ -47,6 +48,7 @@ const VIEW_TITLE: Record<ViewKey, string> = {
 export const App = () => {
   const claimDailyBonusIfNeeded = useGameStore((s) => s.claimDailyBonusIfNeeded);
   const onboardingDone = useGameStore((s) => s.onboardingDone);
+  const storyCutscene = useGameStore((s) => s.storyCutscene);
   const tutorialGongDone = useGameStore((s) => s.tutorialGongDone);
   const lockReasons = useTabLockReasons();
   const unlockedBoardCount = useGameStore(
@@ -261,6 +263,7 @@ export const App = () => {
         <LockedTabSheet tab={lockedSheetTab} reason={lockedReason} onClose={closeSheet} />
       )}
       {!onboardingDone && <OnboardingFlow />}
+      {storyCutscene && <StoryCutscene key={storyCutscene[0]} cards={storyCutscene} />}
     </div>
   );
 };

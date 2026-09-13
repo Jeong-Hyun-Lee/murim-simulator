@@ -457,7 +457,13 @@ export const BattleCanvas = () => {
         const deltaMs = app.ticker.deltaMS;
         const s = useGameStore.getState();
 
-        if (!s.paused && !s.awaitingBossChallenge && !s.awaitingBossReward && s.onboardingDone) {
+        if (
+          !s.paused &&
+          !s.awaitingBossChallenge &&
+          !s.awaitingBossReward &&
+          !s.storyCutscene &&
+          s.onboardingDone
+        ) {
           if (defeatPauseMs > 0) {
             // 쓰러짐 연출이 끝날 때까지 전투를 멈춰두고, 끝나는 프레임에 다음 전투(스테이지 이동·HP
             // 회복)를 반영하면서 양쪽을 idle로 세운다 — 연출과 HP 바가 같은 시점에 바뀌도록.

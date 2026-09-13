@@ -70,6 +70,7 @@ import {
   type PullResult,
 } from './gachaData';
 import { elixirExchangeCost } from './shopData';
+import { MAJOR_STORIES, BOSS_CUTSCENES, ARRIVAL_CUTSCENES, storyStageIndex } from './storyData';
 
 // UX 기획 §3-4: 오프라인 방치 성장 없음, 1일 1회 정액 재접속 보너스만.
 const DAILY_BONUS_GOLD = 50;
@@ -100,6 +101,7 @@ export interface BossRewardOutcome {
   bossName: string;
   reward: { exp: number; gold: number; chi: number };
   elixirGained: number;
+  firstClear: boolean;
 }
 
 // 쓰러짐 연출이 끝난 뒤에 적용할 다음 전투 상태. 연출 중에는 쓰러진 쪽 HP를 0으로 남겨둬
@@ -127,8 +129,14 @@ interface GameStoreState extends GameState {
   awaitingBossReward: BossRewardOutcome | null;
   // null이 아니면 쓰러짐 연출 대기 중 — BattleCanvas가 연출을 끝낼 때 startPendingEncounter()로 반영.
   pendingEncounter: PendingEncounter | null;
+  // 스토리 연출(wiki 스테이지-적-구성-연출-기획서 4절) — 표시 중인 것만 담는 임시 상태.
+  storyIntroMajor: number | null; // 대스테이지 진입 카드
+  storySubtitle: { index: number; text: string } | null; // 소스테이지 자막
+  storyCutscene: string[] | null; // 차단형 대사 카드 — 표시 중 자동전투 정지
 
   showToast: (msg: string) => void;
+  dismissStoryIntro: () => void;
+  closeStoryCutscene: () => void;
   togglePause: () => void;
   retrySave: () => void;
   claimDailyBonusIfNeeded: () => void;
@@ -257,6 +265,8 @@ const persist = (s: GameStoreState) => {
     onboardingDone: s.onboardingDone,
     tutorialGongDone: s.tutorialGongDone,
     farmReturnStage: s.farmReturnStage,
+    storySeenMajor: s.storySeenMajor,
+    storySeenStage: s.storySeenStage,
   };
   saveState(state);
 };
@@ -331,8 +341,13 @@ export const useGameStore = create<GameStoreState>((set, get) => {
     awaitingBossChallenge: isBossStage(saved.stage),
     awaitingBossReward: null,
     pendingEncounter: null,
+    storyIntroMajor: null,
+    storySubtitle: null,
+    storyCutscene: null,
 
     showToast: (msg) => set({ toastMessage: msg }),
+    dismissStoryIntro: () => set({ storyIntroMajor: null }),
+    closeStoryCutscene: () => set({ storyCutscene: null }),
     togglePause: () => set((s) => ({ paused: !s.paused })),
     retrySave: () => persist(get()),
 
@@ -750,10 +765,17 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         // 보스 격파 직후에는 즉시 다음 스테이지로 넘기지 않고, 사용자가 [계속하기]를
         // 확인할 때까지 보류(confirmBossReward에서 실제 적용) — 드랍도 그때 함께 지급.
         const reward = stageReward(s.stage);
-        const elixirGained = s.stage.major > s.highestMajorCleared ? BOSS_FIRST_CLEAR_ELIXIR : 0;
+        const firstClear = s.stage.major > s.highestMajorCleared;
+        const elixirGained = firstClear ? BOSS_FIRST_CLEAR_ELIXIR : 0;
         set({
           enemyHp: 0,
-          awaitingBossReward: { stage: s.stage, bossName: s.enemy.name, reward, elixirGained },
+          awaitingBossReward: {
+            stage: s.stage,
+            bossName: s.enemy.name,
+            reward,
+            elixirGained,
+            firstClear,
+          },
         });
       } else if (enemyDefeated) {
         const reward = stageReward(s.stage);
@@ -764,7 +786,19 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         const drop = applyStageDrops(s, s.stage, s.level, false);
         const newPlayer = computePlayerStats(level, s);
         const newEnemy = monsterStats(stage);
+        // 자동 등반 중 처음 클리어한 소스테이지만 자막을 띄우고, 다음 소스테이지에 컷이 있으면 연다.
+        const clearedIndex = storyStageIndex(s.stage);
+        const subtitleText = MAJOR_STORIES[s.stage.major]?.subBeats[s.stage.sub - 1];
+        const story: Partial<GameStoreState> =
+          clearedIndex > s.storySeenStage
+            ? {
+                storySeenStage: clearedIndex,
+                storySubtitle: subtitleText ? { index: clearedIndex, text: subtitleText } : null,
+                storyCutscene: ARRIVAL_CUTSCENES[`${stage.major}-${stage.sub}`] ?? s.storyCutscene,
+              }
+            : {};
         set({
+          ...story,
           level,
           exp,
           gold,
@@ -810,7 +844,12 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       const drop = applyStageDrops(s, stage, s.level, isFirstMajorClear);
       const newPlayer = computePlayerStats(level, s);
       const newEnemy = monsterStats(nextStg);
+      // 최초 격파면 챕터·특수 컷, 새 대스테이지에 처음 들어서면 진입 카드(컷이 닫힌 뒤 표시).
+      const showIntro = nextStg.major > s.storySeenMajor && !!MAJOR_STORIES[nextStg.major];
       set({
+        storyCutscene: (isFirstMajorClear && BOSS_CUTSCENES[stage.major]) || s.storyCutscene,
+        storySeenMajor: showIntro ? nextStg.major : s.storySeenMajor,
+        storyIntroMajor: showIntro ? nextStg.major : s.storyIntroMajor,
         level,
         exp,
         gold,
@@ -885,7 +924,14 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       const s = get();
       const finalName = nickname.trim() || '목현';
       const newPlayer = computePlayerStats(s.level, { ...s, nickname: finalName });
-      set({ nickname: finalName, onboardingDone: true, player: newPlayer });
+      const showIntro = s.storySeenMajor < s.stage.major && s.stage.sub === 1;
+      set({
+        nickname: finalName,
+        onboardingDone: true,
+        player: newPlayer,
+        storySeenMajor: showIntro ? s.stage.major : s.storySeenMajor,
+        storyIntroMajor: showIntro ? s.stage.major : null,
+      });
       persist(get());
     },
 

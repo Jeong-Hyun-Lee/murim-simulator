@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BattleCanvas } from '../canvas/BattleCanvas';
 import { useGameStore, expToNextLevel, rebirthGateMajor } from '../game/store';
 import { combatPower } from '../game/combat';
+import { MAJOR_STORIES } from '../game/storyData';
 import { REBIRTH_ENTRY_MAJOR, stageLabel, useBattleStatus, type NavTarget } from './common';
 import { Sheet } from './Sheet';
 
@@ -21,9 +22,45 @@ interface Props {
   onNavigate: (target: NavTarget) => void;
 }
 
+const SUBTITLE_MS = 3000;
+const INTRO_MS = 2000;
+
+// 소스테이지 최초 클리어 자막 — 전투를 막지 않고 잠깐 보였다 사라진다. 매 클리어마다 낭독되지 않게 aria-hidden.
+const StorySubtitle = ({ text }: { text: string }) => {
+  const [visible, setVisible] = useState(true);
+  useEffect(() => {
+    const id = window.setTimeout(() => setVisible(false), SUBTITLE_MS);
+    return () => window.clearTimeout(id);
+  }, []);
+  return visible ? (
+    <p className="story-subtitle" aria-hidden="true">
+      {text}
+    </p>
+  ) : null;
+};
+
+// 대스테이지 진입 카드 — 2초 뒤 자동으로 닫히고 탭하면 바로 닫힌다. 전투는 계속된다.
+const StoryIntroCard = ({ major }: { major: number }) => {
+  const dismissStoryIntro = useGameStore((s) => s.dismissStoryIntro);
+  const [place, line] = MAJOR_STORIES[major].intro.split(' — ');
+  useEffect(() => {
+    const id = window.setTimeout(dismissStoryIntro, INTRO_MS);
+    return () => window.clearTimeout(id);
+  }, [dismissStoryIntro]);
+  return (
+    <div role="status">
+      <button type="button" className="story-intro" onClick={dismissStoryIntro}>
+        <strong>{place}</strong>
+        {line && <span>{line}</span>}
+      </button>
+    </div>
+  );
+};
+
 // 화면을 가리지 않고 상태를 먼저 알린 뒤, 보스·환골탈태 행동을 열 때만 팝업으로 확인한다.
 const BattleActionContents = ({ onNavigate, onClose }: Props & { onClose: () => void }) => {
   const enemyName = useGameStore((s) => s.enemy.name);
+  const stageMajor = useGameStore((s) => s.stage.major);
   const bossReward = useGameStore((s) => s.awaitingBossReward);
   const awaitingBossChallenge = useGameStore((s) => s.awaitingBossChallenge);
   const chiGainMultiplier = useGameStore((s) => s.player.chiGainMultiplier);
@@ -33,11 +70,13 @@ const BattleActionContents = ({ onNavigate, onClose }: Props & { onClose: () => 
   const highestMajorCleared = useGameStore((s) => s.highestMajorCleared);
 
   if (bossReward) {
-    const { stage, bossName, reward, elixirGained } = bossReward;
+    const { stage, bossName, reward, elixirGained, firstClear } = bossReward;
+    const defeatLine = firstClear ? MAJOR_STORIES[stage.major]?.bossDefeat : undefined;
     return (
       <section className="card action-card-reward">
         <h3>{bossName} 격파!</h3>
         <p>{stageLabel(stage)} 클리어</p>
+        {defeatLine && <p className="story-line">{defeatLine}</p>}
         <ul className="reward-list">
           <li>경험치 +{reward.exp.toLocaleString()}</li>
           <li>전 +{reward.gold.toLocaleString()}</li>
@@ -59,9 +98,15 @@ const BattleActionContents = ({ onNavigate, onClose }: Props & { onClose: () => 
   }
 
   if (awaitingBossChallenge) {
+    const encounterLine = MAJOR_STORIES[stageMajor]?.bossEncounter;
     return (
       <section className="card">
         <h3>보스 도전 대기</h3>
+        {encounterLine && (
+          <p className="story-line">
+            {enemyName}: {encounterLine}
+          </p>
+        )}
         <p>
           {enemyName}이(가) 앞을 막아선다. 도전을 누르기 전까지 전투가 멈춰 있으며, 그동안 성장
           화면을 이용할 수 있습니다.
@@ -122,6 +167,9 @@ export const BattleTab = ({ onNavigate }: Props) => {
   const awaitingBossChallenge = useGameStore((s) => s.awaitingBossChallenge);
   const rebirthCount = useGameStore((s) => s.rebirthCount);
   const highestMajorCleared = useGameStore((s) => s.highestMajorCleared);
+  const storyIntroMajor = useGameStore((s) => s.storyIntroMajor);
+  const storySubtitle = useGameStore((s) => s.storySubtitle);
+  const storyCutscene = useGameStore((s) => s.storyCutscene);
   const [actionOpen, setActionOpen] = useState(false);
   const status = useBattleStatus();
 
@@ -167,6 +215,13 @@ export const BattleTab = ({ onNavigate }: Props) => {
           사냥터 {stageLabel(stage)} ▾
         </button>
         {paused && <div className="battle-paused">일시정지</div>}
+        {/* 컷이 떠 있는 동안에는 자막·진입 카드 타이머가 흘러가지 않도록 컷을 닫은 뒤 띄운다. */}
+        {storySubtitle && !storyCutscene && (
+          <StorySubtitle key={storySubtitle.index} text={storySubtitle.text} />
+        )}
+        {storyIntroMajor && !storyCutscene && (
+          <StoryIntroCard key={storyIntroMajor} major={storyIntroMajor} />
+        )}
       </div>
 
       <div className="unit-status">
