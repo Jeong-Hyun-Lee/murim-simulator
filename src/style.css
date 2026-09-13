@@ -318,17 +318,35 @@ button:disabled {
   overflow-y: auto;
   overscroll-behavior: contain;
   padding: 0.75rem 1rem;
-  scrollbar-color: var(--ink-line) transparent;
+}
+
+/* 스크롤 영역 공통 표시줄 — 얇고 둥근 thumb. 종이 바탕 팝업은 thumb 색만 종이 선색으로 바꾼다. */
+.tab-page,
+.gong-scroll,
+.full-view-body,
+.sheet-body {
+  --scroll-thumb: var(--ink-line);
+  scrollbar-color: var(--scroll-thumb) transparent;
   scrollbar-width: thin;
 }
 
-.gong-scroll::-webkit-scrollbar {
+.sheet-body {
+  --scroll-thumb: var(--paper-line);
+}
+
+.tab-page::-webkit-scrollbar,
+.gong-scroll::-webkit-scrollbar,
+.full-view-body::-webkit-scrollbar,
+.sheet-body::-webkit-scrollbar {
   width: 0.375rem;
 }
 
-.gong-scroll::-webkit-scrollbar-thumb {
+.tab-page::-webkit-scrollbar-thumb,
+.gong-scroll::-webkit-scrollbar-thumb,
+.full-view-body::-webkit-scrollbar-thumb,
+.sheet-body::-webkit-scrollbar-thumb {
   border-radius: 1rem;
-  background: var(--ink-line);
+  background: var(--scroll-thumb);
 }
 
 .gong-scroll > div {
