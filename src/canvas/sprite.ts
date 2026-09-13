@@ -8,7 +8,11 @@ interface AsepriteFrame {
 
 interface AsepriteSheet {
   frames: AsepriteFrame[];
-  meta: { image: string; frameTags: { name: string; from: number; to: number }[] };
+  meta: {
+    image: string;
+    frameTags: { name: string; from: number; to: number }[];
+    anchor?: { x: number; y: number };
+  };
 }
 
 export const loadAnimatedSprite = async (
@@ -33,7 +37,7 @@ export const loadAnimatedSprite = async (
   }));
 
   const sprite = new AnimatedSprite(textures);
-  // 셀 규격은 IMPLEMENTATION-SPEC.md 권장안(서 있는 기준점 셀 내부 (0.5, 0.875), 발밑 12.5% 안전 여백).
-  sprite.anchor.set(0.5, 0.875);
+  // 신규 시트는 캐릭터별 루트 축을 JSON에 기록한다. 기존 시트는 중앙 하단 앵커를 유지한다.
+  sprite.anchor.set(sheet.meta.anchor?.x ?? 0.5, sheet.meta.anchor?.y ?? 0.875);
   return sprite;
 };
