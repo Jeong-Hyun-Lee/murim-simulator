@@ -26,9 +26,9 @@ const CANVAS_HEIGHT = 390;
 // 두 인물의 몸통 간 거리(340)는 기존 배치와 같게 유지해 공격 모션 범위가 겹치지 않게 한다.
 const PLAYER_X = 150;
 const ENEMY_X = 490;
-// 960x540 배경을 높이 기준으로 맞춘 배율 — 배경 속 바닥선(원본 y=470)과 발 위치를 일치시킨다.
-const BG_SCALE = CANVAS_HEIGHT / 540;
-const GROUND_Y = Math.round(470 * BG_SCALE); // 플레이어·적 스프라이트가 같은 바닥선에 서도록 공유하는 좌표(앵커가 바닥-중앙이라 이 값이 곧 발 위치)
+// 혈랑채 배경(1280x780, 캔버스와 같은 비율)의 흙바닥 공터 안쪽에 발이 닿는 높이 비율.
+const GROUND_RATIO = 0.8;
+const GROUND_Y = Math.round(CANVAS_HEIGHT * GROUND_RATIO); // 플레이어·적 스프라이트가 같은 바닥선에 서도록 공유하는 좌표(앵커가 바닥-중앙이라 이 값이 곧 발 위치)
 const PLAYER_Y = GROUND_Y;
 const ENEMY_Y = GROUND_Y;
 const HIT_BURST_LIFETIME_MS = 260;
@@ -131,13 +131,12 @@ export const BattleCanvas = () => {
       }
       container.appendChild(app.canvas);
 
-      // ponytail: 임시 배경 — wiki/raw/assets/배경-아트-02-혈랑채.svg를 그대로 래스터화한 자체 제작 플레이스홀더.
-      // 실제 이미지 생성 AI 산출물로 교체 예정(배경 아트는 외부 AI 작업 대기).
-      const bgTexture = await Assets.load('/backgrounds/stage1-hyeollangchae.png');
+      // 혈랑채 전투 배경 — 원화(wiki/raw/assets/혈랑채-전투배경-v1.png)를 렌더 배율 2배 기준
+      // 1280x780으로 줄여 캔버스 비율에 맞춘 WebP. 캔버스에 꽉 채워 그린다.
+      const bgTexture = await Assets.load('/backgrounds/stage1-hyeollangchae.webp');
       const background = new Sprite(bgTexture);
-      // 높이에 맞춰 확대하고 가로는 인물 중심(두 인물 중간점)이 배경 중앙에 오도록 배치.
-      background.scale.set(BG_SCALE);
-      background.x = (PLAYER_X + ENEMY_X) / 2 - (bgTexture.width * BG_SCALE) / 2;
+      background.width = CANVAS_WIDTH;
+      background.height = CANVAS_HEIGHT;
       app.stage.addChild(background);
       if (disposed) {
         destroyApp();
