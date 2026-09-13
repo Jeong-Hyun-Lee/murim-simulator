@@ -14,6 +14,7 @@ import {
   type GongCurrency,
 } from '../../game/store';
 import type { GongStatKey } from '../../game/gongData';
+import { useHoldRepeat } from '../../hooks/useHoldRepeat';
 import { Sheet } from '../Sheet';
 import type { NavTarget } from '../common';
 
@@ -53,6 +54,8 @@ const GongNodeCard = ({ node, currency, tutorialLocked, tutorialHighlight }: Car
   const maxed = lv >= node.maxLevel;
   const cost = nodeUpgradeCost(node, lv);
   const bulk = nodeBulkUpgrade(node, lv);
+  const singleDisabled = !unlocked || maxed || balance < cost || tutorialLocked;
+  const hold = useHoldRepeat(() => buyGongUpgrade(node.id), singleDisabled);
   const currencyLabel = CURRENCY_LABEL[currency];
   const effectLabel = EFFECT_LABEL[node.statKey ?? 'power'];
   const missing = (node.requires ?? [])
@@ -80,11 +83,13 @@ const GongNodeCard = ({ node, currency, tutorialLocked, tutorialHighlight }: Car
       {!unlocked && <p className="warn">{missing.join(', ')} 필요</p>}
       {unlocked && !maxed && (
         <div className="btn-row">
+          {/* useHoldRepeat이 반환하는 누르기/떼기/이동/클릭 핸들러 묶음 — 개별 나열하면 훅 캡슐화가 깨짐 */}
           <button
             type="button"
-            className="btn btn-primary"
-            disabled={balance < cost || tutorialLocked}
-            onClick={() => buyGongUpgrade(node.id)}
+            className="btn btn-primary hold-btn"
+            disabled={singleDisabled}
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...hold}
           >
             1회 연마
             <small>
@@ -300,6 +305,7 @@ export const GongPanel = ({ boardId, onBoardChange, onNavigate }: Props) => {
         </div>
       )}
 
+      <p className="muted small">1회 연마 버튼을 길게 누르면 연속으로 연마합니다.</p>
       <div className="card-list">
         {selectedBoard.nodes.map((node) => (
           <GongNodeCard

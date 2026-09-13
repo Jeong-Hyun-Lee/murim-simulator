@@ -406,6 +406,14 @@ button:disabled {
   opacity: 0.45;
 }
 
+/* 길게 누르기 버튼 — 텍스트 선택·확대·길게 누르기 메뉴가 끼어들지 않게 한다. */
+.hold-btn {
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
 .btn-block {
   width: 100%;
 }
