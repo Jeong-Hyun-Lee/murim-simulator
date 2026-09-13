@@ -39,16 +39,24 @@ export const StagePicker = ({ onBack }: { onBack: () => void }) => {
     onBack();
   };
 
+  let applyLabel = '사냥터를 선택하세요';
+  if (selected && sameStage(selected, frontier)) applyLabel = '등반 위치로 복귀';
+  else if (selected) applyLabel = `${stageLabel(selected)}에서 반복 사냥`;
+
   return (
-    <div className="picker">
-      <div className="card picker-pinned">
-        <div>
-          현재 전투: <strong>{stageLabel(stage)}</strong>{' '}
-          {farmReturnStage ? '(반복 사냥)' : '(등반)'}
+    <div className="picker stage-picker">
+      <div className="card picker-pinned stage-picker-summary">
+        <div className="stage-picker-summary-row">
+          <span>현재 전투</span>
+          <strong>{stageLabel(stage)}</strong>
+          <em>{farmReturnStage ? '반복 사냥 중' : '자동 등반 중'}</em>
         </div>
-        <div>
-          등반 위치: <strong>{stageLabel(frontier)}</strong>
+        <div className="stage-picker-summary-row">
+          <span>등반 위치</span>
+          <strong>{stageLabel(frontier)}</strong>
+          <em>도달 지점</em>
         </div>
+        <p className="stage-picker-help">이미 클리어한 사냥터를 골라 반복 사냥할 수 있습니다.</p>
         {farmReturnStage && (
           <button
             type="button"
@@ -63,48 +71,56 @@ export const StagePicker = ({ onBack }: { onBack: () => void }) => {
         )}
       </div>
 
-      <ul className="list">
+      <ul className="list stage-major-list">
         {MAJORS.map((major) => {
           const reached = major <= frontier.major;
           const open = openMajor === major && reached;
-          let majorHint = '🔒 미도달';
+          let majorHint = '미도달';
           if (reached) majorHint = open ? '접기' : '펼치기';
           return (
             <li key={major}>
               <button
                 ref={major === stage.major ? openRowRef : undefined}
                 type="button"
-                className="list-row"
+                className={`list-row stage-major-row${open ? ' stage-major-row-open' : ''}`}
                 aria-expanded={open}
                 disabled={!reached}
                 onClick={() => setOpenMajor(open ? 0 : major)}
               >
-                <span>대{major}</span>
-                <span className="muted">{majorHint}</span>
+                <span className="stage-major-title">
+                  <b>대{major}</b>
+                  <small>사냥터 {major * 10 - 9}–{major * 10}</small>
+                </span>
+                <span className={`stage-major-state${reached ? '' : ' stage-major-state-locked'}`}>
+                  {majorHint}
+                </span>
               </button>
               {open && (
-                <ul className="list list-nested">
+                <ul className="list list-nested stage-option-list">
                   {SUBS.map((sub) => {
                     const target: StageId = { major, sub };
                     const reachable = isStageAtOrBefore(target, frontier);
                     const isSelected = sameStage(selected, target);
                     let state = '미도달';
-                    if (sameStage(target, frontier)) state = '등반 위치';
+                    if (isSelected) state = '선택됨';
+                    else if (sameStage(target, stage)) state = '현재 전투';
+                    else if (sameStage(target, frontier)) state = '등반 위치';
                     else if (reachable) state = '클리어';
                     return (
                       <li key={sub}>
                         <button
                           type="button"
-                          className={`list-row${isSelected ? ' list-row-selected' : ''}`}
+                          className={`list-row stage-option-row${isSelected ? ' list-row-selected' : ''}`}
                           aria-pressed={isSelected}
                           disabled={!reachable}
                           onClick={() => setSelected(target)}
                         >
-                          <span>{stageLabel(target)}</span>
-                          <span className="muted">
+                          <span className="stage-option-title">
+                            <b>{stageLabel(target)}</b>
+                            <small>{sub === 10 ? '보스 구역' : '일반 구역'}</small>
+                          </span>
+                          <span className={`stage-option-state stage-option-state-${state.replace(' ', '-')}`}>
                             {state}
-                            {sameStage(target, stage) ? ' · 현재' : ''}
-                            {isSelected ? ' ✓' : ''}
                           </span>
                         </button>
                       </li>
@@ -119,15 +135,16 @@ export const StagePicker = ({ onBack }: { onBack: () => void }) => {
 
       <div className="sticky-actions">
         {blockedReason && <p className="warn">{blockedReason}</p>}
+        <p className="stage-selection-summary">
+          {selected ? `선택한 사냥터 · ${stageLabel(selected)}` : '반복 사냥할 사냥터를 선택하세요'}
+        </p>
         <button
           type="button"
           className="btn btn-primary btn-block"
           disabled={!selected || !!blockedReason}
           onClick={apply}
         >
-          {selected && sameStage(selected, frontier)
-            ? '등반 위치로 복귀'
-            : `선택한 곳에서 사냥${selected ? ` (${stageLabel(selected)})` : ''}`}
+          {applyLabel}
         </button>
       </div>
     </div>
