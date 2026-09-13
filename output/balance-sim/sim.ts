@@ -22,7 +22,7 @@ import {
   isBoardUnlocked,
   totalGongBuffPercent,
   totalGongSecondaryStats,
-  gongMultiplier,
+  boardPowerPercent,
   type GongLevels,
 } from '../../src/game/gongData';
 import {
@@ -62,6 +62,12 @@ const MON_BASE = env('MON_BASE', 1); // 몬스터 기초치 배수
 const EXP_SCALE = env('EXP_SCALE', 1); // 경험치 보상 배수
 
 const FINAL_MAJOR = env('FINAL_MAJOR', 30);
+// 새 챕터 무공 보드 가정: 코드의 마지막 챕터 보드를 대(마지막+2)부터 두 대스테이지마다 복제하고,
+// 비용은 해금 구간 수입에 맞춰 ×1.8^(해금 대스테이지 차이).
+const EXTRA_BOARDS = env('EXTRA_BOARDS', 0);
+const EXTRA_COST = env('EXTRA_COST', 1); // 가상 보드 비용 추가 배수
+// 새 챕터 환골탈태 게이트: "35,40" = 코드 마지막 게이트 다음 회차부터 35, 그다음 회차 이후 40.
+const EXTRA_GATES = (process.env.EXTRA_GATES ?? '').split(',').filter(Boolean).map(Number);
 const HOUR_CAP = env('HOUR_CAP', 3000);
 const WALL_HOURS = env('WALL_HOURS', 150); // 이 시간 동안 최전선이 안 움직이면 벽으로 판정
 const REBIRTH_STUCK_HOURS = 1;
@@ -71,6 +77,36 @@ const MIN_ATTACK_INTERVAL_MS = 300;
 const ENEMY_ATTACK_INTERVAL_MS = 1600;
 const DEFEAT_PAUSE_MS = 900;
 const DEFEAT_CONSOLATION_RATIO = 0.2;
+
+const lastChapterBoard = GONG_BOARDS.filter((b) => b.multiplicative).at(-1)!;
+const lastUnlock = lastChapterBoard.unlock.type === 'stage' ? lastChapterBoard.unlock.major : 0;
+const BOARDS = [
+  ...GONG_BOARDS,
+  ...Array.from({ length: EXTRA_BOARDS }, (_, i) => {
+    const unlockMajor = lastUnlock + 2 * (i + 1);
+    const scale = 1.8 ** (unlockMajor - lastUnlock) * EXTRA_COST;
+    const rename = (id: string) => `x${i}_${id}`;
+    return {
+      ...lastChapterBoard,
+      id: rename(lastChapterBoard.id),
+      unlock: { type: 'stage' as const, major: unlockMajor },
+      nodes: lastChapterBoard.nodes.map((n) => ({
+        ...n,
+        id: rename(n.id),
+        baseCost: Math.round(n.baseCost * scale),
+        requires: n.requires?.map((r) => ({ ...r, nodeId: rename(r.nodeId) })),
+      })),
+    };
+  }),
+];
+// gongData.gongMultiplier와 같은 곱 — 가상 보드까지 포함.
+const multiplier = (levels: GongLevels) =>
+  BOARDS.reduce((m, b) => (b.multiplicative ? m * (1 + boardPowerPercent(b, levels) / 100) : m), 1);
+// 코드 게이트는 7회차(count 6) 이후 대30 고정 — EXTRA_GATES는 8회차(count 7)부터 덮어쓴다.
+const gateMajor = (count: number) =>
+  count >= 7 && EXTRA_GATES.length > 0
+    ? EXTRA_GATES[Math.min(count - 7, EXTRA_GATES.length - 1)]
+    : rebirthGateMajor(count);
 
 const nextStage = (s: StageId): StageId => {
   if (s.major === FINAL_MAJOR && s.sub === 10) return s;
@@ -126,7 +162,7 @@ const player = (): PlayerStats => {
     evasionPercent: agg.evasionPercent + sec.evasionPercent,
     chiGainPercent: agg.chiGainPercent + sec.chiGainPercent,
   });
-  const mult = gongMultiplier(st.gong);
+  const mult = multiplier(st.gong);
   return { ...p, hp: p.hp * mult, atk: p.atk * mult, def: p.def * mult };
 };
 
@@ -165,7 +201,7 @@ const buyGong = () => {
   const ctx = { highestMajorCleared: st.highest, gongLevels: st.gong };
   for (;;) {
     let best: { id: string; cost: number; lv: number } | null = null;
-    for (const board of GONG_BOARDS) {
+    for (const board of BOARDS) {
       if (board.currency !== 'chi' || !isBoardUnlocked(board, ctx)) continue;
       for (const node of board.nodes) {
         const lv = nodeLevel(node, st.gong);
@@ -225,7 +261,7 @@ const note = (label: string) => {
       `Lv${st.level}`,
       `환골${st.rebirth}`,
       `전투력 ${combatPower(p).toLocaleString('en-US')}`,
-      `무공 +${totalGongBuffPercent(st.gong).toFixed(0)}% ×${gongMultiplier(st.gong).toFixed(2)}`,
+      `무공 +${totalGongBuffPercent(st.gong).toFixed(0)}% ×${multiplier(st.gong).toFixed(2)}`,
     ].join(' | '),
   );
 };
@@ -274,7 +310,7 @@ while (hours() < HOUR_CAP) {
   const stuckMs = st.ms - st.lastAdvanceMs;
   if (
     st.farm &&
-    st.highest >= rebirthGateMajor(st.rebirth) &&
+    st.highest >= gateMajor(st.rebirth) &&
     stuckMs > REBIRTH_STUCK_HOURS * 3_600_000
   ) {
     st.rebirth += 1;
@@ -301,7 +337,7 @@ if (process.env.JSON) {
   // 대10·15·20·25·30 최초 클리어 시각과 벽 위치 한 줄 요약(run.sh용).
   const at = (m: number) => (times[m] === undefined ? '-' : `${times[m]}h`);
   console.log(
-    `대10 ${at(10)} · 대15 ${at(15)} · 대20 ${at(20)} · 대25 ${at(25)} · 대30 ${at(30)} · 환골 ${st.rebirth}회${wall ? ` · ${wall}` : ''}`,
+    `대10 ${at(10)} · 대15 ${at(15)} · 대20 ${at(20)} · 대25 ${at(25)} · 대30 ${at(30)}${FINAL_MAJOR >= 40 ? ` · 대35 ${at(35)} · 대40 ${at(40)}` : ''} · 환골 ${st.rebirth}회${wall ? ` · ${wall}` : ''}`,
   );
 } else {
   console.log(milestones.join('\n'));
