@@ -5,12 +5,13 @@ import { useEffect, useState } from 'react';
 const SFX_ENABLED_KEY = 'murim-simulator-sfx-enabled';
 
 let ctx: AudioContext | null = null;
+// 효과음은 기본 꺼짐 — 설정에서 직접 켠 경우('true' 저장)만 재생한다.
 // 브라우저 저장소가 막혀 있어도 앱이 멈추지 않게 설정 읽기/쓰기 실패는 기본값으로 넘긴다.
 const readSfxSetting = (): boolean => {
   try {
-    return localStorage.getItem(SFX_ENABLED_KEY) !== 'false';
+    return localStorage.getItem(SFX_ENABLED_KEY) === 'true';
   } catch {
-    return true;
+    return false;
   }
 };
 

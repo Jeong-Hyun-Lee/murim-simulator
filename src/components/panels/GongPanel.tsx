@@ -9,13 +9,11 @@ import {
   isBoardUnlocked,
   boardCompletionPercent,
   boardUnlockLabel,
-  planChiBulkUpgrade,
   type GongBoard,
   type GongCurrency,
 } from '../../game/store';
 import type { GongStatKey } from '../../game/gongData';
 import { useHoldRepeat } from '../../hooks/useHoldRepeat';
-import { Sheet } from '../Sheet';
 import type { NavTarget } from '../common';
 
 const TIER_LABEL = { primary: '1차', secondary: '2차', capstone: '오의' } as const;
@@ -115,69 +113,6 @@ const GongNodeCard = ({ node, currency, tutorialLocked, tutorialHighlight }: Car
   );
 };
 
-const planNow = () => {
-  const s = useGameStore.getState();
-  return { chi: s.chi, ...planChiBulkUpgrade(s.chi, s.gongLevels, s.highestMajorCleared) };
-};
-
-// 실행 전 대상 범위·예상 횟수·총소비·잔액을 보여주고, 실행 시 최신 상태로 다시 계산해 달라졌으면
-// 갱신된 요약을 한 번 더 확인받는다.
-const BulkAllSheet = ({ onClose }: { onClose: () => void }) => {
-  const bulkUpgradeAllGong = useGameStore((s) => s.bulkUpgradeAllGong);
-  const [preview, setPreview] = useState(planNow);
-  const [changed, setChanged] = useState(false);
-
-  const execute = () => {
-    const latest = planNow();
-    if (latest.purchased !== preview.purchased || latest.spent !== preview.spent) {
-      setPreview(latest);
-      setChanged(true);
-      return;
-    }
-    bulkUpgradeAllGong();
-    onClose();
-  };
-
-  return (
-    <Sheet title="전체 내공 연마" onClose={onClose}>
-      <p>
-        해금된 <strong>모든 내공 무공 보드</strong>에서 가장 싼 초식부터 내공이 떨어질 때까지
-        연마합니다. 기여도로 연마하는 보드는 제외됩니다.
-      </p>
-      <dl className="stat-list">
-        <div className="stat-row">
-          <dt>예상 연마 횟수</dt>
-          <dd>{preview.purchased.toLocaleString()}회</dd>
-        </div>
-        <div className="stat-row">
-          <dt>총 소비 내공</dt>
-          <dd>{preview.spent.toLocaleString()}</dd>
-        </div>
-        <div className="stat-row">
-          <dt>연마 후 내공 잔액</dt>
-          <dd>{(preview.chi - preview.spent).toLocaleString()}</dd>
-        </div>
-      </dl>
-      {changed && (
-        <p className="warn">보유 내공이나 대상이 바뀌어 요약을 갱신했습니다. 다시 확인하세요.</p>
-      )}
-      <div className="btn-row">
-        <button type="button" className="btn" onClick={onClose}>
-          취소
-        </button>
-        <button
-          type="button"
-          className="btn btn-primary"
-          disabled={preview.purchased === 0}
-          onClick={execute}
-        >
-          연마 실행
-        </button>
-      </div>
-    </Sheet>
-  );
-};
-
 interface Props {
   boardId: string;
   onBoardChange: (boardId: string) => void;
@@ -191,7 +126,6 @@ export const GongPanel = ({ boardId, onBoardChange, onNavigate }: Props) => {
   const tutorialGongDone = useGameStore((s) => s.tutorialGongDone);
   const markTutorialGongDone = useGameStore((s) => s.markTutorialGongDone);
   const [pickerOpen, setPickerOpen] = useState(false);
-  const [bulkOpen, setBulkOpen] = useState(false);
   const [tutorialJustDone, setTutorialJustDone] = useState(false);
 
   const tutorialActive = onboardingDone && !tutorialGongDone;
@@ -316,18 +250,6 @@ export const GongPanel = ({ boardId, onBoardChange, onNavigate }: Props) => {
           />
         ))}
       </div>
-
-      <div className="sticky-actions">
-        <button
-          type="button"
-          className="btn btn-block"
-          disabled={tutorialActive}
-          onClick={() => setBulkOpen(true)}
-        >
-          전체 내공 연마
-        </button>
-      </div>
-      {bulkOpen && <BulkAllSheet onClose={() => setBulkOpen(false)} />}
     </div>
   );
 };

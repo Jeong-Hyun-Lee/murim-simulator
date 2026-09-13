@@ -28,7 +28,6 @@ import {
   findBoardByNodeId,
   boardCompletionPercent,
   boardUnlockLabel,
-  planChiBulkUpgrade,
   totalGongBuffPercent,
   totalGongSecondaryStats,
   type GongLevels,
@@ -133,7 +132,6 @@ interface GameStoreState extends GameState {
   claimDailyBonusIfNeeded: () => void;
   buyGongUpgrade: (nodeId: string) => void;
   buyGongUpgradeBulk10: (nodeId: string) => void;
-  bulkUpgradeAllGong: () => void;
   equipItem: (itemId: string) => void;
   equipBestAll: () => void;
   unequipItem: (slot: SlotId) => void;
@@ -398,26 +396,6 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         gongLevels,
         player: newPlayer,
         playerHp: carryOverHp(s.player.hp, s.playerHp, newPlayer.hp),
-      });
-      persist(get());
-    },
-
-    // 전체 내공 연마 — 계산은 planChiBulkUpgrade(gongData.ts)가 단일 기준.
-    bulkUpgradeAllGong: () => {
-      const s = get();
-      const { purchased, spent, gongLevels } = planChiBulkUpgrade(
-        s.chi,
-        s.gongLevels,
-        s.highestMajorCleared,
-      );
-      if (purchased === 0) return;
-      const newPlayer = computePlayerStats(s.level, { ...s, gongLevels });
-      set({
-        chi: s.chi - spent,
-        gongLevels,
-        player: newPlayer,
-        playerHp: carryOverHp(s.player.hp, s.playerHp, newPlayer.hp),
-        toastMessage: `전체 내공 연마: ${purchased}회 연마 완료`,
       });
       persist(get());
     },
@@ -986,7 +964,6 @@ export {
   isBoardUnlocked,
   boardCompletionPercent,
   boardUnlockLabel,
-  planChiBulkUpgrade,
   totalGongBuffPercent,
   totalGongSecondaryStats,
 };
