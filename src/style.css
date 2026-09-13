@@ -1071,162 +1071,160 @@ dialog.sheet::backdrop {
   font-weight: bold;
 }
 
-.picker-pinned {
-  position: sticky;
-  top: -0.75rem;
-  z-index: 2;
-}
-
-.picker-pinned {
-  border-color: #a57d34;
-  background: linear-gradient(135deg, #f5e9ca, #debd76);
-}
-
+/* 사냥터 팝업 — 종이 팝업 톤. 요약 두 칸, 대스테이지 행, 소스테이지 5칸 격자. */
 .stage-picker {
+  display: flex;
+  flex-direction: column;
   gap: 0.625rem;
 }
 
 .stage-picker-summary {
   display: flex;
-  flex-direction: column;
-  gap: 0.375rem;
-  padding: 0.75rem;
-  box-shadow: 0 0.25rem 0.625rem rgba(26, 17, 6, 0.16);
-}
-
-.stage-picker-summary-row {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  align-items: center;
   gap: 0.5rem;
 }
 
-.stage-picker-summary-row > span {
-  color: #684614;
+.stage-picker-summary-item {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: flex-start;
+  gap: 0.25rem 0.375rem;
+  padding: 0.5rem 0.625rem;
+  border: 1px solid var(--paper-line);
+  border-radius: 0.625rem;
+  background: #f5ecd6;
+}
+
+.stage-picker-summary-item > span {
+  flex-basis: 100%;
+  color: var(--paper-muted);
   font-size: 0.75rem;
   font-weight: bold;
 }
 
-.stage-picker-summary-row strong {
-  color: #3f2609;
+.stage-picker-summary-item strong {
+  color: var(--paper-text);
   font-size: 1rem;
 }
 
-.stage-picker-summary-row em,
-.stage-major-state,
-.stage-option-state {
+.stage-picker-summary-item em,
+.stage-major-badge {
   border: 1px solid currentcolor;
   border-radius: 999px;
-  padding: 0.125rem 0.4rem;
+  padding: 0.0625rem 0.4rem;
+  color: #76551e;
   font-size: 0.6875rem;
   font-style: normal;
   font-weight: bold;
-  line-height: 1.2;
   white-space: nowrap;
 }
 
-.stage-picker-summary-row em {
-  color: #76551e;
+.stage-picker-return {
+  flex: none;
+  padding: 0 1rem;
 }
 
-.stage-picker-help,
-.stage-selection-summary {
-  margin: 0;
-  color: #74552a;
+.stage-picker-help {
+  color: var(--paper-muted);
   font-size: 0.75rem;
-  line-height: 1.45;
 }
 
 .stage-major-list {
   gap: 0.5rem;
 }
 
-.stage-major-row,
-.stage-option-row {
-  min-height: 3.5rem;
+.sheet .stage-major-row {
+  min-height: 3.25rem;
 }
 
-.stage-major-row-open {
-  border-color: #c99e42 !important;
-  box-shadow: inset 0 1px rgba(255, 225, 139, 0.15);
+.sheet .stage-major-row-open {
+  border-color: #ad833a;
+  background: #e3d3ad;
 }
 
-.stage-major-title,
-.stage-option-title {
+.stage-major-title {
   display: flex;
   min-width: 0;
   flex-direction: column;
   gap: 0.125rem;
 }
 
-.stage-major-title b,
-.stage-option-title b {
-  color: #f8deb0;
+.stage-major-title b {
   font-size: 0.9375rem;
 }
 
-.stage-major-title small,
-.stage-option-title small {
-  color: #bda985;
-  font-size: 0.6875rem;
+.stage-major-title small {
+  color: var(--paper-muted);
+  font-size: 0.75rem;
 }
 
-.stage-major-state {
-  color: #d7b66a;
+.stage-major-side {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #76551e;
 }
 
-.stage-major-state-locked {
-  color: #827867;
-}
-
-.stage-option-list {
-  margin: 0.375rem 0 0.25rem;
-  padding-left: 0.5rem;
-  border-left: 1px solid #8a6b32;
-}
-
-.stage-option-row {
-  padding: 0.5rem 0.75rem;
-}
-
-.stage-option-state {
-  color: #b5a285;
-}
-
-.stage-option-state-선택됨 {
-  color: #ffdf7a;
-  background: rgba(205, 154, 45, 0.18);
-}
-
-.stage-option-state-현재-전투 {
-  color: #a9d5a1;
-}
-
-.stage-option-state-등반-위치 {
-  color: #8fc5e0;
-}
-
-.stage-option-state-미도달 {
-  color: #756d60;
-}
-
-.picker .list-row {
-  border-color: #4d3e2a;
-  background: linear-gradient(135deg, #292116, #17130e);
-}
-
-.picker .list-row-selected {
-  border-color: #dfb649;
-  background: linear-gradient(135deg, #4b3817, #24190d);
-  color: #fff0bd;
-}
-
-.stage-picker .sticky-actions {
+.stage-sub-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 0.375rem;
+  margin: 0.375rem 0 0.25rem;
 }
 
-.stage-picker .stage-selection-summary {
-  color: #d8c29a;
+.stage-sub-chip {
+  min-height: 2.75rem;
+  border: 1px solid var(--paper-line);
+  border-radius: 0.5rem;
+  background: #fbf5e6;
+  color: var(--paper-text);
+  font-weight: bold;
+}
+
+.stage-sub-chip:disabled {
+  border-style: dashed;
+  background: transparent;
+  color: #a89a80;
+}
+
+.stage-sub-chip.is-frontier {
+  border: 2px solid #3f7fa3;
+}
+
+.stage-sub-chip.is-current,
+.stage-sub-chip.is-current:disabled {
+  border: 2px solid var(--up);
+  border-style: solid;
+  background: #dcebd3;
+  color: #24481f;
+}
+
+.stage-sub-legend {
+  display: flex;
+  gap: 0.875rem;
+  color: var(--paper-muted);
+  font-size: 0.75rem;
+}
+
+.stage-sub-legend span::before {
+  content: '';
+  display: inline-block;
+  width: 0.625rem;
+  height: 0.625rem;
+  margin-right: 0.25rem;
+  border-radius: 0.1875rem;
+  vertical-align: -0.0625rem;
+}
+
+.stage-sub-legend .is-current::before {
+  border: 2px solid var(--up);
+  background: #dcebd3;
+}
+
+.stage-sub-legend .is-frontier::before {
+  border: 2px solid #3f7fa3;
 }
 
 /* ---------- 무공 ---------- */
