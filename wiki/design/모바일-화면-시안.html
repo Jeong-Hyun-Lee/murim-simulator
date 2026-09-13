@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>무림인 키우기 · 모바일 화면 시안</title>
+    <style>
+      :root {
+        --ink: #111013;
+        --surface: #1b191a;
+        --surface-raised: #242122;
+        --line: #51463d;
+        --paper: #eee2cb;
+        --muted: #b6a994;
+        --gold: #d9af68;
+        --gold-deep: #8d6938;
+        --red: #d87264;
+        --green: #9ec69a;
+        --blue: #87abc9;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: #0c0b0e; color: var(--paper); font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; }
+      button { font: inherit; cursor: pointer; }
+      button:focus-visible { outline: 2px solid #fff1bd; outline-offset: 2px; }
+      .workbench { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100dvh; padding: 20px 16px; }
+      .preview-note { width: 390px; margin: 18px 0 0; color: #9b9084; text-align: center; font-size: 12px; line-height: 1.5; }
+      .phone { width: 390px; height: min(844px, calc(100dvh - 76px)); min-height: 560px; flex: none; display: flex; flex-direction: column; position: relative; overflow: hidden; background: var(--ink); border: 1px solid #695d50; border-radius: 26px; box-shadow: 0 24px 70px #000a, 0 0 0 7px #1e1b1d; }
+      .phone::before { content: ''; position: absolute; z-index: 10; top: 8px; left: 150px; width: 90px; height: 5px; border-radius: 5px; background: #6b625b; opacity: .7; pointer-events: none; }
+      .app-header { flex: 0 0 auto; display: flex; align-items: center; gap: 10px; height: 66px; padding: 14px 14px 6px; border-bottom: 1px solid #3c332e; background: #171416; }
+      .seal { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid var(--gold-deep); border-radius: 50%; color: var(--gold); font-family: Georgia, 'Batang', serif; font-size: 23px; background: #35291f; }
+      .identity { min-width: 0; flex: 1; }
+      .identity strong { display: block; font-size: 16px; letter-spacing: .03em; }
+      .identity small { display: block; margin-top: 2px; color: var(--muted); font-size: 11px; }
+      .header-control { width: 48px; height: 48px; flex: 0 0 48px; display: grid; place-items: center; border: 1px solid #655441; border-radius: 50%; background: #2b2420; color: var(--paper); }
+      .header-control svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+      .wallet { height: 43px; flex: 0 0 43px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-bottom: 1px solid #4b3d31; background: #221b18; }
+      .wallet span { min-width: 0; display: flex; align-items: center; justify-content: center; gap: 6px; color: var(--paper); font-size: 12px; white-space: nowrap; }
+      .wallet span + span { border-left: 1px solid #4b3d31; }
+      .wallet b { color: var(--gold); font-family: Georgia, 'Batang', serif; font-size: 13px; font-weight: 400; }
+      .view { display: none; min-height: 0; flex: 1 1 auto; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+      .view.active { display: block; }
+      .screen-pad { padding: 16px; }
+      .section-tag { margin: 0 0 7px; color: var(--gold); font-size: 11px; font-weight: 700; letter-spacing: .15em; }
+      h2, h3, p { margin-top: 0; }
+      h2 { margin-bottom: 12px; font-family: Georgia, 'Batang', serif; font-size: 25px; font-weight: 400; }
+      h3 { margin-bottom: 5px; font-size: 17px; }
+      .sub { color: var(--muted); font-size: 13px; line-height: 1.5; }
+      .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+      .pill { display: inline-flex; align-items: center; gap: 5px; padding: 5px 9px; border: 1px solid var(--line); border-radius: 30px; color: var(--paper); background: #211d1a; font-size: 12px; white-space: nowrap; }
+      .pill.live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+      .pill.paused::before { content: ''; width: 6px; height: 6px; border-radius: 1px; background: var(--gold); }
+      .battle-head { padding: 16px 16px 11px; }
+      .battle-head h2 { margin: 8px 0 3px; }
+      .enemy-health { height: 6px; margin-top: 10px; border-radius: 6px; background: #4c2424; overflow: hidden; }
+      .enemy-health i { display: block; width: 71%; height: 100%; background: var(--red); }
+      .battle-art { height: 277px; overflow: hidden; position: relative; background: #30221b url('../../assets/backgrounds/stage1-hyeollangchae.png') center bottom / auto 277px no-repeat; border-block: 1px solid #5c4333; }
+      .battle-art::after { content: ''; position: absolute; inset: 0; background: linear-gradient(transparent 60%, #1e1512aa); pointer-events: none; }
+      .fighter { position: absolute; bottom: -24px; width: 280px; height: 280px; image-rendering: auto; }
+      .fighter.hero { left: -60px; background: url('../../assets/sprites/character/mokhyeon-idle-sheet.png') left top / 1120px 560px no-repeat; }
+      .fighter.enemy { right: -60px; background: url('../../assets/sprites/character/hyeollangchae-grunt-idle-sheet.png') left top / 1120px 560px no-repeat; }
+      .stage-stamp { position: absolute; z-index: 1; top: 12px; left: 12px; padding: 7px 9px; color: #f3d6ac; background: #181013bb; border: 1px solid #a57746; font-family: Georgia, 'Batang', serif; font-size: 12px; }
+      .battle-foot { padding: 13px 16px 0; }
+      .meter-label { margin-bottom: 5px; font-size: 13px; }
+      .meter { height: 8px; margin-bottom: 11px; border-radius: 8px; background: #4a282a; overflow: hidden; }
+      .meter i { display: block; width: 83%; height: 100%; background: #cd625b; }
+      .power { border-left: 2px solid var(--gold); padding-left: 9px; }
+      .power small { display: block; color: var(--muted); font-size: 11px; }
+      .power strong { display: block; margin-top: 2px; font-size: 19px; color: var(--gold); }
+      .action-panel { margin: 14px 16px 0; padding: 14px; border: 1px solid #755a3a; background: linear-gradient(115deg,#2d231c,#201c1a); }
+      .action-panel strong { display: block; font-size: 15px; }
+      .action-panel p { margin: 5px 0 11px; color: var(--muted); font-size: 12px; }
+      .actions { display: flex; gap: 8px; }
+      .btn { min-height: 48px; border: 1px solid #755c3b; padding: 8px 12px; color: var(--paper); background: var(--surface-raised); font-weight: 700; font-size: 13px; }
+      .btn.primary { background: var(--gold); border-color: #eec88e; color: #241b14; }
+      .btn.secondary { background: #272324; }
+      .btn.ghost { border-color: var(--line); background: transparent; }
+      .btn:disabled { opacity: .45; cursor: default; }
+      .actions .btn { flex: 1; }
+      .recap { display: flex; justify-content: space-between; align-items: center; gap: 10px; height: 44px; padding: 0 16px; background: #29231f; color: var(--paper); border-bottom: 1px solid var(--line); font-size: 12px; }
+      .recap span:last-child { color: var(--gold); }
+      .balance { color: var(--paper); font-size: 13px; }
+      .balance strong { color: var(--gold); font-size: 17px; }
+      .selector { width: 100%; min-height: 58px; display: flex; justify-content: space-between; align-items: center; margin: 4px 0 12px; padding: 10px 13px; text-align: left; color: var(--paper); border: 1px solid var(--gold-deep); background: #2c241e; }
+      .selector strong { display: block; font-size: 16px; }
+      .selector small { display: block; margin-top: 3px; color: var(--muted); font-size: 11px; }
+      .progress { width: 100%; height: 4px; background: #3c332c; margin-bottom: 18px; }
+      .progress i { display: block; width: 38%; height: 100%; background: var(--gold); }
+      .node { margin-bottom: 10px; padding: 14px; border: 1px solid var(--line); background: var(--surface); }
+      .node.featured { border-color: #b18a51; background: linear-gradient(125deg,#30271e,#211d1b); }
+      .node .tier { font-size: 11px; color: var(--gold); letter-spacing: .08em; }
+      .node .level { color: var(--muted); font-size: 12px; }
+      .node p { margin: 8px 0 14px; color: var(--muted); font-size: 12px; }
+      .node .actions .btn { min-height: 44px; }
+      .node.locked { opacity: .7; }
+      .node.locked p { margin: 8px 0 0; }
+      .bottom-cta { position: sticky; bottom: 0; padding: 10px 16px 12px; background: linear-gradient(#11101300,#111013 20%); }
+      .bottom-cta .btn { width: 100%; }
+      .paperdoll { position: relative; height: 264px; margin-bottom: 13px; background: radial-gradient(ellipse at center,#3a322b,#201c1a 63%); border: 1px solid var(--line); overflow: hidden; }
+      .paperdoll::before { content: ''; position: absolute; top: 50%; left: 50%; width: 165px; height: 165px; transform: translate(-50%,-50%); border: 1px solid #6b5841; border-radius: 50%; }
+      .paperdoll .large-hero { position: absolute; bottom: -15px; left: 50%; width: 300px; height: 300px; transform: translateX(-50%); background: url('../../assets/sprites/character/mokhyeon-idle-sheet.png') left top / 1200px 600px no-repeat; }
+      .slot { position: absolute; z-index: 1; min-width: 52px; min-height: 44px; display: grid; place-items: center; border: 1px solid #9a7948; background: #221b18e8; color: var(--paper); font-size: 11px; }
+      .slot.on { border-color: #f2cd89; background: #574026; }
+      .slot.one { top: 18px; left: 16px; } .slot.two { top: 74px; left: 16px; } .slot.three { top: 130px; left: 16px; } .slot.four { top: 186px; left: 16px; }
+      .slot.five { top: 18px; right: 16px; } .slot.six { top: 74px; right: 16px; } .slot.seven { top: 130px; right: 16px; } .slot.eight { top: 186px; right: 16px; } .slot.nine { bottom: 9px; left: 50%; transform: translateX(-50%); }
+      .item-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+      .item { min-height: 78px; padding: 10px; border: 1px solid #7d795f; background: #231f1e; text-align: left; color: var(--paper); }
+      .item.rare { border-color: #9c27b0; } .item.common { border-color: #9e9e9e; } .item.mid { border-color: #4caf50; }
+      .item small { display: block; margin-bottom: 5px; color: var(--muted); font-size: 10px; }
+      .item strong { font-size: 13px; }
+      .item em { display: block; margin-top: 5px; color: var(--green); font-size: 11px; font-style: normal; }
+      .sect-banner { padding: 19px; margin-bottom: 14px; background: linear-gradient(135deg,#463424,#24201d); border: 1px solid #8d6c45; }
+      .sect-banner span { color: var(--gold); font-size: 11px; letter-spacing: .1em; }
+      .sect-banner h3 { margin: 5px 0; font-family: Georgia, 'Batang', serif; font-size: 25px; }
+      .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+      .stat-tile { padding: 13px; background: var(--surface); border: 1px solid var(--line); }
+      .stat-tile small { display: block; color: var(--muted); font-size: 11px; }
+      .stat-tile strong { display: block; margin-top: 7px; color: var(--gold); font-size: 19px; }
+      .option { padding: 13px 0; border-top: 1px solid var(--line); }
+      .option p { margin: 4px 0 10px; color: var(--muted); font-size: 12px; }
+      .shop-tabs { display: flex; margin: 0 0 16px; border-bottom: 1px solid var(--line); }
+      .shop-tabs button { flex: 1; min-height: 48px; color: var(--muted); background: transparent; border: 0; border-bottom: 2px solid transparent; }
+      .shop-tabs button.active { color: var(--gold); border-color: var(--gold); }
+      .shop-item { padding: 18px; border: 1px solid var(--line); background: var(--surface); }
+      .shop-item .bottle { float: right; font-size: 45px; color: var(--gold); font-family: Georgia,serif; }
+      .shop-item h3 { margin-bottom: 7px; }
+      .shop-item p { color: var(--muted); font-size: 12px; line-height: 1.5; }
+      .shop-item .btn { width: 100%; margin-top: 8px; }
+      .small-link { width: 100%; min-height: 48px; border: 0; background: transparent; color: var(--gold); text-decoration: underline; font-size: 13px; }
+      .nav { flex: 0 0 auto; display: grid; grid-template-columns: repeat(5,1fr); height: 72px; border-top: 1px solid #5a493c; background: #191619; }
+      .recap { width: 100%; border-left: 0; border-right: 0; border-top: 0; text-align: left; cursor: pointer; }
+      .nav button { min-width: 0; border: 0; background: transparent; color: #a89c8e; font-size: 12px; }
+      .nav button.active { color: var(--gold); background: #2c241f; box-shadow: inset 0 3px 0 var(--gold); }
+      .nav .glyph { display: block; margin-bottom: 4px; font-family: Georgia, 'Batang', serif; font-size: 20px; line-height: 1; }
+      .sheet-wrap { display: none; position: absolute; z-index: 8; inset: 0; background: #0009; align-items: flex-end; }
+      .sheet-wrap.open { display: flex; }
+      .sheet { width: 100%; max-height: 76%; overflow-y: auto; padding: 16px 18px 22px; border-top: 2px solid var(--gold); border-radius: 16px 16px 0 0; background: #262120; box-shadow: 0 -15px 35px #0007; }
+      .sheet-handle { width: 42px; height: 4px; margin: 0 auto 18px; border-radius: 4px; background: #8a7664; }
+      .sheet h3 { font-size: 20px; }
+      .sheet p { color: var(--muted); font-size: 13px; line-height: 1.5; }
+      .sheet .row { padding: 9px 0; border-top: 1px solid var(--line); font-size: 13px; }
+      .sheet .row strong { color: var(--gold); }
+      .sheet .btn { width: 100%; margin-top: 15px; }
+      .settings-wrap { display: none; position: absolute; z-index: 9; inset: 0; align-items: center; justify-content: center; padding: 16px; background: #080607c7; }
+      .settings-wrap.open { display: flex; }
+      .settings-panel { width: 100%; max-width: 350px; border: 1px solid #a18151; background: #211c1b; box-shadow: 0 18px 55px #000b; }
+      .settings-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 17px 18px; border-bottom: 1px solid var(--line); background: #30251e; }
+      .settings-title h2 { margin: 0; font-size: 22px; }
+      .settings-close { width: 48px; height: 48px; border: 0; background: transparent; color: var(--paper); font-size: 25px; }
+      .settings-content { padding: 4px 18px 18px; }
+      .setting-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 82px; border-bottom: 1px solid var(--line); }
+      .setting-row strong { display: block; font-size: 15px; }
+      .setting-row small { display: block; margin-top: 5px; color: var(--muted); font-size: 12px; line-height: 1.35; }
+      .setting-toggle { min-width: 96px; min-height: 48px; flex: 0 0 auto; padding: 8px; border: 1px solid #a58454; background: #493822; color: var(--paper); font-size: 13px; font-weight: 700; }
+      .setting-toggle.off { border-color: var(--line); background: #312b29; color: var(--muted); }
+      .settings-done { width: 100%; margin-top: 18px; }
+      @media (max-width: 760px) { .workbench { display: block; min-height: 0; padding: 0; } .preview-note { display: none; } .phone { width: 100%; height: 100dvh; min-height: 0; margin: 0; border: 0; border-radius: 0; box-shadow: none; } .phone::before { display:none; } }
+      @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+    </style>
+  </head>
+  <body>
+    <div class="workbench">
+      <main class="phone" aria-label="모바일 화면 시안">
+        <header class="app-header">
+          <div class="seal" aria-hidden="true">武</div>
+          <div class="identity"><strong>목현 <span style="color:var(--gold)">·</span> 후천</strong><small>청운문 수련생 · Lv.24</small></div>
+          <button class="header-control" type="button" data-sheet="profile" aria-label="내 정보"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5.5 20c.4-4 2.6-6 6.5-6s6.1 2 6.5 6"/></svg></button>
+          <button class="header-control" type="button" id="open-settings" aria-label="설정 열기" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2.5h4l.5 2.2 1.8.8 2-.9 2.8 2.8-.9 2 .8 1.8 2.2.5v4l-2.2.5-.8 1.8.9 2-2.8 2.8-2-.9-1.8.8-.5 2.2h-4l-.5-2.2-1.8-.8-2 .9-2.8-2.8.9-2-.8-1.8-2.2-.5v-4l2.2-.5.8-1.8-.9-2 2.8-2.8 2 .9 1.8-.8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+        </header>
+        <div class="wallet" aria-label="보유 재화"><span><b>錢</b> 1.2만</span><span><b>氣</b> 3,280</span><span><b>丹</b> 120</span></div>
+
+        <section class="view active" data-view="battle" aria-label="전투 화면">
+          <div class="battle-head">
+            <div class="row"><span class="section-tag">CHAPTER 01 · 혈랑채</span><span class="pill live" id="battle-status">자동 등반 중</span></div>
+            <h2>제1장 · 산채의 불빛</h2>
+            <div class="row"><span class="sub">1-7 · 혈랑채 궁수</span><span class="sub">체력 7,140 / 10,000</span></div>
+            <div class="enemy-health"><i></i></div>
+          </div>
+          <div class="battle-art" role="img" aria-label="혈랑채 배경에서 왼쪽의 목현과 오른쪽의 적이 마주 보는 전투 장면">
+            <span class="stage-stamp">一 · 七</span><div class="fighter hero"></div><div class="fighter enemy"></div>
+          </div>
+          <div class="battle-foot">
+            <div class="row meter-label"><span>목현 · 체력</span><span>8,300 / 10,000</span></div><div class="meter"><i></i></div>
+            <div class="power"><small>현재 전투력</small><strong>12,480</strong></div>
+          </div>
+          <div class="action-panel"><span class="section-tag">다음 행동</span><strong>무공을 연마할 수 있습니다</strong><p>내공 3,280 · 첫 검법의 다음 수련을 진행하세요.</p><div class="actions"><button class="btn primary" type="button" data-go="gong">무공으로 이동</button><button class="btn secondary" type="button" data-sheet="stage">사냥터</button></div></div>
+        </section>
+
+        <section class="view" data-view="gong" aria-label="무공 화면">
+          <button class="recap" type="button" data-go="battle"><span class="recap-status">1-7 · 자동 등반 중</span><span>전투 보기 ›</span></button>
+          <div class="screen-pad">
+            <div class="row"><div><div class="section-tag">수련 기록</div><h2>무공</h2></div><div class="balance">내공 <strong>3,280</strong></div></div>
+            <button class="selector" type="button" data-sheet="boards"><span><strong>삼재검법 1보</strong><small>검법 · 38% 완성</small></span><span>⌄</span></button><div class="progress"><i></i></div>
+            <article class="node featured"><div class="row"><span class="tier">첫째 초식 · 수련 가능</span><span class="level">Lv.10 / 50</span></div><h3>제1식 천(天)</h3><p>공격력 +6% → +6.6% · 다음 연마 내공 120</p><div class="actions"><button class="btn primary" type="button" data-sheet="practice">1회 연마 · 120</button><button class="btn secondary" type="button" data-sheet="practice10">10회 · 1,480</button></div></article>
+            <article class="node"><div class="row"><span class="tier">첫째 초식</span><span class="level">Lv.8 / 50</span></div><h3>제2식 지(地)</h3><p>방어력 +4.8% → +5.4% · 다음 연마 내공 140</p><div class="actions"><button class="btn secondary" type="button" data-sheet="practice">1회 연마 · 140</button><button class="btn ghost" type="button" data-sheet="practice10">10회 · 1,760</button></div></article>
+            <article class="node locked"><div class="row"><span class="tier">둘째 초식 · 잠김</span><span class="level">Lv.0 / 50</span></div><h3>천지현합</h3><p>선행 초식 모두 Lv.10 필요</p></article>
+          </div>
+          <div class="bottom-cta"><button class="btn primary" type="button" data-sheet="bulk">해금된 내공 무공 전체 연마</button></div>
+        </section>
+
+        <section class="view" data-view="gear" aria-label="장비 화면">
+          <button class="recap" type="button" data-go="battle"><span class="recap-status">1-7 · 자동 등반 중</span><span>전투 보기 ›</span></button>
+          <div class="screen-pad"><div class="row"><div><div class="section-tag">몸에 두른 것</div><h2>장비</h2></div><span class="pill">강화석 18</span></div>
+            <div class="paperdoll" aria-label="목현과 장비 아홉 슬롯"><div class="large-hero"></div><button class="slot one on" type="button" data-sheet="slot">무기</button><button class="slot two" type="button" data-sheet="slot">머리</button><button class="slot three" type="button" data-sheet="slot">몸통</button><button class="slot four" type="button" data-sheet="slot">팔</button><button class="slot five" type="button" data-sheet="slot">목</button><button class="slot six" type="button" data-sheet="slot">반지①</button><button class="slot seven" type="button" data-sheet="slot">허리</button><button class="slot eight" type="button" data-sheet="slot">발</button><button class="slot nine" type="button" data-sheet="slot">반지②</button></div>
+            <div class="row"><h3>소지품 <span class="sub">3개</span></h3><button class="btn ghost" type="button" data-sheet="sort">정렬 ▾</button></div>
+            <div class="item-list"><button class="item rare" type="button" data-sheet="slot"><small>절품 · 무기</small><strong>청운 장검 +4</strong><em>공격력 +128</em></button><button class="item mid" type="button" data-sheet="slot"><small>중품 · 방어구</small><strong>가죽 호갑 +2</strong><em>방어력 +42</em></button><button class="item common" type="button" data-sheet="slot"><small>하품 · 장신구</small><strong>낡은 반지</strong><em>체력 +76</em></button></div>
+            <div class="actions" style="margin-top:13px"><button class="btn secondary" type="button" data-sheet="best">최적 장착</button><button class="btn ghost" type="button" data-sheet="dismantle">분해 선택</button></div>
+          </div>
+        </section>
+
+        <section class="view" data-view="sect" aria-label="문파 화면">
+          <button class="recap" type="button" data-go="battle"><span class="recap-status">1-7 · 자동 등반 중</span><span>전투 보기 ›</span></button>
+          <div class="screen-pad"><div class="section-tag">소속과 수련</div><h2>문파</h2><div class="sect-banner"><span>靑雲門</span><h3>청운문</h3><p class="sub" style="margin:0">흐르는 구름처럼 몸과 검을 다스린다.</p></div><div class="stat-grid"><div class="stat-tile"><small>문파 수준</small><strong>Lv.4</strong></div><div class="stat-tile"><small>사용 가능 기여도</small><strong>280</strong></div></div><div class="node"><div class="row"><h3>다음 문파 특전</h3><span class="level">340 / 500</span></div><div class="progress" style="margin:8px 0 9px"><i style="width:68%"></i></div><p style="margin:0">누적 기여도로 문파 수준이 오릅니다.</p></div><h3 style="margin:22px 0 9px">기여하기</h3><div class="option"><strong>내공으로 기여</strong><p>기부 가능한 내공을 한 번에 사용합니다.</p><button class="btn secondary" type="button" data-sheet="donate">내공 전량 기부 · 기여도 +32</button></div><div class="option"><strong>영약으로 기여</strong><p>영약 4개 사용 · 기여도 +40</p><button class="btn secondary" type="button" data-sheet="donate">영약 전량 기부 · +40</button></div><button class="btn ghost" style="width:100%;margin-top:10px" type="button" data-go="gong">삼재검법 2보 보기 ›</button></div>
+        </section>
+
+        <section class="view" data-view="shop" aria-label="상점 화면">
+          <button class="recap" type="button" data-go="battle"><span class="recap-status">1-7 · 자동 등반 중</span><span>전투 보기 ›</span></button>
+          <div class="screen-pad"><div class="section-tag">거래와 기연</div><h2>상점</h2><div class="shop-tabs"><button class="active" type="button" data-shop="normal">일반상점</button><button type="button" data-shop="gacha">기연</button></div><div id="normal-shop"><div class="row" style="margin-bottom:14px"><span class="balance">전 <strong>12,480</strong></span><span class="pill">영약 120</span></div><article class="shop-item"><span class="bottle" aria-hidden="true">丹</span><div class="section-tag">현재 거래 가능</div><h3>영약 한 병</h3><p>전으로 영약 1개를 얻습니다. 다음 교환 비용은 구매할 때마다 증가합니다.</p><div class="row sub"><span>이번 교환</span><strong style="color:var(--gold)">전 500</strong></div><button class="btn primary" type="button" data-sheet="exchange">영약 1개 교환 · 전 500</button></article></div><div id="gacha-shop" hidden><div class="stat-grid"><div class="stat-tile"><small>보유 영약</small><strong>120</strong></div><div class="stat-tile"><small>천장 진행</small><strong>12 / 90</strong></div></div><article class="shop-item"><div class="section-tag">기연</div><h3>우연이 부르는 인연</h3><p>뽑기 결과는 장비 한 점으로 지급됩니다. 구매 전에 비용과 확률을 확인하세요.</p><button class="btn primary" type="button" data-sheet="gacha">1회 뽑기 · 영약 100</button><button class="btn secondary" type="button" disabled>10회 뽑기 · 영약 900</button></article><button class="small-link" type="button" data-sheet="rates">등급별 확률 정보 보기</button></div></div>
+        </section>
+
+        <nav class="nav" aria-label="주요 화면">
+          <button class="active" type="button" data-go="battle" aria-current="page"><span class="glyph">⚔</span>전투</button>
+          <button type="button" data-go="gong"><span class="glyph">武</span>무공</button>
+          <button type="button" data-go="gear"><span class="glyph">甲</span>장비</button>
+          <button type="button" data-go="sect"><span class="glyph">門</span>문파</button>
+          <button type="button" data-go="shop"><span class="glyph">錢</span>상점</button>
+        </nav>
+        <div class="sheet-wrap" id="sheet-wrap" aria-hidden="true"><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title"><div class="sheet-handle"></div><div class="row"><h3 id="sheet-title">상세 정보</h3><button class="btn ghost" type="button" id="close-sheet" aria-label="상세 정보 닫기">닫기</button></div><p id="sheet-description"></p><div class="row"><span>현재 시안</span><strong>시각 디자인 탐색</strong></div><button class="btn primary" type="button" id="sheet-done">확인</button></div></div>
+        <div class="settings-wrap" id="settings-wrap" aria-hidden="true">
+          <section class="settings-panel" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+            <div class="settings-title"><h2 id="settings-title">설정</h2><button class="settings-close" type="button" id="close-settings" aria-label="설정 닫기">×</button></div>
+            <div class="settings-content">
+              <div class="setting-row"><div><strong>전투 진행</strong><small id="battle-setting-description">자동 등반 중 · 1-7 혈랑채</small></div><button class="setting-toggle" type="button" id="toggle-battle" aria-pressed="false">일시정지</button></div>
+              <div class="setting-row"><div><strong>효과음</strong><small>타격·승리·강화 소리</small></div><button class="setting-toggle" type="button" id="toggle-sound" aria-pressed="true">켜짐</button></div>
+              <button class="btn primary settings-done" type="button" id="settings-done">게임으로 돌아가기</button>
+            </div>
+          </section>
+        </div>
+      </main>
+      <p class="preview-note">디자인 시안 · 버튼과 수치는 실제 게임 데이터에 연결되지 않습니다.</p>
+    </div>
+    <script>
+      (() => {
+        const views = [...document.querySelectorAll('[data-view]')];
+        const nav = document.querySelector('.nav');
+        const sheetWrap = document.getElementById('sheet-wrap');
+        const title = document.getElementById('sheet-title');
+        const description = document.getElementById('sheet-description');
+        const settingsWrap = document.getElementById('settings-wrap');
+        const openSettingsButton = document.getElementById('open-settings');
+        const battleButton = document.getElementById('toggle-battle');
+        const soundButton = document.getElementById('toggle-sound');
+        let battlePaused = false;
+        let soundEnabled = true;
+        const messages = {
+          profile: ['내 정보', '전투력과 능력치, 경지, 환골탈태를 한곳에서 확인합니다. 효과음과 전투 진행은 우상단 설정에서 바꿉니다.'],
+          stage: ['사냥터 선택', '클리어한 스테이지에서 반복 사냥할 곳을 고릅니다. 적용 전 현재 등반 위치와 복귀 위치를 확인합니다.'],
+          boards: ['무공 선택', '해금된 보드와 잠긴 보드를 세로 목록으로 비교합니다. 보드마다 진행률과 재화를 표시합니다.'],
+          practice: ['연마 확인', '현재 레벨, 다음 효과, 비용을 확인한 뒤 강화합니다. 이 시안에서는 재화를 사용하지 않습니다.'],
+          practice10: ['여러 번 연마', '실제 가능한 횟수와 전체 비용을 계산해 보여줍니다. 이 시안에서는 재화를 사용하지 않습니다.'],
+          bulk: ['전체 내공 연마', '해금된 내공 보드 전체가 대상입니다. 예상 횟수와 총소비를 확인하는 형태입니다.'],
+          slot: ['장비 비교', '현재 장비와 선택 후보의 등급, 강화 단계, 능력치 차이를 이 하단 상세창에서 비교합니다.'],
+          sort: ['소지품 정렬', '등급·강화 단계·최근 획득 순서로 정렬하는 선택창입니다.'],
+          best: ['최적 장착', '선정 기준과 바뀔 장비를 확인한 뒤 적용합니다.'],
+          dismantle: ['장비 분해', '분해 대상 개수와 돌려받는 강화석을 확인한 뒤 실행합니다.'],
+          donate: ['문파 기부', '사용할 재화와 획득 기여도, 기부 뒤 잔액을 확인합니다.'],
+          exchange: ['영약 교환', '영약 1개에 드는 전과 교환 뒤 잔액을 확인합니다.'],
+          gacha: ['기연 비용 확인', '실제 게임에서는 보유 영약과 1회 또는 10회 비용을 확인한 뒤 결과를 받습니다.'],
+          rates: ['확률 정보', '실제 게임의 등급별 확률 표를 이 화면에서 열 수 있습니다.'],
+        };
+        const closeSheet = () => { sheetWrap.classList.remove('open'); sheetWrap.setAttribute('aria-hidden', 'true'); };
+        const openSheet = (key) => { const [heading, body] = messages[key]; title.textContent = heading; description.textContent = body; sheetWrap.classList.add('open'); sheetWrap.setAttribute('aria-hidden', 'false'); document.getElementById('close-sheet').focus(); };
+        const closeSettings = () => { if (!settingsWrap.classList.contains('open')) return; settingsWrap.classList.remove('open'); settingsWrap.setAttribute('aria-hidden', 'true'); openSettingsButton.focus(); };
+        const openSettings = () => { closeSheet(); settingsWrap.classList.add('open'); settingsWrap.setAttribute('aria-hidden', 'false'); document.getElementById('close-settings').focus(); };
+        const syncBattleState = () => {
+          const status = document.getElementById('battle-status');
+          status.textContent = battlePaused ? '일시정지' : '자동 등반 중';
+          status.classList.toggle('live', !battlePaused);
+          status.classList.toggle('paused', battlePaused);
+          document.querySelectorAll('.recap-status').forEach((label) => { label.textContent = battlePaused ? '1-7 · 일시정지' : '1-7 · 자동 등반 중'; });
+          document.getElementById('battle-setting-description').textContent = battlePaused ? '전투가 멈췄습니다 · 1-7 혈랑채' : '자동 등반 중 · 1-7 혈랑채';
+          battleButton.textContent = battlePaused ? '전투 재개' : '일시정지';
+          battleButton.setAttribute('aria-pressed', String(battlePaused));
+          battleButton.classList.toggle('off', battlePaused);
+        };
+        const selectView = (key) => { closeSheet(); views.forEach((view) => { view.classList.toggle('active', view.dataset.view === key); }); nav.querySelectorAll('button').forEach((button) => { const active = button.dataset.go === key; button.classList.toggle('active', active); if (active) button.setAttribute('aria-current', 'page'); else button.removeAttribute('aria-current'); }); };
+        document.addEventListener('click', (event) => { const button = event.target.closest('button'); if (!button) return; if (button.dataset.go) selectView(button.dataset.go); if (button.dataset.sheet) openSheet(button.dataset.sheet); if (button.dataset.shop) { document.getElementById('normal-shop').hidden = button.dataset.shop !== 'normal'; document.getElementById('gacha-shop').hidden = button.dataset.shop !== 'gacha'; document.querySelectorAll('[data-shop]').forEach((tab) => tab.classList.toggle('active', tab === button)); } });
+        openSettingsButton.addEventListener('click', openSettings);
+        battleButton.addEventListener('click', () => { battlePaused = !battlePaused; syncBattleState(); });
+        soundButton.addEventListener('click', () => { soundEnabled = !soundEnabled; soundButton.textContent = soundEnabled ? '켜짐' : '꺼짐'; soundButton.setAttribute('aria-pressed', String(soundEnabled)); soundButton.classList.toggle('off', !soundEnabled); });
+        document.getElementById('close-settings').addEventListener('click', closeSettings);
+        document.getElementById('settings-done').addEventListener('click', closeSettings);
+        settingsWrap.addEventListener('click', (event) => { if (event.target === settingsWrap) closeSettings(); });
+        document.getElementById('close-sheet').addEventListener('click', closeSheet);
+        document.getElementById('sheet-done').addEventListener('click', closeSheet);
+        sheetWrap.addEventListener('click', (event) => { if (event.target === sheetWrap) closeSheet(); });
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') { if (settingsWrap.classList.contains('open')) closeSettings(); else closeSheet(); }
+          if (event.key !== 'Tab' || !settingsWrap.classList.contains('open')) return;
+          const controls = [...settingsWrap.querySelectorAll('button:not([disabled])')];
+          if (event.shiftKey && document.activeElement === controls[0]) { event.preventDefault(); controls[controls.length - 1].focus(); }
+          if (!event.shiftKey && document.activeElement === controls[controls.length - 1]) { event.preventDefault(); controls[0].focus(); }
+        });
+      })();
+    </script>
+  </body>
+</html>
