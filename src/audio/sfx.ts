@@ -5,13 +5,26 @@ import { useEffect, useState } from 'react';
 const SFX_ENABLED_KEY = 'murim-simulator-sfx-enabled';
 
 let ctx: AudioContext | null = null;
-let enabled = localStorage.getItem(SFX_ENABLED_KEY) !== 'false';
+// 브라우저 저장소가 막혀 있어도 앱이 멈추지 않게 설정 읽기/쓰기 실패는 기본값으로 넘긴다.
+const readSfxSetting = (): boolean => {
+  try {
+    return localStorage.getItem(SFX_ENABLED_KEY) !== 'false';
+  } catch {
+    return true;
+  }
+};
+
+let enabled = readSfxSetting();
 
 export const isSfxEnabled = (): boolean => enabled;
 
 export const setSfxEnabled = (value: boolean) => {
   enabled = value;
-  localStorage.setItem(SFX_ENABLED_KEY, String(value));
+  try {
+    localStorage.setItem(SFX_ENABLED_KEY, String(value));
+  } catch {
+    // 이번 세션에서만 적용된다.
+  }
 };
 
 export const useSfxEnabled = (): [boolean, () => void] => {

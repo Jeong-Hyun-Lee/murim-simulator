@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   Application,
   Assets,
@@ -92,16 +92,30 @@ const stopAndHide = (target: AnimatedSprite) => {
 
 export const BattleCanvas = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  // 로딩 실패 시 재시도 횟수를 바꿔 효과를 다시 실행한다.
+  const [attempt, setAttempt] = useState(0);
+  const [loadFailed, setLoadFailed] = useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return undefined;
 
     let disposed = false;
+    let destroyed = false;
     let removeTicker: (() => void) | undefined;
     const app = new Application();
 
-    (async () => {
+    const destroyApp = () => {
+      if (destroyed) return;
+      destroyed = true;
+      try {
+        app.destroy(true, { children: true });
+      } catch {
+        // 초기화 전에 실패해 렌더러가 없으면 정리할 것이 없다.
+      }
+    };
+
+    const setup = async () => {
       // resolution:2로 실제 렌더 버퍼를 논리 크기의 2배로 그려 고밀도 화면에서 페인터리 아트가
       // 흐려지지 않게 함.
       await app.init({
@@ -113,7 +127,7 @@ export const BattleCanvas = () => {
         autoDensity: true,
       });
       if (disposed) {
-        app.destroy(true, { children: true });
+        destroyApp();
         return;
       }
       container.appendChild(app.canvas);
@@ -127,7 +141,7 @@ export const BattleCanvas = () => {
       background.x = (PLAYER_X + ENEMY_X) / 2 - (bgTexture.width * BG_SCALE) / 2;
       app.stage.addChild(background);
       if (disposed) {
-        app.destroy(true, { children: true });
+        destroyApp();
         return;
       }
 
@@ -174,7 +188,7 @@ export const BattleCanvas = () => {
       const normalHitFrames = normalHitEffectFrames();
       const criticalHitFrames = criticalHitEffectFrames();
       if (disposed) {
-        app.destroy(true, { children: true });
+        destroyApp();
         return;
       }
 
@@ -610,14 +624,45 @@ export const BattleCanvas = () => {
 
       app.ticker.add(onTick);
       removeTicker = () => app.ticker.remove(onTick);
+    };
+
+    (async () => {
+      try {
+        await setup();
+      } catch (err) {
+        if (disposed) return;
+        // eslint-disable-next-line no-console
+        console.error('전투 화면 로딩 실패', err);
+        destroyApp();
+        setLoadFailed(true);
+      }
     })();
 
     return () => {
       disposed = true;
       removeTicker?.();
-      app.destroy(true, { children: true });
+      destroyApp();
     };
-  }, []);
+  }, [attempt]);
 
-  return <div ref={containerRef} id="battle-canvas-mount" />;
+  return (
+    <>
+      <div ref={containerRef} id="battle-canvas-mount" />
+      {loadFailed && (
+        <div className="battle-load-error" role="alert">
+          <p>전투 화면을 불러오지 못해 전투가 멈춰 있습니다. 진행 상황은 그대로입니다.</p>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              setLoadFailed(false);
+              setAttempt((n) => n + 1);
+            }}
+          >
+            다시 시도
+          </button>
+        </div>
+      )}
+    </>
+  );
 };

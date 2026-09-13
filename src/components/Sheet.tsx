@@ -1,4 +1,5 @@
 import { useEffect, useRef, type ReactNode } from 'react';
+import { useBackLayer } from '../hooks/useBackLayer';
 
 interface Props {
   title: string;
@@ -11,11 +12,12 @@ interface Props {
 export const Sheet = ({ title, onClose, children }: Props) => {
   const ref = useRef<HTMLDialogElement>(null);
 
+  const close = () => ref.current?.close();
+
   useEffect(() => {
     ref.current?.showModal();
   }, []);
-
-  const close = () => ref.current?.close();
+  useBackLayer(true, close);
 
   return (
     // 바깥(backdrop) 탭 닫기용 클릭 — 키보드 닫기는 네이티브 Esc가 담당.

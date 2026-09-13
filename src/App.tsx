@@ -18,7 +18,10 @@ import { ShopPanel } from './components/panels/ShopPanel';
 import { StagePicker } from './components/panels/StagePicker';
 import { MyInfoView } from './components/panels/MyInfoView';
 import { RebirthView } from './components/panels/RebirthView';
+import { useBackLayer } from './hooks/useBackLayer';
+import { useSaveStatus } from './game/state';
 import {
+  TAB_KEYS,
   TAB_LABEL,
   isViewKey,
   useTabLockReasons,
@@ -26,7 +29,7 @@ import {
   type TabKey,
   type ViewKey,
 } from './components/common';
-import { useGameStore, GONG_BOARDS } from './game/store';
+import { useGameStore, GONG_BOARDS, isBoardUnlocked } from './game/store';
 
 type SheetKey = 'settings' | 'currency' | TabKey; // TabKey = 잠긴 탭 조건 안내
 
@@ -45,6 +48,18 @@ export const App = () => {
   const onboardingDone = useGameStore((s) => s.onboardingDone);
   const tutorialGongDone = useGameStore((s) => s.tutorialGongDone);
   const lockReasons = useTabLockReasons();
+  const unlockedBoardCount = useGameStore(
+    (s) =>
+      GONG_BOARDS.filter((board) =>
+        isBoardUnlocked(board, {
+          highestMajorCleared: s.highestMajorCleared,
+          gongLevels: s.gongLevels,
+        }),
+      ).length,
+  );
+  const saveFailed = useSaveStatus((s) => s.failed);
+  const retrySave = useGameStore((s) => s.retrySave);
+  const [badges, setBadges] = useState<TabKey[]>([]);
 
   const [tab, setTab] = useState<TabKey>('battle');
   const [views, setViews] = useState<ViewKey[]>([]);
@@ -76,8 +91,27 @@ export const App = () => {
     if (el) el.scrollTop = scrollTops.current[tab] ?? 0;
   }, [tab]);
 
+  // 새 해금 배지 — 세션 중 탭이 열리거나 무공 보드가 새로 열리면 표시하고, 그 탭을 열면 지운다.
+  // 접속 시점에 이미 열려 있던 것은 알리지 않는다.
+  const unlockKey = [
+    0,
+    unlockedBoardCount,
+    lockReasons.gear ? 0 : 1,
+    lockReasons.sect ? 0 : 1,
+    lockReasons.shop ? 0 : 1,
+  ].join(',');
+  const prevUnlockKey = useRef(unlockKey);
+  useEffect(() => {
+    const prev = prevUnlockKey.current.split(',').map(Number);
+    const next = unlockKey.split(',').map(Number);
+    prevUnlockKey.current = unlockKey;
+    const grown = TAB_KEYS.filter((key, i) => next[i] > prev[i] && key !== tab);
+    if (grown.length > 0) setBadges((cur) => [...new Set([...cur, ...grown])]);
+  }, [unlockKey, tab]);
+
   const switchTab = (next: TabKey) => {
     scrollTops.current[tab] = pageRefs.current[tab]?.scrollTop ?? 0;
+    setBadges((cur) => cur.filter((key) => key !== next));
     setTab(next);
     setViews([]);
     if (next !== 'battle') setLastGrowthTab(next);
@@ -116,6 +150,7 @@ export const App = () => {
     setReturnTab(null);
     switchTab(returnTab);
   };
+  useBackLayer(!!returnTab, goBackToReturnTab);
 
   const popView = () => setViews((cur) => cur.slice(0, -1));
 
@@ -164,6 +199,14 @@ export const App = () => {
         onOpenSettings={() => setSheet('settings')}
         onOpenCurrency={() => setSheet('currency')}
       />
+      {saveFailed && (
+        <div className="save-error" role="alert">
+          <span>저장 실패: 최근 진행이 이 기기에 저장되지 않았습니다.</span>
+          <button type="button" className="btn" onClick={retrySave}>
+            다시 저장
+          </button>
+        </div>
+      )}
       {tab !== 'battle' && <BattleSummaryBar onClick={() => selectTab('battle')} />}
       {returnTab && !topView && (
         <button type="button" className="back-bar" onClick={goBackToReturnTab}>
@@ -192,6 +235,7 @@ export const App = () => {
         tab={tab}
         lockReasons={lockReasons}
         onlyTab={tutorialActive ? 'gong' : null}
+        badges={badges}
         onSelect={selectTab}
       />
 

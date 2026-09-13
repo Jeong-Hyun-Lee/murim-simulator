@@ -1,3 +1,4 @@
+import { create } from 'zustand';
 import type { StageId } from './combat';
 import type { GongLevels } from './gongData';
 import type { GearItem, SlotId } from './gearData';
@@ -59,10 +60,13 @@ const defaultState = (): GameState => ({
   farmReturnStage: null,
 });
 
+// 저장 실패(저장 공간 부족·브라우저 저장 차단 등)를 화면에 알리기 위한 상태 — 실패를 성공처럼 숨기지 않는다.
+export const useSaveStatus = create<{ failed: boolean }>(() => ({ failed: false }));
+
 export const loadState = (): GameState => {
-  const raw = localStorage.getItem(SAVE_KEY);
-  if (!raw) return defaultState();
   try {
+    const raw = localStorage.getItem(SAVE_KEY);
+    if (!raw) return defaultState();
     return { ...defaultState(), ...(JSON.parse(raw) as Partial<GameState>) };
   } catch {
     return defaultState();
@@ -70,5 +74,10 @@ export const loadState = (): GameState => {
 };
 
 export const saveState = (state: GameState) => {
-  localStorage.setItem(SAVE_KEY, JSON.stringify(state));
+  try {
+    localStorage.setItem(SAVE_KEY, JSON.stringify(state));
+    if (useSaveStatus.getState().failed) useSaveStatus.setState({ failed: false });
+  } catch {
+    useSaveStatus.setState({ failed: true });
+  }
 };

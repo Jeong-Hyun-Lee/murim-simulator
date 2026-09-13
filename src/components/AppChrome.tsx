@@ -1,6 +1,7 @@
 import { useEffect, useRef, type ReactNode } from 'react';
 import { useGameStore, realmName, type StageId } from '../game/store';
 import { useSfxEnabled } from '../audio/sfx';
+import { useBackLayer } from '../hooks/useBackLayer';
 import { Sheet } from './Sheet';
 import {
   TAB_KEYS,
@@ -105,10 +106,12 @@ interface TabBarProps {
   lockReasons: Record<TabKey, string | null>;
   // 첫 성장 안내 중에는 무공 탭만 조작 가능.
   onlyTab: TabKey | null;
+  // 새로 해금된 내용이 있고 아직 열어 보지 않은 탭.
+  badges: TabKey[];
   onSelect: (key: TabKey) => void;
 }
 
-export const TabBar = ({ tab, lockReasons, onlyTab, onSelect }: TabBarProps) => (
+export const TabBar = ({ tab, lockReasons, onlyTab, badges, onSelect }: TabBarProps) => (
   <nav id="tab-bar" aria-label="주요 화면">
     {TAB_KEYS.map((key) => {
       const locked = !!lockReasons[key];
@@ -127,6 +130,11 @@ export const TabBar = ({ tab, lockReasons, onlyTab, onSelect }: TabBarProps) => 
             </span>
           )}
           {TAB_LABEL[key]}
+          {badges.includes(key) && (
+            <span className="tab-badge">
+              <span className="sr-only"> 새로 열림</span>
+            </span>
+          )}
         </button>
       );
     })}
@@ -143,9 +151,15 @@ export const FullView = ({
   children: ReactNode;
 }) => {
   const backRef = useRef<HTMLButtonElement>(null);
+  // 열 때 뒤로 버튼에 초점을 두고, 닫힐 때 화면을 연 버튼으로 초점을 돌려준다.
   useEffect(() => {
+    const opener = document.activeElement as HTMLElement | null;
     backRef.current?.focus();
-  }, [title]);
+    return () => {
+      if (opener?.isConnected) opener.focus();
+    };
+  }, []);
+  useBackLayer(true, onBack);
 
   return (
     <section className="full-view" aria-label={title}>

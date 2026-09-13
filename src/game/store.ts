@@ -129,6 +129,7 @@ interface GameStoreState extends GameState {
 
   showToast: (msg: string) => void;
   togglePause: () => void;
+  retrySave: () => void;
   claimDailyBonusIfNeeded: () => void;
   buyGongUpgrade: (nodeId: string) => void;
   buyGongUpgradeBulk10: (nodeId: string) => void;
@@ -325,6 +326,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
 
     showToast: (msg) => set({ toastMessage: msg }),
     togglePause: () => set((s) => ({ paused: !s.paused })),
+    retrySave: () => persist(get()),
 
     claimDailyBonusIfNeeded: () => {
       const today = todayString();
