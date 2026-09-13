@@ -89,7 +89,7 @@ export const GachaPanel = () => {
 
   return (
     <div className="gacha">
-      <section className="card">
+      <section className="card gacha-pull-card">
         <dl className="stat-list">
           <div className="stat-row">
             <dt>보유 영약</dt>
@@ -132,7 +132,7 @@ export const GachaPanel = () => {
       </section>
 
       {lastGachaOutcome && (
-        <section className="card" aria-live="polite">
+        <section className="card gacha-outcome-card" aria-live="polite">
           <h3>뽑기 결과</h3>
           <p className="muted">
             {summary.map((g) => `${g.grade} ${g.count}`).join(' · ')} — 소지품에 추가됨

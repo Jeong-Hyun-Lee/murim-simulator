@@ -97,14 +97,14 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
 
   return (
     <div className="sect-tab">
-      <section className="card">
+      <section className="card sect-banner">
         <h3>{SECT_NAME}</h3>
         <p className="muted">
           목현이 몸담은 정파 문파. 기부로 문파를 키우면 전투력 특전이 오릅니다.
         </p>
       </section>
 
-      <section className="card">
+      <section className="card sect-level-card">
         <div className="unit-name-row">
           <strong>
             문파 Lv.{sectLevel}/{SECT_MAX_LEVEL}
@@ -122,7 +122,7 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
         </div>
       </section>
 
-      <section className="card">
+      <section className="card sect-contribution-card">
         <dl className="stat-list">
           <div className="stat-row">
             <dt>사용 가능 기여도</dt>
@@ -137,7 +137,7 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
         </dl>
       </section>
 
-      <section className="card">
+      <section className="card sect-donate-card">
         <h3>기부</h3>
         <p className="muted">
           내공 {CHI_PER_CONTRIBUTION.toLocaleString()} = 기여도 1 · 영약 1개 = 기여도{' '}

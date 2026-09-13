@@ -11,8 +11,11 @@ const GeneralShopSection = () => {
   const cost = elixirExchangeCost(elixirExchangeCount);
 
   return (
-    <section className="card">
-      <h3>영약 교환소</h3>
+    <section className="card shop-product-card">
+      <div className="shop-product-head">
+        <span className="shop-elixir-mark" aria-hidden="true" />
+        <h3>영약 교환소</h3>
+      </div>
       <p className="muted">
         &quot;쇠는 두드릴수록 강해지지만, 영약은 은자로 산다지.&quot; 노(老)씨가 웃으며 말했다.
       </p>

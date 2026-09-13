@@ -11,6 +11,8 @@
   --paper-muted: #6b5c46;
   --paper-line: #cdbb97;
   --gold: #c8962e;
+  --gold-hi: #f4d66e;
+  --jade: #5ea98f;
   --gold-text: #1b1409;
   --text: #ece3cf;
   --muted: #a89a7c;
@@ -128,7 +130,8 @@ button:disabled {
   /* 가로 회전 시 노치·펀치홀 영역 회피. */
   padding-left: var(--safe-l);
   padding-right: var(--safe-r);
-  background: var(--ink);
+  background:
+    radial-gradient(circle at 50% -20%, rgba(104, 79, 35, 0.22), transparent 34%), var(--ink);
   overflow: hidden;
 }
 
@@ -137,7 +140,9 @@ button:disabled {
   align-items: center;
   gap: 0.5rem;
   padding: calc(0.375rem + var(--safe-t)) 0.5rem 0.375rem;
-  border-bottom: 1px solid var(--ink-line);
+  border-bottom: 1px solid #55462e;
+  background: linear-gradient(180deg, #2b241b, #17140f);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.32);
 }
 
 .header-profile {
@@ -158,9 +163,13 @@ button:disabled {
   place-items: center;
   width: 2.25em;
   height: 2.25em;
-  border-radius: 50%;
-  background: var(--paper);
-  color: var(--paper-text);
+  border: 2px solid var(--gold);
+  border-radius: 0.625rem;
+  background: linear-gradient(135deg, #f1dca4, #9d6727);
+  box-shadow:
+    inset 0 0 0 2px #382413,
+    0 0 0 1px #78562b;
+  color: #24170c;
   font-weight: bold;
 }
 
@@ -178,23 +187,50 @@ button:disabled {
   justify-content: center;
   min-height: 3rem;
   padding: 0 0.375rem;
-  background: none;
+  gap: 0.125rem;
+  border: 1px solid #4a3b29;
+  border-radius: 0.625rem;
+  background: rgba(8, 7, 5, 0.44);
   border: 0;
   font-size: 0.875rem;
   white-space: nowrap;
 }
 
 .currency-chip-label {
-  color: var(--muted);
+  color: #c3ab76;
+}
+
+.currency-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.2rem;
+}
+
+.currency-chip strong {
+  color: #f6e6bd;
+  font-size: 0.8125rem;
+}
+
+.ui-icon {
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  flex: none;
+  fill: currentColor;
+  vertical-align: -0.18em;
 }
 
 .header-icon-btn {
   flex: none;
   min-width: 3rem;
   min-height: 3rem;
-  background: none;
-  border: 1px solid var(--ink-line);
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, #3b3022, #211b14);
+  border: 1px solid #705a35;
   border-radius: 0.625rem;
+  color: #dfbd60;
   font-size: 1.375rem;
 }
 
@@ -335,8 +371,9 @@ button:disabled {
   grid-template-columns: repeat(4, 1fr);
   min-height: calc(var(--tab-h) + var(--safe-b));
   padding-bottom: var(--safe-b);
-  background: var(--ink-2);
-  border-top: 1px solid var(--ink-line);
+  background: linear-gradient(180deg, #211b15, #120f0c);
+  border-top: 1px solid #69542f;
+  box-shadow: 0 -5px 12px rgba(0, 0, 0, 0.22);
 }
 
 .tab-btn {
@@ -345,7 +382,7 @@ button:disabled {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.125rem;
+  gap: 0.2rem;
   background: none;
   border: 0;
   border-top: 3px solid transparent;
@@ -354,9 +391,15 @@ button:disabled {
 }
 
 .tab-btn-active {
-  color: var(--gold);
+  color: var(--gold-hi);
   border-top-color: var(--gold);
   font-weight: bold;
+  background: radial-gradient(ellipse at center top, rgba(187, 135, 39, 0.24), transparent 72%);
+}
+
+.tab-btn .ui-icon {
+  width: 1.3rem;
+  height: 1.3rem;
 }
 
 .tab-btn-locked {
@@ -391,8 +434,16 @@ button:disabled {
 }
 
 .tab-lock {
+  position: absolute;
+  top: 0.375rem;
+  left: calc(50% + 0.45rem);
   font-size: 0.75rem;
   line-height: 1;
+}
+
+.tab-lock .ui-icon {
+  width: 0.7rem;
+  height: 0.7rem;
 }
 
 #log-toast {
@@ -418,11 +469,13 @@ button:disabled {
   --warn: #a4571c;
   background: var(--paper);
   color: var(--paper-text);
+  border: 1px solid rgba(113, 77, 31, 0.62);
   border-radius: 0.75rem;
   padding: 0.875rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  box-shadow: 0 0.25rem 0.6rem rgba(0, 0, 0, 0.18);
 }
 
 .card h3 {
@@ -468,9 +521,12 @@ button:disabled {
 }
 
 .btn.btn-primary {
-  background: var(--gold);
-  border-color: var(--gold);
+  background: linear-gradient(180deg, #e0b64d, #ad7622);
+  border-color: #f2d475;
   color: var(--gold-text);
+  box-shadow:
+    inset 0 1px rgba(255, 245, 190, 0.55),
+    0 2px 0 #694111;
   font-weight: bold;
 }
 
@@ -718,15 +774,19 @@ dialog.sheet {
   margin: 0 auto;
   padding-left: var(--safe-l);
   padding-right: var(--safe-r);
-  border: 0;
-  border-radius: 1rem;
-  background: var(--paper);
+  border: 1px solid #9f7932;
+  border-radius: 0.875rem;
+  background: linear-gradient(135deg, rgba(255, 240, 183, 0.3), transparent 28%), var(--paper);
   color: var(--paper-text);
   transform: translateY(-50%);
+  box-shadow:
+    0 1.25rem 3rem rgba(0, 0, 0, 0.58),
+    inset 0 0 0 3px rgba(102, 70, 25, 0.16);
 }
 
 dialog.sheet::backdrop {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(5, 4, 3, 0.72);
+  backdrop-filter: blur(2px);
 }
 
 .sheet .sticky-actions {
@@ -760,11 +820,13 @@ dialog.sheet::backdrop {
   align-items: center;
   justify-content: space-between;
   padding: 0.375rem 0.5rem 0.375rem 1rem;
-  border-bottom: 1px solid var(--paper-line);
+  border-bottom: 1px solid #c09a4e;
+  background: linear-gradient(180deg, rgba(255, 238, 183, 0.56), rgba(220, 194, 137, 0.42));
 }
 
 .sheet-header h2 {
   font-size: 1.125rem;
+  color: #5c3811;
 }
 
 .sheet-body {
@@ -773,6 +835,11 @@ dialog.sheet::backdrop {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+}
+
+.sheet-header .btn-ghost {
+  color: #79511d;
+  font-weight: bold;
 }
 
 .sheet .card {
@@ -808,10 +875,13 @@ dialog.sheet::backdrop {
   left: 50%;
   transform: translateX(-50%);
   padding: 0.25rem 0.75rem;
-  border: 1px solid var(--gold);
-  border-radius: 999rem;
-  background: rgba(21, 19, 15, 0.78);
-  color: var(--text);
+  border: 1px solid #edcb69;
+  border-radius: 0.375rem;
+  background: linear-gradient(180deg, rgba(88, 62, 25, 0.95), rgba(35, 26, 14, 0.95));
+  box-shadow:
+    0 2px 0 rgba(0, 0, 0, 0.35),
+    inset 0 1px rgba(255, 234, 156, 0.28);
+  color: #ffebac;
   font-size: 0.8125rem;
   font-weight: bold;
   line-height: 1.4;
@@ -833,7 +903,10 @@ dialog.sheet::backdrop {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 0.375rem 0.75rem;
-  font-size: 0.875rem;
+  min-height: 1.75rem;
+  padding: 0 0.25rem;
+  color: #d8c7a6;
+  font-size: 0.8125rem;
 }
 
 .battle-event-button {
@@ -849,7 +922,8 @@ dialog.sheet::backdrop {
 .unit-status {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.2rem;
+  padding: 0.125rem 0.25rem;
 }
 
 .unit-name-row {
@@ -860,16 +934,22 @@ dialog.sheet::backdrop {
 }
 
 .unit-name {
+  color: #f3e4c4;
+  font-size: 0.8125rem;
   font-weight: bold;
 }
 
 .battle-stage-frame {
   position: relative;
   flex: none;
-  border-radius: 0.75rem;
+  border: 2px solid #6f5630;
+  border-radius: 0.5rem;
   overflow: hidden;
   background: #242430;
   aspect-ratio: 640 / 390;
+  box-shadow:
+    0 0 0 1px #171109,
+    0 0.25rem 0.7rem rgba(0, 0, 0, 0.38);
 }
 
 #battle-canvas-mount canvas {
@@ -973,6 +1053,22 @@ dialog.sheet::backdrop {
   z-index: 2;
 }
 
+.picker-pinned {
+  border-color: #a57d34;
+  background: linear-gradient(135deg, #f5e9ca, #debd76);
+}
+
+.picker .list-row {
+  border-color: #4d3e2a;
+  background: linear-gradient(135deg, #292116, #17130e);
+}
+
+.picker .list-row-selected {
+  border-color: #dfb649;
+  background: linear-gradient(135deg, #4b3817, #24190d);
+  color: #fff0bd;
+}
+
 /* ---------- 무공 ---------- */
 
 .board-picker-btn {
@@ -984,8 +1080,9 @@ dialog.sheet::backdrop {
   min-height: 3.25rem;
   padding: 0.5rem 0.875rem;
   border-radius: 0.75rem;
-  border: 1px solid var(--gold);
-  background: var(--ink-2);
+  border: 1px solid #9a7430;
+  background: linear-gradient(135deg, #31271a, #17130e);
+  box-shadow: inset 0 1px rgba(255, 225, 139, 0.12);
   text-align: left;
 }
 
@@ -998,6 +1095,28 @@ dialog.sheet::backdrop {
   align-items: center;
   gap: 0.5rem;
   flex-wrap: wrap;
+}
+
+.gong-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.gong-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.3rem;
+  height: 100%;
+  background: linear-gradient(var(--gold-hi), #9b6a21);
+}
+
+.gong-card .tag {
+  border-color: #a77c32;
+  background: #f0dfb8;
+  color: #654315;
+  font-weight: bold;
 }
 
 .gong-card-level {
@@ -1037,6 +1156,15 @@ dialog.sheet::backdrop {
     'ringL foot   .';
   gap: 0.375rem;
   align-items: center;
+  padding: 0.75rem;
+  border: 1px solid #584226;
+  border-radius: 0.875rem;
+  background:
+    radial-gradient(circle at center, rgba(173, 120, 38, 0.2), transparent 54%),
+    linear-gradient(135deg, #2a2118, #15120e);
+  box-shadow:
+    inset 0 0 0 1px rgba(238, 200, 109, 0.08),
+    0 0.25rem 0.6rem rgba(0, 0, 0, 0.18);
 }
 
 .gear-doll-char {
@@ -1047,9 +1175,11 @@ dialog.sheet::backdrop {
   background-image: url('/sprites/character/mokhyeon-idle-sheet.png');
   background-position: 0 0;
   background-size: 400% auto;
+  filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.6));
 }
 
 .gear-doll-slot {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1057,8 +1187,10 @@ dialog.sheet::backdrop {
   min-height: 3.25rem;
   padding: 0.25rem;
   border-radius: 0.625rem;
-  border: 2px solid var(--ink-line);
-  background: var(--ink-2);
+  border: 2px solid #55432d;
+  background: linear-gradient(145deg, #30261c, #17130f);
+  box-shadow: inset 0 1px rgba(255, 227, 162, 0.08);
+  color: #eadab6;
   font-size: 0.875rem;
   line-height: 1.2;
 }
@@ -1069,7 +1201,23 @@ dialog.sheet::backdrop {
 }
 
 .gear-doll-slot-active {
-  background: #2f2615;
+  border-color: var(--gold) !important;
+  background: linear-gradient(145deg, #493718, #241b10);
+  box-shadow:
+    0 0 0.5rem rgba(217, 170, 58, 0.32),
+    inset 0 1px rgba(255, 227, 162, 0.18);
+}
+
+.gear-doll-slot-equipped::before {
+  content: '';
+  position: absolute;
+  top: 0.3rem;
+  right: 0.3rem;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: var(--jade);
+  box-shadow: 0 0 0.25rem var(--jade);
 }
 
 .toolbar {
@@ -1103,6 +1251,7 @@ dialog.sheet::backdrop {
   border: 2px solid transparent;
   text-align: left;
   font-size: 0.875rem;
+  background: linear-gradient(135deg, rgba(201, 151, 51, 0.1), transparent 38%), var(--paper);
 }
 
 .inventory-card input {
@@ -1112,6 +1261,26 @@ dialog.sheet::backdrop {
 
 .inventory-card-checked {
   border-color: var(--gold);
+}
+
+.grade-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.15rem 0.4rem;
+  border: 1px solid;
+  border-radius: 999rem;
+  background: rgba(255, 255, 255, 0.42);
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.grade-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  flex: none;
+  border-radius: 50%;
+  box-shadow: 0 0 0.2rem currentColor;
 }
 
 .item-line {
@@ -1164,6 +1333,123 @@ dialog.sheet::backdrop {
 
 /* ---------- 상점 ---------- */
 
+.shop-product-card,
+.gacha-pull-card,
+.sect-banner,
+.sect-level-card,
+.sect-contribution-card,
+.sect-donate-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.sect-banner {
+  padding-left: 1.125rem;
+  border-color: #668f86;
+  background: linear-gradient(90deg, rgba(52, 115, 98, 0.2), transparent 70%), var(--paper);
+}
+
+.sect-banner::before {
+  content: '靑';
+  position: absolute;
+  top: -0.5rem;
+  right: 0.5rem;
+  color: rgba(46, 111, 91, 0.18);
+  font-family: serif;
+  font-size: 5rem;
+  font-weight: bold;
+}
+
+.sect-banner h3,
+.sect-banner p {
+  position: relative;
+}
+
+.sect-level-card {
+  border-color: #927437;
+  background: linear-gradient(135deg, #f2e9d1, #dfcca1);
+}
+
+.sect-contribution-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0.35rem;
+  background: var(--jade);
+}
+
+.sect-donate-card {
+  border-color: #b38431;
+  background:
+    radial-gradient(circle at right top, rgba(223, 178, 79, 0.28), transparent 38%), var(--paper);
+}
+
+.shop-product-card {
+  border-color: #b5822b;
+  background:
+    radial-gradient(circle at 88% 18%, rgba(223, 178, 79, 0.32), transparent 26%),
+    linear-gradient(135deg, #f5ead1, #e5cf9d);
+}
+
+.shop-product-head {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.shop-elixir-mark {
+  position: relative;
+  display: inline-block;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: none;
+  border: 2px solid #875819;
+  border-radius: 0.4rem 0.4rem 0.75rem 0.75rem;
+  background: linear-gradient(135deg, #c35f37 0 42%, #f0ad4c 43%);
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 237, 171, 0.42),
+    0 0.2rem 0.35rem rgba(91, 48, 15, 0.25);
+}
+
+.shop-elixir-mark::before {
+  content: '';
+  position: absolute;
+  top: -0.45rem;
+  left: 0.5rem;
+  width: 1.2rem;
+  height: 0.5rem;
+  border: 2px solid #875819;
+  border-radius: 0.25rem;
+  background: #d4b46b;
+}
+
+.gacha-pull-card {
+  border-color: #8d6b9e;
+  background:
+    radial-gradient(circle at 82% 12%, rgba(142, 96, 174, 0.28), transparent 28%),
+    linear-gradient(135deg, #f1e7d9, #ddcce4);
+}
+
+.gacha-pull-card::after {
+  content: '奇緣';
+  position: absolute;
+  right: 0.75rem;
+  bottom: -1.1rem;
+  color: rgba(93, 51, 119, 0.13);
+  font-family: serif;
+  font-size: 3.6rem;
+  font-weight: bold;
+}
+
+.gacha-pull-card > * {
+  position: relative;
+}
+
+.gacha-outcome-card {
+  border-color: #b38a30;
+  background: linear-gradient(135deg, rgba(255, 228, 132, 0.28), transparent 44%), var(--paper);
+}
+
 .gacha {
   display: flex;
   flex-direction: column;
@@ -1183,8 +1469,9 @@ dialog.sheet::backdrop {
   padding: 0.5rem 0.625rem;
   border-radius: 0.625rem;
   border: 2px solid;
-  background: #f7f0de;
+  background: linear-gradient(135deg, #fffaf0, #e8dbbc);
   font-size: 0.875rem;
+  font-weight: bold;
 }
 
 /* ---------- 온보딩 ---------- */
@@ -1197,7 +1484,9 @@ dialog.sheet::backdrop {
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background: var(--ink);
+  background:
+    radial-gradient(circle at 50% 30%, rgba(117, 82, 32, 0.42), transparent 42%),
+    rgba(10, 8, 6, 0.96);
 }
 
 .onboarding-box {
@@ -1208,10 +1497,14 @@ dialog.sheet::backdrop {
   gap: 1rem;
   width: 100%;
   padding: 3rem 1.25rem 1.25rem;
+  border: 1px solid #bd933d;
   border-radius: 0.875rem;
-  background: var(--paper);
+  background: linear-gradient(135deg, rgba(255, 243, 198, 0.45), transparent 32%), var(--paper);
   color: var(--paper-text);
   text-align: center;
+  box-shadow:
+    0 1rem 2.5rem rgba(0, 0, 0, 0.52),
+    inset 0 0 0 3px rgba(106, 73, 25, 0.14);
 }
 
 .onboarding-box .btn:not(.btn-primary) {
@@ -1221,7 +1514,24 @@ dialog.sheet::backdrop {
 }
 
 .onboarding-text {
+  min-height: 5.5rem;
+  display: grid;
+  place-items: center;
+  padding: 0.5rem;
+  color: #3c2815;
+  font-size: 1.0625rem;
   line-height: 1.7;
+}
+
+.onboarding-progress {
+  color: #8b672a;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+}
+
+.onboarding-name-box .onboarding-text {
+  min-height: auto;
 }
 
 .onboarding-input {
@@ -1243,6 +1553,64 @@ dialog.sheet::backdrop {
   background: none;
   border: 0;
   color: var(--paper-muted);
+}
+
+.story-cutscene-overlay {
+  background:
+    linear-gradient(180deg, rgba(5, 5, 7, 0.42), rgba(4, 3, 2, 0.96)),
+    radial-gradient(circle at 50% 30%, rgba(54, 85, 86, 0.38), transparent 44%);
+}
+
+.story-cutscene-box {
+  border-color: #cfad57;
+  background: linear-gradient(135deg, rgba(55, 71, 68, 0.8), rgba(14, 17, 16, 0.96)), #15130f;
+  color: #f5e8c8;
+}
+
+.story-cutscene-box .onboarding-text {
+  color: #f5e8c8;
+  text-shadow: 0 1px 2px #000;
+}
+
+.story-cutscene-box .onboarding-progress {
+  color: #d9b966;
+}
+
+.story-cutscene-box .onboarding-skip-btn {
+  color: #cab98b;
+}
+
+/* ---------- 내 정보·환골탈태 ---------- */
+
+.my-info > .card:first-child {
+  border-color: #b58a34;
+  background:
+    radial-gradient(circle at 86% 12%, rgba(230, 183, 70, 0.35), transparent 30%),
+    linear-gradient(135deg, #f5ead1, #dcc18a);
+}
+
+.my-info > .card:first-child .big-number {
+  color: #7a4a12;
+  text-shadow: 0 1px rgba(255, 249, 221, 0.8);
+}
+
+.my-info details.card {
+  border-left: 0.35rem solid #6b998b;
+}
+
+.rebirth > .card:first-child {
+  border-color: #a77e3a;
+  background:
+    radial-gradient(circle at 85% 16%, rgba(222, 174, 61, 0.3), transparent 32%),
+    linear-gradient(135deg, #f0e2bf, #d7bd82);
+}
+
+.rebirth > .card:nth-child(2) {
+  border-left: 0.35rem solid #b54e3d;
+}
+
+.rebirth > .card:nth-child(3) {
+  border-left: 0.35rem solid var(--jade);
 }
 
 /* ---------- 해상도 대응 ----------

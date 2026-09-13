@@ -8,13 +8,21 @@ export const StoryCutscene = ({ cards }: { cards: string[] }) => {
   const last = index >= cards.length - 1;
 
   return (
-    <div className="onboarding-overlay" role="dialog" aria-modal="true" aria-label="이야기">
-      <div className="onboarding-box">
+    <div
+      className="onboarding-overlay story-cutscene-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-label="이야기"
+    >
+      <div className="onboarding-box story-cutscene-box">
         <button type="button" className="onboarding-skip-btn" onClick={closeStoryCutscene}>
           건너뛰기
         </button>
         <p className="onboarding-text" aria-live="polite">
           {cards[index]}
+        </p>
+        <p className="onboarding-progress" aria-label={`이야기 ${index + 1} / ${cards.length}`}>
+          기록 {index + 1} / {cards.length}
         </p>
         <button
           type="button"

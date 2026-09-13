@@ -32,12 +32,18 @@ export const OnboardingFlow = () => {
             건너뛰기
           </button>
           <p className="onboarding-text">{INTRO_CARDS[cardIndex]}</p>
+          <p
+            className="onboarding-progress"
+            aria-label={`도입 ${cardIndex + 1} / ${INTRO_CARDS.length}`}
+          >
+            {cardIndex + 1} / {INTRO_CARDS.length}
+          </p>
           <button type="button" className="btn btn-primary btn-block" onClick={nextCard}>
             다음
           </button>
         </div>
       ) : (
-        <div className="onboarding-box">
+        <div className="onboarding-box onboarding-name-box">
           <p className="onboarding-text">그대의 도호(별명)를 무엇이라 부르면 되겠소?</p>
           <input
             aria-label="도호"

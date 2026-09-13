@@ -261,7 +261,9 @@ export const GearPanel = ({ onNavigate }: { onNavigate: (target: NavTarget) => v
             <button
               type="button"
               key={slot}
-              className={`gear-doll-slot${openSlot === slot ? ' gear-doll-slot-active' : ''}`}
+              className={`gear-doll-slot${item ? ' gear-doll-slot-equipped' : ''}${
+                openSlot === slot ? ' gear-doll-slot-active' : ''
+              }`}
               style={{ gridArea: slot, borderColor: item ? GRADE_COLOR[item.grade] : undefined }}
               onClick={() => setOpenSlot(slot)}
             >
