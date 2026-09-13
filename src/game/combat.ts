@@ -232,8 +232,17 @@ export const combatPower = (stats: Pick<PlayerStats, 'hp' | 'atk' | 'def'>): num
 
 export const expToNextLevel = (level: number): number => Math.round(40 * 1.15 ** (level - 1));
 
-export const damage = (attackerAtk: number, defenderDef: number): number =>
-  Math.max(1, attackerAtk - defenderDef);
+// 피해 편차 — 기본 피해의 90%~110% 사이 정수를 고르게 뽑는다(10 → 9~11, 100만 → 90만~110만).
+// 전투 수치 연출용 내부 규칙이라 스탯창에는 표시하지 않는다.
+const DAMAGE_MIN_RATIO = 0.9;
+const DAMAGE_MAX_RATIO = 1.1;
+
+export const damage = (attackerAtk: number, defenderDef: number): number => {
+  const base = Math.max(1, attackerAtk - defenderDef);
+  const min = Math.max(1, Math.round(base * DAMAGE_MIN_RATIO));
+  const max = Math.max(min, Math.round(base * DAMAGE_MAX_RATIO));
+  return min + Math.floor(Math.random() * (max - min + 1));
+};
 
 export interface DamageResult {
   amount: number;
