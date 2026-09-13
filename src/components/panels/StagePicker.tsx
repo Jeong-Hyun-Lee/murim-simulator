@@ -16,6 +16,7 @@ export const StagePicker = ({ onBack }: { onBack: () => void }) => {
   const awaitingBossChallenge = useGameStore((s) => s.awaitingBossChallenge);
   const awaitingBossReward = useGameStore((s) => s.awaitingBossReward);
   const startFarming = useGameStore((s) => s.startFarming);
+  const stopFarming = useGameStore((s) => s.stopFarming);
 
   const frontier = farmReturnStage ?? stage;
   const [openMajor, setOpenMajor] = useState(stage.major);
@@ -47,6 +48,18 @@ export const StagePicker = ({ onBack }: { onBack: () => void }) => {
         <div>
           등반 위치: <strong>{stageLabel(frontier)}</strong>
         </div>
+        {farmReturnStage && (
+          <button
+            type="button"
+            className="btn btn-primary btn-block"
+            onClick={() => {
+              stopFarming();
+              onBack();
+            }}
+          >
+            등반 위치로 복귀
+          </button>
+        )}
       </div>
 
       <ul className="list">

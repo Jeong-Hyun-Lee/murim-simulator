@@ -256,6 +256,52 @@ button:disabled {
   min-height: 100%;
 }
 
+.tab-page[data-main='true'] {
+  overflow: hidden;
+  padding: 0;
+}
+
+.tab-page > .gong-main {
+  gap: 0;
+  height: 100%;
+  min-height: 0;
+}
+
+.gong-main > .battle-tab {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem 0.625rem;
+  border-bottom: 1px solid var(--ink-line);
+}
+
+.gong-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.75rem 1rem;
+  scrollbar-color: var(--ink-line) transparent;
+  scrollbar-width: thin;
+}
+
+.gong-scroll::-webkit-scrollbar {
+  width: 0.375rem;
+}
+
+.gong-scroll::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background: var(--ink-line);
+}
+
+.gong-scroll > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: 100%;
+}
+
 .full-view {
   position: absolute;
   inset: 0;
@@ -286,7 +332,7 @@ button:disabled {
 
 #tab-bar {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   min-height: calc(var(--tab-h) + var(--safe-b));
   padding-bottom: var(--safe-b);
   background: var(--ink-2);
@@ -654,40 +700,59 @@ details.card summary {
   background: linear-gradient(#4f9bd4, #1f4a7a);
 }
 
-/* ---------- 하단 시트 ---------- */
+/* ---------- 중앙 팝업 ---------- */
 
 dialog.sheet {
   --muted: var(--paper-muted);
   --warn: #a4571c;
-  /* 위치를 직접 지정해 <dialog> 미지원 브라우저의 폴백(open 속성만 부여)에서도 하단 시트로 뜬다. */
+  /* 위치를 직접 지정해 <dialog> 미지원 브라우저에서도 중앙 팝업으로 뜬다. */
   position: fixed;
-  top: auto;
+  top: 50%;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: auto;
   z-index: 50;
-  width: 100%;
+  width: calc(100% - 2rem);
   max-width: 30rem;
-  max-height: 88vh;
-  max-height: 88dvh;
-  margin: auto auto 0;
+  max-height: calc(100dvh - 2rem);
+  margin: 0 auto;
   padding-left: var(--safe-l);
   padding-right: var(--safe-r);
   border: 0;
-  border-radius: 1rem 1rem 0 0;
+  border-radius: 1rem;
   background: var(--paper);
   color: var(--paper-text);
+  transform: translateY(-50%);
 }
 
 dialog.sheet::backdrop {
   background: rgba(0, 0, 0, 0.6);
 }
 
+.sheet .sticky-actions {
+  background: var(--paper);
+  border-color: var(--paper-line);
+}
+
+.sheet .list-row {
+  border-color: var(--paper-line);
+  background: #eadfc8;
+  color: var(--paper-text);
+}
+
+.sheet .list-row .muted {
+  color: #625846;
+}
+
+.sheet .list-row-selected {
+  border-color: #ad833a;
+  background: #d9c692;
+}
+
 .sheet-inner {
   display: flex;
   flex-direction: column;
-  max-height: 88vh;
-  max-height: 88dvh;
+  max-height: calc(100dvh - 2rem);
 }
 
 .sheet-header {
@@ -734,18 +799,37 @@ dialog.sheet::backdrop {
 
 /* ---------- 전투 ---------- */
 
-.battle-stage-row {
-  display: flex;
-  align-items: center;
-  gap: 0.625rem;
-  font-size: 0.9375rem;
+.battle-stage-select {
+  position: absolute;
+  z-index: 2;
+  top: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  min-height: 3rem;
+  width: min(calc(100% - 1rem), 18rem);
+  border: 1px solid var(--gold);
+  border-radius: 0.625rem;
+  background: rgba(34, 30, 24, 0.92);
+  color: var(--text);
+  font-weight: bold;
 }
 
-.stage-badge {
-  padding: 2px 0.625rem;
-  border-radius: 62.4375rem;
-  background: var(--paper);
-  color: var(--paper-text);
+.battle-state-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.battle-event-button {
+  min-height: 2.75rem;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid var(--gold);
+  border-radius: 0.5rem;
+  background: var(--gold);
+  color: var(--gold-text);
   font-weight: bold;
 }
 
@@ -772,7 +856,7 @@ dialog.sheet::backdrop {
   border-radius: 0.75rem;
   overflow: hidden;
   background: #242430;
-  aspect-ratio: 640 / 440;
+  aspect-ratio: 640 / 390;
 }
 
 #battle-canvas-mount canvas {
@@ -819,13 +903,6 @@ dialog.sheet::backdrop {
   flex-wrap: wrap;
   gap: 0.25rem 0.875rem;
   font-weight: bold;
-}
-
-.farm-card {
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
 }
 
 .picker-pinned {
@@ -1189,8 +1266,8 @@ dialog.sheet::backdrop {
   }
 
   .battle-stage-frame {
-    width: min(100%, calc(45vh * 640 / 440));
-    width: min(100%, calc(45dvh * 640 / 440));
+    width: min(100%, calc(45vh * 640 / 390));
+    width: min(100%, calc(45dvh * 640 / 390));
     align-self: center;
   }
 

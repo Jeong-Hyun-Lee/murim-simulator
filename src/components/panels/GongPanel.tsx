@@ -233,10 +233,9 @@ export const GongPanel = ({ boardId, onBoardChange, onNavigate }: Props) => {
             className="btn btn-primary"
             onClick={() => {
               setTutorialJustDone(false);
-              onNavigate('battle');
             }}
           >
-            전투로 복귀
+            확인
           </button>
         </div>
       )}

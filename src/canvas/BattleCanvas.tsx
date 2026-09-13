@@ -20,10 +20,9 @@ import {
 import { useGameStore, isBossStage, enemyKind, type StageId, type EnemyKind } from '../game/store';
 import { playHit, playCrit, playVictory, playDefeat } from '../audio/sfx';
 
-// 모바일 세로 화면의 전투 영역 비율(약 1.45:1) — 16:9 화면을 잘라 맞추지 않고 인물 간격·배경을
-// 이 비율에 맞춰 재구성한다. CSS가 너비 100%로 늘려 390px 폭에서 높이 약 270px로 보인다.
+// 무공 메인 상단의 낮은 전투 무대(약 1.64:1). 원본 비율로 렌더링해 인물을 자르거나 늘리지 않는다.
 const CANVAS_WIDTH = 640;
-const CANVAS_HEIGHT = 440;
+const CANVAS_HEIGHT = 390;
 // 두 인물의 몸통 간 거리(340)는 기존 배치와 같게 유지해 공격 모션 범위가 겹치지 않게 한다.
 const PLAYER_X = 150;
 const ENEMY_X = 490;

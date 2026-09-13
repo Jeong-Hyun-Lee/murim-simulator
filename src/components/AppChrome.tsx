@@ -24,7 +24,6 @@ const CURRENCY_LABEL: Record<CurrencyKey, string> = {
 
 // 화면별로 당장 필요한 재화 1~2종만 상단에 노출 — 전체 정확한 수치는 재화 상세 시트에서.
 const TAB_CURRENCIES: Record<TabKey, CurrencyKey[]> = {
-  battle: ['gold', 'chi'],
   gong: ['chi', 'contribution'],
   gear: ['gold', 'stones'],
   sect: ['chi', 'elixir'],

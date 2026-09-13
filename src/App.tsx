@@ -16,6 +16,7 @@ import { GearPanel } from './components/panels/GearPanel';
 import { SectPanel } from './components/panels/SectPanel';
 import { ShopPanel } from './components/panels/ShopPanel';
 import { StagePicker } from './components/panels/StagePicker';
+import { Sheet } from './components/Sheet';
 import { MyInfoView } from './components/panels/MyInfoView';
 import { RebirthView } from './components/panels/RebirthView';
 import { useBackLayer } from './hooks/useBackLayer';
@@ -39,10 +40,10 @@ const VIEW_TITLE: Record<ViewKey, string> = {
   rebirth: '환골탈태',
 };
 
-// 세로형·하단 5탭 모바일 틀. 모든 탭 화면을 계속 마운트해 두고 hidden으로만 전환한다 —
+// 세로형·하단 4탭 모바일 틀. 모든 탭 화면을 계속 마운트해 두고 hidden으로만 전환한다 —
 // 전투 진행이 BattleCanvas의 틱에 묶여 있어 탭 전환으로 캔버스가 제거되면 전투가 멈추기 때문이며,
 // 보드 선택·필터 같은 화면 상태도 세션 동안 그대로 유지된다.
-// ponytail: 숨겨진 전투 탭도 Pixi가 계속 렌더링함. 배터리 문제가 보이면 화면 밖일 때 렌더만 끄기.
+// ponytail: 숨겨진 무공 탭의 전투 Pixi도 계속 렌더링함. 배터리 문제가 보이면 화면 밖일 때 렌더만 끄기.
 export const App = () => {
   const claimDailyBonusIfNeeded = useGameStore((s) => s.claimDailyBonusIfNeeded);
   const onboardingDone = useGameStore((s) => s.onboardingDone);
@@ -61,11 +62,10 @@ export const App = () => {
   const retrySave = useGameStore((s) => s.retrySave);
   const [badges, setBadges] = useState<TabKey[]>([]);
 
-  const [tab, setTab] = useState<TabKey>('battle');
+  const [tab, setTab] = useState<TabKey>('gong');
   const [views, setViews] = useState<ViewKey[]>([]);
   const [sheet, setSheet] = useState<SheetKey | null>(null);
   const [returnTab, setReturnTab] = useState<TabKey | null>(null);
-  const [lastGrowthTab, setLastGrowthTab] = useState<TabKey>('gong');
   const [gongBoardId, setGongBoardId] = useState(GONG_BOARDS[0].id);
   const pageRefs = useRef<Partial<Record<TabKey, HTMLElement | null>>>({});
   const scrollTops = useRef<Partial<Record<TabKey, number>>>({});
@@ -94,7 +94,6 @@ export const App = () => {
   // 새 해금 배지 — 세션 중 탭이 열리거나 무공 보드가 새로 열리면 표시하고, 그 탭을 열면 지운다.
   // 접속 시점에 이미 열려 있던 것은 알리지 않는다.
   const unlockKey = [
-    0,
     unlockedBoardCount,
     lockReasons.gear ? 0 : 1,
     lockReasons.sect ? 0 : 1,
@@ -114,7 +113,6 @@ export const App = () => {
     setBadges((cur) => cur.filter((key) => key !== next));
     setTab(next);
     setViews([]);
-    if (next !== 'battle') setLastGrowthTab(next);
   };
 
   const selectTab = (next: TabKey) => {
@@ -140,8 +138,7 @@ export const App = () => {
       setViews([]);
       return;
     }
-    // 전투 탭 복귀는 요약줄이 이미 제공하므로 돌아가기 바를 따로 두지 않는다.
-    setReturnTab(target === 'battle' || tab === 'battle' ? null : tab);
+    setReturnTab(tab);
     switchTab(target);
   };
 
@@ -167,8 +164,9 @@ export const App = () => {
       inert={!!topView}
       aria-label={TAB_LABEL[key]}
       ref={(el) => {
-        pageRefs.current[key] = el;
+        if (key !== 'gong') pageRefs.current[key] = el;
       }}
+      data-main={key === 'gong' ? 'true' : undefined}
     >
       {content}
     </section>
@@ -181,7 +179,7 @@ export const App = () => {
       <RebirthView
         onDone={() => {
           setReturnTab(null);
-          switchTab('battle');
+          switchTab('gong');
         }}
       />
     );
@@ -207,7 +205,7 @@ export const App = () => {
           </button>
         </div>
       )}
-      {tab !== 'battle' && <BattleSummaryBar onClick={() => selectTab('battle')} />}
+      {tab !== 'gong' && <BattleSummaryBar onClick={() => selectTab('gong')} />}
       {returnTab && !topView && (
         <button type="button" className="back-bar" onClick={goBackToReturnTab}>
           ‹ {TAB_LABEL[returnTab]}(으)로 돌아가기
@@ -215,15 +213,28 @@ export const App = () => {
       )}
 
       <main id="app-main">
-        {page('battle', <BattleTab onNavigate={navigate} lastGrowthTab={lastGrowthTab} />)}
         {page(
           'gong',
-          <GongPanel boardId={gongBoardId} onBoardChange={setGongBoardId} onNavigate={navigate} />,
+          <div className="gong-main">
+            <BattleTab onNavigate={navigate} />
+            <div
+              className="gong-scroll"
+              ref={(el) => {
+                pageRefs.current.gong = el;
+              }}
+            >
+              <GongPanel
+                boardId={gongBoardId}
+                onBoardChange={setGongBoardId}
+                onNavigate={navigate}
+              />
+            </div>
+          </div>,
         )}
         {page('gear', <GearPanel onNavigate={navigate} />)}
         {page('sect', <SectPanel onOpenBoard={openBoard} />)}
         {page('shop', <ShopPanel />)}
-        {topView && (
+        {topView && topView !== 'stagePicker' && (
           <FullView key={topView} title={VIEW_TITLE[topView]} onBack={popView}>
             {renderView(topView)}
           </FullView>
@@ -241,6 +252,11 @@ export const App = () => {
 
       {sheet === 'settings' && <SettingsSheet onClose={closeSheet} />}
       {sheet === 'currency' && <CurrencySheet onClose={closeSheet} />}
+      {topView === 'stagePicker' && (
+        <Sheet title="사냥터 선택" onClose={popView}>
+          <StagePicker onBack={popView} />
+        </Sheet>
+      )}
       {lockedSheetTab && lockedReason && (
         <LockedTabSheet tab={lockedSheetTab} reason={lockedReason} onClose={closeSheet} />
       )}

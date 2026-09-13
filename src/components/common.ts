@@ -1,13 +1,12 @@
 import { useGameStore, isBossStage, type StageId } from '../game/store';
 
-export type TabKey = 'battle' | 'gong' | 'gear' | 'sect' | 'shop';
+export type TabKey = 'gong' | 'gear' | 'sect' | 'shop';
 export type ViewKey = 'stagePicker' | 'myInfo' | 'rebirth';
 export type NavTarget = TabKey | ViewKey;
 
-export const TAB_KEYS: TabKey[] = ['battle', 'gong', 'gear', 'sect', 'shop'];
+export const TAB_KEYS: TabKey[] = ['gong', 'gear', 'sect', 'shop'];
 
 export const TAB_LABEL: Record<TabKey, string> = {
-  battle: '전투',
   gong: '무공',
   gear: '장비',
   sect: '문파',
@@ -47,7 +46,6 @@ export const useTabLockReasons = (): Record<TabKey, string | null> => {
   );
   const highestMajorCleared = useGameStore((s) => s.highestMajorCleared);
   return {
-    battle: null,
     gong: null,
     gear: hasAnyGear ? null : '장비 아이템을 처음 획득하면 열립니다.',
     sect: highestMajorCleared >= 2 ? null : '대2 보스를 처음 클리어하면 열립니다.',
