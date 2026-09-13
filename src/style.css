@@ -799,19 +799,32 @@ dialog.sheet::backdrop {
 
 /* ---------- 전투 ---------- */
 
+/* 무대 그림을 가리지 않는 작은 알약형 버튼. 보이는 높이는 약 30px이지만 ::before로
+   누르는 영역을 위아래로 넓혀 44px 이상의 터치 영역을 유지한다. */
 .battle-stage-select {
   position: absolute;
   z-index: 2;
-  top: 0.5rem;
+  top: 0.375rem;
   left: 50%;
   transform: translateX(-50%);
-  min-height: 3rem;
-  width: min(calc(100% - 1rem), 18rem);
+  padding: 0.25rem 0.75rem;
   border: 1px solid var(--gold);
-  border-radius: 0.625rem;
-  background: rgba(34, 30, 24, 0.92);
+  border-radius: 999rem;
+  background: rgba(21, 19, 15, 0.78);
   color: var(--text);
+  font-size: 0.8125rem;
   font-weight: bold;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.battle-stage-select::before {
+  content: '';
+  position: absolute;
+  top: -0.5rem;
+  right: -0.25rem;
+  bottom: -0.5rem;
+  left: -0.25rem;
 }
 
 .battle-state-row {

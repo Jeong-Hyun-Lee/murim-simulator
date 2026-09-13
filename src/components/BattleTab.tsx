@@ -161,9 +161,10 @@ export const BattleTab = ({ onNavigate }: Props) => {
           type="button"
           className="battle-stage-select"
           aria-haspopup="dialog"
+          aria-label={`사냥터 선택, 현재 ${stageLabel(stage)}`}
           onClick={() => onNavigate('stagePicker')}
         >
-          사냥터 선택 · {stageLabel(stage)} ▾
+          사냥터 {stageLabel(stage)} ▾
         </button>
         {paused && <div className="battle-paused">일시정지</div>}
       </div>
