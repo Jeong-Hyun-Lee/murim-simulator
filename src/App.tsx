@@ -225,11 +225,7 @@ export const App = () => {
                 pageRefs.current.gong = el;
               }}
             >
-              <GongPanel
-                boardId={gongBoardId}
-                onBoardChange={setGongBoardId}
-                onNavigate={navigate}
-              />
+              <GongPanel boardId={gongBoardId} onBoardChange={setGongBoardId} />
             </div>
           </div>,
         )}

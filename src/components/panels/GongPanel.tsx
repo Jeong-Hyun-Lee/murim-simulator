@@ -14,7 +14,6 @@ import {
 } from '../../game/store';
 import type { GongStatKey } from '../../game/gongData';
 import { useHoldRepeat } from '../../hooks/useHoldRepeat';
-import type { NavTarget } from '../common';
 
 const TIER_LABEL = { primary: '1차', secondary: '2차', capstone: '오의' } as const;
 const CURRENCY_LABEL: Record<GongCurrency, string> = { chi: '내공', contribution: '기여도' };
@@ -123,10 +122,9 @@ const GongNodeCard = ({
 interface Props {
   boardId: string;
   onBoardChange: (boardId: string) => void;
-  onNavigate: (target: NavTarget) => void;
 }
 
-export const GongPanel = ({ boardId, onBoardChange, onNavigate }: Props) => {
+export const GongPanel = ({ boardId, onBoardChange }: Props) => {
   const gongLevels = useGameStore((s) => s.gongLevels);
   const highestMajorCleared = useGameStore((s) => s.highestMajorCleared);
   const onboardingDone = useGameStore((s) => s.onboardingDone);
@@ -141,16 +139,6 @@ export const GongPanel = ({ boardId, onBoardChange, onNavigate }: Props) => {
   // 환골탈태 등으로 선택 보드가 잠기면 첫 보드로 표시.
   const selectedBoard =
     tutorialActive || !isBoardUnlocked(requested, unlockCtx) ? GONG_BOARDS[0] : requested;
-  const boardBalance = useGameStore((s) =>
-    selectedBoard.currency === 'contribution' ? s.sectContributionPoints : s.chi,
-  );
-  const cheapestCost = Math.min(
-    ...selectedBoard.nodes
-      .filter((n) => isNodeUnlocked(n, gongLevels) && nodeLevel(n, gongLevels) < n.maxLevel)
-      .map((n) => nodeUpgradeCost(n, nodeLevel(n, gongLevels))),
-  );
-  const shortage =
-    Number.isFinite(cheapestCost) && boardBalance < cheapestCost ? cheapestCost - boardBalance : 0;
 
   useEffect(() => {
     if (tutorialActive && (gongLevels[TUTORIAL_NODE_ID] ?? 0) >= 1) {
@@ -226,23 +214,6 @@ export const GongPanel = ({ boardId, onBoardChange, onNavigate }: Props) => {
             );
           })}
         </ul>
-      )}
-
-      {shortage > 0 && !tutorialActive && (
-        <div className="banner">
-          <span>
-            {CURRENCY_LABEL[selectedBoard.currency]} {shortage.toLocaleString()} 부족
-          </span>
-          {selectedBoard.currency === 'contribution' ? (
-            <button type="button" className="btn" onClick={() => onNavigate('sect')}>
-              문파 기부
-            </button>
-          ) : (
-            <button type="button" className="btn" onClick={() => onNavigate('stagePicker')}>
-              사냥터 보기
-            </button>
-          )}
-        </div>
       )}
 
       <p className="muted small">1회 연마 버튼을 길게 누르면 연속으로 연마합니다.</p>
