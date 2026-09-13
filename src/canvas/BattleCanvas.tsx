@@ -116,14 +116,14 @@ export const BattleCanvas = () => {
     };
 
     const setup = async () => {
-      // resolution:2로 실제 렌더 버퍼를 논리 크기의 2배로 그려 고밀도 화면에서 페인터리 아트가
-      // 흐려지지 않게 함.
+      // 렌더 버퍼를 기기 픽셀 배율에 맞춰 그리되 최대 2배로 제한 — 저사양 안드로이드(배율 1~1.5)는
+      // 메모리를 아끼고, 배율 3인 아이폰·고급 안드로이드도 GPU 메모리 초과로 컨텍스트를 잃지 않게 한다.
       await app.init({
         width: CANVAS_WIDTH,
         height: CANVAS_HEIGHT,
         background: 0x242430,
         antialias: true,
-        resolution: 2,
+        resolution: Math.min(window.devicePixelRatio || 1, 2),
         autoDensity: true,
       });
       if (disposed) {

@@ -1,5 +1,7 @@
 /* 모바일 세로형 UI — 먹색 바탕, 따뜻한 종이색 카드, 금색 주요 행동.
-   설계 폭 390px(검수 320~430px), 넓은 화면은 최대 480px 세로 UI를 중앙 배치. */
+   설계 폭 390px(검수 280~430px), 넓은 화면은 최대 30rem 세로 UI를 중앙 배치.
+   크기는 rem(루트 글자 크기 기준)으로 잡아 기기 글자 크기 설정을 따른다. 1~3px 선 두께만 px로 두는데,
+   소수 rem 선은 안드로이드의 소수 기기 배율에서 흐려지거나 사라지기 때문이다. */
 :root {
   --ink: #15130f;
   --ink-2: #221e18;
@@ -15,8 +17,11 @@
   --warn: #e0a15a;
   --up: #3f8a3a;
   --down: #b0463a;
-  --tab-h: 64px;
+  --tab-h: 4rem;
+  --safe-t: env(safe-area-inset-top, 0px);
   --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-l: env(safe-area-inset-left, 0px);
+  --safe-r: env(safe-area-inset-right, 0px);
 }
 
 * {
@@ -35,13 +40,25 @@ body,
   height: 100%;
 }
 
+html {
+  /* 버튼 연타 시 두 번 탭 확대(iOS·안드로이드) 방지, 핀치 확대는 유지. */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
+  /* 페이지 자체는 고정하고 각 화면 본문만 스크롤 — iOS 고무줄 튕김·안드로이드 당겨서 새로고침 방지. */
+  overflow: hidden;
+  overscroll-behavior: none;
   background: #0c0b09;
-  font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
+    'Roboto', sans-serif;
   font-size: 1rem;
   line-height: 1.5;
   color: var(--text);
-  -webkit-text-size-adjust: 100%;
 }
 
 button,
@@ -51,8 +68,18 @@ select {
   color: inherit;
 }
 
+/* iOS Safari는 16px 미만 입력창에 초점이 가면 화면을 자동 확대한다. */
+input,
+select,
+textarea {
+  font-size: max(1rem, 16px);
+}
+
 button {
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
 button:disabled {
@@ -92,10 +119,15 @@ button:disabled {
   position: relative;
   display: flex;
   flex-direction: column;
-  max-width: 480px;
+  max-width: 30rem;
+  /* 주소창·툴바가 접히고 펴져도 하단 탭이 가려지지 않게 동적 뷰포트 높이 사용.
+     dvh 미지원 브라우저(iOS 15.4 미만 등)는 main.tsx가 --app-height를 실제 높이로 채운다. */
   height: 100vh;
-  height: 100dvh;
+  height: var(--app-height, 100dvh);
   margin: 0 auto;
+  /* 가로 회전 시 노치·펀치홀 영역 회피. */
+  padding-left: var(--safe-l);
+  padding-right: var(--safe-r);
   background: var(--ink);
   overflow: hidden;
 }
@@ -103,16 +135,16 @@ button:disabled {
 #app-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: calc(6px + env(safe-area-inset-top, 0px)) 8px 6px;
+  gap: 0.5rem;
+  padding: calc(0.375rem + var(--safe-t)) 0.5rem 0.375rem;
   border-bottom: 1px solid var(--ink-line);
 }
 
 .header-profile {
   display: flex;
   align-items: center;
-  gap: 8px;
-  min-height: 48px;
+  gap: 0.5rem;
+  min-height: 3rem;
   min-width: 0;
   flex: 1;
   background: none;
@@ -144,8 +176,8 @@ button:disabled {
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
-  min-height: 48px;
-  padding: 0 6px;
+  min-height: 3rem;
+  padding: 0 0.375rem;
   background: none;
   border: 0;
   font-size: 0.875rem;
@@ -158,11 +190,11 @@ button:disabled {
 
 .header-icon-btn {
   flex: none;
-  min-width: 48px;
-  min-height: 48px;
+  min-width: 3rem;
+  min-height: 3rem;
   background: none;
   border: 1px solid var(--ink-line);
-  border-radius: 10px;
+  border-radius: 0.625rem;
   font-size: 1.375rem;
 }
 
@@ -170,10 +202,10 @@ button:disabled {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0 10px;
+  gap: 0 0.625rem;
   white-space: nowrap;
-  min-height: 44px;
-  padding: 0 16px;
+  min-height: 2.75rem;
+  padding: 0 1rem;
   background: var(--ink-2);
   border: 0;
   border-bottom: 1px solid var(--ink-line);
@@ -192,8 +224,8 @@ button:disabled {
 }
 
 .back-bar {
-  min-height: 44px;
-  padding: 0 16px;
+  min-height: 2.75rem;
+  padding: 0 1rem;
   background: none;
   border: 0;
   border-bottom: 1px solid var(--ink-line);
@@ -213,14 +245,14 @@ button:disabled {
   inset: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: 12px 16px;
+  padding: 0.75rem 1rem;
 }
 
 .tab-page > div,
 .full-view-body > div {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.75rem;
   min-height: 100%;
 }
 
@@ -236,8 +268,8 @@ button:disabled {
 .full-view-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 4px 8px;
+  gap: 0.5rem;
+  padding: 0.25rem 0.5rem;
   border-bottom: 1px solid var(--ink-line);
 }
 
@@ -249,7 +281,7 @@ button:disabled {
   flex: 1;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: 12px 16px;
+  padding: 0.75rem 1rem;
 }
 
 #tab-bar {
@@ -267,7 +299,7 @@ button:disabled {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2px;
+  gap: 0.125rem;
   background: none;
   border: 0;
   border-top: 3px solid transparent;
@@ -291,10 +323,10 @@ button:disabled {
 
 .tab-badge {
   position: absolute;
-  top: 8px;
+  top: 0.5rem;
   right: calc(50% - 1.6em);
-  width: 10px;
-  height: 10px;
+  width: 0.625rem;
+  height: 0.625rem;
   border-radius: 50%;
   background: #e0503c;
   box-shadow: 0 0 0 2px var(--ink-2);
@@ -305,8 +337,8 @@ button:disabled {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
-  padding: 6px 16px;
+  gap: 0.5rem;
+  padding: 0.375rem 1rem;
   background: #4a1d17;
   color: #ffd2c8;
   font-size: 0.875rem;
@@ -319,12 +351,12 @@ button:disabled {
 
 #log-toast {
   position: absolute;
-  top: 8px;
-  left: 16px;
-  right: 16px;
+  top: 0.5rem;
+  left: 1rem;
+  right: 1rem;
   z-index: 15;
-  padding: 10px 14px;
-  border-radius: 10px;
+  padding: 0.625rem 0.875rem;
+  border-radius: 0.625rem;
   background: rgba(12, 11, 9, 0.92);
   border: 1px solid var(--ink-line);
   color: #ffd98a;
@@ -340,11 +372,11 @@ button:disabled {
   --warn: #a4571c;
   background: var(--paper);
   color: var(--paper-text);
-  border-radius: 12px;
-  padding: 14px;
+  border-radius: 0.75rem;
+  padding: 0.875rem;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .card h3 {
@@ -354,7 +386,7 @@ button:disabled {
 .card-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 .section-title {
@@ -367,9 +399,9 @@ button:disabled {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  padding: 6px 14px;
-  border-radius: 10px;
+  min-height: 3rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 0.625rem;
   border: 1px solid var(--ink-line);
   background: var(--ink-2);
   color: var(--text);
@@ -421,7 +453,7 @@ button:disabled {
 .btn-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .btn-row > .btn {
@@ -430,8 +462,8 @@ button:disabled {
 
 .tag {
   font-size: 0.8125rem;
-  padding: 0 8px;
-  border-radius: 999px;
+  padding: 0 0.5rem;
+  border-radius: 62.4375rem;
   border: 1px solid var(--paper-line);
 }
 
@@ -440,9 +472,9 @@ button:disabled {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
-  padding: 10px 12px;
-  border-radius: 10px;
+  gap: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.625rem;
   background: #33280f;
   border: 1px solid #7a5f24;
   color: #ffd98a;
@@ -459,22 +491,22 @@ button:disabled {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 0.375rem;
 }
 
 .list-nested {
-  margin: 6px 0 4px 12px;
+  margin: 0.375rem 0 0.25rem 0.75rem;
 }
 
 .list-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 0.5rem;
   width: 100%;
-  min-height: 48px;
-  padding: 8px 14px;
-  border-radius: 10px;
+  min-height: 3rem;
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.625rem;
   border: 1px solid var(--ink-line);
   background: var(--ink-2);
   text-align: left;
@@ -498,7 +530,7 @@ button:disabled {
 .stat-row {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
+  gap: 0.75rem;
   padding: 3px 0;
 }
 
@@ -512,7 +544,7 @@ button:disabled {
 }
 
 .bullet-list {
-  padding-left: 20px;
+  padding-left: 1.25rem;
 }
 
 .big-number {
@@ -521,7 +553,7 @@ button:disabled {
 }
 
 details.card summary {
-  min-height: 32px;
+  min-height: 2rem;
   font-weight: bold;
   cursor: pointer;
 }
@@ -529,16 +561,16 @@ details.card summary {
 .segmented {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4px;
-  padding: 4px;
-  border-radius: 12px;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 0.75rem;
   background: var(--ink-2);
 }
 
 .segmented-btn {
-  min-height: 44px;
+  min-height: 2.75rem;
   border: 0;
-  border-radius: 9px;
+  border-radius: 0.5625rem;
   background: none;
   color: var(--muted);
 }
@@ -551,13 +583,13 @@ details.card summary {
 
 .sticky-actions {
   position: sticky;
-  bottom: -12px;
+  bottom: -0.75rem;
   z-index: 2;
-  margin: auto -16px -12px;
-  padding: 12px 16px;
+  margin: auto -1rem -0.75rem;
+  padding: 0.75rem 1rem;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.5rem;
   background: var(--ink);
   border-top: 1px solid var(--ink-line);
 }
@@ -565,9 +597,9 @@ details.card summary {
 .grade-chip {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 1px 10px;
-  border-radius: 999px;
+  gap: 0.375rem;
+  padding: 1px 0.625rem;
+  border-radius: 62.4375rem;
   border: 2px solid;
   font-weight: bold;
   font-size: 0.875rem;
@@ -576,8 +608,8 @@ details.card summary {
 
 .grade-dot {
   display: inline-block;
-  width: 10px;
-  height: 10px;
+  width: 0.625rem;
+  height: 0.625rem;
   border-radius: 50%;
   flex: none;
 }
@@ -585,18 +617,18 @@ details.card summary {
 .bar {
   position: relative;
   width: 100%;
-  height: 18px;
+  height: 1.125rem;
   background: rgba(0, 0, 0, 0.45);
-  border-radius: 9px;
+  border-radius: 0.5625rem;
   overflow: hidden;
 }
 
 .bar.exp-bar {
-  height: 8px;
+  height: 0.5rem;
 }
 
 .card .bar.exp-bar {
-  height: 18px;
+  height: 1.125rem;
 }
 
 .bar-fill {
@@ -627,12 +659,22 @@ details.card summary {
 dialog.sheet {
   --muted: var(--paper-muted);
   --warn: #a4571c;
+  /* 위치를 직접 지정해 <dialog> 미지원 브라우저의 폴백(open 속성만 부여)에서도 하단 시트로 뜬다. */
+  position: fixed;
+  top: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
   width: 100%;
-  max-width: 480px;
+  max-width: 30rem;
+  max-height: 88vh;
   max-height: 88dvh;
   margin: auto auto 0;
+  padding-left: var(--safe-l);
+  padding-right: var(--safe-r);
   border: 0;
-  border-radius: 16px 16px 0 0;
+  border-radius: 1rem 1rem 0 0;
   background: var(--paper);
   color: var(--paper-text);
 }
@@ -644,6 +686,7 @@ dialog.sheet::backdrop {
 .sheet-inner {
   display: flex;
   flex-direction: column;
+  max-height: 88vh;
   max-height: 88dvh;
 }
 
@@ -651,7 +694,7 @@ dialog.sheet::backdrop {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 8px 6px 16px;
+  padding: 0.375rem 0.5rem 0.375rem 1rem;
   border-bottom: 1px solid var(--paper-line);
 }
 
@@ -661,10 +704,10 @@ dialog.sheet::backdrop {
 
 .sheet-body {
   overflow-y: auto;
-  padding: 14px 16px calc(16px + var(--safe-b));
+  padding: 0.875rem 1rem calc(1rem + var(--safe-b));
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 .sheet .card {
@@ -674,7 +717,7 @@ dialog.sheet::backdrop {
 .sheet-section {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .sheet-section h3 {
@@ -686,7 +729,7 @@ dialog.sheet::backdrop {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 /* ---------- 전투 ---------- */
@@ -694,13 +737,13 @@ dialog.sheet::backdrop {
 .battle-stage-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.625rem;
   font-size: 0.9375rem;
 }
 
 .stage-badge {
-  padding: 2px 10px;
-  border-radius: 999px;
+  padding: 2px 0.625rem;
+  border-radius: 62.4375rem;
   background: var(--paper);
   color: var(--paper-text);
   font-weight: bold;
@@ -709,13 +752,13 @@ dialog.sheet::backdrop {
 .unit-status {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.25rem;
 }
 
 .unit-name-row {
   display: flex;
   justify-content: space-between;
-  gap: 8px;
+  gap: 0.5rem;
   flex-wrap: wrap;
 }
 
@@ -726,7 +769,7 @@ dialog.sheet::backdrop {
 .battle-stage-frame {
   position: relative;
   flex: none;
-  border-radius: 12px;
+  border-radius: 0.75rem;
   overflow: hidden;
   background: #242430;
   aspect-ratio: 640 / 440;
@@ -736,6 +779,10 @@ dialog.sheet::backdrop {
   display: block;
   width: 100% !important;
   height: auto !important;
+  /* 전투 캔버스는 조작 대상이 아니다 — Pixi가 캔버스에 거는 touch-action: none 때문에
+     캔버스 위에서 시작한 손가락 스크롤이 막히지 않도록 터치를 아래 스크롤 영역으로 넘긴다. */
+  pointer-events: none;
+  touch-action: pan-y !important;
 }
 
 .battle-load-error {
@@ -745,8 +792,8 @@ dialog.sheet::backdrop {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 16px;
+  gap: 0.75rem;
+  padding: 1rem;
   background: rgba(12, 11, 9, 0.9);
   text-align: center;
 }
@@ -770,7 +817,7 @@ dialog.sheet::backdrop {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 4px 14px;
+  gap: 0.25rem 0.875rem;
   font-weight: bold;
 }
 
@@ -783,7 +830,7 @@ dialog.sheet::backdrop {
 
 .picker-pinned {
   position: sticky;
-  top: -12px;
+  top: -0.75rem;
   z-index: 2;
 }
 
@@ -793,11 +840,11 @@ dialog.sheet::backdrop {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
   flex-wrap: wrap;
-  min-height: 52px;
-  padding: 8px 14px;
-  border-radius: 12px;
+  min-height: 3.25rem;
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.75rem;
   border: 1px solid var(--gold);
   background: var(--ink-2);
   text-align: left;
@@ -810,7 +857,7 @@ dialog.sheet::backdrop {
 .gong-card-head {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
   flex-wrap: wrap;
 }
 
@@ -834,7 +881,7 @@ dialog.sheet::backdrop {
     box-shadow: 0 0 0 2px #ffd76a;
   }
   50% {
-    box-shadow: 0 0 0 5px #ffd76a;
+    box-shadow: 0 0 0 0.3125rem #ffd76a;
   }
 }
 
@@ -849,15 +896,15 @@ dialog.sheet::backdrop {
     'arm   char   body'
     'waist char   ringR'
     'ringL foot   .';
-  gap: 6px;
+  gap: 0.375rem;
   align-items: center;
 }
 
 .gear-doll-char {
   grid-area: char;
   justify-self: center;
-  width: 110px;
-  height: 110px;
+  width: 6.875rem;
+  height: 6.875rem;
   background-image: url('/sprites/character/mokhyeon-idle-sheet.png');
   background-position: 0 0;
   background-size: 400% auto;
@@ -868,9 +915,9 @@ dialog.sheet::backdrop {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 52px;
-  padding: 4px;
-  border-radius: 10px;
+  min-height: 3.25rem;
+  padding: 0.25rem;
+  border-radius: 0.625rem;
   border: 2px solid var(--ink-line);
   background: var(--ink-2);
   font-size: 0.875rem;
@@ -888,7 +935,7 @@ dialog.sheet::backdrop {
 
 .toolbar {
   display: flex;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .toolbar label {
@@ -897,9 +944,9 @@ dialog.sheet::backdrop {
 
 .toolbar select {
   width: 100%;
-  min-height: 48px;
-  padding: 0 10px;
-  border-radius: 10px;
+  min-height: 3rem;
+  padding: 0 0.625rem;
+  border-radius: 0.625rem;
   border: 1px solid var(--ink-line);
   background: var(--ink-2);
 }
@@ -908,20 +955,20 @@ dialog.sheet::backdrop {
 .inventory-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr));
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .inventory-card {
   align-items: flex-start;
-  gap: 6px;
+  gap: 0.375rem;
   border: 2px solid transparent;
   text-align: left;
   font-size: 0.875rem;
 }
 
 .inventory-card input {
-  width: 22px;
-  height: 22px;
+  width: 1.375rem;
+  height: 1.375rem;
 }
 
 .inventory-card-checked {
@@ -932,18 +979,18 @@ dialog.sheet::backdrop {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .candidate-card {
-  padding: 10px 12px;
+  padding: 0.625rem 0.75rem;
 }
 
 .stat-diff {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 2px 12px;
+  gap: 2px 0.75rem;
   font-size: 0.875rem;
 }
 
@@ -958,13 +1005,13 @@ dialog.sheet::backdrop {
 .check-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  min-height: 44px;
+  gap: 0.625rem;
+  min-height: 2.75rem;
 }
 
 .check-row input {
-  width: 22px;
-  height: 22px;
+  width: 1.375rem;
+  height: 1.375rem;
   flex: none;
 }
 
@@ -973,7 +1020,7 @@ dialog.sheet::backdrop {
 }
 
 .empty {
-  padding: 12px 0;
+  padding: 0.75rem 0;
 }
 
 /* ---------- 상점 ---------- */
@@ -981,21 +1028,21 @@ dialog.sheet::backdrop {
 .gacha {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 .gacha-result-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(9.5em, 1fr));
-  gap: 8px;
+  gap: 0.5rem;
 }
 
 .gacha-result-card {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 10px;
-  border-radius: 10px;
+  gap: 0.375rem;
+  padding: 0.5rem 0.625rem;
+  border-radius: 0.625rem;
   border: 2px solid;
   background: #f7f0de;
   font-size: 0.875rem;
@@ -1010,7 +1057,7 @@ dialog.sheet::backdrop {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px;
+  padding: 1rem;
   background: var(--ink);
 }
 
@@ -1019,10 +1066,10 @@ dialog.sheet::backdrop {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 16px;
+  gap: 1rem;
   width: 100%;
-  padding: 48px 20px 20px;
-  border-radius: 14px;
+  padding: 3rem 1.25rem 1.25rem;
+  border-radius: 0.875rem;
   background: var(--paper);
   color: var(--paper-text);
   text-align: center;
@@ -1039,9 +1086,9 @@ dialog.sheet::backdrop {
 }
 
 .onboarding-input {
-  min-height: 48px;
-  padding: 0 12px;
-  border-radius: 10px;
+  min-height: 3rem;
+  padding: 0 0.75rem;
+  border-radius: 0.625rem;
   border: 1px solid var(--paper-line);
   background: #fff8e8;
   color: var(--paper-text);
@@ -1050,13 +1097,119 @@ dialog.sheet::backdrop {
 
 .onboarding-skip-btn {
   position: absolute;
-  top: 4px;
-  right: 4px;
-  min-height: 44px;
-  padding: 0 12px;
+  top: 0.25rem;
+  right: 0.25rem;
+  min-height: 2.75rem;
+  padding: 0 0.75rem;
   background: none;
   border: 0;
   color: var(--paper-muted);
+}
+
+/* ---------- 해상도 대응 ----------
+   em 단위 미디어쿼리는 루트 글자 크기 16px 기준 — 22.5em=360px, 20em=320px, 18em=288px. */
+
+/* 360px 이하(갤럭시 S 기본 폭·아이폰 SE 1세대 등): 좌우 여백과 헤더 간격 축소. */
+@media (max-width: 22.5em) {
+  .tab-page,
+  .full-view-body {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .sticky-actions {
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  #app-header {
+    gap: 0.25rem;
+  }
+
+  .header-name {
+    font-size: 0.875rem;
+  }
+
+  #gear-doll {
+    gap: 0.25rem;
+  }
+
+  .gear-doll-char {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+}
+
+/* 300px 안팎(갤럭시 폴드 접힌 화면 280px 등): 탭·헤더를 한 단계 더 줄이고 버튼을 한 줄씩 쌓는다. */
+@media (max-width: 18.75em) {
+  .header-portrait {
+    display: none;
+  }
+
+  .header-currencies {
+    font-size: 0.8125rem;
+    padding: 0;
+  }
+
+  .tab-btn {
+    font-size: 0.8125rem;
+  }
+
+  .gear-doll-slot {
+    font-size: 0.75rem;
+  }
+
+  /* 하단 고정 행동바는 본문 높이를 아끼려 가로 배치를 유지한다. */
+  .card .btn-row > .btn,
+  .sheet .btn-row > .btn {
+    flex-basis: 100%;
+  }
+
+  .sticky-actions .btn-row > .btn {
+    flex-basis: 0;
+  }
+
+  .toolbar {
+    flex-direction: column;
+  }
+}
+
+/* 가로 회전 등 높이가 짧은 화면: 전투 무대가 본문을 다 차지하지 않게 높이 기준으로 줄이고
+   상단·하단 틀을 얇게 한다. */
+@media (orientation: landscape) and (max-height: 32em) {
+  :root {
+    --tab-h: 3.25rem;
+  }
+
+  #app-header {
+    padding-top: calc(0.125rem + var(--safe-t));
+    padding-bottom: 0.125rem;
+  }
+
+  .battle-stage-frame {
+    width: min(100%, calc(45vh * 640 / 440));
+    width: min(100%, calc(45dvh * 640 / 440));
+    align-self: center;
+  }
+
+  .tab-btn {
+    flex-direction: row;
+    gap: 0.25rem;
+  }
+
+  .tab-badge {
+    top: 0.25rem;
+  }
+}
+
+/* 태블릿·데스크톱: 세로 UI 기둥을 가운데 두고 양옆 경계를 표시. */
+@media (min-width: 48em) {
+  #app {
+    border-left: 1px solid var(--ink-line);
+    border-right: 1px solid var(--ink-line);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

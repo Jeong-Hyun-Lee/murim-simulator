@@ -9,4 +9,10 @@ export default defineConfig({
   server: {
     port: 5000,
   },
+  // 모바일 지원 하한을 명시 — iOS 14 Safari·안드로이드 크롬 87 이상. esbuild가 이 기준으로
+  // JS 문법(??=, ?. 등)과 CSS(inset → top/right/bottom/left 등)를 낮춰 출력한다.
+  build: {
+    target: ['es2020', 'safari14', 'ios14', 'chrome87'],
+    cssTarget: ['safari14', 'ios14', 'chrome87'],
+  },
 });

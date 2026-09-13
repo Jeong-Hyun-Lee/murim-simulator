@@ -16,9 +16,9 @@ import { Sheet } from '../Sheet';
 
 // 등급이 높을수록(신품 이상) 카드 글로우를 강하게.
 const glowForTier = (tier: number): string => {
-  if (tier >= 5) return '0 0 16px 4px';
-  if (tier >= 4) return '0 0 10px 2px';
-  if (tier >= 3) return '0 0 6px 1px';
+  if (tier >= 5) return '0 0 1rem 0.25rem';
+  if (tier >= 4) return '0 0 0.625rem 0.125rem';
+  if (tier >= 3) return '0 0 0.375rem 1px';
   return 'none';
 };
 

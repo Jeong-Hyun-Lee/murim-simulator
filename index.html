@@ -2,8 +2,20 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <!-- viewport-fit=cover: 노치·홈 인디케이터 안전 영역을 CSS env()로 처리.
+         interactive-widget: 안드로이드 크롬에서 키보드가 뜨면 화면 높이를 줄여 입력창이 가려지지 않게 함. -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content"
+    />
     <meta name="theme-color" content="#15130f" />
+    <!-- iOS Safari가 전투력·재화 같은 긴 숫자를 전화번호 링크로 바꾸지 않게 함. -->
+    <meta name="format-detection" content="telephone=no" />
+    <!-- 홈 화면에 추가해 실행할 때 브라우저 틀 없이 전체 화면으로 표시(iOS·안드로이드). -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="무림인 키우기" />
     <title>무림인 키우기</title>
     <link
       rel="icon"

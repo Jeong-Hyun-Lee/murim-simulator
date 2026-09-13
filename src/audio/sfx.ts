@@ -50,7 +50,12 @@ interface ToneSpec {
 
 const playTones = (tones: ToneSpec[]) => {
   if (!enabled) return;
-  ctx ??= new AudioContext();
+  // iOS 14.1 미만 Safari는 접두어가 붙은 webkitAudioContext만 제공한다.
+  const AudioContextClass =
+    window.AudioContext ??
+    (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+  if (!AudioContextClass) return;
+  ctx ??= new AudioContextClass();
   if (ctx.state === 'suspended') ctx.resume();
 
   for (const { type, freqStart, freqEnd, duration, gain = 0.15, delay = 0 } of tones) {
