@@ -29,6 +29,8 @@ import {
   boardCompletionPercent,
   boardUnlockLabel,
   totalGongBuffPercent,
+  gongMultiplier,
+  boardPowerPercent,
   totalGongSecondaryStats,
   type GongLevels,
   type GongBoard,
@@ -177,7 +179,7 @@ const computePlayerStats = (
   const agg = aggregateGearStats(s.equippedGear);
   const gongSecondary = totalGongSecondaryStats(s.gongLevels);
   const buffPercent = totalBuffPercent(s, agg.enhanceBuffPercent);
-  return playerStats(
+  const base = playerStats(
     level,
     buffPercent,
     {
@@ -192,6 +194,14 @@ const computePlayerStats = (
     },
     s.nickname || '목현',
   );
+  // 챕터2 이후 무공 보드는 가산 버킷 밖에서 최종 HP·ATK·DEF에 따로 곱한다.
+  const mult = gongMultiplier(s.gongLevels);
+  return {
+    ...base,
+    hp: Math.round(base.hp * mult),
+    atk: Math.round(base.atk * mult),
+    def: Math.round(base.def * mult),
+  };
 };
 
 // HP 최대치가 바뀔 때 이미 입은 피해량은 그대로 유지하고 최대치 증가분만 회복분으로 반영.
@@ -704,7 +714,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         });
         persist(get());
       } else if (enemyDefeated && isFinalStage(s.stage) && s.highestMajorCleared >= s.stage.major) {
-        // 최종 스테이지(10-10)는 다음 스토리가 없어 nextStage()가 같은 자리를 반환한다 —
+        // 최종 스테이지(30-10)는 다음 스토리가 없어 nextStage()가 같은 자리를 반환한다 —
         // 최초 클리어 이후에도 기존 보스 보상 팝업 분기를 그대로 타면 처치할 때마다 팝업이
         // 무한 재발생한다. 최초 클리어(highestMajorCleared 갱신) 이후로는 사냥터 모드와
         // 동일하게 팝업 없이 즉시 보상만 반복 지급.
@@ -965,6 +975,8 @@ export {
   boardCompletionPercent,
   boardUnlockLabel,
   totalGongBuffPercent,
+  gongMultiplier,
+  boardPowerPercent,
   totalGongSecondaryStats,
 };
 export {

@@ -36,6 +36,8 @@ export interface GongBoard {
   currency: GongCurrency;
   unlock: BoardUnlockCondition;
   nodes: GongNode[];
+  // true면 공통 가산 버킷 대신 이 보드 효과만큼 최종 HP·ATK·DEF를 따로 곱한다(챕터2 이후 보드).
+  multiplicative?: boolean;
 }
 
 const PRIMARY_COST = {
@@ -77,6 +79,152 @@ const SECT_CAPSTONE_COST = {
   effectPerLevel: 0.4,
   maxLevel: 10,
 } as const;
+
+// 무공-시스템.md "챕터2·3 신규 보드" — 대11부터 두 대스테이지마다 1개. 트리·성장률은 챕터1과 같고,
+// 비용은 해금 구간 내공 수입에 맞춰 × 1.8^(해금대−1) ÷ 10, 효과는 챕터1 표의 절반, 보드별 곱연산.
+const CHAPTER_BOARD_EFFECT_RATIO = 0.5;
+const CHAPTER_BOARD_COST_DIVISOR = 10;
+
+interface ChapterBoardSpec {
+  id: string;
+  name: string;
+  unlockMajor: number;
+  primary: [string, string, string];
+  secondary: [string, string];
+  capstone: string;
+}
+
+const chapterBoard = ({
+  id,
+  name,
+  unlockMajor,
+  primary,
+  secondary,
+  capstone,
+}: ChapterBoardSpec): GongBoard => {
+  const costScale = 1.8 ** (unlockMajor - 1) / CHAPTER_BOARD_COST_DIVISOR;
+  const tier = (cost: typeof PRIMARY_COST | typeof SECONDARY_COST | typeof CAPSTONE_COST) => ({
+    maxLevel: cost.maxLevel,
+    growthRate: cost.growthRate,
+    baseCost: Math.round(cost.baseCost * costScale),
+    effectPerLevel: cost.effectPerLevel * CHAPTER_BOARD_EFFECT_RATIO,
+  });
+  const primaryIds = primary.map((_, i) => `${id}_p${i + 1}`);
+  const secondaryIds = secondary.map((_, i) => `${id}_s${i + 1}`);
+  return {
+    id,
+    name,
+    currency: 'chi',
+    unlock: { type: 'stage', major: unlockMajor },
+    multiplicative: true,
+    nodes: [
+      ...primary.map((n, i) => ({
+        id: primaryIds[i],
+        name: n,
+        tier: 'primary' as const,
+        ...tier(PRIMARY_COST),
+      })),
+      ...secondary.map((n, i) => ({
+        id: secondaryIds[i],
+        name: n,
+        tier: 'secondary' as const,
+        ...tier(SECONDARY_COST),
+        requires: primaryIds.map((nodeId) => ({ nodeId, level: 10 })),
+      })),
+      {
+        id: `${id}_c`,
+        name: capstone,
+        tier: 'capstone',
+        ...tier(CAPSTONE_COST),
+        requires: secondaryIds.map((nodeId) => ({ nodeId, level: 30 })),
+      },
+    ],
+  };
+};
+
+const CHAPTER_BOARD_SPECS: ChapterBoardSpec[] = [
+  {
+    id: 'cheongungeomgyeol',
+    name: '청운검결(靑雲劍訣)',
+    unlockMajor: 11,
+    primary: ['운해(雲海)', '운봉(雲峰)', '운류(雲流)'],
+    secondary: ['청운회검(靑雲回劍)', '청운쌍류(靑雲雙流)'],
+    capstone: '청운만리(靑雲萬里)',
+  },
+  {
+    id: 'changnyong_oepyeon',
+    name: '창룡검법 외편(蒼龍劍法 外篇)',
+    unlockMajor: 13,
+    primary: ['승룡세(昇龍勢)', '반룡세(蟠龍勢)', '와룡세(臥龍勢)'],
+    secondary: ['창룡출해(蒼龍出海)', '쌍룡쟁주(雙龍爭珠)'],
+    capstone: '창룡승천(蒼龍昇天)',
+  },
+  {
+    id: 'amhyangpyo',
+    name: '암향표(暗香飄)',
+    unlockMajor: 15,
+    primary: ['매영보(梅影步)', '낙화보(落花步)', '향풍보(香風步)'],
+    secondary: ['암향부동(暗香浮動)', '매화난영(梅花亂影)'],
+    capstone: '매화만천(梅花滿天)',
+  },
+  {
+    id: 'yeokcheonjingi',
+    name: '역천진기(逆天眞氣)',
+    unlockMajor: 17,
+    primary: ['역맥(逆脈)', '순맥(順脈)', '환맥(環脈)'],
+    secondary: ['역천환원(逆天還元)', '진기쇄정(眞氣鎖定)'],
+    capstone: '역천개문(逆天開門)',
+  },
+  {
+    id: 'gyeolsajingyeol',
+    name: '결사진결(結死陣訣)',
+    unlockMajor: 19,
+    primary: ['천강진보(天罡陣步)', '지살진보(地煞陣步)', '사상진보(四象陣步)'],
+    secondary: ['팔괘연환(八卦連環)', '구궁쇄진(九宮鎖陣)'],
+    capstone: '결사일진(結死一陣)',
+  },
+  {
+    id: 'pasasingong',
+    name: '파사신공(破邪神功)',
+    unlockMajor: 21,
+    primary: ['정심결(淨心訣)', '척사결(斥邪訣)', '호신강기(護身罡氣)'],
+    secondary: ['파사현정(破邪顯正)', '청명심경(淸明心鏡)'],
+    capstone: '파사신강(破邪神罡)',
+  },
+  {
+    id: 'hyeoldochimbeop',
+    name: '혈도침법(穴道鍼法)',
+    unlockMajor: 23,
+    primary: ['백회침(百會鍼)', '단중침(膻中鍼)', '용천침(湧泉鍼)'],
+    secondary: ['경락통달(經絡通達)', '기혈순환(氣血循環)'],
+    capstone: '금침도맥(金鍼導脈)',
+  },
+  {
+    id: 'eunhonbo',
+    name: '은혼보(隱魂步)',
+    unlockMajor: 25,
+    primary: ['무성보(無聲步)', '무형보(無形步)', '무혼보(無魂步)'],
+    secondary: ['은혼잠영(隱魂潛影)', '탐혼역추(探魂逆追)'],
+    capstone: '은혼멸적(隱魂滅迹)',
+  },
+  {
+    id: 'gangryukwaegeom',
+    name: '강류쾌검(姜流快劍)',
+    unlockMajor: 27,
+    primary: ['일섬(一閃)', '돌진(突進)', '반격(反擊)'],
+    secondary: ['쾌검연환(快劍連環)', '일점돌파(一點突破)'],
+    capstone: '강류일섬(姜流一閃)',
+  },
+  {
+    id: 'simgeomgyeol',
+    name: '심검결(心劍訣)',
+    unlockMajor: 29,
+    primary: ['의검(意劍)', '기검(氣劍)', '심검(心劍)'],
+    secondary: ['무형검기(無形劍氣)', '이심전검(以心傳劍)'],
+    capstone: '심검합일(心劍合一)',
+  },
+];
+const CHAPTER_BOARDS = CHAPTER_BOARD_SPECS.map(chapterBoard);
 
 export const GONG_BOARDS: GongBoard[] = [
   {
@@ -417,6 +565,7 @@ export const GONG_BOARDS: GongBoard[] = [
       },
     ],
   },
+  ...CHAPTER_BOARDS,
 ];
 
 export type GongLevels = Record<string, number>;
@@ -480,18 +629,27 @@ export const boardCompletionPercent = (board: GongBoard, levels: GongLevels): nu
   return total === 0 ? 0 : Math.round((current / total) * 100);
 };
 
+// 보드 하나의 공격·방어·체력 효과 합(%). 보조 스탯 노드는 제외.
+export const boardPowerPercent = (board: GongBoard, levels: GongLevels): number =>
+  board.nodes.reduce(
+    (s, node) =>
+      (node.statKey ?? 'power') === 'power' ? s + nodeLevel(node, levels) * node.effectPerLevel : s,
+    0,
+  );
+
+// 공통 가산 버킷에 들어가는 무공 효과(%) — 곱연산 보드는 제외.
 export const totalGongBuffPercent = (levels: GongLevels): number =>
   GONG_BOARDS.reduce(
-    (sum, board) =>
-      sum +
-      board.nodes.reduce(
-        (s, node) =>
-          (node.statKey ?? 'power') === 'power'
-            ? s + nodeLevel(node, levels) * node.effectPerLevel
-            : s,
-        0,
-      ),
+    (sum, board) => (board.multiplicative ? sum : sum + boardPowerPercent(board, levels)),
     0,
+  );
+
+// 곱연산 보드 배율 — 최종 HP·ATK·DEF에 곱한다. Π(1 + 보드 효과%/100).
+export const gongMultiplier = (levels: GongLevels): number =>
+  GONG_BOARDS.reduce(
+    (mult, board) =>
+      board.multiplicative ? mult * (1 + boardPowerPercent(board, levels) / 100) : mult,
+    1,
   );
 
 export interface GongSecondaryStats {

@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { useGameStore, isStageAtOrBefore, type StageId } from '../../game/store';
+import { FINAL_MAJOR } from '../../game/combat';
 import { stageLabel } from '../common';
 
-const MAJORS = Array.from({ length: 20 }, (_, i) => i + 1);
+const MAJORS = Array.from({ length: FINAL_MAJOR }, (_, i) => i + 1);
 const SUBS = Array.from({ length: 10 }, (_, i) => i + 1);
 
 const sameStage = (a: StageId | null, b: StageId | null): boolean =>

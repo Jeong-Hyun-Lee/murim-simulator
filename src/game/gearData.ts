@@ -37,7 +37,12 @@ export const SLOT_INFO: Record<
 
 export const ALL_SLOTS: SlotId[] = Object.keys(SLOT_INFO) as SlotId[];
 
-const ITEM_STAT_COEFF = 20; // wiki 예시계수
+// 장구-시스템.md "재조정안" — 고정 스탯(ATK·DEF·HP)은 10 × 1.052^(ItemLevel−1) × 비중 × 등급,
+// 퍼센트 스탯은 비중 × 등급 × 5(%)로 레벨과 무관. 1.052는 combat.ts 캐릭터 기본 스탯 곡선과 같다.
+const FLAT_STAT_COEFF = 10;
+const CHAR_STAT_GROWTH = 1.052;
+const PERCENT_STAT_COEFF = 5;
+const FLAT_STAT_KEYS: ReadonlySet<StatKey> = new Set(['atk', 'def', 'hp']);
 
 export interface GearItem {
   id: string;
@@ -54,15 +59,17 @@ export const createGearItem = (slot: SlotId, grade: Grade, itemLevel: number): G
   return { id, slot, grade, itemLevel: Math.max(1, itemLevel), enhanceLevel: 0 };
 };
 
-// BaseStat_슬롯 = ItemLevel × Coeff × SlotWeight × GradeMultiplier — 강화 단계는 포함하지 않음
+// BaseStat_슬롯 = 곡선(ItemLevel) × SlotWeight × GradeMultiplier — 강화 단계는 포함하지 않음
 // (강화는 별도로 Σ가산버프 버킷에 더해짐, enhanceBuffPercent 참고. 이중계산 방지 규정).
 export const itemBaseStats = (item: GearItem): Partial<Record<StatKey, number>> => {
   const { weights } = SLOT_INFO[item.slot];
   const gradeMult = GRADE_MULTIPLIER[item.grade];
+  const flatScale = FLAT_STAT_COEFF * CHAR_STAT_GROWTH ** (item.itemLevel - 1);
   const result: Partial<Record<StatKey, number>> = {};
   for (const key of Object.keys(weights) as StatKey[]) {
     const weight = weights[key]!;
-    result[key] = item.itemLevel * ITEM_STAT_COEFF * weight * gradeMult;
+    const scale = FLAT_STAT_KEYS.has(key) ? flatScale : PERCENT_STAT_COEFF;
+    result[key] = scale * weight * gradeMult;
   }
   return result;
 };

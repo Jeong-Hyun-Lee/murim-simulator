@@ -1,6 +1,7 @@
 import {
   useGameStore,
   totalGongBuffPercent,
+  gongMultiplier,
   totalGongSecondaryStats,
   aggregateGearStats,
   rebirthBuffPercent,
@@ -72,6 +73,10 @@ export const MyInfoView = ({ onNavigate }: { onNavigate: (target: NavTarget) => 
         <summary>성장별 기여도</summary>
         <dl className="stat-list">
           <Row label="무공 (공격·방어·체력)" value={`+${pct(totalGongBuffPercent(gongLevels))}`} />
+          <Row
+            label="무공 경지 배율 (곱연산)"
+            value={`×${gongMultiplier(gongLevels).toFixed(2)}`}
+          />
           <Row label="문파 특전" value={`+${pct(sectBuffPercent(sectLevel))}`} />
           <Row label="환골탈태" value={`+${pct(rebirthBuffPercent(rebirthCount))}`} />
           <Row label="장비 강화" value={`+${pct(gear.enhanceBuffPercent)}`} />

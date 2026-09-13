@@ -34,12 +34,18 @@ const NODE_NAME = new Map(GONG_BOARDS.flatMap((b) => b.nodes).map((n) => [n.id, 
 interface CardProps {
   node: GongBoard['nodes'][number];
   currency: GongCurrency;
+  multiplicative: boolean;
   tutorialLocked: boolean;
   tutorialHighlight: boolean;
 }
 
-// 모바일에서는 길게 누르기 반복 소비 없이 명시적 탭(1회 / 최대 10회)만 사용.
-const GongNodeCard = ({ node, currency, tutorialLocked, tutorialHighlight }: CardProps) => {
+const GongNodeCard = ({
+  node,
+  currency,
+  multiplicative,
+  tutorialLocked,
+  tutorialHighlight,
+}: CardProps) => {
   const gongLevels = useGameStore((s) => s.gongLevels);
   const balance = useGameStore((s) =>
     currency === 'contribution' ? s.sectContributionPoints : s.chi,
@@ -55,7 +61,8 @@ const GongNodeCard = ({ node, currency, tutorialLocked, tutorialHighlight }: Car
   const singleDisabled = !unlocked || maxed || balance < cost || tutorialLocked;
   const hold = useHoldRepeat(() => buyGongUpgrade(node.id), singleDisabled);
   const currencyLabel = CURRENCY_LABEL[currency];
-  const effectLabel = EFFECT_LABEL[node.statKey ?? 'power'];
+  // 곱연산 보드는 다른 버프와 합산되지 않고 따로 곱해진다는 점을 표시.
+  const effectLabel = `${EFFECT_LABEL[node.statKey ?? 'power']}${multiplicative ? '(곱연산)' : ''}`;
   const missing = (node.requires ?? [])
     .filter((r) => (gongLevels[r.nodeId] ?? 0) < r.level)
     .map((r) => `${NODE_NAME.get(r.nodeId)} Lv.${r.level}`);
@@ -245,6 +252,7 @@ export const GongPanel = ({ boardId, onBoardChange, onNavigate }: Props) => {
             key={node.id}
             node={node}
             currency={selectedBoard.currency}
+            multiplicative={!!selectedBoard.multiplicative}
             tutorialLocked={tutorialActive && node.id !== TUTORIAL_NODE_ID}
             tutorialHighlight={tutorialActive && node.id === TUTORIAL_NODE_ID}
           />

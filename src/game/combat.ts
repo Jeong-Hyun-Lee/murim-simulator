@@ -3,7 +3,7 @@
 // 만한 수준으로 임의 지정한 자리표시자 — 실측 밸런싱 시 여기만 바꾸면 전체 곡선이 따라 움직인다.
 
 export interface StageId {
-  major: number; // 1~20 (챕터1: 1~10, 챕터2: 11~20)
+  major: number; // 1~30 (챕터1: 1~10, 챕터2: 11~20, 챕터3: 21~30)
   sub: number; // 1~10
 }
 
@@ -29,6 +29,17 @@ export const BOSS_NAMES: Record<number, string> = {
   18: '혈교 호법',
   19: '혈교 부교주',
   20: '혈교주',
+  // wiki/concepts/스토리보드-기획서-챕터3.md 2장 — 대21~30.
+  21: '혈교 삼장로',
+  22: '천외 추혼대주',
+  23: '흑사막 마적왕',
+  24: '사천당가 독수 당혁',
+  25: '천외 탐혼사',
+  26: '천외 혼백사',
+  27: '귀환자 한도윤',
+  28: '천외 결계사',
+  29: '호천위장',
+  30: '천외주',
 };
 
 const MOB_NAMES: Record<number, string> = {
@@ -52,12 +63,28 @@ const MOB_NAMES: Record<number, string> = {
   18: '혈교 정사대전 병사',
   19: '총단 수문장',
   20: '혈교 친위대',
+  21: '사기 잠식 혈귀병',
+  22: '추혼대 사냥꾼',
+  23: '흑사막 마적',
+  24: '당가 이탈파 문도',
+  25: '천외 탐혼 시종',
+  26: '혼백 괴뢰',
+  27: '귀환파 계약 무사',
+  28: '설원 결계병',
+  29: '호천위 무사',
+  30: '천외 친위 술사',
 };
 
-const BASE_HP_1 = 30;
-const BASE_ATK_1 = 6;
-const BASE_DEF_1 = 2;
-const BASE_EXP_1 = 20;
+// 스테이지-레벨링-기획서 10절 진행 곡선 재조정안(2026-09-13) — 챕터3(대30)까지 자동전투 약 하루.
+// 몬스터 세 스탯은 플레이어 스탯(레벨당 같은 비율)과 격차가 벌어지지 않게 비슷한 성장률로 두고,
+// 경험치는 기초치만 낮춰 속도를 맞춘다. 내공·전 보상 곡선은 신규 무공 보드 비용과 맞물려 유지.
+const BASE_HP_1 = 45;
+const BASE_ATK_1 = 9;
+const BASE_DEF_1 = 3;
+const HP_GROWTH = 1.5;
+const ATK_GROWTH = 4 / 3;
+const DEF_GROWTH = 1.25;
+const BASE_EXP_1 = 6;
 const BASE_GOLD_1 = 10;
 const BASE_CHI_1 = 15;
 
@@ -72,19 +99,48 @@ export const isBossStage = (stage: StageId): boolean => stage.sub === 10;
 
 export type EnemyKind = 'grunt' | 'archer' | 'elite' | 'boss';
 
-// 대1(혈랑채)은 보스 직전 구간에 궁수·정예산적을 배치해 난이도 결을 만든다. 나머지 대스테이지는
-// 아직 종류별 아트가 없어 잡몹 1종 + 보스 구성 그대로다.
+// 스테이지-적-구성-연출-기획서 1절 배치 템플릿 — 모든 대스테이지가 1~6 졸개, 7~8 변형(공격형),
+// 9 정예, 10 두목. 코드 키 archer는 대1 궁수에서 온 이름이지만 "변형" 전체를 뜻한다.
+// 전용 그림은 아직 대1만 있고, 나머지는 전투 캔버스의 대체 표시를 쓴다.
 export const enemyKind = (stage: StageId): EnemyKind => {
   if (isBossStage(stage)) return 'boss';
-  if (stage.major !== 1) return 'grunt';
   if (stage.sub >= 9) return 'elite';
   if (stage.sub >= 7) return 'archer';
   return 'grunt';
 };
 
-// 잡몹 이름이 종류별로 갈리는 대스테이지만 등록 — 없으면 MOB_NAMES의 대표 이름을 쓴다.
+// 스테이지-적-구성-연출-기획서 2절 로스터의 변형·정예 이름.
 const MOB_VARIANT_NAMES: Record<number, Partial<Record<EnemyKind, string>>> = {
   1: { archer: '혈랑채 궁수', elite: '혈랑채 정예산적' },
+  2: { archer: '흑시장 독침꾼', elite: '흑시장 해결사' },
+  3: { archer: '팽가 비도수', elite: '팽가 도객 교두' },
+  4: { archer: '사공 암기수', elite: '진기 폭주 무인' },
+  5: { archer: '혈교 암전수', elite: '혈교 살수 조장' },
+  6: { archer: '부패 관군 궁병', elite: '마두의 호위 무사' },
+  7: { archer: '기억의 잔상', elite: '주화의 불꽃' },
+  8: { archer: '혈교 궁노수', elite: '혈교 선봉 백인장' },
+  9: { archer: '혈교 밀정', elite: '매수된 청운문 제자' },
+  10: { archer: '혈공 술사', elite: '혈인(血人)' },
+  11: { archer: '잔당 암기수', elite: '밀사 호위' },
+  12: { archer: '수로채 화공 궁수', elite: '수로채 두령' },
+  13: { archer: '방계 식객 암기수', elite: '방계 장로 직속 검수' },
+  14: { archer: '세작 비수수', elite: '타락한 매화검수' },
+  15: { archer: '혈교 혈침술사', elite: '이장로 친위대장' },
+  16: { archer: '결계 부적사', elite: '천외 탐혼 술사' },
+  17: { archer: '폭주한 진기 파편', elite: '갈취된 힘의 화신' },
+  18: { archer: '혈교 궁노대', elite: '호법 직속 무사' },
+  19: { archer: '진법 궁수', elite: '결진 장로' },
+  20: { archer: '개천 술사', elite: '문지기 친위장' },
+  21: { archer: '사기 투척병', elite: '사기 잠식 장로 호위' },
+  22: { archer: '추혼대 쇠뇌수', elite: '추혼대 조장' },
+  23: { archer: '흑사막 기마 궁수', elite: '흑사막 마적 두령' },
+  24: { archer: '당가 암기수', elite: '당가 독인(毒人)' },
+  25: { archer: '탐혼 추적 술사', elite: '탐혼사 수석 제자' },
+  26: { archer: '혼백 조종 술사', elite: '이혼 의식 수호자' },
+  27: { archer: '귀환파 청부 궁수', elite: '귀환파 부대장' },
+  28: { archer: '결계 궁수', elite: '진안 수호자' },
+  29: { archer: '호천위 궁수', elite: '호천위 부장' },
+  30: { archer: '문의 그림자', elite: '선객의 잔상' },
 };
 
 // 종류별 가중치 — 소스테이지 기본 공식(§2.1) 위에 곱한다. 보스 값은 기존 배율을 그대로 옮긴 것.
@@ -100,9 +156,9 @@ const KIND_WEIGHTS: Record<EnemyKind, { hp: number; atk: number; def: number; re
 
 export const monsterStats = (stage: StageId): UnitStats => {
   const effSub = Math.min(stage.sub, 9);
-  const baseHp = BASE_HP_1 * 1.8 ** (stage.major - 1);
-  const baseAtk = BASE_ATK_1 * 1.6 ** (stage.major - 1);
-  const baseDef = BASE_DEF_1 * 1.5 ** (stage.major - 1);
+  const baseHp = BASE_HP_1 * HP_GROWTH ** (stage.major - 1);
+  const baseAtk = BASE_ATK_1 * ATK_GROWTH ** (stage.major - 1);
+  const baseDef = BASE_DEF_1 * DEF_GROWTH ** (stage.major - 1);
 
   const kind = enemyKind(stage);
   const weight = KIND_WEIGHTS[kind];
@@ -133,8 +189,8 @@ export const stageReward = (stage: StageId): StageReward => {
   return { exp: Math.round(exp), gold: Math.round(gold), chi: Math.round(chi) };
 };
 
-// wiki/concepts/스테이지-레벨링-기획서.md 1.1절 — 챕터2(대11~20) 신설로 10→20 상향(2026-09-12).
-const FINAL_MAJOR = 20;
+// wiki/concepts/스테이지-레벨링-기획서.md 1.1절 — 챕터3(대21~30)까지.
+export const FINAL_MAJOR = 30;
 
 export const nextStage = (stage: StageId): StageId => {
   if (stage.major === FINAL_MAJOR && stage.sub === 10) return stage; // 최종 스테이지는 계속 반복 파밍
