@@ -70,19 +70,6 @@ select {
   color: inherit;
 }
 
-/* 시트·섹션 제목 — 본문은 시스템 폰트 유지, 제목만 붓글씨체로 무협 분위기. */
-h1,
-h2,
-h3 {
-  font-family:
-    'Nanum Brush Script',
-    -apple-system,
-    'Apple SD Gothic Neo',
-    'Noto Sans KR',
-    sans-serif;
-  letter-spacing: 0.02em;
-}
-
 /* iOS Safari는 16px 미만 입력창에 초점이 가면 화면을 자동 확대한다. */
 input,
 select,
