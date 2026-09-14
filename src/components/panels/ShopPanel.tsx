@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useGameStore, elixirExchangeCost } from '../../game/store';
+import { useHoldRepeat } from '../../hooks/useHoldRepeat';
 import { GachaPanel } from './GachaPanel';
 
 // 일반상점은 shopData.ts의 전(錢)→영약 교환 1종.
@@ -10,6 +11,7 @@ const GeneralShopSection = () => {
 
   const cost = elixirExchangeCost(elixirExchangeCount);
   const affordable = gold >= cost;
+  const hold = useHoldRepeat(exchangeGoldForElixir, !affordable);
 
   return (
     <section className="card shop-product-card">
@@ -42,9 +44,10 @@ const GeneralShopSection = () => {
       </dl>
       <button
         type="button"
-        className="btn btn-primary btn-block"
+        className="btn btn-primary btn-block hold-btn"
         disabled={!affordable}
-        onClick={exchangeGoldForElixir}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...hold}
       >
         영약 1개 교환 (전 {cost.toLocaleString()})
       </button>
