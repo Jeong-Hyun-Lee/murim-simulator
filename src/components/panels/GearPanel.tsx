@@ -240,6 +240,7 @@ export const GearPanel = () => {
   const [disassembleMode, setDisassembleMode] = useState(false);
   const [checkedIds, setCheckedIds] = useState<Set<string>>(new Set());
   const [confirmDisassemble, setConfirmDisassemble] = useState(false);
+  const equippedCount = ALL_SLOTS.filter((slot) => equippedGear[slot] !== undefined).length;
 
   const shown = inventory
     .filter((it) => slotFilter === 'all' || it.slot === slotFilter)
@@ -277,7 +278,22 @@ export const GearPanel = () => {
 
   return (
     <div className="gear-tab">
+      <section className="gear-overview" aria-label="장비 현황">
+        <div>
+          <span>장착 장비</span>
+          <strong>
+            {equippedCount}
+            <small>/ {ALL_SLOTS.length}</small>
+          </strong>
+        </div>
+        <div>
+          <span>소지품</span>
+          <strong>{inventory.length}</strong>
+        </div>
+        <p>장비 슬롯을 눌러 비교·장착·강화를 진행하세요.</p>
+      </section>
       <div id="gear-doll">
+        <p className="gear-doll-title">장착 장비</p>
         <div className="gear-doll-char" role="img" aria-label="주인공" />
         {ALL_SLOTS.map((slot) => {
           const item = equippedGear[slot];

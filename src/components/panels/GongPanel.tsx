@@ -73,18 +73,23 @@ const GongNodeCard = ({
       }`}
     >
       <div className="gong-card-head">
-        <strong>{node.name}</strong>
-        <span className="tag">{TIER_LABEL[node.tier]}</span>
+        <div className="gong-card-title">
+          <span className="tag">{TIER_LABEL[node.tier]}</span>
+          <strong>{node.name}</strong>
+        </div>
         <span className="gong-card-level">
           Lv.{lv}/{node.maxLevel}
         </span>
       </div>
-      <p className="muted">
-        {effectLabel} +{(lv * node.effectPerLevel).toFixed(2)}%
-        {!maxed && ` → 다음 +${((lv + 1) * node.effectPerLevel).toFixed(2)}%`}
-        {maxed && ' · 대성'}
-      </p>
-      {!unlocked && <p className="warn">{missing.join(', ')} 필요</p>}
+      <div className="gong-card-effect">
+        <span>{effectLabel}</span>
+        <strong>
+          현재 +{(lv * node.effectPerLevel).toFixed(2)}%
+          {!maxed && ` · 다음 +${((lv + 1) * node.effectPerLevel).toFixed(2)}%`}
+          {maxed && ' · 대성'}
+        </strong>
+      </div>
+      {!unlocked && <p className="warn gong-card-requirement">해금 조건 · {missing.join(', ')}</p>}
       {unlocked && !maxed && (
         <div className="btn-row">
           {/* useHoldRepeat이 반환하는 누르기/떼기/이동/클릭 핸들러 묶음 — 개별 나열하면 훅 캡슐화가 깨짐 */}
@@ -176,11 +181,14 @@ export const GongPanel = ({ boardId, onBoardChange }: Props) => {
         disabled={tutorialActive}
         onClick={() => setPickerOpen((v) => !v)}
       >
-        <span>
-          <strong>{selectedBoard.name}</strong> · {CURRENCY_LABEL[selectedBoard.currency]}
+        <span className="board-picker-title">
+          <strong>{selectedBoard.name}</strong>
+          <small>{CURRENCY_LABEL[selectedBoard.currency]}으로 연마</small>
         </span>
-        <span>
-          완성도 {boardCompletionPercent(selectedBoard, gongLevels)}% {pickerOpen ? '▴' : '▾'}
+        <span className="board-picker-progress">
+          <small>완성도</small>
+          <strong>{boardCompletionPercent(selectedBoard, gongLevels)}%</strong>
+          <b aria-hidden="true">{pickerOpen ? '▴' : '▾'}</b>
         </span>
       </button>
       {pickerOpen && (
@@ -216,7 +224,7 @@ export const GongPanel = ({ boardId, onBoardChange }: Props) => {
         </ul>
       )}
 
-      <p className="muted small">1회 연마 버튼을 길게 누르면 연속으로 연마합니다.</p>
+      <p className="gong-hold-tip">1회 연마 버튼을 길게 누르면 연속으로 연마합니다.</p>
       <div className="card-list">
         {selectedBoard.nodes.map((node) => (
           <GongNodeCard

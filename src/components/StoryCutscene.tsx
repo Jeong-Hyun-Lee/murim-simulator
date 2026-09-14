@@ -15,6 +15,7 @@ export const StoryCutscene = ({ cards }: { cards: string[] }) => {
       aria-label="이야기"
     >
       <div className="onboarding-box story-cutscene-box">
+        <p className="story-cutscene-label">강호의 기록</p>
         <button type="button" className="onboarding-skip-btn" onClick={closeStoryCutscene}>
           건너뛰기
         </button>

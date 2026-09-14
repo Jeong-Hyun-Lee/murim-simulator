@@ -221,9 +221,15 @@ export const SettingsSheet = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <Sheet title="설정" onClose={onClose}>
-      <div className="setting-row">
+      <section className="settings-summary" aria-label="현재 전투 상태">
+        <span>자동 전투</span>
+        <strong className={paused ? 'settings-state paused' : 'settings-state'}>
+          {paused ? '일시정지' : '진행 중'}
+        </strong>
+      </section>
+      <div className="setting-row setting-row-primary">
         <div>
-          <strong>전투</strong>
+          <strong>전투 제어</strong>
           <p className="muted">
             {paused ? '일시정지 중 — 재개를 눌러야 다시 진행됩니다.' : '진행 중'}
           </p>

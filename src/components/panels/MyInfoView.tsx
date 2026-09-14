@@ -36,19 +36,22 @@ export const MyInfoView = ({ onNavigate }: { onNavigate: (target: NavTarget) => 
 
   return (
     <div className="my-info">
-      <section className="card">
-        <strong>
-          {player.name} · {realmName(rebirthCount)} · Lv.{level}
-        </strong>
-        <p className="big-number">전투력 {combatPower(player).toLocaleString()}</p>
-        <p className="muted small">
+      <section className="card profile-hero">
+        <div className="profile-identity">
+          <span>{realmName(rebirthCount)}</span>
+          <strong>{player.name}</strong>
+          <em>Lv.{level}</em>
+        </div>
+        <span className="profile-combat-label">현재 전투력</span>
+        <p className="big-number profile-combat-power">{combatPower(player).toLocaleString()}</p>
+        <p className="profile-hero-note">
           전투력은 공격·방어·체력 등을 합친 종합 참고 지수입니다. 보스 승리를 보장하지는 않습니다.
         </p>
       </section>
 
-      <section className="card">
+      <section className="card profile-primary-stats">
         <h3>주요 능력치</h3>
-        <dl className="stat-list">
+        <dl className="stat-list profile-stat-list">
           <Row
             label="체력"
             value={`${Math.max(0, Math.round(playerHp)).toLocaleString()} / ${player.hp.toLocaleString()}`}

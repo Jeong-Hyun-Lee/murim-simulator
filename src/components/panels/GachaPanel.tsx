@@ -80,6 +80,7 @@ export const GachaPanel = () => {
   };
 
   const lastCost = lastKind === 'single' ? PULL_COST : PULL_10_COST;
+  const pityPercent = Math.min(100, Math.round((gachaPity / HARD_PITY) * 100));
   const summary = lastGachaOutcome
     ? GRADE_ORDER.map((grade) => ({
         grade,
@@ -90,6 +91,13 @@ export const GachaPanel = () => {
   return (
     <div className="gacha">
       <section className="card gacha-pull-card">
+        <div className="gacha-pull-head">
+          <div>
+            <small>장비 기연</small>
+            <h3>기연(奇緣)</h3>
+          </div>
+          <span>영약 {elixir.toLocaleString()}</span>
+        </div>
         <dl className="stat-list">
           <div className="stat-row">
             <dt>보유 영약</dt>
@@ -102,6 +110,21 @@ export const GachaPanel = () => {
             </dd>
           </div>
         </dl>
+        <div
+          className="gacha-pity-progress"
+          aria-label={`선품 확정 천장 진행 ${gachaPity}/${HARD_PITY}`}
+        >
+          <div>
+            <span>선품 확정 천장</span>
+            <strong>
+              {gachaPity}
+              <small> / {HARD_PITY}</small>
+            </strong>
+          </div>
+          <span className="gacha-pity-track">
+            <i style={{ width: `${pityPercent}%` }} />
+          </span>
+        </div>
         <div className="btn-row">
           <button
             type="button"

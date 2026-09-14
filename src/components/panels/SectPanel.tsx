@@ -123,18 +123,18 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
       </section>
 
       <section className="card sect-contribution-card">
-        <dl className="stat-list">
-          <div className="stat-row">
-            <dt>사용 가능 기여도</dt>
-            <dd>{sectContributionPoints.toLocaleString()}</dd>
+        <div className="sect-contribution-grid">
+          <div className="sect-contribution-value">
+            <span>사용 가능 기여도</span>
+            <strong>{sectContributionPoints.toLocaleString()}</strong>
+            <small>삼재검법 2보 연마에 사용</small>
           </div>
-          <p className="muted small">삼재검법 2보 연마에 쓰면 줄어듭니다.</p>
-          <div className="stat-row">
-            <dt>누적 기여도</dt>
-            <dd>{sectTotalContribution.toLocaleString()}</dd>
+          <div className="sect-contribution-value">
+            <span>누적 기여도</span>
+            <strong>{sectTotalContribution.toLocaleString()}</strong>
+            <small>기부 기록 · 사용해도 유지</small>
           </div>
-          <p className="muted small">지금까지 기부한 총량으로, 연마에 써도 줄지 않습니다.</p>
-        </dl>
+        </div>
       </section>
 
       <section className="card sect-donate-card">
@@ -165,7 +165,7 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
 
       <button
         type="button"
-        className="btn btn-block"
+        className="btn btn-block sect-board-action"
         disabled={!sectBoardUnlocked}
         onClick={() => onOpenBoard(SECT_BOARD.id)}
       >

@@ -885,6 +885,46 @@ dialog.sheet::backdrop {
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid #c6ad7b;
+  border-radius: 0.625rem;
+  background: rgba(255, 248, 228, 0.62);
+  color: #372816;
+}
+
+.setting-row p {
+  margin: 0.1875rem 0 0;
+  color: #695b46;
+  font-size: 0.8125rem;
+}
+
+.setting-row-primary {
+  border-color: #b98c36;
+  background: linear-gradient(135deg, #fff5d7, #ebd4a1);
+}
+
+.settings-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0.875rem;
+  border-radius: 0.625rem;
+  background: #332619;
+  color: #f6e4bb;
+}
+
+.settings-summary span {
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.settings-state {
+  color: #a8e2b2;
+  font-size: 0.875rem;
+}
+
+.settings-state.paused {
+  color: #ffd07d;
 }
 
 /* ---------- 전투 ---------- */
@@ -1064,6 +1104,40 @@ dialog.sheet::backdrop {
   line-height: 1.6;
 }
 
+.boss-sheet-kicker {
+  margin: 0 0 0.25rem;
+  color: #90651b;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.boss-challenge-card,
+.boss-reward-card {
+  overflow: hidden;
+  border-color: #b78b35;
+  background:
+    linear-gradient(180deg, rgba(255, 250, 236, 0.98), rgba(245, 233, 203, 0.98)), var(--paper);
+  color: #302516;
+}
+
+.boss-challenge-card h3,
+.boss-reward-card h3 {
+  margin-bottom: 0.375rem;
+  color: #4a2e16;
+  font-size: 1.1875rem;
+}
+
+.boss-challenge-card .story-line,
+.boss-reward-card .story-line {
+  padding: 0.5rem 0.625rem;
+  border-left: 3px solid #c89836;
+  border-radius: 0 0.375rem 0.375rem 0;
+  background: rgba(122, 80, 25, 0.1);
+  color: #4a321b;
+  font-weight: 700;
+}
+
 .action-card-reward {
   border: 2px solid var(--gold);
 }
@@ -1240,8 +1314,8 @@ dialog.sheet::backdrop {
   align-items: center;
   gap: 0.5rem;
   flex-wrap: wrap;
-  min-height: 3.25rem;
-  padding: 0.5rem 0.875rem;
+  min-height: 3.75rem;
+  padding: 0.5rem 0.75rem 0.5rem 0.875rem;
   border-radius: 0.75rem;
   border: 1px solid #9a7430;
   background: linear-gradient(135deg, #31271a, #17130e);
@@ -1253,6 +1327,44 @@ dialog.sheet::backdrop {
   opacity: 0.6;
 }
 
+.board-picker-title,
+.board-picker-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.board-picker-title small,
+.board-picker-progress small {
+  color: #cdb58a;
+  font-size: 0.75rem;
+}
+
+.board-picker-title strong {
+  color: #fff0bd;
+  font-size: 1.0625rem;
+}
+
+.board-picker-progress {
+  position: relative;
+  min-width: 4.75rem;
+  padding-right: 1rem;
+  text-align: right;
+}
+
+.board-picker-progress b {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  color: #e8c86a;
+  transform: translateY(-50%);
+}
+
+.board-picker-progress strong {
+  color: #f7d475;
+  font-size: 1rem;
+}
+
 .gong-card-head {
   display: flex;
   align-items: center;
@@ -1260,9 +1372,25 @@ dialog.sheet::backdrop {
   flex-wrap: wrap;
 }
 
+.gong-card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
 .gong-card {
   position: relative;
   overflow: hidden;
+  --muted: #cdbd9e;
+  --warn: #ffc276;
+  border-color: #7c6036;
+  background:
+    linear-gradient(90deg, rgba(218, 169, 64, 0.1), transparent 35%),
+    linear-gradient(135deg, #33291c, #1b1711);
+  color: #f7ecd6;
+  box-shadow:
+    inset 0 1px rgba(255, 232, 177, 0.1),
+    0 0.25rem 0.6rem rgba(0, 0, 0, 0.3);
 }
 
 .gong-card::before {
@@ -1276,19 +1404,65 @@ dialog.sheet::backdrop {
 }
 
 .gong-card .tag {
-  border-color: #a77c32;
-  background: #f0dfb8;
-  color: #654315;
+  border-color: #bd9142;
+  background: #4a3518;
+  color: #ffdd88;
   font-weight: bold;
+}
+
+.gong-card .btn:not(.btn-primary) {
+  border-color: #9c7b42;
+  background: #2a2116;
+  color: #f5dfb2;
 }
 
 .gong-card-level {
+  color: #ffe4a0;
   margin-left: auto;
+  padding: 0.1875rem 0.375rem;
+  border: 1px solid #866a37;
+  border-radius: 0.375rem;
+  background: #211a10;
+  font-size: 0.75rem;
   font-weight: bold;
 }
 
+.gong-card-effect {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.5rem;
+  margin: 0.625rem 0;
+}
+
+.gong-card-effect > span {
+  color: #d9c8a8;
+  font-size: 0.8125rem;
+}
+
+.gong-card-effect strong {
+  color: #ffe19a;
+  font-size: 0.875rem;
+}
+
+.gong-card-requirement {
+  margin: 0.375rem 0 0;
+  font-size: 0.75rem;
+}
+
+.gong-hold-tip {
+  margin: 0;
+  padding: 0.5rem 0.625rem;
+  border-left: 2px solid #ae8432;
+  color: #bcae91;
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
 .gong-card-locked {
-  opacity: 0.75;
+  border-color: #5e5140;
+  background: linear-gradient(135deg, #27231d, #171511);
+  color: #d4cab9;
 }
 
 .gong-card-tutorial {
@@ -1308,7 +1482,50 @@ dialog.sheet::backdrop {
 
 /* ---------- 장비 ---------- */
 
+.gear-overview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border: 1px solid #695331;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #30261a, #18140f);
+  box-shadow: inset 0 1px rgba(255, 222, 145, 0.1);
+}
+
+.gear-overview > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.gear-overview span,
+.gear-overview p {
+  color: #c9b795;
+  font-size: 0.75rem;
+}
+
+.gear-overview strong {
+  color: #ffe08b;
+  font-size: 1.25rem;
+  line-height: 1.1;
+}
+
+.gear-overview strong small {
+  color: #d7bc7e;
+  font-size: 0.75rem;
+  font-weight: normal;
+}
+
+.gear-overview p {
+  grid-column: 1 / -1;
+  margin: 0.125rem 0 0;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(228, 193, 116, 0.18);
+}
+
 #gear-doll {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1.2fr 1fr;
   grid-template-areas:
@@ -1328,6 +1545,18 @@ dialog.sheet::backdrop {
   box-shadow:
     inset 0 0 0 1px rgba(238, 200, 109, 0.08),
     0 0.25rem 0.6rem rgba(0, 0, 0, 0.18);
+}
+
+.gear-doll-title {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.625rem;
+  z-index: 1;
+  margin: 0;
+  color: #f4d77f;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-shadow: 0 1px #000;
 }
 
 .gear-doll-char {
@@ -1542,6 +1771,46 @@ dialog.sheet::backdrop {
   background: var(--jade);
 }
 
+.sect-contribution-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.sect-contribution-value {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.125rem;
+  padding: 0.5rem 0.375rem 0.5rem 0.625rem;
+  border-left: 1px solid rgba(77, 122, 111, 0.45);
+}
+
+.sect-contribution-value span,
+.sect-contribution-value small {
+  color: #6d5d47;
+  font-size: 0.6875rem;
+  line-height: 1.35;
+}
+
+.sect-contribution-value strong {
+  overflow: hidden;
+  color: #264d42;
+  font-size: 1.125rem;
+  text-overflow: ellipsis;
+}
+
+.sect-donate-card .btn-row {
+  margin-top: 0.25rem;
+}
+
+.sect-board-action {
+  border-color: #4f8878;
+  background: linear-gradient(180deg, #d9eadb, #9dc6b5) !important;
+  color: #173c32 !important;
+  font-weight: bold;
+}
+
 .sect-donate-card {
   border-color: #b38431;
   background:
@@ -1607,6 +1876,85 @@ dialog.sheet::backdrop {
 
 .gacha-pull-card > * {
   position: relative;
+}
+
+.gacha-pull-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(102, 66, 125, 0.2);
+}
+
+.gacha-pull-head small {
+  color: #775b82;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.gacha-pull-head h3 {
+  color: #42284f;
+}
+
+.gacha-pull-head > span {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #9a75a8;
+  border-radius: 999px;
+  background: rgba(255, 249, 255, 0.56);
+  color: #472c55;
+  font-size: 0.75rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.gacha-pity-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  padding: 0.5rem 0.625rem;
+  border: 1px solid rgba(110, 71, 136, 0.34);
+  border-radius: 0.5rem;
+  background: rgba(255, 250, 255, 0.46);
+}
+
+.gacha-pity-progress > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.gacha-pity-progress > div > span {
+  color: #5e3e6e;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.gacha-pity-progress strong {
+  color: #4a285c;
+  font-size: 1rem;
+}
+
+.gacha-pity-progress strong small {
+  color: #70587b;
+  font-size: 0.75rem;
+  font-weight: normal;
+}
+
+.gacha-pity-track {
+  display: block;
+  overflow: hidden;
+  height: 0.375rem;
+  border-radius: 999px;
+  background: #c9aecf;
+}
+
+.gacha-pity-track i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #8a549c, #d188b2);
 }
 
 .gacha-outcome-card {
@@ -1744,36 +2092,227 @@ dialog.sheet::backdrop {
   color: #cab98b;
 }
 
+/* 이야기 연출은 전투 배경의 명암과 무관하게 읽히도록 전용 표면을 쓴다. */
+.story-subtitle {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.625rem;
+  border: 1px solid rgba(220, 180, 93, 0.72);
+  background: rgba(14, 12, 9, 0.92);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.48);
+  color: #fff3d8;
+}
+
+.story-subtitle span,
+.story-intro-label,
+.story-cutscene-label {
+  color: #f2cd73;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.story-intro {
+  gap: 0.375rem;
+  padding: 0.875rem 1rem;
+  border-color: #dfbd68;
+  background: linear-gradient(135deg, rgba(47, 36, 19, 0.96), rgba(12, 11, 9, 0.96));
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.58);
+  color: #fff3d8;
+}
+
+.story-intro strong {
+  color: #ffe29b;
+  font-size: 1.125rem;
+}
+
+.story-intro .story-intro-label {
+  color: #f2cd73;
+  font-size: 0.6875rem;
+}
+
+.story-cutscene-box {
+  border: 1px solid #dfbd68;
+  background: linear-gradient(135deg, rgba(55, 71, 68, 0.96), rgba(14, 17, 16, 0.98)), #15130f;
+  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.62);
+  color: #fff3d8;
+}
+
+.story-cutscene-label {
+  margin: 0 0 0.25rem;
+  text-align: center;
+}
+
+.story-cutscene-box .onboarding-text {
+  color: #fff3d8;
+}
+
 /* ---------- 내 정보·환골탈태 ---------- */
 
-.my-info > .card:first-child {
+.profile-hero {
   border-color: #b58a34;
   background:
     radial-gradient(circle at 86% 12%, rgba(230, 183, 70, 0.35), transparent 30%),
     linear-gradient(135deg, #f5ead1, #dcc18a);
 }
 
-.my-info > .card:first-child .big-number {
+.profile-identity {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.profile-identity > span,
+.profile-identity em {
+  padding: 0.125rem 0.375rem;
+  border: 1px solid rgba(112, 74, 21, 0.45);
+  border-radius: 999px;
+  color: #70471a;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.profile-identity strong {
+  color: #36210b;
+  font-size: 1rem;
+}
+
+.profile-combat-label {
+  margin-top: 0.125rem;
+  color: #765525;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.profile-hero .profile-combat-power {
   color: #7a4a12;
+  font-size: 1.875rem;
+  line-height: 1.15;
   text-shadow: 0 1px rgba(255, 249, 221, 0.8);
+}
+
+.profile-hero-note {
+  color: #685239;
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+.profile-primary-stats {
+  border-color: #826840;
+  background: linear-gradient(135deg, #f3ead7, #e3d1ad);
+}
+
+.profile-stat-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.375rem;
+}
+
+.profile-stat-list .stat-row {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.125rem;
+  padding: 0.5rem;
+  border: 1px solid rgba(108, 79, 38, 0.28);
+  border-radius: 0.5rem;
+  background: rgba(255, 250, 233, 0.48);
+}
+
+.profile-stat-list .stat-row dt {
+  color: #725b3d;
+  font-size: 0.6875rem;
+}
+
+.profile-stat-list .stat-row dd {
+  overflow: hidden;
+  color: #342311;
+  font-size: 0.875rem;
+  text-align: left;
+  text-overflow: ellipsis;
 }
 
 .my-info details.card {
   border-left: 0.35rem solid #6b998b;
 }
 
-.rebirth > .card:first-child {
+.rebirth-hero {
   border-color: #a77e3a;
   background:
     radial-gradient(circle at 85% 16%, rgba(222, 174, 61, 0.3), transparent 32%),
     linear-gradient(135deg, #f0e2bf, #d7bd82);
 }
 
-.rebirth > .card:nth-child(2) {
+.rebirth-tier-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.125rem 0.75rem;
+  padding: 0.5rem 0.625rem;
+  border: 1px solid rgba(127, 90, 34, 0.3);
+  border-radius: 0.5rem;
+  background: rgba(255, 249, 228, 0.48);
+}
+
+.rebirth-tier-row > span,
+.rebirth-tier-row em {
+  color: #75562a;
+  font-size: 0.75rem;
+  font-style: normal;
+}
+
+.rebirth-tier-row strong {
+  color: #442a0d;
+  font-size: 1.125rem;
+}
+
+.rebirth-tier-row em {
+  align-self: center;
+  font-weight: bold;
+  text-align: right;
+}
+
+.rebirth-tier-next {
+  border-color: rgba(67, 124, 103, 0.42);
+  background: rgba(223, 241, 226, 0.5);
+}
+
+.rebirth-tier-next strong,
+.rebirth-tier-next > span,
+.rebirth-tier-next em {
+  color: #265d4b;
+}
+
+.rebirth-arrow {
+  align-self: center;
+  color: #a77e3a;
+  font-size: 1.25rem;
+  font-weight: bold;
+  line-height: 0.75;
+}
+
+.rebirth-gate {
+  margin: 0.125rem 0 0;
+  padding: 0.5rem 0.625rem;
+  border-left: 3px solid #b54e3d;
+  background: rgba(255, 239, 212, 0.48);
+  color: #6d3a28;
+  font-size: 0.8125rem;
+  font-weight: bold;
+}
+
+.rebirth-gate-ready {
+  border-left-color: #397a62;
+  color: #255d4b;
+}
+
+.rebirth-reset-card {
   border-left: 0.35rem solid #b54e3d;
 }
 
-.rebirth > .card:nth-child(3) {
+.rebirth-keep-card {
   border-left: 0.35rem solid var(--jade);
 }
 

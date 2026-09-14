@@ -34,6 +34,7 @@ const StorySubtitle = ({ text }: { text: string }) => {
   }, []);
   return visible ? (
     <p className="story-subtitle" aria-hidden="true">
+      <span>전언</span>
       {text}
     </p>
   ) : null;
@@ -50,6 +51,7 @@ const StoryIntroCard = ({ major }: { major: number }) => {
   return (
     <div role="status">
       <button type="button" className="story-intro" onClick={dismissStoryIntro}>
+        <span className="story-intro-label">대스테이지 진입</span>
         <strong>{place}</strong>
         {line && <span>{line}</span>}
       </button>
@@ -75,7 +77,8 @@ export const BossSheet = () => {
     const defeatLine = firstClear ? MAJOR_STORIES[stage.major]?.bossDefeat : undefined;
     return (
       <Sheet key="reward" title="보스 격파" onClose={confirmBossReward}>
-        <section className="card action-card-reward">
+        <section className="card action-card-reward boss-reward-card">
+          <p className="boss-sheet-kicker">보스 격파</p>
           <h3>{bossName} 격파!</h3>
           <p>{stageLabel(stage)} 클리어</p>
           {defeatLine && <p className="story-line">{defeatLine}</p>}
@@ -98,7 +101,8 @@ export const BossSheet = () => {
   const encounterLine = MAJOR_STORIES[stageMajor]?.bossEncounter;
   return (
     <Sheet key="challenge" title="보스 도전" onClose={declineBossChallenge}>
-      <section className="card">
+      <section className="card boss-challenge-card">
+        <p className="boss-sheet-kicker">{stageLabel({ major: stageMajor, minor: 5 })}</p>
         <h3>{enemyName}</h3>
         {encounterLine && (
           <p className="story-line">

@@ -56,29 +56,29 @@ export const RebirthView = ({ onDone }: { onDone: () => void }) => {
 
   return (
     <div className="rebirth">
-      <section className="card">
-        <dl className="stat-list">
-          <div className="stat-row">
-            <dt>현재 경지</dt>
-            <dd>
-              {realmName(rebirthCount)} ({rebirthCount}회) · +{rebirthBuffPercent(rebirthCount)}%
-            </dd>
-          </div>
-          <div className="stat-row">
-            <dt>다음 경지</dt>
-            <dd>
-              {realmName(rebirthCount + 1)} · +{rebirthBuffPercent(rebirthCount + 1)}%
-            </dd>
-          </div>
-          <div className="stat-row">
-            <dt>실행 조건</dt>
-            <dd>
-              대{gateMajor} 보스 클리어 (현재 대{highestMajorCleared})
-            </dd>
-          </div>
-        </dl>
+      <section className="card rebirth-hero">
+        <div className="rebirth-tier-row">
+          <span>현재 경지</span>
+          <strong>{realmName(rebirthCount)}</strong>
+          <em>
+            {rebirthCount}회 · 영구 +{rebirthBuffPercent(rebirthCount)}%
+          </em>
+        </div>
+        <div className="rebirth-arrow" aria-hidden="true">
+          ↓
+        </div>
+        <div className="rebirth-tier-row rebirth-tier-next">
+          <span>다음 경지</span>
+          <strong>{realmName(rebirthCount + 1)}</strong>
+          <em>영구 +{rebirthBuffPercent(rebirthCount + 1)}%</em>
+        </div>
+        <p className={`rebirth-gate${eligible ? ' rebirth-gate-ready' : ''}`}>
+          {eligible
+            ? `대${gateMajor} 보스 클리어 완료 · 환골탈태 가능`
+            : `대${gateMajor} 보스 클리어 필요 · 현재 대${highestMajorCleared}`}
+        </p>
       </section>
-      <section className="card">
+      <section className="card rebirth-reset-card">
         <h3>초기화되는 항목</h3>
         <ul className="bullet-list">
           {RESET_ITEMS.map((item) => (
@@ -86,7 +86,7 @@ export const RebirthView = ({ onDone }: { onDone: () => void }) => {
           ))}
         </ul>
       </section>
-      <section className="card">
+      <section className="card rebirth-keep-card">
         <h3>유지되는 항목</h3>
         <ul className="bullet-list">
           {KEEP_ITEMS.map((item) => (
