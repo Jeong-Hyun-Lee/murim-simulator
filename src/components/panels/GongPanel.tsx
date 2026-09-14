@@ -50,7 +50,6 @@ const GongNodeCard = ({
     currency === 'contribution' ? s.sectContributionPoints : s.chi,
   );
   const buyGongUpgrade = useGameStore((s) => s.buyGongUpgrade);
-  const buyGongUpgradeBulk10 = useGameStore((s) => s.buyGongUpgradeBulk10);
 
   const lv = nodeLevel(node, gongLevels);
   const unlocked = isNodeUnlocked(node, gongLevels);
@@ -59,6 +58,13 @@ const GongNodeCard = ({
   const bulk = nodeBulkUpgrade(node, lv);
   const singleDisabled = !unlocked || maxed || balance < cost || tutorialLocked;
   const hold = useHoldRepeat(() => buyGongUpgrade(node.id), singleDisabled);
+  // 버튼이 사라지는 조건(대성 임박으로 1회분만 남음)도 포함해야 반복이 즉시 멈춘다.
+  const bulkDisabled =
+    !unlocked || maxed || bulk.levelsGained <= 1 || balance < bulk.cost || tutorialLocked;
+  const bulkHold = useHoldRepeat(
+    () => useGameStore.getState().buyGongUpgradeBulk10(node.id),
+    bulkDisabled,
+  );
   const currencyLabel = CURRENCY_LABEL[currency];
   // 곱연산 보드는 다른 버프와 합산되지 않고 따로 곱해진다는 점을 표시.
   const effectLabel = `${EFFECT_LABEL[node.statKey ?? 'power']}${multiplicative ? '(곱연산)' : ''}`;
@@ -108,9 +114,10 @@ const GongNodeCard = ({
           {bulk.levelsGained > 1 && (
             <button
               type="button"
-              className="btn"
-              disabled={balance < bulk.cost || tutorialLocked}
-              onClick={() => buyGongUpgradeBulk10(node.id)}
+              className="btn hold-btn"
+              disabled={bulkDisabled}
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              {...bulkHold}
             >
               {bulk.levelsGained}회 연마
               <small>
