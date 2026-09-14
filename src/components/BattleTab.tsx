@@ -102,7 +102,7 @@ export const BossSheet = () => {
   return (
     <Sheet key="challenge" title="보스 도전" onClose={declineBossChallenge}>
       <section className="card boss-challenge-card">
-        <p className="boss-sheet-kicker">{stageLabel({ major: stageMajor, minor: 5 })}</p>
+        <p className="boss-sheet-kicker">{stageLabel({ major: stageMajor, sub: 10 })}</p>
         <h3>{enemyName}</h3>
         {encounterLine && (
           <p className="story-line">
