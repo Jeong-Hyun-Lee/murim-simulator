@@ -68,6 +68,21 @@ const StatDiff = ({ from, to }: { from: GearItem | undefined; to: GearItem }) =>
   );
 };
 
+const StatList = ({ item }: { item: GearItem }) => {
+  const stats = itemBaseStats(item);
+  const keys = Object.keys(stats) as StatKey[];
+  return (
+    <dl className="stat-list">
+      {keys.map((key) => (
+        <div className="stat-row" key={key}>
+          <dt>{STAT_LABEL[key]}</dt>
+          <dd>{(stats[key] ?? 0).toFixed(1)}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+};
+
 const EnhanceBlock = ({ item }: { item: GearItem }) => {
   const gold = useGameStore((s) => s.gold);
   const enhanceStones = useGameStore((s) => s.enhanceStones);
@@ -180,6 +195,7 @@ const SlotSheet = ({ slot, onClose }: SlotSheetProps) => {
                 해제
               </button>
             </div>
+            <StatList item={equipped} />
             <EnhanceBlock key={equipped.id} item={equipped} />
           </>
         ) : (
