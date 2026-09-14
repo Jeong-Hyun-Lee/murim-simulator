@@ -90,7 +90,6 @@ const EnhanceBlock = ({ item }: { item: GearItem }) => {
   const enhanceStones = useGameStore((s) => s.enhanceStones);
   const protectionCharms = useGameStore((s) => s.protectionCharms);
   const enhanceItem = useGameStore((s) => s.enhanceItem);
-  const showToast = useGameStore((s) => s.showToast);
   const [useProtection, setUseProtection] = useState(false);
   const [lastResult, setLastResult] = useState<string | null>(null);
 
@@ -103,14 +102,9 @@ const EnhanceBlock = ({ item }: { item: GearItem }) => {
   if (protectEligible && !protecting) {
     failText = `실패 시 ${Math.round(DOWNGRADE_CHANCE_ON_FAIL * 100)}% 확률로 1단계 하락`;
   }
-  // 전이 모자라도 버튼은 눌리게 두고, 누르면 토스트로 알린다.
-  const disabled = enhanceStones < stoneCost || (protecting && protectionCharms < 1);
+  const disabled = gold < cost || enhanceStones < stoneCost || (protecting && protectionCharms < 1);
 
   const enhance = () => {
-    if (gold < cost) {
-      showToast('전이 부족합니다');
-      return;
-    }
     const before = item.enhanceLevel;
     const result = enhanceItem(item.id, protecting);
     if (!result) return;
