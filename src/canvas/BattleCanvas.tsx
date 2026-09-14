@@ -154,24 +154,22 @@ export const BattleCanvas = () => {
       };
 
       // 시트 파일명 규칙(<접두>-<모션>-sheet.json)이 캐릭터마다 같아 한 번에 모션 세트를 읽는다.
-      // idle/attack은 필수, 나머지는 에셋이 있는 캐릭터만 채워진다(궁수·정예산적은 승리 모션 없음).
+      // idle/attack은 필수, 나머지는 에셋이 있는 캐릭터만 채워진다.
+      // 피격·승리 모션은 전 캐릭터 비활성화 — 읽지 않으면 피격은 재생을 건너뛰고 승리는 공격 모션으로
+      // 대체된다. 되살리려면 hurt/victory 시트를 다시 읽어 채우면 된다.
       const loadAnimSet = async (prefix: string): Promise<AnimSet> => {
         const base = `/sprites/character/${prefix}`;
-        const [idle, attack1, attack2, hurt, death, victory] = await Promise.all([
+        const [idle, attack1, attack2, death] = await Promise.all([
           loadAnimatedSprite(`${base}-idle-sheet.json`, 'idle'),
           loadAnimatedSprite(`${base}-attack-sheet.json`, 'attack'),
           tryLoadAnimatedSprite(`${base}-attack2-sheet.json`, 'attack2'),
-          tryLoadAnimatedSprite(`${base}-hurt-sheet.json`, 'hurt'),
           tryLoadAnimatedSprite(`${base}-death-sheet.json`, 'death'),
-          tryLoadAnimatedSprite(`${base}-victory-sheet.json`, 'victory'),
         ]);
         return {
           idle,
           attack1,
           attack2: attack2 ?? undefined,
-          hurt: hurt ?? undefined,
           death: death ?? undefined,
-          victory: victory ?? undefined,
         };
       };
 
