@@ -1335,9 +1335,10 @@ dialog.sheet::backdrop {
   justify-self: center;
   width: 6.875rem;
   height: 6.875rem;
-  background-image: url('/sprites/character/mokhyeon-idle-sheet.png');
-  background-position: 0 0;
-  background-size: 400% auto;
+  background-image: url('/sprites/character/mokhyeon-idle-v2-gear-doll.png');
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: contain;
   filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.6));
 }
 
