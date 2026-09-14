@@ -96,6 +96,16 @@ export const isStageAtOrBefore = (a: StageId, b: StageId): boolean =>
 export const disassembleStoneYield = (items: GearItem[]): number =>
   items.reduce((sum, it) => sum + 1 + gradeTier(it.grade), 0);
 
+// 강화 시도 이력(성공/실패 횟수, 실제 소모 골드)은 저장하지 않으므로, "전부 성공했다고 가정한
+// 누적 강화 비용"의 50%를 근사 환급액으로 쓴다. enhanceCost(i)는 i단계→i+1단계 강화 1회 시도 비용.
+const ENHANCE_REFUND_RATE = 0.5;
+export const enhanceGoldRefund = (items: GearItem[]): number =>
+  items.reduce((sum, it) => {
+    let itemCost = 0;
+    for (let lv = 0; lv < it.enhanceLevel; lv += 1) itemCost += enhanceCost(lv);
+    return sum + Math.round(itemCost * ENHANCE_REFUND_RATE);
+  }, 0);
+
 export interface GachaOutcome {
   results: PullResult[];
 }
@@ -569,10 +579,13 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       if (toDisassemble.length === 0) return;
       const inventory = s.inventory.filter((it) => !idSet.has(it.id));
       const stonesGained = disassembleStoneYield(toDisassemble);
+      const goldGained = enhanceGoldRefund(toDisassemble);
+      const goldSuffix = goldGained > 0 ? ` · 전 +${goldGained.toLocaleString()}` : '';
       set({
         inventory,
         enhanceStones: s.enhanceStones + stonesGained,
-        toastMessage: `일괄 분해: ${toDisassemble.length}개 → 강화석 +${stonesGained}`,
+        gold: s.gold + goldGained,
+        toastMessage: `일괄 분해: ${toDisassemble.length}개 → 강화석 +${stonesGained}${goldSuffix}`,
       });
       persist(get());
     },

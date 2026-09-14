@@ -12,6 +12,7 @@ import {
   itemBaseStats,
   isBetterGear,
   disassembleStoneYield,
+  enhanceGoldRefund,
   GRADE_COLOR,
   gradeTier,
   type SlotId,
@@ -20,6 +21,7 @@ import {
 import type { StatKey } from '../../game/gearData';
 import { playEnhanceSuccess, playEnhanceFail } from '../../audio/sfx';
 import { Sheet } from '../Sheet';
+import { useHoldRepeat } from '../../hooks/useHoldRepeat';
 
 const STAT_LABEL: Record<StatKey, string> = {
   atk: '공격',
@@ -92,10 +94,6 @@ const EnhanceBlock = ({ item }: { item: GearItem }) => {
   const [useProtection, setUseProtection] = useState(false);
   const [lastResult, setLastResult] = useState<string | null>(null);
 
-  if (item.enhanceLevel >= ENHANCE_MAX_LEVEL) {
-    return <p className="muted">최대 강화(+{ENHANCE_MAX_LEVEL}) 달성</p>;
-  }
-
   const targetLevel = item.enhanceLevel + 1;
   const cost = enhanceCost(item.enhanceLevel);
   const stoneCost = enhanceStoneCost(targetLevel);
@@ -124,6 +122,11 @@ const EnhanceBlock = ({ item }: { item: GearItem }) => {
       setLastResult(`✖ 실패: +${before}에서 강화되지 않았습니다`);
     }
   };
+  const hold = useHoldRepeat(enhance, disabled);
+
+  if (item.enhanceLevel >= ENHANCE_MAX_LEVEL) {
+    return <p className="muted">최대 강화(+{ENHANCE_MAX_LEVEL}) 달성</p>;
+  }
 
   return (
     <div className="enhance-block">
@@ -160,7 +163,13 @@ const EnhanceBlock = ({ item }: { item: GearItem }) => {
         </p>
       )}
       <div className="btn-row">
-        <button type="button" className="btn btn-primary" disabled={disabled} onClick={enhance}>
+        <button
+          type="button"
+          className="btn btn-primary hold-btn"
+          disabled={disabled}
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...hold}
+        >
           +{targetLevel} 강화하기
         </button>
       </div>
@@ -418,8 +427,13 @@ export const GearPanel = () => {
         <Sheet title="장비 분해" onClose={() => setConfirmDisassemble(false)}>
           <p>
             선택한 장비 <strong>{checkedItems.length}개</strong>를 분해해 강화석{' '}
-            <strong>{disassembleStoneYield(checkedItems)}개</strong>를 얻습니다. 분해한 장비는
-            되돌릴 수 없습니다.
+            <strong>{disassembleStoneYield(checkedItems)}개</strong>
+            {enhanceGoldRefund(checkedItems) > 0 && (
+              <>
+                , 전 <strong>{enhanceGoldRefund(checkedItems).toLocaleString()}</strong>
+              </>
+            )}
+            를 얻습니다. 분해한 장비는 되돌릴 수 없습니다.
           </p>
           <div className="btn-row">
             <button type="button" className="btn" onClick={() => setConfirmDisassemble(false)}>
