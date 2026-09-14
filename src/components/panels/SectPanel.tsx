@@ -31,14 +31,22 @@ const DonateSheet = ({ kind, onClose }: { kind: DonateKind; onClose: () => void 
   const gained = isChi ? units : elixir * ELIXIR_CONTRIBUTION_RATE;
   const balance = isChi ? chi : elixir;
   const label = isChi ? '내공' : '영약';
+  const conversion = isChi
+    ? `${CHI_PER_CONTRIBUTION.toLocaleString()} 내공 → 기여도 1`
+    : `영약 1개 → 기여도 ${ELIXIR_CONTRIBUTION_RATE}`;
 
   return (
     <Sheet title={`${label} 전량 기부`} onClose={onClose}>
-      <dl className="stat-list">
+      <section className="donate-sheet-intro">
+        <span>문파 성장 기여</span>
+        <strong>{conversion}</strong>
+        <p>기부한 재화는 문파 특전과 문파 무공 성장에 쓰입니다.</p>
+      </section>
+      <dl className="stat-list donate-sheet-summary">
         <div className="stat-row">
-          <dt>소비 {label}</dt>
+          <dt>이번 기부</dt>
           <dd>
-            {spent.toLocaleString()} / 보유 {balance.toLocaleString()}
+            {label} {spent.toLocaleString()}
           </dd>
         </div>
         <div className="stat-row">
@@ -51,7 +59,7 @@ const DonateSheet = ({ kind, onClose }: { kind: DonateKind; onClose: () => void 
         </div>
       </dl>
       {isChi && (
-        <p className="muted">
+        <p className="muted donate-sheet-note">
           내공 {CHI_PER_CONTRIBUTION.toLocaleString()}당 기여도 1로 교환되며, 교환 단위에 못 미치는
           내공은 남습니다.
         </p>

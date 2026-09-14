@@ -61,6 +61,14 @@ const CURRENCY_LABEL: Record<CurrencyKey, string> = {
   stones: '강화석',
 };
 
+const CURRENCY_USAGE: Record<CurrencyKey, string> = {
+  gold: '영약 교환과 장비 강화',
+  chi: '무공 연마와 문파 기부',
+  elixir: '기연과 문파 기부',
+  contribution: '문파무공 연마',
+  stones: '장비 강화',
+};
+
 // 화면별로 당장 필요한 재화 1~2종만 상단에 노출 — 전체 정확한 수치는 재화 상세 시트에서.
 const TAB_CURRENCIES: Record<TabKey, CurrencyKey[]> = {
   gong: ['chi', 'contribution'],
@@ -260,19 +268,36 @@ export const CurrencySheet = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <Sheet title="보유 재화" onClose={onClose}>
-      <dl className="stat-list">
+      <section className="currency-sheet-summary">
+        <span>소지품</span>
+        <strong>성장에 쓸 재화</strong>
+        <p>필요한 화면에서 실제 소비량을 확인할 수 있습니다.</p>
+      </section>
+      <dl className="currency-list">
         {(Object.keys(CURRENCY_LABEL) as CurrencyKey[]).map((key) => (
-          <div key={key} className="stat-row">
-            <dt>{key === 'contribution' ? '사용 가능 기여도' : CURRENCY_LABEL[key]}</dt>
+          <div key={key} className="currency-row">
+            <dt>
+              <UiIcon name={key} />
+              <span>
+                <strong>{key === 'contribution' ? '사용 가능 기여도' : CURRENCY_LABEL[key]}</strong>
+                <small>{CURRENCY_USAGE[key]}</small>
+              </span>
+            </dt>
             <dd>{currencies[key].toLocaleString()}</dd>
           </div>
         ))}
-        <div className="stat-row">
-          <dt>보호부적</dt>
+        <div className="currency-row">
+          <dt>
+            <UiIcon name="lock" />
+            <span>
+              <strong>보호부적</strong>
+              <small>강화 실패 시 단계 하락 방지</small>
+            </span>
+          </dt>
           <dd>{protectionCharms.toLocaleString()}</dd>
         </div>
       </dl>
-      <p className="muted">오늘의 접속 보너스는 하루 한 번 접속 시 자동 지급됩니다.</p>
+      <p className="currency-sheet-note">오늘의 접속 보너스는 하루 한 번 자동 지급됩니다.</p>
     </Sheet>
   );
 };
@@ -297,8 +322,15 @@ export const LockedTabSheet = ({
 
   return (
     <Sheet title={`${TAB_LABEL[tab]} 잠김`} onClose={onClose}>
-      <p>{reason}</p>
-      <p className="muted">{progressText(tab, highestMajorCleared, stage)}</p>
+      <section className="locked-tab-card">
+        <span className="locked-tab-emblem" aria-hidden="true">
+          <UiIcon name="lock" />
+        </span>
+        <p className="locked-tab-kicker">성장으로 해금</p>
+        <h3>{TAB_LABEL[tab]}</h3>
+        <p className="locked-tab-reason">{reason}</p>
+        <p className="locked-tab-progress">{progressText(tab, highestMajorCleared, stage)}</p>
+      </section>
     </Sheet>
   );
 };

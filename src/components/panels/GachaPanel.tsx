@@ -37,15 +37,22 @@ type PullKind = 'single' | 'ten';
 
 const RatesSheet = ({ onClose }: { onClose: () => void }) => (
   <Sheet title="기연 확률" onClose={onClose}>
-    <dl className="stat-list">
+    <section className="gacha-rates-intro">
+      <span>등급별 획득 확률</span>
+      <strong>희귀한 장비를 찾아보세요</strong>
+    </section>
+    <dl className="gacha-rates-list">
       {GRADE_ORDER.map((grade) => (
-        <div key={grade} className="stat-row">
-          <dt>{grade}</dt>
+        <div key={grade} className="gacha-rate-row">
+          <dt>
+            <span className="grade-dot" style={{ background: GRADE_COLOR[grade] }} />
+            {grade}
+          </dt>
           <dd>{(GRADE_CHANCE[grade] * 100).toFixed(2)}%</dd>
         </div>
       ))}
     </dl>
-    <p className="muted">
+    <p className="gacha-rates-guarantee">
       {SOFT_PITY_START + 1}회째부터 선품 확률이 조금씩 오르고, {HARD_PITY}회째에는 선품이
       확정됩니다. 10회 뽑기는 상품 이상 1개가 보장됩니다. 슬롯은 9종 중 무작위입니다.
     </p>
@@ -156,7 +163,13 @@ export const GachaPanel = () => {
 
       {lastGachaOutcome && (
         <section className="card gacha-outcome-card" aria-live="polite">
-          <h3>뽑기 결과</h3>
+          <div className="gacha-outcome-head">
+            <div>
+              <p>기연의 결과</p>
+              <h3>뽑기 결과</h3>
+            </div>
+            <span>{lastGachaOutcome.results.length}개 획득</span>
+          </div>
           <p className="muted">
             {summary.map((g) => `${g.grade} ${g.count}`).join(' · ')} — 소지품에 추가됨
           </p>
@@ -170,7 +183,10 @@ export const GachaPanel = () => {
                 style={resultCardStyle(gradeTier(r.grade), GRADE_COLOR[r.grade])}
               >
                 <span className="grade-dot" style={{ background: GRADE_COLOR[r.grade] }} />
-                {r.grade} · {SLOT_INFO[r.slot].name}
+                <span>
+                  <strong>{r.grade}</strong>
+                  <small>{SLOT_INFO[r.slot].name}</small>
+                </span>
               </div>
             ))}
           </div>

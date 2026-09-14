@@ -28,6 +28,7 @@ export const OnboardingFlow = () => {
     <div className="onboarding-overlay">
       {step === 'intro' ? (
         <div className="onboarding-box">
+          <p className="onboarding-kicker">이세계 전이</p>
           <button type="button" className="onboarding-skip-btn" onClick={() => setStep('nickname')}>
             건너뛰기
           </button>
@@ -36,7 +37,7 @@ export const OnboardingFlow = () => {
             className="onboarding-progress"
             aria-label={`도입 ${cardIndex + 1} / ${INTRO_CARDS.length}`}
           >
-            {cardIndex + 1} / {INTRO_CARDS.length}
+            여정 {cardIndex + 1} / {INTRO_CARDS.length}
           </p>
           <button type="button" className="btn btn-primary btn-block" onClick={nextCard}>
             다음
@@ -44,6 +45,7 @@ export const OnboardingFlow = () => {
         </div>
       ) : (
         <div className="onboarding-box onboarding-name-box">
+          <p className="onboarding-kicker">새로운 이름</p>
           <p className="onboarding-text">그대의 도호(별명)를 무엇이라 부르면 되겠소?</p>
           <input
             aria-label="도호"

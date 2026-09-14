@@ -308,11 +308,7 @@ while (hours() < HOUR_CAP) {
   }
 
   const stuckMs = st.ms - st.lastAdvanceMs;
-  if (
-    st.farm &&
-    st.highest >= gateMajor(st.rebirth) &&
-    stuckMs > REBIRTH_STUCK_HOURS * 3_600_000
-  ) {
+  if (st.farm && st.highest >= gateMajor(st.rebirth) && stuckMs > REBIRTH_STUCK_HOURS * 3_600_000) {
     st.rebirth += 1;
     note(`환골탈태 ${st.rebirth}회 (막힌 곳 ${st.frontier.major}-${st.frontier.sub})`);
     st.level = 1;

@@ -124,7 +124,11 @@ const EnhanceBlock = ({ item }: { item: GearItem }) => {
 
   return (
     <div className="enhance-block">
-      <dl className="stat-list">
+      <div className="enhance-heading">
+        <span>다음 강화</span>
+        <strong>+{targetLevel}</strong>
+      </div>
+      <dl className="stat-list enhance-summary">
         <div className="stat-row">
           <dt>성공 확률</dt>
           <dd>{Math.round(enhanceSuccessChance(targetLevel) * 100)}%</dd>
@@ -137,7 +141,7 @@ const EnhanceBlock = ({ item }: { item: GearItem }) => {
           </dd>
         </div>
       </dl>
-      <p className="muted">
+      <p className="enhance-risk">
         {failText} · 보유 전 {gold.toLocaleString()} · 강화석 {enhanceStones}
       </p>
       {protectEligible && (
@@ -188,7 +192,7 @@ const SlotSheet = ({ slot, onClose }: SlotSheetProps) => {
 
   return (
     <Sheet title={SLOT_INFO[slot].name} onClose={onClose}>
-      <section className="sheet-section">
+      <section className="sheet-section gear-current-section">
         <h3>현재 장비</h3>
         {equipped ? (
           <>
@@ -440,16 +444,23 @@ export const GearPanel = () => {
       {openSlot && <SlotSheet slot={openSlot} onClose={() => setOpenSlot(null)} />}
       {confirmDisassemble && (
         <Sheet title="장비 분해" onClose={() => setConfirmDisassemble(false)}>
-          <p>
-            선택한 장비 <strong>{checkedItems.length}개</strong>를 분해해 강화석{' '}
-            <strong>{disassembleStoneYield(checkedItems)}개</strong>
-            {enhanceGoldRefund(checkedItems) > 0 && (
-              <>
-                , 전 <strong>{enhanceGoldRefund(checkedItems).toLocaleString()}</strong>
-              </>
-            )}
-            를 얻습니다. 분해한 장비는 되돌릴 수 없습니다.
-          </p>
+          <section className="disassemble-confirm-card">
+            <p>되돌릴 수 없는 선택</p>
+            <h3>선택 장비 {checkedItems.length}개</h3>
+            <dl>
+              <div>
+                <dt>획득 강화석</dt>
+                <dd>+{disassembleStoneYield(checkedItems)}</dd>
+              </div>
+              {enhanceGoldRefund(checkedItems) > 0 && (
+                <div>
+                  <dt>강화 환급 전</dt>
+                  <dd>+{enhanceGoldRefund(checkedItems).toLocaleString()}</dd>
+                </div>
+              )}
+            </dl>
+            <span>분해한 장비는 되돌릴 수 없습니다.</span>
+          </section>
           <div className="btn-row">
             <button type="button" className="btn" onClick={() => setConfirmDisassemble(false)}>
               취소
