@@ -18,7 +18,7 @@ import {
   criticalHitEffectFrames,
 } from './hitEffect';
 import { useGameStore, isBossStage, enemyKind, type StageId, type EnemyKind } from '../game/store';
-import { playHit, playCrit, playVictory, playDefeat } from '../audio/sfx';
+import { playHit, playCrit, playDefeat } from '../audio/sfx';
 
 // 무공 메인 상단의 낮은 전투 무대(약 1.64:1). 원본 비율로 렌더링해 인물을 자르거나 늘리지 않는다.
 const CANVAS_WIDTH = 640;
@@ -69,7 +69,7 @@ interface FramedHitEffect {
   age: number;
 }
 
-// 6모션(idle/공격1/공격2/피격/쓰러짐/승리) 에셋을 확보한 캐릭터만 attack2~victory를 채운다 —
+// idle/공격/피격/쓰러짐 에셋을 확보한 캐릭터만 선택 모션을 채운다 —
 // 아직 idle/attack 2종뿐인 캐릭터는 옵셔널 필드를 비워두면 기존 2모션 그대로 동작.
 interface AnimSet {
   idle: AnimatedSprite;
@@ -77,8 +77,26 @@ interface AnimSet {
   attack2?: AnimatedSprite;
   hurt?: AnimatedSprite;
   death?: AnimatedSprite;
-  victory?: AnimatedSprite;
 }
+
+const BACKGROUND_SLUGS = [
+  'hyeollangchae',
+  'black-market',
+  'peng-clan-training-ground',
+  'county-tournament-arena',
+  'qingyun-night',
+  'central-city-magistrate-courtyard',
+  'mindscape',
+  'righteous-alliance-frontline',
+  'qingyun-main-sanctuary',
+  'blood-sect-henan-branch',
+];
+
+// ponytail: 대11~30 배경은 아직 없어 대10 배경을 재사용, 원화가 나오면 슬러그만 추가.
+const backgroundUrlForStage = (stage: StageId) => {
+  const major = Math.min(stage.major, BACKGROUND_SLUGS.length);
+  return `/backgrounds/stage${major}-${BACKGROUND_SLUGS[major - 1]}.webp`;
+};
 
 // visible=false만으로는 재생 중이던 AnimatedSprite의 내부 타이머가 멈추지 않아, 이미 화면에서
 // 숨긴 뒤에도 그 onComplete가 뒤늦게 발동해 idle을 다시 보이게 만든다(다른 모션과 겹쳐 보이는 원인).
@@ -131,9 +149,11 @@ export const BattleCanvas = () => {
       }
       container.appendChild(app.canvas);
 
-      // 혈랑채 전투 배경 — 원화(wiki/raw/assets/혈랑채-전투배경-v1.png)를 렌더 배율 2배 기준
-      // 1280x780으로 줄여 캔버스 비율에 맞춘 WebP. 캔버스에 꽉 채워 그린다.
-      const bgTexture = await Assets.load('/backgrounds/stage1-hyeollangchae.webp');
+      // 대 단위 전투 배경 — 원화(wiki/raw/assets/*-battle-background-sd-*-candidate.png)를 렌더 배율
+      // 2배 기준 1280x780으로 줄여 캔버스 비율에 맞춘 WebP. 캔버스에 꽉 채워 그린다.
+      let backgroundUrl = backgroundUrlForStage(useGameStore.getState().stage);
+      const bgTexture = await Assets.load(backgroundUrl);
+      let displayedBackgroundUrl = backgroundUrl;
       const background = new Sprite(bgTexture);
       background.width = CANVAS_WIDTH;
       background.height = CANVAS_HEIGHT;
@@ -197,7 +217,6 @@ export const BattleCanvas = () => {
           playerAnim.attack2,
           playerAnim.hurt,
           playerAnim.death,
-          playerAnim.victory,
         ].filter((a): a is AnimatedSprite => a !== undefined);
 
       for (const anim of playerSprites()) {
@@ -271,7 +290,7 @@ export const BattleCanvas = () => {
 
       const enemySpritesOf = (kind: EnemyKind): AnimatedSprite[] => {
         const set = enemyAnimByKind[kind];
-        return [set.idle, set.attack1, set.attack2, set.hurt, set.death, set.victory].filter(
+        return [set.idle, set.attack1, set.attack2, set.hurt, set.death].filter(
           (a): a is AnimatedSprite => a !== undefined,
         );
       };
@@ -498,7 +517,6 @@ export const BattleCanvas = () => {
               spawnNormalHitEffect(ENEMY_X, ENEMY_Y - 40);
               playHit();
             }
-            if (enemyDefeated) playVictory();
             if (currentEnemyKind !== 'none') {
               const set = enemyAnimByKind[currentEnemyKind];
               if (enemyDefeated) {
@@ -511,11 +529,7 @@ export const BattleCanvas = () => {
             if (enemyDefeated && !useGameStore.getState().awaitingBossReward) {
               defeatPauseMs = DEFEAT_PAUSE_MS;
             }
-            // 상대가 쓰러지면 승리 포즈를 잡은 채로 유지한다('hold') — 다음 전투가 시작될 때
-            // (연출 종료·보스 보상 확인 후) idle로 되돌려지므로 포즈가 그대로 남지 않는다.
-            if (enemyDefeated && playerAnim.victory) {
-              playPlayerOneShot(playerAnim.victory, 'hold');
-            } else {
+            if (!enemyDefeated) {
               for (const sprite of playerSprites()) stopAndHide(sprite);
               const attack =
                 playerAnim.attack2 && Math.random() < 0.5 ? playerAnim.attack2 : playerAnim.attack1;
@@ -543,9 +557,7 @@ export const BattleCanvas = () => {
             // result가 null이면 적이 이미 쓰러진 프레임이라 공격 모션을 재생하면 안 된다.
             if (currentEnemyKind !== 'none' && result) {
               const set = enemyAnimByKind[currentEnemyKind];
-              if (result.playerDefeated && set.victory) {
-                playEnemyOneShot(currentEnemyKind, set.victory, 'hold');
-              } else {
+              if (!result.playerDefeated) {
                 for (const sprite of enemySpritesOf(currentEnemyKind)) stopAndHide(sprite);
                 const attack = set.attack2 && Math.random() < 0.5 ? set.attack2 : set.attack1;
                 attack.visible = true;
@@ -571,6 +583,27 @@ export const BattleCanvas = () => {
         }
 
         playerFlash.alpha = 0.5 * (playerFlashMs / HIT_FLASH_MS);
+
+        // 대가 바뀌면 새 배경을 읽어 교체하고, 표시하던 배경은 텍스처 메모리에서 내린다.
+        // 읽는 동안에는 이전 배경을 그대로 두고, 그 사이 대가 또 바뀌면 늦게 온 결과는 버린다.
+        const nextBackgroundUrl = backgroundUrlForStage(s.stage);
+        if (nextBackgroundUrl !== backgroundUrl) {
+          backgroundUrl = nextBackgroundUrl;
+          (async () => {
+            try {
+              const texture = await Assets.load(nextBackgroundUrl);
+              if (disposed || backgroundUrl !== nextBackgroundUrl) return;
+              const previousUrl = displayedBackgroundUrl;
+              background.texture = texture;
+              displayedBackgroundUrl = nextBackgroundUrl;
+              if (previousUrl !== nextBackgroundUrl) await Assets.unload(previousUrl);
+            } catch (err) {
+              // 배경 하나를 못 읽어도 전투는 이전 배경으로 계속 진행한다.
+              // eslint-disable-next-line no-console
+              console.error('전투 배경 로딩 실패', err);
+            }
+          })();
+        }
 
         const kind = enemyKindForStage(s.stage);
         if (kind !== currentEnemyKind) {
