@@ -153,8 +153,12 @@ export const BattleTab = ({ onNavigate }: Props) => {
   return (
     <div className="battle-tab">
       <div className="battle-state-row">
-        <span aria-live="polite">{status}</span>
-        {farmReturnStage && <span>등반 위치 {stageLabel(farmReturnStage)}</span>}
+        <span className="battle-state-primary" aria-live="polite">
+          {status}
+        </span>
+        {farmReturnStage && (
+          <span className="battle-farm-status">등반 위치 {stageLabel(farmReturnStage)}</span>
+        )}
         {canRebirth && (
           <button
             type="button"

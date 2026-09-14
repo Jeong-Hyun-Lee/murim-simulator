@@ -97,7 +97,8 @@ export const AppHeader = ({ tab, onOpenInfo, onOpenSettings, onOpenCurrency }: H
           {name.slice(0, 1)}
         </span>
         <span className="header-name">
-          {name} · {realmName(rebirthCount)}
+          <strong>{name}</strong>
+          <small>{realmName(rebirthCount)}</small>
         </span>
       </button>
       <button
@@ -133,8 +134,10 @@ export const BattleSummaryBar = ({ onClick }: { onClick: () => void }) => {
       className={`battle-summary${needsAttention ? ' battle-summary-alert' : ''}`}
       onClick={onClick}
     >
-      <span>{stageLabel(stage)}</span>
-      <span aria-live="polite">{status}</span>
+      <span className="battle-summary-stage">{stageLabel(stage)}</span>
+      <span className="battle-summary-status" aria-live="polite">
+        {status}
+      </span>
       <span className="battle-summary-go">전투 보기 ›</span>
     </button>
   );

@@ -345,11 +345,16 @@ export const GearPanel = () => {
 
       <h3 className="section-title">소지품 ({inventory.length})</h3>
       {shown.length === 0 && (
-        <p className="muted empty">
-          {inventory.length === 0
-            ? '소지품이 비어 있습니다. 전투에서 적을 처치하면 장비를 얻습니다.'
-            : '이 슬롯의 소지품이 없습니다.'}
-        </p>
+        <div className="gear-empty-state">
+          <strong>
+            {inventory.length === 0 ? '아직 획득한 장비가 없습니다' : '이 슬롯에는 장비가 없습니다'}
+          </strong>
+          <span>
+            {inventory.length === 0
+              ? '전투에서 적을 처치하면 장비를 획득합니다.'
+              : '다른 장비 슬롯을 선택하거나 전체 목록을 확인하세요.'}
+          </span>
+        </div>
       )}
       <div className="inventory-grid">
         {shown.map((item) =>
