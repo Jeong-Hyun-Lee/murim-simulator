@@ -17,6 +17,8 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 3. **레이아웃은 그대로.** React 컴포넌트 구조·클래스·스크롤·안전 영역·팝업 초점 처리는 유지하고, CSS의 배경·테두리를 이미지로 바꾼다. 이미지가 로드되지 않아도 현재 CSS 색으로 읽힐 수 있게 둔다.
 4. **글자는 생성 모델에 맡기지 않는다.** 이미지 생성 모델은 한글·한자 글자를 틀리게 그리기 쉽다. 생성 단계에서는 글자 없는 바탕·질감·아이콘만 만들고, 고정 문구는 폰트 합성 스크립트로 이미지에 넣는다(7장).
 5. **캐릭터·배경보다 튀지 않는다.** UI 장식은 테두리·모서리·질감에 두고, 전투 무대와 SD 페인터리 캐릭터가 화면의 주인공이 되게 한다.
+6. **테마 배경이 가장 먼저.** UI Element를 게임에 적용할 때는 4.4의 테마 배경·색 토큰을 **최우선으로 수정**한다. 프레임·버튼·아이콘·게이지의 대비와 색 검수는 모두 바뀐 흰 회벽/흑칠 테마 위에서 한다.
+7. **아이콘으로 읽는 속도를 높인다.** 기능 버튼뿐 아니라 상태 문구·능력치·비용·정렬 같은 곳에도 의미가 분명한 아이콘을 붙인다(5.4, 6.1). 아이콘은 글자를 돕는 표식이며 동적 수치를 대신하지 않는다.
 
 ## 2. 비주얼 방향
 
@@ -137,9 +139,9 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 - 상단 신분줄·하단 탭·기본 버튼·패널 프레임·닫기 아이콘은 첫 화면에 쓰이므로 `<link rel="preload">`로 미리 불러온다.
 - 목표 용량은 P0 전체 1MB 이하다. 넘으면 질감 원본 크기와 WebP 품질을 먼저 낮춘다.
 
-### 4.4 테마 배경·색 토큰 CSS 대체 계획
+### 4.4 테마 배경·색 토큰 CSS 대체 계획 (적용 1순위)
 
-현재 `src/style.css`는 `body` `#0c0b09`, `#app` 금빛 방사 그라데이션 + `--ink` `#15130f`의 먹갈색 테마다. 색은 hex 341곳·rgba 123곳에 직접 쓰여 있고 `var(--…)` 토큰 사용은 약 100곳뿐이라, 토큰 값만 바꿔서는 테마가 바뀌지 않는다. 아래 순서로 대체한다.
+현재 `src/style.css`는 `body` `#0c0b09`, `#app` 금빛 방사 그라데이션 + `--ink` `#15130f`의 먹갈색 테마다. 색은 hex 341곳·rgba 123곳에 직접 쓰여 있고 `var(--…)` 토큰 사용은 약 100곳뿐이라, 토큰 값만 바꿔서는 테마가 바뀌지 않는다. **UI Element 적용 작업에서 이 절을 가장 먼저 수행**하고, 프레임·버튼·아이콘·게이지 적용은 이 절이 끝난 뒤 시작한다. 아래 순서로 대체한다.
 
 1. **토큰 정리(화면 변화 없음).** 직접 쓴 색을 역할 토큰으로 치환한다. 값이 같으므로 적용 전후 스크린샷이 같아야 한다.
 
@@ -200,10 +202,6 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | `frame-tabbar` | 흑칠 목재 난간 + 회흑 돌 바닥 | 3-slice | 390×64 → 780×128 | 좌우 96 | `#tab-bar` | P0 |
 | `frame-summary-strip` | 얇은 흑칠 목패 띠 | 3-slice | 390×44 → 780×88 | 좌우 64 | `.battle-summary` | P0 |
 | `frame-battle-stage` | 흑칠 목재 액자 + 격자창 모서리 + 금 안쪽 선 | 9-slice | 128×128 → 256×256 | 40 | 전투 캔버스 둘레 | P0 |
-| `frame-bar` | 청동 게이지 테두리 | 3-slice | 200×20 → 400×40 | 좌우 24 | `.bar`, `.hp-bar`, `.exp-bar` | P0 |
-| `fill-bar-hp` | 붉은 옻칠 광택 채움 | 가로 반복 | 32×12 → 64×24 | – | `.hp-bar .bar-fill` | P0 |
-| `fill-bar-exp` | 옥색 채움 | 가로 반복 | 32×12 → 64×24 | – | `.exp-bar .bar-fill` | P0 |
-| `fill-bar-sect` | 청색 비단 채움 | 가로 반복 | 32×12 → 64×24 | – | 문파 단계 게이지 | P1 |
 | `frame-banner-silk` | 붉은 비단 띠 + 양끝 매듭 | 3-slice | 360×48 → 720×96 | 좌우 72 | `.banner`, `.banner-done` | P1 |
 | `frame-toast-note` | 한지 쪽지 + 붓 자국 가장자리 | 9-slice | 96×64 → 192×128 | 32 | `Toast` | P1 |
 | `frame-portrait` | 둥근 청동·금 테 초상 틀 | 고정 | 40×40 → 120×120 | – | `.header-portrait` | P0 |
@@ -233,32 +231,117 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 
 ### 5.4 아이콘 (그룹 `icon`, 원본 3배, 글자 없음)
 
-| id | 모티프 | CSS 크기 → 원본 | 적용 | 우선 |
-| --- | --- | --- | --- | --- |
-| `icon-close` | 붓으로 그은 X 두 획(청동 원판 위에 올림) | 24 → 72 | `Sheet` 닫기, 뽑기 결과 닫기 | P0 |
-| `icon-back` | 왼쪽을 향한 화살촉 | 24 → 72 | `FullView` 뒤로 | P0 |
-| `icon-settings` | 팔괘 나침판 원판 | 24 → 72 | 상단 설정 | P0 |
-| `icon-lock` | 청동 자물통 | 24 → 72 | 잠긴 탭·잠긴 초식·잠김 팝업 | P0 |
-| `icon-dropdown` | 아래로 늘어진 매듭 끈 | 16 → 48 | 사냥터 선택, 보드 선택기 | P0 |
-| `icon-badge` | 작은 홍등(단풍 주황) | 12 → 36 | 새로 열림 | P0 |
-| `icon-gold` | 네모 구멍 엽전 | 20 → 60 | 전(錢) | P0 |
-| `icon-chi` | 청백색 기운이 도는 단전 불꽃 | 20 → 60 | 내공 | P0 |
-| `icon-elixir` | 붉은 마개 도자기 약병 | 20 → 60 | 영약 | P0 |
-| `icon-contribution` | 청운문 옥패 | 20 → 60 | 기여도 | P0 |
-| `icon-stones` | 푸른 광석 조각 | 20 → 60 | 강화석 | P0 |
-| `icon-charm` | 붉은 글씨 노란 부적 | 20 → 60 | 보호부적 | P1 |
-| `icon-slot-weapon` | 직검 | 32 → 96 | 장비 슬롯 무기 | P1 |
-| `icon-slot-body` | 가죽 갑주 | 32 → 96 | 몸통 | P1 |
-| `icon-slot-head` | 두건 | 32 → 96 | 머리 | P1 |
-| `icon-slot-arm` | 완갑 | 32 → 96 | 팔 | P1 |
-| `icon-slot-foot` | 경신화 | 32 → 96 | 발 | P1 |
-| `icon-slot-waist` | 요대 | 32 → 96 | 허리 | P1 |
-| `icon-slot-neck` | 옥 목걸이 | 32 → 96 | 목 | P1 |
-| `icon-slot-ring` | 지환(반지) — L/R 공용 | 32 → 96 | 손가락 L·R | P1 |
-| `icon-gacha` | 붉은 실로 묶인 점괘 죽통 | 48 → 144 | 기연 | P1 |
-| `icon-rebirth` | 불사조 깃 원형 문양 | 48 → 144 | 환골탈태 | P1 |
+#### 아이콘 규칙
 
-무공 보드 7종의 식별 표식은 보드 기획이 바뀔 수 있어 이 목록에서 제외하고, [[모바일-디자인-에셋-제작-명세]]의 무공 항목에서 별도로 산정한다. `icon-charm`의 부적 글씨는 읽을 수 있는 글자가 아닌 붓 획 문양으로만 그린다.
+- **스타일.** 짙은 갈색 먹 윤곽(`#2a1d16`) + 청동·금 기본 채움 + 의미 색 한 가지(체력 붉은색, 내공 청백색 등). 흰 회벽과 흑칠 바탕 양쪽에서 읽혀야 하므로 윤곽선을 생략하지 않는다. 정면 시점, 왼쪽 위 광원, 모든 아이콘이 같은 윤곽 두께를 쓴다.
+- **크기 등급.** 16px(문장 안 보조 표식), 20px(재화·능력치·상태), 24px(기능 버튼·탭), 32px(장비 슬롯), 48px(대표 문양). 원본은 표의 크기 × 3배로 만들고, 16px 아이콘은 세부 장식을 줄인 단순 실루엣으로 만든다.
+- **글자와의 관계.** 닫기·뒤로·설정·정보·펼침만 아이콘 단독 버튼으로 두고 `aria-label`을 붙인다. 그 밖의 아이콘은 이름·수치 앞에 붙는 보조 표식이다. 예외로 비용 표시(`내공 53,573`)에서는 상단 재화 칩·재화 팝업에서 이름과 함께 익힌 재화 아이콘이 이름을 대신할 수 있고, 이때 `aria-label`에 재화 이름을 남긴다.
+- **색만으로 뜻을 전하지 않는다.** 상승·하락, 보스·일반, 잠김·열림은 모양 자체가 달라야 한다.
+- **버튼 안 아이콘.** 라벨 이미지 왼쪽에 버튼당 하나만 붙인다(20px, 라벨과 간격 4px).
+- **상태.** 비활성은 CSS 필터로 처리하고, 선택된 탭만 5.3의 전용 탭 이미지를 쓴다.
+
+#### 탐색·기능
+
+| id | 모티프 | 크기 | 쓰임 | 우선 |
+| --- | --- | --- | --- | --- |
+| `icon-tab-gong` | 비스듬히 선 직검과 검 끈 | 24 | 하단 탭 무공(5.3 탭 이미지에 합성) | P0 |
+| `icon-tab-gear` | 가죽 비늘 갑주 | 24 | 하단 탭 장비 | P0 |
+| `icon-tab-sect` | 기와 지붕 산문 전각 | 24 | 하단 탭 문파 | P0 |
+| `icon-tab-shop` | 약방 목패와 약병 | 24 | 하단 탭 상점 | P0 |
+| `icon-settings` | 팔괘 나침판 원판 | 24 | 상단 설정 버튼 | P0 |
+| `icon-close` | 붓으로 그은 X 두 획 | 24 | 팝업 닫기, 뽑기 결과 닫기 | P0 |
+| `icon-back` | 왼쪽을 향한 화살촉 | 24 | 전체 화면 뒤로 | P0 |
+| `icon-lock` | 청동 자물통 | 24 | 잠긴 탭·초식·보드·사냥터, 해금 조건 | P0 |
+| `icon-unlock` | 고리가 열린 청동 자물통 | 20 | 해금 알림 | P1 |
+| `icon-dropdown` | 아래로 늘어진 매듭 끈 | 16 | 사냥터 선택, 보드 선택기, 정렬·필터 선택 | P0 |
+| `icon-badge` | 작은 홍등(단풍 주황) | 12 | 새로 열림 | P0 |
+| `icon-info` | 반쯤 펼친 작은 두루마리 | 20 | 확률 정보, 도움말 | P1 |
+| `icon-check` | 붉은 인주 붓 체크 | 20 | 클리어한 소스테이지, 선택됨, 유지되는 항목 | P1 |
+| `icon-sort` | 위아래로 엇갈린 화살촉 두 개 | 20 | 장비 정렬 | P1 |
+| `icon-filter` | 대나무 체 | 20 | 장비 슬롯 필터 | P1 |
+| `icon-hold` | 누르고 있는 손끝과 겹친 물결 세 줄 | 20 | 길게 눌러 연속 연마 안내 | P1 |
+| `icon-sfx-on` | 울리는 청동 종과 울림선 | 24 | 설정 효과음 켜짐 | P0 |
+| `icon-sfx-off` | 청동 종과 사선 | 24 | 설정 효과음 꺼짐 | P0 |
+
+#### 재화·재료
+
+| id | 모티프 | 크기 | 쓰임 | 우선 |
+| --- | --- | --- | --- | --- |
+| `icon-gold` | 네모 구멍 엽전 | 20 | 전(錢): 상단 칩, 비용, 보유량 | P0 |
+| `icon-chi` | 청백색 기운이 도는 단전 불꽃 | 20 | 내공 | P0 |
+| `icon-elixir` | 붉은 마개 도자기 약병 | 20 | 영약 | P0 |
+| `icon-contribution` | 청운문 옥패 | 20 | 기여도 | P0 |
+| `icon-stones` | 푸른 광석 조각 | 20 | 강화석 | P0 |
+| `icon-charm` | 노란 부적(붓 획 문양, 읽을 수 있는 글자 없음) | 20 | 보호부적 | P1 |
+
+#### 능력치
+
+| id | 모티프 | 크기 | 쓰임 | 우선 |
+| --- | --- | --- | --- | --- |
+| `icon-stat-power` | 검과 방패가 겹친 문양 | 20 | 무공 효과 `공격·방어·체력` | P0 |
+| `icon-stat-crit-chance` | 과녁 중심을 찌르는 칼끝 | 20 | 치명타 확률 | P0 |
+| `icon-stat-crit-damage` | 갈라진 섬광이 튀는 칼날 | 20 | 치명타 피해 | P0 |
+| `icon-stat-attack-speed` | 바람결 세 줄을 가르는 검 | 20 | 공격속도 | P0 |
+| `icon-stat-evasion` | 흐릿한 잔상이 남는 발자국 | 20 | 회피율 | P0 |
+| `icon-stat-chi-gain` | 단전 불꽃과 위로 오르는 기운 | 20 | 내공 획득량 | P0 |
+| `icon-stat-hp` | 붉은 혈 구슬 | 20 | 내 체력바 앞, 장비 체력 | P0 |
+| `icon-stat-atk` | 칼날 하나 | 20 | 장비 공격력 | P1 |
+| `icon-stat-def` | 비늘 방패 | 20 | 장비 방어력 | P1 |
+| `icon-stat-status-resist` | 부적이 붙은 방패 | 20 | 상태이상 저항 | P1 |
+
+#### 전투·진행 상태
+
+| id | 모티프 | 크기 | 쓰임 | 우선 |
+| --- | --- | --- | --- | --- |
+| `icon-status-auto` | 엇갈린 두 검 | 20 | `자동 전투 중` | P0 |
+| `icon-status-paused` | 세로 먹 붓 두 획 | 20 | `일시정지`, 전투 제어 설정 | P0 |
+| `icon-status-farm` | 원을 그리며 도는 화살 | 20 | `반복 사냥 중` | P0 |
+| `icon-status-boss` | 붉은 귀면 탈 | 20 | `보스 도전 대기`, 보스 이름, 사냥터 보스 표식 | P0 |
+| `icon-status-reward` | 매듭 묶은 비단 보따리 | 20 | `보상 확인 대기`, 보상 알림 | P0 |
+| `icon-climb` | 산봉우리 위로 오르는 화살 | 20 | 등반 버튼, 등반 위치 | P0 |
+| `icon-combat-power` | 금테 원 안의 엇갈린 검 | 20 | 전투력 | P0 |
+| `icon-exp` | 옥 구슬 | 16 | 경험치 게이지 앞 | P1 |
+| `icon-stage-current` | 작은 붉은 깃발 | 16 | 사냥터 선택의 현재 위치 | P1 |
+
+#### 행동 보조
+
+| id | 모티프 | 크기 | 쓰임 | 우선 |
+| --- | --- | --- | --- | --- |
+| `icon-action-train` | 먹 붓과 단전 불꽃 | 20 | 연마 버튼 | P0 |
+| `icon-action-equip` | 갑주와 아래로 향한 화살촉 | 20 | 장착·최적 장착 | P1 |
+| `icon-action-unequip` | 갑주와 위로 향한 화살촉 | 20 | 해제 | P1 |
+| `icon-action-disassemble` | 대장간 망치 | 20 | 분해 선택·분해하기 | P1 |
+| `icon-action-enhance` | 모루 위 불꽃 | 20 | 강화하기 | P1 |
+| `icon-action-donate` | 시주함 | 20 | 전량 기부 | P1 |
+| `icon-action-exchange` | 엽전과 약병 사이 교환 화살 | 20 | 영약 교환 | P1 |
+| `icon-gacha` | 붉은 실로 묶인 점괘 죽통 | 48 | 기연 대표 문양, 뽑기 버튼(20px로 축소) | P1 |
+| `icon-rebirth` | 불사조 깃 원형 문양 | 48 | 환골탈태 대표 문양, 환골탈태 버튼(20px로 축소) | P1 |
+| `icon-reset` | 거꾸로 감기는 두루마리 화살 | 20 | 초기화되는 항목 | P1 |
+
+#### 장비 슬롯
+
+| id | 모티프 | 크기 | 쓰임 | 우선 |
+| --- | --- | --- | --- | --- |
+| `icon-slot-weapon` | 직검 | 32 | 무기 | P1 |
+| `icon-slot-body` | 가죽 갑주 | 32 | 몸통 | P1 |
+| `icon-slot-head` | 두건 | 32 | 머리 | P1 |
+| `icon-slot-arm` | 완갑 | 32 | 팔 | P1 |
+| `icon-slot-foot` | 경신화 | 32 | 발 | P1 |
+| `icon-slot-waist` | 요대 | 32 | 허리 | P1 |
+| `icon-slot-neck` | 옥 목걸이 | 32 | 목 | P1 |
+| `icon-slot-ring` | 지환(반지), L/R 공용 | 32 | 손가락 L·R | P1 |
+
+장비 슬롯 아이콘 8종은 같은 청동색 단일 톤 실루엣에 금색 포인트만 두고 등급색을 넣지 않는다.
+
+#### 증감·알림
+
+| id | 모티프 | 크기 | 쓰임 | 우선 |
+| --- | --- | --- | --- | --- |
+| `icon-diff-up` | 위로 향한 초록 옥 화살촉 | 16 | 능력치 상승, 무공 `다음` 효과 | P0 |
+| `icon-diff-down` | 아래로 향한 붉은 화살촉 | 16 | 능력치 하락 | P1 |
+| `icon-warn` | 붉은 매듭이 달린 경고 목패 | 20 | 재화 부족, 조건 미충족 | P1 |
+
+무공 보드 7종의 식별 표식은 보드 기획이 바뀔 수 있어 이 목록에서 제외하고, [[모바일-디자인-에셋-제작-명세]]의 무공 항목에서 별도로 산정한다.
 
 ### 5.5 특수 배경·간판 (원본 2배)
 
@@ -369,6 +452,55 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 
 `tag-*`, `sign-*`은 낙관·현판·목패 그림을 생성하고 그 위에 폰트로 글자를 합성한 한 장짜리 이미지다. 태그 크기는 36×20 → 108×60, 간판은 358×72 → 1074×216이다.
 
+### 5.8 게이지(체력바) 디자인 (그룹 `gauge`, 원본 2배)
+
+현재 체력바는 `.bar`(높이 18px, 둥근 반투명 검정 홈)에 붉은 그라데이션을 채운 CSS이고, 경험치는 높이 8px 파란 그라데이션이다. 체력바는 전투에서 가장 자주 보는 정보이므로 전용 디자인으로 바꾼다.
+
+#### 레이어 구조
+
+| 순서(아래→위) | 레이어 | 구현 |
+| --- | --- | --- |
+| 1 | 홈(track): 틀 안쪽의 어두운 빈 칸 | 틀 이미지의 가운데 영역 |
+| 2 | 잔상(trail): 피해 직후 줄어든 만큼 잠시 남는 연한 띠 | `fill-*-trail` 반복 이미지. 폭이 채움보다 0.35초 늦게 줄어든다(CSS `transition-delay`) |
+| 3 | 채움(fill): 현재 값 | `fill-*` 반복 이미지. 폭 = 현재/최대 |
+| 4 | 광택(gloss): 위쪽 1/3의 옅은 빛 | `overlay-gauge-gloss` 반복 이미지(모든 게이지 공용) |
+| 5 | 틀(frame)과 끝 장식 | `frame-gauge-*` 3-slice. 끝 장식은 slice 안에 둔다 |
+| 6 | 수치 텍스트 `현재 / 최대` | HTML. 크림색 `#f3e6c4` + 먹색 윤곽(`text-shadow`), 12px, 가운데 정렬 |
+
+회복할 때는 채움이 먼저 늘고 잔상은 채움 폭에 바로 맞춘다. `prefers-reduced-motion`에서는 잔상 지연을 없앤다.
+
+#### 종류
+
+| 종류 | 틀 모티프 | 채움 | 표시 높이 | 앞 아이콘 |
+| --- | --- | --- | --- | --- |
+| 적 체력(일반) | 흑칠 목재 틀 + 청동 못 | 붉은 옻칠 광택 `fill-hp-enemy` | 20px | 없음 |
+| 적 체력(보스) | 금테 흑칠 틀, 왼쪽 끝 붉은 귀면 장식, 오른쪽 끝 매듭 술 | 짙은 진홍 `fill-hp-boss` | 24px | 틀의 귀면 장식 |
+| 내 체력 | 청동 틀, 왼쪽 끝 옥 구슬 장식 | 붉은 혈색 `fill-hp-player`(적과 무늬를 달리해 구분) | 20px | `icon-stat-hp` |
+| 경험치 | 얇은 청동 선 틀 | 옥색 `fill-exp` | 10px | `icon-exp`(P1) |
+| 문파 단계 | 한지 카드용 얇은 흑칠 틀 | 청색 비단 `fill-sect` | 16px | 없음 |
+
+- **위험 상태.** 체력이 30% 이하이면 채움을 조금 밝게 하고 틀 안쪽에 붉은 빛을 CSS `box-shadow`로 더한다. 움직임 줄이기 설정에서는 깜빡임 없이 색만 유지한다. 수치 텍스트는 항상 보인다.
+- **0 체력.** 채움·잔상이 모두 사라지고 홈만 남는다. 쓰러짐 연출은 전투 캔버스가 담당한다.
+- **적과 내 체력 구분.** 틀 모양(흑칠·금테 대 청동)과 끝 장식으로 구분하고, 같은 붉은 계열이어도 채움 무늬를 다르게 한다(적: 옻칠 광택, 나: 은은하게 흐르는 결).
+
+#### 에셋
+
+| id | 형태 | 크기 | slice | 우선 |
+| --- | --- | --- | --- | --- |
+| `frame-gauge-enemy` | 3-slice | 240×20 → 480×40 | 좌우 24 | P0 |
+| `frame-gauge-boss` | 3-slice | 240×24 → 480×48 | 좌 48(귀면), 우 32(술) | P0 |
+| `frame-gauge-player` | 3-slice | 240×20 → 480×40 | 좌 36(옥 구슬), 우 24 | P0 |
+| `frame-gauge-exp` | 3-slice | 240×10 → 480×20 | 좌우 12 | P0 |
+| `frame-gauge-sect` | 3-slice | 240×16 → 480×32 | 좌우 16 | P1 |
+| `fill-hp-enemy` / `fill-hp-enemy-trail` | 가로 반복 | 32×16 → 64×32 | – | P0 |
+| `fill-hp-boss` / `fill-hp-boss-trail` | 가로 반복 | 32×20 → 64×40 | – | P0 |
+| `fill-hp-player` / `fill-hp-player-trail` | 가로 반복 | 32×16 → 64×32 | – | P0 |
+| `fill-exp` | 가로 반복 | 32×6 → 64×12 | – | P0 |
+| `fill-sect` | 가로 반복 | 32×12 → 64×24 | – | P1 |
+| `overlay-gauge-gloss` | 가로 반복, 반투명 | 32×16 → 64×32 | – | P0 |
+
+잔상 이미지는 채움과 같은 무늬를 한지빛(`#f1d9b8`) 쪽으로 밝게 바꾼 버전이다. 채움 영역 높이는 틀 높이에서 위아래 틀 두께를 뺀 값이며, 틀 안쪽 홈 위치를 매니페스트에 `inset`으로 기록한다.
+
 ## 6. 화면별 적용 계획
 
 | 화면·컴포넌트 | 교체할 표면 | 에셋 | 텍스트로 남길 것 |
@@ -377,7 +509,7 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | `AppHeader` | 신분줄 배경, 초상 틀, 재화 칩 아이콘, 설정 버튼 | `frame-header-eave`, `frame-portrait`, `icon-gold/chi/elixir/contribution/stones`, `btn-round`+`icon-settings` | 도호, 경지, 재화 수치, 재화 이름 |
 | `TabBar` | 탭바 배경, 4탭 | `frame-tabbar`, `tab-*`, `icon-lock`, `icon-badge` | 없음(`aria-label` 유지) |
 | `BattleSummaryBar` | 요약줄 | `frame-summary-strip`, `label-battle-view` | 스테이지, 전투 상태 |
-| `BattleTab` | 전투 무대 액자, 체력·경험치 게이지, 사냥터·등반 버튼, 보스 카드 | `frame-battle-stage`, `frame-bar`, `fill-bar-*`, `label-stage`, `label-climb`, `label-boss-challenge`, `label-keep-training`, `label-continue` | 적·보스 이름, 체력 수치, 레벨, 전투력, 보상 |
+| `BattleTab` | 전투 상태 줄, 전투 무대 액자, 적·보스·내 체력바, 경험치 게이지, 사냥터·등반 버튼, 보스 카드 | `icon-status-*`, `icon-climb`, `icon-combat-power`, `frame-battle-stage`, 5.8 게이지, `icon-stat-hp`, `label-stage`, `label-climb`, `label-boss-challenge`, `label-keep-training`, `label-continue` | 적·보스 이름, 체력 수치, 레벨, 전투력 수치, 전투 상태 문구, 보상 |
 | `Sheet` | 팝업 틀, 제목 현판, 닫기 | `frame-popup`, `frame-title-plaque` 또는 `title-*`, `btn-round`+`icon-close` | 동적 제목(`title-*`가 없는 경우), 본문 |
 | `FullView` | 뒤로 버튼 | `btn-round`+`icon-back` | 화면 제목 |
 | `SettingsSheet` | 버튼 | `btn-primary-tile`+`label-pause/resume`, `btn-secondary-brick`+`label-sfx-on/off`, `title-settings` | 진행 중·일시정지 상태 |
@@ -385,24 +517,58 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | `LockedTabSheet` | 잠김 표식·제목 | `icon-lock`, `title-locked-*` | 해금 조건, 진행 위치 |
 | `GongPanel` | 보드 선택기, 초식 카드, 단계 태그, 연마 버튼 | `scroll-silk-picker`, `icon-dropdown`, `scroll-bamboo-card(-locked)`, `tag-tier-*`, `label-train-once`, `label-train`, `frame-banner-silk` | 보드 이름·진행도, 초식 이름·레벨, 효과 수치, 비용, `{n}회`, 해금 조건 |
 | `GearPanel` | 무기고 배경, 슬롯, 등급 테, 섹션 제목, 버튼 | `panel-armory`, `frame-slot`, `frame-grade-*`, `icon-slot-*`, `section-*`, `label-equip-best` 외 장비 라벨 | 장비 이름·등급명·강화 수치·능력치 비교·개수 |
-| `SectPanel` | 소속 간판, 카드, 게이지, 기부 버튼 | `sign-sect-qingyun`, `frame-panel-hanji`, `fill-bar-sect`, `section-donate`, `label-donate-*`, `label-sect-board` | 문파 레벨·특전·기여도 수치·환산 비율 |
+| `SectPanel` | 소속 간판, 카드, 게이지, 기부 버튼 | `sign-sect-qingyun`, `frame-panel-hanji`, `frame-gauge-sect`, `fill-sect`, `section-donate`, `label-donate-*`, `label-sect-board` | 문파 레벨·특전·기여도 수치·환산 비율 |
 | `ShopPanel`·`GachaPanel` | 소탭, 간판, 상품 카드, 뽑기 버튼, 카드 뒷면 | `btn-segment(-active)`, `label-subtab-*`, `sign-shop-elixir`, `icon-elixir`, `label-gacha-*`, `panel-gacha-card-back`, `icon-gacha` | 비용·보유 전·잔액·확률표·결과 등급과 이름 |
 | `StagePicker` | 대스테이지 행 | `panel-stage-map`, `label-climb` | 대 번호·지명·보스 이름·소스테이지 번호 |
 | `RebirthView`·`MyInfoView` | 섹션 제목, 버튼, 문양 | `section-*`, `title-rebirth-*`, `label-rebirth-*`, `icon-rebirth` | 조건·유지/초기화 항목·능력치 |
 | `OnboardingFlow`·`StoryCutscene` | 대화창, 버튼 | `scroll-parchment-dialog`, `label-next`, `label-skip`, `label-continue`, `label-use-default` | 대사, 도호 입력 |
 | `Toast` | 쪽지 | `frame-toast-note` | 알림 문구 |
 
+### 6.1 아이콘 추가 위치
+
+지금 글자만 있는 곳 중 아이콘을 붙일 자리다. 괄호 안은 계속 남기는 텍스트다.
+
+| 화면 | 위치 | 추가 아이콘 | 우선 |
+| --- | --- | --- | --- |
+| 하단 탭 | 4탭 | `icon-tab-*`(탭 이미지에 합성), `icon-lock`, `icon-badge` | P0 |
+| 상단 신분줄 | 설정 버튼 | `icon-settings` | P0 |
+| 상단 신분줄 | 재화 칩 | `icon-gold`·`icon-chi`·`icon-elixir`·`icon-contribution`·`icon-stones` (재화 이름·수치) | P0 |
+| 전투 탭 | 전투 상태 줄 | 상태별 `icon-status-auto/paused/farm/boss/reward` (상태 문구) | P0 |
+| 전투 탭 | 등반 위치·등반 버튼 | `icon-climb` (스테이지 번호) | P0 |
+| 전투 탭 | 적 이름 줄 | 보스일 때 `icon-status-boss` (적 이름) | P0 |
+| 전투 탭 | 내 이름 줄 | `icon-combat-power` (전투력 수치) | P0 |
+| 전투 탭 | 체력·경험치 게이지 | 5.8 게이지, `icon-stat-hp`, `icon-exp` | P0/P1 |
+| 전투 요약줄 | 상태 | 상태별 `icon-status-*` (스테이지·상태 문구) | P0 |
+| 무공 탭 | 초식 카드 효과 줄 | 효과별 `icon-stat-*`, `다음` 앞 `icon-diff-up` (효과 수치) | P0 |
+| 무공 탭 | 연마 버튼 비용 줄 | `icon-action-train`, 비용 재화 아이콘 (비용 수치, `{n}회`) | P0 |
+| 무공 탭 | 해금 조건·잠긴 보드 | `icon-lock` (조건 문구) | P0 |
+| 무공 탭 | 보드 선택기 | `icon-dropdown` (보드 이름·진행도) | P0 |
+| 무공 탭 | 길게 누르기 안내 | `icon-hold` (안내 문구) | P1 |
+| 설정 팝업 | 전투 제어·효과음 줄 | `icon-status-paused`/`icon-status-auto`, `icon-sfx-on`/`icon-sfx-off` (상태 문구) | P0 |
+| 팝업 공통 | 닫기·뒤로 | `icon-close`, `icon-back` (`aria-label`) | P0 |
+| 잠김 팝업 | 잠김 표식 | `icon-lock`, 해금 토스트에 `icon-unlock` | P0/P1 |
+| 장비 탭 | 9슬롯 | `icon-slot-*` (슬롯 이름·등급·강화 수치) | P1 |
+| 장비 탭 | 정렬·필터 선택 | `icon-sort`, `icon-filter`, `icon-dropdown` (선택값) | P1 |
+| 장비 탭 | 능력치 비교 | `icon-stat-*`, `icon-diff-up`/`icon-diff-down` (수치) | P1 |
+| 장비 탭 | 최적 장착·장착·해제·분해·강화 버튼 | `icon-action-*` | P1 |
+| 문파 탭 | 기여도·환산 비율·기부 버튼 | `icon-contribution`, `icon-chi`, `icon-elixir`, `icon-action-donate` (수치·비율) | P1 |
+| 상점 탭 | 비용·보유·잔액, 부족 표시 | `icon-gold`, `icon-elixir`, `icon-warn` (수치) | P1 |
+| 상점 탭 | 교환·뽑기·확률 정보 버튼 | `icon-action-exchange`, `icon-gacha`, `icon-info` | P1 |
+| 사냥터 선택 | 소스테이지 칸 | 보스 칸 `icon-status-boss`, 클리어 `icon-check`, 현재 위치 `icon-stage-current`, 잠김 `icon-lock` (번호) | P1 |
+| 환골탈태 | 유지·초기화 항목, 버튼 | `icon-check`, `icon-reset`, `icon-rebirth` (항목 이름) | P1 |
+| 토스트 | 알림 종류 | 보상 `icon-status-reward`, 해금 `icon-unlock`, 경고 `icon-warn` (알림 문구) | P1 |
+
 ## 7. 제작 파이프라인
 
 1. **스타일 보드(승인 게이트).** 코덱스가 버튼 4종·패널·팝업·탭·아이콘 5종을 한 화면에 모은 무드 보드 1장을 생성한다. 사용자가 색·질감·장식 밀도를 승인하기 전에는 개별 에셋을 대량 생성하지 않는다.
-2. **글자 없는 그림 생성.** 5.1~5.6의 프레임·버튼 바탕·아이콘·두루마리·간판 바탕·테마 배경을 이미지 생성으로 만든다. 글자·숫자·가짜 한자를 그리지 않게 한다.
+2. **글자 없는 그림 생성.** 5.1~5.6·5.8의 테마 배경·프레임·버튼 바탕·아이콘·두루마리·간판 바탕·게이지를 이미지 생성으로 만든다. 테마 배경을 먼저 만들어 이후 에셋을 그 바탕 위에서 검수한다. 글자·숫자·가짜 한자를 그리지 않게 한다.
 3. **정리 스크립트.** 배경 제거, 원본 크기 맞춤, 9-slice 모서리·변 정렬 확인, WebP 변환을 스크립트로 처리한다. 원본 PNG는 `output/ui-elements/source/`, 결과는 `assets/ui/<그룹>/`에 둔다.
 4. **라벨 합성 스크립트.** 5.7의 문구를 폰트로 그려 `ink`/`cream` 스타일로 저장하고, `tag-*`·`sign-*`·`tab-*`은 생성한 바탕 그림 위에 글자를 합성한다.
    - 폰트는 SIL Open Font License 한글 폰트를 쓴다. 제목·태그·간판은 붓글씨 계열(Nanum Brush Script), 버튼 라벨·탭 이름과 한자가 섞인 문구는 명조 계열(Nanum Myeongjo)을 기본으로 한다. 폰트 파일과 라이선스 파일을 `output/ui-elements/fonts/`에 함께 둔다.
    - 합성 후 모든 글자가 폰트에 있는지(빈 네모 없음) 검사한다.
 5. **매니페스트.** `assets/ui/manifest.json`에 `id`, `file`, `kind`(`nine-slice`·`three-slice`·`fixed`·`repeat`), `cssSize`, `sourceSize`, `slice`, `text`(라벨 문구), `priority`를 기록한다.
 6. **미리보기 검수.** `output/ui-elements/preview.html`에서 390px·320px 폭 기준으로 9-slice 프레임을 여러 크기로 늘려 보고, 버튼 바탕+라벨 조합과 탭 선택 상태를 확인한다.
-7. **게임 적용.** 4.4의 토큰 정리·값 교체·배경 레이어를 먼저 적용하고, 매니페스트와 6장 표를 기준으로 CSS·컴포넌트를 바꾼다. 에셋 승인 후 별도로 진행한다.
+7. **게임 적용.** 에셋 승인 후 별도로 진행한다. **가장 먼저 4.4의 테마 배경·색 토큰을 수정**(토큰 정리 → 값 교체 → 배경 레이어)하고, 그 테마 위에서 매니페스트와 6장·6.1 표를 기준으로 프레임·버튼·게이지·아이콘을 바꾼다.
 
 ## 8. 검수 기준
 
@@ -414,6 +580,10 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 - [ ] 같은 역할(주요·보조·이동·위험)의 버튼이 모든 화면에서 같은 바탕을 쓴다. 금색 바탕은 주요 행동에만 쓴다.
 - [ ] 탭 기본/선택, 소탭 기본/선택, 초식 카드 기본/잠김이 색만이 아니라 모양·밝기로도 구분된다.
 - [ ] 등급 프레임 6종의 색이 `GRADE_COLOR`와 같고, 등급명 텍스트와 함께 쓰인다.
+- [ ] 모든 아이콘을 흰 회벽과 흑칠 바탕 양쪽에서 16·20·24px로 줄여도 모양으로 구분되고, 같은 윤곽 두께·광원·시점을 쓴다. 상승/하락, 잠김/열림, 보스/일반은 색이 아니라 모양이 다르다.
+- [ ] 아이콘이 동적 수치·이름을 대신하지 않으며, 아이콘 단독 버튼(닫기·뒤로·설정·정보·펼침)과 재화 이름을 대신한 비용 아이콘에 `aria-label`이 있다.
+- [ ] 게이지 틀을 폭 120~358px로 늘려도 끝 장식이 찌그러지지 않고, 채움·잔상·광택이 틀 안쪽 홈에 정확히 맞는다. 적·보스·내 체력바가 틀 모양만으로 구분된다.
+- [ ] 체력 30% 이하 위험 상태와 잔상 지연이 동작하고, 움직임 줄이기 설정에서는 깜빡임·지연이 없다.
 - [ ] 이미지 버튼마다 `aria-label` 또는 화면 밖 텍스트가 있다.
 - [ ] P0 에셋 전체 용량이 1MB 이하다.
 - [ ] 흰 회벽 바탕 위 본문 글자·보조 글자·증감색이 4.4의 대비 기준을 넘고, 검은 영역 안에서는 on-ink 글자 토큰으로 바뀐다.
@@ -427,11 +597,12 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | 단계 | 범위 | 완료 조건 |
 | --- | --- | --- |
 | 1 | 스타일 보드(흰 회벽 바탕에서 검수) | 사용자 승인 |
-| 2 | P0 에셋: 공통 프레임·띠, 버튼 바탕, P0 테마 배경, 하단 탭, P0 아이콘, 무공 죽간·비단, P0 라벨·제목·태그 | 매니페스트·미리보기·검수 통과 |
-| 2a | 4.4 토큰 정리(화면 변화 없음) | 적용 전후 스크린샷 동일, lint·빌드 통과 |
-| 3 | P0 게임 적용: 4.4 토큰 값 교체·배경 레이어, 헤더·탭바·요약줄·팝업·설정·재화·잠김·전투 탭·무공 탭 | 320/390/430px 실기기 확인, 대비 검사 |
-| 4 | P1 에셋: 장비·문파·상점·기연·환골탈태·스테이지 선택·스토리·토스트 | 매니페스트·미리보기·검수 통과 |
-| 5 | P1 게임 적용 | 모든 탭과 팝업에서 같은 역할의 표면이 일관 |
+| 2 | 테마 배경 에셋(5.6) | 이음매·명도 편차 검수 통과 |
+| 3 | **테마 적용(최우선):** 4.4 토큰 정리(화면 변화 없음) → 토큰 값 교체 → 배경 레이어 | 정리 단계 전후 스크린샷 동일, 교체 후 대비 검사·320/390/430px 확인, lint·빌드 통과 |
+| 4 | P0 에셋: 공통 프레임·띠, 버튼 바탕, 게이지, 하단 탭, P0 아이콘, 무공 죽간·비단, P0 라벨·제목·태그 | 바뀐 테마 위 매니페스트·미리보기·검수 통과 |
+| 5 | P0 게임 적용: 헤더·탭바·요약줄·팝업·설정·재화·잠김·전투 탭(게이지·상태 아이콘)·무공 탭 | 320/390/430px 실기기 확인 |
+| 6 | P1 에셋: 장비·문파·상점·기연·환골탈태·스테이지 선택·스토리·토스트, P1 아이콘·게이지 | 매니페스트·미리보기·검수 통과 |
+| 7 | P1 게임 적용 | 모든 탭과 팝업에서 같은 역할의 표면·아이콘이 일관 |
 
 ## 10. 코덱스 작업 규칙
 
@@ -468,20 +639,44 @@ Mobile game UI element for a Korean wuxia idle RPG. Soft semi-realistic painterl
 4. src/, assets/는 건드리지 않는다. 결과 이미지 경로와 요약만 보고하고 멈춰. 사용자 승인 전에는 다음 단계로 가지 않는다.
 ```
 
-### 11.3 프롬프트 2 — P0 프레임·띠·버튼 바탕
+### 11.3 프롬프트 2 — 테마 배경
 
 ```text
 저장소: D:\dev\murim-simulator
-AGENTS.md와 wiki/concepts/UI-Element-대체-기획서.md를 읽어. 승인된 스타일 보드는 output/ui-elements/style-board/style-board-v1.png이다. 이 보드의 색·질감·장식 밀도를 기준으로 맞춘다.
+AGENTS.md와 wiki/concepts/UI-Element-대체-기획서.md(2.4, 4.4, 5.6장)를 읽어. 스타일 기준은 승인된 output/ui-elements/style-board/style-board-v1.png이다. 테마 배경은 이후 모든 UI Element를 검수할 바탕이므로 가장 먼저 만든다.
 
-목표: 기획서 5.1 표에서 우선이 P0인 항목 전체와 5.2 표의 버튼 바탕 7종을 만든다.
+목표: 기획서 5.6 표의 테마 배경 4종을 만든다. 앱 본문은 흰 회벽, 위아래 띠와 강조 영역은 먹색이라는 2.4장의 명도 구조를 지킨다.
+
+1. theme-app-wall (512×512)
+   - 공통 스타일 문장 뒤에: "Seamless tileable texture of white lime-plaster wall mixed with faint hanji paper fibers, very low contrast, almost flat, no stains, no cracks, no objects." 투명이 아니라 불투명 흰색 질감이다.
+   - 스크립트로 이음매를 검사한다: 2×2로 이어 붙인 이미지를 output/ui-elements/source/theme-app-wall-tile-check.png로 저장하고, 명도 편차가 평균 대비 ±4% 안인지 계산한다. 벗어나면 대비를 줄여 다시 만든다.
+   - 손실 WebP 품질 85로 assets/ui/theme/theme-app-wall.webp
+2. theme-wall-ink-branch (480×640, 투명)
+   - "Single black ink brush painting of a plum blossom branch entering from the top-right corner, sparse and elegant, a few small blossoms in pale grey ink, like a mural painted on a white palace wall, isolated on transparent background."
+   - 가지가 오른쪽 위 모서리에서 시작해 캔버스 가운데를 넘지 않게 한다. 무손실 WebP로 assets/ui/theme/theme-wall-ink-branch.webp
+3. theme-outer-landscape (1920×1200)
+   - "Wide ink-wash landscape: white mist, black ink mountain peaks and silhouettes of tiered clay-tile pavilions on cliffs at the left and right sides, the central vertical band (about 30 percent of width) left as calm empty white mist." 불투명 이미지.
+   - 손실 WebP 품질 80으로 assets/ui/theme/theme-outer-landscape.webp. 용량을 보고한다.
+4. theme-divider-ink (716×24, 투명)
+   - "Single horizontal black ink brush stroke, thick in the middle and tapering at both ends, isolated on transparent background." 좌우 slice 64 안에 붓끝이 들어가게 한다. 무손실 WebP로 assets/ui/theme/theme-divider-ink.webp
+5. manifest.json에 추가하고(kind: repeat|fixed|three-slice), preview.html의 바탕을 theme-app-wall로 바꾼다. 390px 폭 앱 기둥 오른쪽 위에 theme-wall-ink-branch, 넓은 화면 바깥에 theme-outer-landscape를 깔고, 그 위에 한지색(#f6eedb) 카드 상자와 먹색 본문 글자(#1f1d1b), 흑칠색(#1c1b1d) 상단·하단 띠를 CSS로 그려 흰/검 명도 구조를 확인한다. 프레임 에셋은 다음 단계에서 이 미리보기에 추가한다.
+6. 기획서 8장의 테마 관련 검수 항목을 확인해 보고한다. src/는 수정하지 않는다.
+```
+
+### 11.4 프롬프트 3 — P0 프레임·띠·버튼 바탕·게이지
+
+```text
+저장소: D:\dev\murim-simulator
+AGENTS.md와 wiki/concepts/UI-Element-대체-기획서.md를 읽어. 승인된 스타일 보드는 output/ui-elements/style-board/style-board-v1.png이다. 이 보드의 색·질감·장식 밀도를 기준으로 맞추고, 앞 단계에서 만든 assets/ui/theme/ 테마 배경 위에서 검수한다.
+
+목표: 기획서 5.1 표에서 우선이 P0인 항목 전체, 5.2 표의 버튼 바탕 7종, 5.8 표에서 우선이 P0인 게이지 에셋 전체를 만든다.
 
 규칙
 - 모든 이미지 생성 요청 앞에 기획서 11.1 공통 스타일 문장을 붙인다.
 - 각 에셋은 표의 원본 크기로 저장한다. 생성 해상도가 다르면 전체를 한 번 같은 비율로 맞추고, 필요하면 투명 여백으로 캔버스를 맞춘다. 가로세로 비율을 바꿔 늘리지 않는다.
 - 9-slice/3-slice 에셋은 표의 slice 값 안쪽에만 모서리 장식을 둔다. 변 구간은 늘려도 이음매가 안 보이는 곧은 목재결·기와줄·벽돌 줄눈으로, 가운데 구간은 글자가 올라가도 읽히게 무늬를 약하게 만든다.
 - 버튼 바탕은 좌우 끝 slice(원본 40px) 안에 장식을 두고 가운데는 가로로 늘릴 수 있게 한다. 위아래 볼록한 입체감은 유지한다.
-- 반복 채움(fill-bar-*)은 좌우 끝이 이어지게 만든다.
+- 반복 채움(fill-*)과 광택(overlay-gauge-gloss)은 좌우 끝이 이어지게 만든다.
 - 글자·숫자·기호를 그리지 않는다.
 
 에셋별 생성 문장(공통 스타일 문장 뒤에 붙임)
@@ -493,9 +688,15 @@ AGENTS.md와 wiki/concepts/UI-Element-대체-기획서.md를 읽어. 승인된 �
 - frame-tabbar: "Horizontal three-slice bottom bar: black lacquered wooden railing with simple balusters over charcoal stone floor slabs, carved end posts on left and right."
 - frame-summary-strip: "Horizontal three-slice thin black lacquered wooden plank strip with small gold studs at both ends."
 - frame-battle-stage: "Square nine-slice picture frame: black lacquered wood with carved lattice window corners and thin gold inner line, transparent center."
-- frame-bar: "Horizontal three-slice gauge frame: bronze rim with rounded end caps, transparent inner channel."
-- fill-bar-hp: "Seamless horizontally tileable glossy red lacquer gauge fill strip."
-- fill-bar-exp: "Seamless horizontally tileable soft jade green gauge fill strip."
+- frame-gauge-enemy: "Horizontal three-slice health bar frame: black lacquered wood rim with small bronze studs, dark empty inner channel."
+- frame-gauge-boss: "Horizontal three-slice boss health bar frame: black lacquer rim with ornate gold trim, a small red demon mask ornament on the left end, a knotted tassel on the right end, dark empty inner channel."
+- frame-gauge-player: "Horizontal three-slice health bar frame: bronze rim with a round jade bead ornament on the left end, dark empty inner channel."
+- frame-gauge-exp: "Very thin horizontal three-slice bronze line gauge frame, dark empty inner channel."
+- fill-hp-enemy: "Seamless horizontally tileable glossy red lacquer fill strip." / fill-hp-enemy-trail: 같은 무늬를 한지빛(#f1d9b8) 쪽으로 밝게 만든 버전
+- fill-hp-boss: "Seamless horizontally tileable deep crimson lacquer fill strip with faint gold flecks." / fill-hp-boss-trail: 밝은 버전
+- fill-hp-player: "Seamless horizontally tileable warm blood-red fill strip with subtle flowing grain." / fill-hp-player-trail: 밝은 버전
+- fill-exp: "Seamless horizontally tileable soft jade green fill strip."
+- overlay-gauge-gloss: "Seamless horizontally tileable soft white highlight band on the upper third, semi-transparent, transparent elsewhere."
 - frame-portrait: "Round portrait frame: bronze ring with gold inner bead line, transparent center."
 - btn-primary-tile: "Horizontal three-slice button plate made of golden glazed roof tiles with gold trim edges, slightly convex."
 - btn-secondary-brick: "Horizontal three-slice button plate made of charcoal grey bricks with dark wood trim, slightly convex."
@@ -512,58 +713,35 @@ AGENTS.md와 wiki/concepts/UI-Element-대체-기획서.md를 읽어. 승인된 �
    - 원본 크기가 표와 같은지 검사
    - 프레임·질감은 손실 WebP(quality 90). 결과: assets/ui/frame/<id>.webp, assets/ui/button/<id>.webp
 3. output/ui-elements/tools/build_manifest.py로 assets/ui/manifest.json을 만든다. 필드: id, file, kind(nine-slice|three-slice|fixed|repeat), cssSize{w,h}, sourceSize{w,h}, slice{top,right,bottom,left}, priority.
-4. output/ui-elements/preview.html을 만들어 각 프레임을 CSS border-image로 390px·320px 폭 컨테이너 안에서 작게/크게 늘려 보여준다. 미리보기 바탕은 기획서 4.4의 --surface-wall(#efebe3)로 둔다. 버튼 바탕은 폭 120px·180px·320px으로 보여준다.
+4. output/ui-elements/preview.html을 만들어 각 프레임을 CSS border-image로 390px·320px 폭 컨테이너 안에서 작게/크게 늘려 보여준다. 미리보기 바탕은 기획서 4.4의 --surface-wall(#efebe3)로 둔다. 버튼 바탕은 폭 120px·180px·320px으로 보여준다. 게이지는 기획서 5.8 레이어 순서(틀 안쪽 홈 → 잔상 → 채움 → 광택 → 틀 → 수치 텍스트)로 겹쳐 폭 120px·240px·358px, 채움 100%·55%·20%(위험 상태)로 보여주고, 잔상이 0.35초 늦게 줄어드는 동작을 버튼으로 시험할 수 있게 한다. 틀 안쪽 홈 위치를 manifest의 inset 필드로 기록한다.
 5. 기획서 8장 검수 항목 중 이 단계에 해당하는 것을 확인하고, 파일 목록·검수 결과·기준 미달 항목을 보고한다. src/는 수정하지 않는다.
 ```
 
-### 11.4 프롬프트 3 — 테마 배경
+### 11.5 프롬프트 4 — P0 아이콘·탭 바탕·무공 두루마리
 
 ```text
 저장소: D:\dev\murim-simulator
-AGENTS.md와 wiki/concepts/UI-Element-대체-기획서.md(2.4, 4.4, 5.6장)를 읽어. 스타일 기준은 승인된 output/ui-elements/style-board/style-board-v1.png와 assets/ui/frame·button 에셋이다.
+AGENTS.md와 wiki/concepts/UI-Element-대체-기획서.md(특히 5.4 아이콘 규칙과 표, 6.1)를 읽어. 스타일 기준은 output/ui-elements/style-board/style-board-v1.png와 이미 만든 assets/ui/theme·frame·button 에셋이다.
 
-목표: 기획서 5.6 표의 테마 배경 4종을 만든다. 앱 본문은 흰 회벽, 위아래 띠와 강조 영역은 먹색이라는 2.4장의 명도 구조를 지킨다.
+목표: 기획서 5.4의 모든 표에서 우선이 P0인 아이콘 전부, 하단 탭 바탕 2종, 5.5 표의 P0 두루마리 3종을 만든다.
 
-1. theme-app-wall (512×512)
-   - 공통 스타일 문장 뒤에: "Seamless tileable texture of white lime-plaster wall mixed with faint hanji paper fibers, very low contrast, almost flat, no stains, no cracks, no objects." 투명이 아니라 불투명 흰색 질감이다.
-   - 스크립트로 이음매를 검사한다: 2×2로 이어 붙인 이미지를 output/ui-elements/source/theme-app-wall-tile-check.png로 저장하고, 명도 편차가 평균 대비 ±4% 안인지 계산한다. 벗어나면 대비를 줄여 다시 만든다.
-   - 손실 WebP 품질 85로 assets/ui/theme/theme-app-wall.webp
-2. theme-wall-ink-branch (480×640, 투명)
-   - "Single black ink brush painting of a plum blossom branch entering from the top-right corner, sparse and elegant, a few small blossoms in pale grey ink, like a mural painted on a white palace wall, isolated on transparent background."
-   - 가지가 오른쪽 위 모서리에서 시작해 캔버스 가운데를 넘지 않게 한다. 무손실 WebP로 assets/ui/theme/theme-wall-ink-branch.webp
-3. theme-outer-landscape (1920×1200)
-   - "Wide ink-wash landscape: white mist, black ink mountain peaks and silhouettes of tiered clay-tile pavilions on cliffs at the left and right sides, the central vertical band (about 30 percent of width) left as calm empty white mist." 불투명 이미지.
-   - 손실 WebP 품질 80으로 assets/ui/theme/theme-outer-landscape.webp. 용량을 보고한다.
-4. theme-divider-ink (716×24, 투명)
-   - "Single horizontal black ink brush stroke, thick in the middle and tapering at both ends, isolated on transparent background." 좌우 slice 64 안에 붓끝이 들어가게 한다. 무손실 WebP로 assets/ui/theme/theme-divider-ink.webp
-5. manifest.json에 추가하고(kind: repeat|fixed|three-slice), preview.html의 바탕을 theme-app-wall로 바꾼다. 390px 폭 앱 기둥 오른쪽 위에 theme-wall-ink-branch, 넓은 화면 바깥에 theme-outer-landscape를 깔고, 그 위에 frame-panel-hanji 카드와 먹색 본문 글자(#1f1d1b), frame-header-eave·frame-tabbar를 올려 흰/검 명도 구조를 확인한다.
-6. 기획서 8장의 테마 관련 검수 항목을 확인해 보고한다. src/는 수정하지 않는다.
-```
-
-### 11.5 프롬프트 4 — P0 아이콘·탭 그림·무공 두루마리
-
-```text
-저장소: D:\dev\murim-simulator
-AGENTS.md와 wiki/concepts/UI-Element-대체-기획서.md를 읽어. 스타일 기준은 output/ui-elements/style-board/style-board-v1.png와 이미 만든 assets/ui/frame·button 에셋이다.
-
-목표: 기획서 5.4 표의 P0 아이콘, 5.5 표의 P0 두루마리 3종, 하단 탭용 글자 없는 바탕·아이콘 그림을 만든다.
-
-1. P0 아이콘(icon-close, icon-back, icon-settings, icon-lock, icon-dropdown, icon-badge, icon-gold, icon-chi, icon-elixir, icon-contribution, icon-stones)
-   - 공통 스타일 문장 뒤에 "Single game icon, centered, bold readable silhouette at 24px, dark brown outline, bronze and gold accents, isolated on transparent background." 와 표의 모티프를 영어로 붙인다.
+1. P0 아이콘
+   - 대상은 5.4의 탐색·기능, 재화·재료, 능력치, 전투·진행 상태, 행동 보조, 증감·알림 표에서 우선이 P0인 id 전부다. 기획서 표에서 스크립트로 목록을 추출해 빠진 id가 없게 한다.
+   - 공통 스타일 문장 뒤에 "Single game icon, centered, bold readable silhouette, consistent dark brown ink outline (#2a1d16), bronze and gold base fill with one meaning color, front view, soft top-left light, isolated on transparent background." 와 표의 모티프를 영어로 옮겨 붙인다.
+   - 표의 크기가 16 이하인 아이콘은 "very simple silhouette readable at 16px, minimal inner detail"을 추가한다.
    - icon-close는 청동 원판 없이 X 표식만 만든다(원판은 btn-round를 겹쳐 쓴다).
-   - 원본은 표의 원본 크기 정사각형이고, 아이콘 외곽과 캔버스 가장자리 사이에 원본 폭의 6% 이상 투명 여백을 둔다.
-   - 모든 아이콘은 같은 윤곽선 두께·광원·시점을 쓴다. 한 장에 모은 비교 이미지 output/ui-elements/source/icon-sheet-check.png를 만든다.
-   - 무손실 WebP로 assets/ui/icon/<id>.webp에 저장한다.
-2. 탭 그림(글자 없음)
-   - tab-art-gong(검), tab-art-gear(갑주), tab-art-sect(문파 전각), tab-art-shop(약방 목패)을 아이콘 규칙으로 144×144 원본으로 만든다. 저장: output/ui-elements/source/tab-art-<key>.png
-   - 탭 바탕 tab-bg(짙은 목재 판, 292×192)와 tab-bg-active(남색 현판 조각 + 금테 + 위쪽 금색 선, 292×192)를 만든다. 저장: output/ui-elements/source/
-   - 글자 합성은 다음 단계에서 하므로 여기서는 assets/에 넣지 않는다.
+   - 원본은 (표의 크기 × 3)px 정사각형이고, 아이콘 외곽과 캔버스 가장자리 사이에 원본 폭의 6% 이상 투명 여백을 둔다.
+   - 검수 이미지 output/ui-elements/source/icon-sheet-check.png를 만든다. 모든 P0 아이콘을 16·20·24px로 축소해 흰 회벽(theme-app-wall)과 흑칠(#1c1b1d) 바탕에 각각 나열하고, 윤곽 두께·광원·시점이 같은지, icon-lock/icon-status-boss/icon-status-auto처럼 헷갈리기 쉬운 아이콘이 모양만으로 구분되는지 확인한다.
+   - 무손실 WebP로 assets/ui/icon/<id>.webp에 저장한다. 원본 PNG는 output/ui-elements/source/<id>.png
+2. 탭 바탕(글자·아이콘 없음)
+   - tab-bg(흑칠 목재 판, 292×192)와 tab-bg-active(남색 현판 조각 + 금테 + 위쪽 금색 선, 292×192)를 만든다. 저장: output/ui-elements/source/
+   - 탭 아이콘은 1항의 icon-tab-gong·icon-tab-gear·icon-tab-sect·icon-tab-shop을 쓴다. 탭 합성은 다음 단계에서 하므로 탭 바탕은 assets/에 넣지 않는다.
 3. 무공 두루마리
    - scroll-bamboo-card: "Horizontal nine-slice card made of vertical bamboo slips tied with two cords at top and bottom, rolled bamboo slip bundles at left and right ends, warm aged bamboo color, flat readable center."
    - scroll-bamboo-card-locked: 같은 구도로 "faded desaturated bamboo, loosened cords"를 만들어 기본과 형태·slice가 같게 한다.
    - scroll-silk-picker: "Horizontal three-slice unrolled silk scroll with wooden rollers and small tassels at both ends, cream silk center."
    - 원본 크기·slice는 5.5 표를 따른다. 손실 WebP로 assets/ui/scroll/<id>.webp에 저장한다.
-4. manifest.json과 preview.html에 추가한다. 두루마리는 폭 320px·358px, 높이 140px·200px로 늘려 본다.
+4. manifest.json과 preview.html에 추가한다. preview에는 6.1 표의 P0 위치 예시(전투 상태 줄 아이콘+문구, 초식 카드 효과 줄의 능력치 아이콘+수치+icon-diff-up, 연마 버튼의 icon-action-train과 재화 아이콘 비용 줄, 설정 팝업 효과음 줄)를 함께 보여준다. 두루마리는 폭 320px·358px, 높이 140px·200px로 늘려 본다.
 5. 검수 결과와 기준 미달 항목을 보고한다. src/는 수정하지 않는다.
 ```
 
@@ -589,7 +767,7 @@ AGENTS.md와 wiki/concepts/UI-Element-대체-기획서.md(3장, 5.3, 5.7, 7장 4
    - 먼저 이미지 생성으로 글자 없는 낙관 바탕 2종을 만든다(공통 스타일 문장 사용): "Small rectangular red cinnabar seal stamp shape with slightly rough inked edges, empty center"(primary·secondary 공용), "Small rectangular dark crimson seal stamp with thin gold border, empty center"(capstone). 108×60 원본으로 맞춘다.
    - render_labels.py로 1차·2차(흰 글자 #fff8e8), 오의(금 글자 #f4d66e)를 가운데에 합성해 assets/ui/label/tag-tier-*.webp로 저장한다.
 4. 탭 8장(tab-gong, tab-gong-active, tab-gear, tab-gear-active, tab-sect, tab-sect-active, tab-shop, tab-shop-active)
-   - output/ui-elements/source/의 tab-bg·tab-bg-active 위에 tab-art-<key>를 위쪽 가운데(원본 72px)에 올리고, 아래에 무공·장비·문파·상점 글자(원본 글자 높이 36px)를 합성한다.
+   - output/ui-elements/source/의 tab-bg·tab-bg-active 위에 icon-tab-<key>(원본 output/ui-elements/source/icon-tab-<key>.png)를 위쪽 가운데(원본 72px)에 올리고, 아래에 무공·장비·문파·상점 글자(원본 글자 높이 36px)를 합성한다.
    - 기본: 아이콘·글자 모두 흐린 청동색(#a89a7c 계열). 선택: 아이콘 원색 + 금색(#f4d66e) 글자 + 짙은 윤곽.
    - 292×192 원본, 무손실 WebP assets/ui/tab/<id>.webp
 5. manifest.json에 kind "fixed"와 text(문구) 필드로 추가한다.
@@ -603,12 +781,13 @@ AGENTS.md와 wiki/concepts/UI-Element-대체-기획서.md(3장, 5.3, 5.7, 7장 4
 저장소: D:\dev\murim-simulator
 AGENTS.md와 wiki/concepts/UI-Element-대체-기획서.md를 읽어. 스타일 기준은 승인된 스타일 보드와 assets/ui/의 P0 에셋이다. P0에서 만든 output/ui-elements/tools/ 스크립트를 재사용한다.
 
-목표: 기획서 5.1·5.4·5.5·5.7 표에서 우선이 P1인 항목 전부를 만든다. 5.6 테마 배경은 프롬프트 3에서 이미 만들었으므로 제외한다.
+목표: 기획서 5.1·5.4·5.5·5.7·5.8 표에서 우선이 P1인 항목 전부를 만든다. 5.6 테마 배경은 프롬프트 2에서 이미 만들었으므로 제외한다.
 
 1. 그림 생성(글자 없음, 공통 스타일 문장 사용)
-   - fill-bar-sect, frame-banner-silk, frame-toast-note
-   - icon-charm(부적의 붓 획은 읽을 수 있는 글자가 아닌 문양), icon-slot-weapon, icon-slot-body, icon-slot-head, icon-slot-arm, icon-slot-foot, icon-slot-waist, icon-slot-neck, icon-slot-ring, icon-gacha, icon-rebirth
-     · 장비 슬롯 아이콘 8종은 같은 청동색 단일 톤 실루엣 + 금색 포인트로 통일하고 등급 색을 넣지 않는다.
+   - frame-banner-silk, frame-toast-note
+   - 5.4의 모든 표에서 우선이 P1인 아이콘 전부. 프롬프트 4의 아이콘 규칙·크기·검수 이미지 방식을 그대로 쓰고, 기존 P0 아이콘과 나란히 놓아 윤곽·광원·시점이 같은지 확인한다.
+     · 장비 슬롯 아이콘 8종은 같은 청동색 단일 톤 실루엣 + 금색 포인트로 통일하고 등급 색을 넣지 않는다. icon-charm의 붓 획은 읽을 수 있는 글자가 아닌 문양으로 그린다.
+   - frame-gauge-sect, fill-sect(5.8 표)
    - scroll-parchment-dialog, panel-armory, frame-slot, panel-gacha-card-back, panel-stage-map
    - frame-grade-하품·중품·상품·절품·신품·선품: frame-slot과 같은 형태·slice를 쓰고 오른쪽 위 보석 1개와 안쪽 얇은 선만 등급색으로 다르게 한다. 보석·선 영역을 가진 기본 1장을 생성한 뒤, src/game/gradeData.ts의 GRADE_COLOR 값으로 스크립트가 색을 입혀 6장을 만든다.
    - sign-sect-qingyun 바탕: "Wide deep navy lacquer signboard plaque with ornate gold frame and small cloud carvings, empty center"
@@ -616,7 +795,7 @@ AGENTS.md와 wiki/concepts/UI-Element-대체-기획서.md를 읽어. 스타일 �
 2. 합성
    - 5.7 표의 P1 label-*, title-*, section-*을 render_labels.py로 만든다.
    - sign-sect-qingyun(청운문, 금 글자 #f4d66e, Nanum Brush Script)과 sign-shop-elixir(영약 교환소, ink 스타일)를 바탕 위에 합성한다. 원본 1074×216.
-3. 크기·slice·저장 위치·WebP 규칙, manifest.json, preview.html 추가는 P0 단계와 같다. preview에는 장비 슬롯 9개 배치(반지 L/R은 icon-slot-ring 공유), 등급 테 6종, 문파 간판, 상점 간판, 대화창을 추가한다.
+3. 크기·slice·저장 위치·WebP 규칙, manifest.json, preview.html 추가는 P0 단계와 같다. preview에는 장비 슬롯 9개 배치(반지 L/R은 icon-slot-ring 공유), 등급 테 6종, 문파 간판·문파 단계 게이지, 상점 간판, 대화창, 6.1 표의 P1 아이콘 위치 예시를 추가한다.
 4. 기획서 8장 검수 항목 전체를 확인해 파일 목록·검수 결과·기준 미달 항목을 보고한다. src/는 수정하지 않는다.
 ```
 
