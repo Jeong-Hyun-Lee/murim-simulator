@@ -1,196 +1,180 @@
 {
   "frames": [
     {
-      "filename": "mokhyeon_v2_death_00",
       "frame": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 1,
+        "y": 950,
+        "w": 277,
+        "h": 528
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 133,
+        "y": 277,
+        "w": 277,
+        "h": 528
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 90
     },
     {
-      "filename": "mokhyeon_v2_death_01",
       "frame": {
-        "x": 1024,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 937,
+        "y": 990,
+        "w": 277,
+        "h": 524
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 131,
+        "y": 281,
+        "w": 277,
+        "h": 524
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 90
     },
     {
-      "filename": "mokhyeon_v2_death_02",
       "frame": {
-        "x": 2048,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 1,
+        "y": 1,
+        "w": 463,
+        "h": 505
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 71,
+        "y": 300,
+        "w": 463,
+        "h": 505
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 90
     },
     {
-      "filename": "mokhyeon_v2_death_03",
       "frame": {
-        "x": 3072,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 1,
+        "y": 508,
+        "w": 460,
+        "h": 440
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 71,
+        "y": 365,
+        "w": 460,
+        "h": 440
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 90
     },
     {
-      "filename": "mokhyeon_v2_death_04",
       "frame": {
-        "x": 0,
-        "y": 1024,
-        "w": 1024,
-        "h": 1024
+        "x": 466,
+        "y": 1,
+        "w": 469,
+        "h": 495
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 71,
+        "y": 311,
+        "w": 469,
+        "h": 495
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 120
     },
     {
-      "filename": "mokhyeon_v2_death_05",
       "frame": {
-        "x": 1024,
-        "y": 1024,
-        "w": 1024,
-        "h": 1024
+        "x": 937,
+        "y": 495,
+        "w": 469,
+        "h": 493
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 71,
+        "y": 313,
+        "w": 469,
+        "h": 493
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 120
     },
     {
-      "filename": "mokhyeon_v2_death_06",
       "frame": {
-        "x": 2048,
-        "y": 1024,
-        "w": 1024,
-        "h": 1024
+        "x": 466,
+        "y": 498,
+        "w": 469,
+        "h": 492
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 71,
+        "y": 314,
+        "w": 469,
+        "h": 492
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 120
     },
     {
-      "filename": "mokhyeon_v2_death_07",
       "frame": {
-        "x": 3072,
-        "y": 1024,
-        "w": 1024,
-        "h": 1024
+        "x": 937,
+        "y": 1,
+        "w": 470,
+        "h": 492
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 70,
+        "y": 314,
+        "w": 470,
+        "h": 492
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 360
     }
   ],
   "meta": {
-    "app": "murim-simulator",
-    "version": "2",
     "image": "mokhyeon-v2-death-sheet.png",
-    "format": "RGBA8888",
-    "size": {
-      "w": 4096,
-      "h": 2048
-    },
-    "scale": "1",
-    "frameSize": {
-      "w": 1024,
-      "h": 1024
+    "frameTags": [
+      {
+        "name": "death",
+        "from": 0,
+        "to": 7
+      }
+    ],
+    "character": "mokhyeon-v2",
+    "cellSize": {
+      "w": 920,
+      "h": 920
     },
     "anchor": {
       "x": 0.29296875,
       "y": 0.875
     },
-    "root": {
-      "x": 300,
-      "y": 896
+    "rootPx": {
+      "x": 269.53125,
+      "y": 805.0
     },
-    "notes": "Original key poses with subtle root-anchored in-between warps; RGBA 1024px cells.",
-    "frameTags": [
-      {
-        "name": "death",
-        "from": 0,
-        "to": 7,
-        "direction": "forward"
-      }
-    ]
+    "notes": "Trimmed packed sheet. Each frame restores into the 920px cell via spriteSourceSize/sourceSize."
   }
 }

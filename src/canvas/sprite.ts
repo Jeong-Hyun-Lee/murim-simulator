@@ -3,6 +3,9 @@ import { AnimatedSprite, Assets, Rectangle, Texture } from 'pixi.js';
 
 interface AsepriteFrame {
   frame: { x: number; y: number; w: number; h: number };
+  // trim 내보내기 시트만 가진다: 잘린 프레임이 원래 셀(sourceSize)의 어디에 있었는지.
+  spriteSourceSize?: { x: number; y: number; w: number; h: number };
+  sourceSize?: { w: number; h: number };
   duration: number;
 }
 
@@ -32,6 +35,12 @@ export const loadAnimatedSprite = async (
     texture: new Texture({
       source: baseTexture.source,
       frame: new Rectangle(f.frame.x, f.frame.y, f.frame.w, f.frame.h),
+      // 잘린 프레임을 원래 셀 크기·위치로 복원해 anchor가 프레임마다 같은 루트를 가리키게 한다.
+      ...(f.sourceSize &&
+        f.spriteSourceSize && {
+          orig: new Rectangle(0, 0, f.sourceSize.w, f.sourceSize.h),
+          trim: new Rectangle(f.spriteSourceSize.x, f.spriteSourceSize.y, f.frame.w, f.frame.h),
+        }),
     }),
     time: f.duration,
   }));

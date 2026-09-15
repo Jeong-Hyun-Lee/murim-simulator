@@ -1,182 +1,173 @@
 {
   "frames": [
     {
-      "filename": "mokhyeon_v2_attack_00",
       "frame": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 1305,
+        "y": 505,
+        "w": 277,
+        "h": 528
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 133,
+        "y": 277,
+        "w": 277,
+        "h": 528
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 80
     },
     {
-      "filename": "mokhyeon_v2_attack_01",
       "frame": {
-        "x": 1024,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 1,
+        "y": 980,
+        "w": 283,
+        "h": 486
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 117,
+        "y": 319,
+        "w": 283,
+        "h": 486
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 80
     },
     {
-      "filename": "mokhyeon_v2_attack_02",
       "frame": {
-        "x": 2048,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 1,
+        "y": 466,
+        "w": 432,
+        "h": 512
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 54,
+        "y": 293,
+        "w": 432,
+        "h": 512
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 80
     },
     {
-      "filename": "mokhyeon_v2_attack_03",
       "frame": {
-        "x": 3072,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 880,
+        "y": 505,
+        "w": 423,
+        "h": 482
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 64,
+        "y": 323,
+        "w": 423,
+        "h": 482
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 80
     },
     {
-      "filename": "mokhyeon_v2_attack_04",
       "frame": {
-        "x": 0,
-        "y": 1024,
-        "w": 1024,
-        "h": 1024
+        "x": 544,
+        "y": 1,
+        "w": 494,
+        "h": 492
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 39,
+        "y": 313,
+        "w": 494,
+        "h": 492
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 80
     },
     {
-      "filename": "mokhyeon_v2_attack_05",
       "frame": {
-        "x": 1024,
-        "y": 1024,
-        "w": 1024,
-        "h": 1024
+        "x": 1,
+        "y": 1,
+        "w": 541,
+        "h": 463
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 29,
+        "y": 342,
+        "w": 541,
+        "h": 463
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 80
     },
     {
-      "filename": "mokhyeon_v2_attack_06",
       "frame": {
-        "x": 2048,
-        "y": 1024,
-        "w": 1024,
-        "h": 1024
+        "x": 1040,
+        "y": 1,
+        "w": 459,
+        "h": 502
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 74,
+        "y": 303,
+        "w": 459,
+        "h": 502
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 80
     },
     {
-      "filename": "mokhyeon_v2_attack_07",
       "frame": {
-        "x": 3072,
-        "y": 1024,
-        "w": 1024,
-        "h": 1024
+        "x": 435,
+        "y": 495,
+        "w": 443,
+        "h": 467
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 77,
+        "y": 338,
+        "w": 443,
+        "h": 467
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 80
     },
     {
-      "filename": "mokhyeon_v2_attack_08",
       "frame": {
-        "x": 0,
-        "y": 2048,
-        "w": 1024,
-        "h": 1024
+        "x": 435,
+        "y": 964,
+        "w": 268,
+        "h": 530
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 123,
+        "y": 275,
+        "w": 268,
+        "h": 530
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 80
     }
@@ -187,27 +178,22 @@
       {
         "name": "attack",
         "from": 0,
-        "to": 8,
-        "direction": "forward"
+        "to": 8
       }
     ],
     "character": "mokhyeon-v2",
     "cellSize": {
-      "w": 1024,
-      "h": 1024
+      "w": 920,
+      "h": 920
     },
     "anchor": {
       "x": 0.29296875,
       "y": 0.875
     },
     "rootPx": {
-      "x": 300,
-      "y": 896
+      "x": 269.53125,
+      "y": 805.0
     },
-    "notes": "Nine visibly distinct root-anchored poses. Frames 2, 4, and 8 add stronger preparation, acceleration, and recovery motion while preserving the original key art.",
-    "size": {
-      "w": 4096,
-      "h": 3072
-    }
+    "notes": "Trimmed packed sheet. Each frame restores into the 920px cell via spriteSourceSize/sourceSize."
   }
 }

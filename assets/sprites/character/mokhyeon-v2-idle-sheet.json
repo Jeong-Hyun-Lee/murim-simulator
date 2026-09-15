@@ -2,55 +2,115 @@
   "frames": [
     {
       "frame": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 287,
+        "y": 533,
+        "w": 277,
+        "h": 528
+      },
+      "spriteSourceSize": {
+        "x": 133,
+        "y": 277,
+        "w": 277,
+        "h": 528
+      },
+      "sourceSize": {
+        "w": 920,
+        "h": 920
       },
       "duration": 160
     },
     {
       "frame": {
-        "x": 1024,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 1,
+        "y": 531,
+        "w": 284,
+        "h": 530
+      },
+      "spriteSourceSize": {
+        "x": 129,
+        "y": 275,
+        "w": 284,
+        "h": 530
+      },
+      "sourceSize": {
+        "w": 920,
+        "h": 920
       },
       "duration": 160
     },
     {
       "frame": {
-        "x": 2048,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 593,
+        "y": 1,
+        "w": 283,
+        "h": 538
+      },
+      "spriteSourceSize": {
+        "x": 131,
+        "y": 267,
+        "w": 283,
+        "h": 538
+      },
+      "sourceSize": {
+        "w": 920,
+        "h": 920
       },
       "duration": 160
     },
     {
       "frame": {
-        "x": 3072,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 299,
+        "y": 1,
+        "w": 292,
+        "h": 530
+      },
+      "spriteSourceSize": {
+        "x": 127,
+        "y": 276,
+        "w": 292,
+        "h": 530
+      },
+      "sourceSize": {
+        "w": 920,
+        "h": 920
       },
       "duration": 160
     },
     {
       "frame": {
-        "x": 0,
-        "y": 1024,
-        "w": 1024,
-        "h": 1024
+        "x": 1,
+        "y": 1,
+        "w": 296,
+        "h": 528
+      },
+      "spriteSourceSize": {
+        "x": 123,
+        "y": 277,
+        "w": 296,
+        "h": 528
+      },
+      "sourceSize": {
+        "w": 920,
+        "h": 920
       },
       "duration": 160
     },
     {
       "frame": {
-        "x": 1024,
-        "y": 1024,
-        "w": 1024,
-        "h": 1024
+        "x": 566,
+        "y": 541,
+        "w": 268,
+        "h": 530
+      },
+      "spriteSourceSize": {
+        "x": 123,
+        "y": 275,
+        "w": 268,
+        "h": 530
+      },
+      "sourceSize": {
+        "w": 920,
+        "h": 920
       },
       "duration": 160
     }
@@ -66,17 +126,17 @@
     ],
     "character": "mokhyeon-v2",
     "cellSize": {
-      "w": 1024,
-      "h": 1024
+      "w": 920,
+      "h": 920
     },
     "anchor": {
       "x": 0.29296875,
       "y": 0.875
     },
     "rootPx": {
-      "x": 300,
-      "y": 896
+      "x": 269.53125,
+      "y": 805.0
     },
-    "notes": "Generated candidate. All frames use one 1024px cell; actual alpha safety margins are verified at 32px or more."
+    "notes": "Trimmed packed sheet. Each frame restores into the 920px cell via spriteSourceSize/sourceSize."
   }
 }

@@ -34,10 +34,11 @@ const ENEMY_Y = GROUND_Y;
 const HIT_BURST_LIFETIME_MS = 260;
 const NORMAL_HIT_EFFECT_SCALE = 0.22;
 const CRITICAL_HIT_EFFECT_SCALE = 0.16;
-// 목현 v2는 1024px 공통 셀 안에서 신체 높이가 약 587px이므로, 무대의 목표 표시 높이 256px에 맞춘다.
+// 목현 v2는 920px 셀(신체 높이 약 527px)을 0.5배로 표시해 무대 목표 높이 약 256px에 맞춘다.
+// 캔버스 렌더 배율 상한 2배에서 텍스처 1px이 화면 1px이 되는 크기라 해상도 낭비가 없다.
 // 적은 기존 시트 규격을 유지한다.
 // 화면에서는 두 인물의 몸통 간 거리를 좁히되, 두목은 잡몹보다 조금 크게 유지한다.
-const PLAYER_SCALE = 0.45;
+const PLAYER_SCALE = 0.5;
 const ENEMY_BOSS_SCALE = 1.07;
 const ENEMY_MOB_SCALE = 0.82;
 const ENEMY_ELITE_SCALE = 0.92; // 정예산적은 졸개·궁수와 두목 사이 체급
@@ -208,12 +209,9 @@ export const BattleCanvas = () => {
       const idleAnim = playerAnim.idle;
       const attackAnim = playerAnim.attack1;
       const playerSprites = (): AnimatedSprite[] =>
-        [
-          playerAnim.idle,
-          playerAnim.attack1,
-          playerAnim.attack2,
-          playerAnim.death,
-        ].filter((a): a is AnimatedSprite => a !== undefined);
+        [playerAnim.idle, playerAnim.attack1, playerAnim.attack2, playerAnim.death].filter(
+          (a): a is AnimatedSprite => a !== undefined,
+        );
 
       for (const anim of playerSprites()) {
         anim.position.set(PLAYER_X, PLAYER_Y);

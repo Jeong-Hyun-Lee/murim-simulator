@@ -1,216 +1,199 @@
 {
   "frames": [
     {
-      "filename": "mokhyeon_v2_attack2_00",
       "frame": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 465,
+        "y": 973,
+        "w": 277,
+        "h": 528
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 133,
+        "y": 277,
+        "w": 277,
+        "h": 528
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 80
     },
     {
-      "filename": "mokhyeon_v2_attack2_01",
       "frame": {
-        "x": 1024,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 1014,
+        "y": 975,
+        "w": 283,
+        "h": 486
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 117,
+        "y": 319,
+        "w": 283,
+        "h": 486
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 80
     },
     {
-      "filename": "mokhyeon_v2_attack2_02",
       "frame": {
-        "x": 2048,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 502,
+        "y": 488,
+        "w": 476,
+        "h": 483
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 47,
+        "y": 323,
+        "w": 476,
+        "h": 483
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 80
     },
     {
-      "filename": "mokhyeon_v2_attack2_03",
       "frame": {
-        "x": 3072,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 1,
+        "y": 525,
+        "w": 462,
+        "h": 451
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 62,
+        "y": 355,
+        "w": 462,
+        "h": 451
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 80
     },
     {
-      "filename": "mokhyeon_v2_attack2_04",
       "frame": {
-        "x": 0,
-        "y": 1024,
-        "w": 1024,
-        "h": 1024
+        "x": 1022,
+        "y": 484,
+        "w": 475,
+        "h": 489
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 74,
+        "y": 316,
+        "w": 475,
+        "h": 489
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 80
     },
     {
-      "filename": "mokhyeon_v2_attack2_05",
       "frame": {
-        "x": 1024,
-        "y": 1024,
-        "w": 1024,
-        "h": 1024
+        "x": 1022,
+        "y": 1,
+        "w": 516,
+        "h": 481
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 54,
+        "y": 324,
+        "w": 516,
+        "h": 481
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 80
     },
     {
-      "filename": "mokhyeon_v2_attack2_06",
       "frame": {
-        "x": 2048,
-        "y": 1024,
-        "w": 1024,
-        "h": 1024
+        "x": 1,
+        "y": 1,
+        "w": 499,
+        "h": 522
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 50,
+        "y": 283,
+        "w": 499,
+        "h": 522
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 80
     },
     {
-      "filename": "mokhyeon_v2_attack2_07",
       "frame": {
-        "x": 3072,
-        "y": 1024,
-        "w": 1024,
-        "h": 1024
+        "x": 502,
+        "y": 1,
+        "w": 518,
+        "h": 485
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 56,
+        "y": 320,
+        "w": 518,
+        "h": 485
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 80
     },
     {
-      "filename": "mokhyeon_v2_attack2_08",
       "frame": {
-        "x": 0,
-        "y": 2048,
-        "w": 1024,
-        "h": 1024
+        "x": 744,
+        "y": 973,
+        "w": 268,
+        "h": 530
       },
       "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 1024,
-        "h": 1024
+        "x": 123,
+        "y": 275,
+        "w": 268,
+        "h": 530
       },
       "sourceSize": {
-        "w": 1024,
-        "h": 1024
+        "w": 920,
+        "h": 920
       },
       "duration": 80
     }
   ],
   "meta": {
-    "app": "murim-simulator",
-    "version": "2",
     "image": "mokhyeon-v2-attack2-sheet.png",
-    "format": "RGBA8888",
-    "size": {
-      "w": 4096,
-      "h": 3072
-    },
-    "scale": "1",
-    "frameSize": {
-      "w": 1024,
-      "h": 1024
+    "frameTags": [
+      {
+        "name": "attack2",
+        "from": 0,
+        "to": 8
+      }
+    ],
+    "character": "mokhyeon-v2",
+    "cellSize": {
+      "w": 920,
+      "h": 920
     },
     "anchor": {
       "x": 0.29296875,
       "y": 0.875
     },
-    "root": {
-      "x": 300,
-      "y": 896
+    "rootPx": {
+      "x": 269.53125,
+      "y": 805.0
     },
-    "notes": "Nine visibly distinct root-anchored poses. Frames 2, 4, and 8 add stronger preparation, acceleration, and recovery motion while preserving the original key art.",
-    "frameTags": [
-      {
-        "name": "attack2",
-        "from": 0,
-        "to": 8,
-        "direction": "forward"
-      }
-    ]
+    "notes": "Trimmed packed sheet. Each frame restores into the 920px cell via spriteSourceSize/sourceSize."
   }
 }
