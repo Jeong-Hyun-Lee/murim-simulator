@@ -69,13 +69,12 @@ interface FramedHitEffect {
   age: number;
 }
 
-// idle/공격/피격/쓰러짐 에셋을 확보한 캐릭터만 선택 모션을 채운다 —
+// idle/공격/쓰러짐 에셋을 확보한 캐릭터만 선택 모션을 채운다 —
 // 아직 idle/attack 2종뿐인 캐릭터는 옵셔널 필드를 비워두면 기존 2모션 그대로 동작.
 interface AnimSet {
   idle: AnimatedSprite;
   attack1: AnimatedSprite;
   attack2?: AnimatedSprite;
-  hurt?: AnimatedSprite;
   death?: AnimatedSprite;
 }
 
@@ -163,7 +162,7 @@ export const BattleCanvas = () => {
         return;
       }
 
-      // 6모션 중 attack2/피격/쓰러짐/승리는 아직 일부 캐릭터만 에셋이 있음 — 파일이 없으면
+      // attack2/쓰러짐은 아직 일부 캐릭터만 에셋이 있음 — 파일이 없으면
       // null을 반환해 Promise.all 전체가 실패하지 않게 한다(에셋 없는 캐릭터는 기존 2모션 그대로).
       const tryLoadAnimatedSprite = async (jsonUrl: string, tagName: string) => {
         try {
@@ -175,8 +174,6 @@ export const BattleCanvas = () => {
 
       // 시트 파일명 규칙(<접두>-<모션>-sheet.json)이 캐릭터마다 같아 한 번에 모션 세트를 읽는다.
       // idle/attack은 필수, 나머지는 에셋이 있는 캐릭터만 채워진다.
-      // 피격·승리 모션은 전 캐릭터 비활성화 — 읽지 않으면 피격은 재생을 건너뛰고 승리는 공격 모션으로
-      // 대체된다. 되살리려면 hurt/victory 시트를 다시 읽어 채우면 된다.
       const loadAnimSet = async (prefix: string): Promise<AnimSet> => {
         const base = `/sprites/character/${prefix}`;
         const [idle, attack1, attack2, death] = await Promise.all([
@@ -215,7 +212,6 @@ export const BattleCanvas = () => {
           playerAnim.idle,
           playerAnim.attack1,
           playerAnim.attack2,
-          playerAnim.hurt,
           playerAnim.death,
         ].filter((a): a is AnimatedSprite => a !== undefined);
 
@@ -235,19 +231,13 @@ export const BattleCanvas = () => {
         idleAnim.gotoAndPlay(0);
       };
 
-      // hurt/승리는 재생 후 idle로 복귀('idle'), 쓰러짐은 리워드 연출 동안 마지막 프레임을 유지('hold').
-      const playPlayerOneShot = (sprite: AnimatedSprite | undefined, onDone: 'idle' | 'hold') => {
+      // 쓰러짐은 리워드 연출 동안 마지막 프레임을 유지한다.
+      const playPlayerOneShot = (sprite: AnimatedSprite | undefined) => {
         if (!sprite) return;
         const anim = sprite;
         for (const s of playerSprites()) stopAndHide(s);
         anim.visible = true;
         anim.gotoAndPlay(0);
-        anim.onComplete = () => {
-          if (onDone === 'idle') {
-            stopAndHide(anim);
-            returnPlayerToIdle();
-          }
-        };
       };
 
       attackAnim.onComplete = () => {
@@ -290,7 +280,7 @@ export const BattleCanvas = () => {
 
       const enemySpritesOf = (kind: EnemyKind): AnimatedSprite[] => {
         const set = enemyAnimByKind[kind];
-        return [set.idle, set.attack1, set.attack2, set.hurt, set.death].filter(
+        return [set.idle, set.attack1, set.attack2, set.death].filter(
           (a): a is AnimatedSprite => a !== undefined,
         );
       };
@@ -308,23 +298,13 @@ export const BattleCanvas = () => {
         idle.gotoAndPlay(0);
       };
 
-      // hurt/승리는 재생 후 idle로 복귀('idle'), 쓰러짐은 리워드 연출 동안 마지막 프레임을 유지('hold').
-      const playEnemyOneShot = (
-        kind: EnemyKind,
-        sprite: AnimatedSprite | undefined,
-        onDone: 'idle' | 'hold',
-      ) => {
+      // 쓰러짐은 리워드 연출 동안 마지막 프레임을 유지한다.
+      const playEnemyOneShot = (kind: EnemyKind, sprite: AnimatedSprite | undefined) => {
         if (!sprite) return;
         const anim = sprite;
         for (const s of enemySpritesOf(kind)) stopAndHide(s);
         anim.visible = true;
         anim.gotoAndPlay(0);
-        anim.onComplete = () => {
-          if (onDone === 'idle') {
-            stopAndHide(anim);
-            returnToIdle(kind);
-          }
-        };
       };
 
       for (const kind of ENEMY_KINDS) {
@@ -520,9 +500,7 @@ export const BattleCanvas = () => {
             if (currentEnemyKind !== 'none') {
               const set = enemyAnimByKind[currentEnemyKind];
               if (enemyDefeated) {
-                playEnemyOneShot(currentEnemyKind, set.death, 'hold');
-              } else {
-                playEnemyOneShot(currentEnemyKind, set.hurt, 'idle');
+                playEnemyOneShot(currentEnemyKind, set.death);
               }
             }
             // 보스 처치는 보상 팝업이 이미 화면을 멈추므로 별도 텀이 필요 없다.
@@ -548,10 +526,8 @@ export const BattleCanvas = () => {
               spawnHitBurst(PLAYER_X, PLAYER_Y - 70, 0xff6b6b);
               if (result.playerDefeated) {
                 playDefeat();
-                playPlayerOneShot(playerAnim.death, 'hold');
+                playPlayerOneShot(playerAnim.death);
                 defeatPauseMs = DEFEAT_PAUSE_MS;
-              } else {
-                playPlayerOneShot(playerAnim.hurt, 'idle');
               }
             }
             // result가 null이면 적이 이미 쓰러진 프레임이라 공격 모션을 재생하면 안 된다.

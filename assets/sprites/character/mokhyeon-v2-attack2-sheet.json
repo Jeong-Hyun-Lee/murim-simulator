@@ -18,7 +18,7 @@
         "w": 1024,
         "h": 1024
       },
-      "duration": 120
+      "duration": 80
     },
     {
       "filename": "mokhyeon_v2_attack2_01",
@@ -38,7 +38,7 @@
         "w": 1024,
         "h": 1024
       },
-      "duration": 120
+      "duration": 80
     },
     {
       "filename": "mokhyeon_v2_attack2_02",
@@ -58,7 +58,7 @@
         "w": 1024,
         "h": 1024
       },
-      "duration": 120
+      "duration": 80
     },
     {
       "filename": "mokhyeon_v2_attack2_03",
@@ -78,7 +78,7 @@
         "w": 1024,
         "h": 1024
       },
-      "duration": 120
+      "duration": 80
     },
     {
       "filename": "mokhyeon_v2_attack2_04",
@@ -98,7 +98,7 @@
         "w": 1024,
         "h": 1024
       },
-      "duration": 120
+      "duration": 80
     },
     {
       "filename": "mokhyeon_v2_attack2_05",
@@ -118,7 +118,67 @@
         "w": 1024,
         "h": 1024
       },
-      "duration": 120
+      "duration": 80
+    },
+    {
+      "filename": "mokhyeon_v2_attack2_06",
+      "frame": {
+        "x": 2048,
+        "y": 1024,
+        "w": 1024,
+        "h": 1024
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1024,
+        "h": 1024
+      },
+      "sourceSize": {
+        "w": 1024,
+        "h": 1024
+      },
+      "duration": 80
+    },
+    {
+      "filename": "mokhyeon_v2_attack2_07",
+      "frame": {
+        "x": 3072,
+        "y": 1024,
+        "w": 1024,
+        "h": 1024
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1024,
+        "h": 1024
+      },
+      "sourceSize": {
+        "w": 1024,
+        "h": 1024
+      },
+      "duration": 80
+    },
+    {
+      "filename": "mokhyeon_v2_attack2_08",
+      "frame": {
+        "x": 0,
+        "y": 2048,
+        "w": 1024,
+        "h": 1024
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1024,
+        "h": 1024
+      },
+      "sourceSize": {
+        "w": 1024,
+        "h": 1024
+      },
+      "duration": 80
     }
   ],
   "meta": {
@@ -128,7 +188,7 @@
     "format": "RGBA8888",
     "size": {
       "w": 4096,
-      "h": 2048
+      "h": 3072
     },
     "scale": "1",
     "frameSize": {
@@ -143,12 +203,12 @@
       "x": 300,
       "y": 896
     },
-    "notes": "Candidate runtime sheet. Common 1024px cells, visible-foot baseline, shared root, and at least 32px transparent safety margin verified.",
+    "notes": "Nine visibly distinct root-anchored poses. Frames 2, 4, and 8 add stronger preparation, acceleration, and recovery motion while preserving the original key art.",
     "frameTags": [
       {
         "name": "attack2",
         "from": 0,
-        "to": 5,
+        "to": 8,
         "direction": "forward"
       }
     ]

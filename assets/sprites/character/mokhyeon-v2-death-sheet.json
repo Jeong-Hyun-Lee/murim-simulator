@@ -18,7 +18,7 @@
         "w": 1024,
         "h": 1024
       },
-      "duration": 180
+      "duration": 90
     },
     {
       "filename": "mokhyeon_v2_death_01",
@@ -38,7 +38,7 @@
         "w": 1024,
         "h": 1024
       },
-      "duration": 180
+      "duration": 90
     },
     {
       "filename": "mokhyeon_v2_death_02",
@@ -58,7 +58,7 @@
         "w": 1024,
         "h": 1024
       },
-      "duration": 180
+      "duration": 90
     },
     {
       "filename": "mokhyeon_v2_death_03",
@@ -78,7 +78,7 @@
         "w": 1024,
         "h": 1024
       },
-      "duration": 180
+      "duration": 90
     },
     {
       "filename": "mokhyeon_v2_death_04",
@@ -98,7 +98,7 @@
         "w": 1024,
         "h": 1024
       },
-      "duration": 180
+      "duration": 120
     },
     {
       "filename": "mokhyeon_v2_death_05",
@@ -118,7 +118,47 @@
         "w": 1024,
         "h": 1024
       },
-      "duration": 180
+      "duration": 120
+    },
+    {
+      "filename": "mokhyeon_v2_death_06",
+      "frame": {
+        "x": 2048,
+        "y": 1024,
+        "w": 1024,
+        "h": 1024
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1024,
+        "h": 1024
+      },
+      "sourceSize": {
+        "w": 1024,
+        "h": 1024
+      },
+      "duration": 120
+    },
+    {
+      "filename": "mokhyeon_v2_death_07",
+      "frame": {
+        "x": 3072,
+        "y": 1024,
+        "w": 1024,
+        "h": 1024
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1024,
+        "h": 1024
+      },
+      "sourceSize": {
+        "w": 1024,
+        "h": 1024
+      },
+      "duration": 360
     }
   ],
   "meta": {
@@ -143,12 +183,12 @@
       "x": 300,
       "y": 896
     },
-    "notes": "Candidate runtime sheet. Common 1024px cells, visible-foot baseline, shared root, and at least 32px transparent safety margin verified. Final frame is held by the animation controller.",
+    "notes": "Original key poses with subtle root-anchored in-between warps; RGBA 1024px cells.",
     "frameTags": [
       {
         "name": "death",
         "from": 0,
-        "to": 5,
+        "to": 7,
         "direction": "forward"
       }
     ]

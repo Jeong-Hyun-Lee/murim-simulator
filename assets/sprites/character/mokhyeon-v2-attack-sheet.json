@@ -1,58 +1,184 @@
 {
   "frames": [
     {
+      "filename": "mokhyeon_v2_attack_00",
       "frame": {
         "x": 0,
         "y": 0,
         "w": 1024,
         "h": 1024
       },
-      "duration": 120
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1024,
+        "h": 1024
+      },
+      "sourceSize": {
+        "w": 1024,
+        "h": 1024
+      },
+      "duration": 80
     },
     {
+      "filename": "mokhyeon_v2_attack_01",
       "frame": {
         "x": 1024,
         "y": 0,
         "w": 1024,
         "h": 1024
       },
-      "duration": 120
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1024,
+        "h": 1024
+      },
+      "sourceSize": {
+        "w": 1024,
+        "h": 1024
+      },
+      "duration": 80
     },
     {
+      "filename": "mokhyeon_v2_attack_02",
       "frame": {
         "x": 2048,
         "y": 0,
         "w": 1024,
         "h": 1024
       },
-      "duration": 120
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1024,
+        "h": 1024
+      },
+      "sourceSize": {
+        "w": 1024,
+        "h": 1024
+      },
+      "duration": 80
     },
     {
+      "filename": "mokhyeon_v2_attack_03",
       "frame": {
         "x": 3072,
         "y": 0,
         "w": 1024,
         "h": 1024
       },
-      "duration": 120
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1024,
+        "h": 1024
+      },
+      "sourceSize": {
+        "w": 1024,
+        "h": 1024
+      },
+      "duration": 80
     },
     {
+      "filename": "mokhyeon_v2_attack_04",
       "frame": {
         "x": 0,
         "y": 1024,
         "w": 1024,
         "h": 1024
       },
-      "duration": 120
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1024,
+        "h": 1024
+      },
+      "sourceSize": {
+        "w": 1024,
+        "h": 1024
+      },
+      "duration": 80
     },
     {
+      "filename": "mokhyeon_v2_attack_05",
       "frame": {
         "x": 1024,
         "y": 1024,
         "w": 1024,
         "h": 1024
       },
-      "duration": 120
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1024,
+        "h": 1024
+      },
+      "sourceSize": {
+        "w": 1024,
+        "h": 1024
+      },
+      "duration": 80
+    },
+    {
+      "filename": "mokhyeon_v2_attack_06",
+      "frame": {
+        "x": 2048,
+        "y": 1024,
+        "w": 1024,
+        "h": 1024
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1024,
+        "h": 1024
+      },
+      "sourceSize": {
+        "w": 1024,
+        "h": 1024
+      },
+      "duration": 80
+    },
+    {
+      "filename": "mokhyeon_v2_attack_07",
+      "frame": {
+        "x": 3072,
+        "y": 1024,
+        "w": 1024,
+        "h": 1024
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1024,
+        "h": 1024
+      },
+      "sourceSize": {
+        "w": 1024,
+        "h": 1024
+      },
+      "duration": 80
+    },
+    {
+      "filename": "mokhyeon_v2_attack_08",
+      "frame": {
+        "x": 0,
+        "y": 2048,
+        "w": 1024,
+        "h": 1024
+      },
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 1024,
+        "h": 1024
+      },
+      "sourceSize": {
+        "w": 1024,
+        "h": 1024
+      },
+      "duration": 80
     }
   ],
   "meta": {
@@ -61,7 +187,8 @@
       {
         "name": "attack",
         "from": 0,
-        "to": 5
+        "to": 8,
+        "direction": "forward"
       }
     ],
     "character": "mokhyeon-v2",
@@ -77,6 +204,10 @@
       "x": 300,
       "y": 896
     },
-    "notes": "Generated candidate. All frames use one 1024px cell; actual alpha safety margins are verified at 32px or more."
+    "notes": "Nine visibly distinct root-anchored poses. Frames 2, 4, and 8 add stronger preparation, acceleration, and recovery motion while preserving the original key art.",
+    "size": {
+      "w": 4096,
+      "h": 3072
+    }
   }
 }
