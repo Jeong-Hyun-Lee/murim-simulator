@@ -1,6 +1,14 @@
 import { useEffect, useState } from 'react';
 import { BattleCanvas } from '../canvas/BattleCanvas';
-import { useGameStore, expToNextLevel, rebirthGateMajor } from '../game/store';
+import {
+  useGameStore,
+  expToNextLevel,
+  rebirthGateMajor,
+  DAILY_GOALS,
+  MILESTONES,
+  TOWER_TURN_LIMIT,
+  todayString,
+} from '../game/store';
 import { combatPower } from '../game/combat';
 import { MAJOR_STORIES } from '../game/storyData';
 import { REBIRTH_ENTRY_MAJOR, stageLabel, useBattleStatus, type NavTarget } from './common';
@@ -21,6 +29,19 @@ const HpBar = ({ hp, maxHp, label }: { hp: number; maxHp: number; label: string 
 interface Props {
   onNavigate: (target: NavTarget) => void;
 }
+
+// 지금 받을 수 있는 수련 목표 수 — 버튼 배지용.
+const useClaimableGoalCount = (): number =>
+  useGameStore((s) => {
+    const today = s.dailyDate === todayString();
+    const daily = DAILY_GOALS.filter(
+      (g) => today && !s.dailyClaimed.includes(g.id) && s.dailyCounts[g.counter] >= g.target,
+    ).length;
+    const milestones = MILESTONES.filter(
+      (m) => !s.milestonesClaimed.includes(m.id) && s[m.metric] >= m.target,
+    ).length;
+    return daily + milestones;
+  });
 
 const SUBTITLE_MS = 3000;
 const INTRO_MS = 2000;
@@ -138,6 +159,10 @@ export const BattleTab = ({ onNavigate }: Props) => {
   const paused = useGameStore((s) => s.paused);
   const farmReturnStage = useGameStore((s) => s.farmReturnStage);
   const stopFarming = useGameStore((s) => s.stopFarming);
+  const towerFloor = useGameStore((s) => s.towerFloor);
+  const towerTurns = useGameStore((s) => s.towerTurns);
+  const leaveTower = useGameStore((s) => s.leaveTower);
+  const claimableGoals = useClaimableGoalCount();
   const rebirthCount = useGameStore((s) => s.rebirthCount);
   const highestMajorCleared = useGameStore((s) => s.highestMajorCleared);
   const storyIntroMajor = useGameStore((s) => s.storyIntroMajor);
@@ -159,6 +184,9 @@ export const BattleTab = ({ onNavigate }: Props) => {
         {farmReturnStage && (
           <span className="battle-farm-status">등반 위치 {stageLabel(farmReturnStage)}</span>
         )}
+        <button type="button" className="battle-goal-button" onClick={() => onNavigate('goals')}>
+          수련 목표{claimableGoals > 0 && <span className="goal-count"> {claimableGoals}</span>}
+        </button>
         {canRebirth && (
           <button
             type="button"
@@ -179,24 +207,37 @@ export const BattleTab = ({ onNavigate }: Props) => {
       <div className="battle-stage-frame">
         <BattleCanvas />
         <div className="battle-stage-controls">
-          <button
-            type="button"
-            className="battle-stage-select"
-            aria-haspopup="dialog"
-            aria-label={`사냥터 선택, 현재 ${stageLabel(stage)}`}
-            onClick={() => onNavigate('stagePicker')}
-          >
-            사냥터 {stageLabel(stage)} ▾
-          </button>
-          {farmReturnStage && (
-            <button
-              type="button"
-              className="battle-stage-select"
-              aria-label={`등반 위치 ${stageLabel(farmReturnStage)}로 복귀`}
-              onClick={stopFarming}
-            >
-              등반
-            </button>
+          {towerFloor !== null ? (
+            <>
+              <span className="battle-stage-select">
+                수련탑 {towerFloor}층 · 남은 공방 {TOWER_TURN_LIMIT - towerTurns}
+              </span>
+              <button type="button" className="battle-stage-select" onClick={leaveTower}>
+                포기
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                type="button"
+                className="battle-stage-select"
+                aria-haspopup="dialog"
+                aria-label={`사냥터 선택, 현재 ${stageLabel(stage)}`}
+                onClick={() => onNavigate('stagePicker')}
+              >
+                사냥터 {stageLabel(stage)} ▾
+              </button>
+              {farmReturnStage && (
+                <button
+                  type="button"
+                  className="battle-stage-select"
+                  aria-label={`등반 위치 ${stageLabel(farmReturnStage)}로 복귀`}
+                  onClick={stopFarming}
+                >
+                  등반
+                </button>
+              )}
+            </>
           )}
         </div>
         {paused && <div className="battle-paused">일시정지</div>}

@@ -1,7 +1,7 @@
 import { useGameStore, isBossStage, type StageId } from '../game/store';
 
 export type TabKey = 'gong' | 'gear' | 'sect' | 'shop';
-export type ViewKey = 'stagePicker' | 'myInfo' | 'rebirth';
+export type ViewKey = 'stagePicker' | 'myInfo' | 'rebirth' | 'goals';
 export type NavTarget = TabKey | ViewKey;
 
 export const TAB_KEYS: TabKey[] = ['gong', 'gear', 'sect', 'shop'];
@@ -14,7 +14,7 @@ export const TAB_LABEL: Record<TabKey, string> = {
 };
 
 export const isViewKey = (target: NavTarget): target is ViewKey =>
-  target === 'stagePicker' || target === 'myInfo' || target === 'rebirth';
+  target === 'stagePicker' || target === 'myInfo' || target === 'rebirth' || target === 'goals';
 
 // 환골탈태 화면 진입은 대7 클리어부터(실행 가능 여부는 회차별 rebirthGateMajor 판정).
 export const REBIRTH_ENTRY_MAJOR = 7;
@@ -35,6 +35,7 @@ export const useBattleStatus = (): string =>
     if (s.awaitingBossReward) return '보상 확인 대기';
     if (s.awaitingBossChallenge) return '보스 도전 대기';
     if (s.paused) return '일시정지';
+    if (s.towerFloor !== null) return `수련탑 ${s.towerFloor}층 도전 중`;
     if (s.farmReturnStage) return '반복 사냥 중';
     return '자동 전투 중';
   });

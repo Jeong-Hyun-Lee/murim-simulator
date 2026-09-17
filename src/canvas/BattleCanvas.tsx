@@ -17,7 +17,14 @@ import {
   loadCriticalHitEffect,
   criticalHitEffectFrames,
 } from './hitEffect';
-import { useGameStore, isBossStage, enemyKind, type StageId, type EnemyKind } from '../game/store';
+import {
+  useGameStore,
+  battleViewStage,
+  isBossStage,
+  enemyKind,
+  type StageId,
+  type EnemyKind,
+} from '../game/store';
 import { playHit, playCrit, playDefeat } from '../audio/sfx';
 
 // 무공 메인 상단의 낮은 전투 무대(약 1.64:1). 원본 비율로 렌더링해 인물을 자르거나 늘리지 않는다.
@@ -151,7 +158,7 @@ export const BattleCanvas = () => {
 
       // 대 단위 전투 배경 — 원화(wiki/raw/assets/*-battle-background-sd-*-candidate.png)를 렌더 배율
       // 2배 기준 1280x780으로 줄여 캔버스 비율에 맞춘 WebP. 캔버스에 꽉 채워 그린다.
-      let backgroundUrl = backgroundUrlForStage(useGameStore.getState().stage);
+      let backgroundUrl = backgroundUrlForStage(battleViewStage(useGameStore.getState()));
       const bgTexture = await Assets.load(backgroundUrl);
       let displayedBackgroundUrl = backgroundUrl;
       const background = new Sprite(bgTexture);
@@ -468,7 +475,7 @@ export const BattleCanvas = () => {
               for (const sprite of playerSprites()) stopAndHide(sprite);
               returnPlayerToIdle();
               // 적 종류가 바뀌는 경우는 아래 스테이지 전환 처리가 새 적을 세우므로 여기선 건드리지 않는다.
-              const nextKind = enemyKindForStage(useGameStore.getState().stage);
+              const nextKind = enemyKindForStage(battleViewStage(useGameStore.getState()));
               if (currentEnemyKind !== 'none' && nextKind === currentEnemyKind) {
                 for (const sprite of enemySpritesOf(currentEnemyKind)) stopAndHide(sprite);
                 returnToIdle(currentEnemyKind);
@@ -560,7 +567,8 @@ export const BattleCanvas = () => {
 
         // 대가 바뀌면 새 배경을 읽어 교체하고, 표시하던 배경은 텍스처 메모리에서 내린다.
         // 읽는 동안에는 이전 배경을 그대로 두고, 그 사이 대가 또 바뀌면 늦게 온 결과는 버린다.
-        const nextBackgroundUrl = backgroundUrlForStage(s.stage);
+        const viewStage = battleViewStage(s);
+        const nextBackgroundUrl = backgroundUrlForStage(viewStage);
         if (nextBackgroundUrl !== backgroundUrl) {
           backgroundUrl = nextBackgroundUrl;
           (async () => {
@@ -579,7 +587,7 @@ export const BattleCanvas = () => {
           })();
         }
 
-        const kind = enemyKindForStage(s.stage);
+        const kind = enemyKindForStage(viewStage);
         if (kind !== currentEnemyKind) {
           hideAllEnemySprites();
           currentEnemyKind = kind;
@@ -598,7 +606,7 @@ export const BattleCanvas = () => {
         }
         enemyBox.visible = kind === 'none';
         if (kind === 'none') {
-          drawEnemyBox(s.stage);
+          drawEnemyBox(viewStage);
         } else {
           const sprite = activeEnemySprite();
           if (sprite) sprite.tint = enemyFlashMs > 0 ? ENEMY_HIT_TINT : 0xffffff;

@@ -20,6 +20,8 @@ import { StagePicker } from './components/panels/StagePicker';
 import { Sheet } from './components/Sheet';
 import { MyInfoView } from './components/panels/MyInfoView';
 import { RebirthView } from './components/panels/RebirthView';
+import { GoalsView } from './components/panels/GoalsView';
+import { OfflineReportSheet } from './components/OfflineReportSheet';
 import { useBackLayer } from './hooks/useBackLayer';
 import { useSaveStatus } from './game/state';
 import {
@@ -39,6 +41,7 @@ const VIEW_TITLE: Record<ViewKey, string> = {
   stagePicker: '사냥터',
   myInfo: '내 정보',
   rebirth: '환골탈태',
+  goals: '수련 목표',
 };
 
 // 세로형·하단 4탭 모바일 틀. 모든 탭 화면을 계속 마운트해 두고 hidden으로만 전환한다 —
@@ -47,6 +50,8 @@ const VIEW_TITLE: Record<ViewKey, string> = {
 // ponytail: 숨겨진 무공 탭의 전투 Pixi도 계속 렌더링함. 배터리 문제가 보이면 화면 밖일 때 렌더만 끄기.
 export const App = () => {
   const claimDailyBonusIfNeeded = useGameStore((s) => s.claimDailyBonusIfNeeded);
+  const claimOfflineReward = useGameStore((s) => s.claimOfflineReward);
+  const offlineReport = useGameStore((s) => s.offlineReport);
   const onboardingDone = useGameStore((s) => s.onboardingDone);
   const storyCutscene = useGameStore((s) => s.storyCutscene);
   const tutorialGongDone = useGameStore((s) => s.tutorialGongDone);
@@ -75,9 +80,21 @@ export const App = () => {
   const tutorialActive = onboardingDone && !tutorialGongDone;
   const topView = views[views.length - 1];
 
+  // 오프라인 보상은 접속 보너스 저장이 마지막 활동 시각을 덮기 전에 먼저 계산한다.
   useEffect(() => {
+    claimOfflineReward();
     claimDailyBonusIfNeeded();
-  }, [claimDailyBonusIfNeeded]);
+  }, [claimOfflineReward, claimDailyBonusIfNeeded]);
+
+  // 백그라운드로 갈 때 저장해 두면 그때부터 비운 시간이 오프라인 시간이 된다(숨겨진 탭은 전투가 멈춘다).
+  useEffect(() => {
+    const onVisibilityChange = () => {
+      if (document.hidden) retrySave();
+      else claimOfflineReward();
+    };
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', onVisibilityChange);
+  }, [retrySave, claimOfflineReward]);
 
   // 첫 성장 안내: 무공 탭을 강제로 연다.
   useEffect(() => {
@@ -177,6 +194,7 @@ export const App = () => {
   const renderView = (view: ViewKey) => {
     if (view === 'stagePicker') return <StagePicker onBack={popView} />;
     if (view === 'myInfo') return <MyInfoView onNavigate={navigate} />;
+    if (view === 'goals') return <GoalsView />;
     return (
       <RebirthView
         onDone={() => {
@@ -258,7 +276,7 @@ export const App = () => {
       {lockedSheetTab && lockedReason && (
         <LockedTabSheet tab={lockedSheetTab} reason={lockedReason} onClose={closeSheet} />
       )}
-      {onboardingDone && !storyCutscene && <BossSheet />}
+      {onboardingDone && !storyCutscene && (offlineReport ? <OfflineReportSheet /> : <BossSheet />)}
       {!onboardingDone && <OnboardingFlow />}
       {storyCutscene && <StoryCutscene key={storyCutscene[0]} cards={storyCutscene} />}
     </div>

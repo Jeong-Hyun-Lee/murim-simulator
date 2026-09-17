@@ -1,6 +1,7 @@
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { useGameStore, realmName, type StageId } from '../game/store';
 import { useSfxEnabled } from '../audio/sfx';
+import { exportSaveCode, importSaveCode } from '../game/state';
 import { useBackLayer } from '../hooks/useBackLayer';
 import { Sheet } from './Sheet';
 import {
@@ -225,6 +226,89 @@ export const FullView = ({
   );
 };
 
+// 세이브 백업 — 코드를 복사해 두었다가 다른 브라우저·기기에서 붙여넣어 복원한다.
+const SaveBackup = () => {
+  const retrySave = useGameStore((s) => s.retrySave);
+  const [exported, setExported] = useState('');
+  const [copied, setCopied] = useState(false);
+  const [input, setInput] = useState('');
+  const [confirming, setConfirming] = useState(false);
+  const [error, setError] = useState('');
+
+  const exportCode = async () => {
+    retrySave();
+    const code = exportSaveCode();
+    setExported(code);
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+    } catch {
+      // 클립보드 권한이 없으면 아래 입력칸의 코드를 직접 복사한다.
+      setCopied(false);
+    }
+  };
+
+  const restore = () => {
+    if (!importSaveCode(input)) {
+      setError('백업 코드가 올바르지 않습니다.');
+      setConfirming(false);
+      return;
+    }
+    window.location.reload();
+  };
+
+  return (
+    <div className="setting-row save-backup">
+      <div>
+        <strong>저장 백업</strong>
+        <p>이 기기에만 저장됩니다. 브라우저 데이터를 지우기 전에 백업 코드를 보관하세요.</p>
+      </div>
+      <button type="button" className="btn" onClick={exportCode}>
+        백업 코드 복사
+      </button>
+      {exported && (
+        <>
+          <p className="muted small">
+            {copied ? '클립보드에 복사했습니다.' : '아래 코드를 직접 복사하세요.'}
+          </p>
+          <textarea readOnly value={exported} aria-label="백업 코드" rows={3} />
+        </>
+      )}
+      <textarea
+        value={input}
+        placeholder="복원할 백업 코드 붙여넣기"
+        aria-label="복원할 백업 코드"
+        rows={3}
+        onChange={(e) => {
+          setInput(e.target.value);
+          setError('');
+          setConfirming(false);
+        }}
+      />
+      {error && <p className="warn">{error}</p>}
+      {confirming ? (
+        <div className="btn-row">
+          <button type="button" className="btn btn-primary" onClick={restore}>
+            현재 진행을 덮어쓰고 복원
+          </button>
+          <button type="button" className="btn" onClick={() => setConfirming(false)}>
+            취소
+          </button>
+        </div>
+      ) : (
+        <button
+          type="button"
+          className="btn"
+          disabled={!input.trim()}
+          onClick={() => setConfirming(true)}
+        >
+          백업 코드로 복원
+        </button>
+      )}
+    </div>
+  );
+};
+
 export const SettingsSheet = ({ onClose }: { onClose: () => void }) => {
   const paused = useGameStore((s) => s.paused);
   const togglePause = useGameStore((s) => s.togglePause);
@@ -258,6 +342,7 @@ export const SettingsSheet = ({ onClose }: { onClose: () => void }) => {
           {sfxEnabled ? '효과음 끄기' : '효과음 켜기'}
         </button>
       </div>
+      <SaveBackup />
     </Sheet>
   );
 };
@@ -297,7 +382,9 @@ export const CurrencySheet = ({ onClose }: { onClose: () => void }) => {
           <dd>{protectionCharms.toLocaleString()}</dd>
         </div>
       </dl>
-      <p className="currency-sheet-note">오늘의 접속 보너스는 하루 한 번 자동 지급됩니다.</p>
+      <p className="currency-sheet-note">
+        오늘의 접속 보너스는 하루 한 번, 오프라인 보상은 자리를 비운 5분 이후부터 자동 지급됩니다.
+      </p>
     </Sheet>
   );
 };

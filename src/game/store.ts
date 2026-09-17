@@ -71,16 +71,35 @@ import {
 } from './gachaData';
 import { elixirExchangeCost } from './shopData';
 import { MAJOR_STORIES, BOSS_CUTSCENES, ARRIVAL_CUTSCENES, storyStageIndex } from './storyData';
+import {
+  DAILY_GOALS,
+  EMPTY_DAILY_COUNTS,
+  MILESTONES,
+  rewardText,
+  todayString,
+  type DailyCounterKey,
+  type GoalReward,
+} from './goalData';
+import {
+  TOWER_TURN_LIMIT,
+  TOWER_UNLOCK_MAJOR,
+  towerDisplayStage,
+  towerEnemy,
+  towerFloorReward,
+} from './towerData';
 
-// UX 기획 §3-4: 오프라인 방치 성장 없음, 1일 1회 정액 재접속 보너스만.
+// 1일 1회 정액 재접속 보너스.
 const DAILY_BONUS_GOLD = 50;
 const DAILY_BONUS_CHI = 30;
 const DAILY_BONUS_ELIXIR = 5;
+// wiki/concepts/장기-플레이-시스템.md 4절: 자리를 비운 시간만큼 20초에 1마리씩 현재 사냥터를
+// 처치한 것으로 보고 경험치·전·내공만 지급한다. 5분 미만은 무시, 최대 12시간.
+const OFFLINE_MIN_MS = 5 * 60 * 1000;
+const OFFLINE_MAX_MS = 12 * 60 * 60 * 1000;
+const OFFLINE_KILL_INTERVAL_MS = 20 * 1000;
 // wiki/concepts/상점-기연-시스템.md: 대보스(X-10) 최초 클리어 시 영약 3개 확정 지급.
 const BOSS_FIRST_CLEAR_ELIXIR = 3;
 const DEFEAT_CONSOLATION_RATIO = 0.2;
-
-const todayString = (): string => new Date().toISOString().slice(0, 10);
 
 // 사냥터 모드는 이미 도달한(자동 등반이 지나온) 스테이지만 farming 대상으로 허용 — 현재 막힌
 // 스테이지보다 앞선 곳을 미리 사냥하는 우회를 막는다.
@@ -129,8 +148,22 @@ export interface PendingEncounter {
   farmReturnStage: StageId | null;
 }
 
-interface GameStoreState extends GameState {
+export interface OfflineReport {
+  elapsedMs: number;
+  kills: number;
+  exp: number;
+  gold: number;
+  chi: number;
+  levelsGained: number;
+}
+
+// lastActiveAt은 저장 파일에만 두고 화면 상태에는 올리지 않는다(아래 lastActiveAt 변수 참고).
+interface GameStoreState extends Omit<GameState, 'lastActiveAt'> {
   player: PlayerStats;
+  // 수련탑 도전 중인 층 — null이면 일반 전투. 새로고침하면 도전은 끝난다(저장 안 함).
+  towerFloor: number | null;
+  towerTurns: number; // 이번 층에서 적이 공격한 횟수(TOWER_TURN_LIMIT 도달 시 실패)
+  offlineReport: OfflineReport | null;
   playerHp: number;
   enemy: UnitStats;
   enemyHp: number;
@@ -154,6 +187,12 @@ interface GameStoreState extends GameState {
   togglePause: () => void;
   retrySave: () => void;
   claimDailyBonusIfNeeded: () => void;
+  claimOfflineReward: () => void;
+  closeOfflineReport: () => void;
+  claimDailyGoal: (goalId: string) => void;
+  claimMilestone: (milestoneId: string) => void;
+  startTower: () => void;
+  leaveTower: () => void;
   buyGongUpgrade: (nodeId: string) => void;
   buyGongUpgradeBulk10: (nodeId: string) => void;
   equipItem: (itemId: string) => void;
@@ -254,7 +293,40 @@ const applySectContribution = (
   return { sectLevel: level, sectExp: exp };
 };
 
+// 일일 카운터 증가 패치 — 날짜가 바뀌었으면 진행·수령 기록을 비우고 새로 센다.
+const dailyPatch = (
+  s: Pick<GameStoreState, 'dailyDate' | 'dailyCounts' | 'dailyClaimed'>,
+  key: DailyCounterKey,
+  amount: number,
+): Pick<GameStoreState, 'dailyDate' | 'dailyCounts' | 'dailyClaimed'> => {
+  const today = todayString();
+  const fresh = s.dailyDate === today;
+  const counts = fresh ? s.dailyCounts : EMPTY_DAILY_COUNTS;
+  return {
+    dailyDate: today,
+    dailyCounts: { ...counts, [key]: counts[key] + amount },
+    dailyClaimed: fresh ? s.dailyClaimed : [],
+  };
+};
+
+const rewardPatch = (
+  s: Pick<GameStoreState, 'elixir' | 'enhanceStones' | 'protectionCharms'>,
+  reward: GoalReward,
+): Pick<GameStoreState, 'elixir' | 'enhanceStones' | 'protectionCharms'> => ({
+  elixir: s.elixir + (reward.elixir ?? 0),
+  enhanceStones: s.enhanceStones + (reward.stones ?? 0),
+  protectionCharms: s.protectionCharms + (reward.charms ?? 0),
+});
+
+// 전투 화면(배경·적 그림)이 기준으로 삼는 스테이지 — 수련탑 중에는 층에 맞는 스테이지.
+export const battleViewStage = (s: Pick<GameStoreState, 'stage' | 'towerFloor'>): StageId =>
+  s.towerFloor !== null ? towerDisplayStage(s.towerFloor) : s.stage;
+
+// 저장할 때마다 갱신하는 마지막 활동 시각. 화면 상태에 두면 매 처치마다 불필요한 갱신이 생겨 모듈 변수로 둔다.
+let lastActiveAt = 0;
+
 const persist = (s: GameStoreState) => {
+  lastActiveAt = Date.now();
   const state: GameState = {
     level: s.level,
     exp: s.exp,
@@ -282,6 +354,13 @@ const persist = (s: GameStoreState) => {
     farmReturnStage: s.farmReturnStage,
     storySeenMajor: s.storySeenMajor,
     storySeenStage: s.storySeenStage,
+    lastActiveAt,
+    dailyDate: s.dailyDate,
+    dailyCounts: s.dailyCounts,
+    dailyClaimed: s.dailyClaimed,
+    milestonesClaimed: s.milestonesClaimed,
+    totalKills: s.totalKills,
+    towerBest: s.towerBest,
   };
   saveState(state);
 };
@@ -338,7 +417,8 @@ const applyStageDrops = (
   };
 };
 
-const saved: GameState = loadState();
+const { lastActiveAt: savedLastActiveAt, ...saved } = loadState();
+lastActiveAt = savedLastActiveAt;
 
 export const useGameStore = create<GameStoreState>((set, get) => {
   const initialPlayer = computePlayerStats(saved.level, saved);
@@ -346,6 +426,9 @@ export const useGameStore = create<GameStoreState>((set, get) => {
 
   return {
     ...saved,
+    towerFloor: null,
+    towerTurns: 0,
+    offlineReport: null,
     player: initialPlayer,
     playerHp: initialPlayer.hp,
     enemy: initialEnemy,
@@ -380,6 +463,108 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       persist(get());
     },
 
+    // 앱을 열 때와 백그라운드에서 돌아올 때 호출 — 마지막 저장 이후 비운 시간만큼 보상한다.
+    claimOfflineReward: () => {
+      const s = get();
+      const elapsedMs = Math.min(Date.now() - lastActiveAt, OFFLINE_MAX_MS);
+      if (!s.onboardingDone || lastActiveAt === 0 || elapsedMs < OFFLINE_MIN_MS) return;
+
+      const kills = Math.floor(elapsedMs / OFFLINE_KILL_INTERVAL_MS);
+      // 보스 도전 대기 중이면 보스 보상 대신 직전 정예 기준.
+      const rewardStage = isBossStage(s.stage) ? { major: s.stage.major, sub: 9 } : s.stage;
+      const reward = stageReward(rewardStage);
+      const exp = reward.exp * kills;
+      const gold = reward.gold * kills;
+      const chi = Math.round(reward.chi * kills * s.player.chiGainMultiplier);
+      const leveled = levelUp(s.level, s.exp + exp);
+      const newPlayer = computePlayerStats(leveled.level, s);
+      set({
+        level: leveled.level,
+        exp: leveled.exp,
+        gold: s.gold + gold,
+        chi: s.chi + chi,
+        player: newPlayer,
+        playerHp: carryOverHp(s.player.hp, s.playerHp, newPlayer.hp),
+        offlineReport: {
+          elapsedMs,
+          kills,
+          exp,
+          gold,
+          chi,
+          levelsGained: leveled.level - s.level,
+        },
+      });
+      persist(get());
+    },
+
+    closeOfflineReport: () => set({ offlineReport: null }),
+
+    claimDailyGoal: (goalId) => {
+      const s = get();
+      const goal = DAILY_GOALS.find((g) => g.id === goalId);
+      if (!goal || s.dailyDate !== todayString()) return;
+      if (s.dailyClaimed.includes(goalId) || s.dailyCounts[goal.counter] < goal.target) return;
+      set({
+        ...rewardPatch(s, goal.reward),
+        dailyClaimed: [...s.dailyClaimed, goalId],
+        toastMessage: `수련 목표 달성: ${rewardText(goal.reward)}`,
+      });
+      persist(get());
+    },
+
+    claimMilestone: (milestoneId) => {
+      const s = get();
+      const milestone = MILESTONES.find((m) => m.id === milestoneId);
+      if (!milestone || s.milestonesClaimed.includes(milestoneId)) return;
+      if (s[milestone.metric] < milestone.target) return;
+      set({
+        ...rewardPatch(s, milestone.reward),
+        milestonesClaimed: [...s.milestonesClaimed, milestoneId],
+        toastMessage: `${milestone.label}: ${rewardText(milestone.reward)}`,
+      });
+      persist(get());
+    },
+
+    // 최고 기록 다음 층부터 도전한다. 자동 등반·사냥 위치는 그대로 두고 전투 상대만 바꾼다.
+    startTower: () => {
+      const s = get();
+      if (
+        s.towerFloor !== null ||
+        s.awaitingBossChallenge ||
+        s.awaitingBossReward ||
+        s.highestMajorCleared < TOWER_UNLOCK_MAJOR
+      )
+        return;
+      const floor = s.towerBest + 1;
+      const enemy = towerEnemy(floor);
+      set({
+        towerFloor: floor,
+        towerTurns: 0,
+        enemy,
+        enemyHp: enemy.hp,
+        playerHp: s.player.hp,
+        // 쓰러짐 연출 대기 중이었다면 그 예약은 버린다 — 사용자가 직접 고른 전투가 우선.
+        pendingEncounter: null,
+        toastMessage: `수련탑 ${floor}층 도전`,
+      });
+    },
+
+    leaveTower: () => {
+      const s = get();
+      if (s.towerFloor === null) return;
+      const enemy = monsterStats(s.stage);
+      set({
+        towerFloor: null,
+        towerTurns: 0,
+        enemy,
+        enemyHp: enemy.hp,
+        playerHp: s.player.hp,
+        awaitingBossChallenge: needsBossChallenge(s.stage, s.highestMajorCleared),
+        pendingEncounter: null,
+        toastMessage: `수련탑에서 나왔습니다 — 최고 기록 ${s.towerBest}층`,
+      });
+    },
+
     buyGongUpgrade: (nodeId) => {
       const board = findBoardByNodeId(nodeId);
       const node = board?.nodes.find((n) => n.id === nodeId);
@@ -403,6 +588,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       const newPlayer = computePlayerStats(s.level, { ...s, gongLevels });
       set({
         ...gongCurrencyPatch(board, balance - curCost),
+        ...dailyPatch(s, 'gong', 1),
         gongLevels,
         player: newPlayer,
         playerHp: carryOverHp(s.player.hp, s.playerHp, newPlayer.hp),
@@ -433,6 +619,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       const newPlayer = computePlayerStats(s.level, { ...s, gongLevels });
       set({
         ...gongCurrencyPatch(board, balance - cost),
+        ...dailyPatch(s, 'gong', levelsGained),
         gongLevels,
         player: newPlayer,
         playerHp: carryOverHp(s.player.hp, s.playerHp, newPlayer.hp),
@@ -559,6 +746,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         message = `강화 실패 (현재 +${result.newLevel} 유지)`;
       }
       set({
+        ...dailyPatch(s, 'enhance', 1),
         gold: s.gold - cost,
         enhanceStones: s.enhanceStones - stoneCost,
         protectionCharms: wantsProtection ? s.protectionCharms - 1 : s.protectionCharms,
@@ -654,6 +842,8 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         awaitingBossChallenge: false,
         awaitingBossReward: null,
         farmReturnStage: null,
+        towerFloor: null,
+        towerTurns: 0,
         // 쓰러짐 연출 대기 중이었다면 그 예약은 버린다 — 사용자가 직접 고른 전투가 우선.
         pendingEncounter: null,
         toastMessage: `환골탈태! ${realmName(rebirthCount)} 경지에 올랐다 (+전체 스탯 15%)`,
@@ -715,7 +905,29 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       const enemyHp = s.enemyHp - dmg;
       const enemyDefeated = enemyHp <= 0;
 
-      if (enemyDefeated && s.farmReturnStage) {
+      if (enemyDefeated && s.towerFloor !== null) {
+        // 수련탑은 최고 기록 다음 층부터 시작하므로 돌파한 층은 언제나 신기록 — 층마다 보상.
+        const cleared = s.towerFloor;
+        const reward = towerFloorReward(cleared);
+        const newEnemy = towerEnemy(cleared + 1);
+        set({
+          ...rewardPatch(s, reward),
+          towerBest: cleared,
+          towerFloor: cleared + 1,
+          towerTurns: 0,
+          enemyHp: 0,
+          pendingEncounter: {
+            stage: s.stage,
+            enemy: newEnemy,
+            enemyHp: newEnemy.hp,
+            playerHp: s.player.hp,
+            awaitingBossChallenge: false,
+            farmReturnStage: s.farmReturnStage,
+          },
+          toastMessage: `수련탑 ${cleared}층 돌파! ${rewardText(reward)}`,
+        });
+        persist(get());
+      } else if (enemyDefeated && s.farmReturnStage) {
         // 사냥터 모드: 스테이지를 넘기지 않고 같은 스테이지에서 계속 사냥 — 보스 조우 연출 없이
         // 처치할 때마다 파밍용 보상만 지급(최초 클리어 확정 보상·highestMajorCleared 갱신 없음).
         const reward = stageReward(s.stage);
@@ -842,6 +1054,11 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         set({ enemyHp });
       }
 
+      // 처치 수는 각 분기의 다음 저장 때 함께 저장된다.
+      if (enemyDefeated) {
+        set((cur) => ({ totalKills: cur.totalKills + 1, ...dailyPatch(cur, 'kills', 1) }));
+      }
+
       return { dmg, isCrit, enemyDefeated };
     },
 
@@ -911,7 +1128,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
     // 위한 진입점 — 자동 등반 스테이지는 그대로 두고 전투만 선택한 스테이지로 옮긴다.
     startFarming: (stage) => {
       const s = get();
-      if (s.awaitingBossChallenge || s.awaitingBossReward) return;
+      if (s.awaitingBossChallenge || s.awaitingBossReward || s.towerFloor !== null) return;
       const frontier = s.farmReturnStage ?? s.stage;
       if (!isStageAtOrBefore(stage, frontier)) return;
 
@@ -941,7 +1158,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
     stopFarming: () => {
       const s = get();
       const returnStage = s.farmReturnStage;
-      if (!returnStage) return;
+      if (!returnStage || s.towerFloor !== null) return;
       const newEnemy = monsterStats(returnStage);
       set({
         stage: returnStage,
@@ -981,6 +1198,39 @@ export const useGameStore = create<GameStoreState>((set, get) => {
     enemyAttack: () => {
       const s = get();
       if (s.enemyHp <= 0) return null;
+
+      if (s.towerFloor !== null) {
+        // 수련탑: 적 공격 횟수 제한에 닿거나 쓰러지면 도전 종료 — 일반 전투로 돌아가고 최고 기록은 유지.
+        const towerTurns = s.towerTurns + 1;
+        const timedOut = towerTurns >= TOWER_TURN_LIMIT;
+        if (!timedOut && rollEvaded(s.player.evasion)) {
+          set({ towerTurns });
+          return { dmg: 0, playerDefeated: false, evaded: true };
+        }
+        const towerDmg = damage(s.enemy.atk, s.player.def);
+        const towerPlayerHp = s.playerHp - towerDmg;
+        if (!timedOut && towerPlayerHp > 0) {
+          set({ towerTurns, playerHp: towerPlayerHp });
+          return { dmg: towerDmg, playerDefeated: false, evaded: false };
+        }
+        const newEnemy = monsterStats(s.stage);
+        set({
+          playerHp: 0,
+          towerFloor: null,
+          towerTurns: 0,
+          pendingEncounter: {
+            stage: s.stage,
+            enemy: newEnemy,
+            enemyHp: newEnemy.hp,
+            playerHp: s.player.hp,
+            awaitingBossChallenge: needsBossChallenge(s.stage, s.highestMajorCleared),
+            farmReturnStage: s.farmReturnStage,
+          },
+          toastMessage: `수련탑 ${s.towerFloor}층 ${timedOut ? '시간 초과' : '패배'} — 최고 기록 ${s.towerBest}층`,
+        });
+        return { dmg: towerDmg, playerDefeated: true, evaded: false };
+      }
+
       if (rollEvaded(s.player.evasion)) return { dmg: 0, playerDefeated: false, evaded: true };
 
       const dmg = damage(s.enemy.atk, s.player.def);
@@ -1084,6 +1334,7 @@ export {
   sectBuffPercent,
 };
 export { PULL_COST, PULL_10_COST, HARD_PITY, GRADE_COLOR, gradeTier };
+export { DAILY_GOALS, MILESTONES, rewardText, todayString, TOWER_TURN_LIMIT, TOWER_UNLOCK_MAJOR };
 export { GRADE_CHANCE, SOFT_PITY_START } from './gachaData';
 export { elixirExchangeCost };
 export { expToNextLevel, isBossStage, enemyKind };

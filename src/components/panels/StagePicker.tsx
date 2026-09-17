@@ -1,5 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { useGameStore, isStageAtOrBefore, type StageId } from '../../game/store';
+import {
+  useGameStore,
+  isStageAtOrBefore,
+  TOWER_TURN_LIMIT,
+  TOWER_UNLOCK_MAJOR,
+  type StageId,
+} from '../../game/store';
 import { monsterStats } from '../../game/combat';
 import { MAJOR_STORIES } from '../../game/storyData';
 import { stageLabel } from '../common';
@@ -21,12 +27,16 @@ export const StagePicker = ({ onBack }: { onBack: () => void }) => {
   const awaitingBossReward = useGameStore((s) => s.awaitingBossReward);
   const startFarming = useGameStore((s) => s.startFarming);
   const stopFarming = useGameStore((s) => s.stopFarming);
+  const towerBest = useGameStore((s) => s.towerBest);
+  const highestMajorCleared = useGameStore((s) => s.highestMajorCleared);
+  const startTower = useGameStore((s) => s.startTower);
 
   const frontier = farmReturnStage ?? stage;
   const majors = Array.from({ length: frontier.major }, (_, i) => frontier.major - i);
   const [openMajor, setOpenMajor] = useState(stage.major);
   const openRowRef = useRef<HTMLButtonElement>(null);
   const blocked = !!awaitingBossReward || awaitingBossChallenge;
+  const towerUnlocked = highestMajorCleared >= TOWER_UNLOCK_MAJOR;
 
   // 처음 열 때 현재 전투 중인 대스테이지가 보이도록 스크롤.
   useEffect(() => {
@@ -62,6 +72,27 @@ export const StagePicker = ({ onBack }: { onBack: () => void }) => {
             등반
           </button>
         )}
+      </div>
+      <div className="setting-row tower-entry">
+        <div>
+          <strong>수련탑 · 최고 {towerBest}층</strong>
+          <p>
+            {towerUnlocked
+              ? `${towerBest + 1}층부터 도전 — 적 공격 ${TOWER_TURN_LIMIT}회 안에 쓰러뜨리면 다음 층. 층마다 강화석, 10층마다 영약.`
+              : `대${TOWER_UNLOCK_MAJOR} 보스를 처음 클리어하면 열립니다.`}
+          </p>
+        </div>
+        <button
+          type="button"
+          className="btn btn-primary"
+          disabled={!towerUnlocked || blocked}
+          onClick={() => {
+            startTower();
+            onBack();
+          }}
+        >
+          도전
+        </button>
       </div>
       {blocked ? (
         <p className="warn">보스 확인 중에는 사냥터를 옮길 수 없습니다.</p>

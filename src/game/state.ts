@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import type { StageId } from './combat';
 import type { GongLevels } from './gongData';
 import type { GearItem, SlotId } from './gearData';
+import { EMPTY_DAILY_COUNTS, type DailyCounts } from './goalData';
 
 const SAVE_KEY = 'murim-simulator-save-v2';
 
@@ -34,6 +35,15 @@ export interface GameState {
   // 스토리 연출 최초 1회 판정 — 환골탈태로 1-1에 돌아가도 유지한다.
   storySeenMajor: number; // 진입 카드를 본 가장 높은 대스테이지
   storySeenStage: number; // 자막을 본 가장 먼 소스테이지(storyStageIndex 일렬 번호)
+  // 마지막으로 저장한 시각(ms) — 다시 열었을 때 오프라인 보상 경과 시간 계산용. 0이면 기록 없음.
+  lastActiveAt: number;
+  // 수련 목표 — dailyDate가 오늘이 아니면 일일 진행·수령 기록은 초기화된 것으로 본다.
+  dailyDate: string;
+  dailyCounts: DailyCounts;
+  dailyClaimed: string[];
+  milestonesClaimed: string[];
+  totalKills: number;
+  towerBest: number;
 }
 
 const defaultState = (): GameState => ({
@@ -63,6 +73,13 @@ const defaultState = (): GameState => ({
   farmReturnStage: null,
   storySeenMajor: 0,
   storySeenStage: 0,
+  lastActiveAt: 0,
+  dailyDate: '',
+  dailyCounts: EMPTY_DAILY_COUNTS,
+  dailyClaimed: [],
+  milestonesClaimed: [],
+  totalKills: 0,
+  towerBest: 0,
 });
 
 // 저장 실패(저장 공간 부족·브라우저 저장 차단 등)를 화면에 알리기 위한 상태 — 실패를 성공처럼 숨기지 않는다.
@@ -86,11 +103,37 @@ export const loadState = (): GameState => {
   }
 };
 
+// 백업 복원 직후 새로고침 전까지 실행 중인 게임이 복원한 저장을 덮어쓰지 못하게 막는다.
+let saveLocked = false;
+
 export const saveState = (state: GameState) => {
+  if (saveLocked) return;
   try {
     localStorage.setItem(SAVE_KEY, JSON.stringify(state));
     if (useSaveStatus.getState().failed) useSaveStatus.setState({ failed: false });
   } catch {
     useSaveStatus.setState({ failed: true });
+  }
+};
+
+// 세이브 백업 — 서버가 없어 브라우저 데이터가 지워지면 진행이 사라지므로 저장 내용을 문자열로 옮긴다.
+// 한글 도호가 들어 있어 UTF-8 바이트로 바꾼 뒤 base64로 인코딩한다.
+export const exportSaveCode = (): string => {
+  const bytes = new TextEncoder().encode(localStorage.getItem(SAVE_KEY) ?? '');
+  return btoa(Array.from(bytes, (b) => String.fromCharCode(b)).join(''));
+};
+
+// 성공하면 true — 호출한 쪽이 바로 새로고침해 복원한 저장으로 다시 시작한다.
+export const importSaveCode = (code: string): boolean => {
+  try {
+    const binary = atob(code.trim());
+    const text = new TextDecoder().decode(Uint8Array.from(binary, (c) => c.charCodeAt(0)));
+    const parsed = JSON.parse(text) as Partial<GameState>;
+    if (typeof parsed.level !== 'number' || typeof parsed.stage?.major !== 'number') return false;
+    localStorage.setItem(SAVE_KEY, text);
+    saveLocked = true;
+    return true;
+  } catch {
+    return false;
   }
 };
