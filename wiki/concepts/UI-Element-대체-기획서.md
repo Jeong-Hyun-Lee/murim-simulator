@@ -2,13 +2,13 @@
 type: concept
 tags: [UI, UI-Element, 비주얼디자인, 모바일, 에셋, 코덱스]
 created: 2026-09-16
-updated: 2026-09-16
+updated: 2026-09-18
 sources: []
 ---
 
 # UI Element 대체 기획서
 
-CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이미지 요소(UI Element)**로 바꾸는 기획이다. 화면 구조·기능·상태 판정은 [[모바일-UX-개선-기획서]]의 현재 구현을 그대로 두고, 표면(패널·버튼·탭·팝업·아이콘·고정 문구)을 이미지로 교체하며, 앱 테마 배경과 색 토큰을 레퍼런스의 흰 회벽·먹색 기와 대비로 바꾼다(2.4, 4.4). [[모바일-디자인-에셋-제작-명세]]의 공통 UI·조작 아이콘·장비/무공/문파/상점 그림 항목을 실제 제작 단위로 구체화하며, UI 표면의 표현 규칙은 이 문서를 따른다. UI Element 이미지 생성은 코덱스가 6단계 프롬프트로 수행한다.
+CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이미지 요소(UI Element)**로 바꾸는 기획이다. 화면 구조·기능·상태 판정은 [[모바일-UX-개선-기획서]]의 현재 구현을 그대로 두고, 표면(패널·버튼·탭·팝업·아이콘·고정 문구)을 이미지로 교체하며, 앱 테마 배경과 색 토큰을 레퍼런스의 흰 회벽·먹색 기와 대비로 바꾼다(2.4, 4.4). [[모바일-디자인-에셋-제작-명세]]의 공통 UI·조작 아이콘·장비/무공/문파/상점 그림 항목을 실제 제작 단위로 구체화하며, UI 표면의 표현 규칙은 이 문서를 따른다. UI Element 이미지 생성은 코덱스가 6단계 프롬프트로 수행한다. [[장기-플레이-시스템]]의 수련 목표·수련탑·오프라인 보상·저장 백업 화면도 같은 규칙으로 포함한다.
 
 ## 1. 원칙
 
@@ -205,6 +205,7 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | `frame-banner-silk` | 붉은 비단 띠 + 양끝 매듭 | 3-slice | 360×48 → 720×96 | 좌우 72 | `.banner`, `.banner-done` | P1 |
 | `frame-toast-note` | 한지 쪽지 + 붓 자국 가장자리 | 9-slice | 96×64 → 192×128 | 32 | `Toast` | P1 |
 | `frame-portrait` | 둥근 청동·금 테 초상 틀 | 고정 | 40×40 → 120×120 | – | `.header-portrait` | P0 |
+| `frame-row-slip` | 가로로 긴 목간 쪽지 + 얇은 흑칠 테 + 좌우 끈 매듭 | 9-slice | 358×64 → 716×128 | 32 | `.setting-row`(설정 줄, 수련 목표 행, 수련탑 진입 행) | P0 |
 
 ### 5.2 버튼 바탕 (그룹 `button`, 원본 2배, 글자 없음)
 
@@ -262,6 +263,10 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | `icon-hold` | 누르고 있는 손끝과 겹친 물결 세 줄 | 20 | 길게 눌러 연속 연마 안내 | P1 |
 | `icon-sfx-on` | 울리는 청동 종과 울림선 | 24 | 설정 효과음 켜짐 | P0 |
 | `icon-sfx-off` | 청동 종과 사선 | 24 | 설정 효과음 꺼짐 | P0 |
+| `icon-goal` | 붓으로 점을 찍은 과녁 목패 | 24 | 전투 상태 줄 수련 목표 버튼 | P0 |
+| `icon-goal-daily` | 떠오르는 해와 붓 획 한 줄 | 20 | 일일 수련 구역 | P1 |
+| `icon-goal-milestone` | 길가의 돌 이정표 | 20 | 누적 수련 구역 | P1 |
+| `icon-backup` | 자물통이 달린 죽간 보관함 | 20 | 설정 저장 백업 | P1 |
 
 #### 재화·재료
 
@@ -302,6 +307,9 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | `icon-combat-power` | 금테 원 안의 엇갈린 검 | 20 | 전투력 | P0 |
 | `icon-exp` | 옥 구슬 | 16 | 경험치 게이지 앞 | P1 |
 | `icon-stage-current` | 작은 붉은 깃발 | 16 | 사냥터 선택의 현재 위치 | P1 |
+| `icon-tower` | 층층이 올라가는 기와 누각 탑 | 24 | 수련탑 상태 칩·진입 행·누적 목표 | P0 |
+| `icon-hourglass` | 청동 테 모래시계 | 20 | 수련탑 남은 공방, 오프라인 경과 시간 | P0 |
+| `icon-offline` | 초승달과 감긴 두루마리 | 20 | 자리를 비운 동안 팝업 | P1 |
 
 #### 행동 보조
 
@@ -356,6 +364,8 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | `frame-grade-하품` ~ `frame-grade-선품` (6종) | `frame` | 슬롯 테두리에 등급색 보석 1개 + 등급색 안쪽 선 | 9-slice | 80×36 → 160×72 | 24 | 등급별 슬롯·소지품 카드 | P1 |
 | `panel-gacha-card-back` | `panel` | 금박 운문 카드 뒷면 | 고정 | 72×96 → 144×192 | – | 기연 결과 공개 전 | P1 |
 | `panel-stage-map` | `panel` | 지도 두루마리 조각 | 9-slice | 358×56 → 716×112 | 48 | 사냥터 선택 대스테이지 행 | P1 |
+| `panel-tower-gate` | `panel` | 안개 속 층층 누각 탑 실루엣, 아래쪽은 글자를 올릴 수 있게 비워 둠 | 고정 | 358×96 → 716×192 | – | 사냥터 팝업 수련탑 진입 행 바탕 | P1 |
+| `panel-offline-night` | `panel` | 달밤 누각과 등불, 가운데는 비워 둠 | 고정 | 358×112 → 716×224 | – | 자리를 비운 동안 팝업 머리 | P1 |
 
 ### 5.6 테마 배경 (그룹 `theme`, 원본 2배)
 
@@ -393,6 +403,12 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | `label-boss-challenge` | 도전 | ink | primary | 보스 도전 | P0 |
 | `label-keep-training` | 수련하기 | cream | secondary | 보스 도전 보류 | P0 |
 | `label-continue` | 계속하기 | ink | primary | 보스 결과·스토리 | P0 |
+| `label-goals` | 수련 목표 | cream | secondary | 전투 상태 줄 (받을 수 있는 개수는 텍스트) | P0 |
+| `label-tower` | 수련탑 | cream | secondary | 전투 상태 칩·사냥터 팝업 (층·남은 공방은 텍스트) | P0 |
+| `label-tower-quit` | 포기 | cream | danger | 전투 무대 수련탑 종료 | P0 |
+| `label-claim` | 받기 | ink | primary | `GoalsView` | P0 |
+| `label-claimed` | 받음 | cream | secondary | `GoalsView` 수령 완료 | P0 |
+| `label-goal-progress` | 진행 중 | cream | secondary | `GoalsView` 미달성 | P0 |
 | `label-next` | 다음 | ink | primary | 온보딩·스토리 | P1 |
 | `label-skip` | 건너뛰기 | cream | secondary | 온보딩·스토리 | P1 |
 | `label-use-default` | 기본값 사용 | cream | secondary | 온보딩 | P1 |
@@ -418,6 +434,9 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | `label-rebirth-not-ready` | 조건 미충족 | cream | secondary | `RebirthView` | P1 |
 | `label-rebirth-execute` | 환골탈태 실행 | cream | danger | `RebirthView` | P1 |
 | `label-back-to-first-stage` | 1-1 전투로 | ink | primary | `RebirthView` | P1 |
+| `label-backup-copy` | 백업 코드 복사 | cream | secondary | `SettingsSheet` | P1 |
+| `label-backup-restore` | 백업 코드로 복원 | cream | secondary | `SettingsSheet` | P1 |
+| `label-backup-overwrite` | 현재 진행을 덮어쓰고 복원 | cream | danger | `SettingsSheet` 2단계 확인 | P1 |
 | `label-subtab-general` | 일반상점 | cream | segment | `ShopPanel` 소탭 | P1 |
 | `label-subtab-gacha` | 기연(奇緣) | cream | segment | `ShopPanel` 소탭 | P1 |
 | `title-settings` | 설정 | cream | 현판 | 설정 팝업 | P0 |
@@ -428,6 +447,7 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | `title-locked-gear` | 장비 잠김 | cream | 현판 | 잠김 팝업 | P0 |
 | `title-locked-sect` | 문파 잠김 | cream | 현판 | 잠김 팝업 | P0 |
 | `title-locked-shop` | 상점 잠김 | cream | 현판 | 잠김 팝업 | P0 |
+| `title-offline-report` | 자리를 비운 동안 | cream | 현판 | 오프라인 보상 팝업 | P1 |
 | `title-rebirth-ready` | 환골탈태 가능 | cream | 현판 | 전투 탭 팝업 | P1 |
 | `title-rebirth-confirm` | 환골탈태 확인 | cream | 현판 | `RebirthView` | P1 |
 | `title-rebirth-done` | 환골탈태 완료 | cream | 현판 | `RebirthView` | P1 |
@@ -444,11 +464,17 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | `section-kept` | 유지되는 항목 | ink | 흰 회벽 | `RebirthView` | P1 |
 | `section-reset` | 초기화되는 항목 | ink | 흰 회벽 | `RebirthView` | P1 |
 | `section-gacha-result` | 뽑기 결과 | ink | 흰 회벽 | `GachaPanel` | P1 |
+| `section-goal-daily` | 일일 수련 | ink | 한지 카드 | `GoalsView` | P0 |
+| `section-goal-milestone` | 누적 수련 | ink | 한지 카드 | `GoalsView` | P0 |
+| `section-save-backup` | 저장 백업 | ink | 한지 카드 | `SettingsSheet` | P1 |
 | `tag-tier-primary` | 1차 | 흰 글자 | 붉은 낙관 | 초식 카드 단계 | P0 |
 | `tag-tier-secondary` | 2차 | 흰 글자 | 붉은 낙관 | 초식 카드 단계 | P0 |
 | `tag-tier-capstone` | 오의 | 금 글자 | 짙은 붉은 낙관 + 금테 | 초식 카드 단계 | P0 |
 | `sign-sect-qingyun` | 청운문 | 금 글자 | 남색 현판 전체(글자 포함 간판) | `SectPanel` 소속 카드 머리 | P1 |
 | `sign-shop-elixir` | 영약 교환소 | ink | 약방 목패 전체(글자 포함 간판) | `ShopPanel` | P1 |
+| `sign-tower` | 수련탑 | 금 글자 | 남색 현판 전체(글자 포함 간판) | 사냥터 팝업 수련탑 진입 행 머리 | P1 |
+
+수련탑 도전 버튼은 보스 도전과 문구가 같아 `label-boss-challenge`를 함께 쓰고, 복원 취소에는 `label-cancel`을 쓴다.
 
 `tag-*`, `sign-*`은 낙관·현판·목패 그림을 생성하고 그 위에 폰트로 글자를 합성한 한 장짜리 이미지다. 태그 크기는 36×20 → 108×60, 간판은 358×72 → 1074×216이다.
 
@@ -509,17 +535,19 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | `AppHeader` | 신분줄 배경, 초상 틀, 재화 칩 아이콘, 설정 버튼 | `frame-header-eave`, `frame-portrait`, `icon-gold/chi/elixir/contribution/stones`, `btn-round`+`icon-settings` | 도호, 경지, 재화 수치, 재화 이름 |
 | `TabBar` | 탭바 배경, 4탭 | `frame-tabbar`, `tab-*`, `icon-lock`, `icon-badge` | 없음(`aria-label` 유지) |
 | `BattleSummaryBar` | 요약줄 | `frame-summary-strip`, `label-battle-view` | 스테이지, 전투 상태 |
-| `BattleTab` | 전투 상태 줄, 전투 무대 액자, 적·보스·내 체력바, 경험치 게이지, 사냥터·등반 버튼, 보스 카드 | `icon-status-*`, `icon-climb`, `icon-combat-power`, `frame-battle-stage`, 5.8 게이지, `icon-stat-hp`, `label-stage`, `label-climb`, `label-boss-challenge`, `label-keep-training`, `label-continue` | 적·보스 이름, 체력 수치, 레벨, 전투력 수치, 전투 상태 문구, 보상 |
+| `BattleTab` | 전투 상태 줄, 수련 목표 버튼, 전투 무대 액자, 수련탑 상태 칩, 적·보스·내 체력바, 경험치 게이지, 사냥터·등반 버튼, 보스 카드 | `icon-status-*`, `icon-climb`, `icon-combat-power`, `frame-battle-stage`, 5.8 게이지, `icon-stat-hp`, `label-stage`, `label-climb`, `label-boss-challenge`, `label-keep-training`, `label-continue`, `icon-goal`+`label-goals`, `icon-tower`+`label-tower`, `icon-hourglass`, `btn-danger-brick`+`label-tower-quit` | 적·보스 이름, 체력 수치, 레벨, 전투력 수치, 전투 상태 문구, 보상 |
 | `Sheet` | 팝업 틀, 제목 현판, 닫기 | `frame-popup`, `frame-title-plaque` 또는 `title-*`, `btn-round`+`icon-close` | 동적 제목(`title-*`가 없는 경우), 본문 |
 | `FullView` | 뒤로 버튼 | `btn-round`+`icon-back` | 화면 제목 |
-| `SettingsSheet` | 버튼 | `btn-primary-tile`+`label-pause/resume`, `btn-secondary-brick`+`label-sfx-on/off`, `title-settings` | 진행 중·일시정지 상태 |
+| `SettingsSheet` | 설정 줄, 버튼, 저장 백업 구역 | `frame-row-slip`, `btn-primary-tile`+`label-pause/resume`, `btn-secondary-brick`+`label-sfx-on/off`, `title-settings`, `section-save-backup`, `icon-backup`, `label-backup-copy/restore`, `btn-danger-brick`+`label-backup-overwrite` | 진행 중·일시정지 상태, 백업 코드 문자열, 복사·복원 결과 안내 |
 | `CurrencySheet` | 목록 아이콘 | `icon-*`, `icon-charm`, `title-currency` | 재화 이름·용도·수치 |
 | `LockedTabSheet` | 잠김 표식·제목 | `icon-lock`, `title-locked-*` | 해금 조건, 진행 위치 |
 | `GongPanel` | 보드 선택기, 초식 카드, 단계 태그, 연마 버튼 | `scroll-silk-picker`, `icon-dropdown`, `scroll-bamboo-card(-locked)`, `tag-tier-*`, `label-train-once`, `label-train`, `frame-banner-silk` | 보드 이름·진행도, 초식 이름·레벨, 효과 수치, 비용, `{n}회`, 해금 조건 |
 | `GearPanel` | 무기고 배경, 슬롯, 등급 테, 섹션 제목, 버튼 | `panel-armory`, `frame-slot`, `frame-grade-*`, `icon-slot-*`, `section-*`, `label-equip-best` 외 장비 라벨 | 장비 이름·등급명·강화 수치·능력치 비교·개수 |
 | `SectPanel` | 소속 간판, 카드, 게이지, 기부 버튼 | `sign-sect-qingyun`, `frame-panel-hanji`, `frame-gauge-sect`, `fill-sect`, `section-donate`, `label-donate-*`, `label-sect-board` | 문파 레벨·특전·기여도 수치·환산 비율 |
 | `ShopPanel`·`GachaPanel` | 소탭, 간판, 상품 카드, 뽑기 버튼, 카드 뒷면 | `btn-segment(-active)`, `label-subtab-*`, `sign-shop-elixir`, `icon-elixir`, `label-gacha-*`, `panel-gacha-card-back`, `icon-gacha` | 비용·보유 전·잔액·확률표·결과 등급과 이름 |
-| `StagePicker` | 대스테이지 행 | `panel-stage-map`, `label-climb` | 대 번호·지명·보스 이름·소스테이지 번호 |
+| `StagePicker` | 대스테이지 행, 수련탑 진입 행 | `panel-stage-map`, `label-climb`, `frame-row-slip`, `panel-tower-gate`, `sign-tower`, `icon-tower`, `btn-primary-tile`+`label-boss-challenge` | 대 번호·지명·보스 이름·소스테이지 번호, 최고 층·다음 층·해금 조건 |
+| `GoalsView` | 구역 제목, 목표 행, 수령 버튼 | `frame-panel-hanji`, `section-goal-daily`, `section-goal-milestone`, `icon-goal-daily`, `icon-goal-milestone`, `frame-row-slip`, `btn-primary-tile`+`label-claim`, `btn-secondary-brick`+`label-claimed`/`label-goal-progress`, 목표별 `icon-*` | 목표 이름·진행 수치·보상 수치 |
+| `OfflineReportSheet` | 팝업 머리 그림, 제목, 확인 버튼 | `frame-popup`, `panel-offline-night`, `title-offline-report`, `icon-offline`, `icon-hourglass`, `icon-status-reward`, `btn-primary-tile`+`label-confirm` | 경과 시간, 처치 수, 획득 수치, 오른 레벨 |
 | `RebirthView`·`MyInfoView` | 섹션 제목, 버튼, 문양 | `section-*`, `title-rebirth-*`, `label-rebirth-*`, `icon-rebirth` | 조건·유지/초기화 항목·능력치 |
 | `OnboardingFlow`·`StoryCutscene` | 대화창, 버튼 | `scroll-parchment-dialog`, `label-next`, `label-skip`, `label-continue`, `label-use-default` | 대사, 도호 입력 |
 | `Toast` | 쪽지 | `frame-toast-note` | 알림 문구 |
@@ -534,6 +562,8 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | 상단 신분줄 | 설정 버튼 | `icon-settings` | P0 |
 | 상단 신분줄 | 재화 칩 | `icon-gold`·`icon-chi`·`icon-elixir`·`icon-contribution`·`icon-stones` (재화 이름·수치) | P0 |
 | 전투 탭 | 전투 상태 줄 | 상태별 `icon-status-auto/paused/farm/boss/reward` (상태 문구) | P0 |
+| 전투 탭 | 수련 목표 버튼 | `icon-goal` (받을 수 있는 개수) | P0 |
+| 전투 탭 | 수련탑 상태 칩·포기 버튼 | `icon-tower`, `icon-hourglass` (층·남은 공방) | P0 |
 | 전투 탭 | 등반 위치·등반 버튼 | `icon-climb` (스테이지 번호) | P0 |
 | 전투 탭 | 적 이름 줄 | 보스일 때 `icon-status-boss` (적 이름) | P0 |
 | 전투 탭 | 내 이름 줄 | `icon-combat-power` (전투력 수치) | P0 |
@@ -545,6 +575,11 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | 무공 탭 | 보드 선택기 | `icon-dropdown` (보드 이름·진행도) | P0 |
 | 무공 탭 | 길게 누르기 안내 | `icon-hold` (안내 문구) | P1 |
 | 설정 팝업 | 전투 제어·효과음 줄 | `icon-status-paused`/`icon-status-auto`, `icon-sfx-on`/`icon-sfx-off` (상태 문구) | P0 |
+| 설정 팝업 | 저장 백업 줄 | `icon-backup`, 경고 문구에 `icon-warn` (백업 코드·안내) | P1 |
+| 수련 목표 | 일일·누적 구역 제목 | `icon-goal-daily`, `icon-goal-milestone` (구역 제목은 라벨) | P1 |
+| 수련 목표 | 목표 행 | 목표 종류별 `icon-status-boss`·`icon-rebirth`·`icon-action-train`·`icon-action-enhance`·`icon-tower`, 보상 재화 아이콘, 수령 완료 `icon-check` (진행·보상 수치) | P1 |
+| 사냥터 선택 | 수련탑 진입 행 | `icon-tower`, 잠김 시 `icon-lock`, 제한 안내에 `icon-hourglass` (최고 층·다음 층·조건) | P1 |
+| 오프라인 팝업 | 경과·보상 줄 | `icon-offline`, `icon-hourglass`, `icon-status-reward`, 획득 재화 아이콘 (시간·수치) | P1 |
 | 팝업 공통 | 닫기·뒤로 | `icon-close`, `icon-back` (`aria-label`) | P0 |
 | 잠김 팝업 | 잠김 표식 | `icon-lock`, 해금 토스트에 `icon-unlock` | P0/P1 |
 | 장비 탭 | 9슬롯 | `icon-slot-*` (슬롯 이름·등급·강화 수치) | P1 |
@@ -576,7 +611,7 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 - [ ] 생성 그림에 글자·숫자·가짜 한자·워터마크가 없다. 모든 글자는 5.7 라벨 합성으로 들어갔고, 문구가 표와 한 글자도 다르지 않다.
 - [ ] 9-slice·3-slice 에셋을 가로 2배·세로 2배로 늘려도 모서리 장식이 찌그러지지 않고 변의 이음매가 보이지 않는다.
 - [ ] 라벨·동적 텍스트가 바탕 가운데에서 명암 대비 4.5:1 이상으로 읽힌다.
-- [ ] 320px 폭에서 가장 긴 라벨(`환골탈태 화면 열기`, `확률 정보 보기`)이 버튼 안에 들어가고 16px 글자 높이를 유지한다.
+- [ ] 320px 폭에서 가장 긴 라벨(`현재 진행을 덮어쓰고 복원`, `환골탈태 화면 열기`, `확률 정보 보기`)이 버튼 안에 들어가고 16px 글자 높이를 유지한다. 백업 복원 라벨은 필요하면 두 줄로 나눈 이미지를 쓴다.
 - [ ] 같은 역할(주요·보조·이동·위험)의 버튼이 모든 화면에서 같은 바탕을 쓴다. 금색 바탕은 주요 행동에만 쓴다.
 - [ ] 탭 기본/선택, 소탭 기본/선택, 초식 카드 기본/잠김이 색만이 아니라 모양·밝기로도 구분된다.
 - [ ] 등급 프레임 6종의 색이 `GRADE_COLOR`와 같고, 등급명 텍스트와 함께 쓰인다.
@@ -585,6 +620,9 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 - [ ] 게이지 틀을 폭 120~358px로 늘려도 끝 장식이 찌그러지지 않고, 채움·잔상·광택이 틀 안쪽 홈에 정확히 맞는다. 적·보스·내 체력바가 틀 모양만으로 구분된다.
 - [ ] 체력 30% 이하 위험 상태와 잔상 지연이 동작하고, 움직임 줄이기 설정에서는 깜빡임·지연이 없다.
 - [ ] 이미지 버튼마다 `aria-label` 또는 화면 밖 텍스트가 있다.
+- [ ] 수련 목표 행의 `받기`·`받음`·`진행 중` 세 상태가 바탕 모양과 밝기로도 구분되고, 받을 수 있는 목표가 한눈에 띈다.
+- [ ] `frame-row-slip`을 높이 56~112px로 늘려도 끈 매듭 장식이 찌그러지지 않고, 설정·수련 목표·수련탑 진입 행이 같은 바탕을 쓴다.
+- [ ] 오프라인 팝업의 `panel-offline-night` 위에서 경과 시간·획득 수치가 4.5:1 이상으로 읽히고, 밤 그림이 보스 팝업과 톤이 어긋나지 않는다.
 - [ ] P0 에셋 전체 용량이 1MB 이하다.
 - [ ] 흰 회벽 바탕 위 본문 글자·보조 글자·증감색이 4.4의 대비 기준을 넘고, 검은 영역 안에서는 on-ink 글자 토큰으로 바뀐다.
 - [ ] `theme-app-wall`을 이어 붙였을 때 이음매가 보이지 않고, 먹 가지 장식이 카드·목록 글자 뒤에 오지 않는다.
@@ -604,6 +642,8 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | 6 | P1 에셋: 장비·문파·상점·기연·환골탈태·스테이지 선택·스토리·토스트, P1 아이콘·게이지 | 매니페스트·미리보기·검수 통과 |
 | 7 | P1 게임 적용 | 모든 탭과 팝업에서 같은 역할의 표면·아이콘이 일관 |
 | 8 | 포트폴리오 보드(12장) | 12.3 절차 완료, 사용자 확인 |
+
+[[장기-플레이-시스템]] 화면의 에셋은 위 단계에 나눠 넣는다. 전투 화면에 늘 보이는 수련 목표 버튼·수련탑 상태 칩과 공용 `frame-row-slip`은 4·5단계(P0)에, 수련 목표 화면 내부 아이콘·사냥터 팝업 수련탑 진입 행·오프라인 팝업·저장 백업 구역은 6·7단계(P1)에 넣는다.
 
 ## 10. 코덱스 작업 규칙
 
@@ -699,6 +739,7 @@ AGENTS.md와 wiki/concepts/UI-Element-대체-기획서.md를 읽어. 승인된 �
 - fill-exp: "Seamless horizontally tileable soft jade green fill strip."
 - overlay-gauge-gloss: "Seamless horizontally tileable soft white highlight band on the upper third, semi-transparent, transparent elsewhere."
 - frame-portrait: "Round portrait frame: bronze ring with gold inner bead line, transparent center."
+- frame-row-slip: "Horizontal nine-slice wooden slip panel with thin black lacquer border and small cord knots at both ends, flat readable center."
 - btn-primary-tile: "Horizontal three-slice button plate made of golden glazed roof tiles with gold trim edges, slightly convex."
 - btn-secondary-brick: "Horizontal three-slice button plate made of charcoal grey bricks with dark wood trim, slightly convex."
 - btn-travel-jade: "Horizontal three-slice button plate made of green-glazed roof tiles with small gold studs at both ends, slightly convex."
@@ -790,13 +831,16 @@ AGENTS.md와 wiki/concepts/UI-Element-대체-기획서.md를 읽어. 스타일 �
      · 장비 슬롯 아이콘 8종은 같은 청동색 단일 톤 실루엣 + 금색 포인트로 통일하고 등급 색을 넣지 않는다. icon-charm의 붓 획은 읽을 수 있는 글자가 아닌 문양으로 그린다.
    - frame-gauge-sect, fill-sect(5.8 표)
    - scroll-parchment-dialog, panel-armory, frame-slot, panel-gacha-card-back, panel-stage-map
+   - panel-tower-gate: "Wide panel of a tiered pagoda tower silhouette rising through mist, ink wash tone, lower third left empty for text."
+   - panel-offline-night: "Wide panel of a moonlit pavilion with hanging lanterns at night, calm ink wash tone, center area left empty for text."
    - frame-grade-하품·중품·상품·절품·신품·선품: frame-slot과 같은 형태·slice를 쓰고 오른쪽 위 보석 1개와 안쪽 얇은 선만 등급색으로 다르게 한다. 보석·선 영역을 가진 기본 1장을 생성한 뒤, src/game/gradeData.ts의 GRADE_COLOR 값으로 스크립트가 색을 입혀 6장을 만든다.
    - sign-sect-qingyun 바탕: "Wide deep navy lacquer signboard plaque with ornate gold frame and small cloud carvings, empty center"
    - sign-shop-elixir 바탕: "Wide weathered wooden apothecary signboard with dark red lacquer edges and hanging cords, empty center"
+   - sign-tower 바탕: sign-sect-qingyun과 같은 남색 현판 바탕을 재사용한다(새로 생성하지 않는다).
 2. 합성
    - 5.7 표의 P1 label-*, title-*, section-*을 render_labels.py로 만든다.
-   - sign-sect-qingyun(청운문, 금 글자 #f4d66e, Nanum Brush Script)과 sign-shop-elixir(영약 교환소, ink 스타일)를 바탕 위에 합성한다. 원본 1074×216.
-3. 크기·slice·저장 위치·WebP 규칙, manifest.json, preview.html 추가는 P0 단계와 같다. preview에는 장비 슬롯 9개 배치(반지 L/R은 icon-slot-ring 공유), 등급 테 6종, 문파 간판·문파 단계 게이지, 상점 간판, 대화창, 6.1 표의 P1 아이콘 위치 예시를 추가한다.
+   - sign-sect-qingyun(청운문, 금 글자 #f4d66e, Nanum Brush Script), sign-tower(수련탑, 같은 금 글자·바탕), sign-shop-elixir(영약 교환소, ink 스타일)를 바탕 위에 합성한다. 원본 1074×216.
+3. 크기·slice·저장 위치·WebP 규칙, manifest.json, preview.html 추가는 P0 단계와 같다. preview에는 장비 슬롯 9개 배치(반지 L/R은 icon-slot-ring 공유), 등급 테 6종, 문파 간판·문파 단계 게이지, 상점 간판, 대화창, 수련탑 진입 행(panel-tower-gate + sign-tower + 도전 버튼), 오프라인 팝업 머리(panel-offline-night + 제목 현판 + 보상 줄), 수련 목표 행 세 상태(받기·받음·진행 중), 6.1 표의 P1 아이콘 위치 예시를 추가한다.
 4. 기획서 8장 검수 항목 전체를 확인해 파일 목록·검수 결과·기준 미달 항목을 보고한다. src/는 수정하지 않는다.
 ```
 
