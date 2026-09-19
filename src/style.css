@@ -200,6 +200,15 @@ button:disabled {
   transform: scale(-1, -1);
 }
 
+/* 좁은 휴대폰(320px 안팎)은 가지를 줄여 카드 첫 줄을 가리지 않게 한다. */
+@media (max-width: 22.5rem) {
+  #app::before,
+  #app::after {
+    width: 10rem;
+    height: 13.3rem;
+  }
+}
+
 /* 넓은 화면에서만 앱 기둥 바깥에 수묵 산수 — 휴대폰은 이 이미지를 내려받지 않는다. */
 @media (min-width: 30rem) {
   body {
@@ -654,15 +663,15 @@ button:disabled {
   color: var(--muted);
 }
 
-/* 섹션 제목 아래 먹 붓선 구분선(3-slice, 원본 2배). */
+/* 섹션 제목 아래 먹 붓선 구분선(3-slice, 원본 2배). 이미지를 못 불러오면 border-bottom 선이 대신 보인다. */
 .section-title::after {
   content: '';
   display: block;
-  height: 0.75rem;
+  max-width: 358px;
+  height: 12px;
   margin-top: 0.25rem;
-  border-style: solid;
-  border-width: 0 2rem;
-  border-image: url('/ui/theme/theme-divider-ink.webp') 0 64 fill / 0 2rem stretch;
+  border-bottom: 1px solid var(--line-on-wall);
+  border-image: url('/ui/theme/theme-divider-ink.webp') 0 64 fill / 0 32px stretch;
 }
 
 .btn {
