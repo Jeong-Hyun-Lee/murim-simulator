@@ -1,29 +1,67 @@
-/* 모바일 세로형 UI — 먹색 바탕, 따뜻한 종이색 카드, 금색 주요 행동.
+/* 모바일 세로형 UI — 흰 회벽 바탕(위아래는 흑칠 띠), 한지색 카드, 금색 주요 행동.
    설계 폭 390px(검수 280~430px), 넓은 화면은 최대 30rem 세로 UI를 중앙 배치.
    크기는 rem(루트 글자 크기 기준)으로 잡아 기기 글자 크기 설정을 따른다. 1~3px 선 두께만 px로 두는데,
    소수 rem 선은 안드로이드의 소수 기기 배율에서 흐려지거나 사라지기 때문이다. */
 :root {
-  --ink: #15130f;
-  --ink-2: #221e18;
-  --ink-line: #3b342a;
+  /* 테마 토큰 — 흰 회벽(wall)과 흑칠(ink) 두 명도 영역. 대비는 각 바탕 기준 WCAG 4.5:1 이상. */
+  --surface-wall: #efebe3;
+  --surface-ink: #1c1b1d;
+  --surface-ink-2: #28262a;
+  --text-on-wall: #1f1d1b;
+  --muted-on-wall: #5f594f;
+  --line-on-wall: #cfc8ba;
+  --text-on-ink: #efe8d8;
+  --muted-on-ink: #b3aa98;
+  --line-on-ink: #3d3a3c;
+  --accent-gold: #c8962e;
+  --accent-gold-deep: #7a5818;
+  --accent-jade: #5ea98f;
+  --up-on-wall: #2f6e2b;
+  --down-on-wall: #9c3b30;
+  --warn-on-wall: #9a5a1c;
+  --backdrop: rgba(20, 19, 21, 0.62);
+  --ink: var(--surface-ink);
+  --ink-2: var(--surface-ink-2);
+  --ink-line: var(--line-on-ink);
   --paper: #eee4cb;
   --paper-text: #2a2219;
   --paper-muted: #6b5c46;
   --paper-line: #cdbb97;
-  --gold: #c8962e;
+  --gold: var(--accent-gold);
   --gold-hi: #f4d66e;
-  --jade: #5ea98f;
+  --jade: var(--accent-jade);
   --gold-text: #1b1409;
-  --text: #ece3cf;
-  --muted: #a89a7c;
-  --warn: #e0a15a;
-  --up: #3f8a3a;
-  --down: #b0463a;
+  /* 기본 글자 토큰은 흰 벽 값. 검은 영역은 아래 '흑칠 영역'에서 다시 정의한다. */
+  --text: var(--text-on-wall);
+  --muted: var(--muted-on-wall);
+  --warn: var(--warn-on-wall);
+  --up: var(--up-on-wall);
+  --down: var(--down-on-wall);
   --tab-h: 4rem;
   --safe-t: env(safe-area-inset-top, 0px);
   --safe-b: env(safe-area-inset-bottom, 0px);
   --safe-l: env(safe-area-inset-left, 0px);
   --safe-r: env(safe-area-inset-right, 0px);
+  /* 기기 다크 모드와 무관하게 이 테마로 고정. */
+  color-scheme: light;
+}
+
+/* 흑칠 영역 — 자식은 var(--text) 등을 그대로 써서 바탕에 맞는 글자색을 받는다. */
+#app-header,
+#tab-bar,
+.battle-summary,
+.unit-status,
+.sticky-actions,
+.btn,
+.list-row,
+.segmented,
+.toolbar select,
+#gear-doll {
+  --text: var(--text-on-ink);
+  --muted: var(--muted-on-ink);
+  --warn: #e0a15a;
+  --up: #3f8a3a;
+  --down: #b0463a;
 }
 
 * {
@@ -54,7 +92,7 @@ body {
   /* 페이지 자체는 고정하고 각 화면 본문만 스크롤 — iOS 고무줄 튕김·안드로이드 당겨서 새로고침 방지. */
   overflow: hidden;
   overscroll-behavior: none;
-  background: #0c0b09;
+  background: var(--surface-wall);
   font-family:
     -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
     'Roboto', sans-serif;
@@ -131,8 +169,44 @@ button:disabled {
   padding-left: var(--safe-l);
   padding-right: var(--safe-r);
   background:
-    radial-gradient(circle at 50% -20%, rgba(104, 79, 35, 0.22), transparent 34%), var(--ink);
+    url('/ui/theme/theme-app-wall.webp') repeat,
+    var(--surface-wall);
   overflow: hidden;
+  /* 먹 가지 장식(z-index -1)을 #app 바탕 위·모든 본문 아래에 두기 위한 쌓임 맥락. */
+  isolation: isolate;
+}
+
+/* 먹 가지 벽화 — 오른쪽 위, 왼쪽 아래(같은 그림을 상하좌우 반전). */
+#app::before,
+#app::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 15rem;
+  height: 20rem;
+  background: url('/ui/theme/theme-wall-ink-branch.webp') top right / contain no-repeat;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+#app::before {
+  top: 3.5rem;
+  right: 0;
+}
+
+#app::after {
+  bottom: var(--tab-h);
+  left: 0;
+  transform: scale(-1, -1);
+}
+
+/* 넓은 화면에서만 앱 기둥 바깥에 수묵 산수 — 휴대폰은 이 이미지를 내려받지 않는다. */
+@media (min-width: 30rem) {
+  body {
+    background:
+      url('/ui/theme/theme-outer-landscape.webp') center / cover,
+      var(--surface-wall);
+  }
 }
 
 #app-header {
@@ -305,8 +379,8 @@ button:disabled {
   padding: 0 1rem;
   background: none;
   border: 0;
-  border-bottom: 1px solid var(--ink-line);
-  color: var(--gold);
+  border-bottom: 1px solid var(--line-on-wall);
+  color: var(--accent-gold-deep);
   text-align: left;
   font-size: 0.9375rem;
 }
@@ -350,7 +424,7 @@ button:disabled {
   flex-direction: column;
   gap: 0.25rem;
   padding: 0.5rem 1rem 0.625rem;
-  border-bottom: 1px solid var(--ink-line);
+  border-bottom: 1px solid var(--line-on-wall);
 }
 
 .gong-scroll {
@@ -366,7 +440,7 @@ button:disabled {
 .gong-scroll,
 .full-view-body,
 .sheet-body {
-  --scroll-thumb: var(--ink-line);
+  --scroll-thumb: var(--line-on-wall);
   scrollbar-color: var(--scroll-thumb) transparent;
   scrollbar-width: thin;
 }
@@ -403,7 +477,9 @@ button:disabled {
   z-index: 5;
   display: flex;
   flex-direction: column;
-  background: var(--ink);
+  background:
+    url('/ui/theme/theme-app-wall.webp') repeat,
+    var(--surface-wall);
 }
 
 .full-view-header {
@@ -411,7 +487,7 @@ button:disabled {
   align-items: center;
   gap: 0.5rem;
   padding: 0.25rem 0.5rem;
-  border-bottom: 1px solid var(--ink-line);
+  border-bottom: 1px solid var(--line-on-wall);
 }
 
 .full-view-header h2 {
@@ -578,6 +654,17 @@ button:disabled {
   color: var(--muted);
 }
 
+/* 섹션 제목 아래 먹 붓선 구분선(3-slice, 원본 2배). */
+.section-title::after {
+  content: '';
+  display: block;
+  height: 0.75rem;
+  margin-top: 0.25rem;
+  border-style: solid;
+  border-width: 0 2rem;
+  border-image: url('/ui/theme/theme-divider-ink.webp') 0 64 fill / 0 2rem stretch;
+}
+
 .btn {
   display: inline-flex;
   flex-direction: column;
@@ -696,6 +783,7 @@ button:disabled {
   border-radius: 0.625rem;
   border: 1px solid var(--ink-line);
   background: var(--ink-2);
+  color: var(--text);
   text-align: left;
 }
 
@@ -873,7 +961,7 @@ dialog.sheet {
 }
 
 dialog.sheet::backdrop {
-  background: rgba(5, 4, 3, 0.72);
+  background: var(--backdrop);
   backdrop-filter: blur(2px);
 }
 
@@ -1204,13 +1292,13 @@ dialog.sheet::backdrop {
 .battle-state-primary {
   border: 1px solid #42664d;
   background: rgba(52, 111, 70, 0.16);
-  color: #bce2c2;
+  color: var(--up-on-wall);
 }
 
 .battle-farm-status {
   border: 1px solid #81673a;
   background: rgba(132, 101, 41, 0.16);
-  color: #efd599;
+  color: var(--accent-gold-deep);
 }
 
 .battle-event-button {
@@ -1692,7 +1780,7 @@ dialog.sheet::backdrop {
   margin: 0;
   padding: 0.5rem 0.625rem;
   border-left: 2px solid #ae8432;
-  color: #bcae91;
+  color: var(--muted);
   font-size: 0.75rem;
   line-height: 1.45;
 }
@@ -1867,6 +1955,7 @@ dialog.sheet::backdrop {
   border-radius: 0.625rem;
   border: 1px solid var(--ink-line);
   background: var(--ink-2);
+  color: var(--text);
 }
 
 /* em 기준 최소 폭이라 글자를 크게 키우면 자동으로 1열이 된다. */
@@ -3014,8 +3103,8 @@ dialog.sheet::backdrop {
 /* 태블릿·데스크톱: 세로 UI 기둥을 가운데 두고 양옆 경계를 표시. */
 @media (min-width: 48em) {
   #app {
-    border-left: 1px solid var(--ink-line);
-    border-right: 1px solid var(--ink-line);
+    border-left: 1px solid var(--line-on-ink);
+    border-right: 1px solid var(--line-on-ink);
   }
 }
 
@@ -3037,12 +3126,12 @@ dialog.sheet::backdrop {
   border: 1px solid #81673a;
   border-radius: 0.5rem;
   background: rgba(132, 101, 41, 0.16);
-  color: #efd599;
+  color: var(--accent-gold-deep);
   font-weight: bold;
 }
 
 .goal-count {
-  color: var(--gold);
+  color: var(--accent-gold-deep);
 }
 
 .goals-view {

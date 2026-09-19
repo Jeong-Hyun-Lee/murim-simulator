@@ -1,0 +1,38 @@
+[
+  {
+    "id": "theme-app-wall",
+    "file": "theme/theme-app-wall.webp",
+    "kind": "repeat",
+    "cssSize": { "w": 512, "h": 512 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "theme-wall-ink-branch",
+    "file": "theme/theme-wall-ink-branch.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 240, "h": 320 },
+    "sourceSize": { "w": 480, "h": 640 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "theme-outer-landscape",
+    "file": "theme/theme-outer-landscape.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 960, "h": 600 },
+    "sourceSize": { "w": 1920, "h": 1200 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "theme-divider-ink",
+    "file": "theme/theme-divider-ink.webp",
+    "kind": "three-slice",
+    "cssSize": { "w": 358, "h": 12 },
+    "sourceSize": { "w": 716, "h": 24 },
+    "slice": { "top": 0, "right": 64, "bottom": 0, "left": 64 },
+    "priority": "P1"
+  }
+]
