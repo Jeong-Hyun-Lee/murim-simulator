@@ -146,7 +146,13 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
       </section>
 
       <section className="card sect-donate-card">
-        <h3>기부</h3>
+        <h3>
+          <img
+            src="/ui/label/section-donate.webp"
+            alt="기부"
+            style={{ height: '1.1em', display: 'block' }}
+          />
+        </h3>
         <p className="muted">
           내공 {CHI_PER_CONTRIBUTION.toLocaleString()} = 기여도 1 · 영약 1개 = 기여도{' '}
           {ELIXIR_CONTRIBUTION_RATE}
@@ -158,7 +164,11 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
             disabled={chi < CHI_PER_CONTRIBUTION}
             onClick={() => setDonate('chi')}
           >
-            내공 전량 기부
+            <img
+              src="/ui/label/label-donate-chi.webp"
+              alt="내공 전량 기부"
+              style={{ height: '1.1em', display: 'block' }}
+            />
           </button>
           <button
             type="button"
@@ -166,7 +176,11 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
             disabled={elixir <= 0}
             onClick={() => setDonate('elixir')}
           >
-            영약 전량 기부
+            <img
+              src="/ui/label/label-donate-elixir.webp"
+              alt="영약 전량 기부"
+              style={{ height: '1.1em', display: 'block' }}
+            />
           </button>
         </div>
       </section>
@@ -177,7 +191,12 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
         disabled={!sectBoardUnlocked}
         onClick={() => onOpenBoard(SECT_BOARD.id)}
       >
-        문파 무공 보기 ({SECT_BOARD.name})
+        <img
+          src="/ui/label/label-sect-board.webp"
+          alt="문파 무공 보기"
+          style={{ height: '1.1em', display: 'block' }}
+        />
+        <small>({SECT_BOARD.name})</small>
       </button>
       {!sectBoardUnlocked && <p className="muted small">{boardUnlockLabel(SECT_BOARD)}</p>}
 

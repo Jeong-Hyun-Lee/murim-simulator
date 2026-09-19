@@ -30,7 +30,11 @@ export const OnboardingFlow = () => {
         <div className="onboarding-box">
           <p className="onboarding-kicker">이세계 전이</p>
           <button type="button" className="onboarding-skip-btn" onClick={() => setStep('nickname')}>
-            건너뛰기
+            <img
+              src="/ui/label/label-skip.webp"
+              alt="건너뛰기"
+              style={{ height: '1.1em', display: 'block' }}
+            />
           </button>
           <p className="onboarding-text">{INTRO_CARDS[cardIndex]}</p>
           <p
@@ -40,7 +44,11 @@ export const OnboardingFlow = () => {
             여정 {cardIndex + 1} / {INTRO_CARDS.length}
           </p>
           <button type="button" className="btn btn-primary btn-block" onClick={nextCard}>
-            다음
+            <img
+              src="/ui/label/label-next.webp"
+              alt="다음"
+              style={{ height: '1.1em', display: 'block' }}
+            />
           </button>
         </div>
       ) : (
@@ -57,7 +65,11 @@ export const OnboardingFlow = () => {
           />
           <div className="btn-row">
             <button type="button" className="btn" onClick={() => completeOnboarding('')}>
-              기본값 사용
+              <img
+                src="/ui/label/label-use-default.webp"
+                alt="기본값 사용"
+                style={{ height: '1.1em', display: 'block' }}
+              />
             </button>
             <button
               type="button"

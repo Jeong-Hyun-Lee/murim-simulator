@@ -139,7 +139,11 @@ export const GachaPanel = () => {
             disabled={elixir < PULL_COST || revealing}
             onClick={() => pull('single')}
           >
-            1회 뽑기
+            <img
+              src="/ui/label/label-gacha-once.webp"
+              alt="1회 뽑기"
+              style={{ height: '1.1em', display: 'block' }}
+            />
             <small>영약 {PULL_COST}</small>
           </button>
           <button
@@ -148,7 +152,11 @@ export const GachaPanel = () => {
             disabled={elixir < PULL_10_COST || revealing}
             onClick={() => pull('ten')}
           >
-            10회 뽑기
+            <img
+              src="/ui/label/label-gacha-ten.webp"
+              alt="10회 뽑기"
+              style={{ height: '1.1em', display: 'block' }}
+            />
             <small>영약 {PULL_10_COST}</small>
           </button>
         </div>
@@ -157,7 +165,11 @@ export const GachaPanel = () => {
           className="btn btn-ghost btn-block"
           onClick={() => setRatesOpen(true)}
         >
-          확률 정보 보기
+          <img
+            src="/ui/label/label-gacha-rates.webp"
+            alt="확률 정보 보기"
+            style={{ height: '1.1em', display: 'block' }}
+          />
         </button>
       </section>
 
@@ -166,7 +178,13 @@ export const GachaPanel = () => {
           <div className="gacha-outcome-head">
             <div>
               <p>기연의 결과</p>
-              <h3>뽑기 결과</h3>
+              <h3>
+                <img
+                  src="/ui/label/section-gacha-result.webp"
+                  alt="뽑기 결과"
+                  style={{ height: '1.1em', display: 'block' }}
+                />
+              </h3>
             </div>
             <span>{lastGachaOutcome.results.length}개 획득</span>
           </div>
@@ -179,7 +197,7 @@ export const GachaPanel = () => {
               <div
                 // eslint-disable-next-line react/no-array-index-key
                 key={i}
-                className="gacha-result-card"
+                className={`gacha-result-card${revealing ? ' gacha-result-card-back' : ''}`}
                 style={resultCardStyle(gradeTier(r.grade), GRADE_COLOR[r.grade])}
               >
                 <span className="grade-dot" style={{ background: GRADE_COLOR[r.grade] }} />
@@ -200,7 +218,11 @@ export const GachaPanel = () => {
               disabled={elixir < lastCost || revealing}
               onClick={() => pull(lastKind)}
             >
-              다시 뽑기
+              <img
+                src="/ui/label/label-gacha-again.webp"
+                alt="다시 뽑기"
+                style={{ height: '1.1em', display: 'block' }}
+              />
               <small>영약 {lastCost}</small>
             </button>
           </div>

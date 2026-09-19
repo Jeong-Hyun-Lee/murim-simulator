@@ -49,7 +49,12 @@ const GeneralShopSection = () => {
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...hold}
       >
-        영약 1개 교환 (전 {cost.toLocaleString()})
+        <img
+          src="/ui/label/label-shop-exchange.webp"
+          alt="영약 1개 교환"
+          style={{ height: '1.1em', display: 'block' }}
+        />
+        <small>(전 {cost.toLocaleString()})</small>
       </button>
     </section>
   );

@@ -40,6 +40,17 @@ export const useBattleStatus = (): string =>
     return '자동 전투 중';
   });
 
+const STATUS_ICON: Record<string, string> = {
+  '자동 전투 중': '/ui/icon/icon-status-auto.webp',
+  일시정지: '/ui/icon/icon-status-paused.webp',
+  '반복 사냥 중': '/ui/icon/icon-status-farm.webp',
+  '보스 도전 대기': '/ui/icon/icon-status-boss.webp',
+  '보상 확인 대기': '/ui/icon/icon-status-reward.webp',
+};
+export const battleStatusIcon = (status: string): string =>
+  STATUS_ICON[status] ??
+  (status.startsWith('수련탑') ? '/ui/icon/icon-tower.webp' : STATUS_ICON['자동 전투 중']);
+
 // 잠긴 탭의 해금 조건 문구 — null이면 열림.
 export const useTabLockReasons = (): Record<TabKey, string | null> => {
   const hasAnyGear = useGameStore(

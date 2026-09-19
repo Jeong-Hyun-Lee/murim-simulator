@@ -80,7 +80,13 @@ const GongNodeCard = ({
     >
       <div className="gong-card-head">
         <div className="gong-card-title">
-          <span className="tag">{TIER_LABEL[node.tier]}</span>
+          <span style={{ display: 'inline-flex' }}>
+            <img
+              src={`/ui/label/tag-tier-${node.tier}.webp`}
+              alt={TIER_LABEL[node.tier]}
+              className="tag-img"
+            />
+          </span>
           <strong>{node.name}</strong>
         </div>
         <span className="gong-card-level">
@@ -95,7 +101,19 @@ const GongNodeCard = ({
           {maxed && ' · 대성'}
         </strong>
       </div>
-      {!unlocked && <p className="warn gong-card-requirement">해금 조건 · {missing.join(', ')}</p>}
+      {!unlocked && (
+        <p className="warn gong-card-requirement">
+          <img
+            src="/ui/icon/icon-lock.webp"
+            alt=""
+            aria-hidden="true"
+            width={24}
+            height={24}
+            style={{ verticalAlign: 'middle', marginRight: 4 }}
+          />
+          해금 조건 · {missing.join(', ')}
+        </p>
+      )}
       {unlocked && !maxed && (
         <div className="btn-row">
           {/* useHoldRepeat이 반환하는 누르기/떼기/이동/클릭 핸들러 묶음 — 개별 나열하면 훅 캡슐화가 깨짐 */}
@@ -106,7 +124,11 @@ const GongNodeCard = ({
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...hold}
           >
-            1회 연마
+            <img
+              src="/ui/label/label-train-once.webp"
+              alt="1회 연마"
+              style={{ height: '1.1em', display: 'block' }}
+            />
             <small>
               {currencyLabel} {cost.toLocaleString()}
             </small>
@@ -195,7 +217,12 @@ export const GongPanel = ({ boardId, onBoardChange }: Props) => {
         <span className="board-picker-progress">
           <small>완성도</small>
           <strong>{boardCompletionPercent(selectedBoard, gongLevels)}%</strong>
-          <b aria-hidden="true">{pickerOpen ? '▴' : '▾'}</b>
+          <img
+            src="/ui/icon/icon-dropdown.webp"
+            alt=""
+            aria-hidden="true"
+            style={{ width: 16, height: 16, transform: pickerOpen ? 'rotate(180deg)' : 'none' }}
+          />
         </span>
       </button>
       {pickerOpen && (

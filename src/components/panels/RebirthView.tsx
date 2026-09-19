@@ -30,12 +30,22 @@ export const RebirthView = ({ onDone }: { onDone: () => void }) => {
     return (
       <div className="rebirth">
         <section className="card action-card-reward">
-          <h3>환골탈태 완료</h3>
+          <h3>
+            <img
+              src="/ui/label/title-rebirth-done.webp"
+              alt="환골탈태 완료"
+              style={{ height: '1.1em', display: 'block' }}
+            />
+          </h3>
           <p>
             <strong>{result.realm}</strong> 경지에 올랐습니다. 영구 능력치 +{result.buff}%
           </p>
           <button type="button" className="btn btn-primary btn-block" onClick={onDone}>
-            1-1 전투로
+            <img
+              src="/ui/label/label-back-to-first-stage.webp"
+              alt="1-1 전투로"
+              style={{ height: '1.1em', display: 'block' }}
+            />
           </button>
         </section>
       </div>
@@ -79,7 +89,13 @@ export const RebirthView = ({ onDone }: { onDone: () => void }) => {
         </p>
       </section>
       <section className="card rebirth-reset-card">
-        <h3>초기화되는 항목</h3>
+        <h3>
+          <img
+            src="/ui/label/section-reset.webp"
+            alt="초기화되는 항목"
+            style={{ height: '1.1em', display: 'block' }}
+          />
+        </h3>
         <ul className="bullet-list">
           {RESET_ITEMS.map((item) => (
             <li key={item}>{item}</li>
@@ -101,21 +117,41 @@ export const RebirthView = ({ onDone }: { onDone: () => void }) => {
           disabled={!eligible}
           onClick={() => setConfirming(true)}
         >
-          {eligible ? '환골탈태 진행' : '조건 미충족'}
+          {eligible ? (
+            <img
+              src="/ui/label/label-rebirth-proceed.webp"
+              alt="환골탈태 진행"
+              style={{ height: '1.1em', display: 'block' }}
+            />
+          ) : (
+            <img
+              src="/ui/label/label-rebirth-not-ready.webp"
+              alt="조건 미충족"
+              style={{ height: '1.1em', display: 'block' }}
+            />
+          )}
         </button>
       </div>
       {confirming && (
-        <Sheet title="환골탈태 확인" onClose={() => setConfirming(false)}>
+        <Sheet
+          title="환골탈태 확인"
+          titleImage="/ui/label/title-rebirth-confirm.webp"
+          onClose={() => setConfirming(false)}
+        >
           <p>
             레벨·내공·무공·스테이지가 초기화되며 되돌릴 수 없습니다. {realmName(rebirthCount + 1)}{' '}
             경지로 오르시겠습니까?
           </p>
           <div className="btn-row">
             <button type="button" className="btn" onClick={() => setConfirming(false)}>
-              취소
+              <img src="/ui/label/label-cancel.webp" alt="취소" style={{ height: '1.1em' }} />
             </button>
             <button type="button" className="btn btn-primary" onClick={execute}>
-              환골탈태 실행
+              <img
+                src="/ui/label/label-rebirth-execute.webp"
+                alt="환골탈태 실행"
+                style={{ height: '1.1em', display: 'block' }}
+              />
             </button>
           </div>
         </Sheet>

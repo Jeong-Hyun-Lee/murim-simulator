@@ -3,6 +3,7 @@ import { useBackLayer } from '../hooks/useBackLayer';
 
 interface Props {
   title: string;
+  titleImage?: string;
   onClose: () => void;
   children: ReactNode;
 }
@@ -12,7 +13,7 @@ interface Props {
 // <dialog> 미지원 브라우저(iOS 15.4 미만)는 open 속성만 붙여 보여주고 닫기는 onClose를 직접 호출한다.
 const supportsDialog = typeof HTMLDialogElement === 'function';
 
-export const Sheet = ({ title, onClose, children }: Props) => {
+export const Sheet = ({ title, titleImage, onClose, children }: Props) => {
   const ref = useRef<HTMLDialogElement>(null);
   const openerRef = useRef<HTMLElement | null>(null);
 
@@ -48,8 +49,18 @@ export const Sheet = ({ title, onClose, children }: Props) => {
     >
       <div className="sheet-inner">
         <div className="sheet-header">
-          <h2>{title}</h2>
+          {titleImage ? (
+            <img src={titleImage} alt={title} className="sheet-title-img" />
+          ) : (
+            <h2>{title}</h2>
+          )}
           <button type="button" className="btn btn-ghost" onClick={close}>
+            <img
+              src="/ui/icon/icon-close.webp"
+              alt=""
+              aria-hidden="true"
+              className="btn-close-icon"
+            />
             닫기
           </button>
         </div>
@@ -57,4 +68,8 @@ export const Sheet = ({ title, onClose, children }: Props) => {
       </div>
     </dialog>
   );
+};
+
+Sheet.defaultProps = {
+  titleImage: '',
 };

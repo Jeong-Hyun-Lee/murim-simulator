@@ -95,10 +95,20 @@ export const MyInfoView = ({ onNavigate }: { onNavigate: (target: NavTarget) => 
       </details>
 
       <section className="card">
-        <h3>환골탈태</h3>
+        <h3>
+          <img
+            src="/ui/label/section-rebirth.webp"
+            alt="환골탈태"
+            style={{ height: '1.1em', display: 'block' }}
+          />
+        </h3>
         {highestMajorCleared >= REBIRTH_ENTRY_MAJOR ? (
           <button type="button" className="btn btn-block" onClick={() => onNavigate('rebirth')}>
-            환골탈태 화면 열기
+            <img
+              src="/ui/label/label-rebirth-open.webp"
+              alt="환골탈태 화면 열기"
+              style={{ height: '1.1em', display: 'block' }}
+            />
           </button>
         ) : (
           <p className="muted">

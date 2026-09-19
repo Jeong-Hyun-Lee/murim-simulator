@@ -15,7 +15,11 @@ export const OfflineReportSheet = () => {
   if (!report) return null;
 
   return (
-    <Sheet title="자리를 비운 동안" onClose={close}>
+    <Sheet
+      title="자리를 비운 동안"
+      titleImage="/ui/label/title-offline-report.webp"
+      onClose={close}
+    >
       <section className="card">
         <p className="boss-sheet-kicker">수련 보고</p>
         <h3>{durationText(report.elapsedMs)} 동안 수련했습니다</h3>
@@ -28,7 +32,11 @@ export const OfflineReportSheet = () => {
           {report.levelsGained > 0 && <li>레벨 +{report.levelsGained}</li>}
         </ul>
         <button type="button" className="btn btn-primary btn-block" onClick={close}>
-          확인
+          <img
+            src="/ui/label/label-confirm.webp"
+            alt="확인"
+            style={{ height: '1.1em', display: 'block' }}
+          />
         </button>
       </section>
     </Sheet>

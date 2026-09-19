@@ -7,6 +7,7 @@ import { Sheet } from './Sheet';
 import {
   TAB_KEYS,
   TAB_LABEL,
+  battleStatusIcon,
   formatShort,
   stageLabel,
   useBattleStatus,
@@ -16,43 +17,23 @@ import {
 type CurrencyKey = 'gold' | 'chi' | 'elixir' | 'contribution' | 'stones';
 type IconName = CurrencyKey | TabKey | 'settings' | 'lock';
 
-const UiIcon = ({ name }: { name: IconName }) => {
-  const paths: Record<IconName, ReactNode> = {
-    gong: (
-      <path d="m12 3 2 2-7.5 7.5-2-2L12 3Zm-8.3 9.2 2.1 2.1-1.8 1.8-2.2.4.4-2.2 1.5-2.1Zm8.8-2.5 2 2 4.8-4.8-2-2-4.8 4.8Zm2.8 3.2 4.1 4.1-2.2 2.2-4.1-4.1 2.2-2.2Z" />
-    ),
-    gear: (
-      <path d="M6 5 9 3h6l3 2 2 5-3 2v7H7v-7l-3-2 2-5Zm2.4 1.8L7.2 10l2.2 1.5h5.2l2.2-1.5-1.2-3.2H8.4Z" />
-    ),
-    sect: (
-      <path d="M12 3 4 7v10l8 4 8-4V7l-8-4Zm0 3 4.5 2.2L12 10.4 7.5 8.2 12 6Zm-5 5.2 4 2v4.2l-4-2V11.2Zm6 6.2v-4.2l4-2v4.2l-4 2Z" />
-    ),
-    shop: <path d="M5 9h14l-1 10H6L5 9Zm2-5h10l2 4H5l2-4Zm3 8v4h4v-4h-4Z" />,
-    gold: (
-      <path d="M12 3 20 8v8l-8 5-8-5V8l8-5Zm0 3.1L7 9v6l5 3 5-3V9l-5-2.9Zm-1 4h2v1h1v2h-1v1h-2v-1h-1v-2h1v-1Z" />
-    ),
-    chi: (
-      <path d="M12 3c3.3 3.3 5 5.8 5 8.3A5 5 0 1 1 7 11.3C7 8.8 8.7 6.3 12 3Zm0 5.1c-1.4 1.7-2.1 3-2.1 4.1a2.1 2.1 0 0 0 4.2 0c0-1.1-.7-2.4-2.1-4.1Z" />
-    ),
-    elixir: (
-      <path d="M9 3h6v2l-1 2v2.1l3.5 4.5V20h-11v-6.4L10 9.1V7L9 5V3Zm1.8 8.2-2.3 3v3.3h6.9v-3.3l-2.2-3h-2.4Z" />
-    ),
-    contribution: (
-      <path d="m12 3 2.1 4.3 4.8.7-3.5 3.4.8 4.8-4.2-2.2-4.2 2.2.8-4.8L5.1 8l4.8-.7L12 3Z" />
-    ),
-    stones: <path d="m12 3 6 6-6 12L6 9l6-6Zm0 4.1L9 10l3 6 3-6-3-2.9Z" />,
-    settings: (
-      <path d="M10.1 3h3.8l.5 2.1 1.7.7 1.8-1.1 2.7 2.7-1.1 1.8.7 1.7 2.1.5v3.8l-2.1.5-.7 1.7 1.1 1.8-2.7 2.7-1.8-1.1-1.7.7-.5 2.1h-3.8l-.5-2.1-1.7-.7-1.8 1.1-2.7-2.7 1.1-1.8-.7-1.7-2.1-.5v-3.8l2.1-.5.7-1.7-1.1-1.8 2.7-2.7 1.8 1.1 1.7-.7.5-2.1ZM12 9.2A2.8 2.8 0 1 0 12 14.8 2.8 2.8 0 0 0 12 9.2Z" />
-    ),
-    lock: <path d="M7 10V7a5 5 0 0 1 10 0v3h1v10H6V10h1Zm3 0h4V7a2 2 0 1 0-4 0v3Z" />,
-  };
-
-  return (
-    <svg className="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      {paths[name]}
-    </svg>
-  );
+const ICON_SRC: Record<IconName, string> = {
+  gong: '/ui/icon/icon-tab-gong.webp',
+  gear: '/ui/icon/icon-tab-gear.webp',
+  sect: '/ui/icon/icon-tab-sect.webp',
+  shop: '/ui/icon/icon-tab-shop.webp',
+  gold: '/ui/icon/icon-gold.webp',
+  chi: '/ui/icon/icon-chi.webp',
+  elixir: '/ui/icon/icon-elixir.webp',
+  contribution: '/ui/icon/icon-contribution.webp',
+  stones: '/ui/icon/icon-stones.webp',
+  settings: '/ui/icon/icon-settings.webp',
+  lock: '/ui/icon/icon-lock.webp',
 };
+
+const UiIcon = ({ name }: { name: IconName }) => (
+  <img src={ICON_SRC[name]} alt="" aria-hidden="true" className="ui-icon" />
+);
 
 const CURRENCY_LABEL: Record<CurrencyKey, string> = {
   gold: '전',
@@ -145,9 +126,17 @@ export const BattleSummaryBar = ({ onClick }: { onClick: () => void }) => {
     >
       <span className="battle-summary-stage">{stageLabel(stage)}</span>
       <span className="battle-summary-status" aria-live="polite">
+        <img
+          src={battleStatusIcon(status)}
+          alt=""
+          aria-hidden="true"
+          style={{ width: 20, height: 20, verticalAlign: '-0.3em', marginRight: '0.25em' }}
+        />
         {status}
       </span>
-      <span className="battle-summary-go">전투 보기 ›</span>
+      <span className="battle-summary-go">
+        <img src="/ui/label/label-battle-view.webp" alt="전투 보기" style={{ height: '1.1em' }} /> ›
+      </span>
     </button>
   );
 };
@@ -217,7 +206,8 @@ export const FullView = ({
     <section className="full-view" aria-label={title}>
       <div className="full-view-header">
         <button ref={backRef} type="button" className="btn btn-ghost" onClick={onBack}>
-          ‹ 뒤로
+          <img src="/ui/icon/icon-back.webp" alt="" aria-hidden="true" className="btn-close-icon" />
+          뒤로
         </button>
         <h2>{title}</h2>
       </div>
@@ -264,7 +254,11 @@ const SaveBackup = () => {
         <p>이 기기에만 저장됩니다. 브라우저 데이터를 지우기 전에 백업 코드를 보관하세요.</p>
       </div>
       <button type="button" className="btn" onClick={exportCode}>
-        백업 코드 복사
+        <img
+          src="/ui/label/label-backup-copy.webp"
+          alt="백업 코드 복사"
+          style={{ height: '1.1em' }}
+        />
       </button>
       {exported && (
         <>
@@ -289,10 +283,14 @@ const SaveBackup = () => {
       {confirming ? (
         <div className="btn-row">
           <button type="button" className="btn btn-primary" onClick={restore}>
-            현재 진행을 덮어쓰고 복원
+            <img
+              src="/ui/label/label-backup-overwrite.webp"
+              alt="현재 진행을 덮어쓰고 복원"
+              style={{ height: '1.1em' }}
+            />
           </button>
           <button type="button" className="btn" onClick={() => setConfirming(false)}>
-            취소
+            <img src="/ui/label/label-cancel.webp" alt="취소" style={{ height: '1.1em' }} />
           </button>
         </div>
       ) : (
@@ -302,7 +300,11 @@ const SaveBackup = () => {
           disabled={!input.trim()}
           onClick={() => setConfirming(true)}
         >
-          백업 코드로 복원
+          <img
+            src="/ui/label/label-backup-restore.webp"
+            alt="백업 코드로 복원"
+            style={{ height: '1.1em' }}
+          />
         </button>
       )}
     </div>
@@ -315,7 +317,7 @@ export const SettingsSheet = ({ onClose }: { onClose: () => void }) => {
   const [sfxEnabled, toggleSfx] = useSfxEnabled();
 
   return (
-    <Sheet title="설정" onClose={onClose}>
+    <Sheet title="설정" titleImage="/ui/label/title-settings.webp" onClose={onClose}>
       <section className="settings-summary" aria-label="현재 전투 상태">
         <span>자동 전투</span>
         <strong className={paused ? 'settings-state paused' : 'settings-state'}>
@@ -330,7 +332,11 @@ export const SettingsSheet = ({ onClose }: { onClose: () => void }) => {
           </p>
         </div>
         <button type="button" className="btn btn-primary" onClick={togglePause}>
-          {paused ? '전투 재개' : '전투 일시정지'}
+          <img
+            src={paused ? '/ui/label/label-resume.webp' : '/ui/label/label-pause.webp'}
+            alt={paused ? '전투 재개' : '전투 일시정지'}
+            style={{ height: '1.1em', display: 'block' }}
+          />
         </button>
       </div>
       <div className="setting-row">
@@ -339,6 +345,12 @@ export const SettingsSheet = ({ onClose }: { onClose: () => void }) => {
           <p className="muted">{sfxEnabled ? '켜짐' : '꺼짐'}</p>
         </div>
         <button type="button" className="btn" onClick={toggleSfx}>
+          <img
+            src={sfxEnabled ? '/ui/icon/icon-sfx-on.webp' : '/ui/icon/icon-sfx-off.webp'}
+            alt=""
+            aria-hidden="true"
+            className="btn-close-icon"
+          />
           {sfxEnabled ? '효과음 끄기' : '효과음 켜기'}
         </button>
       </div>
@@ -352,7 +364,7 @@ export const CurrencySheet = ({ onClose }: { onClose: () => void }) => {
   const protectionCharms = useGameStore((s) => s.protectionCharms);
 
   return (
-    <Sheet title="보유 재화" onClose={onClose}>
+    <Sheet title="보유 재화" titleImage="/ui/label/title-currency.webp" onClose={onClose}>
       <section className="currency-sheet-summary">
         <span>소지품</span>
         <strong>성장에 쓸 재화</strong>
@@ -408,7 +420,11 @@ export const LockedTabSheet = ({
   const stage = useGameStore((s) => s.farmReturnStage ?? s.stage);
 
   return (
-    <Sheet title={`${TAB_LABEL[tab]} 잠김`} onClose={onClose}>
+    <Sheet
+      title={`${TAB_LABEL[tab]} 잠김`}
+      titleImage={`/ui/label/title-locked-${tab}.webp`}
+      onClose={onClose}
+    >
       <section className="locked-tab-card">
         <span className="locked-tab-emblem" aria-hidden="true">
           <UiIcon name="lock" />

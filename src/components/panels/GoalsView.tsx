@@ -16,9 +16,6 @@ const GoalRow = ({
   onClaim: () => void;
 }) => {
   const done = current >= target;
-  let buttonLabel = '진행 중';
-  if (claimed) buttonLabel = '받음';
-  else if (done) buttonLabel = '받기';
   return (
     <li className="setting-row">
       <div>
@@ -33,7 +30,27 @@ const GoalRow = ({
         disabled={claimed || !done}
         onClick={onClaim}
       >
-        {buttonLabel}
+        {claimed && (
+          <img
+            src="/ui/label/label-claimed.webp"
+            alt="받음"
+            style={{ height: '1.1em', display: 'block' }}
+          />
+        )}
+        {!claimed && done && (
+          <img
+            src="/ui/label/label-claim.webp"
+            alt="받기"
+            style={{ height: '1.1em', display: 'block' }}
+          />
+        )}
+        {!claimed && !done && (
+          <img
+            src="/ui/label/label-goal-progress.webp"
+            alt="진행 중"
+            style={{ height: '1.1em', display: 'block' }}
+          />
+        )}
       </button>
     </li>
   );
@@ -66,7 +83,13 @@ export const GoalsView = () => {
   return (
     <div className="goals-view">
       <section className="card">
-        <h3>일일 수련</h3>
+        <h3>
+          <img
+            src="/ui/label/section-goal-daily.webp"
+            alt="일일 수련"
+            style={{ height: '1.1em', display: 'block' }}
+          />
+        </h3>
         <p className="muted small">날짜가 바뀌면 진행이 초기화됩니다.</p>
         <ul className="goal-list">
           {DAILY_GOALS.map((goal) => (
@@ -83,7 +106,13 @@ export const GoalsView = () => {
         </ul>
       </section>
       <section className="card">
-        <h3>누적 수련</h3>
+        <h3>
+          <img
+            src="/ui/label/section-goal-milestone.webp"
+            alt="누적 수련"
+            style={{ height: '1.1em', display: 'block' }}
+          />
+        </h3>
         {milestoneRows.length === 0 ? (
           <p className="muted">모든 누적 목표를 달성했습니다.</p>
         ) : (
