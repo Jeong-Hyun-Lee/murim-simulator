@@ -226,6 +226,7 @@ button:disabled {
   border-bottom: 1px solid #55462e;
   background: linear-gradient(180deg, #2b241b, #17140f);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.32);
+  border-image: url('/ui/frame/frame-header-eave.webp') 0 120 fill / 0 60px stretch;
 }
 
 .header-profile {
@@ -497,6 +498,8 @@ button:disabled {
   gap: 0.5rem;
   padding: 0.25rem 0.5rem;
   border-bottom: 1px solid var(--line-on-wall);
+  color: var(--text-on-ink);
+  border-image: url('/ui/frame/frame-panel-dark.webp') 48 fill / 24px stretch;
 }
 
 .full-view-header h2 {
@@ -518,6 +521,7 @@ button:disabled {
   background: linear-gradient(180deg, #211b15, #120f0c);
   border-top: 1px solid #69542f;
   box-shadow: 0 -5px 12px rgba(0, 0, 0, 0.22);
+  border-image: url('/ui/frame/frame-tabbar.webp') 0 96 fill / 0 48px stretch;
 }
 
 .tab-btn {
@@ -558,6 +562,50 @@ button:disabled {
 
 .tab-btn:disabled {
   opacity: 0.35;
+}
+
+#tab-bar .tab-btn:nth-child(1) {
+  background: url('/ui/tab/tab-gong.webp') center / contain no-repeat;
+}
+
+#tab-bar .tab-btn:nth-child(1).tab-btn-active {
+  background:
+    url('/ui/tab/tab-gong-active.webp') center / contain no-repeat,
+    linear-gradient(180deg, rgba(187, 135, 39, 0.16), transparent 82%),
+    radial-gradient(ellipse at center top, rgba(187, 135, 39, 0.24), transparent 72%);
+}
+
+#tab-bar .tab-btn:nth-child(2) {
+  background: url('/ui/tab/tab-gear.webp') center / contain no-repeat;
+}
+
+#tab-bar .tab-btn:nth-child(2).tab-btn-active {
+  background:
+    url('/ui/tab/tab-gear-active.webp') center / contain no-repeat,
+    linear-gradient(180deg, rgba(187, 135, 39, 0.16), transparent 82%),
+    radial-gradient(ellipse at center top, rgba(187, 135, 39, 0.24), transparent 72%);
+}
+
+#tab-bar .tab-btn:nth-child(3) {
+  background: url('/ui/tab/tab-sect.webp') center / contain no-repeat;
+}
+
+#tab-bar .tab-btn:nth-child(3).tab-btn-active {
+  background:
+    url('/ui/tab/tab-sect-active.webp') center / contain no-repeat,
+    linear-gradient(180deg, rgba(187, 135, 39, 0.16), transparent 82%),
+    radial-gradient(ellipse at center top, rgba(187, 135, 39, 0.24), transparent 72%);
+}
+
+#tab-bar .tab-btn:nth-child(4) {
+  background: url('/ui/tab/tab-shop.webp') center / contain no-repeat;
+}
+
+#tab-bar .tab-btn:nth-child(4).tab-btn-active {
+  background:
+    url('/ui/tab/tab-shop-active.webp') center / contain no-repeat,
+    linear-gradient(180deg, rgba(187, 135, 39, 0.16), transparent 82%),
+    radial-gradient(ellipse at center top, rgba(187, 135, 39, 0.24), transparent 72%);
 }
 
 .tab-badge {
@@ -646,6 +694,7 @@ button:disabled {
   flex-direction: column;
   gap: 0.5rem;
   box-shadow: 0 0.25rem 0.6rem rgba(0, 0, 0, 0.18);
+  border-image: url('/ui/frame/frame-panel-hanji.webp') 40 fill / 20px stretch;
 }
 
 .card h3 {
@@ -762,6 +811,7 @@ button:disabled {
   border: 1px solid #7a5f24;
   color: #ffd98a;
   font-size: 0.9375rem;
+  border-image: url('/ui/frame/frame-banner-silk.webp') 0 72 fill / 0 36px stretch;
 }
 
 .banner-done {
@@ -775,6 +825,11 @@ button:disabled {
   display: flex;
   flex-direction: column;
   gap: 0.375rem;
+}
+
+.board-picker-btn + .list {
+  padding: 0.5rem;
+  border-image: url('/ui/frame/frame-panel-dark.webp') 48 fill / 24px stretch;
 }
 
 .list-nested {
@@ -909,6 +964,7 @@ details.card summary {
 
 .bar.exp-bar {
   height: 0.5rem;
+  border-image: url('/ui/gauge/frame-gauge-exp.webp') 0 12 / 0 6px stretch;
 }
 
 .card .bar.exp-bar {
@@ -916,8 +972,18 @@ details.card summary {
 }
 
 .bar-fill {
+  position: relative;
   height: 100%;
   transition: width 0.15s linear;
+}
+
+.bar-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/ui/gauge/overlay-gauge-gloss.webp') repeat-x;
+  background-size: auto 100%;
+  pointer-events: none;
 }
 
 .bar-text {
@@ -935,7 +1001,22 @@ details.card summary {
 }
 
 .exp-bar .bar-fill {
-  background: linear-gradient(#4f9bd4, #1f4a7a);
+  background: url('/ui/gauge/fill-exp.webp') repeat-x, linear-gradient(#4f9bd4, #1f4a7a);
+  background-size: auto 100%;
+}
+
+.battle-tab > .unit-status:nth-child(2) .hp-bar .bar-fill {
+  background: url('/ui/gauge/fill-hp-enemy.webp') repeat-x, linear-gradient(#d24a4a, #7f2020);
+  background-size: auto 100%;
+}
+
+.battle-tab > .unit-status:nth-child(4) .hp-bar {
+  border-image: url('/ui/gauge/frame-gauge-player.webp') 0 24 0 36 / 0 12px 0 18px stretch;
+}
+
+.battle-tab > .unit-status:nth-child(4) .hp-bar .bar-fill {
+  background: url('/ui/gauge/fill-hp-player.webp') repeat-x, linear-gradient(#d24a4a, #7f2020);
+  background-size: auto 100%;
 }
 
 /* ---------- 중앙 팝업 ---------- */
@@ -1000,20 +1081,23 @@ dialog.sheet::backdrop {
   /* 팝업 틀 위아래 테두리(1px×2)만큼 빼야 틀 안에 딱 맞는다. */
   max-height: calc(100vh - 2rem - 2px);
   max-height: calc(100dvh - 2rem - 2px);
+  border-image: url('/ui/frame/frame-popup.webp') 96 56 56 56 fill / 48px 28px 28px 28px stretch;
 }
 
 .sheet-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.375rem 0.5rem 0.375rem 1rem;
+  min-height: 3rem;
+  padding: 0.375rem 2.25rem;
   border-bottom: 1px solid #c09a4e;
   background: linear-gradient(180deg, rgba(255, 238, 183, 0.56), rgba(220, 194, 137, 0.42));
+  border-image: url('/ui/frame/frame-title-plaque.webp') 0 56 fill / 0 28px stretch;
 }
 
 .sheet-header h2 {
   font-size: 1.125rem;
-  color: #5c3811;
+  color: var(--gold-hi);
 }
 
 .sheet-body {
@@ -1025,7 +1109,7 @@ dialog.sheet::backdrop {
 }
 
 .sheet-header .btn-ghost {
-  color: #79511d;
+  color: var(--gold-hi);
   font-weight: bold;
 }
 
@@ -1354,6 +1438,7 @@ dialog.sheet::backdrop {
   box-shadow:
     0 0 0 1px #171109,
     0 0.25rem 0.7rem rgba(0, 0, 0, 0.38);
+  border-image: url('/ui/frame/frame-battle-stage.webp') 40 / 20px stretch;
 }
 
 #battle-canvas-mount canvas {
@@ -1453,13 +1538,14 @@ dialog.sheet::backdrop {
   border-color: #b78b35;
   background:
     linear-gradient(180deg, rgba(255, 250, 236, 0.98), rgba(245, 233, 203, 0.98)), var(--paper);
-  color: #302516;
+  color: var(--text-on-ink);
+  border-image: url('/ui/frame/frame-panel-dark.webp') 48 fill / 24px stretch;
 }
 
 .boss-challenge-card h3,
 .boss-reward-card h3 {
   margin-bottom: 0.375rem;
-  color: #4a2e16;
+  color: var(--gold-hi);
   font-size: 1.1875rem;
 }
 
@@ -1469,7 +1555,7 @@ dialog.sheet::backdrop {
   border-left: 3px solid #c89836;
   border-radius: 0 0.375rem 0.375rem 0;
   background: rgba(122, 80, 25, 0.1);
-  color: #4a321b;
+  color: var(--text-on-ink);
   font-weight: 700;
 }
 
@@ -1656,6 +1742,7 @@ dialog.sheet::backdrop {
   background: linear-gradient(135deg, #31271a, #17130e);
   box-shadow: inset 0 1px rgba(255, 225, 139, 0.12);
   text-align: left;
+  border-image: url('/ui/scroll/scroll-silk-picker.webp') 0 80 fill / 0 40px stretch;
 }
 
 .board-picker-btn:disabled {
@@ -1716,26 +1803,17 @@ dialog.sheet::backdrop {
 .gong-card {
   position: relative;
   overflow: hidden;
-  --muted: #cdbd9e;
-  --warn: #ffc276;
+  --muted: var(--paper-muted);
+  --warn: #a4571c;
   border-color: #7c6036;
   background:
     linear-gradient(90deg, rgba(218, 169, 64, 0.1), transparent 35%),
     linear-gradient(135deg, #33291c, #1b1711);
-  color: #f7ecd6;
+  color: var(--paper-text);
   box-shadow:
     inset 0 1px rgba(255, 232, 177, 0.1),
     0 0.25rem 0.6rem rgba(0, 0, 0, 0.3);
-}
-
-.gong-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0.3rem;
-  height: 100%;
-  background: linear-gradient(var(--gold-hi), #9b6a21);
+  border-image: url('/ui/scroll/scroll-bamboo-card.webp') 40 72 fill / 20px 36px stretch;
 }
 
 .gong-card .tag {
@@ -1771,12 +1849,12 @@ dialog.sheet::backdrop {
 }
 
 .gong-card-effect > span {
-  color: #d9c8a8;
+  color: var(--paper-muted);
   font-size: 0.8125rem;
 }
 
 .gong-card-effect strong {
-  color: #ffe19a;
+  color: var(--accent-gold-deep);
   font-size: 0.875rem;
 }
 
@@ -1797,7 +1875,8 @@ dialog.sheet::backdrop {
 .gong-card-locked {
   border-color: #5e5140;
   background: linear-gradient(135deg, #27231d, #171511);
-  color: #d4cab9;
+  color: var(--paper-muted);
+  border-image: url('/ui/scroll/scroll-bamboo-card-locked.webp') 40 72 fill / 20px 36px stretch;
 }
 
 .gong-card-tutorial {

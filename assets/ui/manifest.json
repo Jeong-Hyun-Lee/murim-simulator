@@ -34,5 +34,1508 @@
     "sourceSize": { "w": 716, "h": 24 },
     "slice": { "top": 0, "right": 64, "bottom": 0, "left": 64 },
     "priority": "P1"
+  },
+  {
+    "id": "frame-panel-hanji",
+    "file": "frame/frame-panel-hanji.webp",
+    "kind": "nine-slice",
+    "cssSize": { "w": 96, "h": 96 },
+    "sourceSize": { "w": 192, "h": 192 },
+    "slice": { "top": 40, "right": 40, "bottom": 40, "left": 40 },
+    "priority": "P0"
+  },
+  {
+    "id": "frame-panel-dark",
+    "file": "frame/frame-panel-dark.webp",
+    "kind": "nine-slice",
+    "cssSize": { "w": 96, "h": 96 },
+    "sourceSize": { "w": 192, "h": 192 },
+    "slice": { "top": 48, "right": 48, "bottom": 48, "left": 48 },
+    "priority": "P0"
+  },
+  {
+    "id": "frame-header-eave",
+    "file": "frame/frame-header-eave.webp",
+    "kind": "three-slice",
+    "cssSize": { "w": 390, "h": 56 },
+    "sourceSize": { "w": 780, "h": 112 },
+    "slice": { "top": 0, "right": 120, "bottom": 0, "left": 120 },
+    "priority": "P0"
+  },
+  {
+    "id": "frame-tabbar",
+    "file": "frame/frame-tabbar.webp",
+    "kind": "three-slice",
+    "cssSize": { "w": 390, "h": 64 },
+    "sourceSize": { "w": 780, "h": 128 },
+    "slice": { "top": 0, "right": 96, "bottom": 0, "left": 96 },
+    "priority": "P0"
+  },
+  {
+    "id": "frame-battle-stage",
+    "file": "frame/frame-battle-stage.webp",
+    "kind": "nine-slice",
+    "cssSize": { "w": 128, "h": 128 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "slice": { "top": 40, "right": 40, "bottom": 40, "left": 40 },
+    "priority": "P0"
+  },
+  {
+    "id": "frame-popup",
+    "file": "frame/frame-popup.webp",
+    "kind": "nine-slice",
+    "cssSize": { "w": 192, "h": 192 },
+    "sourceSize": { "w": 384, "h": 384 },
+    "slice": { "top": 96, "right": 56, "bottom": 56, "left": 56 },
+    "priority": "P0"
+  },
+  {
+    "id": "frame-title-plaque",
+    "file": "frame/frame-title-plaque.webp",
+    "kind": "three-slice",
+    "cssSize": { "w": 240, "h": 48 },
+    "sourceSize": { "w": 480, "h": 96 },
+    "slice": { "top": 0, "right": 56, "bottom": 0, "left": 56 },
+    "priority": "P0"
+  },
+  {
+    "id": "btn-primary-tile",
+    "file": "button/btn-primary-tile.webp",
+    "kind": "three-slice",
+    "cssSize": { "w": 180, "h": 56 },
+    "sourceSize": { "w": 360, "h": 112 },
+    "slice": { "top": 0, "right": 40, "bottom": 0, "left": 40 },
+    "priority": "P0"
+  },
+  {
+    "id": "btn-secondary-brick",
+    "file": "button/btn-secondary-brick.webp",
+    "kind": "three-slice",
+    "cssSize": { "w": 180, "h": 56 },
+    "sourceSize": { "w": 360, "h": 112 },
+    "slice": { "top": 0, "right": 40, "bottom": 0, "left": 40 },
+    "priority": "P0"
+  },
+  {
+    "id": "btn-travel-jade",
+    "file": "button/btn-travel-jade.webp",
+    "kind": "three-slice",
+    "cssSize": { "w": 180, "h": 56 },
+    "sourceSize": { "w": 360, "h": 112 },
+    "slice": { "top": 0, "right": 40, "bottom": 0, "left": 40 },
+    "priority": "P0"
+  },
+  {
+    "id": "btn-danger-brick",
+    "file": "button/btn-danger-brick.webp",
+    "kind": "three-slice",
+    "cssSize": { "w": 180, "h": 56 },
+    "sourceSize": { "w": 360, "h": 112 },
+    "slice": { "top": 0, "right": 40, "bottom": 0, "left": 40 },
+    "priority": "P0"
+  },
+  {
+    "id": "btn-segment",
+    "file": "button/btn-segment.webp",
+    "kind": "three-slice",
+    "cssSize": { "w": 160, "h": 40 },
+    "sourceSize": { "w": 320, "h": 80 },
+    "slice": { "top": 0, "right": 32, "bottom": 0, "left": 32 },
+    "priority": "P0"
+  },
+  {
+    "id": "btn-segment-active",
+    "file": "button/btn-segment-active.webp",
+    "kind": "three-slice",
+    "cssSize": { "w": 160, "h": 40 },
+    "sourceSize": { "w": 320, "h": 80 },
+    "slice": { "top": 0, "right": 32, "bottom": 0, "left": 32 },
+    "priority": "P0"
+  },
+  {
+    "id": "btn-round",
+    "file": "button/btn-round.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 44, "h": 44 },
+    "sourceSize": { "w": 132, "h": 132 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "frame-summary-strip",
+    "file": "frame/frame-summary-strip.webp",
+    "kind": "three-slice",
+    "cssSize": { "w": 390, "h": 44 },
+    "sourceSize": { "w": 780, "h": 88 },
+    "slice": { "top": 0, "right": 64, "bottom": 0, "left": 64 },
+    "priority": "P0"
+  },
+  {
+    "id": "frame-portrait",
+    "file": "frame/frame-portrait.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 40, "h": 40 },
+    "sourceSize": { "w": 120, "h": 120 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "frame-row-slip",
+    "file": "frame/frame-row-slip.webp",
+    "kind": "nine-slice",
+    "cssSize": { "w": 358, "h": 64 },
+    "sourceSize": { "w": 716, "h": 128 },
+    "slice": { "top": 32, "right": 32, "bottom": 32, "left": 32 },
+    "priority": "P0"
+  },
+  {
+    "id": "frame-gauge-enemy",
+    "file": "gauge/frame-gauge-enemy.webp",
+    "kind": "three-slice",
+    "cssSize": { "w": 240, "h": 20 },
+    "sourceSize": { "w": 480, "h": 40 },
+    "slice": { "top": 0, "right": 24, "bottom": 0, "left": 24 },
+    "priority": "P0"
+  },
+  {
+    "id": "frame-gauge-boss",
+    "file": "gauge/frame-gauge-boss.webp",
+    "kind": "three-slice",
+    "cssSize": { "w": 240, "h": 24 },
+    "sourceSize": { "w": 480, "h": 48 },
+    "slice": { "top": 0, "right": 32, "bottom": 0, "left": 48 },
+    "priority": "P0"
+  },
+  {
+    "id": "frame-gauge-player",
+    "file": "gauge/frame-gauge-player.webp",
+    "kind": "three-slice",
+    "cssSize": { "w": 240, "h": 20 },
+    "sourceSize": { "w": 480, "h": 40 },
+    "slice": { "top": 0, "right": 24, "bottom": 0, "left": 36 },
+    "priority": "P0"
+  },
+  {
+    "id": "frame-gauge-exp",
+    "file": "gauge/frame-gauge-exp.webp",
+    "kind": "three-slice",
+    "cssSize": { "w": 240, "h": 10 },
+    "sourceSize": { "w": 480, "h": 20 },
+    "slice": { "top": 0, "right": 12, "bottom": 0, "left": 12 },
+    "priority": "P0"
+  },
+  {
+    "id": "fill-hp-enemy",
+    "file": "gauge/fill-hp-enemy.webp",
+    "kind": "repeat-x",
+    "cssSize": { "w": 32, "h": 16 },
+    "sourceSize": { "w": 64, "h": 32 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "fill-hp-enemy-trail",
+    "file": "gauge/fill-hp-enemy-trail.webp",
+    "kind": "repeat-x",
+    "cssSize": { "w": 32, "h": 16 },
+    "sourceSize": { "w": 64, "h": 32 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "fill-hp-boss",
+    "file": "gauge/fill-hp-boss.webp",
+    "kind": "repeat-x",
+    "cssSize": { "w": 32, "h": 20 },
+    "sourceSize": { "w": 64, "h": 40 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "fill-hp-boss-trail",
+    "file": "gauge/fill-hp-boss-trail.webp",
+    "kind": "repeat-x",
+    "cssSize": { "w": 32, "h": 20 },
+    "sourceSize": { "w": 64, "h": 40 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "fill-hp-player",
+    "file": "gauge/fill-hp-player.webp",
+    "kind": "repeat-x",
+    "cssSize": { "w": 32, "h": 16 },
+    "sourceSize": { "w": 64, "h": 32 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "fill-hp-player-trail",
+    "file": "gauge/fill-hp-player-trail.webp",
+    "kind": "repeat-x",
+    "cssSize": { "w": 32, "h": 16 },
+    "sourceSize": { "w": 64, "h": 32 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "fill-exp",
+    "file": "gauge/fill-exp.webp",
+    "kind": "repeat-x",
+    "cssSize": { "w": 32, "h": 6 },
+    "sourceSize": { "w": 64, "h": 12 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "overlay-gauge-gloss",
+    "file": "gauge/overlay-gauge-gloss.webp",
+    "kind": "repeat-x",
+    "cssSize": { "w": 32, "h": 16 },
+    "sourceSize": { "w": 64, "h": 32 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "label-battle-view",
+    "file": "label/label-battle-view.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 74, "h": 24 },
+    "sourceSize": { "w": 221, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "label-boss-challenge",
+    "file": "label/label-boss-challenge.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 39, "h": 23 },
+    "sourceSize": { "w": 116, "h": 70 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "label-cancel",
+    "file": "label/label-cancel.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 39, "h": 24 },
+    "sourceSize": { "w": 116, "h": 71 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "label-claim",
+    "file": "label/label-claim.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 39, "h": 24 },
+    "sourceSize": { "w": 116, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "label-claimed",
+    "file": "label/label-claimed.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 39, "h": 24 },
+    "sourceSize": { "w": 116, "h": 71 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "label-climb",
+    "file": "label/label-climb.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 39, "h": 23 },
+    "sourceSize": { "w": 116, "h": 70 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "label-confirm",
+    "file": "label/label-confirm.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 39, "h": 23 },
+    "sourceSize": { "w": 116, "h": 70 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "label-continue",
+    "file": "label/label-continue.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 69, "h": 24 },
+    "sourceSize": { "w": 208, "h": 71 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "label-goal-progress",
+    "file": "label/label-goal-progress.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 58, "h": 23 },
+    "sourceSize": { "w": 175, "h": 70 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "label-goals",
+    "file": "label/label-goals.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 74, "h": 24 },
+    "sourceSize": { "w": 221, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "label-keep-training",
+    "file": "label/label-keep-training.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 69, "h": 24 },
+    "sourceSize": { "w": 208, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "label-pause",
+    "file": "label/label-pause.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 104, "h": 24 },
+    "sourceSize": { "w": 313, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "label-resume",
+    "file": "label/label-resume.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 74, "h": 24 },
+    "sourceSize": { "w": 221, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "label-sfx-off",
+    "file": "label/label-sfx-off.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 89, "h": 24 },
+    "sourceSize": { "w": 267, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "label-sfx-on",
+    "file": "label/label-sfx-on.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 89, "h": 24 },
+    "sourceSize": { "w": 267, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "label-stage",
+    "file": "label/label-stage.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 54, "h": 24 },
+    "sourceSize": { "w": 162, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "label-tower-quit",
+    "file": "label/label-tower-quit.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 39, "h": 24 },
+    "sourceSize": { "w": 116, "h": 71 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "label-tower",
+    "file": "label/label-tower.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 54, "h": 24 },
+    "sourceSize": { "w": 162, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "label-train-once",
+    "file": "label/label-train-once.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 67, "h": 24 },
+    "sourceSize": { "w": 201, "h": 71 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "label-train",
+    "file": "label/label-train.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 39, "h": 24 },
+    "sourceSize": { "w": 116, "h": 71 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "section-goal-daily",
+    "file": "label/section-goal-daily.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 89, "h": 27 },
+    "sourceSize": { "w": 268, "h": 81 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "section-goal-milestone",
+    "file": "label/section-goal-milestone.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 89, "h": 27 },
+    "sourceSize": { "w": 268, "h": 82 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "title-boss-challenge",
+    "file": "label/title-boss-challenge.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 89, "h": 27 },
+    "sourceSize": { "w": 268, "h": 80 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "title-boss-defeated",
+    "file": "label/title-boss-defeated.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 90, "h": 28 },
+    "sourceSize": { "w": 269, "h": 83 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "title-currency",
+    "file": "label/title-currency.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 90, "h": 28 },
+    "sourceSize": { "w": 269, "h": 83 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "title-locked-gear",
+    "file": "label/title-locked-gear.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 89, "h": 28 },
+    "sourceSize": { "w": 268, "h": 83 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "title-locked-gong",
+    "file": "label/title-locked-gong.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 89, "h": 28 },
+    "sourceSize": { "w": 268, "h": 83 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "title-locked-sect",
+    "file": "label/title-locked-sect.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 89, "h": 28 },
+    "sourceSize": { "w": 268, "h": 83 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "title-locked-shop",
+    "file": "label/title-locked-shop.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 89, "h": 28 },
+    "sourceSize": { "w": 268, "h": 83 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "title-settings",
+    "file": "label/title-settings.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 46, "h": 27 },
+    "sourceSize": { "w": 138, "h": 81 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-tab-gong",
+    "file": "icon/icon-tab-gong.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 24, "h": 24 },
+    "sourceSize": { "w": 72, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-tab-gear",
+    "file": "icon/icon-tab-gear.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 24, "h": 24 },
+    "sourceSize": { "w": 72, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-tab-sect",
+    "file": "icon/icon-tab-sect.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 24, "h": 24 },
+    "sourceSize": { "w": 72, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-tab-shop",
+    "file": "icon/icon-tab-shop.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 24, "h": 24 },
+    "sourceSize": { "w": 72, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "tab-gong",
+    "file": "tab/tab-gong.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 97, "h": 64 },
+    "sourceSize": { "w": 292, "h": 192 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "tab-gong-active",
+    "file": "tab/tab-gong-active.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 97, "h": 64 },
+    "sourceSize": { "w": 292, "h": 192 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "tab-gear",
+    "file": "tab/tab-gear.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 97, "h": 64 },
+    "sourceSize": { "w": 292, "h": 192 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "tab-gear-active",
+    "file": "tab/tab-gear-active.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 97, "h": 64 },
+    "sourceSize": { "w": 292, "h": 192 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "tab-sect",
+    "file": "tab/tab-sect.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 97, "h": 64 },
+    "sourceSize": { "w": 292, "h": 192 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "tab-sect-active",
+    "file": "tab/tab-sect-active.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 97, "h": 64 },
+    "sourceSize": { "w": 292, "h": 192 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "tab-shop",
+    "file": "tab/tab-shop.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 97, "h": 64 },
+    "sourceSize": { "w": 292, "h": 192 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "tab-shop-active",
+    "file": "tab/tab-shop-active.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 97, "h": 64 },
+    "sourceSize": { "w": 292, "h": 192 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-gold",
+    "file": "icon/icon-gold.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-chi",
+    "file": "icon/icon-chi.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-elixir",
+    "file": "icon/icon-elixir.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-contribution",
+    "file": "icon/icon-contribution.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-stones",
+    "file": "icon/icon-stones.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-settings",
+    "file": "icon/icon-settings.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 24, "h": 24 },
+    "sourceSize": { "w": 72, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-close",
+    "file": "icon/icon-close.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 24, "h": 24 },
+    "sourceSize": { "w": 72, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-back",
+    "file": "icon/icon-back.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 24, "h": 24 },
+    "sourceSize": { "w": 72, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-lock",
+    "file": "icon/icon-lock.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 24, "h": 24 },
+    "sourceSize": { "w": 72, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-dropdown",
+    "file": "icon/icon-dropdown.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 16, "h": 16 },
+    "sourceSize": { "w": 48, "h": 48 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-badge",
+    "file": "icon/icon-badge.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 12, "h": 12 },
+    "sourceSize": { "w": 36, "h": 36 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-status-auto",
+    "file": "icon/icon-status-auto.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-status-paused",
+    "file": "icon/icon-status-paused.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-status-farm",
+    "file": "icon/icon-status-farm.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-status-boss",
+    "file": "icon/icon-status-boss.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-status-reward",
+    "file": "icon/icon-status-reward.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-climb",
+    "file": "icon/icon-climb.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-stat-power",
+    "file": "icon/icon-stat-power.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-stat-crit-chance",
+    "file": "icon/icon-stat-crit-chance.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-stat-crit-damage",
+    "file": "icon/icon-stat-crit-damage.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-stat-attack-speed",
+    "file": "icon/icon-stat-attack-speed.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-stat-evasion",
+    "file": "icon/icon-stat-evasion.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-stat-chi-gain",
+    "file": "icon/icon-stat-chi-gain.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-stat-hp",
+    "file": "icon/icon-stat-hp.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-combat-power",
+    "file": "icon/icon-combat-power.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-tower",
+    "file": "icon/icon-tower.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 24, "h": 24 },
+    "sourceSize": { "w": 72, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-hourglass",
+    "file": "icon/icon-hourglass.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-action-train",
+    "file": "icon/icon-action-train.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 20, "h": 20 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-diff-up",
+    "file": "icon/icon-diff-up.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 16, "h": 16 },
+    "sourceSize": { "w": 48, "h": 48 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-sfx-on",
+    "file": "icon/icon-sfx-on.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 24, "h": 24 },
+    "sourceSize": { "w": 72, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-sfx-off",
+    "file": "icon/icon-sfx-off.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 24, "h": 24 },
+    "sourceSize": { "w": 72, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "icon-goal",
+    "file": "icon/icon-goal.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 24, "h": 24 },
+    "sourceSize": { "w": 72, "h": 72 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "scroll-bamboo-card",
+    "file": "scroll/scroll-bamboo-card.webp",
+    "kind": "nine-slice",
+    "cssSize": { "w": 358, "h": 180 },
+    "sourceSize": { "w": 716, "h": 360 },
+    "slice": { "top": 40, "right": 72, "bottom": 40, "left": 72 },
+    "priority": "P0"
+  },
+  {
+    "id": "scroll-bamboo-card-locked",
+    "file": "scroll/scroll-bamboo-card-locked.webp",
+    "kind": "nine-slice",
+    "cssSize": { "w": 358, "h": 180 },
+    "sourceSize": { "w": 716, "h": 360 },
+    "slice": { "top": 40, "right": 72, "bottom": 40, "left": 72 },
+    "priority": "P0"
+  },
+  {
+    "id": "scroll-silk-picker",
+    "file": "scroll/scroll-silk-picker.webp",
+    "kind": "three-slice",
+    "cssSize": { "w": 358, "h": 64 },
+    "sourceSize": { "w": 716, "h": 128 },
+    "slice": { "top": 0, "right": 80, "bottom": 0, "left": 80 },
+    "priority": "P0"
+  },
+  {
+    "id": "tag-tier-primary",
+    "file": "label/tag-tier-primary.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 36, "h": 20 },
+    "sourceSize": { "w": 108, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "tag-tier-secondary",
+    "file": "label/tag-tier-secondary.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 36, "h": 20 },
+    "sourceSize": { "w": 108, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "tag-tier-capstone",
+    "file": "label/tag-tier-capstone.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 36, "h": 20 },
+    "sourceSize": { "w": 108, "h": 60 },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "frame-banner-silk",
+    "file": "frame/frame-banner-silk.webp",
+    "kind": "three-slice",
+    "cssSize": { "w": 360, "h": 48 },
+    "sourceSize": { "w": 720, "h": 96 },
+    "slice": { "top": 0, "right": 72, "bottom": 0, "left": 72 },
+    "priority": "P1"
+  },
+  {
+    "id": "label-back-to-first-stage",
+    "file": "label/label-back-to-first-stage.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 86, "h": 24 },
+    "sourceSize": { "w": 258, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-backup-copy",
+    "file": "label/label-backup-copy.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 109, "h": 24 },
+    "sourceSize": { "w": 326, "h": 71 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-backup-overwrite",
+    "file": "label/label-backup-overwrite.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 190, "h": 24 },
+    "sourceSize": { "w": 569, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-backup-restore",
+    "file": "label/label-backup-restore.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 124, "h": 24 },
+    "sourceSize": { "w": 372, "h": 71 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-deselect-all",
+    "file": "label/label-deselect-all.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 74, "h": 24 },
+    "sourceSize": { "w": 221, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-disassemble-select",
+    "file": "label/label-disassemble-select.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 74, "h": 24 },
+    "sourceSize": { "w": 221, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-disassemble",
+    "file": "label/label-disassemble.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 69, "h": 24 },
+    "sourceSize": { "w": 208, "h": 71 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-donate-chi",
+    "file": "label/label-donate-chi.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 109, "h": 24 },
+    "sourceSize": { "w": 326, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-donate-elixir",
+    "file": "label/label-donate-elixir.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 109, "h": 24 },
+    "sourceSize": { "w": 326, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-enhance",
+    "file": "label/label-enhance.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 69, "h": 24 },
+    "sourceSize": { "w": 208, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-equip-best",
+    "file": "label/label-equip-best.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 74, "h": 24 },
+    "sourceSize": { "w": 221, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-equip",
+    "file": "label/label-equip.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 39, "h": 24 },
+    "sourceSize": { "w": 116, "h": 71 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-gacha-again",
+    "file": "label/label-gacha-again.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 74, "h": 24 },
+    "sourceSize": { "w": 221, "h": 71 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-gacha-once",
+    "file": "label/label-gacha-once.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 67, "h": 24 },
+    "sourceSize": { "w": 201, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-gacha-rates",
+    "file": "label/label-gacha-rates.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 109, "h": 24 },
+    "sourceSize": { "w": 326, "h": 71 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-gacha-ten",
+    "file": "label/label-gacha-ten.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 76, "h": 24 },
+    "sourceSize": { "w": 227, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-next",
+    "file": "label/label-next.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 39, "h": 24 },
+    "sourceSize": { "w": 116, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-rebirth-execute",
+    "file": "label/label-rebirth-execute.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 104, "h": 24 },
+    "sourceSize": { "w": 313, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-rebirth-not-ready",
+    "file": "label/label-rebirth-not-ready.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 89, "h": 24 },
+    "sourceSize": { "w": 267, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-rebirth-open",
+    "file": "label/label-rebirth-open.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 139, "h": 24 },
+    "sourceSize": { "w": 418, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-rebirth-proceed",
+    "file": "label/label-rebirth-proceed.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 104, "h": 24 },
+    "sourceSize": { "w": 313, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-rebirth-view",
+    "file": "label/label-rebirth-view.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 104, "h": 24 },
+    "sourceSize": { "w": 313, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-sect-board",
+    "file": "label/label-sect-board.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 109, "h": 24 },
+    "sourceSize": { "w": 326, "h": 71 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-select-all",
+    "file": "label/label-select-all.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 74, "h": 24 },
+    "sourceSize": { "w": 221, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-shop-exchange",
+    "file": "label/label-shop-exchange.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 102, "h": 24 },
+    "sourceSize": { "w": 307, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-skip",
+    "file": "label/label-skip.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 69, "h": 24 },
+    "sourceSize": { "w": 208, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-subtab-gacha",
+    "file": "label/label-subtab-gacha.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 83, "h": 24 },
+    "sourceSize": { "w": 248, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-subtab-general",
+    "file": "label/label-subtab-general.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 69, "h": 24 },
+    "sourceSize": { "w": 208, "h": 71 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-unequip",
+    "file": "label/label-unequip.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 39, "h": 24 },
+    "sourceSize": { "w": 116, "h": 71 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "label-use-default",
+    "file": "label/label-use-default.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 89, "h": 24 },
+    "sourceSize": { "w": 267, "h": 72 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "section-candidates",
+    "file": "label/section-candidates.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 108, "h": 27 },
+    "sourceSize": { "w": 325, "h": 82 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "section-donate",
+    "file": "label/section-donate.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 46, "h": 27 },
+    "sourceSize": { "w": 138, "h": 82 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "section-equipped",
+    "file": "label/section-equipped.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 89, "h": 28 },
+    "sourceSize": { "w": 268, "h": 83 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "section-gacha-result",
+    "file": "label/section-gacha-result.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 90, "h": 28 },
+    "sourceSize": { "w": 269, "h": 83 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "section-inventory",
+    "file": "label/section-inventory.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 65, "h": 27 },
+    "sourceSize": { "w": 195, "h": 82 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "section-kept",
+    "file": "label/section-kept.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 127, "h": 27 },
+    "sourceSize": { "w": 382, "h": 82 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "section-rebirth",
+    "file": "label/section-rebirth.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 84, "h": 28 },
+    "sourceSize": { "w": 252, "h": 83 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "section-reset",
+    "file": "label/section-reset.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 146, "h": 27 },
+    "sourceSize": { "w": 439, "h": 82 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "section-save-backup",
+    "file": "label/section-save-backup.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 89, "h": 28 },
+    "sourceSize": { "w": 268, "h": 83 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "section-stats",
+    "file": "label/section-stats.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 108, "h": 27 },
+    "sourceSize": { "w": 325, "h": 82 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "title-disassemble",
+    "file": "label/title-disassemble.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 89, "h": 27 },
+    "sourceSize": { "w": 268, "h": 82 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "title-donate-chi",
+    "file": "label/title-donate-chi.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 133, "h": 28 },
+    "sourceSize": { "w": 398, "h": 83 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "title-donate-elixir",
+    "file": "label/title-donate-elixir.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 133, "h": 28 },
+    "sourceSize": { "w": 398, "h": 83 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "title-gacha-rates",
+    "file": "label/title-gacha-rates.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 89, "h": 28 },
+    "sourceSize": { "w": 268, "h": 83 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "title-offline-report",
+    "file": "label/title-offline-report.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 152, "h": 28 },
+    "sourceSize": { "w": 455, "h": 83 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "title-rebirth-confirm",
+    "file": "label/title-rebirth-confirm.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 127, "h": 28 },
+    "sourceSize": { "w": 382, "h": 83 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "title-rebirth-done",
+    "file": "label/title-rebirth-done.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 127, "h": 28 },
+    "sourceSize": { "w": 382, "h": 83 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "title-rebirth-ready",
+    "file": "label/title-rebirth-ready.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 127, "h": 28 },
+    "sourceSize": { "w": 382, "h": 83 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "panel-armory",
+    "file": "panel/panel-armory.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 358, "h": 200 },
+    "sourceSize": { "w": 716, "h": 400 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "panel-gacha-card-back",
+    "file": "panel/panel-gacha-card-back.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 72, "h": 96 },
+    "sourceSize": { "w": 144, "h": 192 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "frame-slot",
+    "file": "frame/frame-slot.webp",
+    "kind": "nine-slice",
+    "cssSize": { "w": 80, "h": 36 },
+    "sourceSize": { "w": 160, "h": 72 },
+    "slice": { "top": 24, "right": 24, "bottom": 24, "left": 24 },
+    "priority": "P1"
+  },
+  {
+    "id": "frame-grade-하품",
+    "file": "frame/frame-grade-하품.webp",
+    "kind": "nine-slice",
+    "cssSize": { "w": 80, "h": 36 },
+    "sourceSize": { "w": 160, "h": 72 },
+    "slice": { "top": 24, "right": 24, "bottom": 24, "left": 24 },
+    "priority": "P1"
+  },
+  {
+    "id": "frame-grade-중품",
+    "file": "frame/frame-grade-중품.webp",
+    "kind": "nine-slice",
+    "cssSize": { "w": 80, "h": 36 },
+    "sourceSize": { "w": 160, "h": 72 },
+    "slice": { "top": 24, "right": 24, "bottom": 24, "left": 24 },
+    "priority": "P1"
+  },
+  {
+    "id": "frame-grade-상품",
+    "file": "frame/frame-grade-상품.webp",
+    "kind": "nine-slice",
+    "cssSize": { "w": 80, "h": 36 },
+    "sourceSize": { "w": 160, "h": 72 },
+    "slice": { "top": 24, "right": 24, "bottom": 24, "left": 24 },
+    "priority": "P1"
+  },
+  {
+    "id": "frame-grade-진품",
+    "file": "frame/frame-grade-진품.webp",
+    "kind": "nine-slice",
+    "cssSize": { "w": 80, "h": 36 },
+    "sourceSize": { "w": 160, "h": 72 },
+    "slice": { "top": 24, "right": 24, "bottom": 24, "left": 24 },
+    "priority": "P1"
+  },
+  {
+    "id": "frame-grade-극품",
+    "file": "frame/frame-grade-극품.webp",
+    "kind": "nine-slice",
+    "cssSize": { "w": 80, "h": 36 },
+    "sourceSize": { "w": 160, "h": 72 },
+    "slice": { "top": 24, "right": 24, "bottom": 24, "left": 24 },
+    "priority": "P1"
+  },
+  {
+    "id": "frame-grade-선품",
+    "file": "frame/frame-grade-선품.webp",
+    "kind": "nine-slice",
+    "cssSize": { "w": 80, "h": 36 },
+    "sourceSize": { "w": 160, "h": 72 },
+    "slice": { "top": 24, "right": 24, "bottom": 24, "left": 24 },
+    "priority": "P1"
   }
 ]
