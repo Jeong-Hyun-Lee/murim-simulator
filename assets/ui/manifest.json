@@ -2855,5 +2855,125 @@
       "left": 40
     },
     "priority": "P1"
+  },
+  {
+    "id": "icon-slot-weapon",
+    "file": "icon/icon-slot-weapon.webp",
+    "kind": "fixed",
+    "cssSize": {
+      "w": 32,
+      "h": 32
+    },
+    "sourceSize": {
+      "w": 96,
+      "h": 96
+    },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "icon-slot-body",
+    "file": "icon/icon-slot-body.webp",
+    "kind": "fixed",
+    "cssSize": {
+      "w": 32,
+      "h": 32
+    },
+    "sourceSize": {
+      "w": 96,
+      "h": 96
+    },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "icon-slot-head",
+    "file": "icon/icon-slot-head.webp",
+    "kind": "fixed",
+    "cssSize": {
+      "w": 32,
+      "h": 32
+    },
+    "sourceSize": {
+      "w": 96,
+      "h": 96
+    },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "icon-slot-arm",
+    "file": "icon/icon-slot-arm.webp",
+    "kind": "fixed",
+    "cssSize": {
+      "w": 32,
+      "h": 32
+    },
+    "sourceSize": {
+      "w": 96,
+      "h": 96
+    },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "icon-slot-foot",
+    "file": "icon/icon-slot-foot.webp",
+    "kind": "fixed",
+    "cssSize": {
+      "w": 32,
+      "h": 32
+    },
+    "sourceSize": {
+      "w": 96,
+      "h": 96
+    },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "icon-slot-waist",
+    "file": "icon/icon-slot-waist.webp",
+    "kind": "fixed",
+    "cssSize": {
+      "w": 32,
+      "h": 32
+    },
+    "sourceSize": {
+      "w": 96,
+      "h": 96
+    },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "icon-slot-neck",
+    "file": "icon/icon-slot-neck.webp",
+    "kind": "fixed",
+    "cssSize": {
+      "w": 32,
+      "h": 32
+    },
+    "sourceSize": {
+      "w": 96,
+      "h": 96
+    },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "icon-slot-ring",
+    "file": "icon/icon-slot-ring.webp",
+    "kind": "fixed",
+    "cssSize": {
+      "w": 32,
+      "h": 32
+    },
+    "sourceSize": {
+      "w": 96,
+      "h": 96
+    },
+    "slice": null,
+    "priority": "P1"
   }
 ]
