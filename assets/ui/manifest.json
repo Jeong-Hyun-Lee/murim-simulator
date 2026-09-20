@@ -3170,5 +3170,20 @@
     },
     "slice": null,
     "priority": "P1"
+  },
+  {
+    "id": "icon-gacha",
+    "file": "icon/icon-gacha.webp",
+    "kind": "fixed",
+    "cssSize": {
+      "w": 48,
+      "h": 48
+    },
+    "sourceSize": {
+      "w": 144,
+      "h": 144
+    },
+    "slice": null,
+    "priority": "P1"
   }
 ]
