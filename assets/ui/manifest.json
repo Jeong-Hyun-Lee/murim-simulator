@@ -3326,5 +3326,20 @@
     },
     "slice": null,
     "priority": "P1"
+  },
+  {
+    "id": "icon-action-equip",
+    "file": "icon/icon-action-equip.webp",
+    "kind": "fixed",
+    "cssSize": {
+      "w": 20,
+      "h": 20
+    },
+    "sourceSize": {
+      "w": 60,
+      "h": 60
+    },
+    "slice": null,
+    "priority": "P1"
   }
 ]
