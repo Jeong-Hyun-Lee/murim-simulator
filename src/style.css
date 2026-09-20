@@ -1875,7 +1875,9 @@ dialog.sheet::backdrop {
 .gong-card {
   position: relative;
   overflow: hidden;
+  padding-top: 1.75rem;
   padding-right: 1.75rem;
+  padding-bottom: 1.75rem;
   padding-left: 1.75rem;
   --muted: var(--paper-muted);
   --warn: #a4571c;
