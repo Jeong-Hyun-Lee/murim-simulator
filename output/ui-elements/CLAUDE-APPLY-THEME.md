@@ -112,6 +112,22 @@ P0 적용 뒤에는 320px·390px·430px에서 전투·무공·설정·재화 팝
 
 P1 적용 뒤에는 375×812 모바일에서 장비·기연·환골탈태·오프라인 팝업을 열어 아이콘과 텍스트가 겹치지 않는지 확인한다. `npm run lint && npm run build`를 통과한 변경만 커밋한다.
 
+## 현재 미적용 에셋 (2026-09-20 확인)
+
+아래 39종은 `src/**/*.css`, `src/**/*.tsx`에서 에셋 id 또는 파일명을 직접 참조하지 않아 아직 게임 화면에 연결되지 않은 것으로 확인했다. 파일과 `assets/ui/manifest.json`은 정상이며, **새 에셋을 만들지 말고** 아래 대상에 연결한다. 이미 적용된 에셋의 선언·동적 텍스트·상태 처리·접근성 이름은 건드리지 않는다.
+
+| 범위 | 미적용 에셋 | 우선 적용 대상 | 적용 규칙 |
+| --- | --- | --- | --- |
+| P0 헤더·탭 | `frame-portrait`, `icon-badge` | `.header-portrait`, 새 알림이 있는 `#tab-bar` 탭의 배지 레이어 | 초상 프레임은 40px 고정으로 기존 초상 위에 겹친다. 배지는 12px 보조 표식이며 탭 이름·잠김·새 알림 상태 로직은 HTML/CSS에 남긴다. |
+| P0 전투·무공 아이콘 | `icon-status-auto`, `icon-status-paused`, `icon-status-farm`, `icon-status-boss`, `icon-status-reward`, `icon-tower`, `icon-stat-hp`, `icon-stat-power`, `icon-action-train`, `icon-diff-up` | 전투 상태 칩·보스/보상 알림·수련탑 행, 플레이어 HP·전투력·무공 능력치·연마 버튼과 다음 효과 수치 앞 | 기본 20px, `icon-diff-up`은 16px이다. 상태 문구·보스 이름·수치·타이머·연마 비용은 텍스트로 유지한다. |
+| P0 설정·무공 라벨 | `label-sfx-on`, `label-sfx-off`, `tag-tier-primary`, `tag-tier-secondary`, `tag-tier-capstone` | `SettingsSheet` 효과음 버튼, `.gong-card`의 단계 표식 | 라벨은 고정 문구만 대체한다. 단계 표식은 36×20px이며 초식 이름·레벨·해금 조건은 HTML 텍스트로 남긴다. |
+| P0 잠김 팝업 제목 | `title-locked-gong`, `title-locked-gear`, `title-locked-sect`, `title-locked-shop` | `LockedTabSheet`의 탭 종류별 `.sheet-header` | 현재 잠긴 탭에 맞는 제목만 고른다. 해금 조건 문구와 닫기 동작은 기존 구현을 유지한다. |
+| P1 장비·문파·상점 아이콘 | `icon-slot-weapon`, `icon-slot-body`, `icon-slot-head`, `icon-slot-arm`, `icon-slot-foot`, `icon-slot-waist`, `icon-slot-neck`, `icon-slot-ring`, `icon-action-enhance`, `icon-action-donate`, `icon-action-exchange`, `icon-diff-down` | `.gear-doll-slot`의 슬롯 종류별 표식, 장비 강화·문파 전량 기부·상점 영약 교환 버튼, 장비 비교의 하락 수치 앞 | 슬롯 아이콘은 32px, 나머지는 20px, `icon-diff-down`은 16px이다. 장비 이름·등급·강화·비용·비교 수치는 텍스트로 남긴다. |
+| P1 해금·상점 라벨 | `icon-unlock`, `label-subtab-gacha` | 해금 `Toast`, `ShopPanel`의 기연 소탭 | `icon-unlock`은 20px 보조 표식이다. 소탭 라벨은 고정 문구만 대체하고 선택 상태·탭 전환·접근성 이름은 유지한다. |
+| P1 환골탈태·기부 팝업 라벨 | `section-stats`, `section-kept`, `title-donate-chi`, `title-donate-elixir` | `MyInfoView` 주요 능력치 구역, `RebirthView` 유지 항목 구역, `SectPanel` 기부 확인 팝업의 `.sheet-header` | 구역 제목·팝업 제목만 이미지로 바꾸며, 수치·유지/초기화 목록·기부량·확인/취소 흐름은 HTML과 기존 로직으로 유지한다. |
+
+적용 시 먼저 종류별 대상 클래스가 실제로 있는지 확인한다. 슬롯·상태·기부 종류처럼 CSS만으로 구분할 수 없는 경우에만 의미 있는 TSX 클래스를 추가한다. 한 항목을 적용할 때마다 375×812에서 텍스트 겹침·대비를 확인하고 `npm run lint && npm run build`를 통과시킨다.
+
 | 에셋 | 파일 | 적용 위치 |
 | --- | --- | --- |
 | 본문 벽 질감 | `/assets/ui/theme/theme-app-wall.webp` | `#app` |
