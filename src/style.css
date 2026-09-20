@@ -3356,7 +3356,7 @@ dialog.sheet::backdrop {
   border-image: url('/ui/frame/frame-slot.webp') 24 fill / 12px stretch;
 }
 
-/* 등급별 프레임(하품/중품/상품/선품) — 절품/신품은 매칭되는 프레임 에셋이 없어 기존 border-color 표시 유지 */
+/* 등급별 프레임은 등급색 보석·안쪽 선을 유지하고, 장비 정보는 HTML로 표시한다. */
 .grade-chip[data-grade] {
   min-height: 2.25rem;
   padding: 0.2rem 0.75rem;
@@ -3375,6 +3375,14 @@ dialog.sheet::backdrop {
 
 .grade-chip[data-grade='상품'] {
   border-image: url('/ui/frame/frame-grade-상품.webp') 24 fill / 12px stretch;
+}
+
+.grade-chip[data-grade='절품'] {
+  border-image: url('/ui/frame/frame-grade-진품.webp') 24 fill / 12px stretch;
+}
+
+.grade-chip[data-grade='신품'] {
+  border-image: url('/ui/frame/frame-grade-극품.webp') 24 fill / 12px stretch;
 }
 
 .grade-chip[data-grade='선품'] {
