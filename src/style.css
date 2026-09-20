@@ -542,21 +542,7 @@ button:disabled {
 }
 
 .tab-btn-active {
-  color: var(--gold-hi);
   border-top-color: var(--gold);
-  font-weight: bold;
-  background:
-    linear-gradient(180deg, rgba(187, 135, 39, 0.16), transparent 82%),
-    radial-gradient(ellipse at center top, rgba(187, 135, 39, 0.24), transparent 72%);
-}
-
-.tab-btn-active .ui-icon {
-  filter: drop-shadow(0 0.125rem 0.25rem rgba(216, 165, 61, 0.3));
-}
-
-.tab-btn .ui-icon {
-  width: 1.3rem;
-  height: 1.3rem;
 }
 
 .tab-btn-locked {
@@ -572,10 +558,7 @@ button:disabled {
 }
 
 #tab-bar .tab-btn:nth-child(1).tab-btn-active {
-  background:
-    url('/ui/tab/tab-gong-active.webp') center / contain no-repeat,
-    linear-gradient(180deg, rgba(187, 135, 39, 0.16), transparent 82%),
-    radial-gradient(ellipse at center top, rgba(187, 135, 39, 0.24), transparent 72%);
+  background: url('/ui/tab/tab-gong-active.webp') center / contain no-repeat;
 }
 
 #tab-bar .tab-btn:nth-child(2) {
@@ -583,10 +566,7 @@ button:disabled {
 }
 
 #tab-bar .tab-btn:nth-child(2).tab-btn-active {
-  background:
-    url('/ui/tab/tab-gear-active.webp') center / contain no-repeat,
-    linear-gradient(180deg, rgba(187, 135, 39, 0.16), transparent 82%),
-    radial-gradient(ellipse at center top, rgba(187, 135, 39, 0.24), transparent 72%);
+  background: url('/ui/tab/tab-gear-active.webp') center / contain no-repeat;
 }
 
 #tab-bar .tab-btn:nth-child(3) {
@@ -594,10 +574,7 @@ button:disabled {
 }
 
 #tab-bar .tab-btn:nth-child(3).tab-btn-active {
-  background:
-    url('/ui/tab/tab-sect-active.webp') center / contain no-repeat,
-    linear-gradient(180deg, rgba(187, 135, 39, 0.16), transparent 82%),
-    radial-gradient(ellipse at center top, rgba(187, 135, 39, 0.24), transparent 72%);
+  background: url('/ui/tab/tab-sect-active.webp') center / contain no-repeat;
 }
 
 #tab-bar .tab-btn:nth-child(4) {
@@ -605,10 +582,7 @@ button:disabled {
 }
 
 #tab-bar .tab-btn:nth-child(4).tab-btn-active {
-  background:
-    url('/ui/tab/tab-shop-active.webp') center / contain no-repeat,
-    linear-gradient(180deg, rgba(187, 135, 39, 0.16), transparent 82%),
-    radial-gradient(ellipse at center top, rgba(187, 135, 39, 0.24), transparent 72%);
+  background: url('/ui/tab/tab-shop-active.webp') center / contain no-repeat;
 }
 
 .tab-badge {

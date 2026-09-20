@@ -161,16 +161,15 @@ export const TabBar = ({ tab, lockReasons, onlyTab, badges, onSelect }: TabBarPr
           key={key}
           className={`tab-btn${tab === key ? ' tab-btn-active' : ''}${locked ? ' tab-btn-locked' : ''}`}
           aria-current={tab === key ? 'page' : undefined}
+          aria-label={locked ? `${TAB_LABEL[key]}, 잠김` : TAB_LABEL[key]}
           disabled={onlyTab !== null && onlyTab !== key}
           onClick={() => onSelect(key)}
         >
-          <UiIcon name={key} />
           {locked && (
-            <span className="tab-lock" aria-label="잠김">
+            <span className="tab-lock" aria-hidden="true">
               <UiIcon name="lock" />
             </span>
           )}
-          {TAB_LABEL[key]}
           {badges.includes(key) && (
             <span className="tab-badge">
               <span className="sr-only"> 새로 열림</span>
