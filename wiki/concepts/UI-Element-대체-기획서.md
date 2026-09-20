@@ -669,6 +669,7 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | `icon-diff-down` | 완료 | `assets/ui/icon/icon-diff-down.webp`, 48×48 원본·16px 표시 |
 | `icon-action-equip` | 완료 | `assets/ui/icon/icon-action-equip.webp`, 60×60 원본·20px 표시 |
 | `icon-action-unequip` | 완료 | `assets/ui/icon/icon-action-unequip.webp`, 60×60 원본·20px 표시 |
+| `icon-action-disassemble` | 완료 | `assets/ui/icon/icon-action-disassemble.webp`, 60×60 원본·20px 표시 |
 
 ## 11. 코덱스 프롬프트
 
