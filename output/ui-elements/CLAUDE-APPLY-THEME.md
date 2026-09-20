@@ -77,6 +77,22 @@ P1 고정 문구 라벨 48종을 `/ui/label/`에 추가했다. 버튼용 `label-
 
 `panel-offline-night`를 `/ui/panel/panel-offline-night.webp`에 추가했다. 오프라인 보상 팝업 머리 그림으로 사용하되, 경과 시간·처치·보상·레벨 수치와 확인 버튼은 기존 HTML·로직을 유지한다.
 
+## P0 후속 적용 지시
+
+아래 P0 에셋도 이미 검수되어 `assets/ui/`에 있다. 새 에셋을 생성하거나 `manifest.json`을 고치지 말고, 파일이 실제로 존재하는 항목만 적용한다. 이미지가 실패했을 때 현재 CSS 색·테두리·텍스트가 남도록 `background`·`border` 폴백 뒤에 이미지 선언을 둔다. 동적 수치·이름·상태, 클릭 처리와 `aria-label`은 HTML에 남긴다.
+
+| 범위 | 에셋과 적용 대상 | 규칙 |
+| --- | --- | --- |
+| 버튼 바탕 | `btn-primary-tile` → `.btn-primary`, `btn-secondary-brick` → `.btn`·`.btn-ghost`, `btn-travel-jade` → 이동·연결 버튼, `btn-danger-brick` → 위험 버튼, `btn-segment(-active)` → `.segmented-btn`, `btn-round` → 설정·닫기·뒤로 아이콘 버튼 | 모두 가로 3-slice다. 버튼의 활성·비활성·누름 상태, 클릭 영역과 키보드 초점은 기존 CSS·HTML로 유지한다. |
+| 공통 프레임 | `frame-summary-strip` → `.battle-summary`, `frame-portrait` → `.header-portrait`, `frame-row-slip` → `.setting-row`·수련 목표 행·수련탑 진입 행 | 요약 띠는 좌우 64px, 목간 행은 9-slice 32px이다. 초상 틀은 40px 고정이며 이미 있는 초상 이미지 위에만 겹친다. |
+| 전투 게이지 | `frame-gauge-enemy`·`frame-gauge-boss`·`frame-gauge-player`·`frame-gauge-exp` 및 대응 `fill-*`, `overlay-gauge-gloss` → `.hp-bar-enemy`, `.hp-bar-boss`, `.hp-bar-player`, `.exp-bar` | 각 원본 slice를 그대로 쓰고 채움·잔상·광택·수치의 기존 레이어 순서를 유지한다. 광택은 `pointer-events: none`이며, 체력 계산과 위험 상태는 바꾸지 않는다. |
+| 무공 | `scroll-bamboo-card(-locked)` → `.gong-card(-locked)`, `scroll-silk-picker` → `.board-picker-btn`, `tag-tier-*` → 초식 단계 표식 | 죽간은 좌우 72px·위아래 40px, 비단은 좌우 80px 3-slice다. 초식 이름·레벨·효과·비용·해금 조건은 텍스트로 유지한다. |
+| 하단 탭 | `tab-gong/gear/sect/shop`과 각 `-active` → `#tab-bar`의 해당 탭 | 현재 선택 탭만 `-active` 파일을 쓴다. 잠김 표식과 새 알림 점은 별도 CSS 레이어, 탭 이름의 접근성 이름·선택 로직은 기존 HTML에 남긴다. |
+| P0 라벨·제목 | `label-*` → 해당 버튼의 고정 문구, `title-*` → `.sheet-header`, `section-goal-*` → `GoalsView` 구역 제목 | `label-train*`·`label-climb`·`label-boss-challenge`은 전투/무공, `label-claim`·`label-claimed`·`label-goal-progress`는 목표, `label-sfx-*`은 설정에 쓴다. 수치·횟수·비용·상태는 절대 이미지로 대체하지 않는다. |
+| P0 아이콘 | 재화 `icon-gold`·`icon-chi`·`icon-elixir`·`icon-contribution`·`icon-stones`, 기능 `icon-settings`·`icon-close`·`icon-back`·`icon-lock`·`icon-dropdown`·`icon-badge`, 전투·능력치·행동 P0 아이콘 | 재화·능력치·상태·행동 보조는 20px, 설정·닫기·뒤로·잠금은 24px, 드롭다운은 16px, 배지는 12px이다. `icon-gold` 등 비용 아이콘은 수치 앞에만 두며 이름·수치·`aria-label`을 유지한다. |
+
+P0 적용 뒤에는 320px·390px·430px에서 전투·무공·설정·재화 팝업을 열어 9-slice 모서리, 탭 선택 상태, 게이지 수치와 고정 라벨이 겹치지 않는지 확인한다.
+
 ## P1 후속 적용 지시
 
 아래 파일은 이미 검수되어 `assets/ui/`에 있다. 새 에셋을 생성하거나 `manifest.json`을 고치지 말고, 파일이 실제로 존재하는 항목만 적용한다. 우선 기존 클래스에 CSS로 연결하고, 아이콘·라벨을 넣을 종류별 클래스가 없을 때만 해당 컴포넌트 TSX에 의미 있는 클래스를 추가한다. 동적 텍스트·수치·상태와 모든 이벤트·`aria-label`은 HTML에 남긴다.
@@ -87,8 +103,8 @@ P1 고정 문구 라벨 48종을 `/ui/label/`에 추가했다. 버튼용 `label-
 | 토스트 | `frame-toast-note` → `Toast`의 최상위 컨테이너 | 9-slice: 네 변 32px 원본 slice. 에셋 파일이 없으면 건너뛴다. |
 | 장비 | `icon-slot-*` → `.gear-doll-slot`의 슬롯 종류별 보조 표식, `icon-sort`·`icon-filter` → 장비 정렬·필터 제어, `icon-stat-atk`·`icon-stat-def`·`icon-stat-status-resist` → 장비 능력치 줄 | 슬롯 이름·등급·강화 수치는 텍스트로 유지한다. 슬롯 아이콘은 32px, 나머지는 20px이다. |
 | 등급 프레임 | `frame-grade-하품/중품/상품/진품/극품/선품` → 소지품의 `.grade-chip`과 장착 슬롯 | 화면 등급명은 `하품/중품/상품/절품/신품/선품`이다. `절품`에는 보라색 `frame-grade-진품`, `신품`에는 주황색 `frame-grade-극품`을 쓴다. 모두 9-slice 24px, `border-image-width: 12px`다. |
-| 문파·상점·기연 | `sign-sect-qingyun`, `sign-shop-elixir`, `sign-tower`, `icon-gacha`, `panel-gacha-card-back` | 간판은 해당 카드·행의 고정 머리로만 쓰고, 비용·확률·결과 등급은 텍스트로 남긴다. `icon-gacha`는 대표 48px이며 버튼 안에서는 20px으로 축소할 수 있다. |
-| 환골탈태·저장 | `icon-rebirth`, `icon-reset`, `icon-backup`, `icon-warn`, `icon-check` | `icon-rebirth`은 대표 문양 48px, 나머지는 20px이다. 초기화·경고·유지 항목의 이름과 조건 문구를 이미지로 대체하지 않는다. |
+| 문파·상점·기연 | `sign-sect-qingyun`, `sign-shop-elixir`, `sign-tower`, `icon-gacha`, `panel-gacha-card-back`, `label-donate-*`, `label-sect-board`, `label-shop-exchange`, `label-gacha-*`, `title-gacha-rates`, `section-gacha-result` | 간판은 해당 카드·행의 고정 머리로만 쓰고, 비용·확률·결과 등급은 텍스트로 남긴다. `icon-gacha`는 대표 48px이며 버튼 안에서는 20px으로 축소할 수 있다. |
+| 환골탈태·저장 | `icon-rebirth`, `icon-reset`, `icon-backup`, `icon-warn`, `icon-check`, `label-rebirth-*`, `title-rebirth-*`, `section-rebirth`·`section-kept`·`section-reset`, `label-backup-*`, `section-save-backup` | `icon-rebirth`은 대표 문양 48px, 나머지는 20px이다. 초기화·경고·유지 항목의 이름과 조건 문구를 이미지로 대체하지 않는다. |
 | 목표·사냥터·오프라인 | `icon-goal-daily`, `icon-goal-milestone`, `icon-hold`, `icon-stage-current`, `icon-offline`, `icon-info`, `icon-unlock` | 목표 구역 아이콘·길게 누르기 안내·현재 소스테이지·오프라인 보상·도움말·해금 토스트의 보조 표식으로 쓴다. `icon-stage-current`만 16px, 나머지는 20px이다. |
 | 공통 | `icon-charm` | 보호부적 이름·개수 앞의 20px 보조 표식으로 쓴다. |
 
