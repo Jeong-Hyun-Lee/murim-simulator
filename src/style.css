@@ -1916,14 +1916,13 @@ dialog.sheet::backdrop {
 
 .gong-card-effect {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.25rem 0.5rem;
+  flex-direction: column;
+  gap: 0.125rem;
   margin: 0.625rem 0;
 }
 
 .gong-card-effect > span {
-  color: var(--paper-muted);
+  color: var(--paper-text);
   font-size: 0.8125rem;
 }
 
