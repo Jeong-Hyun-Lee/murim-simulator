@@ -77,6 +77,23 @@ P1 고정 문구 라벨 48종을 `/ui/label/`에 추가했다. 버튼용 `label-
 
 `panel-offline-night`를 `/ui/panel/panel-offline-night.webp`에 추가했다. 오프라인 보상 팝업 머리 그림으로 사용하되, 경과 시간·처치·보상·레벨 수치와 확인 버튼은 기존 HTML·로직을 유지한다.
 
+## P1 후속 적용 지시
+
+아래 파일은 이미 검수되어 `assets/ui/`에 있다. 새 에셋을 생성하거나 `manifest.json`을 고치지 말고, 파일이 실제로 존재하는 항목만 적용한다. 우선 기존 클래스에 CSS로 연결하고, 아이콘·라벨을 넣을 종류별 클래스가 없을 때만 해당 컴포넌트 TSX에 의미 있는 클래스를 추가한다. 동적 텍스트·수치·상태와 모든 이벤트·`aria-label`은 HTML에 남긴다.
+
+| 범위 | 에셋과 적용 대상 | 규칙 |
+| --- | --- | --- |
+| 스토리·온보딩 | `scroll-parchment-dialog` → `.story-intro`, `.story-cutscene-box`, `.onboarding-box` | 9-slice: 위아래 64px, 좌우 40px 원본 slice. 본문 여백을 늘려 말린 가장자리와 겹치지 않게 한다. |
+| 토스트 | `frame-toast-note` → `Toast`의 최상위 컨테이너 | 9-slice: 네 변 32px 원본 slice. 에셋 파일이 없으면 건너뛴다. |
+| 장비 | `icon-slot-*` → `.gear-doll-slot`의 슬롯 종류별 보조 표식, `icon-sort`·`icon-filter` → 장비 정렬·필터 제어, `icon-stat-atk`·`icon-stat-def`·`icon-stat-status-resist` → 장비 능력치 줄 | 슬롯 이름·등급·강화 수치는 텍스트로 유지한다. 슬롯 아이콘은 32px, 나머지는 20px이다. |
+| 등급 프레임 | `frame-grade-하품/중품/상품/진품/극품/선품` → 소지품의 `.grade-chip`과 장착 슬롯 | 화면 등급명은 `하품/중품/상품/절품/신품/선품`이다. `절품`에는 보라색 `frame-grade-진품`, `신품`에는 주황색 `frame-grade-극품`을 쓴다. 모두 9-slice 24px, `border-image-width: 12px`다. |
+| 문파·상점·기연 | `sign-sect-qingyun`, `sign-shop-elixir`, `sign-tower`, `icon-gacha`, `panel-gacha-card-back` | 간판은 해당 카드·행의 고정 머리로만 쓰고, 비용·확률·결과 등급은 텍스트로 남긴다. `icon-gacha`는 대표 48px이며 버튼 안에서는 20px으로 축소할 수 있다. |
+| 환골탈태·저장 | `icon-rebirth`, `icon-reset`, `icon-backup`, `icon-warn`, `icon-check` | `icon-rebirth`은 대표 문양 48px, 나머지는 20px이다. 초기화·경고·유지 항목의 이름과 조건 문구를 이미지로 대체하지 않는다. |
+| 목표·사냥터·오프라인 | `icon-goal-daily`, `icon-goal-milestone`, `icon-hold`, `icon-stage-current`, `icon-offline`, `icon-info`, `icon-unlock` | 목표 구역 아이콘·길게 누르기 안내·현재 소스테이지·오프라인 보상·도움말·해금 토스트의 보조 표식으로 쓴다. `icon-stage-current`만 16px, 나머지는 20px이다. |
+| 공통 | `icon-charm` | 보호부적 이름·개수 앞의 20px 보조 표식으로 쓴다. |
+
+P1 적용 뒤에는 375×812 모바일에서 장비·기연·환골탈태·오프라인 팝업을 열어 아이콘과 텍스트가 겹치지 않는지 확인한다. `npm run lint && npm run build`를 통과한 변경만 커밋한다.
+
 | 에셋 | 파일 | 적용 위치 |
 | --- | --- | --- |
 | 본문 벽 질감 | `/assets/ui/theme/theme-app-wall.webp` | `#app` |
