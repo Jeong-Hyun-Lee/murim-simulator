@@ -36,7 +36,7 @@ const REVEAL_LOCK_MS = 600;
 type PullKind = 'single' | 'ten';
 
 const RatesSheet = ({ onClose }: { onClose: () => void }) => (
-  <Sheet title="기연 확률" onClose={onClose}>
+  <Sheet title="기연 확률" titleImage="/ui/label/title-gacha-rates.webp" onClose={onClose}>
     <section className="gacha-rates-intro">
       <span>등급별 획득 확률</span>
       <strong>희귀한 장비를 찾아보세요</strong>
@@ -99,6 +99,12 @@ export const GachaPanel = () => {
     <div className="gacha">
       <section className="card gacha-pull-card">
         <div className="gacha-pull-head">
+          <img
+            src="/ui/icon/icon-gacha.webp"
+            alt=""
+            aria-hidden="true"
+            className="gacha-pull-icon"
+          />
           <div>
             <small>장비 기연</small>
             <h3>기연(奇緣)</h3>

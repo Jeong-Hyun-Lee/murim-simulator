@@ -19,7 +19,11 @@ const GeneralShopSection = () => {
         <span className="shop-elixir-mark" aria-hidden="true" />
         <div>
           <p className="shop-product-kicker">일반 교환</p>
-          <h3>영약 교환소</h3>
+          <img
+            src="/ui/label/sign-shop-elixir.webp"
+            alt="영약 교환소"
+            style={{ height: '2em', display: 'block' }}
+          />
         </div>
         <span className={`shop-stock-state${affordable ? ' is-ready' : ''}`}>
           {affordable ? '교환 가능' : '전 부족'}

@@ -67,6 +67,12 @@ export const RebirthView = ({ onDone }: { onDone: () => void }) => {
   return (
     <div className="rebirth">
       <section className="card rebirth-hero">
+        <img
+          src="/ui/icon/icon-rebirth.webp"
+          alt=""
+          aria-hidden="true"
+          className="rebirth-hero-icon"
+        />
         <div className="rebirth-tier-row">
           <span>현재 경지</span>
           <strong>{realmName(rebirthCount)}</strong>
@@ -89,7 +95,13 @@ export const RebirthView = ({ onDone }: { onDone: () => void }) => {
         </p>
       </section>
       <section className="card rebirth-reset-card">
-        <h3>
+        <h3 className="rebirth-reset-title">
+          <img
+            src="/ui/icon/icon-reset.webp"
+            alt=""
+            aria-hidden="true"
+            className="rebirth-title-icon"
+          />
           <img
             src="/ui/label/section-reset.webp"
             alt="초기화되는 항목"
@@ -104,9 +116,17 @@ export const RebirthView = ({ onDone }: { onDone: () => void }) => {
       </section>
       <section className="card rebirth-keep-card">
         <h3>유지되는 항목</h3>
-        <ul className="bullet-list">
+        <ul className="bullet-list rebirth-keep-list">
           {KEEP_ITEMS.map((item) => (
-            <li key={item}>{item}</li>
+            <li key={item}>
+              <img
+                src="/ui/icon/icon-check.webp"
+                alt=""
+                aria-hidden="true"
+                className="rebirth-title-icon"
+              />
+              {item}
+            </li>
           ))}
         </ul>
       </section>
@@ -146,7 +166,7 @@ export const RebirthView = ({ onDone }: { onDone: () => void }) => {
             <button type="button" className="btn" onClick={() => setConfirming(false)}>
               <img src="/ui/label/label-cancel.webp" alt="취소" style={{ height: '1.1em' }} />
             </button>
-            <button type="button" className="btn btn-primary" onClick={execute}>
+            <button type="button" className="btn btn-primary btn-danger" onClick={execute}>
               <img
                 src="/ui/label/label-rebirth-execute.webp"
                 alt="환골탈태 실행"

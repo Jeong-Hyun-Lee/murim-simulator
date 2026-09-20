@@ -287,12 +287,11 @@ export const BattleTab = ({ onNavigate }: Props) => {
             <>
               <span className="battle-stage-select">
                 <img
-                  src="/ui/icon/icon-tower.webp"
-                  alt=""
-                  aria-hidden="true"
-                  style={{ width: 20, height: 20, verticalAlign: '-0.3em', marginRight: '0.2em' }}
+                  src="/ui/label/sign-tower.webp"
+                  alt="수련탑"
+                  style={{ height: '1.1em', verticalAlign: '-0.2em', marginRight: '0.2em' }}
                 />
-                수련탑 {towerFloor}층 ·
+                {towerFloor}층 ·
                 <img
                   src="/ui/icon/icon-hourglass.webp"
                   alt=""
@@ -318,7 +317,7 @@ export const BattleTab = ({ onNavigate }: Props) => {
             <>
               <button
                 type="button"
-                className="battle-stage-select"
+                className="battle-stage-select btn-travel"
                 aria-haspopup="dialog"
                 aria-label={`사냥터 선택, 현재 ${stageLabel(stage)}`}
                 onClick={() => onNavigate('stagePicker')}
@@ -339,7 +338,7 @@ export const BattleTab = ({ onNavigate }: Props) => {
               {farmReturnStage && (
                 <button
                   type="button"
-                  className="battle-stage-select"
+                  className="battle-stage-select btn-travel"
                   aria-label={`등반 위치 ${stageLabel(farmReturnStage)}로 복귀`}
                   onClick={stopFarming}
                 >

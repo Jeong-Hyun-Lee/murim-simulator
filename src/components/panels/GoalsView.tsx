@@ -84,11 +84,19 @@ export const GoalsView = () => {
     <div className="goals-view">
       <section className="card">
         <h3>
-          <img
-            src="/ui/label/section-goal-daily.webp"
-            alt="일일 수련"
-            style={{ height: '1.1em', display: 'block' }}
-          />
+          <span className="goal-section-title">
+            <img
+              src="/ui/icon/icon-goal-daily.webp"
+              alt=""
+              aria-hidden="true"
+              style={{ width: 20, height: 20 }}
+            />
+            <img
+              src="/ui/label/section-goal-daily.webp"
+              alt="일일 수련"
+              style={{ height: '1.1em', display: 'block' }}
+            />
+          </span>
         </h3>
         <p className="muted small">날짜가 바뀌면 진행이 초기화됩니다.</p>
         <ul className="goal-list">
@@ -107,11 +115,19 @@ export const GoalsView = () => {
       </section>
       <section className="card">
         <h3>
-          <img
-            src="/ui/label/section-goal-milestone.webp"
-            alt="누적 수련"
-            style={{ height: '1.1em', display: 'block' }}
-          />
+          <span className="goal-section-title">
+            <img
+              src="/ui/icon/icon-goal-milestone.webp"
+              alt=""
+              aria-hidden="true"
+              style={{ width: 20, height: 20 }}
+            />
+            <img
+              src="/ui/label/section-goal-milestone.webp"
+              alt="누적 수련"
+              style={{ height: '1.1em', display: 'block' }}
+            />
+          </span>
         </h3>
         {milestoneRows.length === 0 ? (
           <p className="muted">모든 누적 목표를 달성했습니다.</p>

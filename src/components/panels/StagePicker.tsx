@@ -52,7 +52,15 @@ export const StagePicker = ({ onBack }: { onBack: () => void }) => {
     <div className="stage-picker">
       <div className="stage-picker-summary">
         <div className="stage-picker-summary-item">
-          <span>현재 전투</span>
+          <span>
+            <img
+              src="/ui/icon/icon-stage-current.webp"
+              alt=""
+              aria-hidden="true"
+              style={{ width: 16, height: 16, verticalAlign: 'middle', marginRight: '0.25rem' }}
+            />
+            현재 전투
+          </span>
           <strong>{stageLabel(stage)}</strong>
           <em>{farmReturnStage ? '반복 사냥' : '자동 등반'}</em>
         </div>
@@ -75,7 +83,14 @@ export const StagePicker = ({ onBack }: { onBack: () => void }) => {
       </div>
       <div className="setting-row tower-entry">
         <div>
-          <strong>수련탑 · 최고 {towerBest}층</strong>
+          <strong className="tower-entry-title">
+            <img
+              src="/ui/label/sign-tower.webp"
+              alt="수련탑"
+              style={{ height: '1.1em', display: 'block' }}
+            />
+            <span> · 최고 {towerBest}층</span>
+          </strong>
           <p>
             {towerUnlocked
               ? `${towerBest + 1}층부터 도전 — 적 공격 ${TOWER_TURN_LIMIT}회 안에 쓰러뜨리면 다음 층. 층마다 강화석, 10층마다 영약.`

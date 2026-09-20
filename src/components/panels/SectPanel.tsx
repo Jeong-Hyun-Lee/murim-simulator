@@ -106,7 +106,11 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
   return (
     <div className="sect-tab">
       <section className="card sect-banner">
-        <h3>{SECT_NAME}</h3>
+        <img
+          src="/ui/label/sign-sect-qingyun.webp"
+          alt={SECT_NAME}
+          style={{ height: '2em', display: 'block', margin: '0 auto' }}
+        />
         <p className="muted">
           목현이 몸담은 정파 문파. 기부로 문파를 키우면 전투력 특전이 오릅니다.
         </p>
@@ -187,7 +191,7 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
 
       <button
         type="button"
-        className="btn btn-block sect-board-action"
+        className="btn btn-travel btn-block sect-board-action"
         disabled={!sectBoardUnlocked}
         onClick={() => onOpenBoard(SECT_BOARD.id)}
       >

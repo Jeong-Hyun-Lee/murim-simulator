@@ -250,7 +250,19 @@ const SaveBackup = () => {
   return (
     <div className="setting-row save-backup">
       <div>
-        <strong>저장 백업</strong>
+        <strong>
+          <img
+            src="/ui/icon/icon-backup.webp"
+            alt=""
+            aria-hidden="true"
+            style={{ width: 20, height: 20, verticalAlign: '-0.3em', marginRight: '0.25em' }}
+          />
+          <img
+            src="/ui/label/section-save-backup.webp"
+            alt="저장 백업"
+            style={{ height: '1.1em', verticalAlign: '-0.15em' }}
+          />
+        </strong>
         <p>이 기기에만 저장됩니다. 브라우저 데이터를 지우기 전에 백업 코드를 보관하세요.</p>
       </div>
       <button type="button" className="btn" onClick={exportCode}>
@@ -279,7 +291,17 @@ const SaveBackup = () => {
           setConfirming(false);
         }}
       />
-      {error && <p className="warn">{error}</p>}
+      {error && (
+        <p className="warn">
+          <img
+            src="/ui/icon/icon-warn.webp"
+            alt=""
+            aria-hidden="true"
+            style={{ width: 20, height: 20, verticalAlign: '-0.3em', marginRight: '0.25em' }}
+          />
+          {error}
+        </p>
+      )}
       {confirming ? (
         <div className="btn-row">
           <button type="button" className="btn btn-primary" onClick={restore}>
@@ -385,7 +407,7 @@ export const CurrencySheet = ({ onClose }: { onClose: () => void }) => {
         ))}
         <div className="currency-row">
           <dt>
-            <UiIcon name="lock" />
+            <img src="/ui/icon/icon-charm.webp" alt="" aria-hidden="true" className="ui-icon" />
             <span>
               <strong>보호부적</strong>
               <small>강화 실패 시 단계 하락 방지</small>

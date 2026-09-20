@@ -258,7 +258,17 @@ export const GongPanel = ({ boardId, onBoardChange }: Props) => {
         </ul>
       )}
 
-      <p className="gong-hold-tip">1회 연마 버튼을 길게 누르면 연속으로 연마합니다.</p>
+      <p className="gong-hold-tip">
+        <img
+          src="/ui/icon/icon-hold.webp"
+          alt=""
+          aria-hidden="true"
+          width={20}
+          height={20}
+          style={{ verticalAlign: 'middle', marginRight: 4 }}
+        />
+        1회 연마 버튼을 길게 누르면 연속으로 연마합니다.
+      </p>
       <div className="card-list">
         {selectedBoard.nodes.map((node) => (
           <GongNodeCard

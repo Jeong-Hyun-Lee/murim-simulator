@@ -22,9 +22,25 @@ export const OfflineReportSheet = () => {
     >
       <div className="offline-report-banner" aria-hidden="true" />
       <section className="card">
-        <p className="boss-sheet-kicker">수련 보고</p>
+        <p className="boss-sheet-kicker">
+          <img
+            src="/ui/icon/icon-offline.webp"
+            alt=""
+            aria-hidden="true"
+            style={{ width: 20, height: 20, verticalAlign: 'middle', marginRight: '0.3rem' }}
+          />
+          수련 보고
+        </p>
         <h3>{durationText(report.elapsedMs)} 동안 수련했습니다</h3>
-        <p className="muted small">최대 12시간까지, 현재 사냥터 기준으로 계산합니다.</p>
+        <p className="muted small">
+          <img
+            src="/ui/icon/icon-info.webp"
+            alt=""
+            aria-hidden="true"
+            style={{ width: 20, height: 20, verticalAlign: 'middle', marginRight: '0.3rem' }}
+          />
+          최대 12시간까지, 현재 사냥터 기준으로 계산합니다.
+        </p>
         <ul className="reward-list">
           <li>처치 {report.kills.toLocaleString()}명</li>
           <li>경험치 +{report.exp.toLocaleString()}</li>

@@ -327,9 +327,11 @@ button:disabled {
   min-height: 3rem;
   display: grid;
   place-items: center;
-  background: linear-gradient(180deg, #3b3022, #211b14);
+  background:
+    url('/ui/button/btn-round.webp') center / cover,
+    linear-gradient(180deg, #3b3022, #211b14);
   border: 1px solid #705a35;
-  border-radius: 0.625rem;
+  border-radius: 50%;
   color: #dfbd60;
   font-size: 1.375rem;
 }
@@ -345,6 +347,7 @@ button:disabled {
   background: linear-gradient(90deg, #201a12, #17130f);
   border: 0;
   border-bottom: 1px solid #504128;
+  border-image: url('/ui/frame/frame-summary-strip.webp') 0 64 fill / 0 32px stretch;
   color: #eee0c4;
   font-size: 0.875rem;
   text-align: left;
@@ -738,6 +741,10 @@ button:disabled {
   line-height: 1.25;
 }
 
+.btn:not(.btn-primary):not(.btn-ghost) {
+  border-image: url('/ui/button/btn-secondary-brick.webp') 0 40 fill / 0 20px stretch;
+}
+
 .card .btn,
 .sheet .btn {
   background: transparent;
@@ -758,6 +765,7 @@ button:disabled {
     inset 0 1px rgba(255, 245, 190, 0.55),
     0 2px 0 #694111;
   font-weight: bold;
+  border-image: url('/ui/button/btn-primary-tile.webp') 0 40 fill / 0 20px stretch;
 }
 
 .btn.btn-ghost {
@@ -1020,7 +1028,9 @@ details.card summary {
 }
 
 .sect-level-card .exp-bar .bar-fill {
-  background: url('/ui/gauge/fill-sect.webp') repeat-x, linear-gradient(#4f9bd4, #1f4a7a);
+  background:
+    url('/ui/gauge/fill-sect.webp') repeat-x,
+    linear-gradient(#4f9bd4, #1f4a7a);
   background-size: auto 100%;
 }
 
@@ -1264,6 +1274,7 @@ dialog.sheet::backdrop {
   border-radius: 0.625rem;
   background: rgba(255, 248, 228, 0.62);
   color: #372816;
+  border-image: url('/ui/frame/frame-row-slip.webp') 32 / 16px stretch;
 }
 
 .tower-entry {
@@ -2863,6 +2874,7 @@ dialog.sheet::backdrop {
   background: linear-gradient(135deg, rgba(255, 243, 198, 0.45), transparent 32%), var(--paper);
   color: var(--paper-text);
   text-align: center;
+  border-image: url('/ui/scroll/scroll-parchment-dialog.webp') 64 40 fill / 32px 20px stretch;
   box-shadow:
     0 1rem 2.5rem rgba(0, 0, 0, 0.52),
     inset 0 0 0 3px rgba(106, 73, 25, 0.14);
@@ -3387,4 +3399,101 @@ dialog.sheet::backdrop {
 
 .grade-chip[data-grade='선품'] {
   border-image: url('/ui/frame/frame-grade-선품.webp') 24 fill / 12px stretch;
+}
+
+/* ---------- Sect/Shop/Gong P0/P1 후속 배선 ---------- */
+
+.btn.btn-travel {
+  border-image: url('/ui/button/btn-travel-jade.webp') 0 40 fill / 0 20px stretch;
+}
+
+/* ---------- Gacha/Rebirth/MyInfo P0/P1 후속 배선 ---------- */
+
+.gacha-pull-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.rebirth-hero-icon {
+  display: block;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 0.5rem;
+}
+
+.rebirth-reset-title {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.rebirth-title-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.rebirth-keep-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.rebirth-keep-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.btn.btn-danger {
+  border-image: url('/ui/button/btn-danger-brick.webp') 0 40 fill / 0 20px stretch;
+}
+
+/* ---------- GearPanel P0/P1 후속 배선 ---------- */
+
+.gear-doll-slot-icon {
+  position: absolute;
+  top: 0.3rem;
+  left: 0.3rem;
+  width: 1rem;
+  height: 1rem;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.toolbar select {
+  width: auto;
+  flex: 1;
+}
+
+.toolbar-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* ---------- Goals/StagePicker/Offline P0/P1 후속 배선 ---------- */
+
+.goal-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.tower-entry-title {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* ---------- BattleTab P0/P1 후속 배선 ---------- */
+
+.battle-stage-select.btn-travel {
+  border-image: url('/ui/button/btn-travel-jade.webp') 0 40 fill / 0 20px stretch;
 }

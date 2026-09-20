@@ -35,14 +35,16 @@ const STAT_LABEL: Record<StatKey, string> = {
   statusResist: '상태이상 저항',
 };
 
-// 매핑 없는 스탯(방어/체력/상태이상 저항)은 아이콘 없이 텍스트만 유지.
+// 매핑 없는 스탯(체력)은 아이콘 없이 텍스트만 유지.
 const STAT_ICON: Partial<Record<StatKey, string>> = {
-  atk: 'icon-stat-power',
+  atk: 'icon-stat-atk',
+  def: 'icon-stat-def',
   critChance: 'icon-stat-crit-chance',
   critDamage: 'icon-stat-crit-damage',
   attackSpeed: 'icon-stat-attack-speed',
   evasion: 'icon-stat-evasion',
   chiGain: 'icon-stat-chi-gain',
+  statusResist: 'icon-stat-status-resist',
 };
 
 const StatIcon = ({ statKey }: { statKey: StatKey }) => {
@@ -55,6 +57,19 @@ const StatIcon = ({ statKey }: { statKey: StatKey }) => {
       style={{ width: 20, height: 20, verticalAlign: '-0.3em', marginRight: '0.25em' }}
     />
   );
+};
+
+// 반지(L/R)는 아이콘을 공유한다.
+const SLOT_ICON: Record<SlotId, string> = {
+  weapon: 'weapon',
+  body: 'body',
+  head: 'head',
+  arm: 'arm',
+  foot: 'foot',
+  waist: 'waist',
+  neck: 'neck',
+  ringL: 'ring',
+  ringR: 'ring',
 };
 
 // 등급은 색에만 의존하지 않도록 항상 이름과 함께 표시.
@@ -362,6 +377,11 @@ export const GearPanel = () => {
               style={{ gridArea: slot, borderColor: item ? GRADE_COLOR[item.grade] : undefined }}
               onClick={() => setOpenSlot(slot)}
             >
+              <img
+                src={`/ui/icon/icon-slot-${SLOT_ICON[slot]}.webp`}
+                alt=""
+                className="gear-doll-slot-icon"
+              />
               <span>{SLOT_INFO[slot].name.split('(')[0]}</span>
               <small>{item ? `${item.grade} +${item.enhanceLevel}` : '비어 있음'}</small>
             </button>
@@ -372,6 +392,7 @@ export const GearPanel = () => {
       <div className="toolbar">
         <label htmlFor="gear-slot-filter">
           <span className="sr-only">슬롯 필터</span>
+          <img src="/ui/icon/icon-filter.webp" alt="" className="toolbar-icon" />
           <select
             id="gear-slot-filter"
             value={slotFilter}
@@ -387,6 +408,7 @@ export const GearPanel = () => {
         </label>
         <label htmlFor="gear-sort">
           <span className="sr-only">정렬</span>
+          <img src="/ui/icon/icon-sort.webp" alt="" className="toolbar-icon" />
           <select
             id="gear-sort"
             value={sortKey}
@@ -477,7 +499,7 @@ export const GearPanel = () => {
               </button>
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-danger"
                 disabled={checkedItems.length === 0}
                 onClick={() => setConfirmDisassemble(true)}
               >
