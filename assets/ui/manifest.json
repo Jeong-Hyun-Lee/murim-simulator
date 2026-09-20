@@ -3296,5 +3296,20 @@
       "left": 32
     },
     "priority": "P1"
+  },
+  {
+    "id": "icon-exp",
+    "file": "icon/icon-exp.webp",
+    "kind": "fixed",
+    "cssSize": {
+      "w": 16,
+      "h": 16
+    },
+    "sourceSize": {
+      "w": 48,
+      "h": 48
+    },
+    "slice": null,
+    "priority": "P1"
   }
 ]
