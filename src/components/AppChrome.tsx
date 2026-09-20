@@ -373,7 +373,11 @@ export const SettingsSheet = ({ onClose }: { onClose: () => void }) => {
             aria-hidden="true"
             className="btn-close-icon"
           />
-          {sfxEnabled ? '효과음 끄기' : '효과음 켜기'}
+          <img
+            src={sfxEnabled ? '/ui/label/label-sfx-off.webp' : '/ui/label/label-sfx-on.webp'}
+            alt={sfxEnabled ? '효과음 끄기' : '효과음 켜기'}
+            style={{ height: '1.1em' }}
+          />
         </button>
       </div>
       <SaveBackup />

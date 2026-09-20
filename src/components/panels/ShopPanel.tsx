@@ -53,11 +53,19 @@ const GeneralShopSection = () => {
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...hold}
       >
-        <img
-          src="/ui/label/label-shop-exchange.webp"
-          alt="영약 1개 교환"
-          style={{ height: '1.1em', display: 'block' }}
-        />
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+          <img
+            src="/ui/icon/icon-action-exchange.webp"
+            alt=""
+            aria-hidden="true"
+            style={{ width: 20, height: 20 }}
+          />
+          <img
+            src="/ui/label/label-shop-exchange.webp"
+            alt="영약 1개 교환"
+            style={{ height: '1.1em' }}
+          />
+        </span>
         <small>(전 {cost.toLocaleString()})</small>
       </button>
     </section>

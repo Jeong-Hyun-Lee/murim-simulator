@@ -615,10 +615,12 @@ button:disabled {
   position: absolute;
   top: 0.5rem;
   right: calc(50% - 1.6em);
-  width: 0.625rem;
-  height: 0.625rem;
+  width: 0.75rem;
+  height: 0.75rem;
   border-radius: 50%;
-  background: #e0503c;
+  background:
+    url('/ui/icon/icon-badge.webp') center / cover,
+    #e0503c;
   box-shadow: 0 0 0 2px var(--ink-2);
 }
 

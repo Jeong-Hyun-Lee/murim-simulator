@@ -39,6 +39,7 @@ const STAT_LABEL: Record<StatKey, string> = {
 const STAT_ICON: Partial<Record<StatKey, string>> = {
   atk: 'icon-stat-atk',
   def: 'icon-stat-def',
+  hp: 'icon-stat-hp',
   critChance: 'icon-stat-crit-chance',
   critDamage: 'icon-stat-crit-damage',
   attackSpeed: 'icon-stat-attack-speed',
@@ -222,7 +223,15 @@ const EnhanceBlock = ({ item }: { item: GearItem }) => {
           {...hold}
         >
           +{targetLevel}{' '}
-          <img src="/ui/label/label-enhance.webp" alt="강화하기" style={{ height: '1.1em' }} />
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+            <img
+              src="/ui/icon/icon-action-enhance.webp"
+              alt=""
+              aria-hidden="true"
+              style={{ width: 20, height: 20 }}
+            />
+            <img src="/ui/label/label-enhance.webp" alt="강화하기" style={{ height: '1.1em' }} />
+          </span>
         </button>
       </div>
     </div>

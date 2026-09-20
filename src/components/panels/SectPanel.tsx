@@ -179,11 +179,19 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
             disabled={chi < CHI_PER_CONTRIBUTION}
             onClick={() => setDonate('chi')}
           >
-            <img
-              src="/ui/label/label-donate-chi.webp"
-              alt="내공 전량 기부"
-              style={{ height: '1.1em', display: 'block' }}
-            />
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+              <img
+                src="/ui/icon/icon-action-donate.webp"
+                alt=""
+                aria-hidden="true"
+                style={{ width: 20, height: 20 }}
+              />
+              <img
+                src="/ui/label/label-donate-chi.webp"
+                alt="내공 전량 기부"
+                style={{ height: '1.1em' }}
+              />
+            </span>
           </button>
           <button
             type="button"
@@ -191,11 +199,19 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
             disabled={elixir <= 0}
             onClick={() => setDonate('elixir')}
           >
-            <img
-              src="/ui/label/label-donate-elixir.webp"
-              alt="영약 전량 기부"
-              style={{ height: '1.1em', display: 'block' }}
-            />
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+              <img
+                src="/ui/icon/icon-action-donate.webp"
+                alt=""
+                aria-hidden="true"
+                style={{ width: 20, height: 20 }}
+              />
+              <img
+                src="/ui/label/label-donate-elixir.webp"
+                alt="영약 전량 기부"
+                style={{ height: '1.1em' }}
+              />
+            </span>
           </button>
         </div>
       </section>
