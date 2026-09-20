@@ -11,6 +11,8 @@
 - `assets/ui/manifest.json`
 - `src/style.css`
 
+`assets/ui/`의 모든 적용 대상은 투명 외곽 여백을 제거한 실제 알파 경계 파일이다. 적용 크기와 3·9-slice 값은 반드시 최신 `manifest.json`의 `sourceSize`·`slice`를 읽고, 이미지 자체에 여백이 있다고 보고 CSS `padding`이나 보정 오프셋을 추가하지 않는다.
+
 ## 적용 범위
 
 현재 테마 단계는 `src/style.css`만 수정한다. 이후 P0 프레임 적용 단계도 `src/style.css`만 수정하며, `src/App.tsx`와 게임 로직은 수정하지 않는다.

@@ -1,0 +1,3371 @@
+{
+  "trimmed": [
+    {
+      "file": "button/btn-danger-brick.webp",
+      "from": {
+        "w": 360,
+        "h": 112
+      },
+      "to": {
+        "w": 360,
+        "h": 83
+      },
+      "trim": {
+        "left": 0,
+        "top": 1,
+        "right": 0,
+        "bottom": 28
+      }
+    },
+    {
+      "file": "button/btn-primary-tile.webp",
+      "from": {
+        "w": 360,
+        "h": 112
+      },
+      "to": {
+        "w": 360,
+        "h": 86
+      },
+      "trim": {
+        "left": 0,
+        "top": 7,
+        "right": 0,
+        "bottom": 19
+      }
+    },
+    {
+      "file": "button/btn-round.webp",
+      "from": {
+        "w": 132,
+        "h": 132
+      },
+      "to": {
+        "w": 120,
+        "h": 126
+      },
+      "trim": {
+        "left": 7,
+        "top": 4,
+        "right": 5,
+        "bottom": 2
+      }
+    },
+    {
+      "file": "button/btn-secondary-brick.webp",
+      "from": {
+        "w": 360,
+        "h": 112
+      },
+      "to": {
+        "w": 360,
+        "h": 105
+      },
+      "trim": {
+        "left": 0,
+        "top": 3,
+        "right": 0,
+        "bottom": 4
+      }
+    },
+    {
+      "file": "button/btn-segment-active.webp",
+      "from": {
+        "w": 320,
+        "h": 80
+      },
+      "to": {
+        "w": 320,
+        "h": 78
+      },
+      "trim": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 2
+      }
+    },
+    {
+      "file": "button/btn-segment.webp",
+      "from": {
+        "w": 320,
+        "h": 80
+      },
+      "to": {
+        "w": 320,
+        "h": 67
+      },
+      "trim": {
+        "left": 0,
+        "top": 12,
+        "right": 0,
+        "bottom": 1
+      }
+    },
+    {
+      "file": "button/btn-travel-jade.webp",
+      "from": {
+        "w": 360,
+        "h": 112
+      },
+      "to": {
+        "w": 360,
+        "h": 106
+      },
+      "trim": {
+        "left": 0,
+        "top": 2,
+        "right": 0,
+        "bottom": 4
+      }
+    },
+    {
+      "file": "frame/frame-banner-silk.webp",
+      "from": {
+        "w": 720,
+        "h": 96
+      },
+      "to": {
+        "w": 704,
+        "h": 78
+      },
+      "trim": {
+        "left": 8,
+        "top": 4,
+        "right": 8,
+        "bottom": 14
+      }
+    },
+    {
+      "file": "frame/frame-battle-stage.webp",
+      "from": {
+        "w": 256,
+        "h": 256
+      },
+      "to": {
+        "w": 228,
+        "h": 234
+      },
+      "trim": {
+        "left": 14,
+        "top": 14,
+        "right": 14,
+        "bottom": 8
+      }
+    },
+    {
+      "file": "frame/frame-grade-극품.webp",
+      "from": {
+        "w": 160,
+        "h": 72
+      },
+      "to": {
+        "w": 146,
+        "h": 67
+      },
+      "trim": {
+        "left": 7,
+        "top": 2,
+        "right": 7,
+        "bottom": 3
+      }
+    },
+    {
+      "file": "frame/frame-grade-상품.webp",
+      "from": {
+        "w": 160,
+        "h": 72
+      },
+      "to": {
+        "w": 146,
+        "h": 67
+      },
+      "trim": {
+        "left": 7,
+        "top": 2,
+        "right": 7,
+        "bottom": 3
+      }
+    },
+    {
+      "file": "frame/frame-grade-선품.webp",
+      "from": {
+        "w": 160,
+        "h": 72
+      },
+      "to": {
+        "w": 146,
+        "h": 67
+      },
+      "trim": {
+        "left": 7,
+        "top": 2,
+        "right": 7,
+        "bottom": 3
+      }
+    },
+    {
+      "file": "frame/frame-grade-중품.webp",
+      "from": {
+        "w": 160,
+        "h": 72
+      },
+      "to": {
+        "w": 146,
+        "h": 67
+      },
+      "trim": {
+        "left": 7,
+        "top": 2,
+        "right": 7,
+        "bottom": 3
+      }
+    },
+    {
+      "file": "frame/frame-grade-진품.webp",
+      "from": {
+        "w": 160,
+        "h": 72
+      },
+      "to": {
+        "w": 146,
+        "h": 67
+      },
+      "trim": {
+        "left": 7,
+        "top": 2,
+        "right": 7,
+        "bottom": 3
+      }
+    },
+    {
+      "file": "frame/frame-grade-하품.webp",
+      "from": {
+        "w": 160,
+        "h": 72
+      },
+      "to": {
+        "w": 146,
+        "h": 67
+      },
+      "trim": {
+        "left": 7,
+        "top": 2,
+        "right": 7,
+        "bottom": 3
+      }
+    },
+    {
+      "file": "frame/frame-header-eave.webp",
+      "from": {
+        "w": 780,
+        "h": 112
+      },
+      "to": {
+        "w": 770,
+        "h": 73
+      },
+      "trim": {
+        "left": 5,
+        "top": 20,
+        "right": 5,
+        "bottom": 19
+      }
+    },
+    {
+      "file": "frame/frame-panel-dark.webp",
+      "from": {
+        "w": 192,
+        "h": 192
+      },
+      "to": {
+        "w": 174,
+        "h": 170
+      },
+      "trim": {
+        "left": 9,
+        "top": 10,
+        "right": 9,
+        "bottom": 12
+      }
+    },
+    {
+      "file": "frame/frame-panel-hanji.webp",
+      "from": {
+        "w": 192,
+        "h": 192
+      },
+      "to": {
+        "w": 190,
+        "h": 187
+      },
+      "trim": {
+        "left": 1,
+        "top": 0,
+        "right": 1,
+        "bottom": 5
+      }
+    },
+    {
+      "file": "frame/frame-popup.webp",
+      "from": {
+        "w": 384,
+        "h": 384
+      },
+      "to": {
+        "w": 380,
+        "h": 370
+      },
+      "trim": {
+        "left": 2,
+        "top": 1,
+        "right": 2,
+        "bottom": 13
+      }
+    },
+    {
+      "file": "frame/frame-portrait.webp",
+      "from": {
+        "w": 120,
+        "h": 120
+      },
+      "to": {
+        "w": 114,
+        "h": 113
+      },
+      "trim": {
+        "left": 3,
+        "top": 3,
+        "right": 3,
+        "bottom": 4
+      }
+    },
+    {
+      "file": "frame/frame-row-slip.webp",
+      "from": {
+        "w": 716,
+        "h": 128
+      },
+      "to": {
+        "w": 710,
+        "h": 96
+      },
+      "trim": {
+        "left": 3,
+        "top": 4,
+        "right": 3,
+        "bottom": 28
+      }
+    },
+    {
+      "file": "frame/frame-slot.webp",
+      "from": {
+        "w": 160,
+        "h": 72
+      },
+      "to": {
+        "w": 146,
+        "h": 67
+      },
+      "trim": {
+        "left": 7,
+        "top": 2,
+        "right": 7,
+        "bottom": 3
+      }
+    },
+    {
+      "file": "frame/frame-summary-strip.webp",
+      "from": {
+        "w": 780,
+        "h": 88
+      },
+      "to": {
+        "w": 780,
+        "h": 41
+      },
+      "trim": {
+        "left": 0,
+        "top": 27,
+        "right": 0,
+        "bottom": 20
+      }
+    },
+    {
+      "file": "frame/frame-tabbar.webp",
+      "from": {
+        "w": 780,
+        "h": 128
+      },
+      "to": {
+        "w": 780,
+        "h": 96
+      },
+      "trim": {
+        "left": 0,
+        "top": 19,
+        "right": 0,
+        "bottom": 13
+      }
+    },
+    {
+      "file": "frame/frame-title-plaque.webp",
+      "from": {
+        "w": 480,
+        "h": 96
+      },
+      "to": {
+        "w": 480,
+        "h": 61
+      },
+      "trim": {
+        "left": 0,
+        "top": 17,
+        "right": 0,
+        "bottom": 18
+      }
+    },
+    {
+      "file": "frame/frame-toast-note.webp",
+      "from": {
+        "w": 192,
+        "h": 128
+      },
+      "to": {
+        "w": 186,
+        "h": 126
+      },
+      "trim": {
+        "left": 3,
+        "top": 0,
+        "right": 3,
+        "bottom": 2
+      }
+    },
+    {
+      "file": "gauge/fill-hp-boss-trail.webp",
+      "from": {
+        "w": 64,
+        "h": 40
+      },
+      "to": {
+        "w": 64,
+        "h": 35
+      },
+      "trim": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 5
+      }
+    },
+    {
+      "file": "gauge/fill-hp-boss.webp",
+      "from": {
+        "w": 64,
+        "h": 40
+      },
+      "to": {
+        "w": 64,
+        "h": 35
+      },
+      "trim": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 5
+      }
+    },
+    {
+      "file": "gauge/fill-hp-enemy-trail.webp",
+      "from": {
+        "w": 64,
+        "h": 32
+      },
+      "to": {
+        "w": 64,
+        "h": 28
+      },
+      "trim": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 4
+      }
+    },
+    {
+      "file": "gauge/fill-hp-enemy.webp",
+      "from": {
+        "w": 64,
+        "h": 32
+      },
+      "to": {
+        "w": 64,
+        "h": 28
+      },
+      "trim": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 4
+      }
+    },
+    {
+      "file": "gauge/fill-hp-player-trail.webp",
+      "from": {
+        "w": 64,
+        "h": 32
+      },
+      "to": {
+        "w": 64,
+        "h": 28
+      },
+      "trim": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 4
+      }
+    },
+    {
+      "file": "gauge/fill-hp-player.webp",
+      "from": {
+        "w": 64,
+        "h": 32
+      },
+      "to": {
+        "w": 64,
+        "h": 28
+      },
+      "trim": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 4
+      }
+    },
+    {
+      "file": "gauge/frame-gauge-boss.webp",
+      "from": {
+        "w": 480,
+        "h": 48
+      },
+      "to": {
+        "w": 470,
+        "h": 29
+      },
+      "trim": {
+        "left": 4,
+        "top": 9,
+        "right": 6,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "gauge/frame-gauge-enemy.webp",
+      "from": {
+        "w": 480,
+        "h": 40
+      },
+      "to": {
+        "w": 478,
+        "h": 17
+      },
+      "trim": {
+        "left": 1,
+        "top": 11,
+        "right": 1,
+        "bottom": 12
+      }
+    },
+    {
+      "file": "gauge/frame-gauge-exp.webp",
+      "from": {
+        "w": 480,
+        "h": 20
+      },
+      "to": {
+        "w": 472,
+        "h": 8
+      },
+      "trim": {
+        "left": 3,
+        "top": 6,
+        "right": 5,
+        "bottom": 6
+      }
+    },
+    {
+      "file": "gauge/frame-gauge-player.webp",
+      "from": {
+        "w": 480,
+        "h": 40
+      },
+      "to": {
+        "w": 480,
+        "h": 19
+      },
+      "trim": {
+        "left": 0,
+        "top": 10,
+        "right": 0,
+        "bottom": 11
+      }
+    },
+    {
+      "file": "gauge/frame-gauge-sect.webp",
+      "from": {
+        "w": 480,
+        "h": 32
+      },
+      "to": {
+        "w": 472,
+        "h": 14
+      },
+      "trim": {
+        "left": 3,
+        "top": 9,
+        "right": 5,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "gauge/overlay-gauge-gloss.webp",
+      "from": {
+        "w": 64,
+        "h": 32
+      },
+      "to": {
+        "w": 64,
+        "h": 26
+      },
+      "trim": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 6
+      }
+    },
+    {
+      "file": "icon/icon-action-disassemble.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 42,
+        "h": 38
+      },
+      "trim": {
+        "left": 11,
+        "top": 8,
+        "right": 7,
+        "bottom": 14
+      }
+    },
+    {
+      "file": "icon/icon-action-donate.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 37,
+        "h": 40
+      },
+      "trim": {
+        "left": 13,
+        "top": 10,
+        "right": 10,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "icon/icon-action-enhance.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 42,
+        "h": 41
+      },
+      "trim": {
+        "left": 8,
+        "top": 8,
+        "right": 10,
+        "bottom": 11
+      }
+    },
+    {
+      "file": "icon/icon-action-equip.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 31,
+        "h": 44
+      },
+      "trim": {
+        "left": 14,
+        "top": 6,
+        "right": 15,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "icon/icon-action-exchange.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 38,
+        "h": 32
+      },
+      "trim": {
+        "left": 11,
+        "top": 14,
+        "right": 11,
+        "bottom": 14
+      }
+    },
+    {
+      "file": "icon/icon-action-train.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 48,
+        "h": 53
+      },
+      "trim": {
+        "left": 8,
+        "top": 5,
+        "right": 4,
+        "bottom": 2
+      }
+    },
+    {
+      "file": "icon/icon-action-unequip.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 29,
+        "h": 41
+      },
+      "trim": {
+        "left": 16,
+        "top": 7,
+        "right": 15,
+        "bottom": 12
+      }
+    },
+    {
+      "file": "icon/icon-back.webp",
+      "from": {
+        "w": 72,
+        "h": 72
+      },
+      "to": {
+        "w": 56,
+        "h": 50
+      },
+      "trim": {
+        "left": 11,
+        "top": 14,
+        "right": 5,
+        "bottom": 8
+      }
+    },
+    {
+      "file": "icon/icon-backup.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 52,
+        "h": 35
+      },
+      "trim": {
+        "left": 4,
+        "top": 10,
+        "right": 4,
+        "bottom": 15
+      }
+    },
+    {
+      "file": "icon/icon-badge.webp",
+      "from": {
+        "w": 36,
+        "h": 36
+      },
+      "to": {
+        "w": 18,
+        "h": 32
+      },
+      "trim": {
+        "left": 15,
+        "top": 2,
+        "right": 3,
+        "bottom": 2
+      }
+    },
+    {
+      "file": "icon/icon-charm.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 27,
+        "h": 49
+      },
+      "trim": {
+        "left": 17,
+        "top": 4,
+        "right": 16,
+        "bottom": 7
+      }
+    },
+    {
+      "file": "icon/icon-check.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 45,
+        "h": 45
+      },
+      "trim": {
+        "left": 9,
+        "top": 4,
+        "right": 6,
+        "bottom": 11
+      }
+    },
+    {
+      "file": "icon/icon-chi.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 35,
+        "h": 55
+      },
+      "trim": {
+        "left": 11,
+        "top": 2,
+        "right": 14,
+        "bottom": 3
+      }
+    },
+    {
+      "file": "icon/icon-climb.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 56,
+        "h": 43
+      },
+      "trim": {
+        "left": 2,
+        "top": 9,
+        "right": 2,
+        "bottom": 8
+      }
+    },
+    {
+      "file": "icon/icon-close.webp",
+      "from": {
+        "w": 72,
+        "h": 72
+      },
+      "to": {
+        "w": 53,
+        "h": 55
+      },
+      "trim": {
+        "left": 17,
+        "top": 5,
+        "right": 2,
+        "bottom": 12
+      }
+    },
+    {
+      "file": "icon/icon-combat-power.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 45,
+        "h": 46
+      },
+      "trim": {
+        "left": 7,
+        "top": 12,
+        "right": 8,
+        "bottom": 2
+      }
+    },
+    {
+      "file": "icon/icon-contribution.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 40,
+        "h": 54
+      },
+      "trim": {
+        "left": 9,
+        "top": 4,
+        "right": 11,
+        "bottom": 2
+      }
+    },
+    {
+      "file": "icon/icon-diff-down.webp",
+      "from": {
+        "w": 48,
+        "h": 48
+      },
+      "to": {
+        "w": 26,
+        "h": 21
+      },
+      "trim": {
+        "left": 8,
+        "top": 11,
+        "right": 14,
+        "bottom": 16
+      }
+    },
+    {
+      "file": "icon/icon-diff-up.webp",
+      "from": {
+        "w": 48,
+        "h": 48
+      },
+      "to": {
+        "w": 42,
+        "h": 42
+      },
+      "trim": {
+        "left": 3,
+        "top": 4,
+        "right": 3,
+        "bottom": 2
+      }
+    },
+    {
+      "file": "icon/icon-dropdown.webp",
+      "from": {
+        "w": 48,
+        "h": 48
+      },
+      "to": {
+        "w": 19,
+        "h": 44
+      },
+      "trim": {
+        "left": 14,
+        "top": 2,
+        "right": 15,
+        "bottom": 2
+      }
+    },
+    {
+      "file": "icon/icon-elixir.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 43,
+        "h": 54
+      },
+      "trim": {
+        "left": 8,
+        "top": 2,
+        "right": 9,
+        "bottom": 4
+      }
+    },
+    {
+      "file": "icon/icon-exp.webp",
+      "from": {
+        "w": 48,
+        "h": 48
+      },
+      "to": {
+        "w": 17,
+        "h": 18
+      },
+      "trim": {
+        "left": 16,
+        "top": 16,
+        "right": 15,
+        "bottom": 14
+      }
+    },
+    {
+      "file": "icon/icon-filter.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 39,
+        "h": 38
+      },
+      "trim": {
+        "left": 10,
+        "top": 4,
+        "right": 11,
+        "bottom": 18
+      }
+    },
+    {
+      "file": "icon/icon-gacha.webp",
+      "from": {
+        "w": 144,
+        "h": 144
+      },
+      "to": {
+        "w": 57,
+        "h": 118
+      },
+      "trim": {
+        "left": 45,
+        "top": 6,
+        "right": 42,
+        "bottom": 20
+      }
+    },
+    {
+      "file": "icon/icon-goal-daily.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 49,
+        "h": 45
+      },
+      "trim": {
+        "left": 6,
+        "top": 6,
+        "right": 5,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "icon/icon-goal-milestone.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 51,
+        "h": 50
+      },
+      "trim": {
+        "left": 5,
+        "top": 5,
+        "right": 4,
+        "bottom": 5
+      }
+    },
+    {
+      "file": "icon/icon-goal.webp",
+      "from": {
+        "w": 72,
+        "h": 72
+      },
+      "to": {
+        "w": 52,
+        "h": 52
+      },
+      "trim": {
+        "left": 11,
+        "top": 10,
+        "right": 9,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "icon/icon-gold.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 56,
+        "h": 56
+      },
+      "trim": {
+        "left": 2,
+        "top": 2,
+        "right": 2,
+        "bottom": 2
+      }
+    },
+    {
+      "file": "icon/icon-hold.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 37,
+        "h": 50
+      },
+      "trim": {
+        "left": 10,
+        "top": 5,
+        "right": 13,
+        "bottom": 5
+      }
+    },
+    {
+      "file": "icon/icon-hourglass.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 40,
+        "h": 50
+      },
+      "trim": {
+        "left": 13,
+        "top": 8,
+        "right": 7,
+        "bottom": 2
+      }
+    },
+    {
+      "file": "icon/icon-info.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 34,
+        "h": 37
+      },
+      "trim": {
+        "left": 13,
+        "top": 9,
+        "right": 13,
+        "bottom": 14
+      }
+    },
+    {
+      "file": "icon/icon-lock.webp",
+      "from": {
+        "w": 72,
+        "h": 72
+      },
+      "to": {
+        "w": 52,
+        "h": 60
+      },
+      "trim": {
+        "left": 18,
+        "top": 6,
+        "right": 2,
+        "bottom": 6
+      }
+    },
+    {
+      "file": "icon/icon-offline.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 37,
+        "h": 42
+      },
+      "trim": {
+        "left": 12,
+        "top": 8,
+        "right": 11,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "icon/icon-rebirth.webp",
+      "from": {
+        "w": 144,
+        "h": 144
+      },
+      "to": {
+        "w": 116,
+        "h": 120
+      },
+      "trim": {
+        "left": 18,
+        "top": 7,
+        "right": 10,
+        "bottom": 17
+      }
+    },
+    {
+      "file": "icon/icon-reset.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 36,
+        "h": 40
+      },
+      "trim": {
+        "left": 12,
+        "top": 11,
+        "right": 12,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "icon/icon-settings.webp",
+      "from": {
+        "w": 72,
+        "h": 72
+      },
+      "to": {
+        "w": 60,
+        "h": 59
+      },
+      "trim": {
+        "left": 8,
+        "top": 2,
+        "right": 4,
+        "bottom": 11
+      }
+    },
+    {
+      "file": "icon/icon-sfx-off.webp",
+      "from": {
+        "w": 72,
+        "h": 72
+      },
+      "to": {
+        "w": 44,
+        "h": 50
+      },
+      "trim": {
+        "left": 15,
+        "top": 11,
+        "right": 13,
+        "bottom": 11
+      }
+    },
+    {
+      "file": "icon/icon-sfx-on.webp",
+      "from": {
+        "w": 72,
+        "h": 72
+      },
+      "to": {
+        "w": 67,
+        "h": 59
+      },
+      "trim": {
+        "left": 2,
+        "top": 6,
+        "right": 3,
+        "bottom": 7
+      }
+    },
+    {
+      "file": "icon/icon-slot-arm.webp",
+      "from": {
+        "w": 96,
+        "h": 96
+      },
+      "to": {
+        "w": 62,
+        "h": 75
+      },
+      "trim": {
+        "left": 22,
+        "top": 10,
+        "right": 12,
+        "bottom": 11
+      }
+    },
+    {
+      "file": "icon/icon-slot-body.webp",
+      "from": {
+        "w": 96,
+        "h": 96
+      },
+      "to": {
+        "w": 79,
+        "h": 78
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 8,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "icon/icon-slot-foot.webp",
+      "from": {
+        "w": 96,
+        "h": 96
+      },
+      "to": {
+        "w": 58,
+        "h": 73
+      },
+      "trim": {
+        "left": 18,
+        "top": 11,
+        "right": 20,
+        "bottom": 12
+      }
+    },
+    {
+      "file": "icon/icon-slot-head.webp",
+      "from": {
+        "w": 96,
+        "h": 96
+      },
+      "to": {
+        "w": 66,
+        "h": 74
+      },
+      "trim": {
+        "left": 18,
+        "top": 11,
+        "right": 12,
+        "bottom": 11
+      }
+    },
+    {
+      "file": "icon/icon-slot-neck.webp",
+      "from": {
+        "w": 96,
+        "h": 96
+      },
+      "to": {
+        "w": 60,
+        "h": 75
+      },
+      "trim": {
+        "left": 20,
+        "top": 9,
+        "right": 16,
+        "bottom": 12
+      }
+    },
+    {
+      "file": "icon/icon-slot-ring.webp",
+      "from": {
+        "w": 96,
+        "h": 96
+      },
+      "to": {
+        "w": 61,
+        "h": 64
+      },
+      "trim": {
+        "left": 22,
+        "top": 15,
+        "right": 13,
+        "bottom": 17
+      }
+    },
+    {
+      "file": "icon/icon-slot-waist.webp",
+      "from": {
+        "w": 96,
+        "h": 96
+      },
+      "to": {
+        "w": 72,
+        "h": 70
+      },
+      "trim": {
+        "left": 15,
+        "top": 18,
+        "right": 9,
+        "bottom": 8
+      }
+    },
+    {
+      "file": "icon/icon-slot-weapon.webp",
+      "from": {
+        "w": 96,
+        "h": 96
+      },
+      "to": {
+        "w": 43,
+        "h": 84
+      },
+      "trim": {
+        "left": 15,
+        "top": 6,
+        "right": 38,
+        "bottom": 6
+      }
+    },
+    {
+      "file": "icon/icon-sort.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 43,
+        "h": 46
+      },
+      "trim": {
+        "left": 4,
+        "top": 7,
+        "right": 13,
+        "bottom": 7
+      }
+    },
+    {
+      "file": "icon/icon-stage-current.webp",
+      "from": {
+        "w": 48,
+        "h": 48
+      },
+      "to": {
+        "w": 23,
+        "h": 29
+      },
+      "trim": {
+        "left": 15,
+        "top": 10,
+        "right": 10,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "icon/icon-stat-atk.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 51,
+        "h": 51
+      },
+      "trim": {
+        "left": 4,
+        "top": 4,
+        "right": 5,
+        "bottom": 5
+      }
+    },
+    {
+      "file": "icon/icon-stat-attack-speed.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 48,
+        "h": 52
+      },
+      "trim": {
+        "left": 6,
+        "top": 6,
+        "right": 6,
+        "bottom": 2
+      }
+    },
+    {
+      "file": "icon/icon-stat-chi-gain.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 46,
+        "h": 56
+      },
+      "trim": {
+        "left": 7,
+        "top": 2,
+        "right": 7,
+        "bottom": 2
+      }
+    },
+    {
+      "file": "icon/icon-stat-crit-chance.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 50,
+        "h": 55
+      },
+      "trim": {
+        "left": 5,
+        "top": 2,
+        "right": 5,
+        "bottom": 3
+      }
+    },
+    {
+      "file": "icon/icon-stat-crit-damage.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 46,
+        "h": 54
+      },
+      "trim": {
+        "left": 7,
+        "top": 4,
+        "right": 7,
+        "bottom": 2
+      }
+    },
+    {
+      "file": "icon/icon-stat-def.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 41,
+        "h": 47
+      },
+      "trim": {
+        "left": 9,
+        "top": 6,
+        "right": 10,
+        "bottom": 7
+      }
+    },
+    {
+      "file": "icon/icon-stat-evasion.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 53,
+        "h": 55
+      },
+      "trim": {
+        "left": 3,
+        "top": 3,
+        "right": 4,
+        "bottom": 2
+      }
+    },
+    {
+      "file": "icon/icon-stat-hp.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 56,
+        "h": 51
+      },
+      "trim": {
+        "left": 2,
+        "top": 4,
+        "right": 2,
+        "bottom": 5
+      }
+    },
+    {
+      "file": "icon/icon-stat-power.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 48,
+        "h": 53
+      },
+      "trim": {
+        "left": 6,
+        "top": 5,
+        "right": 6,
+        "bottom": 2
+      }
+    },
+    {
+      "file": "icon/icon-stat-status-resist.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 44,
+        "h": 48
+      },
+      "trim": {
+        "left": 9,
+        "top": 5,
+        "right": 7,
+        "bottom": 7
+      }
+    },
+    {
+      "file": "icon/icon-status-auto.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 48,
+        "h": 52
+      },
+      "trim": {
+        "left": 3,
+        "top": 5,
+        "right": 9,
+        "bottom": 3
+      }
+    },
+    {
+      "file": "icon/icon-status-boss.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 48,
+        "h": 53
+      },
+      "trim": {
+        "left": 7,
+        "top": 2,
+        "right": 5,
+        "bottom": 5
+      }
+    },
+    {
+      "file": "icon/icon-status-farm.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 43,
+        "h": 47
+      },
+      "trim": {
+        "left": 9,
+        "top": 5,
+        "right": 8,
+        "bottom": 8
+      }
+    },
+    {
+      "file": "icon/icon-status-paused.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 37,
+        "h": 48
+      },
+      "trim": {
+        "left": 9,
+        "top": 5,
+        "right": 14,
+        "bottom": 7
+      }
+    },
+    {
+      "file": "icon/icon-status-reward.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 54,
+        "h": 56
+      },
+      "trim": {
+        "left": 4,
+        "top": 2,
+        "right": 2,
+        "bottom": 2
+      }
+    },
+    {
+      "file": "icon/icon-stones.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 40,
+        "h": 53
+      },
+      "trim": {
+        "left": 10,
+        "top": 3,
+        "right": 10,
+        "bottom": 4
+      }
+    },
+    {
+      "file": "icon/icon-tab-gear.webp",
+      "from": {
+        "w": 72,
+        "h": 72
+      },
+      "to": {
+        "w": 60,
+        "h": 62
+      },
+      "trim": {
+        "left": 9,
+        "top": 5,
+        "right": 3,
+        "bottom": 5
+      }
+    },
+    {
+      "file": "icon/icon-tab-gong.webp",
+      "from": {
+        "w": 72,
+        "h": 72
+      },
+      "to": {
+        "w": 64,
+        "h": 72
+      },
+      "trim": {
+        "left": 4,
+        "top": 0,
+        "right": 4,
+        "bottom": 0
+      }
+    },
+    {
+      "file": "icon/icon-tab-sect.webp",
+      "from": {
+        "w": 72,
+        "h": 72
+      },
+      "to": {
+        "w": 69,
+        "h": 72
+      },
+      "trim": {
+        "left": 3,
+        "top": 0,
+        "right": 0,
+        "bottom": 0
+      }
+    },
+    {
+      "file": "icon/icon-tab-shop.webp",
+      "from": {
+        "w": 72,
+        "h": 72
+      },
+      "to": {
+        "w": 68,
+        "h": 59
+      },
+      "trim": {
+        "left": 0,
+        "top": 8,
+        "right": 4,
+        "bottom": 5
+      }
+    },
+    {
+      "file": "icon/icon-tower.webp",
+      "from": {
+        "w": 72,
+        "h": 72
+      },
+      "to": {
+        "w": 45,
+        "h": 68
+      },
+      "trim": {
+        "left": 13,
+        "top": 2,
+        "right": 14,
+        "bottom": 2
+      }
+    },
+    {
+      "file": "icon/icon-unlock.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 29,
+        "h": 37
+      },
+      "trim": {
+        "left": 15,
+        "top": 18,
+        "right": 16,
+        "bottom": 5
+      }
+    },
+    {
+      "file": "icon/icon-warn.webp",
+      "from": {
+        "w": 60,
+        "h": 60
+      },
+      "to": {
+        "w": 20,
+        "h": 47
+      },
+      "trim": {
+        "left": 20,
+        "top": 6,
+        "right": 20,
+        "bottom": 7
+      }
+    },
+    {
+      "file": "label/label-back-to-first-stage.webp",
+      "from": {
+        "w": 258,
+        "h": 72
+      },
+      "to": {
+        "w": 234,
+        "h": 54
+      },
+      "trim": {
+        "left": 14,
+        "top": 9,
+        "right": 10,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-backup-copy.webp",
+      "from": {
+        "w": 326,
+        "h": 71
+      },
+      "to": {
+        "w": 306,
+        "h": 53
+      },
+      "trim": {
+        "left": 11,
+        "top": 9,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-backup-overwrite.webp",
+      "from": {
+        "w": 569,
+        "h": 72
+      },
+      "to": {
+        "w": 547,
+        "h": 54
+      },
+      "trim": {
+        "left": 11,
+        "top": 9,
+        "right": 11,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-backup-restore.webp",
+      "from": {
+        "w": 372,
+        "h": 71
+      },
+      "to": {
+        "w": 350,
+        "h": 52
+      },
+      "trim": {
+        "left": 11,
+        "top": 10,
+        "right": 11,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-battle-view.webp",
+      "from": {
+        "w": 221,
+        "h": 72
+      },
+      "to": {
+        "w": 195,
+        "h": 54
+      },
+      "trim": {
+        "left": 11,
+        "top": 9,
+        "right": 15,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-boss-challenge.webp",
+      "from": {
+        "w": 116,
+        "h": 70
+      },
+      "to": {
+        "w": 94,
+        "h": 52
+      },
+      "trim": {
+        "left": 10,
+        "top": 9,
+        "right": 12,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-cancel.webp",
+      "from": {
+        "w": 116,
+        "h": 71
+      },
+      "to": {
+        "w": 95,
+        "h": 52
+      },
+      "trim": {
+        "left": 11,
+        "top": 9,
+        "right": 10,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "label/label-claim.webp",
+      "from": {
+        "w": 116,
+        "h": 72
+      },
+      "to": {
+        "w": 91,
+        "h": 53
+      },
+      "trim": {
+        "left": 10,
+        "top": 9,
+        "right": 15,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "label/label-claimed.webp",
+      "from": {
+        "w": 116,
+        "h": 71
+      },
+      "to": {
+        "w": 97,
+        "h": 53
+      },
+      "trim": {
+        "left": 10,
+        "top": 9,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-climb.webp",
+      "from": {
+        "w": 116,
+        "h": 70
+      },
+      "to": {
+        "w": 98,
+        "h": 52
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-confirm.webp",
+      "from": {
+        "w": 116,
+        "h": 70
+      },
+      "to": {
+        "w": 95,
+        "h": 52
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 12,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-continue.webp",
+      "from": {
+        "w": 208,
+        "h": 71
+      },
+      "to": {
+        "w": 182,
+        "h": 52
+      },
+      "trim": {
+        "left": 11,
+        "top": 9,
+        "right": 15,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "label/label-deselect-all.webp",
+      "from": {
+        "w": 221,
+        "h": 72
+      },
+      "to": {
+        "w": 196,
+        "h": 54
+      },
+      "trim": {
+        "left": 11,
+        "top": 9,
+        "right": 14,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-disassemble-select.webp",
+      "from": {
+        "w": 221,
+        "h": 72
+      },
+      "to": {
+        "w": 198,
+        "h": 54
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 14,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-disassemble.webp",
+      "from": {
+        "w": 208,
+        "h": 71
+      },
+      "to": {
+        "w": 184,
+        "h": 53
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 15,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-donate-chi.webp",
+      "from": {
+        "w": 326,
+        "h": 72
+      },
+      "to": {
+        "w": 306,
+        "h": 54
+      },
+      "trim": {
+        "left": 11,
+        "top": 9,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-donate-elixir.webp",
+      "from": {
+        "w": 326,
+        "h": 72
+      },
+      "to": {
+        "w": 304,
+        "h": 53
+      },
+      "trim": {
+        "left": 13,
+        "top": 9,
+        "right": 9,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "label/label-enhance.webp",
+      "from": {
+        "w": 208,
+        "h": 72
+      },
+      "to": {
+        "w": 183,
+        "h": 53
+      },
+      "trim": {
+        "left": 10,
+        "top": 9,
+        "right": 15,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "label/label-equip-best.webp",
+      "from": {
+        "w": 221,
+        "h": 72
+      },
+      "to": {
+        "w": 201,
+        "h": 53
+      },
+      "trim": {
+        "left": 11,
+        "top": 9,
+        "right": 9,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "label/label-equip.webp",
+      "from": {
+        "w": 116,
+        "h": 71
+      },
+      "to": {
+        "w": 98,
+        "h": 53
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-gacha-again.webp",
+      "from": {
+        "w": 221,
+        "h": 71
+      },
+      "to": {
+        "w": 195,
+        "h": 53
+      },
+      "trim": {
+        "left": 11,
+        "top": 9,
+        "right": 15,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-gacha-once.webp",
+      "from": {
+        "w": 201,
+        "h": 72
+      },
+      "to": {
+        "w": 172,
+        "h": 53
+      },
+      "trim": {
+        "left": 14,
+        "top": 9,
+        "right": 15,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "label/label-gacha-rates.webp",
+      "from": {
+        "w": 326,
+        "h": 71
+      },
+      "to": {
+        "w": 302,
+        "h": 52
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 15,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "label/label-gacha-ten.webp",
+      "from": {
+        "w": 227,
+        "h": 72
+      },
+      "to": {
+        "w": 198,
+        "h": 53
+      },
+      "trim": {
+        "left": 14,
+        "top": 9,
+        "right": 15,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "label/label-goal-progress.webp",
+      "from": {
+        "w": 175,
+        "h": 70
+      },
+      "to": {
+        "w": 155,
+        "h": 52
+      },
+      "trim": {
+        "left": 11,
+        "top": 9,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-goals.webp",
+      "from": {
+        "w": 221,
+        "h": 72
+      },
+      "to": {
+        "w": 202,
+        "h": 54
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 10,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-keep-training.webp",
+      "from": {
+        "w": 208,
+        "h": 72
+      },
+      "to": {
+        "w": 184,
+        "h": 54
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 15,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-next.webp",
+      "from": {
+        "w": 116,
+        "h": 72
+      },
+      "to": {
+        "w": 96,
+        "h": 53
+      },
+      "trim": {
+        "left": 11,
+        "top": 10,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-pause.webp",
+      "from": {
+        "w": 313,
+        "h": 72
+      },
+      "to": {
+        "w": 287,
+        "h": 54
+      },
+      "trim": {
+        "left": 11,
+        "top": 9,
+        "right": 15,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-rebirth-execute.webp",
+      "from": {
+        "w": 313,
+        "h": 72
+      },
+      "to": {
+        "w": 291,
+        "h": 54
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 13,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-rebirth-not-ready.webp",
+      "from": {
+        "w": 267,
+        "h": 72
+      },
+      "to": {
+        "w": 248,
+        "h": 53
+      },
+      "trim": {
+        "left": 10,
+        "top": 9,
+        "right": 9,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "label/label-rebirth-open.webp",
+      "from": {
+        "w": 418,
+        "h": 72
+      },
+      "to": {
+        "w": 394,
+        "h": 54
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 15,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-rebirth-proceed.webp",
+      "from": {
+        "w": 313,
+        "h": 72
+      },
+      "to": {
+        "w": 291,
+        "h": 54
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 13,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-rebirth-view.webp",
+      "from": {
+        "w": 313,
+        "h": 72
+      },
+      "to": {
+        "w": 289,
+        "h": 54
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 15,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-resume.webp",
+      "from": {
+        "w": 221,
+        "h": 72
+      },
+      "to": {
+        "w": 197,
+        "h": 54
+      },
+      "trim": {
+        "left": 11,
+        "top": 9,
+        "right": 13,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-sect-board.webp",
+      "from": {
+        "w": 326,
+        "h": 71
+      },
+      "to": {
+        "w": 302,
+        "h": 53
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 15,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-select-all.webp",
+      "from": {
+        "w": 221,
+        "h": 72
+      },
+      "to": {
+        "w": 196,
+        "h": 53
+      },
+      "trim": {
+        "left": 11,
+        "top": 9,
+        "right": 14,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "label/label-sfx-off.webp",
+      "from": {
+        "w": 267,
+        "h": 72
+      },
+      "to": {
+        "w": 243,
+        "h": 52
+      },
+      "trim": {
+        "left": 9,
+        "top": 10,
+        "right": 15,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "label/label-sfx-on.webp",
+      "from": {
+        "w": 267,
+        "h": 72
+      },
+      "to": {
+        "w": 243,
+        "h": 52
+      },
+      "trim": {
+        "left": 9,
+        "top": 10,
+        "right": 15,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "label/label-shop-exchange.webp",
+      "from": {
+        "w": 307,
+        "h": 72
+      },
+      "to": {
+        "w": 285,
+        "h": 54
+      },
+      "trim": {
+        "left": 13,
+        "top": 9,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-skip.webp",
+      "from": {
+        "w": 208,
+        "h": 72
+      },
+      "to": {
+        "w": 182,
+        "h": 54
+      },
+      "trim": {
+        "left": 11,
+        "top": 9,
+        "right": 15,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-stage.webp",
+      "from": {
+        "w": 162,
+        "h": 72
+      },
+      "to": {
+        "w": 138,
+        "h": 54
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 15,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-subtab-gacha.webp",
+      "from": {
+        "w": 248,
+        "h": 72
+      },
+      "to": {
+        "w": 224,
+        "h": 53
+      },
+      "trim": {
+        "left": 11,
+        "top": 9,
+        "right": 13,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "label/label-subtab-general.webp",
+      "from": {
+        "w": 208,
+        "h": 71
+      },
+      "to": {
+        "w": 180,
+        "h": 53
+      },
+      "trim": {
+        "left": 13,
+        "top": 9,
+        "right": 15,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-tower-quit.webp",
+      "from": {
+        "w": 116,
+        "h": 71
+      },
+      "to": {
+        "w": 91,
+        "h": 52
+      },
+      "trim": {
+        "left": 10,
+        "top": 9,
+        "right": 15,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "label/label-tower.webp",
+      "from": {
+        "w": 162,
+        "h": 72
+      },
+      "to": {
+        "w": 144,
+        "h": 54
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-train-once.webp",
+      "from": {
+        "w": 201,
+        "h": 71
+      },
+      "to": {
+        "w": 178,
+        "h": 53
+      },
+      "trim": {
+        "left": 14,
+        "top": 9,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-train.webp",
+      "from": {
+        "w": 116,
+        "h": 71
+      },
+      "to": {
+        "w": 94,
+        "h": 53
+      },
+      "trim": {
+        "left": 13,
+        "top": 9,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-unequip.webp",
+      "from": {
+        "w": 116,
+        "h": 71
+      },
+      "to": {
+        "w": 92,
+        "h": 53
+      },
+      "trim": {
+        "left": 10,
+        "top": 9,
+        "right": 14,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/label-use-default.webp",
+      "from": {
+        "w": 267,
+        "h": 72
+      },
+      "to": {
+        "w": 247,
+        "h": 53
+      },
+      "trim": {
+        "left": 11,
+        "top": 9,
+        "right": 9,
+        "bottom": 10
+      }
+    },
+    {
+      "file": "label/section-candidates.webp",
+      "from": {
+        "w": 325,
+        "h": 82
+      },
+      "to": {
+        "w": 305,
+        "h": 64
+      },
+      "trim": {
+        "left": 10,
+        "top": 9,
+        "right": 10,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/section-donate.webp",
+      "from": {
+        "w": 138,
+        "h": 82
+      },
+      "to": {
+        "w": 117,
+        "h": 64
+      },
+      "trim": {
+        "left": 12,
+        "top": 9,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/section-equipped.webp",
+      "from": {
+        "w": 268,
+        "h": 83
+      },
+      "to": {
+        "w": 241,
+        "h": 65
+      },
+      "trim": {
+        "left": 11,
+        "top": 9,
+        "right": 16,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/section-gacha-result.webp",
+      "from": {
+        "w": 269,
+        "h": 83
+      },
+      "to": {
+        "w": 251,
+        "h": 65
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/section-goal-daily.webp",
+      "from": {
+        "w": 268,
+        "h": 81
+      },
+      "to": {
+        "w": 240,
+        "h": 63
+      },
+      "trim": {
+        "left": 15,
+        "top": 9,
+        "right": 13,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/section-goal-milestone.webp",
+      "from": {
+        "w": 268,
+        "h": 82
+      },
+      "to": {
+        "w": 246,
+        "h": 64
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 13,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/section-inventory.webp",
+      "from": {
+        "w": 195,
+        "h": 82
+      },
+      "to": {
+        "w": 176,
+        "h": 64
+      },
+      "trim": {
+        "left": 10,
+        "top": 9,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/section-kept.webp",
+      "from": {
+        "w": 382,
+        "h": 82
+      },
+      "to": {
+        "w": 364,
+        "h": 64
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/section-rebirth.webp",
+      "from": {
+        "w": 252,
+        "h": 83
+      },
+      "to": {
+        "w": 228,
+        "h": 65
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 15,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/section-reset.webp",
+      "from": {
+        "w": 439,
+        "h": 82
+      },
+      "to": {
+        "w": 420,
+        "h": 64
+      },
+      "trim": {
+        "left": 10,
+        "top": 9,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/section-save-backup.webp",
+      "from": {
+        "w": 268,
+        "h": 83
+      },
+      "to": {
+        "w": 240,
+        "h": 65
+      },
+      "trim": {
+        "left": 12,
+        "top": 9,
+        "right": 16,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/section-stats.webp",
+      "from": {
+        "w": 325,
+        "h": 82
+      },
+      "to": {
+        "w": 300,
+        "h": 64
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 16,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/sign-sect-qingyun.webp",
+      "from": {
+        "w": 1074,
+        "h": 216
+      },
+      "to": {
+        "w": 725,
+        "h": 190
+      },
+      "trim": {
+        "left": 175,
+        "top": 0,
+        "right": 174,
+        "bottom": 26
+      }
+    },
+    {
+      "file": "label/sign-tower.webp",
+      "from": {
+        "w": 1074,
+        "h": 216
+      },
+      "to": {
+        "w": 725,
+        "h": 190
+      },
+      "trim": {
+        "left": 175,
+        "top": 0,
+        "right": 174,
+        "bottom": 26
+      }
+    },
+    {
+      "file": "label/tag-tier-capstone.webp",
+      "from": {
+        "w": 108,
+        "h": 60
+      },
+      "to": {
+        "w": 65,
+        "h": 60
+      },
+      "trim": {
+        "left": 21,
+        "top": 0,
+        "right": 22,
+        "bottom": 0
+      }
+    },
+    {
+      "file": "label/tag-tier-primary.webp",
+      "from": {
+        "w": 108,
+        "h": 60
+      },
+      "to": {
+        "w": 68,
+        "h": 60
+      },
+      "trim": {
+        "left": 20,
+        "top": 0,
+        "right": 20,
+        "bottom": 0
+      }
+    },
+    {
+      "file": "label/tag-tier-secondary.webp",
+      "from": {
+        "w": 108,
+        "h": 60
+      },
+      "to": {
+        "w": 64,
+        "h": 60
+      },
+      "trim": {
+        "left": 22,
+        "top": 0,
+        "right": 22,
+        "bottom": 0
+      }
+    },
+    {
+      "file": "label/title-boss-challenge.webp",
+      "from": {
+        "w": 268,
+        "h": 80
+      },
+      "to": {
+        "w": 245,
+        "h": 62
+      },
+      "trim": {
+        "left": 10,
+        "top": 9,
+        "right": 13,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/title-boss-defeated.webp",
+      "from": {
+        "w": 269,
+        "h": 83
+      },
+      "to": {
+        "w": 249,
+        "h": 65
+      },
+      "trim": {
+        "left": 10,
+        "top": 9,
+        "right": 10,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/title-currency.webp",
+      "from": {
+        "w": 269,
+        "h": 83
+      },
+      "to": {
+        "w": 250,
+        "h": 65
+      },
+      "trim": {
+        "left": 10,
+        "top": 9,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/title-disassemble.webp",
+      "from": {
+        "w": 268,
+        "h": 82
+      },
+      "to": {
+        "w": 246,
+        "h": 64
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 13,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/title-donate-chi.webp",
+      "from": {
+        "w": 398,
+        "h": 83
+      },
+      "to": {
+        "w": 377,
+        "h": 65
+      },
+      "trim": {
+        "left": 12,
+        "top": 9,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/title-donate-elixir.webp",
+      "from": {
+        "w": 398,
+        "h": 83
+      },
+      "to": {
+        "w": 374,
+        "h": 65
+      },
+      "trim": {
+        "left": 15,
+        "top": 9,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/title-gacha-rates.webp",
+      "from": {
+        "w": 268,
+        "h": 83
+      },
+      "to": {
+        "w": 247,
+        "h": 64
+      },
+      "trim": {
+        "left": 12,
+        "top": 10,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/title-locked-gear.webp",
+      "from": {
+        "w": 268,
+        "h": 83
+      },
+      "to": {
+        "w": 243,
+        "h": 65
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 16,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/title-locked-gong.webp",
+      "from": {
+        "w": 268,
+        "h": 83
+      },
+      "to": {
+        "w": 243,
+        "h": 65
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 16,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/title-locked-sect.webp",
+      "from": {
+        "w": 268,
+        "h": 83
+      },
+      "to": {
+        "w": 243,
+        "h": 65
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 16,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/title-locked-shop.webp",
+      "from": {
+        "w": 268,
+        "h": 83
+      },
+      "to": {
+        "w": 243,
+        "h": 65
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 16,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/title-offline-report.webp",
+      "from": {
+        "w": 455,
+        "h": 83
+      },
+      "to": {
+        "w": 436,
+        "h": 65
+      },
+      "trim": {
+        "left": 10,
+        "top": 9,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/title-rebirth-confirm.webp",
+      "from": {
+        "w": 382,
+        "h": 83
+      },
+      "to": {
+        "w": 360,
+        "h": 65
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 13,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/title-rebirth-done.webp",
+      "from": {
+        "w": 382,
+        "h": 83
+      },
+      "to": {
+        "w": 363,
+        "h": 65
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 10,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/title-rebirth-ready.webp",
+      "from": {
+        "w": 382,
+        "h": 83
+      },
+      "to": {
+        "w": 364,
+        "h": 65
+      },
+      "trim": {
+        "left": 9,
+        "top": 9,
+        "right": 9,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "label/title-settings.webp",
+      "from": {
+        "w": 138,
+        "h": 81
+      },
+      "to": {
+        "w": 111,
+        "h": 63
+      },
+      "trim": {
+        "left": 11,
+        "top": 9,
+        "right": 16,
+        "bottom": 9
+      }
+    },
+    {
+      "file": "scroll/scroll-bamboo-card-locked.webp",
+      "from": {
+        "w": 716,
+        "h": 360
+      },
+      "to": {
+        "w": 702,
+        "h": 349
+      },
+      "trim": {
+        "left": 7,
+        "top": 5,
+        "right": 7,
+        "bottom": 6
+      }
+    },
+    {
+      "file": "scroll/scroll-bamboo-card.webp",
+      "from": {
+        "w": 716,
+        "h": 360
+      },
+      "to": {
+        "w": 702,
+        "h": 349
+      },
+      "trim": {
+        "left": 7,
+        "top": 5,
+        "right": 7,
+        "bottom": 6
+      }
+    },
+    {
+      "file": "scroll/scroll-parchment-dialog.webp",
+      "from": {
+        "w": 512,
+        "h": 320
+      },
+      "to": {
+        "w": 512,
+        "h": 291
+      },
+      "trim": {
+        "left": 0,
+        "top": 10,
+        "right": 0,
+        "bottom": 19
+      }
+    },
+    {
+      "file": "scroll/scroll-silk-picker.webp",
+      "from": {
+        "w": 716,
+        "h": 128
+      },
+      "to": {
+        "w": 702,
+        "h": 113
+      },
+      "trim": {
+        "left": 7,
+        "top": 9,
+        "right": 7,
+        "bottom": 6
+      }
+    },
+    {
+      "file": "theme/theme-divider-ink.webp",
+      "from": {
+        "w": 716,
+        "h": 24
+      },
+      "to": {
+        "w": 673,
+        "h": 8
+      },
+      "trim": {
+        "left": 22,
+        "top": 8,
+        "right": 21,
+        "bottom": 8
+      }
+    },
+    {
+      "file": "theme/theme-wall-ink-branch.webp",
+      "from": {
+        "w": 480,
+        "h": 640
+      },
+      "to": {
+        "w": 200,
+        "h": 370
+      },
+      "trim": {
+        "left": 280,
+        "top": 0,
+        "right": 0,
+        "bottom": 270
+      }
+    }
+  ],
+  "count": 198
+}
