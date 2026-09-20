@@ -3311,5 +3311,20 @@
     },
     "slice": null,
     "priority": "P1"
+  },
+  {
+    "id": "icon-diff-down",
+    "file": "icon/icon-diff-down.webp",
+    "kind": "fixed",
+    "cssSize": {
+      "w": 16,
+      "h": 16
+    },
+    "sourceSize": {
+      "w": 48,
+      "h": 48
+    },
+    "slice": null,
+    "priority": "P1"
   }
 ]

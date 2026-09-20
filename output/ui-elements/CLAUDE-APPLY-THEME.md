@@ -106,6 +106,7 @@ P0 적용 뒤에는 320px·390px·430px에서 전투·무공·설정·재화 팝
 | 문파·상점·기연 | `sign-sect-qingyun`, `sign-shop-elixir`, `sign-tower`, `icon-gacha`, `panel-gacha-card-back`, `label-donate-*`, `label-sect-board`, `label-shop-exchange`, `label-gacha-*`, `title-gacha-rates`, `section-gacha-result` | 간판은 해당 카드·행의 고정 머리로만 쓰고, 비용·확률·결과 등급은 텍스트로 남긴다. `icon-gacha`는 대표 48px이며 버튼 안에서는 20px으로 축소할 수 있다. |
 | 환골탈태·저장 | `icon-rebirth`, `icon-reset`, `icon-backup`, `icon-warn`, `icon-check`, `label-rebirth-*`, `title-rebirth-*`, `section-rebirth`·`section-kept`·`section-reset`, `label-backup-*`, `section-save-backup` | `icon-rebirth`은 대표 문양 48px, 나머지는 20px이다. 초기화·경고·유지 항목의 이름과 조건 문구를 이미지로 대체하지 않는다. |
 | 전투 경험치 | `icon-exp` → 경험치 게이지의 수치·퍼센트 앞 | 16px 보조 표식이다. 경험치 수치·채움 폭·성장 로직은 기존 구현으로 유지한다. |
+| 능력치 증감 | `icon-diff-up`·`icon-diff-down` → 무공·장비 능력치의 다음 효과·비교 수치 앞 | 각각 16px 보조 표식이다. 상승·하락 수치와 계산은 텍스트·기존 로직으로 유지한다. |
 | 목표·사냥터·오프라인 | `icon-goal-daily`, `icon-goal-milestone`, `icon-hold`, `icon-stage-current`, `icon-offline`, `icon-info`, `icon-unlock` | 목표 구역 아이콘·길게 누르기 안내·현재 소스테이지·오프라인 보상·도움말·해금 토스트의 보조 표식으로 쓴다. `icon-stage-current`만 16px, 나머지는 20px이다. |
 | 공통 | `icon-charm` | 보호부적 이름·개수 앞의 20px 보조 표식으로 쓴다. |
 
