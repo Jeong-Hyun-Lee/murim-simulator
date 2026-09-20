@@ -378,8 +378,11 @@ export const BattleTab = ({ onNavigate }: Props) => {
           </span>
         </div>
         <HpBar hp={playerHp} maxHp={player.hp} label={player.name} variant="player" />
-        <div className="bar exp-bar" role="img" aria-label={`경험치 ${Math.floor(expPercent)}%`}>
-          <div className="bar-fill" style={{ width: `${expPercent}%` }} />
+        <div className="exp-row">
+          <img src="/ui/icon/icon-exp.webp" alt="" aria-hidden="true" className="exp-row-icon" />
+          <div className="bar exp-bar" role="img" aria-label={`경험치 ${Math.floor(expPercent)}%`}>
+            <div className="bar-fill" style={{ width: `${expPercent}%` }} />
+          </div>
         </div>
       </div>
 

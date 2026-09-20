@@ -123,14 +123,21 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
           </strong>
           <span>특전: 전투력 +{sectBuffPercent(sectLevel)}%</span>
         </div>
-        <div className="bar exp-bar" role="img" aria-label="문파 경험치">
-          <div
-            className="bar-fill"
-            style={{ width: levelMaxed ? '100%' : `${Math.min(100, (sectExp / nextExp) * 100)}%` }}
-          />
-          <span className="bar-text">
-            {levelMaxed ? '최대 레벨' : `${sectExp.toLocaleString()} / ${nextExp.toLocaleString()}`}
-          </span>
+        <div className="exp-row">
+          <img src="/ui/icon/icon-exp.webp" alt="" aria-hidden="true" className="exp-row-icon" />
+          <div className="bar exp-bar" role="img" aria-label="문파 경험치">
+            <div
+              className="bar-fill"
+              style={{
+                width: levelMaxed ? '100%' : `${Math.min(100, (sectExp / nextExp) * 100)}%`,
+              }}
+            />
+            <span className="bar-text">
+              {levelMaxed
+                ? '최대 레벨'
+                : `${sectExp.toLocaleString()} / ${nextExp.toLocaleString()}`}
+            </span>
+          </div>
         </div>
       </section>
 

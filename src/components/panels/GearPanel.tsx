@@ -59,6 +59,14 @@ const StatIcon = ({ statKey }: { statKey: StatKey }) => {
   );
 };
 
+const DiffIcon = ({ up }: { up: boolean }) => (
+  <img
+    src={`/ui/icon/icon-diff-${up ? 'up' : 'down'}.webp`}
+    alt={up ? '▲' : '▼'}
+    style={{ width: 16, height: 16, verticalAlign: '-0.2em' }}
+  />
+);
+
 // 반지(L/R)는 아이콘을 공유한다.
 const SLOT_ICON: Record<SlotId, string> = {
   weapon: 'weapon',
@@ -97,13 +105,13 @@ const StatDiff = ({ from, to }: { from: GearItem | undefined; to: GearItem }) =>
       {diffs.map(({ key, delta }) => (
         <li key={key} className={delta > 0 ? 'up' : 'down'}>
           <StatIcon statKey={key} />
-          {STAT_LABEL[key]} {delta > 0 ? '▲ +' : '▼ '}
+          {STAT_LABEL[key]} <DiffIcon up={delta > 0} /> {delta > 0 ? '+' : ''}
           {delta.toFixed(1)}
         </li>
       ))}
       {enhanceDelta !== 0 && (
         <li className={enhanceDelta > 0 ? 'up' : 'down'}>
-          강화 {enhanceDelta > 0 ? '▲ +' : '▼ '}
+          강화 <DiffIcon up={enhanceDelta > 0} /> {enhanceDelta > 0 ? '+' : ''}
           {enhanceDelta}단계
         </li>
       )}
@@ -250,11 +258,15 @@ const SlotSheet = ({ slot, onClose }: SlotSheetProps) => {
             <div className="item-line">
               <GradeChip item={equipped} />
               <button type="button" className="btn btn-ghost" onClick={() => unequipItem(slot)}>
-                <img
-                  src="/ui/label/label-unequip.webp"
-                  alt="해제"
-                  style={{ height: '1.1em', display: 'block' }}
-                />
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+                  <img
+                    src="/ui/icon/icon-action-unequip.webp"
+                    alt=""
+                    aria-hidden="true"
+                    style={{ width: 20, height: 20 }}
+                  />
+                  <img src="/ui/label/label-unequip.webp" alt="해제" style={{ height: '1.1em' }} />
+                </span>
               </button>
             </div>
             <StatList item={equipped} />
@@ -281,11 +293,15 @@ const SlotSheet = ({ slot, onClose }: SlotSheetProps) => {
             <div className="item-line">
               <GradeChip item={item} />
               <button type="button" className="btn btn-primary" onClick={() => equipItem(item.id)}>
-                <img
-                  src="/ui/label/label-equip.webp"
-                  alt="장착"
-                  style={{ height: '1.1em', display: 'block' }}
-                />
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+                  <img
+                    src="/ui/icon/icon-action-equip.webp"
+                    alt=""
+                    aria-hidden="true"
+                    style={{ width: 20, height: 20 }}
+                  />
+                  <img src="/ui/label/label-equip.webp" alt="장착" style={{ height: '1.1em' }} />
+                </span>
               </button>
             </div>
             <StatDiff from={equipped} to={item} />
@@ -503,11 +519,19 @@ export const GearPanel = () => {
                 disabled={checkedItems.length === 0}
                 onClick={() => setConfirmDisassemble(true)}
               >
-                <img
-                  src="/ui/label/label-disassemble.webp"
-                  alt="분해하기"
-                  style={{ height: '1.1em', display: 'block' }}
-                />
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+                  <img
+                    src="/ui/icon/icon-action-disassemble.webp"
+                    alt=""
+                    aria-hidden="true"
+                    style={{ width: 20, height: 20 }}
+                  />
+                  <img
+                    src="/ui/label/label-disassemble.webp"
+                    alt="분해하기"
+                    style={{ height: '1.1em' }}
+                  />
+                </span>
               </button>
             </div>
           </>
@@ -518,11 +542,19 @@ export const GearPanel = () => {
             </p>
             <div className="btn-row">
               <button type="button" className="btn btn-primary" onClick={equipBestAll}>
-                <img
-                  src="/ui/label/label-equip-best.webp"
-                  alt="최적 장착"
-                  style={{ height: '1.1em', display: 'block' }}
-                />
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+                  <img
+                    src="/ui/icon/icon-action-equip.webp"
+                    alt=""
+                    aria-hidden="true"
+                    style={{ width: 20, height: 20 }}
+                  />
+                  <img
+                    src="/ui/label/label-equip-best.webp"
+                    alt="최적 장착"
+                    style={{ height: '1.1em' }}
+                  />
+                </span>
               </button>
               <button
                 type="button"
