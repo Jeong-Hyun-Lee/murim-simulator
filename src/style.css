@@ -1278,6 +1278,11 @@ dialog.sheet::backdrop {
   background: url('/ui/panel/panel-tower-gate.webp') center / cover;
 }
 
+.tower-entry > .btn {
+  min-width: 6rem;
+  flex: none;
+}
+
 .offline-report-banner {
   height: 7rem;
   margin-bottom: 0.5rem;
