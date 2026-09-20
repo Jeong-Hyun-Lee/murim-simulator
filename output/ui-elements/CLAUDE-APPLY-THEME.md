@@ -69,6 +69,14 @@ P1 고정 문구 라벨 48종을 `/ui/label/`에 추가했다. 버튼용 `label-
 
 장비 슬롯 프레임 `frame-slot`과 등급별 프레임 6종(`frame-grade-하품`~`frame-grade-선품`)을 추가했다. 모두 `/ui/frame/`에서 80×36px 9-slice로 적용한다. 등급명·장비 이름·수치·선택/장착 상태는 기존 HTML과 로직으로 유지한다.
 
+문파 기여도 게이지용 `frame-gauge-sect`, `fill-sect`를 `/ui/gauge/`에 추가했다. 틀은 가로 3-slice(좌우 16px), 채움은 반복 배경이다. 기여도 수치·최대치·채움 폭 계산은 기존 구현으로 유지한다.
+
+`panel-stage-map`을 `/ui/panel/panel-stage-map.webp`에 추가했다. StagePicker의 대스테이지 행에 9-slice로 적용하며, 스테이지 번호·지명·보스 이름·해금 조건은 기존 HTML로 중앙 빈 영역에 표시한다.
+
+`panel-tower-gate`를 `/ui/panel/panel-tower-gate.webp`에 추가했다. 사냥터 팝업의 수련탑 진입 행 배경으로 사용하고, 중앙 빈 영역에 기존 수련탑 이름·층·해금 문구와 버튼을 표시한다.
+
+`panel-offline-night`를 `/ui/panel/panel-offline-night.webp`에 추가했다. 오프라인 보상 팝업 머리 그림으로 사용하되, 경과 시간·처치·보상·레벨 수치와 확인 버튼은 기존 HTML·로직을 유지한다.
+
 | 에셋 | 파일 | 적용 위치 |
 | --- | --- | --- |
 | 본문 벽 질감 | `/assets/ui/theme/theme-app-wall.webp` | `#app` |

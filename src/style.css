@@ -1015,6 +1015,15 @@ details.card summary {
   background-size: auto 100%;
 }
 
+.sect-level-card .exp-bar {
+  border-image: url('/ui/gauge/frame-gauge-sect.webp') 0 16 / 0 8px stretch;
+}
+
+.sect-level-card .exp-bar .bar-fill {
+  background: url('/ui/gauge/fill-sect.webp') repeat-x, linear-gradient(#4f9bd4, #1f4a7a);
+  background-size: auto 100%;
+}
+
 .hp-bar-enemy {
   border-image: url('/ui/gauge/frame-gauge-enemy.webp') 0 24 / 0 12px stretch;
 }
@@ -1255,6 +1264,17 @@ dialog.sheet::backdrop {
   border-radius: 0.625rem;
   background: rgba(255, 248, 228, 0.62);
   color: #372816;
+}
+
+.tower-entry {
+  background: url('/ui/panel/panel-tower-gate.webp') center / cover;
+}
+
+.offline-report-banner {
+  height: 7rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.75rem;
+  background: url('/ui/panel/panel-offline-night.webp') center / cover;
 }
 
 .currency-sheet-summary {
@@ -1699,6 +1719,12 @@ dialog.sheet::backdrop {
 
 .sheet .stage-major-row {
   min-height: 3.25rem;
+}
+
+.stage-major-row {
+  --text: var(--text-on-wall);
+  --muted: var(--muted-on-wall);
+  border-image: url('/ui/panel/panel-stage-map.webp') 48 fill / 24px stretch;
 }
 
 .sheet .stage-major-row-open {

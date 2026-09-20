@@ -1537,5 +1537,50 @@
     "sourceSize": { "w": 160, "h": 72 },
     "slice": { "top": 24, "right": 24, "bottom": 24, "left": 24 },
     "priority": "P1"
+  },
+  {
+    "id": "frame-gauge-sect",
+    "file": "gauge/frame-gauge-sect.webp",
+    "kind": "three-slice",
+    "cssSize": { "w": 240, "h": 16 },
+    "sourceSize": { "w": 480, "h": 32 },
+    "slice": { "top": 0, "right": 16, "bottom": 0, "left": 16 },
+    "priority": "P1"
+  },
+  {
+    "id": "fill-sect",
+    "file": "gauge/fill-sect.webp",
+    "kind": "repeat-x",
+    "cssSize": { "w": 32, "h": 12 },
+    "sourceSize": { "w": 64, "h": 24 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "panel-stage-map",
+    "file": "panel/panel-stage-map.webp",
+    "kind": "nine-slice",
+    "cssSize": { "w": 358, "h": 56 },
+    "sourceSize": { "w": 716, "h": 112 },
+    "slice": { "top": 48, "right": 48, "bottom": 48, "left": 48 },
+    "priority": "P1"
+  },
+  {
+    "id": "panel-tower-gate",
+    "file": "panel/panel-tower-gate.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 358, "h": 96 },
+    "sourceSize": { "w": 716, "h": 192 },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "panel-offline-night",
+    "file": "panel/panel-offline-night.webp",
+    "kind": "fixed",
+    "cssSize": { "w": 358, "h": 112 },
+    "sourceSize": { "w": 716, "h": 224 },
+    "slice": null,
+    "priority": "P1"
   }
 ]

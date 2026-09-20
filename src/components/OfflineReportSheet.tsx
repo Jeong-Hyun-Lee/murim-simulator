@@ -20,6 +20,7 @@ export const OfflineReportSheet = () => {
       titleImage="/ui/label/title-offline-report.webp"
       onClose={close}
     >
+      <div className="offline-report-banner" aria-hidden="true" />
       <section className="card">
         <p className="boss-sheet-kicker">수련 보고</p>
         <h3>{durationText(report.elapsedMs)} 동안 수련했습니다</h3>
