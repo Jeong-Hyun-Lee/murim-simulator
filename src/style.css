@@ -539,10 +539,6 @@ button:disabled {
   font-size: 0.9375rem;
 }
 
-.tab-btn-active {
-  border-top-color: var(--gold);
-}
-
 .tab-btn-locked {
   color: #6d6556;
 }
