@@ -221,7 +221,8 @@ const EnhanceBlock = ({ item }: { item: GearItem }) => {
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...hold}
         >
-          +{targetLevel} 강화하기
+          +{targetLevel}{' '}
+          <img src="/ui/label/label-enhance.webp" alt="강화하기" style={{ height: '1.1em' }} />
         </button>
       </div>
     </div>
@@ -575,7 +576,11 @@ export const GearPanel = () => {
 
       {openSlot && <SlotSheet slot={openSlot} onClose={() => setOpenSlot(null)} />}
       {confirmDisassemble && (
-        <Sheet title="장비 분해" onClose={() => setConfirmDisassemble(false)}>
+        <Sheet
+          title="장비 분해"
+          titleImage="/ui/label/title-disassemble.webp"
+          onClose={() => setConfirmDisassemble(false)}
+        >
           <section className="disassemble-confirm-card">
             <p>되돌릴 수 없는 선택</p>
             <h3>선택 장비 {checkedItems.length}개</h3>

@@ -36,7 +36,11 @@ const DonateSheet = ({ kind, onClose }: { kind: DonateKind; onClose: () => void 
     : `영약 1개 → 기여도 ${ELIXIR_CONTRIBUTION_RATE}`;
 
   return (
-    <Sheet title={`${label} 전량 기부`} onClose={onClose}>
+    <Sheet
+      title={`${label} 전량 기부`}
+      titleImage={`/ui/label/title-donate-${kind}.webp`}
+      onClose={onClose}
+    >
       <section className="donate-sheet-intro">
         <span>문파 성장 기여</span>
         <strong>{conversion}</strong>

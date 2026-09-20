@@ -79,7 +79,11 @@ export const ShopPanel = () => {
           className={`segmented-btn${tab === 'general' ? ' segmented-btn-active' : ''}`}
           onClick={() => setTab('general')}
         >
-          일반상점
+          <img
+            src="/ui/label/label-subtab-general.webp"
+            alt="일반상점"
+            style={{ height: '1.1em' }}
+          />
         </button>
         <button
           type="button"

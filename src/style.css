@@ -921,12 +921,14 @@ details.card summary {
   border-radius: 0.5625rem;
   background: none;
   color: var(--muted);
+  border-image: url('/ui/button/btn-segment.webp') 0 32 fill / 0 16px stretch;
 }
 
 .segmented-btn-active {
   background: var(--paper);
   color: var(--paper-text);
   font-weight: bold;
+  border-image: url('/ui/button/btn-segment-active.webp') 0 32 fill / 0 16px stretch;
 }
 
 .sticky-actions {
