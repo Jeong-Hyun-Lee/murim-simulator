@@ -222,11 +222,11 @@ button:disabled {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: calc(0.375rem + var(--safe-t)) 0.5rem 0.375rem;
+  padding: calc(0.375rem + var(--safe-t)) 0.625rem 0.375rem;
   border-bottom: 1px solid #55462e;
   background: linear-gradient(180deg, #2b241b, #17140f);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.32);
-  border-image: url('/ui/frame/frame-header-eave.webp') 0 120 fill / 0 60px stretch;
+  border-image: url('/ui/frame/frame-header-eave.webp') 0 120 fill / 0 16px stretch;
 }
 
 .header-profile {
@@ -343,11 +343,11 @@ button:disabled {
   gap: 0.375rem 0.5rem;
   white-space: nowrap;
   min-height: 2.75rem;
-  padding: 0.375rem 1rem;
+  padding: 0.375rem 1.25rem;
   background: linear-gradient(90deg, #201a12, #17130f);
   border: 0;
   border-bottom: 1px solid #504128;
-  border-image: url('/ui/frame/frame-summary-strip.webp') 0 64 fill / 0 32px stretch;
+  border-image: url('/ui/frame/frame-summary-strip.webp') 0 64 fill / 0 20px stretch;
   color: #eee0c4;
   font-size: 0.875rem;
   text-align: left;
@@ -499,10 +499,10 @@ button:disabled {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 1rem;
   border-bottom: 1px solid var(--line-on-wall);
   color: var(--text-on-ink);
-  border-image: url('/ui/frame/frame-panel-dark.webp') 48 fill / 24px stretch;
+  border-image: url('/ui/frame/frame-panel-dark.webp') 0 48 fill / 0 16px stretch;
 }
 
 .full-view-header h2 {
@@ -524,7 +524,7 @@ button:disabled {
   background: linear-gradient(180deg, #211b15, #120f0c);
   border-top: 1px solid #69542f;
   box-shadow: 0 -5px 12px rgba(0, 0, 0, 0.22);
-  border-image: url('/ui/frame/frame-tabbar.webp') 0 96 fill / 0 48px stretch;
+  border-image: url('/ui/frame/frame-tabbar.webp') 0 96 fill / 0 16px stretch;
 }
 
 .tab-btn {
@@ -693,7 +693,7 @@ button:disabled {
   color: var(--paper-text);
   border: 1px solid rgba(113, 77, 31, 0.62);
   border-radius: 0.75rem;
-  padding: 0.875rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -733,7 +733,7 @@ button:disabled {
   align-items: center;
   justify-content: center;
   min-height: 3rem;
-  padding: 0.375rem 0.875rem;
+  padding: 0.375rem 1.25rem;
   border-radius: 0.625rem;
   border: 1px solid var(--ink-line);
   background: var(--ink-2);
@@ -814,13 +814,13 @@ button:disabled {
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  padding: 0.625rem 0.75rem;
+  padding: 0.625rem 1.25rem;
   border-radius: 0.625rem;
   background: #33280f;
   border: 1px solid #7a5f24;
   color: #ffd98a;
   font-size: 0.9375rem;
-  border-image: url('/ui/frame/frame-banner-silk.webp') 0 72 fill / 0 36px stretch;
+  border-image: url('/ui/frame/frame-banner-silk.webp') 0 72 fill / 0 20px stretch;
 }
 
 .banner-done {
@@ -837,7 +837,7 @@ button:disabled {
 }
 
 .board-picker-btn + .list {
-  padding: 0.5rem;
+  padding: 1.5rem;
   border-image: url('/ui/frame/frame-panel-dark.webp') 48 fill / 24px stretch;
 }
 
@@ -917,6 +917,7 @@ details.card summary {
 
 .segmented-btn {
   min-height: 2.75rem;
+  padding: 0 1rem;
   border: 0;
   border-radius: 0.5625rem;
   background: none;
@@ -1272,7 +1273,7 @@ dialog.sheet::backdrop {
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.75rem;
+  padding: 1rem;
   border: 1px solid #c6ad7b;
   border-radius: 0.625rem;
   background: rgba(255, 248, 228, 0.62);
@@ -1738,6 +1739,7 @@ dialog.sheet::backdrop {
 .stage-major-row {
   --text: var(--text-on-wall);
   --muted: var(--muted-on-wall);
+  padding: 0.5rem 1.5rem;
   border-image: url('/ui/panel/panel-stage-map.webp') 48 fill / 24px stretch;
 }
 
@@ -1838,13 +1840,13 @@ dialog.sheet::backdrop {
   gap: 0.5rem;
   flex-wrap: wrap;
   min-height: 3.75rem;
-  padding: 0.5rem 0.75rem 0.5rem 0.875rem;
+  padding: 0.5rem 1.5rem;
   border-radius: 0.75rem;
   border: 1px solid #9a7430;
   background: linear-gradient(135deg, #31271a, #17130e);
   box-shadow: inset 0 1px rgba(255, 225, 139, 0.12);
   text-align: left;
-  border-image: url('/ui/scroll/scroll-silk-picker.webp') 0 80 fill / 0 40px stretch;
+  border-image: url('/ui/scroll/scroll-silk-picker.webp') 0 80 fill / 0 24px stretch;
 }
 
 .board-picker-btn:disabled {
@@ -1905,6 +1907,8 @@ dialog.sheet::backdrop {
 .gong-card {
   position: relative;
   overflow: hidden;
+  padding-right: 1.75rem;
+  padding-left: 1.75rem;
   --muted: var(--paper-muted);
   --warn: #a4571c;
   border-color: #7c6036;
