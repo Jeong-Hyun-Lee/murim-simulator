@@ -91,6 +91,10 @@ P1 고정 문구 라벨 48종을 `/ui/label/`에 추가했다. 버튼용 `label-
 | P0 라벨·제목 | `label-*` → 해당 버튼의 고정 문구, `title-*` → `.sheet-header`, `section-goal-*` → `GoalsView` 구역 제목 | `label-train*`·`label-climb`·`label-boss-challenge`은 전투/무공, `label-claim`·`label-claimed`·`label-goal-progress`는 목표, `label-sfx-*`은 설정에 쓴다. 수치·횟수·비용·상태는 절대 이미지로 대체하지 않는다. |
 | P0 아이콘 | 재화 `icon-gold`·`icon-chi`·`icon-elixir`·`icon-contribution`·`icon-stones`, 기능 `icon-settings`·`icon-close`·`icon-back`·`icon-lock`·`icon-dropdown`·`icon-badge`, 전투·능력치·행동 P0 아이콘 | 재화·능력치·상태·행동 보조는 20px, 설정·닫기·뒤로·잠금은 24px, 드롭다운은 16px, 배지는 12px이다. `icon-gold` 등 비용 아이콘은 수치 앞에만 두며 이름·수치·`aria-label`을 유지한다. |
 
+### 버튼 표면 교체 (2026-09-20)
+
+`btn-primary-tile`, `btn-secondary-brick`, `btn-travel-jade`, `btn-danger-brick`, `btn-segment`, `btn-segment-active`, `btn-round`은 기왓장·벽돌·말림 장식형에서 **텍스트 우선의 일반 버튼 표면**으로 다시 제작했다. 파일명·원본 크기·3-slice 값은 기존 매니페스트와 같으므로 CSS 셀렉터·`border-image` 선언은 바꾸지 않는다. 주요 버튼은 연한 금빛, 보조 버튼은 숯색, 이동 버튼은 옥색, 위험 버튼은 짙은 적색, 선택 소탭은 남색으로 구분한다. 모든 바탕의 중앙은 비워 두었으므로 버튼 라벨과 비용·보조 문구는 HTML 텍스트로 겹쳐 표시한다.
+
 P0 적용 뒤에는 320px·390px·430px에서 전투·무공·설정·재화 팝업을 열어 9-slice 모서리, 탭 선택 상태, 게이지 수치와 고정 라벨이 겹치지 않는지 확인한다.
 
 ## P1 후속 적용 지시

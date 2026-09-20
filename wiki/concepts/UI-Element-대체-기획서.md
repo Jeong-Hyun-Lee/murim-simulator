@@ -674,6 +674,10 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | `icon-action-donate` | 완료 | `assets/ui/icon/icon-action-donate.webp`, 60×60 원본·20px 표시 |
 | `icon-action-exchange` | 완료 | `assets/ui/icon/icon-action-exchange.webp`, 60×60 원본·20px 표시 |
 
+### 10.3 P0 버튼 표면 개정
+
+`btn-primary-tile`, `btn-secondary-brick`, `btn-travel-jade`, `btn-danger-brick`, `btn-segment`, `btn-segment-active`, `btn-round`은 기왓장·벽돌 같은 강한 질감을 제거하고 중앙을 비운 일반 버튼 표면으로 교체했다. 파일명·크기·slice는 유지하므로 게임 반영 단계에서는 기존 CSS 연결을 그대로 두고, 버튼 라벨·비용·상태 문구의 대비와 겹침만 다시 검수한다.
+
 ## 11. 코덱스 프롬프트
 
 아래 프롬프트를 순서대로 하나씩 코덱스에 전달한다. 각 프롬프트는 앞 단계 결과가 승인된 뒤 실행한다.
