@@ -3372,6 +3372,7 @@ dialog.sheet::backdrop {
   border-style: solid;
   border-width: 12px;
   border-radius: 0.25rem;
+  color: #f5e8c8;
 }
 
 .grade-chip[data-grade='하품'] {

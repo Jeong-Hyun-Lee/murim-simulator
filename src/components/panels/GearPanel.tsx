@@ -222,8 +222,8 @@ const EnhanceBlock = ({ item }: { item: GearItem }) => {
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...hold}
         >
-          +{targetLevel}{' '}
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+            +{targetLevel}
             <img
               src="/ui/icon/icon-action-enhance.webp"
               alt=""
