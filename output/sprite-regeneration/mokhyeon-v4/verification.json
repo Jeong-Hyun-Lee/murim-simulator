@@ -1,9 +1,9 @@
 {
   "frameCount": 58,
-  "scale": 0.4082934609250399,
+  "normalizedHeight": 512,
   "atlas": [
-    3990,
-    3873
+    3992,
+    3623
   ],
   "durationTotals": {
     "idle": 960,

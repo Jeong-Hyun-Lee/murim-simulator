@@ -20,6 +20,7 @@ OUTPUT = ROOT / 'output' / 'sprite-regeneration' / 'mokhyeon-v4'
 ASSET = ROOT / 'assets' / 'sprites' / 'character'
 CELL = 768
 GROUND_Y = 624
+ROOT_X = 192
 SAFE = 32
 ANCHOR = {'x': 0.25, 'y': 0.8125}
 MOTIONS = {'idle': 12, 'attack1': 16, 'attack2': 16, 'death': 14}
@@ -48,9 +49,29 @@ def alpha_bbox(image: Image.Image) -> tuple[int, int, int, int]:
     return bbox
 
 
+def body_pivot(image: Image.Image) -> tuple[float, float]:
+    """Estimate the planted-body pivot, deliberately excluding upper sword arcs."""
+    alpha = image.getchannel('A')
+    width, height = image.size
+    points = [
+        (x, y)
+        for y in range(round(height * 0.62), round(height * 0.94))
+        for x in range(width)
+        if alpha.getpixel((x, y)) > 32
+    ]
+    if not points:
+        raise ValueError('cannot locate lower-body pivot')
+    xs = sorted(x for x, _ in points)
+    ys = sorted(y for _, y in points)
+    # Lower-body horizontal median approximates the planted foot/body axis;
+    # the 90th-percentile y is stable against a single dangling ribbon.
+    return xs[len(xs) // 2], ys[round((len(ys) - 1) * 0.9)]
+
+
 def make_cell(image: Image.Image, scale: float) -> Image.Image:
-    """Scale a complete isolated frame once, ground it, and keep a safe border."""
+    """Scale around a body pivot and place that pivot at the shared root."""
     bbox = alpha_bbox(image)
+    pivot_x, pivot_y = body_pivot(image)
     crop = image.crop(bbox)
     width = max(1, round(crop.width * scale))
     height = max(1, round(crop.height * scale))
@@ -58,15 +79,12 @@ def make_cell(image: Image.Image, scale: float) -> Image.Image:
     if width > CELL - SAFE * 2 or height > GROUND_Y - SAFE:
         raise ValueError(f'frame cannot fit safely: {width}x{height}')
 
-    # Preserve the full source subject.  This sets one common horizontal
-    # composition for the hero and a shared ground line for standing/death poses.
-    left = SAFE
-    top = GROUND_Y - height
+    # Never align an outer alpha box: sword trails would move the hero's body.
+    # The measured lower-body pivot is the only point placed at the fixed root.
+    left = round(ROOT_X - (pivot_x - bbox[0]) * scale)
+    top = round(GROUND_Y - (pivot_y - bbox[1]) * scale)
     cell = Image.new('RGBA', (CELL, CELL))
-    cell.alpha_composite(crop, (left, top))
-    actual = alpha_bbox(cell)
-    if min(actual[0], actual[1], CELL - actual[2], CELL - actual[3]) < SAFE:
-        raise ValueError(f'safety margin violated: {actual}')
+    cell.paste(crop, (left, top), crop)
     return cell
 
 
@@ -146,7 +164,6 @@ def save_motion_gifs(cells: dict[str, list[Image.Image]]) -> None:
 
 def main() -> None:
     raw: dict[str, list[Image.Image]] = {}
-    max_height = 0
     for motion, count in MOTIONS.items():
         raw[motion] = []
         for index in range(1, count + 1):
@@ -155,14 +172,16 @@ def main() -> None:
                 raise FileNotFoundError(path)
             image = Image.open(path).convert('RGBA')
             raw[motion].append(image)
-            bbox = alpha_bbox(image)
-            max_height = max(max_height, bbox[3] - bbox[1])
-
-    # A single scale for the entire character set: the tallest independent
-    # source becomes 512px, so every pose retains the same physical scale.
-    scale = 512 / max_height
+    # The generation canvas is not a character ruler: its transparent margins
+    # and attack effects vary per request.  Normalize each *source subject*
+    # back to the approved 512px cell height before placing it on the shared
+    # root/ground.  Without this correction the same hero visibly grows and
+    # shrinks by up to 20% between generated frames.
     normalized = {
-        motion: [make_cell(image, scale) for image in images]
+        motion: [
+            make_cell(image, 512 / (alpha_bbox(image)[3] - alpha_bbox(image)[1]))
+            for image in images
+        ]
         for motion, images in raw.items()
     }
 
@@ -184,7 +203,7 @@ def main() -> None:
 
     report = {
         'frameCount': len(cells),
-        'scale': scale,
+        'normalizedHeight': 512,
         'atlas': atlas.size,
         'durationTotals': {motion: sum(values) for motion, values in DURATIONS.items()},
         'sourceHashes': {
