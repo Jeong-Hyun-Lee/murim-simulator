@@ -9,7 +9,7 @@ import {
   Texture,
   type AnimatedSprite,
 } from 'pixi.js';
-import { loadAnimatedSprite } from './sprite';
+import { loadAnimatedSprite, loadPackedAnimatedSprite } from './sprite';
 import { loadDamageFont, createDamageNumber, createCriticalLabel } from './damageFont';
 import {
   loadNormalHitEffect,
@@ -198,8 +198,19 @@ export const BattleCanvas = () => {
         };
       };
 
+      const loadPackedAnimSet = async (prefix: string): Promise<AnimSet> => {
+        const jsonUrl = `/sprites/character/${prefix}-sheet.json`;
+        const [idle, attack1, attack2, death] = await Promise.all([
+          loadPackedAnimatedSprite(jsonUrl, 'idle'),
+          loadPackedAnimatedSprite(jsonUrl, 'attack1'),
+          loadPackedAnimatedSprite(jsonUrl, 'attack2'),
+          loadPackedAnimatedSprite(jsonUrl, 'death'),
+        ]);
+        return { idle, attack1, attack2, death };
+      };
+
       const [playerAnim, bossSet, gruntSet, archerSet, eliteSet] = await Promise.all([
-        loadAnimSet('mokhyeon-v2'),
+        loadPackedAnimSet('mokhyeon-v4'),
         loadAnimSet('hyeollangchae-boss'),
         loadAnimSet('hyeollangchae-grunt'),
         loadAnimSet('hyeollangchae-archer'),
