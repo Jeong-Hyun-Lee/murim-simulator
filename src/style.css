@@ -323,8 +323,8 @@ button:disabled {
 
 .header-icon-btn {
   flex: none;
-  min-width: 3rem;
-  min-height: 3rem;
+  min-width: 3.5rem;
+  min-height: 3.5rem;
   display: grid;
   place-items: center;
   background: url('/ui/button/btn-round.webp') center / cover;
@@ -706,7 +706,7 @@ button:disabled {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 3rem;
+  min-height: 3.5rem;
   padding: 0.375rem 1.25rem;
   border-radius: 0.625rem;
   border: 1px solid var(--ink-line);
@@ -885,7 +885,7 @@ details.card summary {
 }
 
 .segmented-btn {
-  min-height: 2.75rem;
+  min-height: 3.25rem;
   padding: 0 1rem;
   border: 0;
   border-radius: 0.5625rem;
@@ -2389,14 +2389,6 @@ dialog.sheet::backdrop {
 .sect-level-card {
   border-color: #927437;
   background: linear-gradient(135deg, #f2e9d1, #dfcca1);
-}
-
-.sect-contribution-card::before {
-  content: '';
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 0.35rem;
-  background: var(--jade);
 }
 
 .sect-contribution-grid {
