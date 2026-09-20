@@ -12,10 +12,11 @@ ROOT = Path(__file__).resolve().parents[3]
 UI_ROOT = ROOT / 'assets' / 'ui'
 MANIFEST_PATH = UI_ROOT / 'manifest.json'
 REPORT_PATH = ROOT / 'output' / 'ui-elements' / 'alpha-trim-report.json'
+VISIBLE_ALPHA = 8
 
 
 def alpha_bounds(image: Image.Image) -> tuple[int, int, int, int] | None:
-    alpha = image.getchannel('A')
+    alpha = image.getchannel('A').point(lambda value: 255 if value > VISIBLE_ALPHA else 0)
     return alpha.getbbox()
 
 
@@ -54,7 +55,7 @@ def main() -> None:
         })
 
     MANIFEST_PATH.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    REPORT_PATH.write_text(json.dumps({'trimmed': changes, 'count': len(changes)}, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    REPORT_PATH.write_text(json.dumps({'visibleAlpha': VISIBLE_ALPHA, 'trimmed': changes, 'count': len(changes)}, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(json.dumps({'trimmed': len(changes)}, ensure_ascii=False))
 
 

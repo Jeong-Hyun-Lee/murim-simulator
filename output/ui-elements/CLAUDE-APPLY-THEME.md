@@ -11,7 +11,7 @@
 - `assets/ui/manifest.json`
 - `src/style.css`
 
-`assets/ui/`의 모든 적용 대상은 투명 외곽 여백을 제거한 실제 알파 경계 파일이다. 적용 크기와 3·9-slice 값은 반드시 최신 `manifest.json`의 `sourceSize`·`slice`를 읽고, 이미지 자체에 여백이 있다고 보고 CSS `padding`이나 보정 오프셋을 추가하지 않는다.
+`assets/ui/`의 모든 적용 대상은 눈에 보이는 알파(8 초과) 경계까지 외곽 여백을 제거한 파일이다. 적용 크기와 3·9-slice 값은 반드시 최신 `manifest.json`의 `sourceSize`·`slice`를 읽고, 이미지 자체에 여백이 있다고 보고 CSS `padding`이나 보정 오프셋을 추가하지 않는다.
 
 ## 적용 범위
 
