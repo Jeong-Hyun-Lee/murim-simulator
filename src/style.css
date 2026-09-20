@@ -115,6 +115,24 @@ textarea {
   font-size: max(1rem, 16px);
 }
 
+.save-backup textarea {
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--paper-line);
+  border-radius: 0.625rem;
+  background: var(--paper);
+  color: var(--paper-text);
+  font-family: monospace;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  resize: vertical;
+}
+
+.save-backup textarea:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+
 button {
   cursor: pointer;
   -webkit-user-select: none;
@@ -283,7 +301,7 @@ button:disabled {
 .header-currencies {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: center;
   min-height: 3rem;
   padding: 0 0.375rem;
@@ -1157,9 +1175,20 @@ dialog.sheet::backdrop {
   gap: 0.75rem;
 }
 
-.sheet-header .btn-ghost {
-  color: var(--gold-hi);
-  font-weight: bold;
+.sheet-close-btn {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 0;
+  border-radius: 50%;
+  background: url('/ui/button/btn-round.webp') center / cover;
+}
+
+.sheet-close-btn img {
+  width: 1rem;
+  height: 1rem;
 }
 
 .sheet .card {
@@ -2421,8 +2450,7 @@ dialog.sheet::backdrop {
 }
 
 .sect-board-action {
-  border-color: #4f8878;
-  background: linear-gradient(180deg, #d9eadb, #9dc6b5) !important;
+  border-color: transparent;
   color: #173c32 !important;
   font-weight: bold;
 }
@@ -3459,6 +3487,9 @@ dialog.sheet::backdrop {
 /* ---------- BattleTab P0/P1 후속 배선 ---------- */
 
 .battle-stage-select.btn-travel {
+  background: none;
+  box-shadow: none;
+  border-color: transparent;
   border-image: url('/ui/button/btn-travel-jade.webp') 0 40 fill / 0 20px stretch;
 }
 

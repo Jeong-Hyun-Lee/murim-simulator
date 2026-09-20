@@ -366,17 +366,19 @@ export const SettingsSheet = ({ onClose }: { onClose: () => void }) => {
           <p className="muted">{sfxEnabled ? '켜짐' : '꺼짐'}</p>
         </div>
         <button type="button" className="btn" onClick={toggleSfx}>
-          <img
-            src={sfxEnabled ? '/ui/icon/icon-sfx-on.webp' : '/ui/icon/icon-sfx-off.webp'}
-            alt=""
-            aria-hidden="true"
-            className="btn-close-icon"
-          />
-          <img
-            src={sfxEnabled ? '/ui/label/label-sfx-off.webp' : '/ui/label/label-sfx-on.webp'}
-            alt={sfxEnabled ? '효과음 끄기' : '효과음 켜기'}
-            style={{ height: '1.1em' }}
-          />
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+            <img
+              src={sfxEnabled ? '/ui/icon/icon-sfx-on.webp' : '/ui/icon/icon-sfx-off.webp'}
+              alt=""
+              aria-hidden="true"
+              className="btn-close-icon"
+            />
+            <img
+              src={sfxEnabled ? '/ui/label/label-sfx-off.webp' : '/ui/label/label-sfx-on.webp'}
+              alt={sfxEnabled ? '효과음 끄기' : '효과음 켜기'}
+              style={{ height: '1.1em' }}
+            />
+          </span>
         </button>
       </div>
       <SaveBackup />

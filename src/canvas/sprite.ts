@@ -18,6 +18,7 @@ interface AsepriteSheet {
   };
 }
 
+
 export const loadAnimatedSprite = async (
   jsonUrl: string,
   tagName: string,

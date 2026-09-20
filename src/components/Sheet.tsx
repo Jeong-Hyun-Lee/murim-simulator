@@ -54,14 +54,8 @@ export const Sheet = ({ title, titleImage, onClose, children }: Props) => {
           ) : (
             <h2>{title}</h2>
           )}
-          <button type="button" className="btn btn-ghost" onClick={close}>
-            <img
-              src="/ui/icon/icon-close.webp"
-              alt=""
-              aria-hidden="true"
-              className="btn-close-icon"
-            />
-            닫기
+          <button type="button" className="sheet-close-btn" aria-label="닫기" onClick={close}>
+            <img src="/ui/icon/icon-close.webp" alt="" aria-hidden="true" />
           </button>
         </div>
         <div className="sheet-body">{children}</div>
