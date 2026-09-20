@@ -3215,5 +3215,21 @@
     },
     "slice": null,
     "priority": "P1"
+  },
+  {
+    "id": "sign-shop-elixir",
+    "file": "label/sign-shop-elixir.webp",
+    "kind": "fixed",
+    "cssSize": {
+      "w": 358,
+      "h": 72
+    },
+    "sourceSize": {
+      "w": 1074,
+      "h": 216
+    },
+    "slice": null,
+    "priority": "P1",
+    "text": "영약 교환소"
   }
 ]
