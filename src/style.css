@@ -1909,7 +1909,7 @@ dialog.sheet::backdrop {
   align-items: center;
   gap: 0.5rem;
   flex-wrap: wrap;
-  min-height: 3.25rem;
+  height: 6rem;
   padding: 0.5rem 2.5rem;
   border-radius: 0.75rem;
   border: 1px solid transparent;
