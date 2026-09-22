@@ -21,7 +21,7 @@ export const OfflineReportSheet = () => {
       onClose={close}
     >
       <div className="offline-report-banner" aria-hidden="true" />
-      <section className="card">
+      <section className="card offline-report-card">
         <p className="boss-sheet-kicker">
           <img
             src="/ui/icon/icon-offline.webp"
