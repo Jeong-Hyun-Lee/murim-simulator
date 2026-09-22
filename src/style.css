@@ -1787,6 +1787,7 @@ dialog.sheet::backdrop {
 
 .stage-picker-return {
   flex: none;
+  min-width: 6rem;
   padding: 0 1rem;
 }
 
@@ -3427,6 +3428,11 @@ dialog.sheet::backdrop {
   margin: 0.5rem 0 0;
   padding: 0;
   list-style: none;
+}
+
+.goal-list .btn {
+  flex: none;
+  width: 6rem;
 }
 
 .save-backup {
