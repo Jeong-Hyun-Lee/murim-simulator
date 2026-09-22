@@ -2196,11 +2196,11 @@ dialog.sheet::backdrop {
   position: absolute;
   top: 0.3rem;
   right: 0.3rem;
-  width: 0.35rem;
-  height: 0.35rem;
+  width: 0.5rem;
+  height: 0.5rem;
   border-radius: 50%;
-  background: var(--jade);
-  box-shadow: 0 0 0.25rem var(--jade);
+  background: var(--grade-color);
+  box-shadow: 0 0 0.3rem var(--grade-color);
 }
 
 .toolbar {

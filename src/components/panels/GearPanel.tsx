@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
 import {
   useGameStore,
   ALL_SLOTS,
@@ -400,7 +400,12 @@ export const GearPanel = () => {
               className={`gear-doll-slot${item ? ' gear-doll-slot-equipped' : ''}${
                 openSlot === slot ? ' gear-doll-slot-active' : ''
               }`}
-              style={{ gridArea: slot, borderColor: item ? GRADE_COLOR[item.grade] : undefined }}
+              style={
+                {
+                  gridArea: slot,
+                  '--grade-color': item ? GRADE_COLOR[item.grade] : undefined,
+                } as CSSProperties
+              }
               onClick={() => setOpenSlot(slot)}
             >
               <img
