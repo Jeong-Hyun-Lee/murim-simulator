@@ -9,7 +9,7 @@ import {
   enhanceSuccessChance,
   enhanceStoneCost,
   needsProtectionEligible,
-  itemBaseStats,
+  itemStats,
   isBetterGear,
   disassembleStoneYield,
   enhanceGoldRefund,
@@ -94,8 +94,8 @@ const GradeChip = ({ item }: { item: GearItem }) => (
 );
 
 const StatDiff = ({ from, to }: { from: GearItem | undefined; to: GearItem }) => {
-  const a = from ? itemBaseStats(from) : {};
-  const b = itemBaseStats(to);
+  const a = from ? itemStats(from) : {};
+  const b = itemStats(to);
   const keys = [...new Set([...Object.keys(a), ...Object.keys(b)])] as StatKey[];
   const diffs = keys
     .map((key) => ({ key, delta: (b[key] ?? 0) - (a[key] ?? 0) }))
@@ -122,7 +122,7 @@ const StatDiff = ({ from, to }: { from: GearItem | undefined; to: GearItem }) =>
 };
 
 const StatList = ({ item }: { item: GearItem }) => {
-  const stats = itemBaseStats(item);
+  const stats = itemStats(item);
   const keys = Object.keys(stats) as StatKey[];
   return (
     <dl className="stat-list">

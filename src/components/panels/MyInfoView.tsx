@@ -82,7 +82,6 @@ export const MyInfoView = ({ onNavigate }: { onNavigate: (target: NavTarget) => 
           />
           <Row label="문파 특전" value={`+${pct(sectBuffPercent(sectLevel))}`} />
           <Row label="환골탈태" value={`+${pct(rebirthBuffPercent(rebirthCount))}`} />
-          <Row label="장비 강화" value={`+${pct(gear.enhanceBuffPercent)}`} />
           <Row
             label="무공 치명·치피·공속·회피"
             value={`+${pct(gongSecondary.critChancePercent)} / +${pct(gongSecondary.critDamagePercent)} / +${pct(gongSecondary.attackSpeedPercent)} / +${pct(gongSecondary.evasionPercent)}`}

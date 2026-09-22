@@ -151,8 +151,7 @@ const st: Sim = {
 const player = (): PlayerStats => {
   const agg = aggregateGearStats(st.equipped);
   const sec = totalGongSecondaryStats(st.gong);
-  const buff =
-    totalGongBuffPercent(st.gong) + agg.enhanceBuffPercent + rebirthBuffPercent(st.rebirth);
+  const buff = totalGongBuffPercent(st.gong) + rebirthBuffPercent(st.rebirth);
   const p = playerStats(st.level, buff, {
     atk: agg.atk,
     def: agg.def,

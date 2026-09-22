@@ -228,15 +228,13 @@ interface GameStoreState extends Omit<GameState, 'lastActiveAt'> {
   startPendingEncounter: () => void;
 }
 
-// wiki/concepts/스테이지-레벨링-기획서.md 7장 전투력 공식: 무공/장구강화/문파특전/환골탈태
-// 4항목을 하나의 가산버프 버킷에 합산 후 BaseStat_총합에 한 번만 곱한다. 장구의 원본 스탯
-// (ATK/DEF/HP/치명타율 등)은 별도로 BaseStat_총합에 가산(computePlayerStats 참고).
+// wiki/concepts/스테이지-레벨링-기획서.md 7장 전투력 공식: 무공/문파특전/환골탈태 3항목을 하나의
+// 가산버프 버킷에 합산 후 BaseStat_총합에 한 번만 곱한다. 장구 스탯(강화 배율 포함, ATK/DEF/HP/
+// 치명타율 등)은 별도로 BaseStat_총합에 가산(computePlayerStats 참고).
 const totalBuffPercent = (
   s: Pick<GameStoreState, 'gongLevels' | 'rebirthCount' | 'sectLevel'>,
-  gearEnhanceBuffPercent: number,
 ): number =>
   totalGongBuffPercent(s.gongLevels) +
-  gearEnhanceBuffPercent +
   rebirthBuffPercent(s.rebirthCount) +
   sectBuffPercent(s.sectLevel);
 
@@ -249,7 +247,7 @@ const computePlayerStats = (
 ): PlayerStats => {
   const agg = aggregateGearStats(s.equippedGear);
   const gongSecondary = totalGongSecondaryStats(s.gongLevels);
-  const buffPercent = totalBuffPercent(s, agg.enhanceBuffPercent);
+  const buffPercent = totalBuffPercent(s);
   const base = playerStats(
     level,
     buffPercent,
@@ -1353,7 +1351,7 @@ export {
   ALL_SLOTS,
   SLOT_INFO,
   ENHANCE_MAX_LEVEL,
-  itemBaseStats,
+  itemStats,
   aggregateGearStats,
   enhanceCost,
   enhanceSuccessChance,

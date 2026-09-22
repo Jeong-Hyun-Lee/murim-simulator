@@ -59,11 +59,14 @@ export const createGearItem = (slot: SlotId, grade: Grade, itemLevel: number): G
   return { id, slot, grade, itemLevel: Math.max(1, itemLevel), enhanceLevel: 0 };
 };
 
-// BaseStat_슬롯 = 곡선(ItemLevel) × SlotWeight × GradeMultiplier — 강화 단계는 포함하지 않음
-// (강화는 별도로 Σ가산버프 버킷에 더해짐, enhanceBuffPercent 참고. 이중계산 방지 규정).
-export const itemBaseStats = (item: GearItem): Partial<Record<StatKey, number>> => {
+// 장비 능력치 = 곡선(ItemLevel) × SlotWeight × GradeMultiplier × 강화 배율. 강화는 그 장비의
+// 모든 능력치를 단계마다 ENHANCE_STAT_PERCENT_PER_LEVEL%씩 올린다(장비 카드 수치에 그대로 보인다).
+export const ENHANCE_STAT_PERCENT_PER_LEVEL = 8;
+
+export const itemStats = (item: GearItem): Partial<Record<StatKey, number>> => {
   const { weights } = SLOT_INFO[item.slot];
-  const gradeMult = GRADE_MULTIPLIER[item.grade];
+  const gradeMult =
+    GRADE_MULTIPLIER[item.grade] * (1 + (item.enhanceLevel * ENHANCE_STAT_PERCENT_PER_LEVEL) / 100);
   const flatScale = FLAT_STAT_COEFF * CHAR_STAT_GROWTH ** (item.itemLevel - 1);
   const result: Partial<Record<StatKey, number>> = {};
   for (const key of Object.keys(weights) as StatKey[]) {
@@ -77,7 +80,6 @@ export const itemBaseStats = (item: GearItem): Partial<Record<StatKey, number>> 
 export const ENHANCE_MAX_LEVEL = 15;
 const ENHANCE_BASE_COST = 100;
 const ENHANCE_GROWTH = 1.6;
-export const ENHANCE_BUFF_PERCENT_PER_LEVEL = 1.5;
 const PROTECTION_THRESHOLD = 11; // wiki "강화 성공 확률" 표 기준 — +11~+15 구간에서 하락 위험·보호부적 모두 적용
 
 export const enhanceCost = (currentLevel: number): number =>
@@ -133,7 +135,6 @@ export interface GearDerivedStats {
   evasionPercent: number;
   chiGainPercent: number;
   statusResistPercent: number; // 상태이상 시스템 부재로 v1에서는 집계만 하고 효과는 없음
-  enhanceBuffPercent: number; // Σ가산버프 버킷에 합산되는 항목(스테이지-레벨링-기획서 7장)
 }
 
 export const aggregateGearStats = (
@@ -149,10 +150,9 @@ export const aggregateGearStats = (
     evasionPercent: 0,
     chiGainPercent: 0,
     statusResistPercent: 0,
-    enhanceBuffPercent: 0,
   };
   for (const item of Object.values(equipped).filter((it): it is GearItem => !!it)) {
-    const base = itemBaseStats(item);
+    const base = itemStats(item);
     stats.atk += base.atk ?? 0;
     stats.def += base.def ?? 0;
     stats.hp += base.hp ?? 0;
@@ -162,7 +162,6 @@ export const aggregateGearStats = (
     stats.evasionPercent += base.evasion ?? 0;
     stats.chiGainPercent += base.chiGain ?? 0;
     stats.statusResistPercent += base.statusResist ?? 0;
-    stats.enhanceBuffPercent += item.enhanceLevel * ENHANCE_BUFF_PERCENT_PER_LEVEL;
   }
   return stats;
 };
