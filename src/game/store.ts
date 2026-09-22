@@ -1159,6 +1159,8 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         farmReturnStage,
         enemy: newEnemy,
         enemyHp: newEnemy.hp,
+        // 사용자가 직접 옮긴 전투는 체력을 가득 채워 시작한다.
+        playerHp: s.player.hp,
         awaitingBossChallenge: false,
         // 쓰러짐 연출 대기 중이었다면 그 예약은 버린다 — 사용자가 직접 고른 전투가 우선.
         pendingEncounter: null,
@@ -1178,6 +1180,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         farmReturnStage: null,
         enemy: newEnemy,
         enemyHp: newEnemy.hp,
+        playerHp: s.player.hp,
         awaitingBossChallenge: needsBossChallenge(returnStage, s.highestMajorCleared),
         // 쓰러짐 연출 대기 중이었다면 그 예약은 버린다 — 사용자가 직접 고른 전투가 우선.
         pendingEncounter: null,
