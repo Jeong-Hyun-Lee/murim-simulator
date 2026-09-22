@@ -80,6 +80,21 @@ const SECT_CAPSTONE_COST = {
   maxLevel: 10,
 } as const;
 
+// 오의(capstone)는 공격·방어·체력 대신 보조 스탯 하나를 소폭 올린다. 값은 대성 시 합계(%)이고,
+// 레벨당 효과는 최대 레벨로 나눠 보드 종류(최대 Lv 20/10)와 관계없이 대성 합계가 같다.
+type SecondaryStatKey = Exclude<GongStatKey, 'power'>;
+const CAPSTONE_STAT_TOTAL: Record<SecondaryStatKey, number> = {
+  critChance: 2,
+  critDamage: 6,
+  attackSpeed: 3,
+  evasion: 1.5,
+  chiGain: 5,
+};
+const capstoneStat = (statKey: SecondaryStatKey, maxLevel: number) => ({
+  statKey,
+  effectPerLevel: CAPSTONE_STAT_TOTAL[statKey] / maxLevel,
+});
+
 // 무공-시스템.md "챕터2·3 신규 보드" — 대11부터 두 대스테이지마다 1개. 트리·성장률은 챕터1과 같고,
 // 비용은 해금 구간 내공 수입에 맞춰 × 1.8^(해금대−1) ÷ 10, 효과는 챕터1 표의 절반, 보드별 곱연산.
 const CHAPTER_BOARD_EFFECT_RATIO = 0.5;
@@ -92,6 +107,7 @@ interface ChapterBoardSpec {
   primary: [string, string, string];
   secondary: [string, string];
   capstone: string;
+  capstoneStat: SecondaryStatKey;
 }
 
 const chapterBoard = ({
@@ -101,6 +117,7 @@ const chapterBoard = ({
   primary,
   secondary,
   capstone,
+  capstoneStat: capstoneStatKey,
 }: ChapterBoardSpec): GongBoard => {
   const costScale = 1.8 ** (unlockMajor - 1) / CHAPTER_BOARD_COST_DIVISOR;
   const tier = (cost: typeof PRIMARY_COST | typeof SECONDARY_COST | typeof CAPSTONE_COST) => ({
@@ -136,6 +153,7 @@ const chapterBoard = ({
         name: capstone,
         tier: 'capstone',
         ...tier(CAPSTONE_COST),
+        ...capstoneStat(capstoneStatKey, CAPSTONE_COST.maxLevel),
         requires: secondaryIds.map((nodeId) => ({ nodeId, level: 30 })),
       },
     ],
@@ -150,6 +168,7 @@ const CHAPTER_BOARD_SPECS: ChapterBoardSpec[] = [
     primary: ['운해(雲海)', '운봉(雲峰)', '운류(雲流)'],
     secondary: ['청운회검(靑雲回劍)', '청운쌍류(靑雲雙流)'],
     capstone: '청운만리(靑雲萬里)',
+    capstoneStat: 'critChance',
   },
   {
     id: 'changnyong_oepyeon',
@@ -158,6 +177,7 @@ const CHAPTER_BOARD_SPECS: ChapterBoardSpec[] = [
     primary: ['승룡세(昇龍勢)', '반룡세(蟠龍勢)', '와룡세(臥龍勢)'],
     secondary: ['창룡출해(蒼龍出海)', '쌍룡쟁주(雙龍爭珠)'],
     capstone: '창룡승천(蒼龍昇天)',
+    capstoneStat: 'critDamage',
   },
   {
     id: 'amhyangpyo',
@@ -166,6 +186,7 @@ const CHAPTER_BOARD_SPECS: ChapterBoardSpec[] = [
     primary: ['매영보(梅影步)', '낙화보(落花步)', '향풍보(香風步)'],
     secondary: ['암향부동(暗香浮動)', '매화난영(梅花亂影)'],
     capstone: '매화만천(梅花滿天)',
+    capstoneStat: 'evasion',
   },
   {
     id: 'yeokcheonjingi',
@@ -174,6 +195,7 @@ const CHAPTER_BOARD_SPECS: ChapterBoardSpec[] = [
     primary: ['역맥(逆脈)', '순맥(順脈)', '환맥(環脈)'],
     secondary: ['역천환원(逆天還元)', '진기쇄정(眞氣鎖定)'],
     capstone: '역천개문(逆天開門)',
+    capstoneStat: 'chiGain',
   },
   {
     id: 'gyeolsajingyeol',
@@ -182,6 +204,7 @@ const CHAPTER_BOARD_SPECS: ChapterBoardSpec[] = [
     primary: ['천강진보(天罡陣步)', '지살진보(地煞陣步)', '사상진보(四象陣步)'],
     secondary: ['팔괘연환(八卦連環)', '구궁쇄진(九宮鎖陣)'],
     capstone: '결사일진(結死一陣)',
+    capstoneStat: 'critChance',
   },
   {
     id: 'pasasingong',
@@ -190,6 +213,7 @@ const CHAPTER_BOARD_SPECS: ChapterBoardSpec[] = [
     primary: ['정심결(淨心訣)', '척사결(斥邪訣)', '호신강기(護身罡氣)'],
     secondary: ['파사현정(破邪顯正)', '청명심경(淸明心鏡)'],
     capstone: '파사신강(破邪神罡)',
+    capstoneStat: 'critDamage',
   },
   {
     id: 'hyeoldochimbeop',
@@ -198,6 +222,7 @@ const CHAPTER_BOARD_SPECS: ChapterBoardSpec[] = [
     primary: ['백회침(百會鍼)', '단중침(膻中鍼)', '용천침(湧泉鍼)'],
     secondary: ['경락통달(經絡通達)', '기혈순환(氣血循環)'],
     capstone: '금침도맥(金鍼導脈)',
+    capstoneStat: 'critChance',
   },
   {
     id: 'eunhonbo',
@@ -206,6 +231,7 @@ const CHAPTER_BOARD_SPECS: ChapterBoardSpec[] = [
     primary: ['무성보(無聲步)', '무형보(無形步)', '무혼보(無魂步)'],
     secondary: ['은혼잠영(隱魂潛影)', '탐혼역추(探魂逆追)'],
     capstone: '은혼멸적(隱魂滅迹)',
+    capstoneStat: 'evasion',
   },
   {
     id: 'gangryukwaegeom',
@@ -214,6 +240,7 @@ const CHAPTER_BOARD_SPECS: ChapterBoardSpec[] = [
     primary: ['일섬(一閃)', '돌진(突進)', '반격(反擊)'],
     secondary: ['쾌검연환(快劍連環)', '일점돌파(一點突破)'],
     capstone: '강류일섬(姜流一閃)',
+    capstoneStat: 'attackSpeed',
   },
   {
     id: 'simgeomgyeol',
@@ -222,6 +249,7 @@ const CHAPTER_BOARD_SPECS: ChapterBoardSpec[] = [
     primary: ['의검(意劍)', '기검(氣劍)', '심검(心劍)'],
     secondary: ['무형검기(無形劍氣)', '이심전검(以心傳劍)'],
     capstone: '심검합일(心劍合一)',
+    capstoneStat: 'chiGain',
   },
 ];
 const CHAPTER_BOARDS = CHAPTER_BOARD_SPECS.map(chapterBoard);
@@ -263,6 +291,7 @@ export const GONG_BOARDS: GongBoard[] = [
         name: '삼재합일',
         tier: 'capstone',
         ...CAPSTONE_COST,
+        ...capstoneStat('critChance', CAPSTONE_COST.maxLevel),
         requires: [
           { nodeId: 'habil', level: 30 },
           { nodeId: 'sangsaeng', level: 30 },
@@ -306,6 +335,7 @@ export const GONG_BOARDS: GongBoard[] = [
         name: '회선붕천장(回旋崩天掌)',
         tier: 'capstone',
         ...CAPSTONE_COST,
+        ...capstoneStat('critDamage', CAPSTONE_COST.maxLevel),
         requires: [
           { nodeId: 'hoeseon_yeonhwan', level: 30 },
           { nodeId: 'hoeseon_gwangpung', level: 30 },
@@ -349,6 +379,7 @@ export const GONG_BOARDS: GongBoard[] = [
         name: '무영신법(無影身法)',
         tier: 'capstone',
         ...CAPSTONE_COST,
+        ...capstoneStat('evasion', CAPSTONE_COST.maxLevel),
         requires: [
           { nodeId: 'yuun_sinhaeng', level: 30 },
           { nodeId: 'yuun_janyeong', level: 30 },
@@ -392,6 +423,7 @@ export const GONG_BOARDS: GongBoard[] = [
         name: '태을선천진기(太乙先天眞氣)',
         tier: 'capstone',
         ...CAPSTONE_COST,
+        ...capstoneStat('chiGain', CAPSTONE_COST.maxLevel),
         requires: [
           { nodeId: 'taeeul_gwiil', level: 30 },
           { nodeId: 'taeeul_daejucheon', level: 30 },
@@ -435,6 +467,7 @@ export const GONG_BOARDS: GongBoard[] = [
         name: '일도단뢰(一刀斷雷)',
         tier: 'capstone',
         ...CAPSTONE_COST,
+        ...capstoneStat('attackSpeed', CAPSTONE_COST.maxLevel),
         requires: [
           { nodeId: 'poklloe_noejeong', level: 30 },
           { nodeId: 'poklloe_bungnoe', level: 30 },
@@ -558,6 +591,7 @@ export const GONG_BOARDS: GongBoard[] = [
         name: '삼재무극검(三才無極劍)',
         tier: 'capstone',
         ...SECT_CAPSTONE_COST,
+        ...capstoneStat('critDamage', SECT_CAPSTONE_COST.maxLevel),
         requires: [
           { nodeId: 'samjae2_hyeonhap', level: 20 },
           { nodeId: 'samjae2_ilche', level: 20 },

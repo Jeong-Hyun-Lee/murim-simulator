@@ -66,8 +66,9 @@ const GongNodeCard = ({
     bulkDisabled,
   );
   const currencyLabel = CURRENCY_LABEL[currency];
-  // 곱연산 보드는 다른 버프와 합산되지 않고 따로 곱해진다는 점을 표시.
-  const effectLabel = `${EFFECT_LABEL[node.statKey ?? 'power']}${multiplicative ? '(곱연산)' : ''}`;
+  // 곱연산 보드의 공격·방어·체력 노드는 다른 버프와 합산되지 않고 따로 곱해진다는 점을 표시.
+  const statKey = node.statKey ?? 'power';
+  const effectLabel = `${EFFECT_LABEL[statKey]}${multiplicative && statKey === 'power' ? '(곱연산)' : ''}`;
   const missing = (node.requires ?? [])
     .filter((r) => (gongLevels[r.nodeId] ?? 0) < r.level)
     .map((r) => `${NODE_NAME.get(r.nodeId)} Lv.${r.level}`);
