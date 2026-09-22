@@ -2760,16 +2760,16 @@
     "kind": "nine-slice",
     "cssSize": {
       "w": 358,
-      "h": 56
+      "h": 52
     },
     "sourceSize": {
       "w": 716,
-      "h": 112
+      "h": 104
     },
     "slice": {
-      "top": 48,
+      "top": 40,
       "right": 48,
-      "bottom": 48,
+      "bottom": 40,
       "left": 48
     },
     "priority": "P1"

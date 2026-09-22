@@ -1706,7 +1706,19 @@ dialog.sheet::backdrop {
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem 0.875rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
   font-weight: bold;
+}
+
+.reward-list > li {
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
 }
 
 /* 사냥터 팝업 — 종이 팝업 톤. 요약 두 칸, 대스테이지 행, 소스테이지 5칸 격자. */
@@ -1764,6 +1776,14 @@ dialog.sheet::backdrop {
   padding: 0 1rem;
 }
 
+.btn.stage-picker-return,
+.tower-entry > .btn {
+  border-color: transparent;
+  border-image: none;
+  background: transparent;
+  box-shadow: none;
+}
+
 .stage-picker-help {
   color: var(--paper-muted);
   font-size: 0.75rem;
@@ -1780,8 +1800,10 @@ dialog.sheet::backdrop {
 .stage-major-row {
   --text: var(--text-on-wall);
   --muted: var(--muted-on-wall);
-  padding: 0.5rem 1.5rem;
-  border-image: url('/ui/panel/panel-stage-map.webp') 48 fill / 24px stretch;
+  padding: 0.5rem 4rem;
+  background: transparent;
+  box-shadow: none;
+  border-image: url('/ui/panel/panel-stage-map.webp') 40 fill / 20px stretch;
 }
 
 .sheet .stage-major-row-open {
@@ -1823,7 +1845,9 @@ dialog.sheet::backdrop {
   min-height: 2.75rem;
   border: 1px solid var(--paper-line);
   border-radius: 0.5rem;
-  background: #fbf5e6;
+  border-image: none;
+  background: transparent;
+  box-shadow: none;
   color: var(--paper-text);
   font-weight: bold;
 }
@@ -1842,7 +1866,7 @@ dialog.sheet::backdrop {
 .stage-sub-chip.is-current:disabled {
   border: 2px solid var(--up);
   border-style: solid;
-  background: #dcebd3;
+  background: transparent;
   color: #24481f;
 }
 
@@ -1881,11 +1905,11 @@ dialog.sheet::backdrop {
   gap: 0.5rem;
   flex-wrap: wrap;
   min-height: 3.25rem;
-  padding: 0.375rem 1.125rem;
+  padding: 0.5rem 2.5rem;
   border-radius: 0.75rem;
-  border: 1px solid #9a7430;
-  background: linear-gradient(135deg, #31271a, #17130e);
-  box-shadow: inset 0 1px rgba(255, 225, 139, 0.12);
+  border: 1px solid transparent;
+  background: transparent;
+  box-shadow: none;
   text-align: left;
   border-image: url('/ui/scroll/scroll-silk-picker.webp') 0 80 fill / 0 16px stretch;
 }
@@ -1948,10 +1972,10 @@ dialog.sheet::backdrop {
 .gong-card {
   position: relative;
   overflow: hidden;
-  padding-top: 1.75rem;
-  padding-right: 1.75rem;
-  padding-bottom: 1.75rem;
-  padding-left: 1.75rem;
+  padding-top: 2rem;
+  padding-right: 2.5rem;
+  padding-bottom: 2rem;
+  padding-left: 2.5rem;
   --muted: var(--paper-muted);
   --warn: #a4571c;
   border-color: #7c6036;
@@ -2324,6 +2348,18 @@ dialog.sheet::backdrop {
   padding: 0.625rem 0.75rem;
   border-color: #bda57a;
   background: linear-gradient(135deg, rgba(255, 250, 236, 0.86), rgba(239, 225, 193, 0.82));
+}
+
+.candidate-card .item-line > .btn,
+.enhance-block .btn,
+.sheet[aria-label='설정'] .setting-row:not(.save-backup) > .btn,
+.sheet[aria-label='설정'] .save-backup > button:first-of-type {
+  min-height: 2.75rem;
+  padding: 0.25rem 0.5rem;
+  border-color: transparent;
+  border-image: none;
+  background: transparent;
+  box-shadow: none;
 }
 
 .gear-current-section {
