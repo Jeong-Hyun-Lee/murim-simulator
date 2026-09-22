@@ -5,7 +5,7 @@
 // "삼재검법 1보 오의(캡스톤) 대성 시 개방"을 그대로 구현, 강화 재화는 문파-시스템.md 스펙대로
 // 기여도(내공 아님) — GongBoard.currency/unlock으로 일반화.
 
-import { OTHER_SECTS, SECT_FAVOR_TO_TRANSMIT } from './sectData';
+import { OTHER_SECTS, isSectTransmitted } from './sectData';
 
 export type NodeTier = 'primary' | 'secondary' | 'capstone';
 export type GongCurrency = 'chi' | 'contribution';
@@ -31,7 +31,7 @@ export interface GongNode {
 export type BoardUnlockCondition =
   | { type: 'stage'; major: number } // highestMajorCleared >= major
   | { type: 'nodeMaxed'; boardId: string; nodeId: string } // 다른 보드의 특정 노드가 대성이어야 함
-  | { type: 'sectFavor'; sectId: string }; // 일대종사가 된 뒤 그 문파 교분이 전수 기준치 이상
+  | { type: 'sectFavor'; sectId: string }; // 일대종사가 바친 기여도로 그 문파가 최대 레벨
 
 export interface GongBoard {
   id: string;
@@ -743,8 +743,7 @@ export interface BoardUnlockContext {
 export const isBoardUnlocked = (board: GongBoard, ctx: BoardUnlockContext): boolean => {
   const { unlock } = board;
   if (unlock.type === 'stage') return ctx.highestMajorCleared >= unlock.major;
-  if (unlock.type === 'sectFavor')
-    return (ctx.sectFavor[unlock.sectId] ?? 0) >= SECT_FAVOR_TO_TRANSMIT;
+  if (unlock.type === 'sectFavor') return isSectTransmitted(ctx.sectFavor[unlock.sectId] ?? 0);
   const sourceBoard = GONG_BOARDS.find((b) => b.id === unlock.boardId);
   const sourceNode = sourceBoard?.nodes.find((n) => n.id === unlock.nodeId);
   if (!sourceNode) return false;
@@ -759,7 +758,7 @@ export const boardUnlockLabel = (board: GongBoard): string => {
   if (unlock.type === 'stage') return `대${unlock.major} 보스 클리어 후 해금됩니다.`;
   if (unlock.type === 'sectFavor') {
     const sect = OTHER_SECTS.find((o) => o.id === unlock.sectId);
-    return `일대종사가 된 뒤 ${sect?.name ?? ''} 교분 ${SECT_FAVOR_TO_TRANSMIT.toLocaleString()}을 쌓으면 전수됩니다.`;
+    return `일대종사가 된 뒤 ${sect?.name ?? ''} 문파 레벨을 최대로 올리면 전수됩니다.`;
   }
   const sourceBoard = GONG_BOARDS.find((b) => b.id === unlock.boardId);
   const sourceNode = sourceBoard?.nodes.find((n) => n.id === unlock.nodeId);

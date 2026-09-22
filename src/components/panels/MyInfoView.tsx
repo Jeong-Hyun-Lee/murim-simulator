@@ -7,6 +7,7 @@ import {
   rebirthBuffPercent,
   sectBuffPercent,
   realmName,
+  otherSectSecondaryStats,
 } from '../../game/store';
 import { combatPower } from '../../game/combat';
 import { REBIRTH_ENTRY_MAJOR, type NavTarget } from '../common';
@@ -30,9 +31,11 @@ export const MyInfoView = ({ onNavigate }: { onNavigate: (target: NavTarget) => 
   const rebirthCount = useGameStore((s) => s.rebirthCount);
   const sectLevel = useGameStore((s) => s.sectLevel);
   const highestMajorCleared = useGameStore((s) => s.highestMajorCleared);
+  const sectFavor = useGameStore((s) => s.sectFavor);
 
   const gongSecondary = totalGongSecondaryStats(gongLevels);
   const gear = aggregateGearStats(equippedGear);
+  const sectPerk = otherSectSecondaryStats(sectFavor);
 
   return (
     <div className="my-info">
@@ -85,6 +88,10 @@ export const MyInfoView = ({ onNavigate }: { onNavigate: (target: NavTarget) => 
           <Row
             label="무공 치명·치피·공속·회피"
             value={`+${pct(gongSecondary.critChancePercent)} / +${pct(gongSecondary.critDamagePercent)} / +${pct(gongSecondary.attackSpeedPercent)} / +${pct(gongSecondary.evasionPercent)}`}
+          />
+          <Row
+            label="타 문파 치명·치피·공속·회피·내공"
+            value={`+${pct(sectPerk.critChancePercent)} / +${pct(sectPerk.critDamagePercent)} / +${pct(sectPerk.attackSpeedPercent)} / +${pct(sectPerk.evasionPercent)} / +${pct(sectPerk.chiGainPercent)}`}
           />
           <Row
             label="장비 치명·치피·공속·회피·내공"

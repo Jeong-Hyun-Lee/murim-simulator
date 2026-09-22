@@ -60,11 +60,12 @@ import {
   sectBuffPercent,
   GRANDMASTER_TITLE,
   OTHER_SECTS,
-  SECT_FAVOR_TO_TRANSMIT,
-  SECT_GIFT_INTERVAL,
   GRANDMASTER_SEAL_SLOT,
-  sectGiftCount,
-  nextSectFavorMilestone,
+  OTHER_SECT_MAX_FAVOR,
+  otherSectLevel,
+  otherSectPerkPercent,
+  otherSectSecondaryStats,
+  isSectTransmitted,
   allSectsTransmitted,
 } from './sectData';
 import {
@@ -242,11 +243,20 @@ const computePlayerStats = (
   level: number,
   s: Pick<
     GameStoreState,
-    'gongLevels' | 'rebirthCount' | 'sectLevel' | 'equippedGear' | 'nickname'
+    'gongLevels' | 'rebirthCount' | 'sectLevel' | 'equippedGear' | 'nickname' | 'sectFavor'
   >,
 ): PlayerStats => {
   const agg = aggregateGearStats(s.equippedGear);
-  const gongSecondary = totalGongSecondaryStats(s.gongLevels);
+  // 무공 보조 스탯과 타 문파 레벨 특전은 같은 보조 스탯 축이라 합쳐서 더한다.
+  const gong = totalGongSecondaryStats(s.gongLevels);
+  const sect = otherSectSecondaryStats(s.sectFavor);
+  const gongSecondary = {
+    critChancePercent: gong.critChancePercent + sect.critChancePercent,
+    critDamagePercent: gong.critDamagePercent + sect.critDamagePercent,
+    attackSpeedPercent: gong.attackSpeedPercent + sect.attackSpeedPercent,
+    evasionPercent: gong.evasionPercent + sect.evasionPercent,
+    chiGainPercent: gong.chiGainPercent + sect.chiGainPercent,
+  };
   const buffPercent = totalBuffPercent(s);
   const base = playerStats(
     level,
@@ -819,32 +829,38 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       persist(get());
     },
 
-    // 일대종사(청운문 최대 레벨)만 가능. 다음 보상(전수·하사품)까지 남은 만큼만 사용 가능
-    // 기여도에서 옮기고, 보상에 닿으면 문파 상징 슬롯 신품을 준다. 5개 문파 전수를 처음 모두
-    // 마치면 일대종사 신표(선품)도 1회 준다 — 장구-시스템.md "신품·선품 획득 경로" 2절.
+    // 일대종사(청운문 최대 레벨)만 가능. 사용 가능 기여도를 그 문파 최대 레벨까지 필요한 만큼 바쳐
+    // 문파 레벨을 올린다. 처음 바칠 때 1회 문파 상징 슬롯 신품을 주고, 5개 문파를 모두 최대 레벨
+    // (무공 전수)로 올린 순간 일대종사 신표(선품)를 1회 준다 — 장구-시스템.md "신품·선품 획득 경로" 2절.
     investSectFavor: (sectId) => {
       const s = get();
       const sect = OTHER_SECTS.find((o) => o.id === sectId);
       if (s.sectLevel < SECT_MAX_LEVEL || !sect) return;
       const current = s.sectFavor[sectId] ?? 0;
-      const amount = Math.min(s.sectContributionPoints, nextSectFavorMilestone(current) - current);
+      const amount = Math.min(s.sectContributionPoints, OTHER_SECT_MAX_FAVOR - current);
       if (amount <= 0) return;
       const sectFavor = { ...s.sectFavor, [sectId]: current + amount };
       const items: GearItem[] = [];
-      const gifts = sectGiftCount(current + amount) - sectGiftCount(current);
-      for (let i = 0; i < gifts; i += 1) items.push(createGearItem(sect.giftSlot, '신품', s.level));
+      const firstGift = current === 0;
+      if (firstGift) items.push(createGearItem(sect.giftSlot, '신품', s.level));
       const sealEarned = !allSectsTransmitted(s.sectFavor) && allSectsTransmitted(sectFavor);
       if (sealEarned) items.push(createGearItem(GRANDMASTER_SEAL_SLOT, '선품', s.level));
+      const before = otherSectLevel(current).level;
+      const after = otherSectLevel(current + amount).level;
       const messages = [
-        gifts > 0 &&
-          `${sect.name} ${current < SECT_FAVOR_TO_TRANSMIT ? '전수 보상' : '하사품'}: 신품 ${SLOT_INFO[sect.giftSlot].name}`,
+        `${sect.name} Lv.${before} → Lv.${after}`,
+        firstGift && `첫 기여 보상: 신품 ${SLOT_INFO[sect.giftSlot].name}`,
+        isSectTransmitted(current + amount) && !isSectTransmitted(current) && `무공 전수`,
         sealEarned && `일대종사 신표: 선품 ${SLOT_INFO[GRANDMASTER_SEAL_SLOT].name}`,
       ].filter(Boolean);
+      const newPlayer = computePlayerStats(s.level, { ...s, sectFavor });
       set({
         sectContributionPoints: s.sectContributionPoints - amount,
         sectFavor,
+        player: newPlayer,
+        playerHp: carryOverHp(s.player.hp, s.playerHp, newPlayer.hp),
         ...(items.length > 0 && { inventory: [...s.inventory, ...items] }),
-        ...(messages.length > 0 && { toastMessage: messages.join(' · ') }),
+        toastMessage: messages.join(' · '),
       });
       persist(get());
     },
@@ -1369,10 +1385,11 @@ export {
   sectBuffPercent,
   GRANDMASTER_TITLE,
   OTHER_SECTS,
-  SECT_FAVOR_TO_TRANSMIT,
-  SECT_GIFT_INTERVAL,
-  sectGiftCount,
-  nextSectFavorMilestone,
+  OTHER_SECT_MAX_FAVOR,
+  otherSectLevel,
+  otherSectPerkPercent,
+  otherSectSecondaryStats,
+  isSectTransmitted,
 };
 export { PULL_COST, PULL_10_COST, HARD_PITY, GRADE_COLOR, gradeTier };
 export { DAILY_GOALS, MILESTONES, rewardText, todayString, TOWER_TURN_LIMIT, TOWER_UNLOCK_MAJOR };
