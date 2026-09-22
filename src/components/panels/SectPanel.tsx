@@ -16,12 +16,15 @@ import {
   otherSectLevel,
   otherSectPerkPercent,
   isSectTransmitted,
+  allSectsTransmitted,
+  nodeLevel,
   SLOT_INFO,
 } from '../../game/store';
 import { Sheet } from '../Sheet';
 
 // 기여도로 연마하는 문파 무공 보드(삼재검법 2보).
 const SECT_BOARD = GONG_BOARDS.find((b) => b.currency === 'contribution')!;
+const CONTRIBUTION_BOARDS = GONG_BOARDS.filter((b) => b.currency === 'contribution');
 
 type DonateKind = 'chi' | 'elixir';
 
@@ -114,6 +117,15 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
   const sectFavor = useGameStore((s) => s.sectFavor);
   const investSectFavor = useGameStore((s) => s.investSectFavor);
   const sectBoardUnlocked = useGameStore((s) => isBoardUnlocked(SECT_BOARD, s));
+  // 청운문·타 문파가 모두 최대 레벨이고 기여도 보드도 전부 대성이면 기여도를 쓸 곳이 없어 기부 칸을 숨긴다.
+  const donationDone = useGameStore(
+    (s) =>
+      s.sectLevel >= SECT_MAX_LEVEL &&
+      allSectsTransmitted(s.sectFavor) &&
+      CONTRIBUTION_BOARDS.every((b) =>
+        b.nodes.every((n) => nodeLevel(n, s.gongLevels) >= n.maxLevel),
+      ),
+  );
   const [donate, setDonate] = useState<DonateKind | null>(null);
 
   const levelMaxed = sectLevel >= SECT_MAX_LEVEL;
@@ -173,61 +185,63 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
         </div>
       </section>
 
-      <section className="card sect-donate-card">
-        <h3>
-          <img
-            src="/ui/label/section-donate.webp"
-            alt="기부"
-            style={{ height: '1.1em', display: 'block' }}
-          />
-        </h3>
-        <p className="muted">
-          내공 {CHI_PER_CONTRIBUTION.toLocaleString()} = 기여도 1 · 영약 1개 = 기여도{' '}
-          {ELIXIR_CONTRIBUTION_RATE}
-        </p>
-        <div className="btn-row">
-          <button
-            type="button"
-            className="btn btn-primary"
-            disabled={chi < CHI_PER_CONTRIBUTION}
-            onClick={() => setDonate('chi')}
-          >
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
-              <img
-                src="/ui/icon/icon-action-donate.webp"
-                alt=""
-                aria-hidden="true"
-                style={{ width: 20, height: 20 }}
-              />
-              <img
-                src="/ui/label/label-donate-chi.webp"
-                alt="내공 전량 기부"
-                style={{ height: '1.1em' }}
-              />
-            </span>
-          </button>
-          <button
-            type="button"
-            className="btn btn-primary"
-            disabled={elixir <= 0}
-            onClick={() => setDonate('elixir')}
-          >
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
-              <img
-                src="/ui/icon/icon-action-donate.webp"
-                alt=""
-                aria-hidden="true"
-                style={{ width: 20, height: 20 }}
-              />
-              <img
-                src="/ui/label/label-donate-elixir.webp"
-                alt="영약 전량 기부"
-                style={{ height: '1.1em' }}
-              />
-            </span>
-          </button>
-        </div>
-      </section>
+      {!donationDone && (
+        <section className="card sect-donate-card">
+          <h3>
+            <img
+              src="/ui/label/section-donate.webp"
+              alt="기부"
+              style={{ height: '1.1em', display: 'block' }}
+            />
+          </h3>
+          <p className="muted">
+            내공 {CHI_PER_CONTRIBUTION.toLocaleString()} = 기여도 1 · 영약 1개 = 기여도{' '}
+            {ELIXIR_CONTRIBUTION_RATE}
+          </p>
+          <div className="btn-row">
+            <button
+              type="button"
+              className="btn btn-primary"
+              disabled={chi < CHI_PER_CONTRIBUTION}
+              onClick={() => setDonate('chi')}
+            >
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+                <img
+                  src="/ui/icon/icon-action-donate.webp"
+                  alt=""
+                  aria-hidden="true"
+                  style={{ width: 20, height: 20 }}
+                />
+                <img
+                  src="/ui/label/label-donate-chi.webp"
+                  alt="내공 전량 기부"
+                  style={{ height: '1.1em' }}
+                />
+              </span>
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary"
+              disabled={elixir <= 0}
+              onClick={() => setDonate('elixir')}
+            >
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+                <img
+                  src="/ui/icon/icon-action-donate.webp"
+                  alt=""
+                  aria-hidden="true"
+                  style={{ width: 20, height: 20 }}
+                />
+                <img
+                  src="/ui/label/label-donate-elixir.webp"
+                  alt="영약 전량 기부"
+                  style={{ height: '1.1em' }}
+                />
+              </span>
+            </button>
+          </div>
+        </section>
+      )}
 
       <button
         type="button"

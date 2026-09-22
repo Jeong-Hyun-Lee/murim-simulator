@@ -1390,6 +1390,7 @@ export {
   otherSectPerkPercent,
   otherSectSecondaryStats,
   isSectTransmitted,
+  allSectsTransmitted,
 };
 export { PULL_COST, PULL_10_COST, HARD_PITY, GRADE_COLOR, gradeTier };
 export { DAILY_GOALS, MILESTONES, rewardText, todayString, TOWER_TURN_LIMIT, TOWER_UNLOCK_MAJOR };
