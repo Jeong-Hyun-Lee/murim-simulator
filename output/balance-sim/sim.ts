@@ -199,7 +199,7 @@ const fight = (p: PlayerStats, stage: StageId) => {
 
 // 내공으로 가장 싼 연마부터 계속 구매(길게 누르기 연속 연마를 쓰는 플레이어 가정).
 const buyGong = () => {
-  const ctx = { highestMajorCleared: st.highest, gongLevels: st.gong };
+  const ctx = { highestMajorCleared: st.highest, gongLevels: st.gong, sectFavor: {} };
   for (;;) {
     let best: { id: string; cost: number; lv: number } | null = null;
     for (const board of BOARDS) {

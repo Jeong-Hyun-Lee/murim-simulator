@@ -159,9 +159,14 @@ interface Props {
   onBoardChange: (boardId: string) => void;
 }
 
+// 기여도로 연마하는 보드(삼재검법 2보·타 문파 무공)는 "문파 무공" 탭에 모은다.
+const isSectArt = (board: GongBoard) => board.currency === 'contribution';
+type GongCategory = 'general' | 'sect';
+
 export const GongPanel = ({ boardId, onBoardChange }: Props) => {
   const gongLevels = useGameStore((s) => s.gongLevels);
   const highestMajorCleared = useGameStore((s) => s.highestMajorCleared);
+  const sectFavor = useGameStore((s) => s.sectFavor);
   const onboardingDone = useGameStore((s) => s.onboardingDone);
   const tutorialGongDone = useGameStore((s) => s.tutorialGongDone);
   const markTutorialGongDone = useGameStore((s) => s.markTutorialGongDone);
@@ -169,11 +174,24 @@ export const GongPanel = ({ boardId, onBoardChange }: Props) => {
   const [tutorialJustDone, setTutorialJustDone] = useState(false);
 
   const tutorialActive = onboardingDone && !tutorialGongDone;
-  const unlockCtx = { highestMajorCleared, gongLevels };
+  const unlockCtx = { highestMajorCleared, gongLevels, sectFavor };
   const requested = GONG_BOARDS.find((b) => b.id === boardId) ?? GONG_BOARDS[0];
   // 환골탈태 등으로 선택 보드가 잠기면 첫 보드로 표시.
   const selectedBoard =
     tutorialActive || !isBoardUnlocked(requested, unlockCtx) ? GONG_BOARDS[0] : requested;
+  const category: GongCategory = isSectArt(selectedBoard) ? 'sect' : 'general';
+  // 문파 무공은 하나라도 얻어야 탭이 생긴다.
+  const sectTabVisible =
+    !tutorialActive && GONG_BOARDS.some((b) => isSectArt(b) && isBoardUnlocked(b, unlockCtx));
+  const pickerBoards = GONG_BOARDS.filter((b) => isSectArt(b) === (category === 'sect'));
+  const selectCategory = (next: GongCategory) => {
+    if (next === category) return;
+    const first = GONG_BOARDS.find(
+      (b) => isSectArt(b) === (next === 'sect') && isBoardUnlocked(b, unlockCtx),
+    );
+    if (first) onBoardChange(first.id);
+    setPickerOpen(false);
+  };
 
   useEffect(() => {
     if (tutorialActive && (gongLevels[TUTORIAL_NODE_ID] ?? 0) >= 1) {
@@ -204,6 +222,29 @@ export const GongPanel = ({ boardId, onBoardChange }: Props) => {
         </div>
       )}
 
+      {sectTabVisible && (
+        <div className="segmented" role="tablist" aria-label="무공 구분">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={category === 'general'}
+            className={`segmented-btn${category === 'general' ? ' segmented-btn-active' : ''}`}
+            onClick={() => selectCategory('general')}
+          >
+            일반 무공
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={category === 'sect'}
+            className={`segmented-btn${category === 'sect' ? ' segmented-btn-active' : ''}`}
+            onClick={() => selectCategory('sect')}
+          >
+            문파 무공
+          </button>
+        </div>
+      )}
+
       <button
         type="button"
         className="board-picker-btn"
@@ -213,7 +254,7 @@ export const GongPanel = ({ boardId, onBoardChange }: Props) => {
       >
         <span className="board-picker-title">
           <strong>{selectedBoard.name}</strong>
-          <small>{CURRENCY_LABEL[selectedBoard.currency]}으로 연마</small>
+          <small>{selectedBoard.currency === 'chi' ? '내공으로' : '기여도로'} 연마</small>
         </span>
         <span className="board-picker-progress">
           <small>완성도</small>
@@ -228,7 +269,7 @@ export const GongPanel = ({ boardId, onBoardChange }: Props) => {
       </button>
       {pickerOpen && (
         <ul className="list">
-          {GONG_BOARDS.map((board) => {
+          {pickerBoards.map((board) => {
             const unlocked = isBoardUnlocked(board, unlockCtx);
             return (
               <li key={board.id}>

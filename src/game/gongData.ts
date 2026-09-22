@@ -5,6 +5,8 @@
 // "삼재검법 1보 오의(캡스톤) 대성 시 개방"을 그대로 구현, 강화 재화는 문파-시스템.md 스펙대로
 // 기여도(내공 아님) — GongBoard.currency/unlock으로 일반화.
 
+import { OTHER_SECTS, SECT_FAVOR_TO_TRANSMIT } from './sectData';
+
 export type NodeTier = 'primary' | 'secondary' | 'capstone';
 export type GongCurrency = 'chi' | 'contribution';
 
@@ -28,7 +30,8 @@ export interface GongNode {
 
 export type BoardUnlockCondition =
   | { type: 'stage'; major: number } // highestMajorCleared >= major
-  | { type: 'nodeMaxed'; boardId: string; nodeId: string }; // 다른 보드의 특정 노드가 대성이어야 함
+  | { type: 'nodeMaxed'; boardId: string; nodeId: string } // 다른 보드의 특정 노드가 대성이어야 함
+  | { type: 'sectFavor'; sectId: string }; // 일대종사가 된 뒤 그 문파 교분이 전수 기준치 이상
 
 export interface GongBoard {
   id: string;
@@ -253,6 +256,104 @@ const CHAPTER_BOARD_SPECS: ChapterBoardSpec[] = [
   },
 ];
 const CHAPTER_BOARDS = CHAPTER_BOARD_SPECS.map(chapterBoard);
+
+// 타 문파 무공 — 일대종사가 교분을 쌓아 전수받는다. 트리·비용은 삼재검법 2보(문파무공)와 같고
+// 기여도로 연마한다. 오의는 문파 성격에 맞는 보조 스탯.
+interface SectArtSpec {
+  sectId: string;
+  name: string;
+  primary: [string, string, string];
+  secondary: [string, string];
+  capstone: string;
+  capstoneStat: SecondaryStatKey;
+}
+
+const sectArtBoard = ({
+  sectId,
+  name,
+  primary,
+  secondary,
+  capstone,
+  capstoneStat: capstoneStatKey,
+}: SectArtSpec): GongBoard => {
+  const id = OTHER_SECTS.find((sect) => sect.id === sectId)!.boardId;
+  const primaryIds = primary.map((_, i) => `${id}_p${i + 1}`);
+  const secondaryIds = secondary.map((_, i) => `${id}_s${i + 1}`);
+  return {
+    id,
+    name,
+    currency: 'contribution',
+    unlock: { type: 'sectFavor', sectId },
+    nodes: [
+      ...primary.map((n, i) => ({
+        id: primaryIds[i],
+        name: n,
+        tier: 'primary' as const,
+        ...SECT_PRIMARY_COST,
+      })),
+      ...secondary.map((n, i) => ({
+        id: secondaryIds[i],
+        name: n,
+        tier: 'secondary' as const,
+        ...SECT_SECONDARY_COST,
+        requires: primaryIds.map((nodeId) => ({ nodeId, level: 10 })),
+      })),
+      {
+        id: `${id}_c`,
+        name: capstone,
+        tier: 'capstone',
+        ...SECT_CAPSTONE_COST,
+        ...capstoneStat(capstoneStatKey, SECT_CAPSTONE_COST.maxLevel),
+        requires: secondaryIds.map((nodeId) => ({ nodeId, level: 20 })),
+      },
+    ],
+  };
+};
+
+const SECT_ART_BOARDS = (
+  [
+    {
+      sectId: 'hwasan',
+      name: '매화검법(梅花劍法)',
+      primary: ['매화점점(梅花點點)', '낙매표풍(落梅飄風)', '설중매(雪中梅)'],
+      secondary: ['매화칠절(梅花七絶)', '이십사수매화(二十四手梅花)'],
+      capstone: '매화검강(梅花劍罡)',
+      capstoneStat: 'attackSpeed',
+    },
+    {
+      sectId: 'mudang',
+      name: '태극권(太極拳)',
+      primary: ['운수(雲手)', '단편(單鞭)', '남작미(攬雀尾)'],
+      secondary: ['태극음양(太極陰陽)', '사량발천근(四兩撥千斤)'],
+      capstone: '태극무극(太極無極)',
+      capstoneStat: 'evasion',
+    },
+    {
+      sectId: 'namgung',
+      name: '창룡검법 내편(蒼龍劍法 內篇)',
+      primary: ['창룡탐조(蒼龍探爪)', '창룡파미(蒼龍擺尾)', '창룡음(蒼龍吟)'],
+      secondary: ['검룡출수(劍龍出袖)', '제왕검세(帝王劍勢)'],
+      capstone: '창룡회천(蒼龍回天)',
+      capstoneStat: 'critDamage',
+    },
+    {
+      sectId: 'gaebang',
+      name: '항룡십팔장(降龍十八掌)',
+      primary: ['항룡유회(亢龍有悔)', '비룡재천(飛龍在天)', '견룡재전(見龍在田)'],
+      secondary: ['잠룡물용(潛龍勿用)', '신룡파미(神龍擺尾)'],
+      capstone: '항룡십팔(降龍十八)',
+      capstoneStat: 'chiGain',
+    },
+    {
+      sectId: 'sorim',
+      name: '백보신권(百步神拳)',
+      primary: ['나한권(羅漢拳)', '금강권(金剛拳)', '반야권(般若拳)'],
+      secondary: ['격공권(隔空拳)', '금강부동(金剛不動)'],
+      capstone: '백보일권(百步一拳)',
+      capstoneStat: 'critChance',
+    },
+  ] satisfies SectArtSpec[]
+).map(sectArtBoard);
 
 export const GONG_BOARDS: GongBoard[] = [
   {
@@ -600,6 +701,7 @@ export const GONG_BOARDS: GongBoard[] = [
     ],
   },
   ...CHAPTER_BOARDS,
+  ...SECT_ART_BOARDS,
 ];
 
 export type GongLevels = Record<string, number>;
@@ -635,11 +737,14 @@ export const isNodeUnlocked = (node: GongNode, levels: GongLevels): boolean => {
 export interface BoardUnlockContext {
   highestMajorCleared: number;
   gongLevels: GongLevels;
+  sectFavor: Record<string, number>;
 }
 
 export const isBoardUnlocked = (board: GongBoard, ctx: BoardUnlockContext): boolean => {
   const { unlock } = board;
   if (unlock.type === 'stage') return ctx.highestMajorCleared >= unlock.major;
+  if (unlock.type === 'sectFavor')
+    return (ctx.sectFavor[unlock.sectId] ?? 0) >= SECT_FAVOR_TO_TRANSMIT;
   const sourceBoard = GONG_BOARDS.find((b) => b.id === unlock.boardId);
   const sourceNode = sourceBoard?.nodes.find((n) => n.id === unlock.nodeId);
   if (!sourceNode) return false;
@@ -652,6 +757,10 @@ export const findBoardByNodeId = (nodeId: string): GongBoard | undefined =>
 export const boardUnlockLabel = (board: GongBoard): string => {
   const { unlock } = board;
   if (unlock.type === 'stage') return `대${unlock.major} 보스 클리어 후 해금됩니다.`;
+  if (unlock.type === 'sectFavor') {
+    const sect = OTHER_SECTS.find((o) => o.id === unlock.sectId);
+    return `일대종사가 된 뒤 ${sect?.name ?? ''} 교분 ${SECT_FAVOR_TO_TRANSMIT.toLocaleString()}을 쌓으면 전수됩니다.`;
+  }
   const sourceBoard = GONG_BOARDS.find((b) => b.id === unlock.boardId);
   const sourceNode = sourceBoard?.nodes.find((n) => n.id === unlock.nodeId);
   return `${sourceBoard?.name ?? ''} "${sourceNode?.name ?? ''}" 대성 후 해금됩니다.`;

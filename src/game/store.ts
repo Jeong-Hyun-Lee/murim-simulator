@@ -58,6 +58,9 @@ import {
   ELIXIR_CONTRIBUTION_RATE,
   sectExpToNextLevel,
   sectBuffPercent,
+  GRANDMASTER_TITLE,
+  OTHER_SECTS,
+  SECT_FAVOR_TO_TRANSMIT,
 } from './sectData';
 import {
   PULL_COST,
@@ -202,6 +205,7 @@ interface GameStoreState extends Omit<GameState, 'lastActiveAt'> {
   disassembleItems: (itemIds: string[]) => void;
   donateChiToSect: () => void;
   donateElixirToSect: () => void;
+  investSectFavor: (sectId: string) => void;
   performRebirth: () => void;
   pullGachaSingle: () => void;
   pullGachaTen: () => void;
@@ -344,6 +348,7 @@ const persist = (s: GameStoreState) => {
     sectExp: s.sectExp,
     sectTotalContribution: s.sectTotalContribution,
     sectContributionPoints: s.sectContributionPoints,
+    sectFavor: s.sectFavor,
     elixir: s.elixir,
     elixirExchangeCount: s.elixirExchangeCount,
     gachaPity: s.gachaPity,
@@ -576,10 +581,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       if (
         balance < curCost ||
         curLevel >= node.maxLevel ||
-        !isBoardUnlocked(board, {
-          highestMajorCleared: s.highestMajorCleared,
-          gongLevels: s.gongLevels,
-        }) ||
+        !isBoardUnlocked(board, s) ||
         !isNodeUnlocked(node, s.gongLevels)
       )
         return;
@@ -607,10 +609,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       if (
         levelsGained <= 0 ||
         balance < cost ||
-        !isBoardUnlocked(board, {
-          highestMajorCleared: s.highestMajorCleared,
-          gongLevels: s.gongLevels,
-        }) ||
+        !isBoardUnlocked(board, s) ||
         !isNodeUnlocked(node, s.gongLevels)
       )
         return;
@@ -813,6 +812,20 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         sectLevel,
         player: newPlayer,
         playerHp: carryOverHp(s.player.hp, s.playerHp, newPlayer.hp),
+      });
+      persist(get());
+    },
+
+    // 일대종사(청운문 최대 레벨)만 가능. 전수 기준치까지 남은 만큼만 사용 가능 기여도에서 옮긴다.
+    investSectFavor: (sectId) => {
+      const s = get();
+      if (s.sectLevel < SECT_MAX_LEVEL || !OTHER_SECTS.some((o) => o.id === sectId)) return;
+      const current = s.sectFavor[sectId] ?? 0;
+      const amount = Math.min(s.sectContributionPoints, SECT_FAVOR_TO_TRANSMIT - current);
+      if (amount <= 0) return;
+      set({
+        sectContributionPoints: s.sectContributionPoints - amount,
+        sectFavor: { ...s.sectFavor, [sectId]: current + amount },
       });
       persist(get());
     },
@@ -1332,6 +1345,9 @@ export {
   ELIXIR_CONTRIBUTION_RATE,
   sectExpToNextLevel,
   sectBuffPercent,
+  GRANDMASTER_TITLE,
+  OTHER_SECTS,
+  SECT_FAVOR_TO_TRANSMIT,
 };
 export { PULL_COST, PULL_10_COST, HARD_PITY, GRADE_COLOR, gradeTier };
 export { DAILY_GOALS, MILESTONES, rewardText, todayString, TOWER_TURN_LIMIT, TOWER_UNLOCK_MAJOR };

@@ -57,13 +57,7 @@ export const App = () => {
   const tutorialGongDone = useGameStore((s) => s.tutorialGongDone);
   const lockReasons = useTabLockReasons();
   const unlockedBoardCount = useGameStore(
-    (s) =>
-      GONG_BOARDS.filter((board) =>
-        isBoardUnlocked(board, {
-          highestMajorCleared: s.highestMajorCleared,
-          gongLevels: s.gongLevels,
-        }),
-      ).length,
+    (s) => GONG_BOARDS.filter((board) => isBoardUnlocked(board, s)).length,
   );
   const saveFailed = useSaveStatus((s) => s.failed);
   const retrySave = useGameStore((s) => s.retrySave);

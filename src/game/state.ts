@@ -22,7 +22,8 @@ export interface GameState {
   sectLevel: number;
   sectExp: number;
   sectTotalContribution: number;
-  sectContributionPoints: number; // 문파무공(삼재검법 2보) 강화에 쓰는 소모 가능 기여도 잔액
+  sectContributionPoints: number; // 문파무공 연마·타 문파 교분에 쓰는 소모 가능 기여도 잔액
+  sectFavor: Record<string, number>; // 일대종사가 타 문파에 바친 기여도(교분), 문파 id별 누적
   elixir: number;
   elixirExchangeCount: number;
   gachaPity: number;
@@ -63,6 +64,7 @@ const defaultState = (): GameState => ({
   sectExp: 0,
   sectTotalContribution: 0,
   sectContributionPoints: 0,
+  sectFavor: {},
   elixir: 0,
   elixirExchangeCount: 0,
   gachaPity: 0,

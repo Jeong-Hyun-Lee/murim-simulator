@@ -3618,3 +3618,27 @@ dialog.sheet::backdrop {
 .exp-row .exp-bar {
   flex: 1;
 }
+
+/* ---------- 일대종사 · 타 문파 교류 ---------- */
+
+.sect-title {
+  margin-top: 0.25rem;
+  font-weight: bold;
+}
+
+.sect-exchange-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sect-exchange-list .btn {
+  flex: none;
+  width: 8rem;
+  min-height: 2.75rem;
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+}

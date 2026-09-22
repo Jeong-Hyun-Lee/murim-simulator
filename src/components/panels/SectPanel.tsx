@@ -10,6 +10,9 @@ import {
   GONG_BOARDS,
   isBoardUnlocked,
   boardUnlockLabel,
+  GRANDMASTER_TITLE,
+  OTHER_SECTS,
+  SECT_FAVOR_TO_TRANSMIT,
 } from '../../game/store';
 import { Sheet } from '../Sheet';
 
@@ -96,12 +99,9 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
   const sectContributionPoints = useGameStore((s) => s.sectContributionPoints);
   const chi = useGameStore((s) => s.chi);
   const elixir = useGameStore((s) => s.elixir);
-  const sectBoardUnlocked = useGameStore((s) =>
-    isBoardUnlocked(SECT_BOARD, {
-      highestMajorCleared: s.highestMajorCleared,
-      gongLevels: s.gongLevels,
-    }),
-  );
+  const sectFavor = useGameStore((s) => s.sectFavor);
+  const investSectFavor = useGameStore((s) => s.investSectFavor);
+  const sectBoardUnlocked = useGameStore((s) => isBoardUnlocked(SECT_BOARD, s));
   const [donate, setDonate] = useState<DonateKind | null>(null);
 
   const levelMaxed = sectLevel >= SECT_MAX_LEVEL;
@@ -127,6 +127,7 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
           </strong>
           <span>특전: 전투력 +{sectBuffPercent(sectLevel)}%</span>
         </div>
+        {levelMaxed && <p className="sect-title">직책: {GRANDMASTER_TITLE}</p>}
         <div className="exp-row">
           <img src="/ui/icon/icon-exp.webp" alt="" aria-hidden="true" className="exp-row-icon" />
           <div className="bar exp-bar" role="img" aria-label="문파 경험치">
@@ -150,7 +151,7 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
           <div className="sect-contribution-value">
             <span>사용 가능 기여도</span>
             <strong>{sectContributionPoints.toLocaleString()}</strong>
-            <small>삼재검법 2보 연마에 사용</small>
+            <small>문파 무공 연마·타 문파 교분에 사용</small>
           </div>
           <div className="sect-contribution-value">
             <span>누적 기여도</span>
@@ -230,6 +231,51 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
         <small>({SECT_BOARD.name})</small>
       </button>
       {!sectBoardUnlocked && <p className="muted small">{boardUnlockLabel(SECT_BOARD)}</p>}
+
+      <section className="card sect-exchange-card">
+        <h3>{GRANDMASTER_TITLE} · 타 문파 교류</h3>
+        <p className="muted">
+          {levelMaxed
+            ? `청운문 기여도를 바쳐 교분 ${SECT_FAVOR_TO_TRANSMIT.toLocaleString()}을 쌓으면 그 문파의 무공을 전수받습니다.`
+            : `청운문 Lv.${SECT_MAX_LEVEL}을 달성하면 ${GRANDMASTER_TITLE} 직책을 받아 타 문파와 교류할 수 있습니다.`}
+        </p>
+        <ul className="sect-exchange-list">
+          {OTHER_SECTS.map((sect) => {
+            const favor = sectFavor[sect.id] ?? 0;
+            const transmitted = favor >= SECT_FAVOR_TO_TRANSMIT;
+            const board = GONG_BOARDS.find((b) => b.id === sect.boardId)!;
+            return (
+              <li key={sect.id} className="setting-row">
+                <div>
+                  <strong>{sect.name}</strong>
+                  <p>
+                    {board.name} · 교분 {favor.toLocaleString()} /{' '}
+                    {SECT_FAVOR_TO_TRANSMIT.toLocaleString()}
+                  </p>
+                </div>
+                {transmitted ? (
+                  <button
+                    type="button"
+                    className="btn btn-travel"
+                    onClick={() => onOpenBoard(board.id)}
+                  >
+                    무공 보기
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="btn"
+                    disabled={!levelMaxed || sectContributionPoints <= 0}
+                    onClick={() => investSectFavor(sect.id)}
+                  >
+                    기여도 바치기
+                  </button>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </section>
 
       {donate && <DonateSheet kind={donate} onClose={() => setDonate(null)} />}
     </div>
