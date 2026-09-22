@@ -747,11 +747,10 @@ button:disabled {
   color: var(--text);
   font-size: 1rem;
   line-height: 1.25;
-  box-shadow: 0 0.125rem 0.25rem rgba(12, 9, 5, 0.24);
+  background-color: transparent;
   transition:
     transform 100ms ease-out,
-    filter 140ms ease-out,
-    box-shadow 140ms ease-out;
+    filter 140ms ease-out;
 }
 
 .btn:not(.btn-primary):not(.btn-ghost) {
@@ -781,19 +780,16 @@ button:disabled {
   background: transparent;
   border-color: transparent;
   color: inherit;
-  box-shadow: none;
 }
 
 .btn:disabled {
   opacity: 0.72;
   filter: grayscale(0.7) saturate(0.3) brightness(0.94);
-  box-shadow: none;
 }
 
 .btn:active:not(:disabled) {
   transform: translateY(1px);
   filter: brightness(0.92);
-  box-shadow: 0 0.0625rem 0.125rem rgba(12, 9, 5, 0.22);
 }
 
 /* 길게 누르기 버튼 — 텍스트 선택·확대·길게 누르기 메뉴가 끼어들지 않게 한다. */
@@ -1776,11 +1772,6 @@ dialog.sheet::backdrop {
   padding: 0 1rem;
 }
 
-.btn.stage-picker-return,
-.tower-entry > .btn {
-  background-color: transparent;
-}
-
 .stage-picker-help {
   color: var(--paper-muted);
   font-size: 0.75rem;
@@ -1993,12 +1984,7 @@ dialog.sheet::backdrop {
 
 .gong-card .btn:not(.btn-primary) {
   border-color: #9c7b42;
-  background-color: transparent;
   color: #f5dfb2;
-}
-
-.gong-card .btn-row > .btn {
-  background-color: transparent;
 }
 
 .gong-card-level {
@@ -2355,14 +2341,6 @@ dialog.sheet::backdrop {
 .sheet[aria-label='설정'] .save-backup > button:first-of-type {
   min-height: 2.75rem;
   padding: 0.25rem 0.5rem;
-  background-color: transparent;
-}
-
-.offline-report-card > .btn,
-.gear-tab .sticky-actions .btn,
-.sect-donate-card .btn,
-.sect-board-action {
-  background-color: transparent;
 }
 
 .gear-current-section {
@@ -3587,8 +3565,6 @@ dialog.sheet::backdrop {
 /* ---------- BattleTab P0/P1 후속 배선 ---------- */
 
 .battle-stage-select.btn-travel {
-  background: none;
-  box-shadow: none;
   border-color: transparent;
   border-image: url('/ui/button/btn-travel-jade.webp') 0 40 fill / 0 20px stretch;
 }
