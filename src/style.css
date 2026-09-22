@@ -3635,6 +3635,13 @@ dialog.sheet::backdrop {
   list-style: none;
 }
 
+.sect-exchange-actions {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
 .sect-exchange-list .btn {
   flex: none;
   width: 8rem;

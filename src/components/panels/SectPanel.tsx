@@ -13,6 +13,9 @@ import {
   GRANDMASTER_TITLE,
   OTHER_SECTS,
   SECT_FAVOR_TO_TRANSMIT,
+  SECT_GIFT_INTERVAL,
+  nextSectFavorMilestone,
+  SLOT_INFO,
 } from '../../game/store';
 import { Sheet } from '../Sheet';
 
@@ -244,24 +247,30 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
             const favor = sectFavor[sect.id] ?? 0;
             const transmitted = favor >= SECT_FAVOR_TO_TRANSMIT;
             const board = GONG_BOARDS.find((b) => b.id === sect.boardId)!;
+            const slotName = SLOT_INFO[sect.giftSlot].name.split('(')[0];
+            // 전수 뒤에는 다음 하사품까지의 진행(0 ~ SECT_GIFT_INTERVAL)을 보여 준다.
+            const progress = transmitted
+              ? `하사품 ${(SECT_GIFT_INTERVAL - (nextSectFavorMilestone(favor) - favor)).toLocaleString()} / ${SECT_GIFT_INTERVAL.toLocaleString()}`
+              : `교분 ${favor.toLocaleString()} / ${SECT_FAVOR_TO_TRANSMIT.toLocaleString()}`;
             return (
               <li key={sect.id} className="setting-row">
                 <div>
                   <strong>{sect.name}</strong>
                   <p>
-                    {board.name} · 교분 {favor.toLocaleString()} /{' '}
-                    {SECT_FAVOR_TO_TRANSMIT.toLocaleString()}
+                    {board.name} · {progress}
                   </p>
+                  <p className="muted small">보상: 신품 {slotName}</p>
                 </div>
-                {transmitted ? (
-                  <button
-                    type="button"
-                    className="btn btn-travel"
-                    onClick={() => onOpenBoard(board.id)}
-                  >
-                    무공 보기
-                  </button>
-                ) : (
+                <div className="sect-exchange-actions">
+                  {transmitted && (
+                    <button
+                      type="button"
+                      className="btn btn-travel"
+                      onClick={() => onOpenBoard(board.id)}
+                    >
+                      무공 보기
+                    </button>
+                  )}
                   <button
                     type="button"
                     className="btn"
@@ -270,11 +279,14 @@ export const SectPanel = ({ onOpenBoard }: { onOpenBoard: (boardId: string) => v
                   >
                     기여도 바치기
                   </button>
-                )}
+                </div>
               </li>
             );
           })}
         </ul>
+        <p className="muted small">
+          5개 문파의 무공을 모두 전수받으면 일대종사 신표(선품 머리)를 1회 받습니다.
+        </p>
       </section>
 
       {donate && <DonateSheet kind={donate} onClose={() => setDonate(null)} />}

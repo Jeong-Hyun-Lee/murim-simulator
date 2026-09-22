@@ -61,6 +61,11 @@ import {
   GRANDMASTER_TITLE,
   OTHER_SECTS,
   SECT_FAVOR_TO_TRANSMIT,
+  SECT_GIFT_INTERVAL,
+  GRANDMASTER_SEAL_SLOT,
+  sectGiftCount,
+  nextSectFavorMilestone,
+  allSectsTransmitted,
 } from './sectData';
 import {
   PULL_COST,
@@ -816,16 +821,32 @@ export const useGameStore = create<GameStoreState>((set, get) => {
       persist(get());
     },
 
-    // 일대종사(청운문 최대 레벨)만 가능. 전수 기준치까지 남은 만큼만 사용 가능 기여도에서 옮긴다.
+    // 일대종사(청운문 최대 레벨)만 가능. 다음 보상(전수·하사품)까지 남은 만큼만 사용 가능
+    // 기여도에서 옮기고, 보상에 닿으면 문파 상징 슬롯 신품을 준다. 5개 문파 전수를 처음 모두
+    // 마치면 일대종사 신표(선품)도 1회 준다 — 장구-시스템.md "신품·선품 획득 경로" 2절.
     investSectFavor: (sectId) => {
       const s = get();
-      if (s.sectLevel < SECT_MAX_LEVEL || !OTHER_SECTS.some((o) => o.id === sectId)) return;
+      const sect = OTHER_SECTS.find((o) => o.id === sectId);
+      if (s.sectLevel < SECT_MAX_LEVEL || !sect) return;
       const current = s.sectFavor[sectId] ?? 0;
-      const amount = Math.min(s.sectContributionPoints, SECT_FAVOR_TO_TRANSMIT - current);
+      const amount = Math.min(s.sectContributionPoints, nextSectFavorMilestone(current) - current);
       if (amount <= 0) return;
+      const sectFavor = { ...s.sectFavor, [sectId]: current + amount };
+      const items: GearItem[] = [];
+      const gifts = sectGiftCount(current + amount) - sectGiftCount(current);
+      for (let i = 0; i < gifts; i += 1) items.push(createGearItem(sect.giftSlot, '신품', s.level));
+      const sealEarned = !allSectsTransmitted(s.sectFavor) && allSectsTransmitted(sectFavor);
+      if (sealEarned) items.push(createGearItem(GRANDMASTER_SEAL_SLOT, '선품', s.level));
+      const messages = [
+        gifts > 0 &&
+          `${sect.name} ${current < SECT_FAVOR_TO_TRANSMIT ? '전수 보상' : '하사품'}: 신품 ${SLOT_INFO[sect.giftSlot].name}`,
+        sealEarned && `일대종사 신표: 선품 ${SLOT_INFO[GRANDMASTER_SEAL_SLOT].name}`,
+      ].filter(Boolean);
       set({
         sectContributionPoints: s.sectContributionPoints - amount,
-        sectFavor: { ...s.sectFavor, [sectId]: current + amount },
+        sectFavor,
+        ...(items.length > 0 && { inventory: [...s.inventory, ...items] }),
+        ...(messages.length > 0 && { toastMessage: messages.join(' · ') }),
       });
       persist(get());
     },
@@ -1351,6 +1372,9 @@ export {
   GRANDMASTER_TITLE,
   OTHER_SECTS,
   SECT_FAVOR_TO_TRANSMIT,
+  SECT_GIFT_INTERVAL,
+  sectGiftCount,
+  nextSectFavorMilestone,
 };
 export { PULL_COST, PULL_10_COST, HARD_PITY, GRADE_COLOR, gradeTier };
 export { DAILY_GOALS, MILESTONES, rewardText, todayString, TOWER_TURN_LIMIT, TOWER_UNLOCK_MAJOR };

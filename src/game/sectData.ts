@@ -5,6 +5,8 @@
 // 청운문 문파무공은 삼재검법 2보. 청운문 Lv50(일대종사) 이후 청운문 기여도를 타 문파에 바쳐
 // 교분을 쌓고, 기준치에 닿으면 그 문파의 무공 보드를 전수받는다(gongData.ts SECT_ART_BOARDS).
 
+import type { SlotId } from './gearData';
+
 export const SECT_NAME = '청운문';
 export const SECT_MAX_LEVEL = 50;
 export const CHI_PER_CONTRIBUTION = 1000;
@@ -40,16 +42,34 @@ export interface OtherSect {
   id: string;
   name: string;
   boardId: string; // 교분이 기준치에 닿으면 전수받는 무공 보드
+  giftSlot: SlotId; // 전수 보상·문파 하사품으로 받는 신품의 슬롯(문파 상징)
 }
 
 // wiki/concepts/문파-시스템.md "일대종사·타 문파 교류". 전수 기준치는 문파 공통.
 // ponytail: 기준치는 구현 후 조정 예정인 자리표시자.
 export const SECT_FAVOR_TO_TRANSMIT = 3000;
+// 전수 뒤 이만큼 교분을 더 쌓을 때마다 문파 하사품(신품) 1개.
+export const SECT_GIFT_INTERVAL = 2000;
+// 5개 문파 전수를 모두 마치면 1회 받는 일대종사 신표(선품)의 슬롯.
+export const GRANDMASTER_SEAL_SLOT: SlotId = 'head';
 
 export const OTHER_SECTS: OtherSect[] = [
-  { id: 'hwasan', name: '화산파', boardId: 'hwasan_maehwa' },
-  { id: 'mudang', name: '무당파', boardId: 'mudang_taeguk' },
-  { id: 'namgung', name: '남궁세가', boardId: 'namgung_changnyong' },
-  { id: 'gaebang', name: '개방', boardId: 'gaebang_hangnyong' },
-  { id: 'sorim', name: '소림사', boardId: 'sorim_baekbo' },
+  { id: 'hwasan', name: '화산파', boardId: 'hwasan_maehwa', giftSlot: 'weapon' },
+  { id: 'mudang', name: '무당파', boardId: 'mudang_taeguk', giftSlot: 'body' },
+  { id: 'namgung', name: '남궁세가', boardId: 'namgung_changnyong', giftSlot: 'neck' },
+  { id: 'gaebang', name: '개방', boardId: 'gaebang_hangnyong', giftSlot: 'foot' },
+  { id: 'sorim', name: '소림사', boardId: 'sorim_baekbo', giftSlot: 'arm' },
 ];
+
+// 교분 누적치로 지금까지 받았어야 할 신품 수(전수 보상 1 + 하사품).
+export const sectGiftCount = (favor: number): number =>
+  favor < SECT_FAVOR_TO_TRANSMIT
+    ? 0
+    : 1 + Math.floor((favor - SECT_FAVOR_TO_TRANSMIT) / SECT_GIFT_INTERVAL);
+
+// 다음 보상까지 채워야 하는 교분 누적치.
+export const nextSectFavorMilestone = (favor: number): number =>
+  SECT_FAVOR_TO_TRANSMIT + sectGiftCount(favor) * SECT_GIFT_INTERVAL;
+
+export const allSectsTransmitted = (sectFavor: Record<string, number>): boolean =>
+  OTHER_SECTS.every((o) => (sectFavor[o.id] ?? 0) >= SECT_FAVOR_TO_TRANSMIT);
