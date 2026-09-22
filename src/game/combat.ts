@@ -77,12 +77,13 @@ const MOB_NAMES: Record<number, string> = {
 
 // 스테이지-레벨링-기획서 10절 진행 곡선 재조정안(2026-09-13) — 챕터3(대30)까지 자동전투 약 하루.
 // 몬스터 세 스탯은 플레이어 스탯(레벨당 같은 비율)과 격차가 벌어지지 않게 비슷한 성장률로 두고,
+// 공격 성장률은 후반까지 내 방어력을 따라가도록 체력·방어보다 조금 높게 잡는다.
 // 경험치는 기초치만 낮춰 속도를 맞춘다. 내공·전 보상 곡선은 신규 무공 보드 비용과 맞물려 유지.
 const BASE_HP_1 = 45;
 const BASE_ATK_1 = 9;
 const BASE_DEF_1 = 3;
 const HP_GROWTH = 1.5;
-const ATK_GROWTH = 4 / 3;
+const ATK_GROWTH = 1.37;
 const DEF_GROWTH = 1.25;
 const BASE_EXP_1 = 6;
 const BASE_GOLD_1 = 10;
@@ -143,15 +144,16 @@ const MOB_VARIANT_NAMES: Record<number, Partial<Record<EnemyKind, string>>> = {
   30: { archer: '문의 그림자', elite: '선객의 잔상' },
 };
 
-// 종류별 가중치 — 소스테이지 기본 공식(§2.1) 위에 곱한다. 보스 값은 기존 배율을 그대로 옮긴 것.
+// 종류별 가중치 — 소스테이지 기본 공식(§2.1) 위에 곱한다. 적 한 대가 성장 곡선 위 플레이어 체력의
+// 약 2~13%를 깎도록 공격을 잡고, 처치가 늘어지지 않게 체력은 낮게 둔다.
 // 궁수는 잘 죽지만 아프게 때리고(유리 대포), 정예산적은 보스 앞을 막는 벽 역할이라 체력·방어가 높다.
 // 보상은 체력(=처치에 걸리는 시간)에 맞춰 잡아 특정 종류가 파밍 최적 구간이 되지 않게 한다 —
-// 궁수는 피해를 더 받는 대신 조금 이득(0.95/0.85), 정예산적은 보스 관문이라 조금 손해(1.5/1.6).
+// 졸개 대비 시간당 보상이 궁수 약 1.1배, 정예 약 0.94배, 보스 약 1.67배가 되도록 맞췄다.
 const KIND_WEIGHTS: Record<EnemyKind, { hp: number; atk: number; def: number; reward: number }> = {
-  grunt: { hp: 1.0, atk: 1.0, def: 1.0, reward: 1.0 },
-  archer: { hp: 0.85, atk: 1.35, def: 0.85, reward: 0.95 },
-  elite: { hp: 1.6, atk: 1.25, def: 1.3, reward: 1.5 },
-  boss: { hp: 3.0, atk: 2.0, def: 1.5, reward: 5.0 },
+  grunt: { hp: 0.7, atk: 1.3, def: 1.0, reward: 1.0 },
+  archer: { hp: 0.6, atk: 1.6, def: 0.85, reward: 0.95 },
+  elite: { hp: 1.0, atk: 1.0, def: 1.3, reward: 1.35 },
+  boss: { hp: 1.8, atk: 1.1, def: 1.5, reward: 4.3 },
 };
 
 export const monsterStats = (stage: StageId): UnitStats => {
@@ -293,8 +295,13 @@ export const expToNextLevel = (level: number): number => Math.round(40 * 1.15 **
 const DAMAGE_MIN_RATIO = 0.9;
 const DAMAGE_MAX_RATIO = 1.1;
 
+// 비율식 — 방어가 공격과 같으면 피해 절반. 뺄셈식(공격 − 방어)은 방어가 공격을 넘는 순간
+// 피해가 1로 고정돼 적 공격이 무의미해지므로 쓰지 않는다.
+export const baseDamage = (attackerAtk: number, defenderDef: number): number =>
+  Math.max(1, (attackerAtk * attackerAtk) / (attackerAtk + Math.max(0, defenderDef)));
+
 export const damage = (attackerAtk: number, defenderDef: number): number => {
-  const base = Math.max(1, attackerAtk - defenderDef);
+  const base = baseDamage(attackerAtk, defenderDef);
   const min = Math.max(1, Math.round(base * DAMAGE_MIN_RATIO));
   const max = Math.max(min, Math.round(base * DAMAGE_MAX_RATIO));
   return min + Math.floor(Math.random() * (max - min + 1));

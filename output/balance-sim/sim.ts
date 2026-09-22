@@ -10,6 +10,7 @@ import {
   isBossStage,
   playerStats,
   combatPower,
+  baseDamage,
   expToNextLevel,
   type StageId,
   type PlayerStats,
@@ -52,7 +53,7 @@ Math.random = () => {
 const env = (k: string, d: number) => Number(process.env[k] ?? d);
 // MON_FROM 대스테이지 이후 몬스터 성장률(대스테이지당). 기본값 = combat.ts의 1.5 / 4/3 / 1.25.
 const CODE_HP_GROWTH = 1.5;
-const CODE_ATK_GROWTH = 4 / 3;
+const CODE_ATK_GROWTH = 1.37;
 const CODE_DEF_GROWTH = 1.25;
 const MON_HP = env('MON_HP', CODE_HP_GROWTH);
 const MON_ATK = env('MON_ATK', CODE_ATK_GROWTH);
@@ -185,13 +186,13 @@ const rewardOf = (stage: StageId) => {
 // 한 번의 조우 결과(기대값): 이기면 처치 시간, 지면 쓰러질 때까지 시간.
 const fight = (p: PlayerStats, stage: StageId) => {
   const e = monster(stage);
-  const hit = Math.max(1, p.atk - e.def) * (1 + p.critChance * (p.critMultiplier - 1));
+  const hit = baseDamage(p.atk, e.def) * (1 + p.critChance * (p.critMultiplier - 1));
   const interval = Math.max(
     MIN_ATTACK_INTERVAL_MS,
     ATTACK_INTERVAL_MS / (1 + p.attackSpeedPercent / 100),
   );
   const killMs = Math.ceil(e.hp / hit) * interval;
-  const taken = Math.max(1, e.atk - p.def) * (1 - p.evasion);
+  const taken = baseDamage(e.atk, p.def) * (1 - p.evasion);
   const dieMs = Math.ceil(p.hp / taken) * ENEMY_ATTACK_INTERVAL_MS;
   return { win: killMs < dieMs, killMs, dieMs };
 };
@@ -252,6 +253,17 @@ const levelUp = () => {
 const milestones: string[] = [];
 const times: Record<number, number> = {};
 const hours = () => st.ms / 3_600_000;
+// 대스테이지 전투 체감 — 처치 타수와 적 한 대 피해(내 최대 체력 대비 %). 졸개 1·정예 9·보스 10.
+const tempo = (p: PlayerStats, major: number) =>
+  ([1, 9, 10] as const)
+    .map((sub) => {
+      const e = monster({ major, sub });
+      const hit = baseDamage(p.atk, e.def) * (1 + p.critChance * (p.critMultiplier - 1));
+      const pct = (baseDamage(e.atk, p.def) / p.hp) * 100;
+      return `${sub}:${Math.ceil(e.hp / hit)}타·${pct.toFixed(1)}%`;
+    })
+    .join(' ');
+
 const note = (label: string) => {
   const p = player();
   milestones.push(
@@ -262,6 +274,7 @@ const note = (label: string) => {
       `환골${st.rebirth}`,
       `전투력 ${combatPower(p).toLocaleString('en-US')}`,
       `무공 +${totalGongBuffPercent(st.gong).toFixed(0)}% ×${multiplier(st.gong).toFixed(2)}`,
+      tempo(p, Math.max(1, st.highest)),
     ].join(' | '),
   );
 };
