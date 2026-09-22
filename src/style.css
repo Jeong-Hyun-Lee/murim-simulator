@@ -362,7 +362,7 @@ button:disabled {
   gap: 0.375rem 0.5rem;
   white-space: nowrap;
   min-height: 2.75rem;
-  padding: 0.375rem 1.25rem;
+  padding: 0.375rem 2.25rem;
   background: linear-gradient(90deg, #201a12, #17130f);
   border: 0;
   border-bottom: 1px solid #504128;
@@ -1978,9 +1978,9 @@ dialog.sheet::backdrop {
   position: relative;
   overflow: hidden;
   padding-top: 2rem;
-  padding-right: 2.5rem;
-  padding-bottom: 2rem;
-  padding-left: 2.5rem;
+  padding-right: 3rem;
+  padding-bottom: 2.5rem;
+  padding-left: 3rem;
   --muted: var(--paper-muted);
   --warn: #a4571c;
   border-color: #7c6036;
