@@ -135,7 +135,12 @@ export const BattleSummaryBar = ({ onClick }: { onClick: () => void }) => {
         {status}
       </span>
       <span className="battle-summary-go">
-        <img src="/ui/label/label-battle-view.webp" alt="전투 보기" style={{ height: '1.1em' }} /> ›
+        <img
+          src="/ui/label/label-battle-view.webp"
+          alt="전투 보기"
+          style={{ height: '1.1em', display: 'block' }}
+        />
+        ›
       </span>
     </button>
   );

@@ -395,6 +395,9 @@ button:disabled {
 }
 
 .battle-summary-go {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
   margin-left: auto;
   color: #d9bb7b;
   font-size: 0.8125rem;
