@@ -1,0 +1,117 @@
+{
+  "frameCount": 58,
+  "cellSize": [768, 768],
+  "root": [200, 642],
+  "safeMargin": 32,
+  "fixedCharacterScale": 0.9752380952380952,
+  "motionFrameOffsets": {
+    "idle": [
+      [1, 0],
+      [7, 0],
+      [9, -1],
+      [9, -1],
+      [-2, 0],
+      [-2, 0],
+      [-2, 0],
+      [-1, 0],
+      [-1, 0],
+      [0, 0],
+      [1, 0],
+      [0, 0]
+    ]
+  },
+  "verificationNotes": {
+    "scaleReference": "idle and attack transition frames",
+    "preservedMotions": ["idle", "death"],
+    "preservedAttackDesign": true,
+    "regeneratedStrips": ["attack1-part3", "attack2-part3"],
+    "diagnosedCause": "separate four-frame generation strips painted the character at different camera scales; one shared runtime scale preserved that drift",
+    "v8FaceWidthEvidencePx": {
+      "idleRange": [138, 142],
+      "attack1StartRange": [138, 146],
+      "attack1StrikeRange": [86, 99],
+      "attack2StartRange": [141, 148],
+      "attack2StrikeRange": [74, 91]
+    },
+    "runtimeScale": 0.5,
+    "runtimeZoomLogic": false,
+    "v9FaceWidthEvidencePx": {
+      "idleRange": [138, 142],
+      "attack1StrikeFrames9To12": [125, 127, 123, 129],
+      "attack2StrikeFrames9To12": [90, 132, 124, 114],
+      "attack2Frame9Note": "face partially occluded; width underestimates head size"
+    },
+    "runtimeValidation": {
+      "idleToAttackScaleJump": false,
+      "attackPeakCaptured": true,
+      "idleHorizontalTravel": false,
+      "browserWarningsOrErrors": 0
+    }
+  },
+  "atlas": [4063, 3512],
+  "durationTotals": {
+    "idle": 960,
+    "attack1": 720,
+    "attack2": 720,
+    "death": 1080
+  },
+  "motionTransforms": {
+    "idle": {
+      "sourceRootX": 133.035,
+      "sourceGroundY": 612.0,
+      "sourceRootXFraction": 0.245,
+      "sourceGroundFraction": 0.845304,
+      "sourceStandingHeight": 438.0,
+      "requestedScale": 1.16895,
+      "appliedScale": 0.975238,
+      "standingHeight": 427.154
+    },
+    "attack1": {
+      "sourceRootX": 133.035,
+      "sourceGroundY": 610.0,
+      "sourceRootXFraction": 0.245,
+      "sourceGroundFraction": 0.842541,
+      "sourceStandingHeight": 431.0,
+      "requestedScale": 1.187935,
+      "appliedScale": 0.975238,
+      "standingHeight": 420.328
+    },
+    "attack2": {
+      "sourceRootX": 133.035,
+      "sourceGroundY": 612.0,
+      "sourceRootXFraction": 0.245,
+      "sourceGroundFraction": 0.845304,
+      "sourceStandingHeight": 496.0,
+      "requestedScale": 1.032258,
+      "appliedScale": 0.975238,
+      "standingHeight": 483.718
+    },
+    "death": {
+      "sourceRootX": 133.035,
+      "sourceGroundY": 654.0,
+      "sourceRootXFraction": 0.245,
+      "sourceGroundFraction": 0.903315,
+      "sourceStandingHeight": 531.0,
+      "requestedScale": 0.964218,
+      "appliedScale": 0.975238,
+      "standingHeight": 517.851
+    }
+  },
+  "sourceHashes": {
+    "idle-part1.png": "e7f8bb7da40aec06d3891caba6a416e98bc9ae3f87d8e3adc4deb3daeb7b737a",
+    "idle-part2.png": "2cc795482f32aaa658850c3d4c023763aed9d5731b78a5e9f0a3b5181a23ba37",
+    "idle-part3.png": "e02b775f71803c6caa5f664076cc40a16c78bc58d5951fbd226acb217c2596c3",
+    "attack1-part1.png": "2298cb95357ed667fc7cceaaed7d5d19b11b8c63165b44fb913f5f06e867f6fb",
+    "attack1-part2.png": "55f0366c311cb26ebd300f564ab4bfe70ef13f082e7ef230df3be6f2540e2d58",
+    "attack1-part3.png": "c1bed9c6f754d85a6e30f9aa8aace96426acc51771da3bda3c60317a1fa19a60",
+    "attack1-part4.png": "937d34bf8343e78fcccddff52bc37774e01928f771b0f71bf4ef0a3e7a6444b8",
+    "attack2-part1.png": "fb4179c467aaf3c65a5d2a0ec3b73a7f1140c08400635c09f21e709103c27334",
+    "attack2-part2.png": "6f2bebdaaedff7b258d7c54908a9577df962bc2a62c3b8ac620121cf24f07f06",
+    "attack2-part3.png": "182afc07cb13d06a69632ce15387ecacf7241784e457024c962302a416b48517",
+    "attack2-part4.png": "145b855a079fae2401df441d27aabd9b3fbe11f0f354611cbe81f375cf69ec6a",
+    "death-part1.png": "5562172f63be6579e6cd0ac4b17ffb30766ce125d0a23654a8e9af8404c9b2b3",
+    "death-part2.png": "473456404ce174c594ea24da0d81cb2b4dbb2a5137003e00aac8206655ffe3eb",
+    "death-part3.png": "085aaef428818ad07d22859e1703c03005007448aabd01ce909044fa46ba8075",
+    "death-part4.png": "d801657eba77a4d058d7ecb48bb8eefa9cd2eaf65cf2d955b14108c60ddaaa29"
+  }
+}

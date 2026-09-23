@@ -641,7 +641,7 @@ EOF
   grid-area: char;
   width: 96px;
   height: 96px;
-  background-image: url("/sprites/character/mokhyeon-idle-sheet.png");
+  background-image: url("/sprites/character/mokhyeon-idle-v2-gear-doll.png");
   background-position: 0 0;
   background-size: 576px 96px;
   image-rendering: pixelated;

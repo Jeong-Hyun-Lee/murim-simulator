@@ -1,4 +1,4 @@
-// Aseprite json-array 스프라이트시트(mokhyeon-idle-sheet.json 등)를 PIXI.AnimatedSprite로 로드.
+// Aseprite json-array 스프라이트시트를 PIXI.AnimatedSprite로 로드.
 import { AnimatedSprite, Assets, Rectangle, Spritesheet, Texture } from 'pixi.js';
 
 interface AsepriteFrame {

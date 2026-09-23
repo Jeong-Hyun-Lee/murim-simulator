@@ -30,7 +30,7 @@
 
 ### 캐릭터 이미지
 
-`assets/sprites/character/mokhyeon-idle-sheet.png`의 첫 프레임(0,0,256,256)을 정적 이미지로 재사용한다(신규 에셋 제작 없음, 96×96 표시 크기로 축소). 호흡 애니메이션은 이번 범위에서 제외 — 정지 프레임 1장만 사용.
+현재 적용 중인 `assets/sprites/character/mokhyeon-idle-v2-gear-doll.png` 정적 이미지를 96×96 표시 크기로 축소해 사용한다. 호흡 애니메이션은 이번 범위에서 제외한다.
 
 ### 슬롯 배치 (3열 그리드, 해부학적 대응)
 
