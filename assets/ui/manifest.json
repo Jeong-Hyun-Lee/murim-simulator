@@ -3416,5 +3416,50 @@
     },
     "slice": null,
     "priority": "P1"
+  },
+  {
+    "id": "btn-goals",
+    "file": "button/btn-goals.webp",
+    "kind": "fixed",
+    "cssSize": {
+      "w": 178,
+      "h": 37
+    },
+    "sourceSize": {
+      "w": 355,
+      "h": 73
+    },
+    "slice": null,
+    "priority": "P0"
+  },
+  {
+    "id": "btn-rebirth-ready",
+    "file": "button/btn-rebirth-ready.webp",
+    "kind": "fixed",
+    "cssSize": {
+      "w": 225,
+      "h": 43
+    },
+    "sourceSize": {
+      "w": 449,
+      "h": 85
+    },
+    "slice": null,
+    "priority": "P1"
+  },
+  {
+    "id": "btn-back-my-info",
+    "file": "button/btn-back-my-info.webp",
+    "kind": "fixed",
+    "cssSize": {
+      "w": 44,
+      "h": 43
+    },
+    "sourceSize": {
+      "w": 112,
+      "h": 110
+    },
+    "slice": null,
+    "priority": "P0"
   }
 ]

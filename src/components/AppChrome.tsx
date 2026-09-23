@@ -209,9 +209,14 @@ export const FullView = ({
   return (
     <section className="full-view" aria-label={title}>
       <div className="full-view-header">
-        <button ref={backRef} type="button" className="btn btn-ghost" onClick={onBack}>
-          <img src="/ui/icon/icon-back.webp" alt="" aria-hidden="true" className="btn-close-icon" />
-          뒤로
+        <button
+          ref={backRef}
+          type="button"
+          className="btn btn-ghost full-view-back"
+          aria-label="뒤로"
+          onClick={onBack}
+        >
+          <img src="/ui/button/btn-back-my-info.webp" alt="" aria-hidden="true" />
         </button>
         <h2>{title}</h2>
       </div>

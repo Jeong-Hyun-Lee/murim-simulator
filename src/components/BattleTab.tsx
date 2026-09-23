@@ -249,24 +249,22 @@ export const BattleTab = ({ onNavigate }: Props) => {
             등반 위치 {stageLabel(farmReturnStage)}
           </span>
         )}
-        <button type="button" className="battle-goal-button" onClick={() => onNavigate('goals')}>
-          <img src="/ui/label/label-goals.webp" alt="수련 목표" style={{ height: '1.1em' }} />
-          {claimableGoals > 0 && <span className="goal-count"> {claimableGoals}</span>}
+        <button
+          type="button"
+          className="battle-goal-button"
+          aria-label="수련 목표"
+          onClick={() => onNavigate('goals')}
+        >
+          {claimableGoals > 0 && <span className="goal-count">{claimableGoals}</span>}
         </button>
         {canRebirth && (
           <button
             type="button"
             className="battle-event-button"
+            aria-label="환골탈태 가능"
             aria-haspopup="dialog"
             onClick={() => setRebirthOpen(true)}
-          >
-            <img
-              src="/ui/label/title-rebirth-ready.webp"
-              alt="환골탈태 가능"
-              style={{ height: '1.1em', verticalAlign: '-0.2em' }}
-            />{' '}
-            ›
-          </button>
+          />
         )}
       </div>
 
