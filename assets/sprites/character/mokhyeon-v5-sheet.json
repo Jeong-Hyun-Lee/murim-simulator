@@ -4,16 +4,16 @@
       "frame": {
         "x": 0,
         "y": 0,
-        "w": 493,
-        "h": 426
+        "w": 508,
+        "h": 535
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 24,
-        "y": 241,
-        "w": 493,
-        "h": 426
+        "x": 89,
+        "y": 97,
+        "w": 508,
+        "h": 535
       },
       "sourceSize": {
         "w": 768,
@@ -27,18 +27,18 @@
     },
     "mokhyeon/idle/1": {
       "frame": {
-        "x": 493,
+        "x": 508,
         "y": 0,
-        "w": 472,
-        "h": 499
+        "w": 504,
+        "h": 535
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 188,
-        "w": 472,
-        "h": 499
+        "x": 89,
+        "y": 97,
+        "w": 504,
+        "h": 535
       },
       "sourceSize": {
         "w": 768,
@@ -52,18 +52,18 @@
     },
     "mokhyeon/idle/2": {
       "frame": {
-        "x": 965,
+        "x": 1012,
         "y": 0,
-        "w": 499,
-        "h": 485
+        "w": 513,
+        "h": 536
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 195,
-        "w": 499,
-        "h": 485
+        "x": 81,
+        "y": 96,
+        "w": 513,
+        "h": 536
       },
       "sourceSize": {
         "w": 768,
@@ -77,18 +77,18 @@
     },
     "mokhyeon/idle/3": {
       "frame": {
-        "x": 1464,
+        "x": 1525,
         "y": 0,
-        "w": 462,
-        "h": 495
+        "w": 497,
+        "h": 535
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 175,
-        "w": 462,
-        "h": 495
+        "x": 90,
+        "y": 97,
+        "w": 497,
+        "h": 535
       },
       "sourceSize": {
         "w": 768,
@@ -102,18 +102,18 @@
     },
     "mokhyeon/idle/4": {
       "frame": {
-        "x": 1926,
+        "x": 2022,
         "y": 0,
-        "w": 475,
-        "h": 482
+        "w": 512,
+        "h": 497
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 198,
-        "w": 475,
-        "h": 482
+        "x": 108,
+        "y": 113,
+        "w": 512,
+        "h": 497
       },
       "sourceSize": {
         "w": 768,
@@ -127,18 +127,18 @@
     },
     "mokhyeon/idle/5": {
       "frame": {
-        "x": 2401,
+        "x": 2534,
         "y": 0,
-        "w": 458,
-        "h": 488
+        "w": 513,
+        "h": 498
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 12,
-        "y": 192,
-        "w": 458,
-        "h": 488
+        "x": 100,
+        "y": 112,
+        "w": 513,
+        "h": 498
       },
       "sourceSize": {
         "w": 768,
@@ -152,18 +152,18 @@
     },
     "mokhyeon/idle/6": {
       "frame": {
-        "x": 2859,
+        "x": 3047,
         "y": 0,
-        "w": 487,
-        "h": 508
+        "w": 510,
+        "h": 494
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 5,
-        "y": 176,
-        "w": 487,
-        "h": 508
+        "x": 89,
+        "y": 116,
+        "w": 510,
+        "h": 494
       },
       "sourceSize": {
         "w": 768,
@@ -177,18 +177,18 @@
     },
     "mokhyeon/idle/7": {
       "frame": {
-        "x": 3346,
+        "x": 3557,
         "y": 0,
-        "w": 488,
-        "h": 442
+        "w": 492,
+        "h": 492
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 15,
-        "y": 226,
-        "w": 488,
-        "h": 442
+        "x": 97,
+        "y": 118,
+        "w": 492,
+        "h": 492
       },
       "sourceSize": {
         "w": 768,
@@ -203,17 +203,17 @@
     "mokhyeon/idle/8": {
       "frame": {
         "x": 0,
-        "y": 508,
-        "w": 477,
-        "h": 511
+        "y": 536,
+        "w": 521,
+        "h": 557
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 173,
-        "w": 477,
-        "h": 511
+        "x": 83,
+        "y": 90,
+        "w": 521,
+        "h": 557
       },
       "sourceSize": {
         "w": 768,
@@ -227,18 +227,18 @@
     },
     "mokhyeon/idle/9": {
       "frame": {
-        "x": 477,
-        "y": 508,
-        "w": 439,
-        "h": 476
+        "x": 521,
+        "y": 536,
+        "w": 509,
+        "h": 556
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 186,
-        "w": 439,
-        "h": 476
+        "x": 92,
+        "y": 91,
+        "w": 509,
+        "h": 556
       },
       "sourceSize": {
         "w": 768,
@@ -252,18 +252,18 @@
     },
     "mokhyeon/idle/10": {
       "frame": {
-        "x": 916,
-        "y": 508,
-        "w": 508,
-        "h": 455
+        "x": 1030,
+        "y": 536,
+        "w": 516,
+        "h": 556
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 5,
-        "y": 216,
-        "w": 508,
-        "h": 455
+        "x": 93,
+        "y": 91,
+        "w": 516,
+        "h": 556
       },
       "sourceSize": {
         "w": 768,
@@ -277,18 +277,18 @@
     },
     "mokhyeon/idle/11": {
       "frame": {
-        "x": 1424,
-        "y": 508,
-        "w": 508,
-        "h": 485
+        "x": 1546,
+        "y": 536,
+        "w": 491,
+        "h": 557
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 1,
-        "y": 184,
-        "w": 508,
-        "h": 485
+        "x": 94,
+        "y": 90,
+        "w": 491,
+        "h": 557
       },
       "sourceSize": {
         "w": 768,
@@ -302,18 +302,18 @@
     },
     "mokhyeon/attack1/0": {
       "frame": {
-        "x": 1932,
-        "y": 508,
-        "w": 480,
-        "h": 483
+        "x": 2037,
+        "y": 536,
+        "w": 592,
+        "h": 518
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 193,
-        "w": 480,
-        "h": 483
+        "x": 110,
+        "y": 114,
+        "w": 592,
+        "h": 518
       },
       "sourceSize": {
         "w": 768,
@@ -327,18 +327,18 @@
     },
     "mokhyeon/attack1/1": {
       "frame": {
-        "x": 2412,
-        "y": 508,
-        "w": 397,
-        "h": 475
+        "x": 2629,
+        "y": 536,
+        "w": 560,
+        "h": 518
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 195,
-        "w": 397,
-        "h": 475
+        "x": 101,
+        "y": 114,
+        "w": 560,
+        "h": 518
       },
       "sourceSize": {
         "w": 768,
@@ -352,18 +352,18 @@
     },
     "mokhyeon/attack1/2": {
       "frame": {
-        "x": 2809,
-        "y": 508,
-        "w": 387,
-        "h": 433
+        "x": 3189,
+        "y": 536,
+        "w": 528,
+        "h": 518
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 239,
-        "w": 387,
-        "h": 433
+        "x": 99,
+        "y": 114,
+        "w": 528,
+        "h": 518
       },
       "sourceSize": {
         "w": 768,
@@ -377,18 +377,18 @@
     },
     "mokhyeon/attack1/3": {
       "frame": {
-        "x": 3196,
-        "y": 508,
-        "w": 408,
-        "h": 452
+        "x": 0,
+        "y": 1093,
+        "w": 527,
+        "h": 553
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 229,
-        "w": 408,
-        "h": 452
+        "x": 86,
+        "y": 79,
+        "w": 527,
+        "h": 553
       },
       "sourceSize": {
         "w": 768,
@@ -402,18 +402,18 @@
     },
     "mokhyeon/attack1/4": {
       "frame": {
-        "x": 3604,
-        "y": 508,
-        "w": 388,
-        "h": 438
+        "x": 527,
+        "y": 1093,
+        "w": 527,
+        "h": 553
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 239,
-        "w": 388,
-        "h": 438
+        "x": 74,
+        "y": 97,
+        "w": 527,
+        "h": 553
       },
       "sourceSize": {
         "w": 768,
@@ -427,18 +427,18 @@
     },
     "mokhyeon/attack1/5": {
       "frame": {
-        "x": 0,
-        "y": 1019,
-        "w": 483,
-        "h": 396
+        "x": 1054,
+        "y": 1093,
+        "w": 591,
+        "h": 496
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 273,
-        "w": 483,
-        "h": 396
+        "x": 56,
+        "y": 154,
+        "w": 591,
+        "h": 496
       },
       "sourceSize": {
         "w": 768,
@@ -452,18 +452,18 @@
     },
     "mokhyeon/attack1/6": {
       "frame": {
-        "x": 483,
-        "y": 1019,
-        "w": 518,
-        "h": 416
+        "x": 1645,
+        "y": 1093,
+        "w": 634,
+        "h": 462
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 257,
-        "w": 518,
-        "h": 416
+        "x": 32,
+        "y": 189,
+        "w": 634,
+        "h": 462
       },
       "sourceSize": {
         "w": 768,
@@ -477,18 +477,18 @@
     },
     "mokhyeon/attack1/7": {
       "frame": {
-        "x": 1001,
-        "y": 1019,
-        "w": 499,
-        "h": 379
+        "x": 2279,
+        "y": 1093,
+        "w": 609,
+        "h": 475
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 280,
-        "w": 499,
-        "h": 379
+        "x": 34,
+        "y": 175,
+        "w": 609,
+        "h": 475
       },
       "sourceSize": {
         "w": 768,
@@ -502,18 +502,18 @@
     },
     "mokhyeon/attack1/8": {
       "frame": {
-        "x": 1500,
-        "y": 1019,
-        "w": 487,
-        "h": 371
+        "x": 2888,
+        "y": 1093,
+        "w": 538,
+        "h": 404
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 285,
-        "w": 487,
-        "h": 371
+        "x": 109,
+        "y": 129,
+        "w": 538,
+        "h": 404
       },
       "sourceSize": {
         "w": 768,
@@ -527,18 +527,18 @@
     },
     "mokhyeon/attack1/9": {
       "frame": {
-        "x": 1987,
-        "y": 1019,
-        "w": 475,
-        "h": 373
+        "x": 3426,
+        "y": 1093,
+        "w": 525,
+        "h": 343
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 275,
-        "w": 475,
-        "h": 373
+        "x": 103,
+        "y": 190,
+        "w": 525,
+        "h": 343
       },
       "sourceSize": {
         "w": 768,
@@ -552,18 +552,18 @@
     },
     "mokhyeon/attack1/10": {
       "frame": {
-        "x": 2462,
-        "y": 1019,
-        "w": 490,
-        "h": 483
+        "x": 0,
+        "y": 1646,
+        "w": 519,
+        "h": 353
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 188,
-        "w": 490,
-        "h": 483
+        "x": 103,
+        "y": 180,
+        "w": 519,
+        "h": 353
       },
       "sourceSize": {
         "w": 768,
@@ -577,18 +577,18 @@
     },
     "mokhyeon/attack1/11": {
       "frame": {
-        "x": 2952,
-        "y": 1019,
-        "w": 462,
-        "h": 478
+        "x": 519,
+        "y": 1646,
+        "w": 478,
+        "h": 338
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 181,
-        "w": 462,
-        "h": 478
+        "x": 113,
+        "y": 196,
+        "w": 478,
+        "h": 338
       },
       "sourceSize": {
         "w": 768,
@@ -602,18 +602,18 @@
     },
     "mokhyeon/attack1/12": {
       "frame": {
-        "x": 3414,
-        "y": 1019,
-        "w": 483,
-        "h": 458
+        "x": 997,
+        "y": 1646,
+        "w": 643,
+        "h": 504
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 214,
-        "w": 483,
-        "h": 458
+        "x": 62,
+        "y": 106,
+        "w": 643,
+        "h": 504
       },
       "sourceSize": {
         "w": 768,
@@ -627,18 +627,18 @@
     },
     "mokhyeon/attack1/13": {
       "frame": {
-        "x": 0,
-        "y": 1502,
-        "w": 475,
-        "h": 485
+        "x": 1640,
+        "y": 1646,
+        "w": 616,
+        "h": 527
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 197,
-        "w": 475,
-        "h": 485
+        "x": 71,
+        "y": 87,
+        "w": 616,
+        "h": 527
       },
       "sourceSize": {
         "w": 768,
@@ -652,18 +652,18 @@
     },
     "mokhyeon/attack1/14": {
       "frame": {
-        "x": 475,
-        "y": 1502,
-        "w": 491,
-        "h": 488
+        "x": 2256,
+        "y": 1646,
+        "w": 600,
+        "h": 539
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 2,
-        "y": 191,
-        "w": 491,
-        "h": 488
+        "x": 57,
+        "y": 77,
+        "w": 600,
+        "h": 539
       },
       "sourceSize": {
         "w": 768,
@@ -677,18 +677,18 @@
     },
     "mokhyeon/attack1/15": {
       "frame": {
-        "x": 966,
-        "y": 1502,
-        "w": 488,
-        "h": 480
+        "x": 2856,
+        "y": 1646,
+        "w": 595,
+        "h": 539
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 194,
-        "w": 488,
-        "h": 480
+        "x": 58,
+        "y": 77,
+        "w": 595,
+        "h": 539
       },
       "sourceSize": {
         "w": 768,
@@ -702,18 +702,18 @@
     },
     "mokhyeon/attack2/0": {
       "frame": {
-        "x": 1454,
-        "y": 1502,
-        "w": 493,
-        "h": 467
+        "x": 3451,
+        "y": 1646,
+        "w": 557,
+        "h": 466
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 207,
-        "w": 493,
-        "h": 467
+        "x": 96,
+        "y": 164,
+        "w": 557,
+        "h": 466
       },
       "sourceSize": {
         "w": 768,
@@ -727,18 +727,18 @@
     },
     "mokhyeon/attack2/1": {
       "frame": {
-        "x": 1947,
-        "y": 1502,
-        "w": 414,
-        "h": 493
+        "x": 0,
+        "y": 2185,
+        "w": 522,
+        "h": 442
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 179,
-        "w": 414,
-        "h": 493
+        "x": 129,
+        "y": 189,
+        "w": 522,
+        "h": 442
       },
       "sourceSize": {
         "w": 768,
@@ -752,18 +752,18 @@
     },
     "mokhyeon/attack2/2": {
       "frame": {
-        "x": 2361,
-        "y": 1502,
-        "w": 414,
-        "h": 491
+        "x": 522,
+        "y": 2185,
+        "w": 517,
+        "h": 409
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 192,
-        "w": 414,
-        "h": 491
+        "x": 150,
+        "y": 223,
+        "w": 517,
+        "h": 409
       },
       "sourceSize": {
         "w": 768,
@@ -777,18 +777,18 @@
     },
     "mokhyeon/attack2/3": {
       "frame": {
-        "x": 2775,
-        "y": 1502,
-        "w": 386,
-        "h": 495
+        "x": 1039,
+        "y": 2185,
+        "w": 357,
+        "h": 365
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 184,
-        "w": 386,
-        "h": 495
+        "x": 190,
+        "y": 266,
+        "w": 357,
+        "h": 365
       },
       "sourceSize": {
         "w": 768,
@@ -802,18 +802,18 @@
     },
     "mokhyeon/attack2/4": {
       "frame": {
-        "x": 3161,
-        "y": 1502,
-        "w": 472,
-        "h": 498
+        "x": 1396,
+        "y": 2185,
+        "w": 442,
+        "h": 327
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 8,
-        "y": 206,
-        "w": 472,
-        "h": 498
+        "x": 93,
+        "y": 312,
+        "w": 442,
+        "h": 327
       },
       "sourceSize": {
         "w": 768,
@@ -827,18 +827,18 @@
     },
     "mokhyeon/attack2/5": {
       "frame": {
-        "x": 0,
-        "y": 2000,
-        "w": 483,
-        "h": 417
+        "x": 1838,
+        "y": 2185,
+        "w": 469,
+        "h": 366
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 258,
-        "w": 483,
-        "h": 417
+        "x": 97,
+        "y": 275,
+        "w": 469,
+        "h": 366
       },
       "sourceSize": {
         "w": 768,
@@ -852,18 +852,18 @@
     },
     "mokhyeon/attack2/6": {
       "frame": {
-        "x": 483,
-        "y": 2000,
-        "w": 490,
-        "h": 473
+        "x": 2307,
+        "y": 2185,
+        "w": 455,
+        "h": 433
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 196,
-        "w": 490,
-        "h": 473
+        "x": 70,
+        "y": 210,
+        "w": 455,
+        "h": 433
       },
       "sourceSize": {
         "w": 768,
@@ -877,18 +877,18 @@
     },
     "mokhyeon/attack2/7": {
       "frame": {
-        "x": 973,
-        "y": 2000,
-        "w": 434,
-        "h": 435
+        "x": 2762,
+        "y": 2185,
+        "w": 513,
+        "h": 551
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 220,
-        "w": 434,
-        "h": 435
+        "x": 32,
+        "y": 91,
+        "w": 513,
+        "h": 551
       },
       "sourceSize": {
         "w": 768,
@@ -902,18 +902,18 @@
     },
     "mokhyeon/attack2/8": {
       "frame": {
-        "x": 1407,
-        "y": 2000,
-        "w": 464,
-        "h": 407
+        "x": 3275,
+        "y": 2185,
+        "w": 391,
+        "h": 389
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 241,
-        "w": 464,
-        "h": 407
+        "x": 124,
+        "y": 183,
+        "w": 391,
+        "h": 389
       },
       "sourceSize": {
         "w": 768,
@@ -927,18 +927,18 @@
     },
     "mokhyeon/attack2/9": {
       "frame": {
-        "x": 1871,
-        "y": 2000,
-        "w": 480,
-        "h": 469
+        "x": 3666,
+        "y": 2185,
+        "w": 393,
+        "h": 378
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 193,
-        "w": 480,
-        "h": 469
+        "x": 137,
+        "y": 196,
+        "w": 393,
+        "h": 378
       },
       "sourceSize": {
         "w": 768,
@@ -952,18 +952,18 @@
     },
     "mokhyeon/attack2/10": {
       "frame": {
-        "x": 2351,
-        "y": 2000,
-        "w": 491,
-        "h": 406
+        "x": 0,
+        "y": 2736,
+        "w": 372,
+        "h": 374
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 261,
-        "w": 491,
-        "h": 406
+        "x": 149,
+        "y": 200,
+        "w": 372,
+        "h": 374
       },
       "sourceSize": {
         "w": 768,
@@ -977,18 +977,18 @@
     },
     "mokhyeon/attack2/11": {
       "frame": {
-        "x": 2842,
-        "y": 2000,
-        "w": 492,
-        "h": 409
+        "x": 372,
+        "y": 2736,
+        "w": 332,
+        "h": 379
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 252,
-        "w": 492,
-        "h": 409
+        "x": 142,
+        "y": 195,
+        "w": 332,
+        "h": 379
       },
       "sourceSize": {
         "w": 768,
@@ -1002,18 +1002,18 @@
     },
     "mokhyeon/attack2/12": {
       "frame": {
-        "x": 3334,
-        "y": 2000,
-        "w": 457,
-        "h": 470
+        "x": 704,
+        "y": 2736,
+        "w": 476,
+        "h": 527
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 1,
-        "y": 195,
-        "w": 457,
-        "h": 470
+        "x": 86,
+        "y": 91,
+        "w": 476,
+        "h": 527
       },
       "sourceSize": {
         "w": 768,
@@ -1027,18 +1027,18 @@
     },
     "mokhyeon/attack2/13": {
       "frame": {
-        "x": 0,
-        "y": 2473,
-        "w": 489,
-        "h": 496
+        "x": 1180,
+        "y": 2736,
+        "w": 511,
+        "h": 422
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 13,
-        "y": 182,
-        "w": 489,
-        "h": 496
+        "x": 73,
+        "y": 195,
+        "w": 511,
+        "h": 422
       },
       "sourceSize": {
         "w": 768,
@@ -1052,18 +1052,18 @@
     },
     "mokhyeon/attack2/14": {
       "frame": {
-        "x": 489,
-        "y": 2473,
-        "w": 456,
-        "h": 442
+        "x": 1691,
+        "y": 2736,
+        "w": 515,
+        "h": 398
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 15,
-        "y": 220,
-        "w": 456,
-        "h": 442
+        "x": 80,
+        "y": 222,
+        "w": 515,
+        "h": 398
       },
       "sourceSize": {
         "w": 768,
@@ -1077,18 +1077,18 @@
     },
     "mokhyeon/attack2/15": {
       "frame": {
-        "x": 945,
-        "y": 2473,
-        "w": 442,
-        "h": 438
+        "x": 2206,
+        "y": 2736,
+        "w": 455,
+        "h": 436
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 11,
-        "y": 227,
-        "w": 442,
-        "h": 438
+        "x": 108,
+        "y": 182,
+        "w": 455,
+        "h": 436
       },
       "sourceSize": {
         "w": 768,
@@ -1102,18 +1102,18 @@
     },
     "mokhyeon/death/0": {
       "frame": {
-        "x": 1387,
-        "y": 2473,
-        "w": 479,
-        "h": 498
+        "x": 2661,
+        "y": 2736,
+        "w": 528,
+        "h": 524
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 165,
-        "w": 479,
-        "h": 498
+        "x": 74,
+        "y": 109,
+        "w": 528,
+        "h": 524
       },
       "sourceSize": {
         "w": 768,
@@ -1127,18 +1127,18 @@
     },
     "mokhyeon/death/1": {
       "frame": {
-        "x": 1866,
-        "y": 2473,
-        "w": 432,
-        "h": 415
+        "x": 3189,
+        "y": 2736,
+        "w": 550,
+        "h": 511
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 251,
-        "w": 432,
-        "h": 415
+        "x": 48,
+        "y": 122,
+        "w": 550,
+        "h": 511
       },
       "sourceSize": {
         "w": 768,
@@ -1152,18 +1152,18 @@
     },
     "mokhyeon/death/2": {
       "frame": {
-        "x": 2298,
-        "y": 2473,
-        "w": 419,
-        "h": 408
+        "x": 0,
+        "y": 3263,
+        "w": 519,
+        "h": 469
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 254,
-        "w": 419,
-        "h": 408
+        "x": 65,
+        "y": 165,
+        "w": 519,
+        "h": 469
       },
       "sourceSize": {
         "w": 768,
@@ -1177,18 +1177,18 @@
     },
     "mokhyeon/death/3": {
       "frame": {
-        "x": 2717,
-        "y": 2473,
-        "w": 500,
-        "h": 461
+        "x": 519,
+        "y": 3263,
+        "w": 497,
+        "h": 387
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 193,
-        "w": 500,
-        "h": 461
+        "x": 69,
+        "y": 242,
+        "w": 497,
+        "h": 387
       },
       "sourceSize": {
         "w": 768,
@@ -1202,18 +1202,18 @@
     },
     "mokhyeon/death/4": {
       "frame": {
-        "x": 3217,
-        "y": 2473,
-        "w": 461,
-        "h": 303
+        "x": 1016,
+        "y": 3263,
+        "w": 450,
+        "h": 391
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 354,
-        "w": 461,
-        "h": 303
+        "x": 94,
+        "y": 158,
+        "w": 450,
+        "h": 391
       },
       "sourceSize": {
         "w": 768,
@@ -1227,18 +1227,18 @@
     },
     "mokhyeon/death/5": {
       "frame": {
-        "x": 0,
-        "y": 2971,
-        "w": 463,
-        "h": 368
+        "x": 1466,
+        "y": 3263,
+        "w": 502,
+        "h": 384
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 301,
-        "w": 463,
-        "h": 368
+        "x": 47,
+        "y": 178,
+        "w": 502,
+        "h": 384
       },
       "sourceSize": {
         "w": 768,
@@ -1252,18 +1252,18 @@
     },
     "mokhyeon/death/6": {
       "frame": {
-        "x": 463,
-        "y": 2971,
-        "w": 444,
-        "h": 265
+        "x": 1968,
+        "y": 3263,
+        "w": 514,
+        "h": 351
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 401,
-        "w": 444,
-        "h": 265
+        "x": 35,
+        "y": 214,
+        "w": 514,
+        "h": 351
       },
       "sourceSize": {
         "w": 768,
@@ -1277,18 +1277,18 @@
     },
     "mokhyeon/death/7": {
       "frame": {
-        "x": 907,
-        "y": 2971,
-        "w": 421,
-        "h": 291
+        "x": 2482,
+        "y": 3263,
+        "w": 526,
+        "h": 289
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 372,
-        "w": 421,
-        "h": 291
+        "x": 32,
+        "y": 281,
+        "w": 526,
+        "h": 289
       },
       "sourceSize": {
         "w": 768,
@@ -1302,18 +1302,18 @@
     },
     "mokhyeon/death/8": {
       "frame": {
-        "x": 1328,
-        "y": 2971,
-        "w": 461,
-        "h": 295
+        "x": 3008,
+        "y": 3263,
+        "w": 385,
+        "h": 342
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 370,
-        "w": 461,
-        "h": 295
+        "x": 128,
+        "y": 201,
+        "w": 385,
+        "h": 342
       },
       "sourceSize": {
         "w": 768,
@@ -1327,18 +1327,18 @@
     },
     "mokhyeon/death/9": {
       "frame": {
-        "x": 1789,
-        "y": 2971,
-        "w": 543,
-        "h": 415
+        "x": 3393,
+        "y": 3263,
+        "w": 428,
+        "h": 302
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 253,
-        "w": 543,
-        "h": 415
+        "x": 107,
+        "y": 249,
+        "w": 428,
+        "h": 302
       },
       "sourceSize": {
         "w": 768,
@@ -1352,18 +1352,18 @@
     },
     "mokhyeon/death/10": {
       "frame": {
-        "x": 2332,
-        "y": 2971,
-        "w": 498,
-        "h": 306
+        "x": 0,
+        "y": 3732,
+        "w": 445,
+        "h": 224
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 368,
-        "w": 498,
-        "h": 306
+        "x": 97,
+        "y": 331,
+        "w": 445,
+        "h": 224
       },
       "sourceSize": {
         "w": 768,
@@ -1377,18 +1377,18 @@
     },
     "mokhyeon/death/11": {
       "frame": {
-        "x": 2830,
-        "y": 2971,
-        "w": 465,
-        "h": 257
+        "x": 445,
+        "y": 3732,
+        "w": 453,
+        "h": 197
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 395,
-        "w": 465,
-        "h": 257
+        "x": 81,
+        "y": 364,
+        "w": 453,
+        "h": 197
       },
       "sourceSize": {
         "w": 768,
@@ -1402,18 +1402,18 @@
     },
     "mokhyeon/death/12": {
       "frame": {
-        "x": 3295,
-        "y": 2971,
-        "w": 515,
-        "h": 273
+        "x": 898,
+        "y": 3732,
+        "w": 505,
+        "h": 247
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 382,
-        "w": 515,
-        "h": 273
+        "x": 78,
+        "y": 283,
+        "w": 505,
+        "h": 247
       },
       "sourceSize": {
         "w": 768,
@@ -1427,18 +1427,18 @@
     },
     "mokhyeon/death/13": {
       "frame": {
-        "x": 0,
-        "y": 3386,
-        "w": 494,
-        "h": 237
+        "x": 1403,
+        "y": 3732,
+        "w": 519,
+        "h": 250
       },
       "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 0,
-        "y": 410,
-        "w": 494,
-        "h": 237
+        "x": 89,
+        "y": 281,
+        "w": 519,
+        "h": 250
       },
       "sourceSize": {
         "w": 768,
@@ -1520,7 +1520,7 @@
     ]
   },
   "meta": {
-    "image": "mokhyeon-v4-sheet.png",
+    "image": "mokhyeon-v5-sheet.png",
     "format": "RGBA8888",
     "scale": "1"
   }

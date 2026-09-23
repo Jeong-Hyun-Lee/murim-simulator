@@ -4,16 +4,72 @@
     <meta charset="utf-8" />
     <title>UI Element Theme Preview</title>
     <style>
-      * { box-sizing: border-box; }
-      body { align-items: center; background: url('../../assets/ui/theme/theme-outer-landscape.webp') center / cover fixed; display: flex; font-family: serif; justify-content: center; margin: 0; min-height: 100vh; }
-      .app { background: #efebe3 url('../../assets/ui/theme/theme-app-wall.webp'); color: #1f1d1b; min-height: 760px; overflow: hidden; position: relative; width: 390px; }
-      .ink-branch { background: url('../../assets/ui/theme/theme-wall-ink-branch.webp') top right / contain no-repeat; height: 320px; pointer-events: none; position: absolute; right: 0; top: 56px; width: 240px; }
-      .bar { background: #1c1b1d; color: #f6eedb; min-height: 56px; padding: 18px; position: relative; z-index: 1; }
-      .content { padding: 28px 20px; position: relative; z-index: 1; }
-      .card { background: #f6eedb; border: 1px solid #1f1d1b; margin: 16px 0; padding: 16px; }
-      .divider { background: url('../../assets/ui/theme/theme-divider-ink.webp') center / 100% 12px no-repeat; height: 12px; margin: 22px 0; }
-      .sign { display: block; height: 72px; margin: 12px auto; max-width: 100%; object-fit: contain; }
-      .bottom { bottom: 0; position: absolute; width: 100%; }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        align-items: center;
+        background: url('../../assets/ui/theme/theme-outer-landscape.webp') center / cover fixed;
+        display: flex;
+        font-family: serif;
+        justify-content: center;
+        margin: 0;
+        min-height: 100vh;
+      }
+      .app {
+        background: #efebe3 url('../../assets/ui/theme/theme-app-wall.webp');
+        color: #1f1d1b;
+        min-height: 760px;
+        overflow: hidden;
+        position: relative;
+        width: 390px;
+      }
+      .ink-branch {
+        background: url('../../assets/ui/theme/theme-wall-ink-branch.webp') top right / contain
+          no-repeat;
+        height: 320px;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        top: 56px;
+        width: 240px;
+      }
+      .bar {
+        background: #1c1b1d;
+        color: #f6eedb;
+        min-height: 56px;
+        padding: 18px;
+        position: relative;
+        z-index: 1;
+      }
+      .content {
+        padding: 28px 20px;
+        position: relative;
+        z-index: 1;
+      }
+      .card {
+        background: #f6eedb;
+        border: 1px solid #1f1d1b;
+        margin: 16px 0;
+        padding: 16px;
+      }
+      .divider {
+        background: url('../../assets/ui/theme/theme-divider-ink.webp') center / 100% 12px no-repeat;
+        height: 12px;
+        margin: 22px 0;
+      }
+      .sign {
+        display: block;
+        height: 72px;
+        margin: 12px auto;
+        max-width: 100%;
+        object-fit: contain;
+      }
+      .bottom {
+        bottom: 0;
+        position: absolute;
+        width: 100%;
+      }
     </style>
   </head>
   <body>
@@ -24,7 +80,11 @@
         <div class="card">한지색 카드와 먹색 본문 글자</div>
         <img class="sign" src="../../assets/ui/label/sign-sect-qingyun.webp" alt="청운문" />
         <img class="sign" src="../../assets/ui/label/sign-tower.webp" alt="수련탑" />
-        <img class="sign" src="../../assets/ui/scroll/scroll-parchment-dialog.webp" alt="대화 두루마리" />
+        <img
+          class="sign"
+          src="../../assets/ui/scroll/scroll-parchment-dialog.webp"
+          alt="대화 두루마리"
+        />
         <div class="divider"></div>
         <div class="card">흰 회벽 본문 영역</div>
       </section>

@@ -1,10 +1,7 @@
 {
   "frameCount": 58,
   "normalizedHeight": 512,
-  "atlas": [
-    3992,
-    3623
-  ],
+  "atlas": [3992, 3623],
   "durationTotals": {
     "idle": 960,
     "attack1": 720,
