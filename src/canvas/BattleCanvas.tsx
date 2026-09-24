@@ -59,6 +59,13 @@ const MIN_ATTACK_INTERVAL_MS = 300; // 장구 공격속도% 최대치에서도 �
 const ENEMY_ATTACK_INTERVAL_MS = 1600;
 // 목현 attack1/attack2 모두 7번 프레임에서 칼 궤적이 처음 나온다 — 이 프레임에 피해를 넣는다.
 const PLAYER_HIT_FRAME = 7;
+// 혈랑채 적 공격 모션에서 무기가 닿는(칼 궤적·화살 발사) 프레임 — 이 프레임에 플레이어가 피해를 입는다.
+const ENEMY_HIT_FRAMES: Record<EnemyKind, { attack1: number; attack2: number }> = {
+  boss: { attack1: 9, attack2: 9 },
+  grunt: { attack1: 2, attack2: 2 },
+  archer: { attack1: 3, attack2: 2 },
+  elite: { attack1: 2, attack2: 4 },
+};
 // 10프레임 쓰러짐(총 1080ms)이 마지막 정지 자세까지 보이도록 다음 전투를 잠깐 멈춘다.
 const DEFEAT_PAUSE_MS = 1180;
 
@@ -354,6 +361,13 @@ export const BattleCanvas = () => {
         app.stage.addChild(...enemySpritesOf(kind));
       }
 
+      const enemyHitFrames = new Map<AnimatedSprite, number>();
+      for (const kind of ENEMY_KINDS) {
+        const set = enemyAnimByKind[kind];
+        enemyHitFrames.set(set.attack1, ENEMY_HIT_FRAMES[kind].attack1);
+        if (set.attack2) enemyHitFrames.set(set.attack2, ENEMY_HIT_FRAMES[kind].attack2);
+      }
+
       // 스테이지별 적 종류는 combat.ts가 단일 기준 — 이름(monsterStats)과 스프라이트가 같은 규칙을 쓴다.
       const enemyKindForStage = (stage: StageId): ActiveEnemyKind =>
         stage.major === 1 ? enemyKind(stage) : 'none';
@@ -414,6 +428,7 @@ export const BattleCanvas = () => {
       let defeatPauseMs = 0;
       // 휘두르는 프레임을 아직 지나지 않은 플레이어 공격 모션 — 그 프레임에서 피해를 적용한다.
       let pendingAttack: AnimatedSprite | null = null;
+      let pendingEnemyAttack: AnimatedSprite | null = null;
 
       const spawnPopup = (x: number, y: number, msg: string, color: number) => {
         const text = new Text({
@@ -520,6 +535,7 @@ export const BattleCanvas = () => {
             if (currentEnemyKind !== 'none') {
               const set = enemyAnimByKind[currentEnemyKind];
               if (enemyDefeated) {
+                pendingEnemyAttack = null;
                 playEnemyOneShot(currentEnemyKind, set.death);
               }
             }
@@ -548,8 +564,9 @@ export const BattleCanvas = () => {
           ) {
             resolvePlayerHit();
           }
-          if (defeatPauseMs === 0 && enemyAttackClock >= ENEMY_ATTACK_INTERVAL_MS) {
-            enemyAttackClock = 0;
+          const resolveEnemyHit = () => {
+            pendingEnemyAttack = null;
+            // null이면 적이 이미 쓰러진 뒤라 피해가 없다.
             const result = s.enemyAttack();
             if (result?.evaded) {
               spawnPopup(PLAYER_X, PLAYER_Y - 110, '회피!', 0x8ad0ff);
@@ -564,16 +581,28 @@ export const BattleCanvas = () => {
                 defeatPauseMs = DEFEAT_PAUSE_MS;
               }
             }
-            // result가 null이면 적이 이미 쓰러진 프레임이라 공격 모션을 재생하면 안 된다.
-            if (currentEnemyKind !== 'none' && result) {
+          };
+          if (defeatPauseMs === 0 && enemyAttackClock >= ENEMY_ATTACK_INTERVAL_MS) {
+            enemyAttackClock = 0;
+            if (pendingEnemyAttack) resolveEnemyHit();
+            // 스프라이트가 없는 적(대체 사각형)은 모션이 없어 바로 피해를 넣는다.
+            if (currentEnemyKind === 'none') {
+              if (defeatPauseMs === 0) resolveEnemyHit();
+            } else if (defeatPauseMs === 0) {
               const set = enemyAnimByKind[currentEnemyKind];
-              if (!result.playerDefeated) {
-                for (const sprite of enemySpritesOf(currentEnemyKind)) stopAndHide(sprite);
-                const attack = set.attack2 && Math.random() < 0.5 ? set.attack2 : set.attack1;
-                attack.visible = true;
-                attack.gotoAndPlay(0);
-              }
+              for (const sprite of enemySpritesOf(currentEnemyKind)) stopAndHide(sprite);
+              const attack = set.attack2 && Math.random() < 0.5 ? set.attack2 : set.attack1;
+              attack.visible = true;
+              attack.gotoAndPlay(0);
+              pendingEnemyAttack = attack;
             }
+          }
+          if (
+            pendingEnemyAttack &&
+            (pendingEnemyAttack.currentFrame >= (enemyHitFrames.get(pendingEnemyAttack) ?? 0) ||
+              !pendingEnemyAttack.playing)
+          ) {
+            resolveEnemyHit();
           }
 
           enemyFlashMs = Math.max(0, enemyFlashMs - deltaMs);
@@ -618,6 +647,7 @@ export const BattleCanvas = () => {
 
         const kind = enemyKindForStage(viewStage);
         if (kind !== currentEnemyKind) {
+          pendingEnemyAttack = null;
           hideAllEnemySprites();
           currentEnemyKind = kind;
           if (kind !== 'none') {
