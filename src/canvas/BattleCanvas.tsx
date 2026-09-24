@@ -57,6 +57,8 @@ const POPUP_RISE_PX = 64; // 데미지 숫자가 사라지기까지 위로 이�
 const ATTACK_INTERVAL_MS = 1300;
 const MIN_ATTACK_INTERVAL_MS = 300; // 장구 공격속도% 최대치에서도 공격이 순간이동처럼 보이지 않게 하는 하한
 const ENEMY_ATTACK_INTERVAL_MS = 1600;
+// 목현 attack1/attack2 모두 7번 프레임에서 칼 궤적이 처음 나온다 — 이 프레임에 피해를 넣는다.
+const PLAYER_HIT_FRAME = 7;
 // 10프레임 쓰러짐(총 1080ms)이 마지막 정지 자세까지 보이도록 다음 전투를 잠깐 멈춘다.
 const DEFEAT_PAUSE_MS = 1180;
 
@@ -410,6 +412,8 @@ export const BattleCanvas = () => {
       let playerFlashMs = 0;
       let enemyFlashMs = 0;
       let defeatPauseMs = 0;
+      // 휘두르는 프레임을 아직 지나지 않은 플레이어 공격 모션 — 그 프레임에서 피해를 적용한다.
+      let pendingAttack: AnimatedSprite | null = null;
 
       const spawnPopup = (x: number, y: number, msg: string, color: number) => {
         const text = new Text({
@@ -501,8 +505,8 @@ export const BattleCanvas = () => {
             MIN_ATTACK_INTERVAL_MS,
             ATTACK_INTERVAL_MS / (1 + s.player.attackSpeedPercent / 100),
           );
-          if (defeatPauseMs === 0 && attackClock >= effectiveAttackInterval) {
-            attackClock = 0;
+          const resolvePlayerHit = () => {
+            pendingAttack = null;
             const { dmg, isCrit, enemyDefeated } = s.playerAttack();
             enemyFlashMs = HIT_FLASH_MS;
             spawnDamageNumberPopup(ENEMY_X, ENEMY_Y - 70, dmg, isCrit);
@@ -523,13 +527,26 @@ export const BattleCanvas = () => {
             if (enemyDefeated && !useGameStore.getState().awaitingBossReward) {
               defeatPauseMs = DEFEAT_PAUSE_MS;
             }
-            if (!enemyDefeated) {
+          };
+          if (defeatPauseMs === 0 && attackClock >= effectiveAttackInterval) {
+            attackClock = 0;
+            // 공격속도가 빨라 이전 모션이 휘두르기 전에 다음 공격이 오면 이전 피해를 먼저 넣는다.
+            if (pendingAttack) resolvePlayerHit();
+            if (defeatPauseMs === 0) {
               for (const sprite of playerSprites()) stopAndHide(sprite);
               const attack =
                 playerAnim.attack2 && Math.random() < 0.5 ? playerAnim.attack2 : playerAnim.attack1;
               attack.visible = true;
               attack.gotoAndPlay(0);
+              pendingAttack = attack;
             }
+          }
+          // 일시정지 등으로 모션이 먼저 끝나 버린 경우(playing=false)도 피해는 넣는다.
+          if (
+            pendingAttack &&
+            (pendingAttack.currentFrame >= PLAYER_HIT_FRAME || !pendingAttack.playing)
+          ) {
+            resolvePlayerHit();
           }
           if (defeatPauseMs === 0 && enemyAttackClock >= ENEMY_ATTACK_INTERVAL_MS) {
             enemyAttackClock = 0;
@@ -542,6 +559,7 @@ export const BattleCanvas = () => {
               spawnHitBurst(PLAYER_X, PLAYER_Y - 70, 0xff6b6b);
               if (result.playerDefeated) {
                 playDefeat();
+                pendingAttack = null;
                 playPlayerOneShot(playerAnim.death);
                 defeatPauseMs = DEFEAT_PAUSE_MS;
               }
@@ -610,6 +628,7 @@ export const BattleCanvas = () => {
           // 전투 대상이 바뀔 때 플레이어도 idle로 초기화 — 단 쓰러짐 연출 중이면 그 자세를
           // 유지하고(패배 후퇴로 적이 바뀌는 경우) 연출이 끝날 때 idle로 되돌린다.
           if (defeatPauseMs === 0) {
+            pendingAttack = null;
             for (const sprite of playerSprites()) stopAndHide(sprite);
             idleAnim.visible = true;
             idleAnim.gotoAndPlay(0);
