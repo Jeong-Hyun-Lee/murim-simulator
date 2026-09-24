@@ -43,10 +43,10 @@ const NORMAL_HIT_EFFECT_SCALE = 0.22;
 const CRITICAL_HIT_EFFECT_SCALE = 0.16;
 // 목현 v2는 920px 셀(신체 높이 약 527px)을 0.5배로 표시해 무대 목표 높이 약 256px에 맞춘다.
 // 캔버스 렌더 배율 상한 2배에서 텍스처 1px이 화면 1px이 되는 크기라 해상도 낭비가 없다.
-// 적은 기존 시트 규격을 유지한다.
+// 신규 두목도 공통 대형 셀을 사용하며, 모션별 확대·축소 없이 하나의 런타임 배율만 적용한다.
 // 화면에서는 두 인물의 몸통 간 거리를 좁히되, 두목은 잡몹보다 조금 크게 유지한다.
 const PLAYER_SCALE = 0.5;
-const ENEMY_BOSS_SCALE = 1.07;
+const ENEMY_BOSS_SCALE = 0.58;
 const ENEMY_MOB_SCALE = 0.82;
 const ENEMY_ELITE_SCALE = 0.92; // 정예산적은 졸개·궁수와 두목 사이 체급
 const ENEMY_HIT_TINT = 0xff6666;
@@ -57,8 +57,8 @@ const POPUP_RISE_PX = 64; // 데미지 숫자가 사라지기까지 위로 이�
 const ATTACK_INTERVAL_MS = 1300;
 const MIN_ATTACK_INTERVAL_MS = 300; // 장구 공격속도% 최대치에서도 공격이 순간이동처럼 보이지 않게 하는 하한
 const ENEMY_ATTACK_INTERVAL_MS = 1600;
-// 쓰러짐 모션(6프레임 x 120ms = 720ms)이 끝까지 보이도록 다음 전투를 잠깐 멈추는 시간.
-const DEFEAT_PAUSE_MS = 900;
+// 10프레임 쓰러짐(총 1080ms)이 마지막 정지 자세까지 보이도록 다음 전투를 잠깐 멈춘다.
+const DEFEAT_PAUSE_MS = 1180;
 
 interface DamagePopup {
   text: Container;
@@ -211,7 +211,7 @@ export const BattleCanvas = () => {
 
       const [playerAnim, bossSet, gruntSet, archerSet, eliteSet] = await Promise.all([
         loadPackedAnimSet('mokhyeon-v10'),
-        loadAnimSet('hyeollangchae-boss'),
+        loadPackedAnimSet('hyeollangchae-boss-v3'),
         loadAnimSet('hyeollangchae-grunt'),
         loadAnimSet('hyeollangchae-archer'),
         loadAnimSet('hyeollangchae-elite'),

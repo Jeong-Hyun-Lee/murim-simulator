@@ -1,0 +1,1423 @@
+{
+  "frames": {
+    "hyeollangchae-boss-v3/attack1/7": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 463,
+        "h": 591
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 270,
+        "y": 193,
+        "w": 463,
+        "h": 591
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack1/4": {
+      "frame": {
+        "x": 463,
+        "y": 0,
+        "w": 586,
+        "h": 537
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 107,
+        "y": 246,
+        "w": 586,
+        "h": 537
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack1/6": {
+      "frame": {
+        "x": 1049,
+        "y": 0,
+        "w": 408,
+        "h": 492
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 310,
+        "y": 290,
+        "w": 408,
+        "h": 492
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/idle/5": {
+      "frame": {
+        "x": 1457,
+        "y": 0,
+        "w": 477,
+        "h": 481
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 232,
+        "y": 300,
+        "w": 477,
+        "h": 481
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/attack1/8": {
+      "frame": {
+        "x": 1934,
+        "y": 0,
+        "w": 432,
+        "h": 481
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 267,
+        "y": 298,
+        "w": 432,
+        "h": 481
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack1/3": {
+      "frame": {
+        "x": 2366,
+        "y": 0,
+        "w": 441,
+        "h": 479
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 262,
+        "y": 304,
+        "w": 441,
+        "h": 479
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/idle/8": {
+      "frame": {
+        "x": 2807,
+        "y": 0,
+        "w": 523,
+        "h": 475
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 205,
+        "y": 307,
+        "w": 523,
+        "h": 475
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/idle/10": {
+      "frame": {
+        "x": 3330,
+        "y": 0,
+        "w": 501,
+        "h": 475
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 213,
+        "y": 307,
+        "w": 501,
+        "h": 475
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/idle/11": {
+      "frame": {
+        "x": 0,
+        "y": 591,
+        "w": 496,
+        "h": 475
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 212,
+        "y": 307,
+        "w": 496,
+        "h": 475
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/idle/9": {
+      "frame": {
+        "x": 496,
+        "y": 591,
+        "w": 494,
+        "h": 475
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 223,
+        "y": 307,
+        "w": 494,
+        "h": 475
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/death/0": {
+      "frame": {
+        "x": 990,
+        "y": 591,
+        "w": 532,
+        "h": 473
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 188,
+        "y": 309,
+        "w": 532,
+        "h": 473
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/attack2/6": {
+      "frame": {
+        "x": 1522,
+        "y": 591,
+        "w": 409,
+        "h": 473
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 319,
+        "y": 310,
+        "w": 409,
+        "h": 473
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/idle/4": {
+      "frame": {
+        "x": 1931,
+        "y": 591,
+        "w": 515,
+        "h": 470
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 196,
+        "y": 312,
+        "w": 515,
+        "h": 470
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/attack1/5": {
+      "frame": {
+        "x": 2446,
+        "y": 591,
+        "w": 507,
+        "h": 470
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 203,
+        "y": 312,
+        "w": 507,
+        "h": 470
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack2/7": {
+      "frame": {
+        "x": 2953,
+        "y": 591,
+        "w": 390,
+        "h": 466
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 319,
+        "y": 316,
+        "w": 390,
+        "h": 466
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/idle/6": {
+      "frame": {
+        "x": 3343,
+        "y": 591,
+        "w": 509,
+        "h": 464
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 202,
+        "y": 317,
+        "w": 509,
+        "h": 464
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/idle/7": {
+      "frame": {
+        "x": 0,
+        "y": 1066,
+        "w": 492,
+        "h": 457
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 217,
+        "y": 324,
+        "w": 492,
+        "h": 457
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/death/1": {
+      "frame": {
+        "x": 492,
+        "y": 1066,
+        "w": 509,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 218,
+        "y": 332,
+        "w": 509,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/attack2/0": {
+      "frame": {
+        "x": 1001,
+        "y": 1066,
+        "w": 497,
+        "h": 448
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 202,
+        "y": 334,
+        "w": 497,
+        "h": 448
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack1/9": {
+      "frame": {
+        "x": 1498,
+        "y": 1066,
+        "w": 488,
+        "h": 447
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 177,
+        "y": 333,
+        "w": 488,
+        "h": 447
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack2/3": {
+      "frame": {
+        "x": 1986,
+        "y": 1066,
+        "w": 392,
+        "h": 442
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 305,
+        "y": 339,
+        "w": 392,
+        "h": 442
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack2/1": {
+      "frame": {
+        "x": 2378,
+        "y": 1066,
+        "w": 495,
+        "h": 438
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 197,
+        "y": 344,
+        "w": 495,
+        "h": 438
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack1/1": {
+      "frame": {
+        "x": 2873,
+        "y": 1066,
+        "w": 489,
+        "h": 438
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 210,
+        "y": 344,
+        "w": 489,
+        "h": 438
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack1/0": {
+      "frame": {
+        "x": 3362,
+        "y": 1066,
+        "w": 505,
+        "h": 437
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 195,
+        "y": 345,
+        "w": 505,
+        "h": 437
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/idle/1": {
+      "frame": {
+        "x": 0,
+        "y": 1523,
+        "w": 472,
+        "h": 437
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 223,
+        "y": 345,
+        "w": 472,
+        "h": 437
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/idle/3": {
+      "frame": {
+        "x": 472,
+        "y": 1523,
+        "w": 471,
+        "h": 437
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 224,
+        "y": 345,
+        "w": 471,
+        "h": 437
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/idle/2": {
+      "frame": {
+        "x": 943,
+        "y": 1523,
+        "w": 472,
+        "h": 436
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 224,
+        "y": 346,
+        "w": 472,
+        "h": 436
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/attack2/15": {
+      "frame": {
+        "x": 1415,
+        "y": 1523,
+        "w": 461,
+        "h": 436
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 234,
+        "y": 345,
+        "w": 461,
+        "h": 436
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack2/2": {
+      "frame": {
+        "x": 1876,
+        "y": 1523,
+        "w": 454,
+        "h": 436
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 351,
+        "y": 346,
+        "w": 454,
+        "h": 436
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack1/15": {
+      "frame": {
+        "x": 2330,
+        "y": 1523,
+        "w": 448,
+        "h": 436
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 253,
+        "y": 345,
+        "w": 448,
+        "h": 436
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack2/4": {
+      "frame": {
+        "x": 2778,
+        "y": 1523,
+        "w": 547,
+        "h": 435
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 312,
+        "y": 347,
+        "w": 547,
+        "h": 435
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/idle/0": {
+      "frame": {
+        "x": 3325,
+        "y": 1523,
+        "w": 478,
+        "h": 432
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 215,
+        "y": 349,
+        "w": 478,
+        "h": 432
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/attack1/14": {
+      "frame": {
+        "x": 0,
+        "y": 1960,
+        "w": 460,
+        "h": 432
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 261,
+        "y": 351,
+        "w": 460,
+        "h": 432
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack1/10": {
+      "frame": {
+        "x": 460,
+        "y": 1960,
+        "w": 509,
+        "h": 417
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 230,
+        "y": 364,
+        "w": 509,
+        "h": 417
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack1/2": {
+      "frame": {
+        "x": 969,
+        "y": 1960,
+        "w": 526,
+        "h": 413
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 190,
+        "y": 369,
+        "w": 526,
+        "h": 413
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack2/5": {
+      "frame": {
+        "x": 1495,
+        "y": 1960,
+        "w": 479,
+        "h": 413
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 314,
+        "y": 368,
+        "w": 479,
+        "h": 413
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack2/14": {
+      "frame": {
+        "x": 1974,
+        "y": 1960,
+        "w": 452,
+        "h": 404
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 245,
+        "y": 378,
+        "w": 452,
+        "h": 404
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack2/8": {
+      "frame": {
+        "x": 2426,
+        "y": 1960,
+        "w": 377,
+        "h": 403
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 354,
+        "y": 378,
+        "w": 377,
+        "h": 403
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack2/13": {
+      "frame": {
+        "x": 2803,
+        "y": 1960,
+        "w": 493,
+        "h": 394
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 188,
+        "y": 386,
+        "w": 493,
+        "h": 394
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/death/2": {
+      "frame": {
+        "x": 3296,
+        "y": 1960,
+        "w": 444,
+        "h": 392
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 245,
+        "y": 389,
+        "w": 444,
+        "h": 392
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/attack2/9": {
+      "frame": {
+        "x": 0,
+        "y": 2392,
+        "w": 457,
+        "h": 391
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 250,
+        "y": 389,
+        "w": 457,
+        "h": 391
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack2/10": {
+      "frame": {
+        "x": 457,
+        "y": 2392,
+        "w": 529,
+        "h": 385
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 149,
+        "y": 395,
+        "w": 529,
+        "h": 385
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack1/11": {
+      "frame": {
+        "x": 986,
+        "y": 2392,
+        "w": 473,
+        "h": 379
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 220,
+        "y": 401,
+        "w": 473,
+        "h": 379
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack1/12": {
+      "frame": {
+        "x": 1459,
+        "y": 2392,
+        "w": 512,
+        "h": 376
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 264,
+        "y": 402,
+        "w": 512,
+        "h": 376
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack1/13": {
+      "frame": {
+        "x": 1971,
+        "y": 2392,
+        "w": 512,
+        "h": 371
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 254,
+        "y": 409,
+        "w": 512,
+        "h": 371
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack2/11": {
+      "frame": {
+        "x": 2483,
+        "y": 2392,
+        "w": 508,
+        "h": 368
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 189,
+        "y": 411,
+        "w": 508,
+        "h": 368
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/attack2/12": {
+      "frame": {
+        "x": 2991,
+        "y": 2392,
+        "w": 553,
+        "h": 361
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 176,
+        "y": 418,
+        "w": 553,
+        "h": 361
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-boss-v3/death/4": {
+      "frame": {
+        "x": 3544,
+        "y": 2392,
+        "w": 547,
+        "h": 353
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 183,
+        "y": 424,
+        "w": 547,
+        "h": 353
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/death/3": {
+      "frame": {
+        "x": 0,
+        "y": 2783,
+        "w": 519,
+        "h": 339
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 193,
+        "y": 441,
+        "w": 519,
+        "h": 339
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/death/5": {
+      "frame": {
+        "x": 519,
+        "y": 2783,
+        "w": 464,
+        "h": 318
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 264,
+        "y": 458,
+        "w": 464,
+        "h": 318
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/death/6": {
+      "frame": {
+        "x": 983,
+        "y": 2783,
+        "w": 467,
+        "h": 286
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 269,
+        "y": 490,
+        "w": 467,
+        "h": 286
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/death/8": {
+      "frame": {
+        "x": 1450,
+        "y": 2783,
+        "w": 498,
+        "h": 243
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 227,
+        "y": 537,
+        "w": 498,
+        "h": 243
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/death/7": {
+      "frame": {
+        "x": 1948,
+        "y": 2783,
+        "w": 516,
+        "h": 198
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 272,
+        "y": 578,
+        "w": 516,
+        "h": 198
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-boss-v3/death/9": {
+      "frame": {
+        "x": 2464,
+        "y": 2783,
+        "w": 497,
+        "h": 182
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 213,
+        "y": 594,
+        "w": 497,
+        "h": 182
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 360
+    }
+  },
+  "animations": {
+    "idle": [
+      "hyeollangchae-boss-v3/idle/0",
+      "hyeollangchae-boss-v3/idle/1",
+      "hyeollangchae-boss-v3/idle/2",
+      "hyeollangchae-boss-v3/idle/3",
+      "hyeollangchae-boss-v3/idle/4",
+      "hyeollangchae-boss-v3/idle/5",
+      "hyeollangchae-boss-v3/idle/6",
+      "hyeollangchae-boss-v3/idle/7",
+      "hyeollangchae-boss-v3/idle/8",
+      "hyeollangchae-boss-v3/idle/9",
+      "hyeollangchae-boss-v3/idle/10",
+      "hyeollangchae-boss-v3/idle/11"
+    ],
+    "attack1": [
+      "hyeollangchae-boss-v3/attack1/0",
+      "hyeollangchae-boss-v3/attack1/1",
+      "hyeollangchae-boss-v3/attack1/2",
+      "hyeollangchae-boss-v3/attack1/3",
+      "hyeollangchae-boss-v3/attack1/4",
+      "hyeollangchae-boss-v3/attack1/5",
+      "hyeollangchae-boss-v3/attack1/6",
+      "hyeollangchae-boss-v3/attack1/7",
+      "hyeollangchae-boss-v3/attack1/8",
+      "hyeollangchae-boss-v3/attack1/9",
+      "hyeollangchae-boss-v3/attack1/10",
+      "hyeollangchae-boss-v3/attack1/11",
+      "hyeollangchae-boss-v3/attack1/12",
+      "hyeollangchae-boss-v3/attack1/13",
+      "hyeollangchae-boss-v3/attack1/14",
+      "hyeollangchae-boss-v3/attack1/15"
+    ],
+    "attack2": [
+      "hyeollangchae-boss-v3/attack2/0",
+      "hyeollangchae-boss-v3/attack2/1",
+      "hyeollangchae-boss-v3/attack2/2",
+      "hyeollangchae-boss-v3/attack2/3",
+      "hyeollangchae-boss-v3/attack2/4",
+      "hyeollangchae-boss-v3/attack2/5",
+      "hyeollangchae-boss-v3/attack2/6",
+      "hyeollangchae-boss-v3/attack2/7",
+      "hyeollangchae-boss-v3/attack2/8",
+      "hyeollangchae-boss-v3/attack2/9",
+      "hyeollangchae-boss-v3/attack2/10",
+      "hyeollangchae-boss-v3/attack2/11",
+      "hyeollangchae-boss-v3/attack2/12",
+      "hyeollangchae-boss-v3/attack2/13",
+      "hyeollangchae-boss-v3/attack2/14",
+      "hyeollangchae-boss-v3/attack2/15"
+    ],
+    "death": [
+      "hyeollangchae-boss-v3/death/0",
+      "hyeollangchae-boss-v3/death/1",
+      "hyeollangchae-boss-v3/death/2",
+      "hyeollangchae-boss-v3/death/3",
+      "hyeollangchae-boss-v3/death/4",
+      "hyeollangchae-boss-v3/death/5",
+      "hyeollangchae-boss-v3/death/6",
+      "hyeollangchae-boss-v3/death/7",
+      "hyeollangchae-boss-v3/death/8",
+      "hyeollangchae-boss-v3/death/9"
+    ]
+  },
+  "meta": {
+    "image": "hyeollangchae-boss-v3-sheet.png",
+    "format": "RGBA8888",
+    "scale": "1"
+  }
+}

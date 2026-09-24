@@ -29,6 +29,7 @@ ALPHA_THRESHOLD = 8
 TARGET_STANDING_HEIGHT = 512
 SOURCE_ROOT_X_FRACTION = 0.245
 BUILD_NAME = 'mokhyeon-v10'
+FRAME_PREFIX = 'mokhyeon'
 STRICT_CANONICAL_SCALE = False
 FIXED_CHARACTER_SCALE: float | None = None
 MOTION_FRAME_OFFSETS: dict[str, list[tuple[int, int]]] = {}
@@ -245,7 +246,7 @@ def pack(cells: dict[str, list[Image.Image]]) -> tuple[Image.Image, dict]:
     entries = []
     for motion, frames in cells.items():
         for index, cell in enumerate(frames):
-            name = f'mokhyeon/{motion}/{index}'
+            name = f'{FRAME_PREFIX}/{motion}/{index}'
             bbox = alpha_bbox(cell)
             entries.append((name, cell.crop(bbox), bbox, DURATIONS[motion][index]))
 
@@ -297,7 +298,7 @@ def pack(cells: dict[str, list[Image.Image]]) -> tuple[Image.Image, dict]:
     return atlas, {
         'frames': frames_data,
         'animations': {
-            motion: [f'mokhyeon/{motion}/{index}' for index in range(spec['count'])]
+            motion: [f'{FRAME_PREFIX}/{motion}/{index}' for index in range(spec['count'])]
             for motion, spec in MOTIONS.items()
         },
         'meta': {
