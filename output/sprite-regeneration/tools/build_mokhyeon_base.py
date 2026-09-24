@@ -17,7 +17,7 @@ from PIL import Image
 
 
 ROOT = Path(__file__).resolve().parents[3]
-SOURCE = ROOT / 'output' / 'sprite-regeneration' / 'mokhyeon-v9'
+SOURCE = ROOT / 'output' / 'sprite-regeneration' / 'mokhyeon-v10'
 OUTPUT = SOURCE
 ASSET = ROOT / 'assets' / 'sprites' / 'character'
 CELL = 768
@@ -28,7 +28,7 @@ ANCHOR = {'x': 0.25, 'y': 0.8125}
 ALPHA_THRESHOLD = 8
 TARGET_STANDING_HEIGHT = 512
 SOURCE_ROOT_X_FRACTION = 0.245
-BUILD_NAME = 'mokhyeon-v9'
+BUILD_NAME = 'mokhyeon-v10'
 STRICT_CANONICAL_SCALE = False
 FIXED_CHARACTER_SCALE: float | None = None
 MOTION_FRAME_OFFSETS: dict[str, list[tuple[int, int]]] = {}
@@ -37,13 +37,13 @@ MOTIONS = {
     'idle': {'count': 12, 'parts': [4, 4, 4]},
     'attack1': {'count': 16, 'parts': [4, 4, 4, 4]},
     'attack2': {'count': 16, 'parts': [4, 4, 4, 4]},
-    'death': {'count': 14, 'parts': [4, 4, 4, 2]},
+    'death': {'count': 10, 'parts': [4, 4, 2]},
 }
 DURATIONS = {
     'idle': [80] * 12,
     'attack1': [45] * 16,
     'attack2': [45] * 16,
-    'death': [56] * 5 + [55] * 8 + [360],
+    'death': [80] * 9 + [360],
 }
 
 

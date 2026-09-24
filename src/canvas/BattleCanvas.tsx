@@ -210,7 +210,7 @@ export const BattleCanvas = () => {
       };
 
       const [playerAnim, bossSet, gruntSet, archerSet, eliteSet] = await Promise.all([
-        loadPackedAnimSet('mokhyeon-v9'),
+        loadPackedAnimSet('mokhyeon-v10'),
         loadAnimSet('hyeollangchae-boss'),
         loadAnimSet('hyeollangchae-grunt'),
         loadAnimSet('hyeollangchae-archer'),
