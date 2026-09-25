@@ -47,7 +47,8 @@ const CRITICAL_HIT_EFFECT_SCALE = 0.16;
 // 화면에서는 두 인물의 몸통 간 거리를 좁히되, 두목은 잡몹보다 조금 크게 유지한다.
 const PLAYER_SCALE = 0.5;
 const ENEMY_BOSS_SCALE = 0.58;
-const ENEMY_MOB_SCALE = 0.82;
+const ENEMY_GRUNT_SCALE = 0.45;
+const ENEMY_ARCHER_SCALE = 0.82;
 const ENEMY_ELITE_SCALE = 0.92; // 정예산적은 졸개·궁수와 두목 사이 체급
 const ENEMY_HIT_TINT = 0xff6666;
 const HIT_FLASH_MS = 140;
@@ -62,7 +63,7 @@ const PLAYER_HIT_FRAME = 7;
 // 혈랑채 적 공격 모션에서 무기가 닿는(칼 궤적·화살 발사) 프레임 — 이 프레임에 플레이어가 피해를 입는다.
 const ENEMY_HIT_FRAMES: Record<EnemyKind, { attack1: number; attack2: number }> = {
   boss: { attack1: 9, attack2: 9 },
-  grunt: { attack1: 2, attack2: 2 },
+  grunt: { attack1: 8, attack2: 8 },
   archer: { attack1: 3, attack2: 2 },
   elite: { attack1: 2, attack2: 4 },
 };
@@ -221,7 +222,7 @@ export const BattleCanvas = () => {
       const [playerAnim, bossSet, gruntSet, archerSet, eliteSet] = await Promise.all([
         loadPackedAnimSet('mokhyeon-v10'),
         loadPackedAnimSet('hyeollangchae-boss-v3'),
-        loadAnimSet('hyeollangchae-grunt'),
+        loadPackedAnimSet('hyeollangchae-grunt-v3'),
         loadAnimSet('hyeollangchae-archer'),
         loadAnimSet('hyeollangchae-elite'),
       ]);
@@ -296,8 +297,8 @@ export const BattleCanvas = () => {
       };
       const enemyScaleByKind: Record<EnemyKind, number> = {
         boss: ENEMY_BOSS_SCALE,
-        grunt: ENEMY_MOB_SCALE,
-        archer: ENEMY_MOB_SCALE,
+        grunt: ENEMY_GRUNT_SCALE,
+        archer: ENEMY_ARCHER_SCALE,
         elite: ENEMY_ELITE_SCALE,
       };
       // 재패킹한 혈랑채 원화는 모두 화면 왼쪽을 보므로 런타임 좌우 반전이 필요 없다.
