@@ -10,10 +10,8 @@
 
 - **caveman** — Caveman 모드 섹션. 마켓플레이스: GitHub `JuliusBrussee/caveman`.
 - **ponytail** — Ponytail 플러그인 지침 섹션. 마켓플레이스: GitHub `DietrichGebert/ponytail`.
-- **superpowers** — Superpowers 플러그인 지침 섹션 및 에이전트 팀 섹션 1단계. 마켓플레이스: GitHub `obra/superpowers-marketplace`.
-- **ecc** — Superpowers 섹션(`ecc:browser-qa`) 및 에이전트 팀 섹션 2단계(`ecc:team-builder`). 마켓플레이스: `https://github.com/affaan-m/ECC.git`.
-- **harness** — 에이전트 팀 섹션 3단계(팀 아키텍처 설계). 마켓플레이스: GitHub `revfactory/harness`.
-- **oh-my-claudecode (OMC)** — 에이전트 팀 섹션 4단계(`/oh-my-claudecode:team`, 별칭 `/team`). 마켓플레이스: GitHub `Yeachan-Heo/oh-my-claudecode`. ⚠️ Claude Code 네이티브 implicit agent team 기반이라 여전히 실험적 기능 — `settings.json`에 `"env": { "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1" }` 추가하거나 환경변수 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`로 export 필요.
+- **harness** — 에이전트 팀 섹션 2단계(팀 아키텍처 설계). 마켓플레이스: GitHub `revfactory/harness`.
+- **oh-my-claudecode (OMC)** — OMC 개발 파이프라인 섹션(`plan`/`execute`/`review`/`verify`) 및 에이전트 팀 섹션 1·3단계(`/oh-my-claudecode:team`, 별칭 `/team`) — 가벼운 병렬 디스패치부터 복잡한 스테이지 파이프라인까지 전담. 마켓플레이스: GitHub `Yeachan-Heo/oh-my-claudecode`. ⚠️ Claude Code 네이티브 implicit agent team 기반이라 여전히 실험적 기능 — `settings.json`에 `"env": { "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1" }` 추가하거나 환경변수 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`로 export 필요.
 
 ## 코딩 전에 생각하기
 
@@ -98,41 +96,45 @@
 
 코드 작성/수정 작업에는 `ponytail` 플러그인을 사용하세요. 불필요한 추상화, 미리 만드는 보일러플레이트, 과도한 설정 옵션 없이 최소한의 동작 코드를 우선합니다. 표준 라이브러리/기존 코드베이스 재사용 > 새 구현 순서를 따르고, 의도적으로 단순화한 부분은 한계와 확장 지점을 짧게 남기세요.
 
-## Superpowers 플러그인 지침
+## OMC 개발 파이프라인 지침
 
-작업 시작 전 관련 스킬 있으면 반드시 사용 — 특히 프로세스 스킬을 구현 스킬보다 먼저 적용:
+작업 시작 전 단계에 맞는 OMC 스킬을 반드시 사용 — 특히 계획/검증 단계를 구현보다 먼저 적용:
 
-- 새 기능/변경 착수 전: `superpowers:brainstorming` — 요구사항·의도 먼저 탐색, 바로 구현 안 함.
-- 버그·테스트 실패·예상 밖 동작: `superpowers:systematic-debugging` — 원인 규명 먼저, 바로 고치지 않음.
-- 스펙/요구사항 있는 다단계 작업: `superpowers:writing-plans`로 계획 작성 후 `superpowers:executing-plans`로 실행.
-- 신규 기능/버그 수정 구현: `superpowers:test-driven-development`.
-- 완료·수정·통과 주장 전: `superpowers:verification-before-completion` — 검증 명령 실제로 실행하고 출력 확인 후에만 주장.
-- 개발 브랜치 마무리 시: `superpowers:finishing-a-development-branch`.
+- 새 기능/변경 착수 전, 요구사항 불명확: `/oh-my-claudecode:plan` — 필요시 인터뷰 모드로 요구사항·의도 먼저 탐색, 바로 구현 안 함.
+- 버그·테스트 실패·예상 밖 동작: `debugger` 에이전트로 위임 — 원인 규명 먼저, 바로 고치지 않음.
+- 작업 착수: `/oh-my-claudecode:execute` — 단일 작업은 직접 구현, 독립적인 여러 단위는 `executor` 병렬 위임, 조율이 실제로 필요한 경우에만 `/team`으로 확장(불필요한 조율 금지).
+- 완료·수정·통과 주장 전: `/oh-my-claudecode:verify` — 검증 명령 실제로 실행하고 출력 확인 후에만 주장.
+- 머지/배포 전 결함·리스크·과설계 점검: `/oh-my-claudecode:review`.
+- 개발 브랜치 마무리 시: 대응 OMC 스킬 없음 — merge/PR/cleanup 중 적합한 방식을 구조적으로 제시하고 사용자 확인 후 진행.
 
-UI 동작 검증은 아래 "에이전트 팀 기능 지침" 횡단 규칙(`ecc:browser-qa`)을 따르세요.
+UI 동작 검증은 아래 "에이전트 팀 기능 지침" 횡단 규칙을 따르세요.
 
 ## 에이전트 팀 기능 지침 (Agent Teams Guidelines)
 
-멀티 에이전트로 작업할지 판단할 때 아래 4단계를 순서대로 거칩니다. 각 단계는 역할이 배타적이므로 건너뛰지 말고 순서대로 확인하세요.
+멀티 에이전트로 작업할지 판단할 때 아래 3단계를 순서대로 거칩니다. 각 단계는 역할이 배타적이므로 건너뛰지 말고 순서대로 확인하세요.
 
 ### 1단계: 단일 세션으로 충분한가?
 
-대부분의 기능 개발/버그 수정은 여기서 끝납니다. 위 "Superpowers 플러그인 지침"의 프로세스 스킬(브레인스토밍 → 계획 → TDD → 검증)만 적용하고 2~4단계는 건너뜁니다. 태스크가 여러 도메인(예: 보안 + 성능 + QA)에 걸쳐 있거나 대규모 파일 분석이 필요할 때만 2단계로 진행합니다.
+대부분의 기능 개발/버그 수정은 여기서 끝납니다. 위 "OMC 개발 파이프라인 지침"의 `plan → execute → review → verify`만 적용하고 2~3단계는 건너뜁니다. 태스크가 여러 도메인(예: 보안 + 성능 + QA)에 걸쳐 있거나 대규모 파일 분석이 필요할 때만 2단계로 진행합니다.
 
-### 2단계: 재사용 가능한 에이전트가 이미 있고, 서로 대화 없이 병렬 실행 + 결과 취합만 하면 되는가?
+### 2단계: 재사용 가능한 팀 아키텍처(페르소나)가 이미 있는가?
 
-- **YES:** `ecc:team-builder`로 기존 `.claude/agents/*.md` 페르소나를 즉석 조합해 병렬 디스패치합니다. 신규 파일 생성 없이 1회성으로 사용하고 3~4단계는 건너뜁니다.
-- **NO** (전용 팀이 없거나 에이전트 간 실제 리뷰·대화가 필요한 경우) → 3단계로 진행합니다.
+- **YES:** 기존 `.claude/agents/*.md` 페르소나 그대로 3단계 OMC 팀 실행에 투입합니다. 신규 설계 없이 바로 3단계로.
+- **NO** (전용 페르소나가 없거나 새 도메인인 경우) → `harness` 플러그인으로 "하네스 구성해줘" 요청 → 도메인 분석 후 실행 모드 선택 → `.claude/agents/*.md` + `.claude/skills/*/SKILL.md` 생성. 매번 반복하지 않고 팀 자산으로 재사용하고, 완료 후 3단계로.
 
-### 3단계: 팀 아키텍처 신규 설계 (도메인당 1회)
+harness가 고르는 실행 모드는 작업 형태에 따라 3가지 중 하나입니다:
 
-`harness` 플러그인으로 "하네스 구성해줘" 요청 → 도메인 분석 후 6개 패턴(Pipeline/Fan-out-Fan-in/Expert Pool/Producer-Reviewer/Supervisor/Hierarchical Delegation) 중 선택 → `.claude/agents/*.md` + `.claude/skills/*/SKILL.md` 생성. 매번 반복하지 않고 팀 자산으로 재사용합니다.
+- **모드 A(워크플로 조율):** 단계별 파이프라인처럼 순서·반복·분기를 코드가 결정하는 단일 오케스트레이션 스크립트가 필요할 때. 다단계 순차 작업엔 기본으로 이 모드.
+- **모드 B(지속형 에이전트 협업):** 이름 붙인 에이전트끼리 대화 맥락을 유지하며 병렬로 피드백을 주고받아야 할 때(진짜 팀).
+- **모드 C(서브에이전트 위임):** 결과를 한 번만 받으면 되는 단발성 위임일 때.
 
-### 4단계: 팀 실행/조정
+즉 병렬 다중 에이전트가 필요하면 B/C, 단일 프로세스 단계별 파이프라인이면 A를 고르도록 harness에 맡깁니다.
 
-3단계에서 설계했거나 이미 존재하는 팀을 실제로 가동할 때 `oh-my-claudecode`(OMC) 플러그인의 `team` 스킬로 실행합니다:
+### 3단계: 팀 실행/조정 (OMC)
 
-- **호출:** `/oh-my-claudecode:team N:agent-type "작업설명"`(별칭 `/team`). N·agent-type 생략 시 작업 분해 기반 자동 라우팅.
+2단계에서 확인했거나 새로 설계한 페르소나를 실제로 가동할 때 `oh-my-claudecode`(OMC) 플러그인의 `team` 스킬로 실행합니다 — 기존 페르소나로 결과만 취합하는 가벼운 1회성 병렬 디스패치든, 에이전트 간 실제 리뷰·조정이 필요한 복잡한 스테이지 파이프라인이든 전부 이 하나로 처리합니다:
+
+- **호출:** `/oh-my-claudecode:team N:agent-type "작업설명"`(별칭 `/team`). `agent-type`엔 OMC 내장 에이전트(executor/debugger/designer 등)뿐 아니라 2단계에서 확인·설계한 `.claude/agents/*.md` 프로젝트 전용 페르소나 이름도 그대로 사용 가능. N·agent-type 생략 시 작업 분해 기반 자동 라우팅.
 - **런타임:** Claude Code 네이티브 implicit agent team(2.1.178+) 사용 — 별도 `TeamCreate` 없이 현재 세션이 곧 팀이고, 팀원은 `Agent`/`Task` 툴로 고유 `name`을 부여받아 직접 스폰됨.
 - **파이프라인:** `team-plan → team-prd → team-exec → team-verify → team-fix`(실패 시 루프) 단계별로 전용 에이전트 자동 배정 — 계획(`explore`/`planner`/`architect`) → 요구사항(`analyst`/`critic`) → 실행(`executor`/`debugger`/`designer` 등) → 검증(`verifier`/`security-reviewer`/`code-reviewer`).
 - **동기화:** 팀원 간 메시지는 활성 팀/대화 surface로 자동 전달됨 — 별도 SQLite나 메시징 인프라 불필요(레거시 swarm 방식 대체). 단계 전환마다 `.omc/handoffs/<stage>.md`에 결정사항·기각안·리스크를 남겨 컨텍스트 압축이나 재시작에도 이어지게 함.
@@ -140,4 +142,4 @@ UI 동작 검증은 아래 "에이전트 팀 기능 지침" 횡단 규칙(`ecc:b
 
 ### 횡단 규칙 (모든 경로 공통)
 
-- 개발 완료 후에는 항상 `ecc:browser-qa`로 브라우저 자동화를 통해 실제 화면에서 검증합니다.
+- 개발 완료 후에는 항상 `claude-in-chrome`으로 실제 화면을 열어 골든 패스와 주요 엣지케이스를 직접 조작해 검증하고, 콘솔 에러 유무를 확인합니다.
