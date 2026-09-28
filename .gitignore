@@ -4,6 +4,7 @@ dist/
 *.tsbuildinfo
 .claude/settings.local.json
 .superpowers/
+.omc/
 .pnpm-store/
 __pycache__/
 *.stackdump

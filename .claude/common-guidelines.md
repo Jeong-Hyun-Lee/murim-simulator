@@ -10,9 +10,10 @@
 
 - **caveman** — Caveman 모드 섹션. 마켓플레이스: GitHub `JuliusBrussee/caveman`.
 - **ponytail** — Ponytail 플러그인 지침 섹션. 마켓플레이스: GitHub `DietrichGebert/ponytail`.
-- **ecc** — 에이전트 팀 섹션의 `ecc:team-builder` 등. 마켓플레이스: `https://github.com/affaan-m/ECC.git`.
-- **claude-team-orchestration** — 에이전트 팀 섹션의 `swarm:team-management`/`swarm:orchestration-patterns`/`swarm:messaging`/`swarm:task-system`. 마켓플레이스: GitHub `zircote-plugins/claude-team-orchestration`. ⚠️ Agent Teams는 실험적 기능이라 기본 비활성 — `settings.json`에 `"env": { "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1" }` 추가하거나 환경변수 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`로 export 필요.
-- **superpowers** — Superpowers 플러그인 지침 섹션. 마켓플레이스: GitHub `obra/superpowers-marketplace`.
+- **superpowers** — Superpowers 플러그인 지침 섹션 및 에이전트 팀 섹션 1단계. 마켓플레이스: GitHub `obra/superpowers-marketplace`.
+- **ecc** — Superpowers 섹션(`ecc:browser-qa`) 및 에이전트 팀 섹션 2단계(`ecc:team-builder`). 마켓플레이스: `https://github.com/affaan-m/ECC.git`.
+- **harness** — 에이전트 팀 섹션 3단계(팀 아키텍처 설계). 마켓플레이스: GitHub `revfactory/harness`.
+- **oh-my-claudecode (OMC)** — 에이전트 팀 섹션 4단계(`/oh-my-claudecode:team`, 별칭 `/team`). 마켓플레이스: GitHub `Yeachan-Heo/oh-my-claudecode`. ⚠️ Claude Code 네이티브 implicit agent team 기반이라 여전히 실험적 기능 — `settings.json`에 `"env": { "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1" }` 추가하거나 환경변수 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`로 export 필요.
 
 ## 코딩 전에 생각하기
 
@@ -93,20 +94,6 @@
 - 항상 한글로 답변하세요.
 - 세션 중 `/caveman ultra` 모드가 적용되어 있지 않다면 `/caveman ultra` 명령을 1번 실행하세요.
 
-## 에이전트 팀 기능 지침 (Agent Teams Guidelines)
-
-`claude-team-orchestration` 플러그인을 통한 멀티 에이전트 팀 기능을 지원합니다. 복잡한 코드 리뷰, 다중 파일 리팩터링, 광범위한 리서치, 아키텍처 분석이 필요한 경우 혼자 순차적으로 처리하지 말고, 적극적으로 에이전트 팀 기능을 가동하여 병렬로 처리해야 합니다.
-
-### 에이전트 팀 작동 규칙 (Agent Teams Rules)
-
-- **가동 조건:** 태스크가 여러 도메인(예: 보안 + 성능 + QA)에 걸쳐 있거나 대규모 파일 분석이 필요할 때 독립적인 에이전트 팀을 구성합니다.
-- **워크플로우 프레임워크:** 팀 구성원 관리 및 작업 위임을 위해 `swarm:team-management` 및 `swarm:orchestration-patterns` 기술을 최우선으로 활용합니다.
-- **실행 모드:**
-  - 여러 에이전트가 동시에 독립적으로 실행될 수 있도록 **병렬 전문가(Parallel Specialists)** 또는 **스웜(Swarms)** 패턴을 우선 선택합니다.
-  - 팀원 간 동기화를 위해 상호 JSON 메시징(`swarm:messaging`)과 공유 작업 큐(`swarm:task-system`)를 사용합니다.
-- **ECC 연동:** 맞춤형 에이전트 팀을 신속하게 빌드하기 위해 `ecc:team-builder` 설정 및 로컬 페르소나 마크다운 템플릿(`.md`)을 적극 활용합니다.
-- **최종 종합(Synthesis):** 팀 리더(Lead) 에이전트는 각 워커(Worker) 에이전트들의 병렬 분석 결과를 수집하고, 동의 사항(Agreements)과 충돌 사항(Tensions)을 요약한 최종 통합 보고서를 작성한 뒤 팀 세션을 안전하게 종료해야 합니다.
-
 ## Ponytail 플러그인 지침
 
 코드 작성/수정 작업에는 `ponytail` 플러그인을 사용하세요. 불필요한 추상화, 미리 만드는 보일러플레이트, 과도한 설정 옵션 없이 최소한의 동작 코드를 우선합니다. 표준 라이브러리/기존 코드베이스 재사용 > 새 구현 순서를 따르고, 의도적으로 단순화한 부분은 한계와 확장 지점을 짧게 남기세요.
@@ -120,5 +107,37 @@
 - 스펙/요구사항 있는 다단계 작업: `superpowers:writing-plans`로 계획 작성 후 `superpowers:executing-plans`로 실행.
 - 신규 기능/버그 수정 구현: `superpowers:test-driven-development`.
 - 완료·수정·통과 주장 전: `superpowers:verification-before-completion` — 검증 명령 실제로 실행하고 출력 확인 후에만 주장.
-- 개발 후 UI 동작 테스트: `ecc:browser-qa` — 브라우저 자동화로 실제 화면에서 검증.
 - 개발 브랜치 마무리 시: `superpowers:finishing-a-development-branch`.
+
+UI 동작 검증은 아래 "에이전트 팀 기능 지침" 횡단 규칙(`ecc:browser-qa`)을 따르세요.
+
+## 에이전트 팀 기능 지침 (Agent Teams Guidelines)
+
+멀티 에이전트로 작업할지 판단할 때 아래 4단계를 순서대로 거칩니다. 각 단계는 역할이 배타적이므로 건너뛰지 말고 순서대로 확인하세요.
+
+### 1단계: 단일 세션으로 충분한가?
+
+대부분의 기능 개발/버그 수정은 여기서 끝납니다. 위 "Superpowers 플러그인 지침"의 프로세스 스킬(브레인스토밍 → 계획 → TDD → 검증)만 적용하고 2~4단계는 건너뜁니다. 태스크가 여러 도메인(예: 보안 + 성능 + QA)에 걸쳐 있거나 대규모 파일 분석이 필요할 때만 2단계로 진행합니다.
+
+### 2단계: 재사용 가능한 에이전트가 이미 있고, 서로 대화 없이 병렬 실행 + 결과 취합만 하면 되는가?
+
+- **YES:** `ecc:team-builder`로 기존 `.claude/agents/*.md` 페르소나를 즉석 조합해 병렬 디스패치합니다. 신규 파일 생성 없이 1회성으로 사용하고 3~4단계는 건너뜁니다.
+- **NO** (전용 팀이 없거나 에이전트 간 실제 리뷰·대화가 필요한 경우) → 3단계로 진행합니다.
+
+### 3단계: 팀 아키텍처 신규 설계 (도메인당 1회)
+
+`harness` 플러그인으로 "하네스 구성해줘" 요청 → 도메인 분석 후 6개 패턴(Pipeline/Fan-out-Fan-in/Expert Pool/Producer-Reviewer/Supervisor/Hierarchical Delegation) 중 선택 → `.claude/agents/*.md` + `.claude/skills/*/SKILL.md` 생성. 매번 반복하지 않고 팀 자산으로 재사용합니다.
+
+### 4단계: 팀 실행/조정
+
+3단계에서 설계했거나 이미 존재하는 팀을 실제로 가동할 때 `oh-my-claudecode`(OMC) 플러그인의 `team` 스킬로 실행합니다:
+
+- **호출:** `/oh-my-claudecode:team N:agent-type "작업설명"`(별칭 `/team`). N·agent-type 생략 시 작업 분해 기반 자동 라우팅.
+- **런타임:** Claude Code 네이티브 implicit agent team(2.1.178+) 사용 — 별도 `TeamCreate` 없이 현재 세션이 곧 팀이고, 팀원은 `Agent`/`Task` 툴로 고유 `name`을 부여받아 직접 스폰됨.
+- **파이프라인:** `team-plan → team-prd → team-exec → team-verify → team-fix`(실패 시 루프) 단계별로 전용 에이전트 자동 배정 — 계획(`explore`/`planner`/`architect`) → 요구사항(`analyst`/`critic`) → 실행(`executor`/`debugger`/`designer` 등) → 검증(`verifier`/`security-reviewer`/`code-reviewer`).
+- **동기화:** 팀원 간 메시지는 활성 팀/대화 surface로 자동 전달됨 — 별도 SQLite나 메시징 인프라 불필요(레거시 swarm 방식 대체). 단계 전환마다 `.omc/handoffs/<stage>.md`에 결정사항·기각안·리스크를 남겨 컨텍스트 압축이나 재시작에도 이어지게 함.
+- **최종 종합(Synthesis):** `team-verify` 통과 후 팀 리더가 결과를 요약하고, `/oh-my-claudecode:cancel`로 우아한 shutdown(팀원 확인 응답 대기 후 정리)을 수행해 세션을 종료합니다.
+
+### 횡단 규칙 (모든 경로 공통)
+
+- 개발 완료 후에는 항상 `ecc:browser-qa`로 브라우저 자동화를 통해 실제 화면에서 검증합니다.
