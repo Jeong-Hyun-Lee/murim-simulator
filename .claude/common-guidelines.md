@@ -10,8 +10,8 @@
 
 - **caveman** — Caveman 모드 섹션. 마켓플레이스: GitHub `JuliusBrussee/caveman`.
 - **ponytail** — Ponytail 플러그인 지침 섹션. 마켓플레이스: GitHub `DietrichGebert/ponytail`.
-- **harness** — 에이전트 팀 섹션 2단계(팀 아키텍처 설계). 마켓플레이스: GitHub `revfactory/harness`.
-- **oh-my-claudecode (OMC)** — OMC 개발 파이프라인 섹션(`plan`/`execute`/`review`/`verify`) 및 에이전트 팀 섹션 1·3단계(`/oh-my-claudecode:team`, 별칭 `/team`) — 가벼운 병렬 디스패치부터 복잡한 스테이지 파이프라인까지 전담. 마켓플레이스: GitHub `Yeachan-Heo/oh-my-claudecode`. ⚠️ Claude Code 네이티브 implicit agent team 기반이라 여전히 실험적 기능 — `settings.json`에 `"env": { "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1" }` 추가하거나 환경변수 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`로 export 필요.
+- **harness** — 에이전트 팀 섹션 2단계 중 모드 B/C 페르소나 신규 설계(모드 A엔 참고용, 필수 아님). 마켓플레이스: GitHub `revfactory/harness`.
+- **oh-my-claudecode (OMC)** — OMC 개발 파이프라인 섹션(`plan`/`execute`/`review`/`verify`) 및 에이전트 팀 섹션 3단계(`/oh-my-claudecode:team`, 별칭 `/team`) — 가벼운 병렬 디스패치부터 복잡한 스테이지 파이프라인까지 전담. 마켓플레이스: GitHub `Yeachan-Heo/oh-my-claudecode`. ⚠️ Claude Code 네이티브 implicit agent team 기반이라 여전히 실험적 기능 — `settings.json`에 `"env": { "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1" }` 추가하거나 환경변수 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`로 export 필요.
 
 ## 코딩 전에 생각하기
 
@@ -115,22 +115,18 @@ UI 동작 검증은 아래 "에이전트 팀 기능 지침" 횡단 규칙을 따
 
 ### 1단계: 단일 세션으로 충분한가?
 
-대부분의 기능 개발/버그 수정은 여기서 끝납니다. 위 "OMC 개발 파이프라인 지침"의 `plan → execute → review → verify`만 적용하고 2~3단계는 건너뜁니다. 태스크가 여러 도메인(예: 보안 + 성능 + QA)에 걸쳐 있거나 대규모 파일 분석이 필요할 때만 2단계로 진행합니다.
+대부분의 기능 개발/버그 수정은 여기서 끝납니다. 위 "OMC 개발 파이프라인 지침"의 `plan → execute → review → verify`만 적용하고 2~3단계는 건너뜁니다. 태스크가 여러 도메인(예: 보안 + 성능 + QA)에 걸쳐 있거나, 대규모 파일 분석이 필요하거나, 순서·반복·분기가 고정된 단계별 파이프라인이 필요할 때만 2단계로 진행합니다.
 
-### 2단계: 재사용 가능한 팀 아키텍처(페르소나)가 이미 있는가?
+### 2단계: 작업 형태가 파이프라인인가, 팀 협업인가?
 
-- **YES:** 기존 `.claude/agents/*.md` 페르소나 그대로 3단계 OMC 팀 실행에 투입합니다. 신규 설계 없이 바로 3단계로.
-- **NO** (전용 페르소나가 없거나 새 도메인인 경우) → `harness` 플러그인으로 "하네스 구성해줘" 요청 → 도메인 분석 후 실행 모드 선택 → `.claude/agents/*.md` + `.claude/skills/*/SKILL.md` 생성. 매번 반복하지 않고 팀 자산으로 재사용하고, 완료 후 3단계로.
+harness가 지원하는 실행 모드 3가지 중 어디에 해당하는지부터 판단합니다:
 
-harness가 고르는 실행 모드는 작업 형태에 따라 3가지 중 하나입니다:
+- **모드 A(워크플로 조율):** 순서·반복·분기를 코드가 결정하는 단일 오케스트레이션 스크립트로 충분한 다단계 파이프라인. **페르소나 설계도 OMC 팀 실행(3단계)도 필요 없음** — `Workflow` 도구로 바로 실행하고 여기서 끝냅니다. harness는 이 모드를 고를 때도 참고 가능하지만 필수 아님. ⚠️ `Workflow` 도구는 사용자가 멀티에이전트 오케스트레이션을 명시적으로 요청했을 때만 호출 — 파이프라인 형태로 판단됐다고 임의로 실행하지 않음. 미승인 상태에서 이런 작업 만나면: 범위·예상 비용을 짧게 설명하며 실행 여부만 제안하고, 다음부터 "ultracode" 키워드나 직접 요청으로 opt-in하면 매번 안 물어도 됨을 안내.
+- **모드 B(지속형 에이전트 협업)** / **모드 C(서브에이전트 위임):** 에이전트끼리 대화 맥락 유지하며 병렬 협업하거나(B), 결과를 한 번만 받으면 되는 단발 위임(C)이 필요한 "진짜 팀" 작업 — 아래 페르소나 확인 후 3단계로 진행합니다.
+  - **YES(재사용 가능한 페르소나 있음):** 기존 `.claude/agents/*.md` 페르소나 그대로 3단계 OMC 팀 실행에 투입, 신규 설계 없이 바로 3단계로.
+  - **NO** (전용 페르소나가 없거나 새 도메인인 경우) → `harness` 플러그인으로 "하네스 구성해줘" 요청 → 도메인 분석 후 모드 B/C 페르소나 설계 → `.claude/agents/*.md` + `.claude/skills/*/SKILL.md` 생성. 매번 반복하지 않고 팀 자산으로 재사용하고, 완료 후 3단계로.
 
-- **모드 A(워크플로 조율):** 단계별 파이프라인처럼 순서·반복·분기를 코드가 결정하는 단일 오케스트레이션 스크립트가 필요할 때. 다단계 순차 작업엔 기본으로 이 모드.
-- **모드 B(지속형 에이전트 협업):** 이름 붙인 에이전트끼리 대화 맥락을 유지하며 병렬로 피드백을 주고받아야 할 때(진짜 팀).
-- **모드 C(서브에이전트 위임):** 결과를 한 번만 받으면 되는 단발성 위임일 때.
-
-즉 병렬 다중 에이전트가 필요하면 B/C, 단일 프로세스 단계별 파이프라인이면 A를 고르도록 harness에 맡깁니다.
-
-### 3단계: 팀 실행/조정 (OMC)
+### 3단계: 팀 실행/조정 (OMC, 모드 B/C 전용)
 
 2단계에서 확인했거나 새로 설계한 페르소나를 실제로 가동할 때 `oh-my-claudecode`(OMC) 플러그인의 `team` 스킬로 실행합니다 — 기존 페르소나로 결과만 취합하는 가벼운 1회성 병렬 디스패치든, 에이전트 간 실제 리뷰·조정이 필요한 복잡한 스테이지 파이프라인이든 전부 이 하나로 처리합니다:
 
