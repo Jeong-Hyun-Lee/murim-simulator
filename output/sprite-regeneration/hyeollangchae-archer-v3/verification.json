@@ -1,0 +1,96 @@
+{
+  "frameCount": 54,
+  "cellSize": [896, 896],
+  "root": [640, 770],
+  "safeMargin": 32,
+  "fixedCharacterScale": 0.93,
+  "motionFrameOffsets": {},
+  "verificationNotes": {
+    "character": "Hyeollangchae archer",
+    "globalMotionPlan": "four-motion master board before production strips",
+    "motionCounts": {
+      "idle": 12,
+      "attack1": 16,
+      "attack2": 16,
+      "death": 10
+    },
+    "singleGlobalScale": true,
+    "perFrameScaling": false,
+    "perMotionScaling": false,
+    "detachedProjectilePolicy": "retain meaningful arrow/effect components owned by each source cell",
+    "groundLock": "actual support-contact alpha translated to packed y=770",
+    "rootLock": "right-side support axis translated to packed x=640",
+    "orientation": "screen-left; source artwork is never mirrored",
+    "runtimeScale": 0.45,
+    "runtimeZoomLogic": false
+  },
+  "atlas": [4007, 3003],
+  "durationTotals": {
+    "idle": 960,
+    "attack1": 720,
+    "attack2": 720,
+    "death": 1080
+  },
+  "motionTransforms": {
+    "idle": {
+      "appliedScale": 0.93,
+      "sourceHeightMin": 544.0,
+      "sourceHeightMax": 553.0,
+      "sourceRootXMin": 412.0,
+      "sourceRootXMax": 476.0,
+      "sourceGroundMin": 674.0,
+      "sourceGroundMax": 680.0,
+      "packedRootX": 640.0,
+      "packedGroundY": 770.0
+    },
+    "attack1": {
+      "appliedScale": 0.93,
+      "sourceHeightMin": 455.0,
+      "sourceHeightMax": 546.0,
+      "sourceRootXMin": 412.0,
+      "sourceRootXMax": 607.0,
+      "sourceGroundMin": 592.0,
+      "sourceGroundMax": 679.0,
+      "packedRootX": 640.0,
+      "packedGroundY": 770.0
+    },
+    "attack2": {
+      "appliedScale": 0.93,
+      "sourceHeightMin": 423.0,
+      "sourceHeightMax": 555.0,
+      "sourceRootXMin": 375.0,
+      "sourceRootXMax": 542.0,
+      "sourceGroundMin": 579.0,
+      "sourceGroundMax": 658.0,
+      "packedRootX": 640.0,
+      "packedGroundY": 770.0
+    },
+    "death": {
+      "appliedScale": 0.93,
+      "sourceHeightMin": 225.0,
+      "sourceHeightMax": 541.0,
+      "sourceRootXMin": 347.0,
+      "sourceRootXMax": 466.0,
+      "sourceGroundMin": 566.0,
+      "sourceGroundMax": 668.0,
+      "packedRootX": 640.0,
+      "packedGroundY": 770.0
+    }
+  },
+  "sourceHashes": {
+    "idle-part1.png": "ac6272122ade366d53dc9f3e0975106ff4813a3b4da6d9ca5b953e04cddb6d86",
+    "idle-part2.png": "34fca1bc064ebb70c6504b3013e5d007ee6ee8e23f58d730932f39fca01388a1",
+    "idle-part3.png": "6146a3c094a72682472ab6b0bb6adbe5d3a68475a52b1530254812e0aebe0750",
+    "attack1-part1.png": "d22374282c23760a1bc6c5472ed68a9433bffea84ee75ee576ba3d237528826d",
+    "attack1-part2.png": "fd41d2ca47a195523597aa2c58a42e1a76bdd68418defd3faca90ba16307b9fb",
+    "attack1-part3.png": "c1595675a698ddfbb73ad43e790e3643f1d68748727e313977355126d37a6415",
+    "attack1-part4.png": "b266526d6f2030547f3c18372185e65ff70b1c67c9ccf1c24536224a8e2cc4d4",
+    "attack2-part1.png": "1bd5f9a1ab5af62d75663ab98eb8b284c5b36cd04adf9ae4cae748ef0a501aaf",
+    "attack2-part2.png": "3277bf69a024ca50c26e1a867ab0623a51e4a040bda68ffbdc5bfbf48cf43421",
+    "attack2-part3.png": "829abe9a5225a697ea363cf0b034ad86c14f9f82a9759f05a75fe9a431ca3947",
+    "attack2-part4.png": "beb7f5759cab457c32c7b624c9bcb63929dd9bbae7e90887a132539faff7088f",
+    "death-part1.png": "f1af68ff8e83198fc88f636868400dba1eaa8508b4298def4ef8257ccefac567",
+    "death-part2.png": "0f466dd0c7b96d0d67275202e9085bd3a2fa995f17c8c06bf48ad1d45baa6a67",
+    "death-part3.png": "8e6306ee1273a451a52a46c585012c01e2fb5f3016a062584bc52081d5f90c43"
+  }
+}

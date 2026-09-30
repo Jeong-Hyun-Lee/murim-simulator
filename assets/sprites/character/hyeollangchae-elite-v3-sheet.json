@@ -1,0 +1,1423 @@
+{
+  "frames": {
+    "hyeollangchae-elite-v3/attack2/3": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 415,
+        "h": 545
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 275,
+        "y": 230,
+        "w": 415,
+        "h": 545
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack2/4": {
+      "frame": {
+        "x": 415,
+        "y": 0,
+        "w": 389,
+        "h": 537
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 264,
+        "y": 239,
+        "w": 389,
+        "h": 537
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack2/2": {
+      "frame": {
+        "x": 804,
+        "y": 0,
+        "w": 381,
+        "h": 526
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 252,
+        "y": 248,
+        "w": 381,
+        "h": 526
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack2/5": {
+      "frame": {
+        "x": 1185,
+        "y": 0,
+        "w": 396,
+        "h": 504
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 238,
+        "y": 272,
+        "w": 396,
+        "h": 504
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack2/7": {
+      "frame": {
+        "x": 1581,
+        "y": 0,
+        "w": 523,
+        "h": 476
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 115,
+        "y": 299,
+        "w": 523,
+        "h": 476
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack1/4": {
+      "frame": {
+        "x": 2104,
+        "y": 0,
+        "w": 415,
+        "h": 471
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 250,
+        "y": 304,
+        "w": 415,
+        "h": 471
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack2/6": {
+      "frame": {
+        "x": 2519,
+        "y": 0,
+        "w": 417,
+        "h": 470
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 214,
+        "y": 306,
+        "w": 417,
+        "h": 470
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack1/5": {
+      "frame": {
+        "x": 2936,
+        "y": 0,
+        "w": 439,
+        "h": 468
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 183,
+        "y": 309,
+        "w": 439,
+        "h": 468
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack2/8": {
+      "frame": {
+        "x": 3375,
+        "y": 0,
+        "w": 508,
+        "h": 451
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 226,
+        "y": 327,
+        "w": 508,
+        "h": 451
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack1/3": {
+      "frame": {
+        "x": 0,
+        "y": 545,
+        "w": 430,
+        "h": 438
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 221,
+        "y": 337,
+        "w": 430,
+        "h": 438
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack2/9": {
+      "frame": {
+        "x": 430,
+        "y": 545,
+        "w": 498,
+        "h": 428
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 182,
+        "y": 348,
+        "w": 498,
+        "h": 428
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/death/0": {
+      "frame": {
+        "x": 928,
+        "y": 545,
+        "w": 481,
+        "h": 425
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 137,
+        "y": 352,
+        "w": 481,
+        "h": 425
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/attack2/10": {
+      "frame": {
+        "x": 1409,
+        "y": 545,
+        "w": 496,
+        "h": 418
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 137,
+        "y": 357,
+        "w": 496,
+        "h": 418
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack2/1": {
+      "frame": {
+        "x": 1905,
+        "y": 545,
+        "w": 525,
+        "h": 414
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 100,
+        "y": 361,
+        "w": 525,
+        "h": 414
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/idle/1": {
+      "frame": {
+        "x": 2430,
+        "y": 545,
+        "w": 481,
+        "h": 392
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 138,
+        "y": 384,
+        "w": 481,
+        "h": 392
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/attack2/14": {
+      "frame": {
+        "x": 2911,
+        "y": 545,
+        "w": 453,
+        "h": 392
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 166,
+        "y": 382,
+        "w": 453,
+        "h": 392
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/idle/0": {
+      "frame": {
+        "x": 3364,
+        "y": 545,
+        "w": 478,
+        "h": 390
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 142,
+        "y": 385,
+        "w": 478,
+        "h": 390
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/attack2/15": {
+      "frame": {
+        "x": 0,
+        "y": 983,
+        "w": 464,
+        "h": 389
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 157,
+        "y": 385,
+        "w": 464,
+        "h": 389
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack1/8": {
+      "frame": {
+        "x": 464,
+        "y": 983,
+        "w": 588,
+        "h": 388
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 32,
+        "y": 388,
+        "w": 588,
+        "h": 388
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/idle/3": {
+      "frame": {
+        "x": 1052,
+        "y": 983,
+        "w": 475,
+        "h": 388
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 143,
+        "y": 387,
+        "w": 475,
+        "h": 388
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/death/1": {
+      "frame": {
+        "x": 1527,
+        "y": 983,
+        "w": 477,
+        "h": 385
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 145,
+        "y": 391,
+        "w": 477,
+        "h": 385
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/attack2/13": {
+      "frame": {
+        "x": 2004,
+        "y": 983,
+        "w": 454,
+        "h": 381
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 167,
+        "y": 392,
+        "w": 454,
+        "h": 381
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/idle/2": {
+      "frame": {
+        "x": 2458,
+        "y": 983,
+        "w": 477,
+        "h": 374
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 141,
+        "y": 401,
+        "w": 477,
+        "h": 374
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/idle/7": {
+      "frame": {
+        "x": 2935,
+        "y": 983,
+        "w": 443,
+        "h": 373
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 175,
+        "y": 402,
+        "w": 443,
+        "h": 373
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/idle/5": {
+      "frame": {
+        "x": 3378,
+        "y": 983,
+        "w": 445,
+        "h": 370
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 172,
+        "y": 405,
+        "w": 445,
+        "h": 370
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/idle/6": {
+      "frame": {
+        "x": 0,
+        "y": 1372,
+        "w": 442,
+        "h": 370
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 175,
+        "y": 405,
+        "w": 442,
+        "h": 370
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/idle/9": {
+      "frame": {
+        "x": 442,
+        "y": 1372,
+        "w": 467,
+        "h": 368
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 161,
+        "y": 406,
+        "w": 467,
+        "h": 368
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/idle/4": {
+      "frame": {
+        "x": 909,
+        "y": 1372,
+        "w": 445,
+        "h": 368
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 172,
+        "y": 406,
+        "w": 445,
+        "h": 368
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/attack1/0": {
+      "frame": {
+        "x": 1354,
+        "y": 1372,
+        "w": 460,
+        "h": 365
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 157,
+        "y": 408,
+        "w": 460,
+        "h": 365
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/idle/11": {
+      "frame": {
+        "x": 1814,
+        "y": 1372,
+        "w": 452,
+        "h": 365
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 165,
+        "y": 409,
+        "w": 452,
+        "h": 365
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/attack1/1": {
+      "frame": {
+        "x": 2266,
+        "y": 1372,
+        "w": 401,
+        "h": 364
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 257,
+        "y": 410,
+        "w": 401,
+        "h": 364
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/idle/8": {
+      "frame": {
+        "x": 2667,
+        "y": 1372,
+        "w": 451,
+        "h": 363
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 166,
+        "y": 411,
+        "w": 451,
+        "h": 363
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/attack2/0": {
+      "frame": {
+        "x": 3118,
+        "y": 1372,
+        "w": 458,
+        "h": 362
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 159,
+        "y": 412,
+        "w": 458,
+        "h": 362
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/idle/10": {
+      "frame": {
+        "x": 3576,
+        "y": 1372,
+        "w": 454,
+        "h": 362
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 163,
+        "y": 412,
+        "w": 454,
+        "h": 362
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/attack1/14": {
+      "frame": {
+        "x": 0,
+        "y": 1742,
+        "w": 442,
+        "h": 362
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 178,
+        "y": 413,
+        "w": 442,
+        "h": 362
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack1/15": {
+      "frame": {
+        "x": 442,
+        "y": 1742,
+        "w": 440,
+        "h": 361
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 176,
+        "y": 413,
+        "w": 440,
+        "h": 361
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack1/12": {
+      "frame": {
+        "x": 882,
+        "y": 1742,
+        "w": 510,
+        "h": 360
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 112,
+        "y": 415,
+        "w": 510,
+        "h": 360
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack1/13": {
+      "frame": {
+        "x": 1392,
+        "y": 1742,
+        "w": 469,
+        "h": 359
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 152,
+        "y": 415,
+        "w": 469,
+        "h": 359
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack1/6": {
+      "frame": {
+        "x": 1861,
+        "y": 1742,
+        "w": 665,
+        "h": 354
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 100,
+        "y": 420,
+        "w": 665,
+        "h": 354
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack1/7": {
+      "frame": {
+        "x": 2526,
+        "y": 1742,
+        "w": 393,
+        "h": 351
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 224,
+        "y": 424,
+        "w": 393,
+        "h": 351
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack1/9": {
+      "frame": {
+        "x": 2919,
+        "y": 1742,
+        "w": 495,
+        "h": 344
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 125,
+        "y": 431,
+        "w": 495,
+        "h": 344
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack1/10": {
+      "frame": {
+        "x": 3414,
+        "y": 1742,
+        "w": 432,
+        "h": 344
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 181,
+        "y": 431,
+        "w": 432,
+        "h": 344
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/death/2": {
+      "frame": {
+        "x": 0,
+        "y": 2104,
+        "w": 455,
+        "h": 340
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 182,
+        "y": 436,
+        "w": 455,
+        "h": 340
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/attack1/11": {
+      "frame": {
+        "x": 455,
+        "y": 2104,
+        "w": 488,
+        "h": 338
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 134,
+        "y": 436,
+        "w": 488,
+        "h": 338
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack1/2": {
+      "frame": {
+        "x": 943,
+        "y": 2104,
+        "w": 369,
+        "h": 331
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 253,
+        "y": 443,
+        "w": 369,
+        "h": 331
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack2/12": {
+      "frame": {
+        "x": 1312,
+        "y": 2104,
+        "w": 485,
+        "h": 329
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 141,
+        "y": 444,
+        "w": 485,
+        "h": 329
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/attack2/11": {
+      "frame": {
+        "x": 1797,
+        "y": 2104,
+        "w": 449,
+        "h": 325
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 179,
+        "y": 449,
+        "w": 449,
+        "h": 325
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "hyeollangchae-elite-v3/death/4": {
+      "frame": {
+        "x": 2246,
+        "y": 2104,
+        "w": 492,
+        "h": 284
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 215,
+        "y": 493,
+        "w": 492,
+        "h": 284
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/death/5": {
+      "frame": {
+        "x": 2738,
+        "y": 2104,
+        "w": 500,
+        "h": 263
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 243,
+        "y": 512,
+        "w": 500,
+        "h": 263
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/death/3": {
+      "frame": {
+        "x": 3238,
+        "y": 2104,
+        "w": 509,
+        "h": 260
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 220,
+        "y": 516,
+        "w": 509,
+        "h": 260
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/death/6": {
+      "frame": {
+        "x": 0,
+        "y": 2444,
+        "w": 495,
+        "h": 218
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 247,
+        "y": 558,
+        "w": 495,
+        "h": 218
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/death/7": {
+      "frame": {
+        "x": 495,
+        "y": 2444,
+        "w": 492,
+        "h": 162
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 347,
+        "y": 614,
+        "w": 492,
+        "h": 162
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/death/8": {
+      "frame": {
+        "x": 987,
+        "y": 2444,
+        "w": 499,
+        "h": 161
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 350,
+        "y": 613,
+        "w": 499,
+        "h": 161
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "hyeollangchae-elite-v3/death/9": {
+      "frame": {
+        "x": 1486,
+        "y": 2444,
+        "w": 492,
+        "h": 158
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 369,
+        "y": 616,
+        "w": 492,
+        "h": 158
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6540178571428571,
+        "y": 0.859375
+      },
+      "duration": 360
+    }
+  },
+  "animations": {
+    "idle": [
+      "hyeollangchae-elite-v3/idle/0",
+      "hyeollangchae-elite-v3/idle/1",
+      "hyeollangchae-elite-v3/idle/2",
+      "hyeollangchae-elite-v3/idle/3",
+      "hyeollangchae-elite-v3/idle/4",
+      "hyeollangchae-elite-v3/idle/5",
+      "hyeollangchae-elite-v3/idle/6",
+      "hyeollangchae-elite-v3/idle/7",
+      "hyeollangchae-elite-v3/idle/8",
+      "hyeollangchae-elite-v3/idle/9",
+      "hyeollangchae-elite-v3/idle/10",
+      "hyeollangchae-elite-v3/idle/11"
+    ],
+    "attack1": [
+      "hyeollangchae-elite-v3/attack1/0",
+      "hyeollangchae-elite-v3/attack1/1",
+      "hyeollangchae-elite-v3/attack1/2",
+      "hyeollangchae-elite-v3/attack1/3",
+      "hyeollangchae-elite-v3/attack1/4",
+      "hyeollangchae-elite-v3/attack1/5",
+      "hyeollangchae-elite-v3/attack1/6",
+      "hyeollangchae-elite-v3/attack1/7",
+      "hyeollangchae-elite-v3/attack1/8",
+      "hyeollangchae-elite-v3/attack1/9",
+      "hyeollangchae-elite-v3/attack1/10",
+      "hyeollangchae-elite-v3/attack1/11",
+      "hyeollangchae-elite-v3/attack1/12",
+      "hyeollangchae-elite-v3/attack1/13",
+      "hyeollangchae-elite-v3/attack1/14",
+      "hyeollangchae-elite-v3/attack1/15"
+    ],
+    "attack2": [
+      "hyeollangchae-elite-v3/attack2/0",
+      "hyeollangchae-elite-v3/attack2/1",
+      "hyeollangchae-elite-v3/attack2/2",
+      "hyeollangchae-elite-v3/attack2/3",
+      "hyeollangchae-elite-v3/attack2/4",
+      "hyeollangchae-elite-v3/attack2/5",
+      "hyeollangchae-elite-v3/attack2/6",
+      "hyeollangchae-elite-v3/attack2/7",
+      "hyeollangchae-elite-v3/attack2/8",
+      "hyeollangchae-elite-v3/attack2/9",
+      "hyeollangchae-elite-v3/attack2/10",
+      "hyeollangchae-elite-v3/attack2/11",
+      "hyeollangchae-elite-v3/attack2/12",
+      "hyeollangchae-elite-v3/attack2/13",
+      "hyeollangchae-elite-v3/attack2/14",
+      "hyeollangchae-elite-v3/attack2/15"
+    ],
+    "death": [
+      "hyeollangchae-elite-v3/death/0",
+      "hyeollangchae-elite-v3/death/1",
+      "hyeollangchae-elite-v3/death/2",
+      "hyeollangchae-elite-v3/death/3",
+      "hyeollangchae-elite-v3/death/4",
+      "hyeollangchae-elite-v3/death/5",
+      "hyeollangchae-elite-v3/death/6",
+      "hyeollangchae-elite-v3/death/7",
+      "hyeollangchae-elite-v3/death/8",
+      "hyeollangchae-elite-v3/death/9"
+    ]
+  },
+  "meta": {
+    "image": "hyeollangchae-elite-v3-sheet.png",
+    "format": "RGBA8888",
+    "scale": "1"
+  }
+}

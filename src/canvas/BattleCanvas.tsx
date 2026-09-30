@@ -9,7 +9,7 @@ import {
   Texture,
   type AnimatedSprite,
 } from 'pixi.js';
-import { loadAnimatedSprite, loadPackedAnimatedSprite } from './sprite';
+import { loadPackedAnimatedSprite } from './sprite';
 import { loadDamageFont, createDamageNumber, createCriticalLabel } from './damageFont';
 import {
   loadNormalHitEffect,
@@ -48,8 +48,8 @@ const CRITICAL_HIT_EFFECT_SCALE = 0.16;
 const PLAYER_SCALE = 0.5;
 const ENEMY_BOSS_SCALE = 0.58;
 const ENEMY_GRUNT_SCALE = 0.45;
-const ENEMY_ARCHER_SCALE = 0.82;
-const ENEMY_ELITE_SCALE = 0.92; // 정예산적은 졸개·궁수와 두목 사이 체급
+const ENEMY_ARCHER_SCALE = 0.45;
+const ENEMY_ELITE_SCALE = 0.45;
 const ENEMY_HIT_TINT = 0xff6666;
 const HIT_FLASH_MS = 140;
 const POPUP_LIFETIME_MS = 800;
@@ -64,8 +64,8 @@ const PLAYER_HIT_FRAME = 7;
 const ENEMY_HIT_FRAMES: Record<EnemyKind, { attack1: number; attack2: number }> = {
   boss: { attack1: 9, attack2: 9 },
   grunt: { attack1: 8, attack2: 8 },
-  archer: { attack1: 3, attack2: 2 },
-  elite: { attack1: 2, attack2: 4 },
+  archer: { attack1: 10, attack2: 10 },
+  elite: { attack1: 8, attack2: 8 },
 };
 // 10프레임 쓰러짐(총 1080ms)이 마지막 정지 자세까지 보이도록 다음 전투를 잠깐 멈춘다.
 const DEFEAT_PAUSE_MS = 1180;
@@ -180,34 +180,6 @@ export const BattleCanvas = () => {
         return;
       }
 
-      // attack2/쓰러짐은 아직 일부 캐릭터만 에셋이 있음 — 파일이 없으면
-      // null을 반환해 Promise.all 전체가 실패하지 않게 한다(에셋 없는 캐릭터는 기존 2모션 그대로).
-      const tryLoadAnimatedSprite = async (jsonUrl: string, tagName: string) => {
-        try {
-          return await loadAnimatedSprite(jsonUrl, tagName);
-        } catch {
-          return null;
-        }
-      };
-
-      // 시트 파일명 규칙(<접두>-<모션>-sheet.json)이 캐릭터마다 같아 한 번에 모션 세트를 읽는다.
-      // idle/attack은 필수, 나머지는 에셋이 있는 캐릭터만 채워진다.
-      const loadAnimSet = async (prefix: string): Promise<AnimSet> => {
-        const base = `/sprites/character/${prefix}`;
-        const [idle, attack1, attack2, death] = await Promise.all([
-          loadAnimatedSprite(`${base}-idle-sheet.json`, 'idle'),
-          loadAnimatedSprite(`${base}-attack-sheet.json`, 'attack'),
-          tryLoadAnimatedSprite(`${base}-attack2-sheet.json`, 'attack2'),
-          tryLoadAnimatedSprite(`${base}-death-sheet.json`, 'death'),
-        ]);
-        return {
-          idle,
-          attack1,
-          attack2: attack2 ?? undefined,
-          death: death ?? undefined,
-        };
-      };
-
       const loadPackedAnimSet = async (prefix: string): Promise<AnimSet> => {
         const jsonUrl = `/sprites/character/${prefix}-sheet.json`;
         const [idle, attack1, attack2, death] = await Promise.all([
@@ -223,8 +195,8 @@ export const BattleCanvas = () => {
         loadPackedAnimSet('mokhyeon-v10'),
         loadPackedAnimSet('hyeollangchae-boss-v3'),
         loadPackedAnimSet('hyeollangchae-grunt-v3'),
-        loadAnimSet('hyeollangchae-archer'),
-        loadAnimSet('hyeollangchae-elite'),
+        loadPackedAnimSet('hyeollangchae-archer-v3'),
+        loadPackedAnimSet('hyeollangchae-elite-v3'),
       ]);
       await Promise.all([loadDamageFont(), loadNormalHitEffect(), loadCriticalHitEffect()]);
       const normalHitFrames = normalHitEffectFrames();
