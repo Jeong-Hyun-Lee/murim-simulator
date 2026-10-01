@@ -10,9 +10,8 @@
 
 - **caveman** — Caveman 모드 섹션. 마켓플레이스: GitHub `JuliusBrussee/caveman`.
 - **ponytail** — Ponytail 플러그인 지침 섹션. 마켓플레이스: GitHub `DietrichGebert/ponytail`.
-- **ecc** — 에이전트 팀 섹션의 `ecc:team-builder` 등. 마켓플레이스: `https://github.com/affaan-m/ECC.git`.
-- **claude-team-orchestration** — 에이전트 팀 섹션의 `swarm:team-management`/`swarm:orchestration-patterns`/`swarm:messaging`/`swarm:task-system`. 마켓플레이스: GitHub `zircote-plugins/claude-team-orchestration`. ⚠️ Agent Teams는 실험적 기능이라 기본 비활성 — `settings.json`에 `"env": { "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1" }` 추가하거나 환경변수 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`로 export 필요.
-- **superpowers** — Superpowers 플러그인 지침 섹션. 마켓플레이스: GitHub `obra/superpowers-marketplace`.
+- **harness** — 에이전트 팀 섹션 2단계 중 모드 B/C 페르소나 신규 설계(모드 A엔 참고용, 필수 아님). 마켓플레이스: GitHub `revfactory/harness`.
+- **oh-my-claudecode (OMC)** — OMC 개발 파이프라인 섹션(`plan`/`execute`/`review`/`verify`) 및 에이전트 팀 섹션 3단계(`/oh-my-claudecode:team`, 별칭 `/team`) — 가벼운 병렬 디스패치부터 복잡한 스테이지 파이프라인까지 전담. 마켓플레이스: GitHub `Yeachan-Heo/oh-my-claudecode`. ⚠️ Claude Code 네이티브 implicit agent team 기반이라 여전히 실험적 기능 — `settings.json`에 `"env": { "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1" }` 추가하거나 환경변수 `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`로 export 필요.
 
 ## 코딩 전에 생각하기
 
@@ -93,32 +92,50 @@
 - 항상 한글로 답변하세요.
 - 세션 중 `/caveman ultra` 모드가 적용되어 있지 않다면 `/caveman ultra` 명령을 1번 실행하세요.
 
-## 에이전트 팀 기능 지침 (Agent Teams Guidelines)
-
-`claude-team-orchestration` 플러그인을 통한 멀티 에이전트 팀 기능을 지원합니다. 복잡한 코드 리뷰, 다중 파일 리팩터링, 광범위한 리서치, 아키텍처 분석이 필요한 경우 혼자 순차적으로 처리하지 말고, 적극적으로 에이전트 팀 기능을 가동하여 병렬로 처리해야 합니다.
-
-### 에이전트 팀 작동 규칙 (Agent Teams Rules)
-
-- **가동 조건:** 태스크가 여러 도메인(예: 보안 + 성능 + QA)에 걸쳐 있거나 대규모 파일 분석이 필요할 때 독립적인 에이전트 팀을 구성합니다.
-- **워크플로우 프레임워크:** 팀 구성원 관리 및 작업 위임을 위해 `swarm:team-management` 및 `swarm:orchestration-patterns` 기술을 최우선으로 활용합니다.
-- **실행 모드:**
-  - 여러 에이전트가 동시에 독립적으로 실행될 수 있도록 **병렬 전문가(Parallel Specialists)** 또는 **스웜(Swarms)** 패턴을 우선 선택합니다.
-  - 팀원 간 동기화를 위해 상호 JSON 메시징(`swarm:messaging`)과 공유 작업 큐(`swarm:task-system`)를 사용합니다.
-- **ECC 연동:** 맞춤형 에이전트 팀을 신속하게 빌드하기 위해 `ecc:team-builder` 설정 및 로컬 페르소나 마크다운 템플릿(`.md`)을 적극 활용합니다.
-- **최종 종합(Synthesis):** 팀 리더(Lead) 에이전트는 각 워커(Worker) 에이전트들의 병렬 분석 결과를 수집하고, 동의 사항(Agreements)과 충돌 사항(Tensions)을 요약한 최종 통합 보고서를 작성한 뒤 팀 세션을 안전하게 종료해야 합니다.
-
 ## Ponytail 플러그인 지침
 
 코드 작성/수정 작업에는 `ponytail` 플러그인을 사용하세요. 불필요한 추상화, 미리 만드는 보일러플레이트, 과도한 설정 옵션 없이 최소한의 동작 코드를 우선합니다. 표준 라이브러리/기존 코드베이스 재사용 > 새 구현 순서를 따르고, 의도적으로 단순화한 부분은 한계와 확장 지점을 짧게 남기세요.
 
-## Superpowers 플러그인 지침
+## OMC 개발 파이프라인 지침
 
-작업 시작 전 관련 스킬 있으면 반드시 사용 — 특히 프로세스 스킬을 구현 스킬보다 먼저 적용:
+작업 시작 전 단계에 맞는 OMC 스킬을 반드시 사용 — 특히 계획/검증 단계를 구현보다 먼저 적용:
 
-- 새 기능/변경 착수 전: `superpowers:brainstorming` — 요구사항·의도 먼저 탐색, 바로 구현 안 함.
-- 버그·테스트 실패·예상 밖 동작: `superpowers:systematic-debugging` — 원인 규명 먼저, 바로 고치지 않음.
-- 스펙/요구사항 있는 다단계 작업: `superpowers:writing-plans`로 계획 작성 후 `superpowers:executing-plans`로 실행.
-- 신규 기능/버그 수정 구현: `superpowers:test-driven-development`.
-- 완료·수정·통과 주장 전: `superpowers:verification-before-completion` — 검증 명령 실제로 실행하고 출력 확인 후에만 주장.
-- 개발 후 UI 동작 테스트: `ecc:browser-qa` — 브라우저 자동화로 실제 화면에서 검증.
-- 개발 브랜치 마무리 시: `superpowers:finishing-a-development-branch`.
+- 새 기능/변경 착수 전, 요구사항 불명확: `/oh-my-claudecode:plan` — 필요시 인터뷰 모드로 요구사항·의도 먼저 탐색, 바로 구현 안 함.
+- 버그·테스트 실패·예상 밖 동작: `debugger` 에이전트로 위임 — 원인 규명 먼저, 바로 고치지 않음.
+- 작업 착수: `/oh-my-claudecode:execute` — 단일 작업은 직접 구현, 독립적인 여러 단위는 `executor` 병렬 위임, 조율이 실제로 필요한 경우에만 `/team`으로 확장(불필요한 조율 금지).
+- 완료·수정·통과 주장 전: `/oh-my-claudecode:verify` — 검증 명령 실제로 실행하고 출력 확인 후에만 주장.
+- 머지/배포 전 결함·리스크·과설계 점검: `/oh-my-claudecode:review`.
+- 개발 브랜치 마무리 시: 대응 OMC 스킬 없음 — merge/PR/cleanup 중 적합한 방식을 구조적으로 제시하고 사용자 확인 후 진행.
+
+UI 동작 검증은 아래 "에이전트 팀 기능 지침" 횡단 규칙을 따르세요.
+
+## 에이전트 팀 기능 지침 (Agent Teams Guidelines)
+
+멀티 에이전트로 작업할지 판단할 때 아래 3단계를 순서대로 거칩니다. 각 단계는 역할이 배타적이므로 건너뛰지 말고 순서대로 확인하세요.
+
+### 1단계: 단일 세션으로 충분한가?
+
+대부분의 기능 개발/버그 수정은 여기서 끝납니다. 위 "OMC 개발 파이프라인 지침"의 `plan → execute → review → verify`만 적용하고 2~3단계는 건너뜁니다. 태스크가 여러 도메인(예: 보안 + 성능 + QA)에 걸쳐 있거나, 대규모 파일 분석이 필요하거나, 순서·반복·분기가 고정된 단계별 파이프라인이 필요할 때만 2단계로 진행합니다.
+
+### 2단계: 작업 형태가 파이프라인인가, 팀 협업인가?
+
+harness가 지원하는 실행 모드 3가지 중 어디에 해당하는지부터 판단합니다:
+
+- **모드 A(워크플로 조율):** 순서·반복·분기를 코드가 결정하는 단일 오케스트레이션 스크립트로 충분한 다단계 파이프라인. **페르소나 설계도 OMC 팀 실행(3단계)도 필요 없음** — `Workflow` 도구로 바로 실행하고 여기서 끝냅니다. harness는 이 모드를 고를 때도 참고 가능하지만 필수 아님. ⚠️ `Workflow` 도구는 사용자가 멀티에이전트 오케스트레이션을 명시적으로 요청했을 때만 호출 — 파이프라인 형태로 판단됐다고 임의로 실행하지 않음. 미승인 상태에서 이런 작업 만나면: 범위·예상 비용을 짧게 설명하며 실행 여부만 제안하고, 다음부터 "ultracode" 키워드나 직접 요청으로 opt-in하면 매번 안 물어도 됨을 안내.
+- **모드 B(지속형 에이전트 협업)** / **모드 C(서브에이전트 위임):** 에이전트끼리 대화 맥락 유지하며 병렬 협업하거나(B), 결과를 한 번만 받으면 되는 단발 위임(C)이 필요한 "진짜 팀" 작업 — 아래 페르소나 확인 후 3단계로 진행합니다.
+  - **YES(재사용 가능한 페르소나 있음):** 기존 `.claude/agents/*.md` 페르소나 그대로 3단계 OMC 팀 실행에 투입, 신규 설계 없이 바로 3단계로.
+  - **NO** (전용 페르소나가 없거나 새 도메인인 경우) → `harness` 플러그인으로 "하네스 구성해줘" 요청 → 도메인 분석 후 모드 B/C 페르소나 설계 → `.claude/agents/*.md` + `.claude/skills/*/SKILL.md` 생성. 매번 반복하지 않고 팀 자산으로 재사용하고, 완료 후 3단계로.
+
+### 3단계: 팀 실행/조정 (OMC, 모드 B/C 전용)
+
+2단계에서 확인했거나 새로 설계한 페르소나를 실제로 가동할 때 `oh-my-claudecode`(OMC) 플러그인의 `team` 스킬로 실행합니다 — 기존 페르소나로 결과만 취합하는 가벼운 1회성 병렬 디스패치든, 에이전트 간 실제 리뷰·조정이 필요한 복잡한 스테이지 파이프라인이든 전부 이 하나로 처리합니다:
+
+- **호출:** `/oh-my-claudecode:team N:agent-type "작업설명"`(별칭 `/team`). `agent-type`엔 OMC 내장 에이전트(executor/debugger/designer 등)뿐 아니라 2단계에서 확인·설계한 `.claude/agents/*.md` 프로젝트 전용 페르소나 이름도 그대로 사용 가능. N·agent-type 생략 시 작업 분해 기반 자동 라우팅.
+- **런타임:** Claude Code 네이티브 implicit agent team(2.1.178+) 사용 — 별도 `TeamCreate` 없이 현재 세션이 곧 팀이고, 팀원은 `Agent`/`Task` 툴로 고유 `name`을 부여받아 직접 스폰됨.
+- **파이프라인:** `team-plan → team-prd → team-exec → team-verify → team-fix`(실패 시 루프) 단계별로 전용 에이전트 자동 배정 — 계획(`explore`/`planner`/`architect`) → 요구사항(`analyst`/`critic`) → 실행(`executor`/`debugger`/`designer` 등) → 검증(`verifier`/`security-reviewer`/`code-reviewer`).
+- **동기화:** 팀원 간 메시지는 활성 팀/대화 surface로 자동 전달됨 — 별도 SQLite나 메시징 인프라 불필요(레거시 swarm 방식 대체). 단계 전환마다 `.omc/handoffs/<stage>.md`에 결정사항·기각안·리스크를 남겨 컨텍스트 압축이나 재시작에도 이어지게 함.
+- **최종 종합(Synthesis):** `team-verify` 통과 후 팀 리더가 결과를 요약하고, `/oh-my-claudecode:cancel`로 우아한 shutdown(팀원 확인 응답 대기 후 정리)을 수행해 세션을 종료합니다.
+
+### 횡단 규칙 (모든 경로 공통)
+
+- 개발 완료 후에는 항상 `claude-in-chrome`으로 실제 화면을 열어 골든 패스와 주요 엣지케이스를 직접 조작해 검증하고, 콘솔 에러 유무를 확인합니다.
