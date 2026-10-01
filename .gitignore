@@ -4,7 +4,10 @@ dist/
 *.tsbuildinfo
 .claude/settings.local.json
 .superpowers/
-.omc/
+
+# oh-my-claudecode (local session state; .omc/skills/ is the committable exception)
+/.omc/
+!/.omc/skills/
 .pnpm-store/
 __pycache__/
 *.stackdump
