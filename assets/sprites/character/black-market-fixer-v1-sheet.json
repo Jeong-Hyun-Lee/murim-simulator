@@ -1,0 +1,1423 @@
+{
+  "frames": {
+    "black-market-fixer-v1/attack2/3": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 405,
+        "h": 618
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 261,
+        "y": 158,
+        "w": 405,
+        "h": 618
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack2/4": {
+      "frame": {
+        "x": 405,
+        "y": 0,
+        "w": 432,
+        "h": 601
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 233,
+        "y": 176,
+        "w": 432,
+        "h": 601
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack2/2": {
+      "frame": {
+        "x": 837,
+        "y": 0,
+        "w": 421,
+        "h": 578
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 243,
+        "y": 199,
+        "w": 421,
+        "h": 578
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack2/11": {
+      "frame": {
+        "x": 1258,
+        "y": 0,
+        "w": 425,
+        "h": 548
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 231,
+        "y": 229,
+        "w": 425,
+        "h": 548
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack2/5": {
+      "frame": {
+        "x": 1683,
+        "y": 0,
+        "w": 523,
+        "h": 542
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 130,
+        "y": 236,
+        "w": 523,
+        "h": 542
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack2/12": {
+      "frame": {
+        "x": 2206,
+        "y": 0,
+        "w": 383,
+        "h": 515
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 276,
+        "y": 261,
+        "w": 383,
+        "h": 515
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack2/1": {
+      "frame": {
+        "x": 2589,
+        "y": 0,
+        "w": 557,
+        "h": 505
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 110,
+        "y": 273,
+        "w": 557,
+        "h": 505
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/death/0": {
+      "frame": {
+        "x": 3146,
+        "y": 0,
+        "w": 450,
+        "h": 498
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 217,
+        "y": 277,
+        "w": 450,
+        "h": 498
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-fixer-v1/idle/3": {
+      "frame": {
+        "x": 3596,
+        "y": 0,
+        "w": 466,
+        "h": 488
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 202,
+        "y": 288,
+        "w": 466,
+        "h": 488
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-fixer-v1/attack1/3": {
+      "frame": {
+        "x": 0,
+        "y": 618,
+        "w": 435,
+        "h": 473
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 226,
+        "y": 303,
+        "w": 435,
+        "h": 473
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/idle/2": {
+      "frame": {
+        "x": 435,
+        "y": 618,
+        "w": 469,
+        "h": 469
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 207,
+        "y": 308,
+        "w": 469,
+        "h": 469
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-fixer-v1/attack1/1": {
+      "frame": {
+        "x": 904,
+        "y": 618,
+        "w": 456,
+        "h": 469
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 238,
+        "y": 308,
+        "w": 456,
+        "h": 469
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack1/15": {
+      "frame": {
+        "x": 1360,
+        "y": 618,
+        "w": 430,
+        "h": 467
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 229,
+        "y": 309,
+        "w": 430,
+        "h": 467
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack1/14": {
+      "frame": {
+        "x": 1790,
+        "y": 618,
+        "w": 412,
+        "h": 465
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 246,
+        "y": 311,
+        "w": 412,
+        "h": 465
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack2/0": {
+      "frame": {
+        "x": 2202,
+        "y": 618,
+        "w": 467,
+        "h": 464
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 208,
+        "y": 312,
+        "w": 467,
+        "h": 464
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack2/6": {
+      "frame": {
+        "x": 2669,
+        "y": 618,
+        "w": 493,
+        "h": 463
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 194,
+        "y": 313,
+        "w": 493,
+        "h": 463
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack1/0": {
+      "frame": {
+        "x": 3162,
+        "y": 618,
+        "w": 457,
+        "h": 463
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 216,
+        "y": 312,
+        "w": 457,
+        "h": 463
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/idle/11": {
+      "frame": {
+        "x": 3619,
+        "y": 618,
+        "w": 477,
+        "h": 461
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 195,
+        "y": 314,
+        "w": 477,
+        "h": 461
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-fixer-v1/idle/10": {
+      "frame": {
+        "x": 0,
+        "y": 1091,
+        "w": 475,
+        "h": 461
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 195,
+        "y": 314,
+        "w": 475,
+        "h": 461
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-fixer-v1/attack1/13": {
+      "frame": {
+        "x": 475,
+        "y": 1091,
+        "w": 455,
+        "h": 461
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 194,
+        "y": 315,
+        "w": 455,
+        "h": 461
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/idle/8": {
+      "frame": {
+        "x": 930,
+        "y": 1091,
+        "w": 438,
+        "h": 461
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 235,
+        "y": 315,
+        "w": 438,
+        "h": 461
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-fixer-v1/idle/9": {
+      "frame": {
+        "x": 1368,
+        "y": 1091,
+        "w": 472,
+        "h": 460
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 197,
+        "y": 315,
+        "w": 472,
+        "h": 460
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-fixer-v1/death/1": {
+      "frame": {
+        "x": 1840,
+        "y": 1091,
+        "w": 477,
+        "h": 459
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 164,
+        "y": 317,
+        "w": 477,
+        "h": 459
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-fixer-v1/idle/4": {
+      "frame": {
+        "x": 2317,
+        "y": 1091,
+        "w": 437,
+        "h": 459
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 234,
+        "y": 317,
+        "w": 437,
+        "h": 459
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-fixer-v1/attack1/2": {
+      "frame": {
+        "x": 2754,
+        "y": 1091,
+        "w": 532,
+        "h": 458
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 205,
+        "y": 319,
+        "w": 532,
+        "h": 458
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/idle/1": {
+      "frame": {
+        "x": 3286,
+        "y": 1091,
+        "w": 460,
+        "h": 457
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 216,
+        "y": 319,
+        "w": 460,
+        "h": 457
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-fixer-v1/idle/6": {
+      "frame": {
+        "x": 0,
+        "y": 1552,
+        "w": 477,
+        "h": 454
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 191,
+        "y": 322,
+        "w": 477,
+        "h": 454
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-fixer-v1/idle/7": {
+      "frame": {
+        "x": 477,
+        "y": 1552,
+        "w": 472,
+        "h": 454
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 190,
+        "y": 323,
+        "w": 472,
+        "h": 454
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-fixer-v1/idle/5": {
+      "frame": {
+        "x": 949,
+        "y": 1552,
+        "w": 471,
+        "h": 454
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 203,
+        "y": 322,
+        "w": 471,
+        "h": 454
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-fixer-v1/attack2/15": {
+      "frame": {
+        "x": 1420,
+        "y": 1552,
+        "w": 458,
+        "h": 453
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 207,
+        "y": 324,
+        "w": 458,
+        "h": 453
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack2/14": {
+      "frame": {
+        "x": 1878,
+        "y": 1552,
+        "w": 458,
+        "h": 449
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 208,
+        "y": 326,
+        "w": 458,
+        "h": 449
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack2/10": {
+      "frame": {
+        "x": 2336,
+        "y": 1552,
+        "w": 484,
+        "h": 446
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 163,
+        "y": 329,
+        "w": 484,
+        "h": 446
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack2/13": {
+      "frame": {
+        "x": 2820,
+        "y": 1552,
+        "w": 471,
+        "h": 446
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 187,
+        "y": 330,
+        "w": 471,
+        "h": 446
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/idle/0": {
+      "frame": {
+        "x": 3291,
+        "y": 1552,
+        "w": 433,
+        "h": 444
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 236,
+        "y": 332,
+        "w": 433,
+        "h": 444
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-fixer-v1/attack1/12": {
+      "frame": {
+        "x": 0,
+        "y": 2006,
+        "w": 576,
+        "h": 443
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 76,
+        "y": 333,
+        "w": 576,
+        "h": 443
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack2/7": {
+      "frame": {
+        "x": 576,
+        "y": 2006,
+        "w": 468,
+        "h": 443
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 272,
+        "y": 332,
+        "w": 468,
+        "h": 443
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/death/2": {
+      "frame": {
+        "x": 1044,
+        "y": 2006,
+        "w": 513,
+        "h": 441
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 165,
+        "y": 335,
+        "w": 513,
+        "h": 441
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-fixer-v1/attack1/4": {
+      "frame": {
+        "x": 1557,
+        "y": 2006,
+        "w": 405,
+        "h": 436
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 252,
+        "y": 339,
+        "w": 405,
+        "h": 436
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack1/9": {
+      "frame": {
+        "x": 1962,
+        "y": 2006,
+        "w": 500,
+        "h": 434
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 192,
+        "y": 343,
+        "w": 500,
+        "h": 434
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack1/8": {
+      "frame": {
+        "x": 2462,
+        "y": 2006,
+        "w": 558,
+        "h": 427
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 120,
+        "y": 354,
+        "w": 558,
+        "h": 427
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack1/5": {
+      "frame": {
+        "x": 3020,
+        "y": 2006,
+        "w": 434,
+        "h": 421
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 197,
+        "y": 356,
+        "w": 434,
+        "h": 421
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack1/7": {
+      "frame": {
+        "x": 3454,
+        "y": 2006,
+        "w": 567,
+        "h": 418
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 110,
+        "y": 362,
+        "w": 567,
+        "h": 418
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack1/10": {
+      "frame": {
+        "x": 0,
+        "y": 2449,
+        "w": 509,
+        "h": 418
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 136,
+        "y": 357,
+        "w": 509,
+        "h": 418
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack1/6": {
+      "frame": {
+        "x": 509,
+        "y": 2449,
+        "w": 508,
+        "h": 415
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 136,
+        "y": 362,
+        "w": 508,
+        "h": 415
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack1/11": {
+      "frame": {
+        "x": 1017,
+        "y": 2449,
+        "w": 402,
+        "h": 405
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 248,
+        "y": 370,
+        "w": 402,
+        "h": 405
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/attack2/9": {
+      "frame": {
+        "x": 1419,
+        "y": 2449,
+        "w": 464,
+        "h": 388
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 262,
+        "y": 389,
+        "w": 464,
+        "h": 388
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/death/3": {
+      "frame": {
+        "x": 1883,
+        "y": 2449,
+        "w": 482,
+        "h": 376
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 198,
+        "y": 405,
+        "w": 482,
+        "h": 376
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-fixer-v1/death/4": {
+      "frame": {
+        "x": 2365,
+        "y": 2449,
+        "w": 447,
+        "h": 374
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 204,
+        "y": 405,
+        "w": 447,
+        "h": 374
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-fixer-v1/attack2/8": {
+      "frame": {
+        "x": 2812,
+        "y": 2449,
+        "w": 524,
+        "h": 372
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 207,
+        "y": 403,
+        "w": 524,
+        "h": 372
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-fixer-v1/death/5": {
+      "frame": {
+        "x": 3336,
+        "y": 2449,
+        "w": 512,
+        "h": 305
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 256,
+        "y": 474,
+        "w": 512,
+        "h": 305
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-fixer-v1/death/6": {
+      "frame": {
+        "x": 0,
+        "y": 2867,
+        "w": 482,
+        "h": 272
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 273,
+        "y": 507,
+        "w": 482,
+        "h": 272
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-fixer-v1/death/8": {
+      "frame": {
+        "x": 482,
+        "y": 2867,
+        "w": 512,
+        "h": 252
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 255,
+        "y": 525,
+        "w": 512,
+        "h": 252
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-fixer-v1/death/9": {
+      "frame": {
+        "x": 994,
+        "y": 2867,
+        "w": 525,
+        "h": 223
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 242,
+        "y": 556,
+        "w": 525,
+        "h": 223
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 360
+    },
+    "black-market-fixer-v1/death/7": {
+      "frame": {
+        "x": 1519,
+        "y": 2867,
+        "w": 528,
+        "h": 216
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 235,
+        "y": 562,
+        "w": 528,
+        "h": 216
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    }
+  },
+  "animations": {
+    "idle": [
+      "black-market-fixer-v1/idle/0",
+      "black-market-fixer-v1/idle/1",
+      "black-market-fixer-v1/idle/2",
+      "black-market-fixer-v1/idle/3",
+      "black-market-fixer-v1/idle/4",
+      "black-market-fixer-v1/idle/5",
+      "black-market-fixer-v1/idle/6",
+      "black-market-fixer-v1/idle/7",
+      "black-market-fixer-v1/idle/8",
+      "black-market-fixer-v1/idle/9",
+      "black-market-fixer-v1/idle/10",
+      "black-market-fixer-v1/idle/11"
+    ],
+    "attack1": [
+      "black-market-fixer-v1/attack1/0",
+      "black-market-fixer-v1/attack1/1",
+      "black-market-fixer-v1/attack1/2",
+      "black-market-fixer-v1/attack1/3",
+      "black-market-fixer-v1/attack1/4",
+      "black-market-fixer-v1/attack1/5",
+      "black-market-fixer-v1/attack1/6",
+      "black-market-fixer-v1/attack1/7",
+      "black-market-fixer-v1/attack1/8",
+      "black-market-fixer-v1/attack1/9",
+      "black-market-fixer-v1/attack1/10",
+      "black-market-fixer-v1/attack1/11",
+      "black-market-fixer-v1/attack1/12",
+      "black-market-fixer-v1/attack1/13",
+      "black-market-fixer-v1/attack1/14",
+      "black-market-fixer-v1/attack1/15"
+    ],
+    "attack2": [
+      "black-market-fixer-v1/attack2/0",
+      "black-market-fixer-v1/attack2/1",
+      "black-market-fixer-v1/attack2/2",
+      "black-market-fixer-v1/attack2/3",
+      "black-market-fixer-v1/attack2/4",
+      "black-market-fixer-v1/attack2/5",
+      "black-market-fixer-v1/attack2/6",
+      "black-market-fixer-v1/attack2/7",
+      "black-market-fixer-v1/attack2/8",
+      "black-market-fixer-v1/attack2/9",
+      "black-market-fixer-v1/attack2/10",
+      "black-market-fixer-v1/attack2/11",
+      "black-market-fixer-v1/attack2/12",
+      "black-market-fixer-v1/attack2/13",
+      "black-market-fixer-v1/attack2/14",
+      "black-market-fixer-v1/attack2/15"
+    ],
+    "death": [
+      "black-market-fixer-v1/death/0",
+      "black-market-fixer-v1/death/1",
+      "black-market-fixer-v1/death/2",
+      "black-market-fixer-v1/death/3",
+      "black-market-fixer-v1/death/4",
+      "black-market-fixer-v1/death/5",
+      "black-market-fixer-v1/death/6",
+      "black-market-fixer-v1/death/7",
+      "black-market-fixer-v1/death/8",
+      "black-market-fixer-v1/death/9"
+    ]
+  },
+  "meta": {
+    "image": "black-market-fixer-v1-sheet.png",
+    "format": "RGBA8888",
+    "scale": "1"
+  }
+}

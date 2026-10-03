@@ -200,6 +200,7 @@ export const BattleCanvas = () => {
         blackMarketBossSet,
         blackMarketMinionSet,
         blackMarketDartSet,
+        blackMarketFixerSet,
       ] = await Promise.all([
         loadPackedAnimSet('mokhyeon-v10'),
         loadPackedAnimSet('hyeollangchae-boss-v3'),
@@ -209,6 +210,7 @@ export const BattleCanvas = () => {
         loadPackedAnimSet('black-market-boss-v1'),
         loadPackedAnimSet('black-market-minion-v1'),
         loadPackedAnimSet('black-market-dart-v1'),
+        loadPackedAnimSet('black-market-fixer-v1'),
       ]);
       await Promise.all([loadDamageFont(), loadNormalHitEffect(), loadCriticalHitEffect()]);
       const normalHitFrames = normalHitEffectFrames();
@@ -271,7 +273,12 @@ export const BattleCanvas = () => {
       app.stage.addChild(playerFlash);
 
       // 완성된 적만 전용 스프라이트를 쓰고, 아직 아트가 없는 적은 enemyBox 플레이스홀더로 표시한다.
-      type EnemyArtKind = EnemyKind | 'blackMarketBoss' | 'blackMarketMinion' | 'blackMarketDart';
+      type EnemyArtKind =
+        | EnemyKind
+        | 'blackMarketBoss'
+        | 'blackMarketMinion'
+        | 'blackMarketDart'
+        | 'blackMarketFixer';
       type ActiveEnemyKind = EnemyArtKind | 'none';
       const ENEMY_KINDS: EnemyArtKind[] = [
         'boss',
@@ -281,6 +288,7 @@ export const BattleCanvas = () => {
         'blackMarketBoss',
         'blackMarketMinion',
         'blackMarketDart',
+        'blackMarketFixer',
       ];
       const enemyAnimByKind: Record<EnemyArtKind, AnimSet> = {
         boss: bossSet,
@@ -290,6 +298,7 @@ export const BattleCanvas = () => {
         blackMarketBoss: blackMarketBossSet,
         blackMarketMinion: blackMarketMinionSet,
         blackMarketDart: blackMarketDartSet,
+        blackMarketFixer: blackMarketFixerSet,
       };
       const enemyScaleByKind: Record<EnemyArtKind, number> = {
         boss: ENEMY_BOSS_SCALE,
@@ -299,6 +308,7 @@ export const BattleCanvas = () => {
         blackMarketBoss: ENEMY_BOSS_SCALE,
         blackMarketMinion: ENEMY_GRUNT_SCALE,
         blackMarketDart: ENEMY_ARCHER_SCALE,
+        blackMarketFixer: ENEMY_ELITE_SCALE,
       };
       // 재패킹한 적 원화는 모두 화면 왼쪽을 보므로 런타임 좌우 반전이 필요 없다.
       let currentEnemyKind: ActiveEnemyKind = 'none';
@@ -365,7 +375,10 @@ export const BattleCanvas = () => {
       for (const kind of ENEMY_KINDS) {
         const set = enemyAnimByKind[kind];
         const hitFrames =
-          kind === 'blackMarketBoss' || kind === 'blackMarketMinion' || kind === 'blackMarketDart'
+          kind === 'blackMarketBoss' ||
+          kind === 'blackMarketMinion' ||
+          kind === 'blackMarketDart' ||
+          kind === 'blackMarketFixer'
             ? { attack1: 7, attack2: 7 }
             : ENEMY_HIT_FRAMES[kind as EnemyKind];
         enemyHitFrames.set(set.attack1, hitFrames.attack1);
@@ -379,6 +392,7 @@ export const BattleCanvas = () => {
         if (stage.major === 2 && kind === 'boss') return 'blackMarketBoss';
         if (stage.major === 2 && kind === 'grunt') return 'blackMarketMinion';
         if (stage.major === 2 && kind === 'archer') return 'blackMarketDart';
+        if (stage.major === 2 && kind === 'elite') return 'blackMarketFixer';
         return 'none';
       };
 
