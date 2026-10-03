@@ -7,6 +7,7 @@
 ## oh-my-codex
 
 - 개발 작업은 사용자 전역으로 설치된 `oh-my-codex` 플러그인을 사용한다.
+- `oh-my-codex` 사용 시 `autopilot` 스킬을 사용한다.
 - 공통 지침의 `oh-my-claudecode (OMC)` 관련 절차와 명령은 이 프로젝트에서는 `oh-my-codex`의 동등한 기능으로 대체한다.
 
 ## 전투 캐릭터 방향
