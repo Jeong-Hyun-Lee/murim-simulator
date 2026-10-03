@@ -10,6 +10,10 @@
 - `oh-my-codex` 사용 시 `autopilot` 스킬을 사용한다.
 - 공통 지침의 `oh-my-claudecode (OMC)` 관련 절차와 명령은 이 프로젝트에서는 `oh-my-codex`의 동등한 기능으로 대체한다.
 
+## Caveman
+
+- 개발 작업 시 `caveman` 플러그인을 `ultra` 레벨(`/caveman ultra`)로 사용한다.
+
 ## 전투 캐릭터 방향
 
 - 이미지 생성 작업에는 Ponytail의 최소 구현/품질 단순화 지침을 적용하지 않는다. 사용자가 요청한 품질과 캐릭터 이미지 생성 지침의 검수 기준을 우선한다.
