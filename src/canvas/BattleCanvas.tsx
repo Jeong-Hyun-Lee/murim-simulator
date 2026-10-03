@@ -191,12 +191,22 @@ export const BattleCanvas = () => {
         return { idle, attack1, attack2, death };
       };
 
-      const [playerAnim, bossSet, gruntSet, archerSet, eliteSet] = await Promise.all([
+      const [
+        playerAnim,
+        bossSet,
+        gruntSet,
+        archerSet,
+        eliteSet,
+        blackMarketBossSet,
+        blackMarketMinionSet,
+      ] = await Promise.all([
         loadPackedAnimSet('mokhyeon-v10'),
         loadPackedAnimSet('hyeollangchae-boss-v3'),
         loadPackedAnimSet('hyeollangchae-grunt-v3'),
         loadPackedAnimSet('hyeollangchae-archer-v3'),
         loadPackedAnimSet('hyeollangchae-elite-v3'),
+        loadPackedAnimSet('black-market-boss-v1'),
+        loadPackedAnimSet('black-market-minion-v1'),
       ]);
       await Promise.all([loadDamageFont(), loadNormalHitEffect(), loadCriticalHitEffect()]);
       const normalHitFrames = normalHitEffectFrames();
@@ -258,25 +268,37 @@ export const BattleCanvas = () => {
       playerFlash.alpha = 0;
       app.stage.addChild(playerFlash);
 
-      // 혈랑채(스테이지 1) 전용 스프라이트. 그 외 스테이지는 아직 아트가 없어 enemyBox 플레이스홀더로 대체.
-      type ActiveEnemyKind = EnemyKind | 'none';
-      const ENEMY_KINDS = ['boss', 'grunt', 'archer', 'elite'] as const;
-      const enemyAnimByKind: Record<EnemyKind, AnimSet> = {
+      // 완성된 적만 전용 스프라이트를 쓰고, 아직 아트가 없는 적은 enemyBox 플레이스홀더로 표시한다.
+      type EnemyArtKind = EnemyKind | 'blackMarketBoss' | 'blackMarketMinion';
+      type ActiveEnemyKind = EnemyArtKind | 'none';
+      const ENEMY_KINDS: EnemyArtKind[] = [
+        'boss',
+        'grunt',
+        'archer',
+        'elite',
+        'blackMarketBoss',
+        'blackMarketMinion',
+      ];
+      const enemyAnimByKind: Record<EnemyArtKind, AnimSet> = {
         boss: bossSet,
         grunt: gruntSet,
         archer: archerSet,
         elite: eliteSet,
+        blackMarketBoss: blackMarketBossSet,
+        blackMarketMinion: blackMarketMinionSet,
       };
-      const enemyScaleByKind: Record<EnemyKind, number> = {
+      const enemyScaleByKind: Record<EnemyArtKind, number> = {
         boss: ENEMY_BOSS_SCALE,
         grunt: ENEMY_GRUNT_SCALE,
         archer: ENEMY_ARCHER_SCALE,
         elite: ENEMY_ELITE_SCALE,
+        blackMarketBoss: ENEMY_BOSS_SCALE,
+        blackMarketMinion: ENEMY_GRUNT_SCALE,
       };
-      // 재패킹한 혈랑채 원화는 모두 화면 왼쪽을 보므로 런타임 좌우 반전이 필요 없다.
+      // 재패킹한 적 원화는 모두 화면 왼쪽을 보므로 런타임 좌우 반전이 필요 없다.
       let currentEnemyKind: ActiveEnemyKind = 'none';
 
-      const enemySpritesOf = (kind: EnemyKind): AnimatedSprite[] => {
+      const enemySpritesOf = (kind: EnemyArtKind): AnimatedSprite[] => {
         const set = enemyAnimByKind[kind];
         return [set.idle, set.attack1, set.attack2, set.death].filter(
           (a): a is AnimatedSprite => a !== undefined,
@@ -289,7 +311,7 @@ export const BattleCanvas = () => {
         }
       };
 
-      const returnToIdle = (kind: EnemyKind) => {
+      const returnToIdle = (kind: EnemyArtKind) => {
         if (currentEnemyKind !== kind) return;
         const { idle } = enemyAnimByKind[kind];
         idle.visible = true;
@@ -297,7 +319,7 @@ export const BattleCanvas = () => {
       };
 
       // 쓰러짐은 리워드 연출 동안 마지막 프레임을 유지한다.
-      const playEnemyOneShot = (kind: EnemyKind, sprite: AnimatedSprite | undefined) => {
+      const playEnemyOneShot = (kind: EnemyArtKind, sprite: AnimatedSprite | undefined) => {
         if (!sprite) return;
         const anim = sprite;
         for (const s of enemySpritesOf(kind)) stopAndHide(s);
@@ -337,13 +359,22 @@ export const BattleCanvas = () => {
       const enemyHitFrames = new Map<AnimatedSprite, number>();
       for (const kind of ENEMY_KINDS) {
         const set = enemyAnimByKind[kind];
-        enemyHitFrames.set(set.attack1, ENEMY_HIT_FRAMES[kind].attack1);
-        if (set.attack2) enemyHitFrames.set(set.attack2, ENEMY_HIT_FRAMES[kind].attack2);
+        const hitFrames =
+          kind === 'blackMarketBoss' || kind === 'blackMarketMinion'
+            ? { attack1: 7, attack2: 7 }
+            : ENEMY_HIT_FRAMES[kind as EnemyKind];
+        enemyHitFrames.set(set.attack1, hitFrames.attack1);
+        if (set.attack2) enemyHitFrames.set(set.attack2, hitFrames.attack2);
       }
 
       // 스테이지별 적 종류는 combat.ts가 단일 기준 — 이름(monsterStats)과 스프라이트가 같은 규칙을 쓴다.
-      const enemyKindForStage = (stage: StageId): ActiveEnemyKind =>
-        stage.major === 1 ? enemyKind(stage) : 'none';
+      const enemyKindForStage = (stage: StageId): ActiveEnemyKind => {
+        const kind = enemyKind(stage);
+        if (stage.major === 1) return kind;
+        if (stage.major === 2 && kind === 'boss') return 'blackMarketBoss';
+        if (stage.major === 2 && kind === 'grunt') return 'blackMarketMinion';
+        return 'none';
+      };
 
       const activeEnemySprite = () => {
         if (currentEnemyKind === 'none') return null;

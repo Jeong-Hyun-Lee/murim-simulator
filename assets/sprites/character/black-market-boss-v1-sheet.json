@@ -1,0 +1,1423 @@
+{
+  "frames": {
+    "black-market-boss-v1/attack1/3": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 440,
+        "h": 626
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 275,
+        "y": 153,
+        "w": 440,
+        "h": 626
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/idle/9": {
+      "frame": {
+        "x": 440,
+        "y": 0,
+        "w": 463,
+        "h": 526
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 283,
+        "y": 250,
+        "w": 463,
+        "h": 526
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-boss-v1/idle/10": {
+      "frame": {
+        "x": 903,
+        "y": 0,
+        "w": 485,
+        "h": 524
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 261,
+        "y": 253,
+        "w": 485,
+        "h": 524
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-boss-v1/idle/11": {
+      "frame": {
+        "x": 1388,
+        "y": 0,
+        "w": 483,
+        "h": 524
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 262,
+        "y": 253,
+        "w": 483,
+        "h": 524
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-boss-v1/attack1/4": {
+      "frame": {
+        "x": 1871,
+        "y": 0,
+        "w": 438,
+        "h": 520
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 285,
+        "y": 257,
+        "w": 438,
+        "h": 520
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack1/14": {
+      "frame": {
+        "x": 2309,
+        "y": 0,
+        "w": 435,
+        "h": 509
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 297,
+        "y": 269,
+        "w": 435,
+        "h": 509
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack1/15": {
+      "frame": {
+        "x": 2744,
+        "y": 0,
+        "w": 447,
+        "h": 508
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 288,
+        "y": 270,
+        "w": 447,
+        "h": 508
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/idle/2": {
+      "frame": {
+        "x": 3191,
+        "y": 0,
+        "w": 470,
+        "h": 507
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 278,
+        "y": 271,
+        "w": 470,
+        "h": 507
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-boss-v1/death/0": {
+      "frame": {
+        "x": 0,
+        "y": 626,
+        "w": 506,
+        "h": 501
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 255,
+        "y": 276,
+        "w": 506,
+        "h": 501
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-boss-v1/death/1": {
+      "frame": {
+        "x": 506,
+        "y": 626,
+        "w": 472,
+        "h": 500
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 257,
+        "y": 277,
+        "w": 472,
+        "h": 500
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-boss-v1/idle/8": {
+      "frame": {
+        "x": 978,
+        "y": 626,
+        "w": 505,
+        "h": 498
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 255,
+        "y": 278,
+        "w": 505,
+        "h": 498
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-boss-v1/idle/1": {
+      "frame": {
+        "x": 1483,
+        "y": 626,
+        "w": 455,
+        "h": 498
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 283,
+        "y": 278,
+        "w": 455,
+        "h": 498
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-boss-v1/attack1/13": {
+      "frame": {
+        "x": 1938,
+        "y": 626,
+        "w": 478,
+        "h": 496
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 274,
+        "y": 281,
+        "w": 478,
+        "h": 496
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/idle/5": {
+      "frame": {
+        "x": 2416,
+        "y": 626,
+        "w": 466,
+        "h": 495
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 275,
+        "y": 282,
+        "w": 466,
+        "h": 495
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-boss-v1/attack1/0": {
+      "frame": {
+        "x": 2882,
+        "y": 626,
+        "w": 460,
+        "h": 495
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 279,
+        "y": 283,
+        "w": 460,
+        "h": 495
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/idle/7": {
+      "frame": {
+        "x": 3342,
+        "y": 626,
+        "w": 472,
+        "h": 494
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 267,
+        "y": 283,
+        "w": 472,
+        "h": 494
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-boss-v1/idle/4": {
+      "frame": {
+        "x": 0,
+        "y": 1127,
+        "w": 466,
+        "h": 488
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 269,
+        "y": 288,
+        "w": 466,
+        "h": 488
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-boss-v1/idle/3": {
+      "frame": {
+        "x": 466,
+        "y": 1127,
+        "w": 443,
+        "h": 488
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 290,
+        "y": 288,
+        "w": 443,
+        "h": 488
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-boss-v1/attack2/15": {
+      "frame": {
+        "x": 909,
+        "y": 1127,
+        "w": 432,
+        "h": 488
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 300,
+        "y": 288,
+        "w": 432,
+        "h": 488
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack1/5": {
+      "frame": {
+        "x": 1341,
+        "y": 1127,
+        "w": 501,
+        "h": 487
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 202,
+        "y": 289,
+        "w": 501,
+        "h": 487
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/idle/6": {
+      "frame": {
+        "x": 1842,
+        "y": 1127,
+        "w": 492,
+        "h": 487
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 257,
+        "y": 289,
+        "w": 492,
+        "h": 487
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-boss-v1/idle/0": {
+      "frame": {
+        "x": 2334,
+        "y": 1127,
+        "w": 443,
+        "h": 487
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 284,
+        "y": 288,
+        "w": 443,
+        "h": 487
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-boss-v1/attack1/1": {
+      "frame": {
+        "x": 2777,
+        "y": 1127,
+        "w": 495,
+        "h": 484
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 244,
+        "y": 293,
+        "w": 495,
+        "h": 484
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack1/12": {
+      "frame": {
+        "x": 3272,
+        "y": 1127,
+        "w": 524,
+        "h": 472
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 208,
+        "y": 305,
+        "w": 524,
+        "h": 472
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack2/14": {
+      "frame": {
+        "x": 0,
+        "y": 1615,
+        "w": 405,
+        "h": 472
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 308,
+        "y": 304,
+        "w": 405,
+        "h": 472
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack1/2": {
+      "frame": {
+        "x": 405,
+        "y": 1615,
+        "w": 551,
+        "h": 460
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 181,
+        "y": 317,
+        "w": 551,
+        "h": 460
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/death/2": {
+      "frame": {
+        "x": 956,
+        "y": 1615,
+        "w": 500,
+        "h": 460
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 242,
+        "y": 317,
+        "w": 500,
+        "h": 460
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-boss-v1/attack2/1": {
+      "frame": {
+        "x": 1456,
+        "y": 1615,
+        "w": 449,
+        "h": 458
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 273,
+        "y": 318,
+        "w": 449,
+        "h": 458
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack2/13": {
+      "frame": {
+        "x": 1905,
+        "y": 1615,
+        "w": 485,
+        "h": 452
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 212,
+        "y": 324,
+        "w": 485,
+        "h": 452
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack2/0": {
+      "frame": {
+        "x": 2390,
+        "y": 1615,
+        "w": 405,
+        "h": 449
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 321,
+        "y": 327,
+        "w": 405,
+        "h": 449
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack2/12": {
+      "frame": {
+        "x": 2795,
+        "y": 1615,
+        "w": 535,
+        "h": 446
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 143,
+        "y": 329,
+        "w": 535,
+        "h": 446
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack1/11": {
+      "frame": {
+        "x": 3330,
+        "y": 1615,
+        "w": 406,
+        "h": 424
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 290,
+        "y": 352,
+        "w": 406,
+        "h": 424
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack1/10": {
+      "frame": {
+        "x": 0,
+        "y": 2087,
+        "w": 495,
+        "h": 423
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 209,
+        "y": 352,
+        "w": 495,
+        "h": 423
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack1/8": {
+      "frame": {
+        "x": 495,
+        "y": 2087,
+        "w": 581,
+        "h": 417
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 96,
+        "y": 361,
+        "w": 581,
+        "h": 417
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack1/7": {
+      "frame": {
+        "x": 1076,
+        "y": 2087,
+        "w": 588,
+        "h": 412
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 165,
+        "y": 365,
+        "w": 588,
+        "h": 412
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack2/3": {
+      "frame": {
+        "x": 1664,
+        "y": 2087,
+        "w": 471,
+        "h": 409
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 248,
+        "y": 365,
+        "w": 471,
+        "h": 409
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack2/11": {
+      "frame": {
+        "x": 2135,
+        "y": 2087,
+        "w": 390,
+        "h": 406
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 310,
+        "y": 369,
+        "w": 390,
+        "h": 406
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack2/2": {
+      "frame": {
+        "x": 2525,
+        "y": 2087,
+        "w": 591,
+        "h": 400
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 139,
+        "y": 375,
+        "w": 591,
+        "h": 400
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack2/4": {
+      "frame": {
+        "x": 3116,
+        "y": 2087,
+        "w": 466,
+        "h": 394
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 206,
+        "y": 384,
+        "w": 466,
+        "h": 394
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/death/4": {
+      "frame": {
+        "x": 3582,
+        "y": 2087,
+        "w": 463,
+        "h": 393
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 242,
+        "y": 387,
+        "w": 463,
+        "h": 393
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-boss-v1/attack2/8": {
+      "frame": {
+        "x": 0,
+        "y": 2510,
+        "w": 570,
+        "h": 388
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 122,
+        "y": 391,
+        "w": 570,
+        "h": 388
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack1/9": {
+      "frame": {
+        "x": 570,
+        "y": 2510,
+        "w": 510,
+        "h": 385
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 155,
+        "y": 391,
+        "w": 510,
+        "h": 385
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack2/10": {
+      "frame": {
+        "x": 1080,
+        "y": 2510,
+        "w": 509,
+        "h": 384
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 187,
+        "y": 391,
+        "w": 509,
+        "h": 384
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack1/6": {
+      "frame": {
+        "x": 1589,
+        "y": 2510,
+        "w": 439,
+        "h": 381
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 263,
+        "y": 394,
+        "w": 439,
+        "h": 381
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack2/9": {
+      "frame": {
+        "x": 2028,
+        "y": 2510,
+        "w": 510,
+        "h": 379
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 173,
+        "y": 398,
+        "w": 510,
+        "h": 379
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack2/5": {
+      "frame": {
+        "x": 2538,
+        "y": 2510,
+        "w": 525,
+        "h": 364
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 159,
+        "y": 414,
+        "w": 525,
+        "h": 364
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/death/5": {
+      "frame": {
+        "x": 3063,
+        "y": 2510,
+        "w": 472,
+        "h": 354
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 241,
+        "y": 426,
+        "w": 472,
+        "h": 354
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-boss-v1/attack2/6": {
+      "frame": {
+        "x": 3535,
+        "y": 2510,
+        "w": 480,
+        "h": 352
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 187,
+        "y": 424,
+        "w": 480,
+        "h": 352
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/attack2/7": {
+      "frame": {
+        "x": 0,
+        "y": 2898,
+        "w": 522,
+        "h": 350
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 162,
+        "y": 428,
+        "w": 522,
+        "h": 350
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "black-market-boss-v1/death/3": {
+      "frame": {
+        "x": 522,
+        "y": 2898,
+        "w": 485,
+        "h": 347
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 227,
+        "y": 429,
+        "w": 485,
+        "h": 347
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-boss-v1/death/8": {
+      "frame": {
+        "x": 1007,
+        "y": 2898,
+        "w": 537,
+        "h": 300
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 222,
+        "y": 479,
+        "w": 537,
+        "h": 300
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-boss-v1/death/6": {
+      "frame": {
+        "x": 1544,
+        "y": 2898,
+        "w": 525,
+        "h": 283
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 220,
+        "y": 496,
+        "w": 525,
+        "h": 283
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "black-market-boss-v1/death/9": {
+      "frame": {
+        "x": 2069,
+        "y": 2898,
+        "w": 504,
+        "h": 229
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 208,
+        "y": 549,
+        "w": 504,
+        "h": 229
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 360
+    },
+    "black-market-boss-v1/death/7": {
+      "frame": {
+        "x": 2573,
+        "y": 2898,
+        "w": 501,
+        "h": 220
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 266,
+        "y": 557,
+        "w": 501,
+        "h": 220
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6919642857142857,
+        "y": 0.859375
+      },
+      "duration": 80
+    }
+  },
+  "animations": {
+    "idle": [
+      "black-market-boss-v1/idle/0",
+      "black-market-boss-v1/idle/1",
+      "black-market-boss-v1/idle/2",
+      "black-market-boss-v1/idle/3",
+      "black-market-boss-v1/idle/4",
+      "black-market-boss-v1/idle/5",
+      "black-market-boss-v1/idle/6",
+      "black-market-boss-v1/idle/7",
+      "black-market-boss-v1/idle/8",
+      "black-market-boss-v1/idle/9",
+      "black-market-boss-v1/idle/10",
+      "black-market-boss-v1/idle/11"
+    ],
+    "attack1": [
+      "black-market-boss-v1/attack1/0",
+      "black-market-boss-v1/attack1/1",
+      "black-market-boss-v1/attack1/2",
+      "black-market-boss-v1/attack1/3",
+      "black-market-boss-v1/attack1/4",
+      "black-market-boss-v1/attack1/5",
+      "black-market-boss-v1/attack1/6",
+      "black-market-boss-v1/attack1/7",
+      "black-market-boss-v1/attack1/8",
+      "black-market-boss-v1/attack1/9",
+      "black-market-boss-v1/attack1/10",
+      "black-market-boss-v1/attack1/11",
+      "black-market-boss-v1/attack1/12",
+      "black-market-boss-v1/attack1/13",
+      "black-market-boss-v1/attack1/14",
+      "black-market-boss-v1/attack1/15"
+    ],
+    "attack2": [
+      "black-market-boss-v1/attack2/0",
+      "black-market-boss-v1/attack2/1",
+      "black-market-boss-v1/attack2/2",
+      "black-market-boss-v1/attack2/3",
+      "black-market-boss-v1/attack2/4",
+      "black-market-boss-v1/attack2/5",
+      "black-market-boss-v1/attack2/6",
+      "black-market-boss-v1/attack2/7",
+      "black-market-boss-v1/attack2/8",
+      "black-market-boss-v1/attack2/9",
+      "black-market-boss-v1/attack2/10",
+      "black-market-boss-v1/attack2/11",
+      "black-market-boss-v1/attack2/12",
+      "black-market-boss-v1/attack2/13",
+      "black-market-boss-v1/attack2/14",
+      "black-market-boss-v1/attack2/15"
+    ],
+    "death": [
+      "black-market-boss-v1/death/0",
+      "black-market-boss-v1/death/1",
+      "black-market-boss-v1/death/2",
+      "black-market-boss-v1/death/3",
+      "black-market-boss-v1/death/4",
+      "black-market-boss-v1/death/5",
+      "black-market-boss-v1/death/6",
+      "black-market-boss-v1/death/7",
+      "black-market-boss-v1/death/8",
+      "black-market-boss-v1/death/9"
+    ]
+  },
+  "meta": {
+    "image": "black-market-boss-v1-sheet.png",
+    "format": "RGBA8888",
+    "scale": "1"
+  }
+}
