@@ -1,0 +1,1423 @@
+{
+  "frames": {
+    "peng-clan-young-master-v1/attack2/3": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 402,
+        "h": 569
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 298,
+        "y": 208,
+        "w": 402,
+        "h": 569
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/attack2/4": {
+      "frame": {
+        "x": 402,
+        "y": 0,
+        "w": 456,
+        "h": 492
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 240,
+        "y": 285,
+        "w": 456,
+        "h": 492
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/attack1/3": {
+      "frame": {
+        "x": 858,
+        "y": 0,
+        "w": 425,
+        "h": 483
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 262,
+        "y": 294,
+        "w": 425,
+        "h": 483
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/attack1/4": {
+      "frame": {
+        "x": 1283,
+        "y": 0,
+        "w": 421,
+        "h": 470
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 281,
+        "y": 308,
+        "w": 421,
+        "h": 470
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/attack2/2": {
+      "frame": {
+        "x": 1704,
+        "y": 0,
+        "w": 392,
+        "h": 452
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 304,
+        "y": 325,
+        "w": 392,
+        "h": 452
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/idle/10": {
+      "frame": {
+        "x": 2096,
+        "y": 0,
+        "w": 485,
+        "h": 445
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 232,
+        "y": 333,
+        "w": 485,
+        "h": 445
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-young-master-v1/idle/4": {
+      "frame": {
+        "x": 2581,
+        "y": 0,
+        "w": 494,
+        "h": 443
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 225,
+        "y": 335,
+        "w": 494,
+        "h": 443
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-young-master-v1/attack2/5": {
+      "frame": {
+        "x": 3075,
+        "y": 0,
+        "w": 424,
+        "h": 439
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 246,
+        "y": 338,
+        "w": 424,
+        "h": 439
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/idle/9": {
+      "frame": {
+        "x": 3499,
+        "y": 0,
+        "w": 486,
+        "h": 437
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 228,
+        "y": 340,
+        "w": 486,
+        "h": 437
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-young-master-v1/death/0": {
+      "frame": {
+        "x": 0,
+        "y": 569,
+        "w": 433,
+        "h": 437
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 234,
+        "y": 342,
+        "w": 433,
+        "h": 437
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-young-master-v1/idle/3": {
+      "frame": {
+        "x": 433,
+        "y": 569,
+        "w": 474,
+        "h": 434
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 240,
+        "y": 344,
+        "w": 474,
+        "h": 434
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-young-master-v1/idle/2": {
+      "frame": {
+        "x": 907,
+        "y": 569,
+        "w": 472,
+        "h": 432
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 243,
+        "y": 345,
+        "w": 472,
+        "h": 432
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-young-master-v1/idle/5": {
+      "frame": {
+        "x": 1379,
+        "y": 569,
+        "w": 493,
+        "h": 431
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 228,
+        "y": 347,
+        "w": 493,
+        "h": 431
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-young-master-v1/attack1/2": {
+      "frame": {
+        "x": 1872,
+        "y": 569,
+        "w": 497,
+        "h": 429
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 201,
+        "y": 348,
+        "w": 497,
+        "h": 429
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/idle/6": {
+      "frame": {
+        "x": 2369,
+        "y": 569,
+        "w": 495,
+        "h": 429
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 231,
+        "y": 349,
+        "w": 495,
+        "h": 429
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-young-master-v1/idle/7": {
+      "frame": {
+        "x": 2864,
+        "y": 569,
+        "w": 491,
+        "h": 429
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 230,
+        "y": 349,
+        "w": 491,
+        "h": 429
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-young-master-v1/attack2/0": {
+      "frame": {
+        "x": 3355,
+        "y": 569,
+        "w": 443,
+        "h": 429
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 229,
+        "y": 348,
+        "w": 443,
+        "h": 429
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/attack2/12": {
+      "frame": {
+        "x": 0,
+        "y": 1006,
+        "w": 500,
+        "h": 428
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 182,
+        "y": 349,
+        "w": 500,
+        "h": 428
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/attack2/15": {
+      "frame": {
+        "x": 500,
+        "y": 1006,
+        "w": 446,
+        "h": 428
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 239,
+        "y": 348,
+        "w": 446,
+        "h": 428
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/death/1": {
+      "frame": {
+        "x": 946,
+        "y": 1006,
+        "w": 499,
+        "h": 427
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 206,
+        "y": 351,
+        "w": 499,
+        "h": 427
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-young-master-v1/idle/1": {
+      "frame": {
+        "x": 1445,
+        "y": 1006,
+        "w": 476,
+        "h": 426
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 235,
+        "y": 352,
+        "w": 476,
+        "h": 426
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-young-master-v1/idle/11": {
+      "frame": {
+        "x": 1921,
+        "y": 1006,
+        "w": 490,
+        "h": 424
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 236,
+        "y": 353,
+        "w": 490,
+        "h": 424
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-young-master-v1/attack1/0": {
+      "frame": {
+        "x": 2411,
+        "y": 1006,
+        "w": 453,
+        "h": 424
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 232,
+        "y": 352,
+        "w": 453,
+        "h": 424
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/attack2/14": {
+      "frame": {
+        "x": 2864,
+        "y": 1006,
+        "w": 415,
+        "h": 424
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 283,
+        "y": 352,
+        "w": 415,
+        "h": 424
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/attack1/1": {
+      "frame": {
+        "x": 3279,
+        "y": 1006,
+        "w": 413,
+        "h": 424
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 281,
+        "y": 352,
+        "w": 413,
+        "h": 424
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/attack2/13": {
+      "frame": {
+        "x": 0,
+        "y": 1434,
+        "w": 474,
+        "h": 423
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 212,
+        "y": 352,
+        "w": 474,
+        "h": 423
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/idle/0": {
+      "frame": {
+        "x": 474,
+        "y": 1434,
+        "w": 436,
+        "h": 421
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 236,
+        "y": 356,
+        "w": 436,
+        "h": 421
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-young-master-v1/attack2/6": {
+      "frame": {
+        "x": 910,
+        "y": 1434,
+        "w": 483,
+        "h": 418
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 188,
+        "y": 357,
+        "w": 483,
+        "h": 418
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/death/5": {
+      "frame": {
+        "x": 1393,
+        "y": 1434,
+        "w": 471,
+        "h": 413
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 293,
+        "y": 374,
+        "w": 471,
+        "h": 413
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-young-master-v1/attack1/15": {
+      "frame": {
+        "x": 1864,
+        "y": 1434,
+        "w": 432,
+        "h": 412
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 255,
+        "y": 364,
+        "w": 432,
+        "h": 412
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/idle/8": {
+      "frame": {
+        "x": 2296,
+        "y": 1434,
+        "w": 446,
+        "h": 411
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 225,
+        "y": 366,
+        "w": 446,
+        "h": 411
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-young-master-v1/attack1/14": {
+      "frame": {
+        "x": 2742,
+        "y": 1434,
+        "w": 397,
+        "h": 411
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 295,
+        "y": 365,
+        "w": 397,
+        "h": 411
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/attack1/12": {
+      "frame": {
+        "x": 3139,
+        "y": 1434,
+        "w": 472,
+        "h": 409
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 209,
+        "y": 366,
+        "w": 472,
+        "h": 409
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/attack1/13": {
+      "frame": {
+        "x": 3611,
+        "y": 1434,
+        "w": 472,
+        "h": 409
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 213,
+        "y": 366,
+        "w": 472,
+        "h": 409
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/attack1/5": {
+      "frame": {
+        "x": 0,
+        "y": 1857,
+        "w": 430,
+        "h": 399
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 246,
+        "y": 378,
+        "w": 430,
+        "h": 399
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/attack2/1": {
+      "frame": {
+        "x": 430,
+        "y": 1857,
+        "w": 490,
+        "h": 396
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 199,
+        "y": 380,
+        "w": 490,
+        "h": 396
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/death/2": {
+      "frame": {
+        "x": 920,
+        "y": 1857,
+        "w": 484,
+        "h": 384
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 192,
+        "y": 392,
+        "w": 484,
+        "h": 384
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-young-master-v1/attack2/8": {
+      "frame": {
+        "x": 1404,
+        "y": 1857,
+        "w": 495,
+        "h": 382
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 206,
+        "y": 398,
+        "w": 495,
+        "h": 382
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/attack1/6": {
+      "frame": {
+        "x": 1899,
+        "y": 1857,
+        "w": 498,
+        "h": 372
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 171,
+        "y": 405,
+        "w": 498,
+        "h": 372
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/death/4": {
+      "frame": {
+        "x": 2397,
+        "y": 1857,
+        "w": 493,
+        "h": 372
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 168,
+        "y": 406,
+        "w": 493,
+        "h": 372
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-young-master-v1/attack2/7": {
+      "frame": {
+        "x": 2890,
+        "y": 1857,
+        "w": 482,
+        "h": 365
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 192,
+        "y": 410,
+        "w": 482,
+        "h": 365
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/attack1/7": {
+      "frame": {
+        "x": 3372,
+        "y": 1857,
+        "w": 518,
+        "h": 354
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 151,
+        "y": 422,
+        "w": 518,
+        "h": 354
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/attack2/9": {
+      "frame": {
+        "x": 0,
+        "y": 2256,
+        "w": 523,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 144,
+        "y": 441,
+        "w": 523,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/attack2/10": {
+      "frame": {
+        "x": 523,
+        "y": 2256,
+        "w": 466,
+        "h": 336
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 196,
+        "y": 440,
+        "w": 466,
+        "h": 336
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/attack2/11": {
+      "frame": {
+        "x": 989,
+        "y": 2256,
+        "w": 455,
+        "h": 319
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 218,
+        "y": 458,
+        "w": 455,
+        "h": 319
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/death/6": {
+      "frame": {
+        "x": 1444,
+        "y": 2256,
+        "w": 473,
+        "h": 317
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 364,
+        "y": 467,
+        "w": 473,
+        "h": 317
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-young-master-v1/attack1/11": {
+      "frame": {
+        "x": 1917,
+        "y": 2256,
+        "w": 465,
+        "h": 316
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 208,
+        "y": 458,
+        "w": 465,
+        "h": 316
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/death/3": {
+      "frame": {
+        "x": 2382,
+        "y": 2256,
+        "w": 505,
+        "h": 315
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 219,
+        "y": 469,
+        "w": 505,
+        "h": 315
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-young-master-v1/attack1/10": {
+      "frame": {
+        "x": 2887,
+        "y": 2256,
+        "w": 453,
+        "h": 314
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 210,
+        "y": 460,
+        "w": 453,
+        "h": 314
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/attack1/8": {
+      "frame": {
+        "x": 3340,
+        "y": 2256,
+        "w": 532,
+        "h": 312
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 123,
+        "y": 466,
+        "w": 532,
+        "h": 312
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/attack1/9": {
+      "frame": {
+        "x": 0,
+        "y": 2592,
+        "w": 493,
+        "h": 311
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 176,
+        "y": 465,
+        "w": 493,
+        "h": 311
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-young-master-v1/death/8": {
+      "frame": {
+        "x": 493,
+        "y": 2592,
+        "w": 493,
+        "h": 234
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 305,
+        "y": 545,
+        "w": 493,
+        "h": 234
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-young-master-v1/death/9": {
+      "frame": {
+        "x": 986,
+        "y": 2592,
+        "w": 495,
+        "h": 229
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 300,
+        "y": 550,
+        "w": 495,
+        "h": 229
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 360
+    },
+    "peng-clan-young-master-v1/death/7": {
+      "frame": {
+        "x": 1481,
+        "y": 2592,
+        "w": 462,
+        "h": 198
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 303,
+        "y": 583,
+        "w": 462,
+        "h": 198
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6964285714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    }
+  },
+  "animations": {
+    "idle": [
+      "peng-clan-young-master-v1/idle/0",
+      "peng-clan-young-master-v1/idle/1",
+      "peng-clan-young-master-v1/idle/2",
+      "peng-clan-young-master-v1/idle/3",
+      "peng-clan-young-master-v1/idle/4",
+      "peng-clan-young-master-v1/idle/5",
+      "peng-clan-young-master-v1/idle/6",
+      "peng-clan-young-master-v1/idle/7",
+      "peng-clan-young-master-v1/idle/8",
+      "peng-clan-young-master-v1/idle/9",
+      "peng-clan-young-master-v1/idle/10",
+      "peng-clan-young-master-v1/idle/11"
+    ],
+    "attack1": [
+      "peng-clan-young-master-v1/attack1/0",
+      "peng-clan-young-master-v1/attack1/1",
+      "peng-clan-young-master-v1/attack1/2",
+      "peng-clan-young-master-v1/attack1/3",
+      "peng-clan-young-master-v1/attack1/4",
+      "peng-clan-young-master-v1/attack1/5",
+      "peng-clan-young-master-v1/attack1/6",
+      "peng-clan-young-master-v1/attack1/7",
+      "peng-clan-young-master-v1/attack1/8",
+      "peng-clan-young-master-v1/attack1/9",
+      "peng-clan-young-master-v1/attack1/10",
+      "peng-clan-young-master-v1/attack1/11",
+      "peng-clan-young-master-v1/attack1/12",
+      "peng-clan-young-master-v1/attack1/13",
+      "peng-clan-young-master-v1/attack1/14",
+      "peng-clan-young-master-v1/attack1/15"
+    ],
+    "attack2": [
+      "peng-clan-young-master-v1/attack2/0",
+      "peng-clan-young-master-v1/attack2/1",
+      "peng-clan-young-master-v1/attack2/2",
+      "peng-clan-young-master-v1/attack2/3",
+      "peng-clan-young-master-v1/attack2/4",
+      "peng-clan-young-master-v1/attack2/5",
+      "peng-clan-young-master-v1/attack2/6",
+      "peng-clan-young-master-v1/attack2/7",
+      "peng-clan-young-master-v1/attack2/8",
+      "peng-clan-young-master-v1/attack2/9",
+      "peng-clan-young-master-v1/attack2/10",
+      "peng-clan-young-master-v1/attack2/11",
+      "peng-clan-young-master-v1/attack2/12",
+      "peng-clan-young-master-v1/attack2/13",
+      "peng-clan-young-master-v1/attack2/14",
+      "peng-clan-young-master-v1/attack2/15"
+    ],
+    "death": [
+      "peng-clan-young-master-v1/death/0",
+      "peng-clan-young-master-v1/death/1",
+      "peng-clan-young-master-v1/death/2",
+      "peng-clan-young-master-v1/death/3",
+      "peng-clan-young-master-v1/death/4",
+      "peng-clan-young-master-v1/death/5",
+      "peng-clan-young-master-v1/death/6",
+      "peng-clan-young-master-v1/death/7",
+      "peng-clan-young-master-v1/death/8",
+      "peng-clan-young-master-v1/death/9"
+    ]
+  },
+  "meta": {
+    "image": "peng-clan-young-master-v1-sheet.png",
+    "format": "RGBA8888",
+    "scale": "1"
+  }
+}

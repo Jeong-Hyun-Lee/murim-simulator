@@ -1,0 +1,106 @@
+{
+  "frameCount": 54,
+  "cellSize": [
+    896,
+    896
+  ],
+  "root": [
+    624,
+    770
+  ],
+  "safeMargin": 32,
+  "fixedCharacterScale": 0.93,
+  "motionFrameOffsets": {},
+  "verificationNotes": {
+    "character": "Peng Clan young master boss",
+    "globalMotionPlan": "four-motion master board before production strips",
+    "motionCounts": {
+      "idle": 12,
+      "attack1": 16,
+      "attack2": 16,
+      "death": 10
+    },
+    "singleGlobalScale": true,
+    "perFrameScaling": false,
+    "perMotionScaling": false,
+    "groundLock": "actual support-contact alpha translated to packed y=770",
+    "rootLock": "right-side support axis translated to packed x=624",
+    "orientation": "screen-left; source artwork is never mirrored",
+    "runtimeScale": 0.58,
+    "runtimeZoomLogic": false,
+    "attack1ContactFrame": 8,
+    "attack2ContactFrame": 8
+  },
+  "atlas": [
+    4083,
+    2903
+  ],
+  "durationTotals": {
+    "idle": 960,
+    "attack1": 720,
+    "attack2": 720,
+    "death": 1080
+  },
+  "motionTransforms": {
+    "idle": {
+      "appliedScale": 0.93,
+      "sourceHeightMin": 442.0,
+      "sourceHeightMax": 478.0,
+      "sourceRootXMin": 425.0,
+      "sourceRootXMax": 495.0,
+      "sourceGroundMin": 612.0,
+      "sourceGroundMax": 626.0,
+      "packedRootX": 624.0,
+      "packedGroundY": 770.0
+    },
+    "attack1": {
+      "appliedScale": 0.93,
+      "sourceHeightMin": 334.0,
+      "sourceHeightMax": 519.0,
+      "sourceRootXMin": 411.0,
+      "sourceRootXMax": 551.0,
+      "sourceGroundMin": 549.0,
+      "sourceGroundMax": 651.0,
+      "packedRootX": 624.0,
+      "packedGroundY": 770.0
+    },
+    "attack2": {
+      "appliedScale": 0.93,
+      "sourceHeightMin": 343.0,
+      "sourceHeightMax": 612.0,
+      "sourceRootXMin": 405.0,
+      "sourceRootXMax": 541.0,
+      "sourceGroundMin": 605.0,
+      "sourceGroundMax": 647.0,
+      "packedRootX": 624.0,
+      "packedGroundY": 770.0
+    },
+    "death": {
+      "appliedScale": 0.93,
+      "sourceHeightMin": 213.0,
+      "sourceHeightMax": 471.0,
+      "sourceRootXMin": 299.0,
+      "sourceRootXMax": 513.0,
+      "sourceGroundMin": 521.0,
+      "sourceGroundMax": 648.0,
+      "packedRootX": 624.0,
+      "packedGroundY": 770.0
+    }
+  },
+  "sourceHashes": {
+    "idle-part1.png": "b9487220da418ed2de77a103bcf31b68e7070a6252e34448f68b06983b10f198",
+    "idle-part2.png": "0ec82c2e0576a5b60556e018217542bccf8cf38cc77e018ceb2c3f3d6d4ea82a",
+    "idle-part3.png": "ad062524863d9926e00a1772aebcda17974d4a91b66c42ea17daf3bfa26d6839",
+    "attack1-part1.png": "c8c1b8a32e266428142894b98f8a1261e841f6c3edeb6aa61e4a1d99f342ead4",
+    "attack1-part2.png": "75ae862e8b5d07c441efa1e7477024c419c6541b68e3d0bdb8a644ab6accfccf",
+    "attack1-part3.png": "280ac9774f2bb670c531ca782748c5612b925f6e06933af1146a72870031abc9",
+    "attack1-part4.png": "7710477fb0613da175b3516f56a34cb0eae1bd2d04a5166f96e1c72843628375",
+    "attack2-part1.png": "03657ebede3837c3b7d469adacc5b7ce017d033fd61a1da1e547ed5388a14898",
+    "attack2-part2.png": "db8dc0fbcfe3416781e8c37b2fc4b88ece317c17a3e5b9aa52132dbbbe15e006",
+    "attack2-part3.png": "c3fa8e4b2cff19e689e35343bb239e89e635c4c3362fecb67ee583b3cb6613c0",
+    "attack2-part4.png": "622edff23a98d0486ef90034a6f4ac12cae25bb1959e242706b0f7c32a8754b7",
+    "death-part1.png": "dc090f852854d8fdd8a93685d5f0d9ea1cf9e75ea42143b7598f9f7a88a48fab",
+    "death-part2.png": "1268b6b8f3465e588994e1b67345c9a2063023c68b288e95d723a56337ca0807",
+    "death-part3.png": "a5cfa44b548dd0bc2e46d3f55178bc20213864467e5cb5281ff2e79270c5b847"
+  }
+}
