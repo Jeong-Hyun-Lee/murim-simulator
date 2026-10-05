@@ -203,6 +203,7 @@ export const BattleCanvas = () => {
         blackMarketFixerSet,
         pengClanWarriorSet,
         pengClanDaggerSet,
+        pengClanSaberInstructorSet,
       ] = await Promise.all([
         loadPackedAnimSet('mokhyeon-v10'),
         loadPackedAnimSet('hyeollangchae-boss-v3'),
@@ -215,6 +216,7 @@ export const BattleCanvas = () => {
         loadPackedAnimSet('black-market-fixer-v1'),
         loadPackedAnimSet('peng-clan-warrior-v1'),
         loadPackedAnimSet('peng-clan-dagger-v1'),
+        loadPackedAnimSet('peng-clan-saber-instructor-v1'),
       ]);
       await Promise.all([loadDamageFont(), loadNormalHitEffect(), loadCriticalHitEffect()]);
       const normalHitFrames = normalHitEffectFrames();
@@ -284,7 +286,8 @@ export const BattleCanvas = () => {
         | 'blackMarketDart'
         | 'blackMarketFixer'
         | 'pengClanWarrior'
-        | 'pengClanDagger';
+        | 'pengClanDagger'
+        | 'pengClanSaberInstructor';
       type ActiveEnemyKind = EnemyArtKind | 'none';
       const ENEMY_KINDS: EnemyArtKind[] = [
         'boss',
@@ -297,6 +300,7 @@ export const BattleCanvas = () => {
         'blackMarketFixer',
         'pengClanWarrior',
         'pengClanDagger',
+        'pengClanSaberInstructor',
       ];
       const enemyAnimByKind: Record<EnemyArtKind, AnimSet> = {
         boss: bossSet,
@@ -309,6 +313,7 @@ export const BattleCanvas = () => {
         blackMarketFixer: blackMarketFixerSet,
         pengClanWarrior: pengClanWarriorSet,
         pengClanDagger: pengClanDaggerSet,
+        pengClanSaberInstructor: pengClanSaberInstructorSet,
       };
       const enemyScaleByKind: Record<EnemyArtKind, number> = {
         boss: ENEMY_BOSS_SCALE,
@@ -321,6 +326,7 @@ export const BattleCanvas = () => {
         blackMarketFixer: ENEMY_ELITE_SCALE,
         pengClanWarrior: ENEMY_GRUNT_SCALE,
         pengClanDagger: ENEMY_ARCHER_SCALE,
+        pengClanSaberInstructor: ENEMY_ELITE_SCALE,
       };
       // 재패킹한 적 원화는 모두 화면 왼쪽을 보므로 런타임 좌우 반전이 필요 없다.
       let currentEnemyKind: ActiveEnemyKind = 'none';
@@ -392,7 +398,8 @@ export const BattleCanvas = () => {
           kind === 'blackMarketDart' ||
           kind === 'blackMarketFixer' ||
           kind === 'pengClanWarrior' ||
-          kind === 'pengClanDagger'
+          kind === 'pengClanDagger' ||
+          kind === 'pengClanSaberInstructor'
             ? { attack1: 7, attack2: 7 }
             : ENEMY_HIT_FRAMES[kind as EnemyKind];
         enemyHitFrames.set(set.attack1, hitFrames.attack1);
@@ -409,6 +416,7 @@ export const BattleCanvas = () => {
         if (stage.major === 2 && kind === 'elite') return 'blackMarketFixer';
         if (stage.major === 3 && kind === 'grunt') return 'pengClanWarrior';
         if (stage.major === 3 && kind === 'archer') return 'pengClanDagger';
+        if (stage.major === 3 && kind === 'elite') return 'pengClanSaberInstructor';
         return 'none';
       };
 
