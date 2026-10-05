@@ -1,0 +1,1423 @@
+{
+  "frames": {
+    "peng-clan-dagger-v1/idle/1": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 458,
+        "h": 490
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 209,
+        "y": 286,
+        "w": 458,
+        "h": 490
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-dagger-v1/idle/3": {
+      "frame": {
+        "x": 458,
+        "y": 0,
+        "w": 464,
+        "h": 489
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 200,
+        "y": 287,
+        "w": 464,
+        "h": 489
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-dagger-v1/idle/0": {
+      "frame": {
+        "x": 922,
+        "y": 0,
+        "w": 458,
+        "h": 489
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 213,
+        "y": 287,
+        "w": 458,
+        "h": 489
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-dagger-v1/idle/2": {
+      "frame": {
+        "x": 1380,
+        "y": 0,
+        "w": 464,
+        "h": 487
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 204,
+        "y": 288,
+        "w": 464,
+        "h": 487
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-dagger-v1/attack1/13": {
+      "frame": {
+        "x": 1844,
+        "y": 0,
+        "w": 490,
+        "h": 472
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 166,
+        "y": 305,
+        "w": 490,
+        "h": 472
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack1/12": {
+      "frame": {
+        "x": 2334,
+        "y": 0,
+        "w": 458,
+        "h": 472
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 204,
+        "y": 305,
+        "w": 458,
+        "h": 472
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack1/15": {
+      "frame": {
+        "x": 2792,
+        "y": 0,
+        "w": 429,
+        "h": 470
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 217,
+        "y": 307,
+        "w": 429,
+        "h": 470
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack1/14": {
+      "frame": {
+        "x": 3221,
+        "y": 0,
+        "w": 429,
+        "h": 469
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 216,
+        "y": 307,
+        "w": 429,
+        "h": 469
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/idle/5": {
+      "frame": {
+        "x": 0,
+        "y": 490,
+        "w": 465,
+        "h": 467
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 196,
+        "y": 310,
+        "w": 465,
+        "h": 467
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-dagger-v1/attack2/14": {
+      "frame": {
+        "x": 465,
+        "y": 490,
+        "w": 413,
+        "h": 466
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 247,
+        "y": 310,
+        "w": 413,
+        "h": 466
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/idle/4": {
+      "frame": {
+        "x": 878,
+        "y": 490,
+        "w": 454,
+        "h": 465
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 207,
+        "y": 312,
+        "w": 454,
+        "h": 465
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-dagger-v1/attack2/13": {
+      "frame": {
+        "x": 1332,
+        "y": 490,
+        "w": 419,
+        "h": 465
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 236,
+        "y": 311,
+        "w": 419,
+        "h": 465
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/idle/8": {
+      "frame": {
+        "x": 1751,
+        "y": 490,
+        "w": 442,
+        "h": 461
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 228,
+        "y": 314,
+        "w": 442,
+        "h": 461
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-dagger-v1/attack2/15": {
+      "frame": {
+        "x": 2193,
+        "y": 490,
+        "w": 396,
+        "h": 461
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 257,
+        "y": 314,
+        "w": 396,
+        "h": 461
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack1/0": {
+      "frame": {
+        "x": 2589,
+        "y": 490,
+        "w": 417,
+        "h": 459
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 246,
+        "y": 317,
+        "w": 417,
+        "h": 459
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack1/1": {
+      "frame": {
+        "x": 3006,
+        "y": 490,
+        "w": 476,
+        "h": 458
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 179,
+        "y": 319,
+        "w": 476,
+        "h": 458
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack2/11": {
+      "frame": {
+        "x": 3482,
+        "y": 490,
+        "w": 366,
+        "h": 458
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 276,
+        "y": 319,
+        "w": 366,
+        "h": 458
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack2/10": {
+      "frame": {
+        "x": 0,
+        "y": 957,
+        "w": 450,
+        "h": 457
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 185,
+        "y": 320,
+        "w": 450,
+        "h": 457
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack1/3": {
+      "frame": {
+        "x": 450,
+        "y": 957,
+        "w": 436,
+        "h": 456
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 211,
+        "y": 322,
+        "w": 436,
+        "h": 456
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack1/2": {
+      "frame": {
+        "x": 886,
+        "y": 957,
+        "w": 448,
+        "h": 455
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 207,
+        "y": 323,
+        "w": 448,
+        "h": 455
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/idle/11": {
+      "frame": {
+        "x": 1334,
+        "y": 957,
+        "w": 421,
+        "h": 455
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 244,
+        "y": 321,
+        "w": 421,
+        "h": 455
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-dagger-v1/idle/9": {
+      "frame": {
+        "x": 1755,
+        "y": 957,
+        "w": 438,
+        "h": 452
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 230,
+        "y": 324,
+        "w": 438,
+        "h": 452
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-dagger-v1/death/0": {
+      "frame": {
+        "x": 2193,
+        "y": 957,
+        "w": 429,
+        "h": 452
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 220,
+        "y": 325,
+        "w": 429,
+        "h": 452
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-dagger-v1/idle/10": {
+      "frame": {
+        "x": 2622,
+        "y": 957,
+        "w": 428,
+        "h": 451
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 238,
+        "y": 325,
+        "w": 428,
+        "h": 451
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-dagger-v1/attack2/0": {
+      "frame": {
+        "x": 3050,
+        "y": 957,
+        "w": 391,
+        "h": 449
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 263,
+        "y": 327,
+        "w": 391,
+        "h": 449
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/idle/6": {
+      "frame": {
+        "x": 3441,
+        "y": 957,
+        "w": 476,
+        "h": 447
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 194,
+        "y": 328,
+        "w": 476,
+        "h": 447
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-dagger-v1/attack1/11": {
+      "frame": {
+        "x": 0,
+        "y": 1414,
+        "w": 401,
+        "h": 439
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 242,
+        "y": 337,
+        "w": 401,
+        "h": 439
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack1/7": {
+      "frame": {
+        "x": 401,
+        "y": 1414,
+        "w": 559,
+        "h": 435
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 98,
+        "y": 343,
+        "w": 559,
+        "h": 435
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/death/1": {
+      "frame": {
+        "x": 960,
+        "y": 1414,
+        "w": 543,
+        "h": 435
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 140,
+        "y": 341,
+        "w": 543,
+        "h": 435
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-dagger-v1/attack1/5": {
+      "frame": {
+        "x": 1503,
+        "y": 1414,
+        "w": 481,
+        "h": 435
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 202,
+        "y": 340,
+        "w": 481,
+        "h": 435
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/idle/7": {
+      "frame": {
+        "x": 1984,
+        "y": 1414,
+        "w": 466,
+        "h": 432
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 198,
+        "y": 344,
+        "w": 466,
+        "h": 432
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-dagger-v1/attack1/4": {
+      "frame": {
+        "x": 2450,
+        "y": 1414,
+        "w": 369,
+        "h": 432
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 275,
+        "y": 344,
+        "w": 369,
+        "h": 432
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack1/10": {
+      "frame": {
+        "x": 2819,
+        "y": 1414,
+        "w": 477,
+        "h": 426
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 177,
+        "y": 350,
+        "w": 477,
+        "h": 426
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack1/6": {
+      "frame": {
+        "x": 3296,
+        "y": 1414,
+        "w": 502,
+        "h": 419
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 189,
+        "y": 357,
+        "w": 502,
+        "h": 419
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack1/9": {
+      "frame": {
+        "x": 0,
+        "y": 1853,
+        "w": 499,
+        "h": 418
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 232,
+        "y": 358,
+        "w": 499,
+        "h": 418
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack2/1": {
+      "frame": {
+        "x": 499,
+        "y": 1853,
+        "w": 487,
+        "h": 418
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 164,
+        "y": 358,
+        "w": 487,
+        "h": 418
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack1/8": {
+      "frame": {
+        "x": 986,
+        "y": 1853,
+        "w": 578,
+        "h": 417
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 105,
+        "y": 363,
+        "w": 578,
+        "h": 417
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack2/12": {
+      "frame": {
+        "x": 1564,
+        "y": 1853,
+        "w": 523,
+        "h": 413
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 120,
+        "y": 363,
+        "w": 523,
+        "h": 413
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/death/4": {
+      "frame": {
+        "x": 2087,
+        "y": 1853,
+        "w": 493,
+        "h": 405
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 161,
+        "y": 370,
+        "w": 493,
+        "h": 405
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-dagger-v1/attack2/5": {
+      "frame": {
+        "x": 2580,
+        "y": 1853,
+        "w": 419,
+        "h": 395
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 224,
+        "y": 380,
+        "w": 419,
+        "h": 395
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack2/4": {
+      "frame": {
+        "x": 2999,
+        "y": 1853,
+        "w": 440,
+        "h": 394
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 206,
+        "y": 381,
+        "w": 440,
+        "h": 394
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack2/2": {
+      "frame": {
+        "x": 3439,
+        "y": 1853,
+        "w": 509,
+        "h": 392
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 141,
+        "y": 383,
+        "w": 509,
+        "h": 392
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack2/9": {
+      "frame": {
+        "x": 0,
+        "y": 2271,
+        "w": 485,
+        "h": 388
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 174,
+        "y": 388,
+        "w": 485,
+        "h": 388
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack2/8": {
+      "frame": {
+        "x": 485,
+        "y": 2271,
+        "w": 581,
+        "h": 384
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 72,
+        "y": 394,
+        "w": 581,
+        "h": 384
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/death/2": {
+      "frame": {
+        "x": 1066,
+        "y": 2271,
+        "w": 513,
+        "h": 383
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 146,
+        "y": 394,
+        "w": 513,
+        "h": 383
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-dagger-v1/attack2/7": {
+      "frame": {
+        "x": 1579,
+        "y": 2271,
+        "w": 411,
+        "h": 378
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 232,
+        "y": 399,
+        "w": 411,
+        "h": 378
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/attack2/6": {
+      "frame": {
+        "x": 1990,
+        "y": 2271,
+        "w": 684,
+        "h": 368
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 99,
+        "y": 407,
+        "w": 684,
+        "h": 368
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/death/5": {
+      "frame": {
+        "x": 2674,
+        "y": 2271,
+        "w": 501,
+        "h": 355
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 160,
+        "y": 422,
+        "w": 501,
+        "h": 355
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-dagger-v1/attack2/3": {
+      "frame": {
+        "x": 3175,
+        "y": 2271,
+        "w": 545,
+        "h": 334
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 119,
+        "y": 445,
+        "w": 545,
+        "h": 334
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "peng-clan-dagger-v1/death/3": {
+      "frame": {
+        "x": 0,
+        "y": 2659,
+        "w": 498,
+        "h": 319
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 192,
+        "y": 456,
+        "w": 498,
+        "h": 319
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-dagger-v1/death/6": {
+      "frame": {
+        "x": 498,
+        "y": 2659,
+        "w": 529,
+        "h": 295
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 170,
+        "y": 483,
+        "w": 529,
+        "h": 295
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-dagger-v1/death/8": {
+      "frame": {
+        "x": 1027,
+        "y": 2659,
+        "w": 485,
+        "h": 256
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 217,
+        "y": 521,
+        "w": 485,
+        "h": 256
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "peng-clan-dagger-v1/death/9": {
+      "frame": {
+        "x": 1512,
+        "y": 2659,
+        "w": 499,
+        "h": 254
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 203,
+        "y": 522,
+        "w": 499,
+        "h": 254
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 360
+    },
+    "peng-clan-dagger-v1/death/7": {
+      "frame": {
+        "x": 2011,
+        "y": 2659,
+        "w": 481,
+        "h": 200
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 233,
+        "y": 578,
+        "w": 481,
+        "h": 200
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6651785714285714,
+        "y": 0.859375
+      },
+      "duration": 80
+    }
+  },
+  "animations": {
+    "idle": [
+      "peng-clan-dagger-v1/idle/0",
+      "peng-clan-dagger-v1/idle/1",
+      "peng-clan-dagger-v1/idle/2",
+      "peng-clan-dagger-v1/idle/3",
+      "peng-clan-dagger-v1/idle/4",
+      "peng-clan-dagger-v1/idle/5",
+      "peng-clan-dagger-v1/idle/6",
+      "peng-clan-dagger-v1/idle/7",
+      "peng-clan-dagger-v1/idle/8",
+      "peng-clan-dagger-v1/idle/9",
+      "peng-clan-dagger-v1/idle/10",
+      "peng-clan-dagger-v1/idle/11"
+    ],
+    "attack1": [
+      "peng-clan-dagger-v1/attack1/0",
+      "peng-clan-dagger-v1/attack1/1",
+      "peng-clan-dagger-v1/attack1/2",
+      "peng-clan-dagger-v1/attack1/3",
+      "peng-clan-dagger-v1/attack1/4",
+      "peng-clan-dagger-v1/attack1/5",
+      "peng-clan-dagger-v1/attack1/6",
+      "peng-clan-dagger-v1/attack1/7",
+      "peng-clan-dagger-v1/attack1/8",
+      "peng-clan-dagger-v1/attack1/9",
+      "peng-clan-dagger-v1/attack1/10",
+      "peng-clan-dagger-v1/attack1/11",
+      "peng-clan-dagger-v1/attack1/12",
+      "peng-clan-dagger-v1/attack1/13",
+      "peng-clan-dagger-v1/attack1/14",
+      "peng-clan-dagger-v1/attack1/15"
+    ],
+    "attack2": [
+      "peng-clan-dagger-v1/attack2/0",
+      "peng-clan-dagger-v1/attack2/1",
+      "peng-clan-dagger-v1/attack2/2",
+      "peng-clan-dagger-v1/attack2/3",
+      "peng-clan-dagger-v1/attack2/4",
+      "peng-clan-dagger-v1/attack2/5",
+      "peng-clan-dagger-v1/attack2/6",
+      "peng-clan-dagger-v1/attack2/7",
+      "peng-clan-dagger-v1/attack2/8",
+      "peng-clan-dagger-v1/attack2/9",
+      "peng-clan-dagger-v1/attack2/10",
+      "peng-clan-dagger-v1/attack2/11",
+      "peng-clan-dagger-v1/attack2/12",
+      "peng-clan-dagger-v1/attack2/13",
+      "peng-clan-dagger-v1/attack2/14",
+      "peng-clan-dagger-v1/attack2/15"
+    ],
+    "death": [
+      "peng-clan-dagger-v1/death/0",
+      "peng-clan-dagger-v1/death/1",
+      "peng-clan-dagger-v1/death/2",
+      "peng-clan-dagger-v1/death/3",
+      "peng-clan-dagger-v1/death/4",
+      "peng-clan-dagger-v1/death/5",
+      "peng-clan-dagger-v1/death/6",
+      "peng-clan-dagger-v1/death/7",
+      "peng-clan-dagger-v1/death/8",
+      "peng-clan-dagger-v1/death/9"
+    ]
+  },
+  "meta": {
+    "image": "peng-clan-dagger-v1-sheet.png",
+    "format": "RGBA8888",
+    "scale": "1"
+  }
+}
