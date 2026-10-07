@@ -1,0 +1,1427 @@
+{
+  "frames": {
+    "forbidden-art-darter-v1/attack2/9": {
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 493,
+        "h": 556
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 193,
+        "y": 222,
+        "w": 493,
+        "h": 556
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack2/10": {
+      "frame": {
+        "x": 496,
+        "y": 1,
+        "w": 490,
+        "h": 553
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 191,
+        "y": 225,
+        "w": 490,
+        "h": 553
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack2/8": {
+      "frame": {
+        "x": 988,
+        "y": 1,
+        "w": 551,
+        "h": 551
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 137,
+        "y": 227,
+        "w": 551,
+        "h": 551
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack2/11": {
+      "frame": {
+        "x": 1541,
+        "y": 1,
+        "w": 468,
+        "h": 549
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 198,
+        "y": 229,
+        "w": 468,
+        "h": 549
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/idle/4": {
+      "frame": {
+        "x": 2011,
+        "y": 1,
+        "w": 557,
+        "h": 538
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 129,
+        "y": 240,
+        "w": 557,
+        "h": 538
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-darter-v1/idle/7": {
+      "frame": {
+        "x": 2570,
+        "y": 1,
+        "w": 510,
+        "h": 538
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 162,
+        "y": 240,
+        "w": 510,
+        "h": 538
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-darter-v1/idle/5": {
+      "frame": {
+        "x": 3082,
+        "y": 1,
+        "w": 481,
+        "h": 538
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 194,
+        "y": 241,
+        "w": 481,
+        "h": 538
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-darter-v1/idle/0": {
+      "frame": {
+        "x": 1,
+        "y": 559,
+        "w": 546,
+        "h": 535
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 139,
+        "y": 243,
+        "w": 546,
+        "h": 535
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-darter-v1/idle/8": {
+      "frame": {
+        "x": 549,
+        "y": 559,
+        "w": 546,
+        "h": 535
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 139,
+        "y": 243,
+        "w": 546,
+        "h": 535
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-darter-v1/attack1/0": {
+      "frame": {
+        "x": 1097,
+        "y": 559,
+        "w": 546,
+        "h": 535
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 139,
+        "y": 243,
+        "w": 546,
+        "h": 535
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack1/12": {
+      "frame": {
+        "x": 1645,
+        "y": 559,
+        "w": 546,
+        "h": 535
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 139,
+        "y": 243,
+        "w": 546,
+        "h": 535
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack1/15": {
+      "frame": {
+        "x": 2193,
+        "y": 559,
+        "w": 546,
+        "h": 535
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 139,
+        "y": 243,
+        "w": 546,
+        "h": 535
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack2/0": {
+      "frame": {
+        "x": 2741,
+        "y": 559,
+        "w": 546,
+        "h": 535
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 139,
+        "y": 243,
+        "w": 546,
+        "h": 535
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack2/12": {
+      "frame": {
+        "x": 3289,
+        "y": 559,
+        "w": 546,
+        "h": 535
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 139,
+        "y": 243,
+        "w": 546,
+        "h": 535
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack2/15": {
+      "frame": {
+        "x": 1,
+        "y": 1096,
+        "w": 546,
+        "h": 535
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 139,
+        "y": 243,
+        "w": 546,
+        "h": 535
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/idle/2": {
+      "frame": {
+        "x": 549,
+        "y": 1096,
+        "w": 507,
+        "h": 535
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 181,
+        "y": 243,
+        "w": 507,
+        "h": 535
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-darter-v1/idle/10": {
+      "frame": {
+        "x": 1058,
+        "y": 1096,
+        "w": 507,
+        "h": 535
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 181,
+        "y": 243,
+        "w": 507,
+        "h": 535
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-darter-v1/attack1/14": {
+      "frame": {
+        "x": 1567,
+        "y": 1096,
+        "w": 507,
+        "h": 535
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 181,
+        "y": 243,
+        "w": 507,
+        "h": 535
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack2/14": {
+      "frame": {
+        "x": 2076,
+        "y": 1096,
+        "w": 507,
+        "h": 535
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 181,
+        "y": 243,
+        "w": 507,
+        "h": 535
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/idle/3": {
+      "frame": {
+        "x": 2585,
+        "y": 1096,
+        "w": 464,
+        "h": 535
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 206,
+        "y": 243,
+        "w": 464,
+        "h": 535
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-darter-v1/idle/11": {
+      "frame": {
+        "x": 3051,
+        "y": 1096,
+        "w": 464,
+        "h": 535
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 206,
+        "y": 243,
+        "w": 464,
+        "h": 535
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-darter-v1/idle/6": {
+      "frame": {
+        "x": 3517,
+        "y": 1096,
+        "w": 491,
+        "h": 533
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 184,
+        "y": 245,
+        "w": 491,
+        "h": 533
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-darter-v1/idle/1": {
+      "frame": {
+        "x": 1,
+        "y": 1633,
+        "w": 496,
+        "h": 532
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 193,
+        "y": 245,
+        "w": 496,
+        "h": 532
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-darter-v1/idle/9": {
+      "frame": {
+        "x": 499,
+        "y": 1633,
+        "w": 496,
+        "h": 532
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 193,
+        "y": 245,
+        "w": 496,
+        "h": 532
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-darter-v1/attack1/13": {
+      "frame": {
+        "x": 997,
+        "y": 1633,
+        "w": 496,
+        "h": 532
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 193,
+        "y": 245,
+        "w": 496,
+        "h": 532
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack2/13": {
+      "frame": {
+        "x": 1495,
+        "y": 1633,
+        "w": 496,
+        "h": 532
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 193,
+        "y": 245,
+        "w": 496,
+        "h": 532
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/death/0": {
+      "frame": {
+        "x": 1993,
+        "y": 1633,
+        "w": 533,
+        "h": 526
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 247,
+        "y": 257,
+        "w": 533,
+        "h": 526
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-darter-v1/death/1": {
+      "frame": {
+        "x": 2528,
+        "y": 1633,
+        "w": 459,
+        "h": 525
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 218,
+        "y": 258,
+        "w": 459,
+        "h": 525
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-darter-v1/attack1/4": {
+      "frame": {
+        "x": 2989,
+        "y": 1633,
+        "w": 492,
+        "h": 523
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 183,
+        "y": 256,
+        "w": 492,
+        "h": 523
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack1/5": {
+      "frame": {
+        "x": 3483,
+        "y": 1633,
+        "w": 491,
+        "h": 520
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 192,
+        "y": 258,
+        "w": 491,
+        "h": 520
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack2/5": {
+      "frame": {
+        "x": 1,
+        "y": 2167,
+        "w": 509,
+        "h": 515
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 189,
+        "y": 262,
+        "w": 509,
+        "h": 515
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack1/7": {
+      "frame": {
+        "x": 512,
+        "y": 2167,
+        "w": 458,
+        "h": 514
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 203,
+        "y": 265,
+        "w": 458,
+        "h": 514
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack2/6": {
+      "frame": {
+        "x": 972,
+        "y": 2167,
+        "w": 531,
+        "h": 510
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 157,
+        "y": 269,
+        "w": 531,
+        "h": 510
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack2/1": {
+      "frame": {
+        "x": 1505,
+        "y": 2167,
+        "w": 504,
+        "h": 509
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 176,
+        "y": 269,
+        "w": 504,
+        "h": 509
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack1/9": {
+      "frame": {
+        "x": 2011,
+        "y": 2167,
+        "w": 493,
+        "h": 507
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 183,
+        "y": 272,
+        "w": 493,
+        "h": 507
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack1/3": {
+      "frame": {
+        "x": 2506,
+        "y": 2167,
+        "w": 479,
+        "h": 507
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 196,
+        "y": 271,
+        "w": 479,
+        "h": 507
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack1/10": {
+      "frame": {
+        "x": 2987,
+        "y": 2167,
+        "w": 458,
+        "h": 507
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 230,
+        "y": 272,
+        "w": 458,
+        "h": 507
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack1/6": {
+      "frame": {
+        "x": 3447,
+        "y": 2167,
+        "w": 568,
+        "h": 505
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 157,
+        "y": 273,
+        "w": 568,
+        "h": 505
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack2/4": {
+      "frame": {
+        "x": 1,
+        "y": 2684,
+        "w": 542,
+        "h": 505
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 145,
+        "y": 272,
+        "w": 542,
+        "h": 505
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack1/8": {
+      "frame": {
+        "x": 545,
+        "y": 2684,
+        "w": 565,
+        "h": 504
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 108,
+        "y": 275,
+        "w": 565,
+        "h": 504
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack2/7": {
+      "frame": {
+        "x": 1112,
+        "y": 2684,
+        "w": 429,
+        "h": 504
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 246,
+        "y": 273,
+        "w": 429,
+        "h": 504
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack1/11": {
+      "frame": {
+        "x": 1543,
+        "y": 2684,
+        "w": 461,
+        "h": 502
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 223,
+        "y": 276,
+        "w": 461,
+        "h": 502
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack1/2": {
+      "frame": {
+        "x": 2006,
+        "y": 2684,
+        "w": 486,
+        "h": 498
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 198,
+        "y": 278,
+        "w": 486,
+        "h": 498
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack2/3": {
+      "frame": {
+        "x": 2494,
+        "y": 2684,
+        "w": 505,
+        "h": 493
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 166,
+        "y": 284,
+        "w": 505,
+        "h": 493
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack2/2": {
+      "frame": {
+        "x": 3001,
+        "y": 2684,
+        "w": 486,
+        "h": 491
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 194,
+        "y": 286,
+        "w": 486,
+        "h": 491
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/attack1/1": {
+      "frame": {
+        "x": 3489,
+        "y": 2684,
+        "w": 476,
+        "h": 490
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 208,
+        "y": 287,
+        "w": 476,
+        "h": 490
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-darter-v1/death/2": {
+      "frame": {
+        "x": 1,
+        "y": 3191,
+        "w": 483,
+        "h": 421
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 226,
+        "y": 361,
+        "w": 483,
+        "h": 421
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-darter-v1/death/4": {
+      "frame": {
+        "x": 486,
+        "y": 3191,
+        "w": 468,
+        "h": 419
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 200,
+        "y": 361,
+        "w": 468,
+        "h": 419
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-darter-v1/death/8": {
+      "frame": {
+        "x": 956,
+        "y": 3191,
+        "w": 468,
+        "h": 419
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 200,
+        "y": 361,
+        "w": 468,
+        "h": 419
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-darter-v1/death/3": {
+      "frame": {
+        "x": 1426,
+        "y": 3191,
+        "w": 465,
+        "h": 399
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 238,
+        "y": 379,
+        "w": 465,
+        "h": 399
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-darter-v1/death/9": {
+      "frame": {
+        "x": 1893,
+        "y": 3191,
+        "w": 538,
+        "h": 381
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 208,
+        "y": 401,
+        "w": 538,
+        "h": 381
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 360
+    },
+    "forbidden-art-darter-v1/death/5": {
+      "frame": {
+        "x": 2433,
+        "y": 3191,
+        "w": 509,
+        "h": 381
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 213,
+        "y": 401,
+        "w": 509,
+        "h": 381
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-darter-v1/death/6": {
+      "frame": {
+        "x": 2944,
+        "y": 3191,
+        "w": 513,
+        "h": 286
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 276,
+        "y": 493,
+        "w": 513,
+        "h": 286
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-darter-v1/death/7": {
+      "frame": {
+        "x": 3459,
+        "y": 3191,
+        "w": 515,
+        "h": 246
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 297,
+        "y": 532,
+        "w": 515,
+        "h": 246
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    }
+  },
+  "animations": {
+    "idle": [
+      "forbidden-art-darter-v1/idle/0",
+      "forbidden-art-darter-v1/idle/1",
+      "forbidden-art-darter-v1/idle/2",
+      "forbidden-art-darter-v1/idle/3",
+      "forbidden-art-darter-v1/idle/4",
+      "forbidden-art-darter-v1/idle/5",
+      "forbidden-art-darter-v1/idle/6",
+      "forbidden-art-darter-v1/idle/7",
+      "forbidden-art-darter-v1/idle/8",
+      "forbidden-art-darter-v1/idle/9",
+      "forbidden-art-darter-v1/idle/10",
+      "forbidden-art-darter-v1/idle/11"
+    ],
+    "attack1": [
+      "forbidden-art-darter-v1/attack1/0",
+      "forbidden-art-darter-v1/attack1/1",
+      "forbidden-art-darter-v1/attack1/2",
+      "forbidden-art-darter-v1/attack1/3",
+      "forbidden-art-darter-v1/attack1/4",
+      "forbidden-art-darter-v1/attack1/5",
+      "forbidden-art-darter-v1/attack1/6",
+      "forbidden-art-darter-v1/attack1/7",
+      "forbidden-art-darter-v1/attack1/8",
+      "forbidden-art-darter-v1/attack1/9",
+      "forbidden-art-darter-v1/attack1/10",
+      "forbidden-art-darter-v1/attack1/11",
+      "forbidden-art-darter-v1/attack1/12",
+      "forbidden-art-darter-v1/attack1/13",
+      "forbidden-art-darter-v1/attack1/14",
+      "forbidden-art-darter-v1/attack1/15"
+    ],
+    "attack2": [
+      "forbidden-art-darter-v1/attack2/0",
+      "forbidden-art-darter-v1/attack2/1",
+      "forbidden-art-darter-v1/attack2/2",
+      "forbidden-art-darter-v1/attack2/3",
+      "forbidden-art-darter-v1/attack2/4",
+      "forbidden-art-darter-v1/attack2/5",
+      "forbidden-art-darter-v1/attack2/6",
+      "forbidden-art-darter-v1/attack2/7",
+      "forbidden-art-darter-v1/attack2/8",
+      "forbidden-art-darter-v1/attack2/9",
+      "forbidden-art-darter-v1/attack2/10",
+      "forbidden-art-darter-v1/attack2/11",
+      "forbidden-art-darter-v1/attack2/12",
+      "forbidden-art-darter-v1/attack2/13",
+      "forbidden-art-darter-v1/attack2/14",
+      "forbidden-art-darter-v1/attack2/15"
+    ],
+    "death": [
+      "forbidden-art-darter-v1/death/0",
+      "forbidden-art-darter-v1/death/1",
+      "forbidden-art-darter-v1/death/2",
+      "forbidden-art-darter-v1/death/3",
+      "forbidden-art-darter-v1/death/4",
+      "forbidden-art-darter-v1/death/5",
+      "forbidden-art-darter-v1/death/6",
+      "forbidden-art-darter-v1/death/7",
+      "forbidden-art-darter-v1/death/8",
+      "forbidden-art-darter-v1/death/9"
+    ]
+  },
+  "meta": {
+    "image": "forbidden-art-darter-v1-sheet.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 4016,
+      "h": 3613
+    },
+    "scale": "1"
+  }
+}

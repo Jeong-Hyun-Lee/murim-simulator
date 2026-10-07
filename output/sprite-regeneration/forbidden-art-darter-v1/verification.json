@@ -1,0 +1,122 @@
+{
+  "frameCount": 54,
+  "cellSize": [
+    896,
+    896
+  ],
+  "root": [
+    612,
+    770
+  ],
+  "safeMargin": 32,
+  "fixedCharacterScale": 0.93,
+  "motionFrameOffsets": {},
+  "canonicalAttackBoundaries": {
+    "enabled": true,
+    "canonicalHash": "72899db46da0af4932dcd84f2e3e097c6cce3676bce32885f7684a556f6c6082",
+    "boundaryHashes": {
+      "idle/0": "72899db46da0af4932dcd84f2e3e097c6cce3676bce32885f7684a556f6c6082",
+      "attack1/0": "72899db46da0af4932dcd84f2e3e097c6cce3676bce32885f7684a556f6c6082",
+      "attack1/15": "72899db46da0af4932dcd84f2e3e097c6cce3676bce32885f7684a556f6c6082",
+      "attack2/0": "72899db46da0af4932dcd84f2e3e097c6cce3676bce32885f7684a556f6c6082",
+      "attack2/15": "72899db46da0af4932dcd84f2e3e097c6cce3676bce32885f7684a556f6c6082"
+    },
+    "idleFinalDistinct": true,
+    "deathFirstDistinct": true
+  },
+  "verificationNotes": {
+    "character": "Forbidden-art darter",
+    "globalMotionPlan": "four-motion master board before production strips",
+    "motionCounts": {
+      "idle": 12,
+      "attack1": 16,
+      "attack2": 16,
+      "death": 10
+    },
+    "singleGlobalScale": true,
+    "perFrameScaling": false,
+    "perMotionScaling": false,
+    "canonicalBoundaryReuse": "idle/0 reused at both attack starts and ends",
+    "idleFinal": "distinct in-between leading into idle/0",
+    "deathFirst": "distinct hit-recoil with canonical scale and root",
+    "groundLock": "actual support-contact alpha translated to packed y=770",
+    "rootLock": "right-side support axis translated to packed x=612",
+    "orientation": "screen-left; source artwork is never mirrored",
+    "runtimeScale": 0.45,
+    "runtimeZoomLogic": false,
+    "attack1ContactFrame": 9,
+    "attack2ContactFrame": 9
+  },
+  "atlas": [
+    4016,
+    3613
+  ],
+  "durationTotals": {
+    "idle": 960,
+    "attack1": 720,
+    "attack2": 720,
+    "death": 1080
+  },
+  "motionTransforms": {
+    "idle": {
+      "appliedScale": 0.93,
+      "sourceHeightMin": 572.0,
+      "sourceHeightMax": 578.0,
+      "sourceRootXMin": 437.0,
+      "sourceRootXMax": 531.0,
+      "sourceGroundMin": 650.0,
+      "sourceGroundMax": 657.0,
+      "packedRootX": 612.0,
+      "packedGroundY": 770.0
+    },
+    "attack1": {
+      "appliedScale": 0.93,
+      "sourceHeightMin": 527.0,
+      "sourceHeightMax": 575.0,
+      "sourceRootXMin": 411.0,
+      "sourceRootXMax": 559.0,
+      "sourceGroundMin": 646.0,
+      "sourceGroundMax": 654.0,
+      "packedRootX": 612.0,
+      "packedGroundY": 770.0
+    },
+    "attack2": {
+      "appliedScale": 0.93,
+      "sourceHeightMin": 528.0,
+      "sourceHeightMax": 598.0,
+      "sourceRootXMin": 395.0,
+      "sourceRootXMax": 529.0,
+      "sourceGroundMin": 645.0,
+      "sourceGroundMax": 669.0,
+      "packedRootX": 612.0,
+      "packedGroundY": 770.0
+    },
+    "death": {
+      "appliedScale": 0.93,
+      "sourceHeightMin": 265.0,
+      "sourceHeightMax": 566.0,
+      "sourceRootXMin": 346.66,
+      "sourceRootXMax": 452.0,
+      "sourceGroundMin": 605.0,
+      "sourceGroundMax": 664.0,
+      "packedRootX": 612.0,
+      "packedGroundY": 770.0
+    }
+  },
+  "sourceHashes": {
+    "idle-part1.png": "90a842fd1674ee24ef7045d1da057c4dd5f82757ce54aebf0fdc761f3b6545c2",
+    "idle-part2.png": "70262362839c3cd1cc29a1ecd702d16da27d7881e811f0345d74470cccf9bcf6",
+    "idle-part3.png": "90a842fd1674ee24ef7045d1da057c4dd5f82757ce54aebf0fdc761f3b6545c2",
+    "attack1-part1.png": "bc3c17149e4cf54b5639c5fc12e5446b239027c115f1159f0d3dd158b487f90b",
+    "attack1-part2.png": "0d9aff700cd3e1eeb4edbb6deab67088b084e79c7559118b0fe7b5d0d5de1bd8",
+    "attack1-part3.png": "1e562d40f55491047bd95ab855e87bafb3fe4ca51550914a10d696bfbd6524ab",
+    "attack1-part4.png": "90a842fd1674ee24ef7045d1da057c4dd5f82757ce54aebf0fdc761f3b6545c2",
+    "attack2-part1.png": "f11e5afcd3461f9e8f004880f71180426a6eb61d722d79ff3cdad88a1ddebf45",
+    "attack2-part2.png": "90f13a8e802b01c004b37fe7e31d02ec05af784c28ef4341e57ed7586ba77eeb",
+    "attack2-part3.png": "392ae911269e653aadd50199f90ee4986ca4d4d413eb3ee26d44be6c24ff67cc",
+    "attack2-part4.png": "90a842fd1674ee24ef7045d1da057c4dd5f82757ce54aebf0fdc761f3b6545c2",
+    "death-part1.png": "e38e936b43ee51e519626c7015e4cb2e68b1e6819536a6c0769d8acbf07f2a9e",
+    "death-part2.png": "1e3a418f214f98b7e2f7150ce13fd74f5f272792a02a1d6b3e0a6f05144f3473",
+    "death-part3.png": "301c42623be025b02bdea7c338f2a84aad1fbc2b5c0d702ddbe33a3ff5dec500"
+  }
+}

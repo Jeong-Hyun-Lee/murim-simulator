@@ -26,6 +26,8 @@ GROUND_Y = 624
 SAFE = 32
 ANCHOR = {'x': 0.25, 'y': 0.8125}
 ALPHA_THRESHOLD = 8
+PACK_GAP = 2
+PACK_OUTER = 1
 TARGET_STANDING_HEIGHT = 512
 SOURCE_ROOT_X_FRACTION = 0.245
 BUILD_NAME = 'mokhyeon-v10'
@@ -34,6 +36,7 @@ STRICT_CANONICAL_SCALE = False
 FIXED_CHARACTER_SCALE: float | None = None
 MOTION_FRAME_OFFSETS: dict[str, list[tuple[int, int]]] = {}
 VERIFICATION_NOTES: dict[str, object] = {}
+REUSE_CANONICAL_ATTACK_BOUNDARIES = False
 MOTIONS = {
     'idle': {'count': 12, 'parts': [4, 4, 4]},
     'attack1': {'count': 16, 'parts': [4, 4, 4, 4]},
@@ -257,21 +260,22 @@ def pack(cells: dict[str, list[Image.Image]]) -> tuple[Image.Image, dict]:
     if STRICT_CANONICAL_SCALE:
         entries.sort(key=lambda entry: (entry[1].height, entry[1].width), reverse=True)
 
-    x = y = row_height = 0
+    x = y = PACK_OUTER
+    row_height = 0
     placed = []
     for name, image, bbox, duration in entries:
-        if x + image.width > 4096:
-            x = 0
-            y += row_height
+        if x + image.width + PACK_OUTER > 4096:
+            x = PACK_OUTER
+            y += row_height + PACK_GAP
             row_height = 0
-        if y + image.height > 4096:
+        if y + image.height + PACK_OUTER > 4096:
             raise ValueError('atlas exceeds 4096px')
         placed.append((name, image, bbox, duration, x, y))
-        x += image.width
+        x += image.width + PACK_GAP
         row_height = max(row_height, image.height)
 
-    atlas_width = max(item[4] + item[1].width for item in placed)
-    atlas_height = max(item[5] + item[1].height for item in placed)
+    atlas_width = max(item[4] + item[1].width + PACK_OUTER for item in placed)
+    atlas_height = max(item[5] + item[1].height + PACK_OUTER for item in placed)
     atlas = Image.new('RGBA', (atlas_width, atlas_height))
     frames_data: dict[str, dict] = {}
     for name, image, bbox, duration, atlas_x, atlas_y in placed:
@@ -304,6 +308,7 @@ def pack(cells: dict[str, list[Image.Image]]) -> tuple[Image.Image, dict]:
         'meta': {
             'image': f'{BUILD_NAME}-sheet.png',
             'format': 'RGBA8888',
+            'size': {'w': atlas.width, 'h': atlas.height},
             'scale': '1',
         },
     }
@@ -338,6 +343,46 @@ def save_gifs(cells: dict[str, list[Image.Image]]) -> None:
         )
 
 
+def apply_canonical_attack_boundaries(
+    cells: dict[str, list[Image.Image]],
+) -> dict[str, object]:
+    """Reuse idle frame 1 at both attack boundaries and verify exceptions."""
+    canonical = cells['idle'][0]
+    for motion in ('attack1', 'attack2'):
+        cells[motion][0] = canonical.copy()
+        cells[motion][-1] = canonical.copy()
+
+    boundary_frames = {
+        'idle/0': cells['idle'][0],
+        'attack1/0': cells['attack1'][0],
+        'attack1/15': cells['attack1'][-1],
+        'attack2/0': cells['attack2'][0],
+        'attack2/15': cells['attack2'][-1],
+    }
+    boundary_hashes = {
+        name: hashlib.sha256(frame.tobytes()).hexdigest()
+        for name, frame in boundary_frames.items()
+    }
+    if len(set(boundary_hashes.values())) != 1:
+        raise ValueError('canonical attack boundary frames do not match')
+
+    idle_last_hash = hashlib.sha256(cells['idle'][-1].tobytes()).hexdigest()
+    death_first_hash = hashlib.sha256(cells['death'][0].tobytes()).hexdigest()
+    canonical_hash = boundary_hashes['idle/0']
+    if idle_last_hash == canonical_hash:
+        raise ValueError('idle final frame duplicates the canonical boundary')
+    if death_first_hash == canonical_hash:
+        raise ValueError('death first frame duplicates the canonical boundary')
+
+    return {
+        'enabled': True,
+        'canonicalHash': canonical_hash,
+        'boundaryHashes': boundary_hashes,
+        'idleFinalDistinct': idle_last_hash != canonical_hash,
+        'deathFirstDistinct': death_first_hash != canonical_hash,
+    }
+
+
 def main() -> None:
     cells: dict[str, list[Image.Image]] = {}
     transforms: dict[str, dict[str, float]] = {}
@@ -355,6 +400,11 @@ def main() -> None:
             raise ValueError(f'{motion}: expected {spec["count"]} frames')
         cells[motion], transforms[motion] = render_motion(motion, extracted)
 
+    boundary_verification = (
+        apply_canonical_attack_boundaries(cells)
+        if REUSE_CANONICAL_ATTACK_BOUNDARIES
+        else {'enabled': False}
+    )
     atlas, data = pack(cells)
     OUTPUT.mkdir(parents=True, exist_ok=True)
     ASSET.mkdir(parents=True, exist_ok=True)
@@ -378,6 +428,7 @@ def main() -> None:
         'safeMargin': SAFE,
         'fixedCharacterScale': FIXED_CHARACTER_SCALE,
         'motionFrameOffsets': MOTION_FRAME_OFFSETS,
+        'canonicalAttackBoundaries': boundary_verification,
         'verificationNotes': VERIFICATION_NOTES,
         'atlas': list(atlas.size),
         'durationTotals': {

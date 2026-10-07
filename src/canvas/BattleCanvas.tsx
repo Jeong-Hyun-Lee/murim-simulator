@@ -205,6 +205,8 @@ export const BattleCanvas = () => {
         pengClanDaggerSet,
         pengClanSaberInstructorSet,
         pengClanYoungMasterSet,
+        forbiddenArtFollowerSet,
+        forbiddenArtDarterSet,
       ] = await Promise.all([
         loadPackedAnimSet('mokhyeon-v10'),
         loadPackedAnimSet('hyeollangchae-boss-v3'),
@@ -219,6 +221,8 @@ export const BattleCanvas = () => {
         loadPackedAnimSet('peng-clan-dagger-v1'),
         loadPackedAnimSet('peng-clan-saber-instructor-v1'),
         loadPackedAnimSet('peng-clan-young-master-v1'),
+        loadPackedAnimSet('forbidden-art-follower-v1'),
+        loadPackedAnimSet('forbidden-art-darter-v1'),
       ]);
       await Promise.all([loadDamageFont(), loadNormalHitEffect(), loadCriticalHitEffect()]);
       const normalHitFrames = normalHitEffectFrames();
@@ -290,7 +294,9 @@ export const BattleCanvas = () => {
         | 'pengClanWarrior'
         | 'pengClanDagger'
         | 'pengClanSaberInstructor'
-        | 'pengClanYoungMaster';
+        | 'pengClanYoungMaster'
+        | 'forbiddenArtFollower'
+        | 'forbiddenArtDarter';
       type ActiveEnemyKind = EnemyArtKind | 'none';
       const ENEMY_KINDS: EnemyArtKind[] = [
         'boss',
@@ -305,6 +311,8 @@ export const BattleCanvas = () => {
         'pengClanDagger',
         'pengClanSaberInstructor',
         'pengClanYoungMaster',
+        'forbiddenArtFollower',
+        'forbiddenArtDarter',
       ];
       const enemyAnimByKind: Record<EnemyArtKind, AnimSet> = {
         boss: bossSet,
@@ -319,6 +327,8 @@ export const BattleCanvas = () => {
         pengClanDagger: pengClanDaggerSet,
         pengClanSaberInstructor: pengClanSaberInstructorSet,
         pengClanYoungMaster: pengClanYoungMasterSet,
+        forbiddenArtFollower: forbiddenArtFollowerSet,
+        forbiddenArtDarter: forbiddenArtDarterSet,
       };
       const enemyScaleByKind: Record<EnemyArtKind, number> = {
         boss: ENEMY_BOSS_SCALE,
@@ -333,6 +343,8 @@ export const BattleCanvas = () => {
         pengClanDagger: ENEMY_ARCHER_SCALE,
         pengClanSaberInstructor: ENEMY_ELITE_SCALE,
         pengClanYoungMaster: ENEMY_BOSS_SCALE,
+        forbiddenArtFollower: ENEMY_GRUNT_SCALE,
+        forbiddenArtDarter: ENEMY_ARCHER_SCALE,
       };
       // 재패킹한 적 원화는 모두 화면 왼쪽을 보므로 런타임 좌우 반전이 필요 없다.
       let currentEnemyKind: ActiveEnemyKind = 'none';
@@ -398,7 +410,10 @@ export const BattleCanvas = () => {
       const enemyHitFrames = new Map<AnimatedSprite, number>();
       for (const kind of ENEMY_KINDS) {
         const set = enemyAnimByKind[kind];
-        const hitFrames =
+        let hitFrames: { attack1: number; attack2: number };
+        if (kind === 'forbiddenArtFollower' || kind === 'forbiddenArtDarter') {
+          hitFrames = { attack1: 8, attack2: 8 };
+        } else if (
           kind === 'blackMarketBoss' ||
           kind === 'blackMarketMinion' ||
           kind === 'blackMarketDart' ||
@@ -407,8 +422,11 @@ export const BattleCanvas = () => {
           kind === 'pengClanDagger' ||
           kind === 'pengClanSaberInstructor' ||
           kind === 'pengClanYoungMaster'
-            ? { attack1: 7, attack2: 7 }
-            : ENEMY_HIT_FRAMES[kind as EnemyKind];
+        ) {
+          hitFrames = { attack1: 7, attack2: 7 };
+        } else {
+          hitFrames = ENEMY_HIT_FRAMES[kind];
+        }
         enemyHitFrames.set(set.attack1, hitFrames.attack1);
         if (set.attack2) enemyHitFrames.set(set.attack2, hitFrames.attack2);
       }
@@ -425,6 +443,8 @@ export const BattleCanvas = () => {
         if (stage.major === 3 && kind === 'archer') return 'pengClanDagger';
         if (stage.major === 3 && kind === 'elite') return 'pengClanSaberInstructor';
         if (stage.major === 3 && kind === 'boss') return 'pengClanYoungMaster';
+        if (stage.major === 4 && kind === 'grunt') return 'forbiddenArtFollower';
+        if (stage.major === 4 && kind === 'archer') return 'forbiddenArtDarter';
         return 'none';
       };
 
