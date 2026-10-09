@@ -259,7 +259,7 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | `icon-dropdown` | 아래로 늘어진 매듭 끈 | 16 | 사냥터 선택, 보드 선택기, 정렬·필터 선택 | P0 |
 | `icon-badge` | 작은 홍등(단풍 주황) | 12 | 새로 열림 | P0 |
 | `icon-info` | 반쯤 펼친 작은 두루마리 | 20 | 확률 정보, 도움말 | P1 |
-| `icon-check` | 붉은 인주 붓 체크 | 20 | 클리어한 소스테이지, 선택됨, 유지되는 항목 | P1 |
+| `icon-check` | 붉은 인주 붓 체크 | 20 | 클리어한 소스테이지, 선택됨 | P1 |
 | `icon-sort` | 위아래로 엇갈린 화살촉 두 개 | 20 | 장비 정렬 | P1 |
 | `icon-filter` | 대나무 체 | 20 | 장비 슬롯 필터 | P1 |
 | `icon-hold` | 누르고 있는 손끝과 겹친 물결 세 줄 | 20 | 길게 눌러 연속 연마 안내 | P1 |
@@ -326,7 +326,6 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | `icon-action-exchange` | 엽전과 약병 사이 교환 화살 | 20 | 영약 교환 | P1 |
 | `icon-gacha` | 붉은 실로 묶인 점괘 죽통 | 48 | 기연 대표 문양, 뽑기 버튼(20px로 축소) | P1 |
 | `icon-rebirth` | 불사조 깃 원형 문양 | 48 | 환골탈태 대표 문양, 환골탈태 버튼(20px로 축소) | P1 |
-| `icon-reset` | 거꾸로 감기는 두루마리 화살 | 20 | 초기화되는 항목 | P1 |
 
 #### 장비 슬롯
 
@@ -434,8 +433,6 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | `label-rebirth-open` | 환골탈태 화면 열기 | cream | travel | `MyInfoView` | P1 |
 | `label-rebirth-proceed` | 환골탈태 진행 | cream | danger | `RebirthView` | P1 |
 | `label-rebirth-not-ready` | 조건 미충족 | cream | secondary | `RebirthView` | P1 |
-| `label-rebirth-execute` | 환골탈태 실행 | cream | danger | `RebirthView` | P1 |
-| `label-back-to-first-stage` | 1-1 전투로 | ink | primary | `RebirthView` | P1 |
 | `label-backup-copy` | 백업 코드 복사 | cream | secondary | `SettingsSheet` | P1 |
 | `label-backup-restore` | 백업 코드로 복원 | cream | secondary | `SettingsSheet` | P1 |
 | `label-backup-overwrite` | 현재 진행을 덮어쓰고 복원 | cream | danger | `SettingsSheet` 2단계 확인 | P1 |
@@ -451,7 +448,6 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | `title-locked-shop` | 상점 잠김 | cream | 현판 | 잠김 팝업 | P0 |
 | `title-offline-report` | 자리를 비운 동안 | cream | 현판 | 오프라인 보상 팝업 | P1 |
 | `title-rebirth-ready` | 환골탈태 가능 | cream | 현판 | 전투 탭 팝업 | P1 |
-| `title-rebirth-confirm` | 환골탈태 확인 | cream | 현판 | `RebirthView` | P1 |
 | `title-rebirth-done` | 환골탈태 완료 | cream | 현판 | `RebirthView` | P1 |
 | `title-gacha-rates` | 기연 확률 | cream | 현판 | `GachaPanel` | P1 |
 | `title-disassemble` | 장비 분해 | cream | 현판 | `GearPanel` | P1 |
@@ -463,8 +459,6 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | `section-donate` | 기부 | ink | 한지 카드 | `SectPanel` | P1 |
 | `section-stats` | 주요 능력치 | ink | 흰 회벽 | `MyInfoView` | P1 |
 | `section-rebirth` | 환골탈태 | ink | 흰 회벽 | `MyInfoView` | P1 |
-| `section-kept` | 유지되는 항목 | ink | 흰 회벽 | `RebirthView` | P1 |
-| `section-reset` | 초기화되는 항목 | ink | 흰 회벽 | `RebirthView` | P1 |
 | `section-gacha-result` | 뽑기 결과 | ink | 흰 회벽 | `GachaPanel` | P1 |
 | `section-goal-daily` | 일일 수련 | ink | 한지 카드 | `GoalsView` | P0 |
 | `section-goal-milestone` | 누적 수련 | ink | 한지 카드 | `GoalsView` | P0 |

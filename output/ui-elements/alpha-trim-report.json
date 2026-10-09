@@ -1209,23 +1209,6 @@
       }
     },
     {
-      "file": "icon/icon-reset.webp",
-      "from": {
-        "w": 36,
-        "h": 40
-      },
-      "to": {
-        "w": 32,
-        "h": 36
-      },
-      "trim": {
-        "left": 2,
-        "top": 2,
-        "right": 2,
-        "bottom": 2
-      }
-    },
-    {
       "file": "icon/icon-settings.webp",
       "from": {
         "w": 60,

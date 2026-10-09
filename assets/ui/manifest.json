@@ -1830,21 +1830,6 @@
     "priority": "P1"
   },
   {
-    "id": "label-back-to-first-stage",
-    "file": "label/label-back-to-first-stage.webp",
-    "kind": "fixed",
-    "cssSize": {
-      "w": 86,
-      "h": 24
-    },
-    "sourceSize": {
-      "w": 234,
-      "h": 54
-    },
-    "slice": null,
-    "priority": "P1"
-  },
-  {
     "id": "label-backup-copy",
     "file": "label/label-backup-copy.webp",
     "kind": "fixed",
@@ -2080,21 +2065,6 @@
     "sourceSize": {
       "w": 96,
       "h": 53
-    },
-    "slice": null,
-    "priority": "P1"
-  },
-  {
-    "id": "label-rebirth-execute",
-    "file": "label/label-rebirth-execute.webp",
-    "kind": "fixed",
-    "cssSize": {
-      "w": 104,
-      "h": 24
-    },
-    "sourceSize": {
-      "w": 291,
-      "h": 54
     },
     "slice": null,
     "priority": "P1"
@@ -2355,21 +2325,6 @@
     "priority": "P1"
   },
   {
-    "id": "section-kept",
-    "file": "label/section-kept.webp",
-    "kind": "fixed",
-    "cssSize": {
-      "w": 127,
-      "h": 27
-    },
-    "sourceSize": {
-      "w": 364,
-      "h": 64
-    },
-    "slice": null,
-    "priority": "P1"
-  },
-  {
     "id": "section-rebirth",
     "file": "label/section-rebirth.webp",
     "kind": "fixed",
@@ -2380,21 +2335,6 @@
     "sourceSize": {
       "w": 228,
       "h": 65
-    },
-    "slice": null,
-    "priority": "P1"
-  },
-  {
-    "id": "section-reset",
-    "file": "label/section-reset.webp",
-    "kind": "fixed",
-    "cssSize": {
-      "w": 146,
-      "h": 27
-    },
-    "sourceSize": {
-      "w": 420,
-      "h": 64
     },
     "slice": null,
     "priority": "P1"
@@ -2499,21 +2439,6 @@
     },
     "sourceSize": {
       "w": 436,
-      "h": 65
-    },
-    "slice": null,
-    "priority": "P1"
-  },
-  {
-    "id": "title-rebirth-confirm",
-    "file": "label/title-rebirth-confirm.webp",
-    "kind": "fixed",
-    "cssSize": {
-      "w": 127,
-      "h": 28
-    },
-    "sourceSize": {
-      "w": 360,
       "h": 65
     },
     "slice": null,
@@ -3197,21 +3122,6 @@
     "sourceSize": {
       "w": 112,
       "h": 116
-    },
-    "slice": null,
-    "priority": "P1"
-  },
-  {
-    "id": "icon-reset",
-    "file": "icon/icon-reset.webp",
-    "kind": "fixed",
-    "cssSize": {
-      "w": 20,
-      "h": 20
-    },
-    "sourceSize": {
-      "w": 32,
-      "h": 36
     },
     "slice": null,
     "priority": "P1"
