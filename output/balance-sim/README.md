@@ -11,7 +11,7 @@
 npx esbuild output/balance-sim/sim.ts --bundle --platform=node --outfile=output/balance-sim/sim.cjs
 node output/balance-sim/sim.cjs                                  # 현재 코드, 상세 이정표
 bash output/balance-sim/run.sh 현재코드                            # 시드 3개 요약
-bash output/balance-sim/run.sh 챕터4기획 FINAL_MAJOR=40 MON_DEF=1.3 EXTRA_BOARDS=5 EXTRA_GATES=35,40
+bash output/balance-sim/run.sh 챕터4기획 FINAL_MAJOR=40 MON_HP=1.4 MON_ATK=1.3 EXTRA_BOARDS=5 EXTRA_GATES=35,40
 ```
 
 환경 변수: `SEED`, `FINAL_MAJOR`, `HOUR_CAP`, `WALL_HOURS`, `MON_FROM`(이 대스테이지 이후에만 아래 성장률 적용, 기본 30), `MON_HP`/`MON_ATK`/`MON_DEF`(대스테이지당 성장률, 기본은 코드의 대21 이후 값 1.6/1.4/1.25 — `MON_FROM`은 20 이상), `MON_BASE`(몬스터 기초치 배수), `EXP_SCALE`(경험치 배수), `EXTRA_BOARDS`(코드 마지막 챕터 보드 다음부터 두 대스테이지마다 가상 곱연산 보드 N개), `EXTRA_COST`(가상 보드 비용 배수), `EXTRA_GATES`(코드 게이트 다음 회차부터의 환골탈태 게이트, 예: `35,40`), `REBIRTH_PCT`(회차당 환골탈태 버프 %, 기본은 코드 값), `SUMMARY`/`JSON`(출력 형식).
