@@ -52,6 +52,7 @@ const ENEMY_ART: Record<number, Partial<Record<EnemyKind, EnemyArt>>> = {
   5: {
     grunt: art('blood-cult-assassin-v1', MOB_SCALE, 8, 8),
     archer: art('blood-cult-darter-v1', MOB_SCALE, 8, 8),
+    elite: art('blood-cult-captain-v1', MOB_SCALE, 8, 8),
   },
 };
 

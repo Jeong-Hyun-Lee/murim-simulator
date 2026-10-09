@@ -1,0 +1,1427 @@
+{
+  "frames": {
+    "blood-cult-captain-v1/attack2/6": {
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 439,
+        "h": 536
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 247,
+        "y": 243,
+        "w": 439,
+        "h": 536
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack2/4": {
+      "frame": {
+        "x": 442,
+        "y": 1,
+        "w": 419,
+        "h": 536
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 237,
+        "y": 239,
+        "w": 419,
+        "h": 536
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/death/0": {
+      "frame": {
+        "x": 863,
+        "y": 1,
+        "w": 567,
+        "h": 531
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 203,
+        "y": 249,
+        "w": 567,
+        "h": 531
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/idle/6": {
+      "frame": {
+        "x": 1432,
+        "y": 1,
+        "w": 489,
+        "h": 528
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 195,
+        "y": 251,
+        "w": 489,
+        "h": 528
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/idle/9": {
+      "frame": {
+        "x": 1923,
+        "y": 1,
+        "w": 484,
+        "h": 525
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 208,
+        "y": 256,
+        "w": 484,
+        "h": 525
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/idle/4": {
+      "frame": {
+        "x": 2409,
+        "y": 1,
+        "w": 521,
+        "h": 524
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 167,
+        "y": 256,
+        "w": 521,
+        "h": 524
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/idle/7": {
+      "frame": {
+        "x": 2932,
+        "y": 1,
+        "w": 498,
+        "h": 523
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 190,
+        "y": 257,
+        "w": 498,
+        "h": 523
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/idle/11": {
+      "frame": {
+        "x": 3432,
+        "y": 1,
+        "w": 496,
+        "h": 522
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 194,
+        "y": 259,
+        "w": 496,
+        "h": 522
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/idle/10": {
+      "frame": {
+        "x": 1,
+        "y": 539,
+        "w": 501,
+        "h": 521
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 191,
+        "y": 260,
+        "w": 501,
+        "h": 521
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/idle/5": {
+      "frame": {
+        "x": 504,
+        "y": 539,
+        "w": 481,
+        "h": 520
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 215,
+        "y": 259,
+        "w": 481,
+        "h": 520
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/idle/8": {
+      "frame": {
+        "x": 987,
+        "y": 539,
+        "w": 530,
+        "h": 519
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 186,
+        "y": 262,
+        "w": 530,
+        "h": 519
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/attack1/12": {
+      "frame": {
+        "x": 1519,
+        "y": 539,
+        "w": 456,
+        "h": 512
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 236,
+        "y": 270,
+        "w": 456,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack1/13": {
+      "frame": {
+        "x": 1977,
+        "y": 539,
+        "w": 500,
+        "h": 510
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 197,
+        "y": 272,
+        "w": 500,
+        "h": 510
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/idle/1": {
+      "frame": {
+        "x": 2479,
+        "y": 539,
+        "w": 485,
+        "h": 506
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 225,
+        "y": 275,
+        "w": 485,
+        "h": 506
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/attack1/14": {
+      "frame": {
+        "x": 2966,
+        "y": 539,
+        "w": 496,
+        "h": 501
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 214,
+        "y": 281,
+        "w": 496,
+        "h": 501
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/death/1": {
+      "frame": {
+        "x": 3464,
+        "y": 539,
+        "w": 440,
+        "h": 500
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 243,
+        "y": 279,
+        "w": 440,
+        "h": 500
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/idle/3": {
+      "frame": {
+        "x": 1,
+        "y": 1062,
+        "w": 496,
+        "h": 498
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 220,
+        "y": 282,
+        "w": 496,
+        "h": 498
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/attack2/13": {
+      "frame": {
+        "x": 499,
+        "y": 1062,
+        "w": 525,
+        "h": 492
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 159,
+        "y": 285,
+        "w": 525,
+        "h": 492
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack2/14": {
+      "frame": {
+        "x": 1026,
+        "y": 1062,
+        "w": 523,
+        "h": 488
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 167,
+        "y": 290,
+        "w": 523,
+        "h": 488
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack2/3": {
+      "frame": {
+        "x": 1551,
+        "y": 1062,
+        "w": 455,
+        "h": 488
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 220,
+        "y": 290,
+        "w": 455,
+        "h": 488
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack2/12": {
+      "frame": {
+        "x": 2008,
+        "y": 1062,
+        "w": 439,
+        "h": 487
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 226,
+        "y": 291,
+        "w": 439,
+        "h": 487
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/idle/2": {
+      "frame": {
+        "x": 2449,
+        "y": 1062,
+        "w": 479,
+        "h": 486
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 231,
+        "y": 294,
+        "w": 479,
+        "h": 486
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/attack1/1": {
+      "frame": {
+        "x": 2930,
+        "y": 1062,
+        "w": 549,
+        "h": 485
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 149,
+        "y": 291,
+        "w": 549,
+        "h": 485
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/idle/0": {
+      "frame": {
+        "x": 3481,
+        "y": 1062,
+        "w": 477,
+        "h": 483
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 233,
+        "y": 298,
+        "w": 477,
+        "h": 483
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/attack1/0": {
+      "frame": {
+        "x": 1,
+        "y": 1562,
+        "w": 477,
+        "h": 483
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 233,
+        "y": 298,
+        "w": 477,
+        "h": 483
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack1/15": {
+      "frame": {
+        "x": 480,
+        "y": 1562,
+        "w": 477,
+        "h": 483
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 233,
+        "y": 298,
+        "w": 477,
+        "h": 483
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack2/0": {
+      "frame": {
+        "x": 959,
+        "y": 1562,
+        "w": 477,
+        "h": 483
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 233,
+        "y": 298,
+        "w": 477,
+        "h": 483
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack2/15": {
+      "frame": {
+        "x": 1438,
+        "y": 1562,
+        "w": 477,
+        "h": 483
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 233,
+        "y": 298,
+        "w": 477,
+        "h": 483
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack2/2": {
+      "frame": {
+        "x": 1917,
+        "y": 1562,
+        "w": 477,
+        "h": 472
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 193,
+        "y": 306,
+        "w": 477,
+        "h": 472
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack1/7": {
+      "frame": {
+        "x": 2396,
+        "y": 1562,
+        "w": 465,
+        "h": 471
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 215,
+        "y": 307,
+        "w": 465,
+        "h": 471
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack1/2": {
+      "frame": {
+        "x": 2863,
+        "y": 1562,
+        "w": 421,
+        "h": 470
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 233,
+        "y": 306,
+        "w": 421,
+        "h": 470
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/death/4": {
+      "frame": {
+        "x": 3286,
+        "y": 1562,
+        "w": 499,
+        "h": 469
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 193,
+        "y": 312,
+        "w": 499,
+        "h": 469
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/attack2/1": {
+      "frame": {
+        "x": 1,
+        "y": 2047,
+        "w": 452,
+        "h": 466
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 240,
+        "y": 314,
+        "w": 452,
+        "h": 466
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/death/2": {
+      "frame": {
+        "x": 455,
+        "y": 2047,
+        "w": 486,
+        "h": 465
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 204,
+        "y": 313,
+        "w": 486,
+        "h": 465
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/attack1/3": {
+      "frame": {
+        "x": 943,
+        "y": 2047,
+        "w": 474,
+        "h": 462
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 180,
+        "y": 313,
+        "w": 474,
+        "h": 462
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack1/11": {
+      "frame": {
+        "x": 1419,
+        "y": 2047,
+        "w": 457,
+        "h": 457
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 220,
+        "y": 323,
+        "w": 457,
+        "h": 457
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack1/8": {
+      "frame": {
+        "x": 1878,
+        "y": 2047,
+        "w": 557,
+        "h": 456
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 111,
+        "y": 323,
+        "w": 557,
+        "h": 456
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack1/9": {
+      "frame": {
+        "x": 2437,
+        "y": 2047,
+        "w": 498,
+        "h": 452
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 189,
+        "y": 327,
+        "w": 498,
+        "h": 452
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack1/10": {
+      "frame": {
+        "x": 2937,
+        "y": 2047,
+        "w": 461,
+        "h": 452
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 233,
+        "y": 327,
+        "w": 461,
+        "h": 452
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack2/5": {
+      "frame": {
+        "x": 3400,
+        "y": 2047,
+        "w": 532,
+        "h": 443
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 145,
+        "y": 335,
+        "w": 532,
+        "h": 443
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/death/5": {
+      "frame": {
+        "x": 1,
+        "y": 2515,
+        "w": 462,
+        "h": 440
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 197,
+        "y": 340,
+        "w": 462,
+        "h": 440
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/attack2/7": {
+      "frame": {
+        "x": 465,
+        "y": 2515,
+        "w": 478,
+        "h": 437
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 220,
+        "y": 340,
+        "w": 478,
+        "h": 437
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack1/6": {
+      "frame": {
+        "x": 945,
+        "y": 2515,
+        "w": 471,
+        "h": 432
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 186,
+        "y": 345,
+        "w": 471,
+        "h": 432
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/death/3": {
+      "frame": {
+        "x": 1418,
+        "y": 2515,
+        "w": 432,
+        "h": 427
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 255,
+        "y": 353,
+        "w": 432,
+        "h": 427
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/attack2/8": {
+      "frame": {
+        "x": 1852,
+        "y": 2515,
+        "w": 552,
+        "h": 420
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 87,
+        "y": 362,
+        "w": 552,
+        "h": 420
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack2/11": {
+      "frame": {
+        "x": 2406,
+        "y": 2515,
+        "w": 458,
+        "h": 419
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 216,
+        "y": 360,
+        "w": 458,
+        "h": 419
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack2/9": {
+      "frame": {
+        "x": 2866,
+        "y": 2515,
+        "w": 521,
+        "h": 418
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 136,
+        "y": 363,
+        "w": 521,
+        "h": 418
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack2/10": {
+      "frame": {
+        "x": 3389,
+        "y": 2515,
+        "w": 438,
+        "h": 418
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 235,
+        "y": 360,
+        "w": 438,
+        "h": 418
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack1/5": {
+      "frame": {
+        "x": 1,
+        "y": 2957,
+        "w": 468,
+        "h": 414
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 200,
+        "y": 364,
+        "w": 468,
+        "h": 414
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/attack1/4": {
+      "frame": {
+        "x": 471,
+        "y": 2957,
+        "w": 485,
+        "h": 412
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 194,
+        "y": 365,
+        "w": 485,
+        "h": 412
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-captain-v1/death/6": {
+      "frame": {
+        "x": 958,
+        "y": 2957,
+        "w": 485,
+        "h": 355
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 202,
+        "y": 423,
+        "w": 485,
+        "h": 355
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/death/8": {
+      "frame": {
+        "x": 1445,
+        "y": 2957,
+        "w": 521,
+        "h": 305
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 168,
+        "y": 475,
+        "w": 521,
+        "h": 305
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/death/7": {
+      "frame": {
+        "x": 1968,
+        "y": 2957,
+        "w": 513,
+        "h": 241
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 240,
+        "y": 538,
+        "w": 513,
+        "h": 241
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-captain-v1/death/9": {
+      "frame": {
+        "x": 2483,
+        "y": 2957,
+        "w": 511,
+        "h": 217
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 184,
+        "y": 560,
+        "w": 511,
+        "h": 217
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 360
+    }
+  },
+  "animations": {
+    "idle": [
+      "blood-cult-captain-v1/idle/0",
+      "blood-cult-captain-v1/idle/1",
+      "blood-cult-captain-v1/idle/2",
+      "blood-cult-captain-v1/idle/3",
+      "blood-cult-captain-v1/idle/4",
+      "blood-cult-captain-v1/idle/5",
+      "blood-cult-captain-v1/idle/6",
+      "blood-cult-captain-v1/idle/7",
+      "blood-cult-captain-v1/idle/8",
+      "blood-cult-captain-v1/idle/9",
+      "blood-cult-captain-v1/idle/10",
+      "blood-cult-captain-v1/idle/11"
+    ],
+    "attack1": [
+      "blood-cult-captain-v1/attack1/0",
+      "blood-cult-captain-v1/attack1/1",
+      "blood-cult-captain-v1/attack1/2",
+      "blood-cult-captain-v1/attack1/3",
+      "blood-cult-captain-v1/attack1/4",
+      "blood-cult-captain-v1/attack1/5",
+      "blood-cult-captain-v1/attack1/6",
+      "blood-cult-captain-v1/attack1/7",
+      "blood-cult-captain-v1/attack1/8",
+      "blood-cult-captain-v1/attack1/9",
+      "blood-cult-captain-v1/attack1/10",
+      "blood-cult-captain-v1/attack1/11",
+      "blood-cult-captain-v1/attack1/12",
+      "blood-cult-captain-v1/attack1/13",
+      "blood-cult-captain-v1/attack1/14",
+      "blood-cult-captain-v1/attack1/15"
+    ],
+    "attack2": [
+      "blood-cult-captain-v1/attack2/0",
+      "blood-cult-captain-v1/attack2/1",
+      "blood-cult-captain-v1/attack2/2",
+      "blood-cult-captain-v1/attack2/3",
+      "blood-cult-captain-v1/attack2/4",
+      "blood-cult-captain-v1/attack2/5",
+      "blood-cult-captain-v1/attack2/6",
+      "blood-cult-captain-v1/attack2/7",
+      "blood-cult-captain-v1/attack2/8",
+      "blood-cult-captain-v1/attack2/9",
+      "blood-cult-captain-v1/attack2/10",
+      "blood-cult-captain-v1/attack2/11",
+      "blood-cult-captain-v1/attack2/12",
+      "blood-cult-captain-v1/attack2/13",
+      "blood-cult-captain-v1/attack2/14",
+      "blood-cult-captain-v1/attack2/15"
+    ],
+    "death": [
+      "blood-cult-captain-v1/death/0",
+      "blood-cult-captain-v1/death/1",
+      "blood-cult-captain-v1/death/2",
+      "blood-cult-captain-v1/death/3",
+      "blood-cult-captain-v1/death/4",
+      "blood-cult-captain-v1/death/5",
+      "blood-cult-captain-v1/death/6",
+      "blood-cult-captain-v1/death/7",
+      "blood-cult-captain-v1/death/8",
+      "blood-cult-captain-v1/death/9"
+    ]
+  },
+  "meta": {
+    "image": "blood-cult-captain-v1-sheet.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 3959,
+      "h": 3372
+    },
+    "scale": "1"
+  }
+}
