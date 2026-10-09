@@ -989,7 +989,7 @@ export const useGameStore = create<GameStoreState>((set, get) => {
         });
         persist(get());
       } else if (enemyDefeated && isFinalStage(s.stage) && s.highestMajorCleared >= s.stage.major) {
-        // 최종 스테이지(30-10)는 다음 스토리가 없어 nextStage()가 같은 자리를 반환한다 —
+        // 최종 스테이지(40-10)는 다음 스토리가 없어 nextStage()가 같은 자리를 반환한다 —
         // 최초 클리어 이후에도 기존 보스 보상 팝업 분기를 그대로 타면 처치할 때마다 팝업이
         // 무한 재발생한다. 최초 클리어(highestMajorCleared 갱신) 이후로는 사냥터 모드와
         // 동일하게 팝업 없이 즉시 보상만 반복 지급.

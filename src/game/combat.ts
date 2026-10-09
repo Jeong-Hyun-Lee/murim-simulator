@@ -3,7 +3,7 @@
 // 만한 수준으로 임의 지정한 자리표시자 — 실측 밸런싱 시 여기만 바꾸면 전체 곡선이 따라 움직인다.
 
 export interface StageId {
-  major: number; // 1~30 (챕터1: 1~10, 챕터2: 11~20, 챕터3: 21~30)
+  major: number; // 1~40 (챕터1: 1~10, 챕터2: 11~20, 챕터3: 21~30, 챕터4: 31~40)
   sub: number; // 1~10
 }
 
@@ -40,6 +40,17 @@ export const BOSS_NAMES: Record<number, string> = {
   28: '천외 결계사',
   29: '호천위장',
   30: '천외주',
+  // wiki/concepts/스토리보드-기획서-챕터4.md 2장 — 대31~40.
+  31: '잔천위주 단목결',
+  32: '흑풍귀도 마충',
+  33: '수라상단주 곽만금',
+  34: '동창 첩형 하곤',
+  35: '귀허 술사 백연',
+  36: '금잠고모 남소화',
+  37: '철면판관 엄도진',
+  38: '흑천련주 사도광',
+  39: '천기대주 묵영검 설무진',
+  40: '무림맹 총군사 종리헌',
 };
 
 const MOB_NAMES: Record<number, string> = {
@@ -73,6 +84,16 @@ const MOB_NAMES: Record<number, string> = {
   28: '설원 결계병',
   29: '호천위 무사',
   30: '천외 친위 술사',
+  31: '잔천위 잔병',
+  32: '흑천련 방도',
+  33: '수라상단 호위',
+  34: '동창 번자(番子)',
+  35: '귀허 의식 시종',
+  36: '고독문 독인',
+  37: '집법당 추격 무사',
+  38: '흑천련 총단 방도',
+  39: '천기대 무사',
+  40: '맹약패에 조종된 무인',
 };
 
 // 스테이지-레벨링-기획서 10절 진행 곡선 재조정안(2026-09-13) — 챕터3(대30)까지 자동전투 약 하루.
@@ -89,6 +110,10 @@ const DEF_GROWTH = 1.25;
 const LATE_GROWTH_FROM = 20;
 const LATE_HP_GROWTH = 1.6;
 const LATE_ATK_GROWTH = 1.4;
+// 대31부터는 다시 낮춘다 — 챕터4(대31~40)가 약 이틀에 끝나도록(스테이지-레벨링-기획서 11절).
+const CH4_GROWTH_FROM = 30;
+const CH4_HP_GROWTH = 1.4;
+const CH4_ATK_GROWTH = 1.3;
 const BASE_EXP_1 = 6;
 const BASE_GOLD_1 = 10;
 const BASE_CHI_1 = 15;
@@ -146,6 +171,16 @@ const MOB_VARIANT_NAMES: Record<number, Partial<Record<EnemyKind, string>>> = {
   28: { archer: '결계 궁수', elite: '진안 수호자' },
   29: { archer: '호천위 궁수', elite: '호천위 부장' },
   30: { archer: '문의 그림자', elite: '선객의 잔상' },
+  31: { archer: '잔천위 궁수', elite: '잔천위 정예' },
+  32: { archer: '흑천련 비도수', elite: '폭주 진기 무인' },
+  33: { archer: '상단 화살잡이', elite: '상단 호위대장' },
+  34: { archer: '동창 쇠뇌수', elite: '동창 당두(檔頭)' },
+  35: { archer: '조수 부적사', elite: '결계사의 옛 제자' },
+  36: { archer: '독충 조련사', elite: '금잠 수호 무녀' },
+  37: { archer: '집법당 궁수', elite: '집법당 부당주' },
+  38: { archer: '흑천련 독전대 궁수', elite: '흑천련 장로' },
+  39: { archer: '천기대 궁노수', elite: '천기대 부대주' },
+  40: { archer: '문 너머의 그림자', elite: '천기 호위장' },
 };
 
 // 종류별 가중치 — 소스테이지 기본 공식(§2.1) 위에 곱한다. 적 한 대가 성장 곡선 위 플레이어 체력의
@@ -164,9 +199,13 @@ const KIND_WEIGHTS: Record<EnemyKind, { hp: number; atk: number; def: number; re
 export const monsterStats = (stage: StageId, lateGrowth = true): UnitStats => {
   const effSub = Math.min(stage.sub, 9);
   const early = (lateGrowth ? Math.min(stage.major, LATE_GROWTH_FROM) : stage.major) - 1;
-  const late = lateGrowth ? Math.max(0, stage.major - LATE_GROWTH_FROM) : 0;
-  const baseHp = BASE_HP_1 * HP_GROWTH ** early * LATE_HP_GROWTH ** late;
-  const baseAtk = BASE_ATK_1 * ATK_GROWTH ** early * LATE_ATK_GROWTH ** late;
+  const late = lateGrowth
+    ? Math.max(0, Math.min(stage.major, CH4_GROWTH_FROM) - LATE_GROWTH_FROM)
+    : 0;
+  const ch4 = lateGrowth ? Math.max(0, stage.major - CH4_GROWTH_FROM) : 0;
+  const baseHp = BASE_HP_1 * HP_GROWTH ** early * LATE_HP_GROWTH ** late * CH4_HP_GROWTH ** ch4;
+  const baseAtk =
+    BASE_ATK_1 * ATK_GROWTH ** early * LATE_ATK_GROWTH ** late * CH4_ATK_GROWTH ** ch4;
   const baseDef = BASE_DEF_1 * DEF_GROWTH ** (stage.major - 1);
 
   const kind = enemyKind(stage);
@@ -198,8 +237,8 @@ export const stageReward = (stage: StageId): StageReward => {
   return { exp: Math.round(exp), gold: Math.round(gold), chi: Math.round(chi) };
 };
 
-// wiki/concepts/스테이지-레벨링-기획서.md 1.1절 — 챕터3(대21~30)까지.
-export const FINAL_MAJOR = 30;
+// wiki/concepts/스테이지-레벨링-기획서.md 1.1절 — 챕터4(대31~40)까지.
+export const FINAL_MAJOR = 40;
 
 export const nextStage = (stage: StageId): StageId => {
   if (stage.major === FINAL_MAJOR && stage.sub === 10) return stage; // 최종 스테이지는 계속 반복 파밍

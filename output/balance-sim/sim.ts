@@ -12,6 +12,7 @@ import {
   combatPower,
   baseDamage,
   expToNextLevel,
+  FINAL_MAJOR as CODE_FINAL_MAJOR,
   type StageId,
   type PlayerStats,
 } from '../../src/game/combat';
@@ -51,19 +52,19 @@ Math.random = () => {
 
 // --- 새 챕터 검토용 가상 조건(기본값은 현재 코드 그대로) ---
 const env = (k: string, d: number) => Number(process.env[k] ?? d);
-// MON_FROM 대스테이지 이후 몬스터 성장률(대스테이지당). 기본값 = combat.ts의 대21 이후 값
-// 1.6 / 1.4 / 1.25 — MON_FROM은 20 이상으로만 쓴다.
-const CODE_HP_GROWTH = 1.6;
-const CODE_ATK_GROWTH = 1.4;
+// MON_FROM 대스테이지 이후 몬스터 성장률(대스테이지당). 기본값 = combat.ts의 대31 이후 값
+// 1.4 / 1.3 / 1.25 — MON_FROM은 30 이상으로만 쓴다.
+const CODE_HP_GROWTH = 1.4;
+const CODE_ATK_GROWTH = 1.3;
 const CODE_DEF_GROWTH = 1.25;
 const MON_HP = env('MON_HP', CODE_HP_GROWTH);
 const MON_ATK = env('MON_ATK', CODE_ATK_GROWTH);
 const MON_DEF = env('MON_DEF', CODE_DEF_GROWTH);
-const MON_FROM = env('MON_FROM', 30);
+const MON_FROM = env('MON_FROM', CODE_FINAL_MAJOR);
 const MON_BASE = env('MON_BASE', 1); // 몬스터 기초치 배수
 const EXP_SCALE = env('EXP_SCALE', 1); // 경험치 보상 배수
 
-const FINAL_MAJOR = env('FINAL_MAJOR', 30);
+const FINAL_MAJOR = env('FINAL_MAJOR', CODE_FINAL_MAJOR);
 // 새 챕터 무공 보드 가정: 코드의 마지막 챕터 보드를 대(마지막+2)부터 두 대스테이지마다 복제하고,
 // 비용은 해금 구간 수입에 맞춰 ×1.8^(해금 대스테이지 차이).
 const EXTRA_BOARDS = env('EXTRA_BOARDS', 0);

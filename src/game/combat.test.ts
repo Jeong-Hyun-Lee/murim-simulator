@@ -39,6 +39,14 @@ describe('monsterStats', () => {
     expect(at(30).def / at(29).def).toBeCloseTo(1.25, 2);
   });
 
+  it('대31부터는 체력 1.4배·공격 1.3배다', () => {
+    const at = (major: number) => monsterStats({ major, sub: 1 });
+    expect(at(31).hp / at(30).hp).toBeCloseTo(1.4, 2);
+    expect(at(31).atk / at(30).atk).toBeCloseTo(1.3, 2);
+    expect(at(40).hp / at(39).hp).toBeCloseTo(1.4, 2);
+    expect(at(40).name).toBe('맹약패에 조종된 무인');
+  });
+
   it('수련탑용 곡선은 대21 이후에도 1.5배·1.37배를 잇는다', () => {
     const at = (major: number) => monsterStats({ major, sub: 9 }, false);
     expect(at(25).hp / at(24).hp).toBeCloseTo(1.5, 2);
@@ -67,7 +75,8 @@ describe('진행 공식', () => {
   });
 
   it('최종 스테이지에서는 다음 스테이지가 자기 자신이다', () => {
-    expect(nextStage({ major: 30, sub: 10 })).toEqual({ major: 30, sub: 10 });
+    expect(nextStage({ major: 40, sub: 10 })).toEqual({ major: 40, sub: 10 });
+    expect(nextStage({ major: 30, sub: 10 })).toEqual({ major: 31, sub: 1 });
     expect(nextStage({ major: 1, sub: 10 })).toEqual({ major: 2, sub: 1 });
   });
 });

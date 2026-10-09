@@ -8,7 +8,7 @@ export const realmName = (count: number): string => {
 };
 
 // 회차별 게이트(보스 클리어 대스테이지) — 스토리 이정표마다 한 번씩만 돌파한다.
-const REBIRTH_GATES = [7, 9, 10, 15, 20, 25, 30];
+const REBIRTH_GATES = [7, 9, 10, 15, 20, 25, 30, 35, 40];
 
 // 다음 회차의 게이트. 목록을 다 돌파했으면 null.
 export const rebirthGateMajor = (count: number): number | null => REBIRTH_GATES[count] ?? null;

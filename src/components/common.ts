@@ -19,9 +19,10 @@ export const isViewKey = (target: NavTarget): target is ViewKey =>
 // 환골탈태 화면 진입은 대7 클리어부터(실행 가능 여부는 회차별 rebirthGateMajor 판정).
 export const REBIRTH_ENTRY_MAJOR = 7;
 
-// 만/억 단위 축약 — 소수 첫째 자리까지 내림 표기(올림으로 보유량을 부풀려 보이지 않게).
+// 만/억/조 단위 축약 — 소수 첫째 자리까지 내림 표기(올림으로 보유량을 부풀려 보이지 않게).
 export const formatShort = (n: number): string => {
   const trim = (v: number) => String(Math.floor(v * 10) / 10);
+  if (n >= 1e12) return `${trim(n / 1e12)}조`;
   if (n >= 1e8) return `${trim(n / 1e8)}억`;
   if (n >= 1e4) return `${trim(n / 1e4)}만`;
   return Math.floor(n).toLocaleString();
