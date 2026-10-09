@@ -5,6 +5,7 @@ import type { GearItem, SlotId } from './gearData';
 import { EMPTY_DAILY_COUNTS, type DailyCounts } from './goalData';
 
 const SAVE_KEY = 'murim-simulator-save-v2';
+const CORRUPT_SAVE_KEY = `${SAVE_KEY}-corrupt`;
 
 export interface GameState {
   level: number;
@@ -47,7 +48,7 @@ export interface GameState {
   towerBest: number;
 }
 
-const defaultState = (): GameState => ({
+export const defaultState = (): GameState => ({
   level: 1,
   exp: 0,
   gold: 0,
@@ -85,13 +86,43 @@ const defaultState = (): GameState => ({
 });
 
 // 저장 실패(저장 공간 부족·브라우저 저장 차단 등)를 화면에 알리기 위한 상태 — 실패를 성공처럼 숨기지 않는다.
-export const useSaveStatus = create<{ failed: boolean }>(() => ({ failed: false }));
+// recovered: 저장을 읽지 못해 새 게임으로 시작했음(원문은 따로 보존).
+export const useSaveStatus = create<{ failed: boolean; recovered: boolean }>(() => ({
+  failed: false,
+  recovered: false,
+}));
+
+const isStage = (v: unknown): v is StageId =>
+  typeof v === 'object' &&
+  v !== null &&
+  Number.isFinite((v as StageId).major) &&
+  Number.isFinite((v as StageId).sub);
+
+// 형식이 어긋난 필드는 버리고 기본값을 쓴다 — 숫자 자리에 문자열·NaN이 들어와 계산이 깨지지 않게.
+const sanitize = (parsed: Partial<GameState>): Partial<GameState> => {
+  const defaults = defaultState();
+  const clean: Record<string, unknown> = { ...parsed };
+  for (const key of Object.keys(clean)) {
+    const fallback = defaults[key as keyof GameState];
+    if (typeof fallback === 'number' && !Number.isFinite(clean[key])) delete clean[key];
+  }
+  if (!isStage(clean.stage)) delete clean.stage;
+  if (clean.farmReturnStage !== null && !isStage(clean.farmReturnStage)) {
+    delete clean.farmReturnStage;
+  }
+  return clean as Partial<GameState>;
+};
 
 export const loadState = (): GameState => {
+  let raw: string | null = null;
   try {
-    const raw = localStorage.getItem(SAVE_KEY);
+    raw = localStorage.getItem(SAVE_KEY);
     if (!raw) return defaultState();
-    const parsed = JSON.parse(raw) as Partial<GameState>;
+    const json: unknown = JSON.parse(raw);
+    if (typeof json !== 'object' || json === null || Array.isArray(json)) {
+      throw new Error('save is not an object');
+    }
+    const parsed = sanitize(json as Partial<GameState>);
     // 연출 필드가 없는 기존 저장은 이미 클리어한 대스테이지까지 본 것으로 취급 — 지나온 연출을 다시 띄우지 않는다.
     const cleared = parsed.highestMajorCleared ?? 0;
     return {
@@ -101,6 +132,15 @@ export const loadState = (): GameState => {
       ...parsed,
     };
   } catch {
+    // 저장이 있었는데 읽지 못했다면 원문을 옮겨 둔다 — 새 게임 저장이 덮어쓰기 전에 보존.
+    if (raw) {
+      try {
+        localStorage.setItem(CORRUPT_SAVE_KEY, raw);
+      } catch {
+        // 보존할 공간조차 없으면 알림만 띄운다.
+      }
+      useSaveStatus.setState({ recovered: true });
+    }
     return defaultState();
   }
 };

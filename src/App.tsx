@@ -60,6 +60,7 @@ export const App = () => {
     (s) => GONG_BOARDS.filter((board) => isBoardUnlocked(board, s)).length,
   );
   const saveFailed = useSaveStatus((s) => s.failed);
+  const saveRecovered = useSaveStatus((s) => s.recovered);
   const retrySave = useGameStore((s) => s.retrySave);
   const [badges, setBadges] = useState<TabKey[]>([]);
 
@@ -204,6 +205,18 @@ export const App = () => {
         onOpenSettings={() => setSheet('settings')}
         onOpenCurrency={() => setSheet('currency')}
       />
+      {saveRecovered && (
+        <div className="save-error" role="alert">
+          <span>저장 데이터를 읽지 못해 새로 시작했습니다. 이전 데이터는 따로 보관했습니다.</span>
+          <button
+            type="button"
+            className="btn"
+            onClick={() => useSaveStatus.setState({ recovered: false })}
+          >
+            확인
+          </button>
+        </div>
+      )}
       {saveFailed && (
         <div className="save-error" role="alert">
           <span>저장 실패: 최근 진행이 이 기기에 저장되지 않았습니다.</span>
