@@ -16,40 +16,42 @@ export interface EnemyArt {
 const BOSS_SCALE = 0.58;
 const MOB_SCALE = 0.45;
 
-const art = (prefix: string, scale: number, hitFrame: number): EnemyArt => ({
+// 타격 프레임은 공격 1·2 모션의 프레임 시트를 뽑아 칼 궤적이 처음 나오거나 암기가 손을 떠나는
+// 프레임을 확인해 적는다(내려찍기는 땅에 닿는 프레임). 새 적도 일괄 값을 쓰지 말고 같은 방법으로 확인한다.
+const art = (prefix: string, scale: number, attack1: number, attack2: number): EnemyArt => ({
   prefix,
   scale,
-  hitFrames: { attack1: hitFrame, attack2: hitFrame },
+  hitFrames: { attack1, attack2 },
 });
 
 const ENEMY_ART: Record<number, Partial<Record<EnemyKind, EnemyArt>>> = {
   1: {
-    grunt: art('hyeollangchae-grunt-v3', MOB_SCALE, 8),
-    archer: art('hyeollangchae-archer-v3', MOB_SCALE, 10),
-    elite: art('hyeollangchae-elite-v3', MOB_SCALE, 8),
-    boss: art('hyeollangchae-boss-v3', BOSS_SCALE, 9),
+    grunt: art('hyeollangchae-grunt-v3', MOB_SCALE, 6, 8),
+    archer: art('hyeollangchae-archer-v3', MOB_SCALE, 10, 10),
+    elite: art('hyeollangchae-elite-v3', MOB_SCALE, 5, 7),
+    boss: art('hyeollangchae-boss-v3', BOSS_SCALE, 9, 9),
   },
   2: {
-    grunt: art('black-market-minion-v1', MOB_SCALE, 7),
-    archer: art('black-market-dart-v1', MOB_SCALE, 7),
-    elite: art('black-market-fixer-v1', MOB_SCALE, 7),
-    boss: art('black-market-boss-v1', BOSS_SCALE, 7),
+    grunt: art('black-market-minion-v1', MOB_SCALE, 5, 4),
+    archer: art('black-market-dart-v1', MOB_SCALE, 6, 6),
+    elite: art('black-market-fixer-v1', MOB_SCALE, 5, 7),
+    boss: art('black-market-boss-v1', BOSS_SCALE, 5, 5),
   },
   3: {
-    grunt: art('peng-clan-warrior-v1', MOB_SCALE, 7),
-    archer: art('peng-clan-dagger-v1', MOB_SCALE, 7),
-    elite: art('peng-clan-saber-instructor-v1', MOB_SCALE, 7),
-    boss: art('peng-clan-young-master-v1', BOSS_SCALE, 7),
+    grunt: art('peng-clan-warrior-v1', MOB_SCALE, 5, 5),
+    archer: art('peng-clan-dagger-v1', MOB_SCALE, 6, 6),
+    elite: art('peng-clan-saber-instructor-v1', MOB_SCALE, 7, 7),
+    boss: art('peng-clan-young-master-v1', BOSS_SCALE, 8, 8),
   },
   4: {
-    grunt: art('forbidden-art-follower-v1', MOB_SCALE, 8),
-    archer: art('forbidden-art-darter-v1', MOB_SCALE, 8),
-    elite: art('qi-overload-warrior-v1', MOB_SCALE, 8),
-    boss: art('forbidden-art-user-v1', BOSS_SCALE, 8),
+    grunt: art('forbidden-art-follower-v1', MOB_SCALE, 7, 7),
+    archer: art('forbidden-art-darter-v1', MOB_SCALE, 7, 6),
+    elite: art('qi-overload-warrior-v1', MOB_SCALE, 5, 5),
+    boss: art('forbidden-art-user-v1', BOSS_SCALE, 8, 8),
   },
   5: {
-    grunt: art('blood-cult-assassin-v1', MOB_SCALE, 8),
-    archer: art('blood-cult-darter-v1', MOB_SCALE, 8),
+    grunt: art('blood-cult-assassin-v1', MOB_SCALE, 8, 8),
+    archer: art('blood-cult-darter-v1', MOB_SCALE, 8, 8),
   },
 };
 
