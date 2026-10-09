@@ -103,8 +103,9 @@ const BOARDS = [
 // gongData.gongMultiplier와 같은 곱 — 가상 보드까지 포함.
 const multiplier = (levels: GongLevels) =>
   BOARDS.reduce((m, b) => (b.multiplicative ? m * (1 + boardPowerPercent(b, levels) / 100) : m), 1);
-// 코드 게이트(7개)를 다 쓴 다음 회차부터 EXTRA_GATES를 차례로 쓴다. 더 없으면 null.
-const CODE_GATE_COUNT = 7;
+// 코드 게이트를 다 쓴 다음 회차부터 EXTRA_GATES를 차례로 쓴다. 더 없으면 null.
+let CODE_GATE_COUNT = 0;
+while (rebirthGateMajor(CODE_GATE_COUNT) !== null) CODE_GATE_COUNT += 1;
 const gateMajor = (count: number) =>
   rebirthGateMajor(count) ?? EXTRA_GATES[count - CODE_GATE_COUNT] ?? null;
 // 회차당 환골탈태 버프(%) — 기본값은 코드 수치.
