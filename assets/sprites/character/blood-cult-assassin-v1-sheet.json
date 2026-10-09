@@ -1,0 +1,1427 @@
+{
+  "frames": {
+    "blood-cult-assassin-v1/idle/1": {
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 511,
+        "h": 605
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 181,
+        "y": 180,
+        "w": 511,
+        "h": 605
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-assassin-v1/idle/3": {
+      "frame": {
+        "x": 514,
+        "y": 1,
+        "w": 439,
+        "h": 597
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 199,
+        "y": 189,
+        "w": 439,
+        "h": 597
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-assassin-v1/idle/0": {
+      "frame": {
+        "x": 955,
+        "y": 1,
+        "w": 565,
+        "h": 596
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 127,
+        "y": 190,
+        "w": 565,
+        "h": 596
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-assassin-v1/attack1/0": {
+      "frame": {
+        "x": 1522,
+        "y": 1,
+        "w": 565,
+        "h": 596
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 127,
+        "y": 190,
+        "w": 565,
+        "h": 596
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack1/15": {
+      "frame": {
+        "x": 2089,
+        "y": 1,
+        "w": 565,
+        "h": 596
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 127,
+        "y": 190,
+        "w": 565,
+        "h": 596
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack2/0": {
+      "frame": {
+        "x": 2656,
+        "y": 1,
+        "w": 565,
+        "h": 596
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 127,
+        "y": 190,
+        "w": 565,
+        "h": 596
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack2/15": {
+      "frame": {
+        "x": 3223,
+        "y": 1,
+        "w": 565,
+        "h": 596
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 127,
+        "y": 190,
+        "w": 565,
+        "h": 596
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/idle/2": {
+      "frame": {
+        "x": 1,
+        "y": 608,
+        "w": 501,
+        "h": 594
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 187,
+        "y": 191,
+        "w": 501,
+        "h": 594
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-assassin-v1/attack1/14": {
+      "frame": {
+        "x": 504,
+        "y": 608,
+        "w": 471,
+        "h": 591
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 234,
+        "y": 193,
+        "w": 471,
+        "h": 591
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/idle/4": {
+      "frame": {
+        "x": 977,
+        "y": 608,
+        "w": 567,
+        "h": 578
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 125,
+        "y": 206,
+        "w": 567,
+        "h": 578
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-assassin-v1/idle/5": {
+      "frame": {
+        "x": 1546,
+        "y": 608,
+        "w": 478,
+        "h": 577
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 181,
+        "y": 207,
+        "w": 478,
+        "h": 577
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-assassin-v1/idle/6": {
+      "frame": {
+        "x": 2026,
+        "y": 608,
+        "w": 490,
+        "h": 575
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 169,
+        "y": 209,
+        "w": 490,
+        "h": 575
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-assassin-v1/idle/7": {
+      "frame": {
+        "x": 2518,
+        "y": 608,
+        "w": 479,
+        "h": 575
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 167,
+        "y": 209,
+        "w": 479,
+        "h": 575
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-assassin-v1/attack1/13": {
+      "frame": {
+        "x": 2999,
+        "y": 608,
+        "w": 466,
+        "h": 568
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 193,
+        "y": 217,
+        "w": 466,
+        "h": 568
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/death/0": {
+      "frame": {
+        "x": 3467,
+        "y": 608,
+        "w": 499,
+        "h": 557
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 220,
+        "y": 226,
+        "w": 499,
+        "h": 557
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-assassin-v1/attack2/14": {
+      "frame": {
+        "x": 1,
+        "y": 1204,
+        "w": 503,
+        "h": 554
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 172,
+        "y": 231,
+        "w": 503,
+        "h": 554
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/idle/9": {
+      "frame": {
+        "x": 506,
+        "y": 1204,
+        "w": 488,
+        "h": 541
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 201,
+        "y": 243,
+        "w": 488,
+        "h": 541
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-assassin-v1/idle/11": {
+      "frame": {
+        "x": 996,
+        "y": 1204,
+        "w": 487,
+        "h": 541
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 176,
+        "y": 243,
+        "w": 487,
+        "h": 541
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-assassin-v1/idle/10": {
+      "frame": {
+        "x": 1485,
+        "y": 1204,
+        "w": 485,
+        "h": 541
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 189,
+        "y": 243,
+        "w": 485,
+        "h": 541
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-assassin-v1/idle/8": {
+      "frame": {
+        "x": 1972,
+        "y": 1204,
+        "w": 542,
+        "h": 539
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 157,
+        "y": 245,
+        "w": 542,
+        "h": 539
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-assassin-v1/attack2/13": {
+      "frame": {
+        "x": 2516,
+        "y": 1204,
+        "w": 477,
+        "h": 532
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 167,
+        "y": 252,
+        "w": 477,
+        "h": 532
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/death/4": {
+      "frame": {
+        "x": 2995,
+        "y": 1204,
+        "w": 512,
+        "h": 531
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 176,
+        "y": 253,
+        "w": 512,
+        "h": 531
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-assassin-v1/attack1/3": {
+      "frame": {
+        "x": 3509,
+        "y": 1204,
+        "w": 489,
+        "h": 525
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 154,
+        "y": 259,
+        "w": 489,
+        "h": 525
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack2/12": {
+      "frame": {
+        "x": 1,
+        "y": 1760,
+        "w": 483,
+        "h": 518
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 181,
+        "y": 265,
+        "w": 483,
+        "h": 518
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack1/12": {
+      "frame": {
+        "x": 486,
+        "y": 1760,
+        "w": 566,
+        "h": 517
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 113,
+        "y": 267,
+        "w": 566,
+        "h": 517
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/death/1": {
+      "frame": {
+        "x": 1054,
+        "y": 1760,
+        "w": 486,
+        "h": 509
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 154,
+        "y": 273,
+        "w": 486,
+        "h": 509
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-assassin-v1/attack2/3": {
+      "frame": {
+        "x": 1542,
+        "y": 1760,
+        "w": 508,
+        "h": 507
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 185,
+        "y": 277,
+        "w": 508,
+        "h": 507
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack2/5": {
+      "frame": {
+        "x": 2052,
+        "y": 1760,
+        "w": 523,
+        "h": 499
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 185,
+        "y": 283,
+        "w": 523,
+        "h": 499
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack2/4": {
+      "frame": {
+        "x": 2577,
+        "y": 1760,
+        "w": 428,
+        "h": 498
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 236,
+        "y": 283,
+        "w": 428,
+        "h": 498
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack1/2": {
+      "frame": {
+        "x": 3007,
+        "y": 1760,
+        "w": 468,
+        "h": 493
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 174,
+        "y": 291,
+        "w": 468,
+        "h": 493
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack2/2": {
+      "frame": {
+        "x": 3477,
+        "y": 1760,
+        "w": 481,
+        "h": 491
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 231,
+        "y": 293,
+        "w": 481,
+        "h": 491
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack1/1": {
+      "frame": {
+        "x": 1,
+        "y": 2280,
+        "w": 529,
+        "h": 485
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 112,
+        "y": 299,
+        "w": 529,
+        "h": 485
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack2/9": {
+      "frame": {
+        "x": 532,
+        "y": 2280,
+        "w": 535,
+        "h": 476
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 261,
+        "y": 311,
+        "w": 535,
+        "h": 476
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack2/10": {
+      "frame": {
+        "x": 1069,
+        "y": 2280,
+        "w": 463,
+        "h": 472
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 205,
+        "y": 312,
+        "w": 463,
+        "h": 472
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/death/5": {
+      "frame": {
+        "x": 1534,
+        "y": 2280,
+        "w": 472,
+        "h": 463
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 157,
+        "y": 320,
+        "w": 472,
+        "h": 463
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-assassin-v1/attack2/8": {
+      "frame": {
+        "x": 2008,
+        "y": 2280,
+        "w": 540,
+        "h": 454
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 159,
+        "y": 332,
+        "w": 540,
+        "h": 454
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack1/9": {
+      "frame": {
+        "x": 2550,
+        "y": 2280,
+        "w": 538,
+        "h": 452
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 113,
+        "y": 329,
+        "w": 538,
+        "h": 452
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack1/8": {
+      "frame": {
+        "x": 3090,
+        "y": 2280,
+        "w": 477,
+        "h": 445
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 152,
+        "y": 344,
+        "w": 477,
+        "h": 445
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack2/11": {
+      "frame": {
+        "x": 3569,
+        "y": 2280,
+        "w": 464,
+        "h": 443
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 190,
+        "y": 338,
+        "w": 464,
+        "h": 443
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack2/1": {
+      "frame": {
+        "x": 1,
+        "y": 2767,
+        "w": 485,
+        "h": 436
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 161,
+        "y": 346,
+        "w": 485,
+        "h": 436
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/death/2": {
+      "frame": {
+        "x": 488,
+        "y": 2767,
+        "w": 502,
+        "h": 433
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 233,
+        "y": 347,
+        "w": 502,
+        "h": 433
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-assassin-v1/attack1/5": {
+      "frame": {
+        "x": 992,
+        "y": 2767,
+        "w": 520,
+        "h": 432
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 128,
+        "y": 351,
+        "w": 520,
+        "h": 432
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack1/11": {
+      "frame": {
+        "x": 1514,
+        "y": 2767,
+        "w": 455,
+        "h": 432
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 204,
+        "y": 349,
+        "w": 455,
+        "h": 432
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack1/10": {
+      "frame": {
+        "x": 1971,
+        "y": 2767,
+        "w": 539,
+        "h": 431
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 106,
+        "y": 352,
+        "w": 539,
+        "h": 431
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack1/7": {
+      "frame": {
+        "x": 2512,
+        "y": 2767,
+        "w": 484,
+        "h": 430
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 164,
+        "y": 353,
+        "w": 484,
+        "h": 430
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack1/4": {
+      "frame": {
+        "x": 2998,
+        "y": 2767,
+        "w": 476,
+        "h": 424
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 171,
+        "y": 358,
+        "w": 476,
+        "h": 424
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack1/6": {
+      "frame": {
+        "x": 3476,
+        "y": 2767,
+        "w": 507,
+        "h": 423
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 130,
+        "y": 360,
+        "w": 507,
+        "h": 423
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/attack2/6": {
+      "frame": {
+        "x": 1,
+        "y": 3205,
+        "w": 518,
+        "h": 396
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 152,
+        "y": 384,
+        "w": 518,
+        "h": 396
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/death/3": {
+      "frame": {
+        "x": 521,
+        "y": 3205,
+        "w": 494,
+        "h": 392
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 226,
+        "y": 388,
+        "w": 494,
+        "h": 392
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-assassin-v1/attack2/7": {
+      "frame": {
+        "x": 1017,
+        "y": 3205,
+        "w": 505,
+        "h": 358
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 145,
+        "y": 422,
+        "w": 505,
+        "h": 358
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-assassin-v1/death/8": {
+      "frame": {
+        "x": 1524,
+        "y": 3205,
+        "w": 527,
+        "h": 330
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 179,
+        "y": 447,
+        "w": 527,
+        "h": 330
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-assassin-v1/death/6": {
+      "frame": {
+        "x": 2053,
+        "y": 3205,
+        "w": 503,
+        "h": 311
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 185,
+        "y": 469,
+        "w": 503,
+        "h": 311
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-assassin-v1/death/9": {
+      "frame": {
+        "x": 2558,
+        "y": 3205,
+        "w": 543,
+        "h": 251
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 192,
+        "y": 526,
+        "w": 543,
+        "h": 251
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 360
+    },
+    "blood-cult-assassin-v1/death/7": {
+      "frame": {
+        "x": 3103,
+        "y": 3205,
+        "w": 518,
+        "h": 219
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 174,
+        "y": 558,
+        "w": 518,
+        "h": 219
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    }
+  },
+  "animations": {
+    "idle": [
+      "blood-cult-assassin-v1/idle/0",
+      "blood-cult-assassin-v1/idle/1",
+      "blood-cult-assassin-v1/idle/2",
+      "blood-cult-assassin-v1/idle/3",
+      "blood-cult-assassin-v1/idle/4",
+      "blood-cult-assassin-v1/idle/5",
+      "blood-cult-assassin-v1/idle/6",
+      "blood-cult-assassin-v1/idle/7",
+      "blood-cult-assassin-v1/idle/8",
+      "blood-cult-assassin-v1/idle/9",
+      "blood-cult-assassin-v1/idle/10",
+      "blood-cult-assassin-v1/idle/11"
+    ],
+    "attack1": [
+      "blood-cult-assassin-v1/attack1/0",
+      "blood-cult-assassin-v1/attack1/1",
+      "blood-cult-assassin-v1/attack1/2",
+      "blood-cult-assassin-v1/attack1/3",
+      "blood-cult-assassin-v1/attack1/4",
+      "blood-cult-assassin-v1/attack1/5",
+      "blood-cult-assassin-v1/attack1/6",
+      "blood-cult-assassin-v1/attack1/7",
+      "blood-cult-assassin-v1/attack1/8",
+      "blood-cult-assassin-v1/attack1/9",
+      "blood-cult-assassin-v1/attack1/10",
+      "blood-cult-assassin-v1/attack1/11",
+      "blood-cult-assassin-v1/attack1/12",
+      "blood-cult-assassin-v1/attack1/13",
+      "blood-cult-assassin-v1/attack1/14",
+      "blood-cult-assassin-v1/attack1/15"
+    ],
+    "attack2": [
+      "blood-cult-assassin-v1/attack2/0",
+      "blood-cult-assassin-v1/attack2/1",
+      "blood-cult-assassin-v1/attack2/2",
+      "blood-cult-assassin-v1/attack2/3",
+      "blood-cult-assassin-v1/attack2/4",
+      "blood-cult-assassin-v1/attack2/5",
+      "blood-cult-assassin-v1/attack2/6",
+      "blood-cult-assassin-v1/attack2/7",
+      "blood-cult-assassin-v1/attack2/8",
+      "blood-cult-assassin-v1/attack2/9",
+      "blood-cult-assassin-v1/attack2/10",
+      "blood-cult-assassin-v1/attack2/11",
+      "blood-cult-assassin-v1/attack2/12",
+      "blood-cult-assassin-v1/attack2/13",
+      "blood-cult-assassin-v1/attack2/14",
+      "blood-cult-assassin-v1/attack2/15"
+    ],
+    "death": [
+      "blood-cult-assassin-v1/death/0",
+      "blood-cult-assassin-v1/death/1",
+      "blood-cult-assassin-v1/death/2",
+      "blood-cult-assassin-v1/death/3",
+      "blood-cult-assassin-v1/death/4",
+      "blood-cult-assassin-v1/death/5",
+      "blood-cult-assassin-v1/death/6",
+      "blood-cult-assassin-v1/death/7",
+      "blood-cult-assassin-v1/death/8",
+      "blood-cult-assassin-v1/death/9"
+    ]
+  },
+  "meta": {
+    "image": "blood-cult-assassin-v1-sheet.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 4034,
+      "h": 3602
+    },
+    "scale": "1"
+  }
+}
