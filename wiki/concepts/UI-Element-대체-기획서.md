@@ -592,7 +592,7 @@ CSS 색·테두리·그라데이션만으로 그린 현재 UI를 **게임 UI 이
 | 상점 탭 | 비용·보유·잔액, 부족 표시 | `icon-gold`, `icon-elixir`, `icon-warn` (수치) | P1 |
 | 상점 탭 | 교환·뽑기·확률 정보 버튼 | `icon-action-exchange`, `icon-gacha`, `icon-info` | P1 |
 | 사냥터 선택 | 소스테이지 칸 | 보스 칸 `icon-status-boss`, 클리어 `icon-check`, 현재 위치 `icon-stage-current`, 잠김 `icon-lock` (번호) | P1 |
-| 환골탈태 | 유지·초기화 항목, 버튼 | `icon-check`, `icon-reset`, `icon-rebirth` (항목 이름) | P1 |
+| 환골탈태 | 경지 표시, 버튼 | `icon-rebirth` | P1 |
 | 토스트 | 알림 종류 | 보상 `icon-status-reward`, 해금 `icon-unlock`, 경고 `icon-warn` (알림 문구) | P1 |
 
 ## 7. 제작 파이프라인

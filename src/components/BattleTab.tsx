@@ -223,8 +223,9 @@ export const BattleTab = ({ onNavigate }: Props) => {
   const status = useBattleStatus();
 
   const expPercent = Math.min(100, (exp / expToNextLevel(level)) * 100);
+  const rebirthGate = rebirthGateMajor(rebirthCount);
   const canRebirth =
-    highestMajorCleared >= Math.max(REBIRTH_ENTRY_MAJOR, rebirthGateMajor(rebirthCount));
+    rebirthGate !== null && highestMajorCleared >= Math.max(REBIRTH_ENTRY_MAJOR, rebirthGate);
 
   return (
     <div className="battle-tab">

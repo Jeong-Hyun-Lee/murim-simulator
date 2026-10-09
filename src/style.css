@@ -3288,14 +3288,6 @@ dialog.sheet::backdrop {
   color: #255d4b;
 }
 
-.rebirth-reset-card {
-  border-left: 0.35rem solid #b54e3d;
-}
-
-.rebirth-keep-card {
-  border-left: 0.35rem solid var(--jade);
-}
-
 /* ---------- 해상도 대응 ----------
    em 단위 미디어쿼리는 루트 글자 크기 16px 기준 — 22.5em=360px, 20em=320px, 18em=288px. */
 
@@ -3541,29 +3533,6 @@ dialog.sheet::backdrop {
   width: 48px;
   height: 48px;
   margin: 0 auto 0.5rem;
-}
-
-.rebirth-reset-title {
-  display: flex;
-  align-items: center;
-  gap: 0.375rem;
-}
-
-.rebirth-title-icon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-}
-
-.rebirth-keep-list {
-  list-style: none;
-  padding-left: 0;
-}
-
-.rebirth-keep-list li {
-  display: flex;
-  align-items: center;
-  gap: 0.375rem;
 }
 
 .btn.btn-danger:not(.btn-primary) {

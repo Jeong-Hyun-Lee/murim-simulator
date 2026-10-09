@@ -176,7 +176,7 @@ export const GongPanel = ({ boardId, onBoardChange }: Props) => {
   const tutorialActive = onboardingDone && !tutorialGongDone;
   const unlockCtx = { highestMajorCleared, gongLevels, sectFavor };
   const requested = GONG_BOARDS.find((b) => b.id === boardId) ?? GONG_BOARDS[0];
-  // 환골탈태 등으로 선택 보드가 잠기면 첫 보드로 표시.
+  // 선택 보드가 잠겨 있으면 첫 보드로 표시.
   const selectedBoard =
     tutorialActive || !isBoardUnlocked(requested, unlockCtx) ? GONG_BOARDS[0] : requested;
   const category: GongCategory = isSectArt(selectedBoard) ? 'sect' : 'general';

@@ -189,14 +189,7 @@ export const App = () => {
     if (view === 'stagePicker') return <StagePicker onBack={popView} />;
     if (view === 'myInfo') return <MyInfoView onNavigate={navigate} />;
     if (view === 'goals') return <GoalsView />;
-    return (
-      <RebirthView
-        onDone={() => {
-          setReturnTab(null);
-          switchTab('gong');
-        }}
-      />
-    );
+    return <RebirthView />;
   };
 
   const closeSheet = () => setSheet(null);

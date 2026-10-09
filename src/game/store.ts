@@ -32,7 +32,6 @@ import {
   gongMultiplier,
   boardPowerPercent,
   totalGongSecondaryStats,
-  type GongLevels,
   type GongBoard,
   type GongCurrency,
 } from './gongData';
@@ -868,33 +867,16 @@ export const useGameStore = create<GameStoreState>((set, get) => {
     performRebirth: () => {
       const s = get();
       const gateMajor = rebirthGateMajor(s.rebirthCount);
-      if (s.highestMajorCleared < gateMajor) return;
+      if (gateMajor === null || s.highestMajorCleared < gateMajor) return;
 
+      // 레벨·내공·무공·스테이지는 그대로 두고 영구 버프만 한 단계 올린다.
       const rebirthCount = s.rebirthCount + 1;
-      const level = 1;
-      const gongLevels: GongLevels = {};
-      const stage: StageId = { major: 1, sub: 1 };
-      const newPlayer = computePlayerStats(level, { ...s, rebirthCount, gongLevels });
-      const newEnemy = monsterStats(stage);
+      const newPlayer = computePlayerStats(s.level, { ...s, rebirthCount });
       set({
         rebirthCount,
-        level,
-        exp: 0,
-        chi: 0,
-        stage,
-        gongLevels,
         player: newPlayer,
-        playerHp: newPlayer.hp,
-        enemy: newEnemy,
-        enemyHp: newEnemy.hp,
-        awaitingBossChallenge: false,
-        awaitingBossReward: null,
-        farmReturnStage: null,
-        towerFloor: null,
-        towerTurns: 0,
-        // 쓰러짐 연출 대기 중이었다면 그 예약은 버린다 — 사용자가 직접 고른 전투가 우선.
-        pendingEncounter: null,
-        toastMessage: `환골탈태! ${realmName(rebirthCount)} 경지에 올랐다 (+전체 스탯 15%)`,
+        playerHp: carryOverHp(s.player.hp, s.playerHp, newPlayer.hp),
+        toastMessage: `환골탈태! ${realmName(rebirthCount)} 경지에 올랐다 (영구 +${rebirthBuffPercent(rebirthCount)}%)`,
       });
       persist(get());
     },

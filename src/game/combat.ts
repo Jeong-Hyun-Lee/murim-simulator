@@ -85,6 +85,10 @@ const BASE_DEF_1 = 3;
 const HP_GROWTH = 1.5;
 const ATK_GROWTH = 1.37;
 const DEF_GROWTH = 1.25;
+// 대21부터는 체력·공격 성장률을 올린다 — 환골탈태가 초기화 없이 누적되는 만큼 챕터3이 짧아지지 않게.
+const LATE_GROWTH_FROM = 20;
+const LATE_HP_GROWTH = 1.6;
+const LATE_ATK_GROWTH = 1.4;
 const BASE_EXP_1 = 6;
 const BASE_GOLD_1 = 10;
 const BASE_CHI_1 = 15;
@@ -158,8 +162,10 @@ const KIND_WEIGHTS: Record<EnemyKind, { hp: number; atk: number; def: number; re
 
 export const monsterStats = (stage: StageId): UnitStats => {
   const effSub = Math.min(stage.sub, 9);
-  const baseHp = BASE_HP_1 * HP_GROWTH ** (stage.major - 1);
-  const baseAtk = BASE_ATK_1 * ATK_GROWTH ** (stage.major - 1);
+  const early = Math.min(stage.major, LATE_GROWTH_FROM) - 1;
+  const late = Math.max(0, stage.major - LATE_GROWTH_FROM);
+  const baseHp = BASE_HP_1 * HP_GROWTH ** early * LATE_HP_GROWTH ** late;
+  const baseAtk = BASE_ATK_1 * ATK_GROWTH ** early * LATE_ATK_GROWTH ** late;
   const baseDef = BASE_DEF_1 * DEF_GROWTH ** (stage.major - 1);
 
   const kind = enemyKind(stage);

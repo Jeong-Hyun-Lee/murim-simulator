@@ -51,9 +51,10 @@ Math.random = () => {
 
 // --- 새 챕터 검토용 가상 조건(기본값은 현재 코드 그대로) ---
 const env = (k: string, d: number) => Number(process.env[k] ?? d);
-// MON_FROM 대스테이지 이후 몬스터 성장률(대스테이지당). 기본값 = combat.ts의 1.5 / 4/3 / 1.25.
-const CODE_HP_GROWTH = 1.5;
-const CODE_ATK_GROWTH = 1.37;
+// MON_FROM 대스테이지 이후 몬스터 성장률(대스테이지당). 기본값 = combat.ts의 대21 이후 값
+// 1.6 / 1.4 / 1.25 — MON_FROM은 20 이상으로만 쓴다.
+const CODE_HP_GROWTH = 1.6;
+const CODE_ATK_GROWTH = 1.4;
 const CODE_DEF_GROWTH = 1.25;
 const MON_HP = env('MON_HP', CODE_HP_GROWTH);
 const MON_ATK = env('MON_ATK', CODE_ATK_GROWTH);
@@ -67,11 +68,10 @@ const FINAL_MAJOR = env('FINAL_MAJOR', 30);
 // 비용은 해금 구간 수입에 맞춰 ×1.8^(해금 대스테이지 차이).
 const EXTRA_BOARDS = env('EXTRA_BOARDS', 0);
 const EXTRA_COST = env('EXTRA_COST', 1); // 가상 보드 비용 추가 배수
-// 새 챕터 환골탈태 게이트: "35,40" = 코드 마지막 게이트 다음 회차부터 35, 그다음 회차 이후 40.
+// 새 챕터 환골탈태 게이트: "35,40" = 코드 게이트를 다 쓴 다음 회차 35, 그다음 회차 40.
 const EXTRA_GATES = (process.env.EXTRA_GATES ?? '').split(',').filter(Boolean).map(Number);
 const HOUR_CAP = env('HOUR_CAP', 3000);
 const WALL_HOURS = env('WALL_HOURS', 150); // 이 시간 동안 최전선이 안 움직이면 벽으로 판정
-const REBIRTH_STUCK_HOURS = 1;
 const ENHANCE_LIMIT = 10; // 하락 위험 구간(+11~) 전까지만 자동 강화
 const ATTACK_INTERVAL_MS = 1300;
 const MIN_ATTACK_INTERVAL_MS = 300;
@@ -103,11 +103,12 @@ const BOARDS = [
 // gongData.gongMultiplier와 같은 곱 — 가상 보드까지 포함.
 const multiplier = (levels: GongLevels) =>
   BOARDS.reduce((m, b) => (b.multiplicative ? m * (1 + boardPowerPercent(b, levels) / 100) : m), 1);
-// 코드 게이트는 7회차(count 6) 이후 대30 고정 — EXTRA_GATES는 8회차(count 7)부터 덮어쓴다.
+// 코드 게이트(7개)를 다 쓴 다음 회차부터 EXTRA_GATES를 차례로 쓴다. 더 없으면 null.
+const CODE_GATE_COUNT = 7;
 const gateMajor = (count: number) =>
-  count >= 7 && EXTRA_GATES.length > 0
-    ? EXTRA_GATES[Math.min(count - 7, EXTRA_GATES.length - 1)]
-    : rebirthGateMajor(count);
+  rebirthGateMajor(count) ?? EXTRA_GATES[count - CODE_GATE_COUNT] ?? null;
+// 회차당 환골탈태 버프(%) — 기본값은 코드 수치.
+const REBIRTH_PCT = env('REBIRTH_PCT', rebirthBuffPercent(1));
 
 const nextStage = (s: StageId): StageId => {
   if (s.major === FINAL_MAJOR && s.sub === 10) return s;
@@ -151,7 +152,7 @@ const st: Sim = {
 const player = (): PlayerStats => {
   const agg = aggregateGearStats(st.equipped);
   const sec = totalGongSecondaryStats(st.gong);
-  const buff = totalGongBuffPercent(st.gong) + rebirthBuffPercent(st.rebirth);
+  const buff = totalGongBuffPercent(st.gong) + st.rebirth * REBIRTH_PCT;
   const p = playerStats(st.level, buff, {
     atk: agg.atk,
     def: agg.def,
@@ -319,18 +320,14 @@ while (hours() < HOUR_CAP) {
     st.farm = previousStage(stage);
   }
 
-  const stuckMs = st.ms - st.lastAdvanceMs;
-  if (st.farm && st.highest >= gateMajor(st.rebirth) && stuckMs > REBIRTH_STUCK_HOURS * 3_600_000) {
+  // 게이트를 넘는 즉시 환골탈태 — 잃는 것이 없어 미룰 이유가 없다.
+  for (let gate = gateMajor(st.rebirth); gate !== null && st.highest >= gate;) {
     st.rebirth += 1;
-    note(`환골탈태 ${st.rebirth}회 (막힌 곳 ${st.frontier.major}-${st.frontier.sub})`);
-    st.level = 1;
-    st.exp = 0;
-    st.chi = 0;
-    st.gong = {};
-    st.frontier = { major: 1, sub: 1 };
-    st.farm = null;
-    st.lastAdvanceMs = st.ms;
-  } else if (stuckMs > WALL_HOURS * 3_600_000) {
+    note(`환골탈태 ${st.rebirth}회`);
+    gate = gateMajor(st.rebirth);
+  }
+  const stuckMs = st.ms - st.lastAdvanceMs;
+  if (stuckMs > WALL_HOURS * 3_600_000) {
     wall = `벽: ${st.frontier.major}-${st.frontier.sub}에서 ${WALL_HOURS}시간 동안 진행 없음`;
     note(wall);
     break;
