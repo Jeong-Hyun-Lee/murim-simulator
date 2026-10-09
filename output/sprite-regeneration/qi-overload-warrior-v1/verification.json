@@ -1,0 +1,122 @@
+{
+  "frameCount": 54,
+  "cellSize": [
+    896,
+    896
+  ],
+  "root": [
+    612,
+    770
+  ],
+  "safeMargin": 32,
+  "fixedCharacterScale": 0.93,
+  "motionFrameOffsets": {},
+  "canonicalAttackBoundaries": {
+    "enabled": true,
+    "canonicalHash": "7fc2081e98f529131989b892e590caa6dfba56c2386eecbdb872a1d2dafa9a64",
+    "boundaryHashes": {
+      "idle/0": "7fc2081e98f529131989b892e590caa6dfba56c2386eecbdb872a1d2dafa9a64",
+      "attack1/0": "7fc2081e98f529131989b892e590caa6dfba56c2386eecbdb872a1d2dafa9a64",
+      "attack1/15": "7fc2081e98f529131989b892e590caa6dfba56c2386eecbdb872a1d2dafa9a64",
+      "attack2/0": "7fc2081e98f529131989b892e590caa6dfba56c2386eecbdb872a1d2dafa9a64",
+      "attack2/15": "7fc2081e98f529131989b892e590caa6dfba56c2386eecbdb872a1d2dafa9a64"
+    },
+    "idleFinalDistinct": true,
+    "deathFirstDistinct": true
+  },
+  "verificationNotes": {
+    "character": "Qi-overload warrior",
+    "globalMotionPlan": "four-motion master board before production strips",
+    "motionCounts": {
+      "idle": 12,
+      "attack1": 16,
+      "attack2": 16,
+      "death": 10
+    },
+    "singleGlobalScale": true,
+    "perFrameScaling": false,
+    "perMotionScaling": false,
+    "canonicalBoundaryReuse": "idle/0 reused at both attack starts and ends",
+    "idleFinal": "distinct in-between leading into idle/0",
+    "deathFirst": "distinct hit-recoil with canonical scale and root",
+    "groundLock": "actual support-contact alpha translated to packed y=770",
+    "rootLock": "right-side support axis translated to packed x=612",
+    "orientation": "screen-left; source artwork is never mirrored",
+    "runtimeScale": 0.45,
+    "runtimeZoomLogic": false,
+    "attack1ContactFrame": 9,
+    "attack2ContactFrame": 9
+  },
+  "atlas": [
+    4042,
+    3596
+  ],
+  "durationTotals": {
+    "idle": 960,
+    "attack1": 720,
+    "attack2": 720,
+    "death": 1080
+  },
+  "motionTransforms": {
+    "idle": {
+      "appliedScale": 0.93,
+      "sourceHeightMin": 545.0,
+      "sourceHeightMax": 590.0,
+      "sourceRootXMin": 431.0,
+      "sourceRootXMax": 478.0,
+      "sourceGroundMin": 655.0,
+      "sourceGroundMax": 681.0,
+      "packedRootX": 612.0,
+      "packedGroundY": 770.0
+    },
+    "attack1": {
+      "appliedScale": 0.93,
+      "sourceHeightMin": 499.0,
+      "sourceHeightMax": 652.0,
+      "sourceRootXMin": 413.0,
+      "sourceRootXMax": 520.0,
+      "sourceGroundMin": 622.0,
+      "sourceGroundMax": 677.79,
+      "packedRootX": 612.0,
+      "packedGroundY": 770.0
+    },
+    "attack2": {
+      "appliedScale": 0.93,
+      "sourceHeightMin": 438.0,
+      "sourceHeightMax": 638.0,
+      "sourceRootXMin": 384.0,
+      "sourceRootXMax": 478.0,
+      "sourceGroundMin": 659.0,
+      "sourceGroundMax": 677.0,
+      "packedRootX": 612.0,
+      "packedGroundY": 770.0
+    },
+    "death": {
+      "appliedScale": 0.93,
+      "sourceHeightMin": 219.0,
+      "sourceHeightMax": 590.0,
+      "sourceRootXMin": 392.0,
+      "sourceRootXMax": 489.0,
+      "sourceGroundMin": 587.0,
+      "sourceGroundMax": 690.0,
+      "packedRootX": 612.0,
+      "packedGroundY": 770.0
+    }
+  },
+  "sourceHashes": {
+    "idle-part1.png": "b434ba27f8c6fdf24b636ce875a59d7bd94a8d63456f4d468212271ff971af17",
+    "idle-part2.png": "79109f5923bbb69d9f3afc7e6fec02db241e16f38d4c908eabfe8d28ae975953",
+    "idle-part3.png": "a5102f06cc316d7e203040484f374f91d70d458fa65e108011f33c7fadcd22b9",
+    "attack1-part1.png": "12669af707df55586ceb6b4c12c6c5ecaa45a0057c1b3bc85ef7bd36b1ca8c3e",
+    "attack1-part2.png": "d11d3a2e2580bf1ad476e7798e1d4f42117392e22e35e7755621fff973304edf",
+    "attack1-part3.png": "14afa92dd704035e2abdeefd8ae9155f2eb5eb7f991f6546acc87d5ddc9217a5",
+    "attack1-part4.png": "b434ba27f8c6fdf24b636ce875a59d7bd94a8d63456f4d468212271ff971af17",
+    "attack2-part1.png": "5b3ba5ef0a5724e254fd58ea7a86b70bc6f6cc38eb91a49e4755aab2f156a5d1",
+    "attack2-part2.png": "51689923d92cac38e814065b0dd39b971b04c05c7c1ad33e48c518a3a3b55e88",
+    "attack2-part3.png": "142c5fcadd5b8be1354de40a3c11c8c1f2ab43e8c10e7eaa558448da4c5b1a7c",
+    "attack2-part4.png": "b434ba27f8c6fdf24b636ce875a59d7bd94a8d63456f4d468212271ff971af17",
+    "death-part1.png": "d15ecdadc9bbc41631c80ba14b481be016cd3a630d385771ecf54db49944df46",
+    "death-part2.png": "43afdc38f0293650efba6507619f12f493988c9f5536ad372b3f2230a1c70368",
+    "death-part3.png": "289740bfeccd53ebbca258bc33672125e87cd7117c70d030f4ec585ceeab323d"
+  }
+}

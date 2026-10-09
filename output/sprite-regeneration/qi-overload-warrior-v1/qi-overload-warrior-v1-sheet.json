@@ -1,0 +1,1427 @@
+{
+  "frames": {
+    "qi-overload-warrior-v1/attack1/9": {
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 462,
+        "h": 606
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 196,
+        "y": 171,
+        "w": 462,
+        "h": 606
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack1/8": {
+      "frame": {
+        "x": 465,
+        "y": 1,
+        "w": 528,
+        "h": 604
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 141,
+        "y": 174,
+        "w": 528,
+        "h": 604
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack1/10": {
+      "frame": {
+        "x": 995,
+        "y": 1,
+        "w": 493,
+        "h": 604
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 180,
+        "y": 174,
+        "w": 493,
+        "h": 604
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack1/11": {
+      "frame": {
+        "x": 1490,
+        "y": 1,
+        "w": 485,
+        "h": 604
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 193,
+        "y": 172,
+        "w": 485,
+        "h": 604
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack2/4": {
+      "frame": {
+        "x": 1977,
+        "y": 1,
+        "w": 500,
+        "h": 593
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 172,
+        "y": 184,
+        "w": 500,
+        "h": 593
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/death/0": {
+      "frame": {
+        "x": 2479,
+        "y": 1,
+        "w": 530,
+        "h": 549
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 223,
+        "y": 229,
+        "w": 530,
+        "h": 549
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "qi-overload-warrior-v1/idle/10": {
+      "frame": {
+        "x": 3011,
+        "y": 1,
+        "w": 489,
+        "h": 549
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 219,
+        "y": 228,
+        "w": 489,
+        "h": 549
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "qi-overload-warrior-v1/idle/9": {
+      "frame": {
+        "x": 3502,
+        "y": 1,
+        "w": 472,
+        "h": 545
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 220,
+        "y": 231,
+        "w": 472,
+        "h": 545
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "qi-overload-warrior-v1/idle/2": {
+      "frame": {
+        "x": 1,
+        "y": 609,
+        "w": 489,
+        "h": 538
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 191,
+        "y": 240,
+        "w": 489,
+        "h": 538
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "qi-overload-warrior-v1/attack1/14": {
+      "frame": {
+        "x": 492,
+        "y": 609,
+        "w": 489,
+        "h": 538
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 191,
+        "y": 240,
+        "w": 489,
+        "h": 538
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack2/14": {
+      "frame": {
+        "x": 983,
+        "y": 609,
+        "w": 489,
+        "h": 538
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 191,
+        "y": 240,
+        "w": 489,
+        "h": 538
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/death/1": {
+      "frame": {
+        "x": 1474,
+        "y": 609,
+        "w": 475,
+        "h": 538
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 212,
+        "y": 239,
+        "w": 475,
+        "h": 538
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "qi-overload-warrior-v1/idle/3": {
+      "frame": {
+        "x": 1951,
+        "y": 609,
+        "w": 494,
+        "h": 537
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 189,
+        "y": 242,
+        "w": 494,
+        "h": 537
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "qi-overload-warrior-v1/idle/0": {
+      "frame": {
+        "x": 2447,
+        "y": 609,
+        "w": 512,
+        "h": 536
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 180,
+        "y": 243,
+        "w": 512,
+        "h": 536
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "qi-overload-warrior-v1/attack1/0": {
+      "frame": {
+        "x": 2961,
+        "y": 609,
+        "w": 512,
+        "h": 536
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 180,
+        "y": 243,
+        "w": 512,
+        "h": 536
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack1/12": {
+      "frame": {
+        "x": 3475,
+        "y": 609,
+        "w": 512,
+        "h": 536
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 180,
+        "y": 243,
+        "w": 512,
+        "h": 536
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack1/15": {
+      "frame": {
+        "x": 1,
+        "y": 1149,
+        "w": 512,
+        "h": 536
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 180,
+        "y": 243,
+        "w": 512,
+        "h": 536
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack2/0": {
+      "frame": {
+        "x": 515,
+        "y": 1149,
+        "w": 512,
+        "h": 536
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 180,
+        "y": 243,
+        "w": 512,
+        "h": 536
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack2/12": {
+      "frame": {
+        "x": 1029,
+        "y": 1149,
+        "w": 512,
+        "h": 536
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 180,
+        "y": 243,
+        "w": 512,
+        "h": 536
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack2/15": {
+      "frame": {
+        "x": 1543,
+        "y": 1149,
+        "w": 512,
+        "h": 536
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 180,
+        "y": 243,
+        "w": 512,
+        "h": 536
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/idle/1": {
+      "frame": {
+        "x": 2057,
+        "y": 1149,
+        "w": 482,
+        "h": 533
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 191,
+        "y": 244,
+        "w": 482,
+        "h": 533
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "qi-overload-warrior-v1/attack1/13": {
+      "frame": {
+        "x": 2541,
+        "y": 1149,
+        "w": 482,
+        "h": 533
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 191,
+        "y": 244,
+        "w": 482,
+        "h": 533
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack2/13": {
+      "frame": {
+        "x": 3025,
+        "y": 1149,
+        "w": 482,
+        "h": 533
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 191,
+        "y": 244,
+        "w": 482,
+        "h": 533
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack2/7": {
+      "frame": {
+        "x": 3509,
+        "y": 1149,
+        "w": 454,
+        "h": 530
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 218,
+        "y": 248,
+        "w": 454,
+        "h": 530
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack2/3": {
+      "frame": {
+        "x": 1,
+        "y": 1687,
+        "w": 497,
+        "h": 529
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 207,
+        "y": 247,
+        "w": 497,
+        "h": 529
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack2/2": {
+      "frame": {
+        "x": 500,
+        "y": 1687,
+        "w": 486,
+        "h": 529
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 224,
+        "y": 247,
+        "w": 486,
+        "h": 529
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/idle/6": {
+      "frame": {
+        "x": 988,
+        "y": 1687,
+        "w": 506,
+        "h": 525
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 210,
+        "y": 252,
+        "w": 506,
+        "h": 525
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "qi-overload-warrior-v1/idle/7": {
+      "frame": {
+        "x": 1496,
+        "y": 1687,
+        "w": 490,
+        "h": 525
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 211,
+        "y": 252,
+        "w": 490,
+        "h": 525
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "qi-overload-warrior-v1/attack2/11": {
+      "frame": {
+        "x": 1988,
+        "y": 1687,
+        "w": 472,
+        "h": 525
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 212,
+        "y": 251,
+        "w": 472,
+        "h": 525
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/idle/4": {
+      "frame": {
+        "x": 2462,
+        "y": 1687,
+        "w": 512,
+        "h": 522
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 203,
+        "y": 255,
+        "w": 512,
+        "h": 522
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "qi-overload-warrior-v1/idle/5": {
+      "frame": {
+        "x": 2976,
+        "y": 1687,
+        "w": 500,
+        "h": 522
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 211,
+        "y": 255,
+        "w": 500,
+        "h": 522
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "qi-overload-warrior-v1/attack2/10": {
+      "frame": {
+        "x": 3478,
+        "y": 1687,
+        "w": 480,
+        "h": 509
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 218,
+        "y": 269,
+        "w": 480,
+        "h": 509
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack2/1": {
+      "frame": {
+        "x": 1,
+        "y": 2218,
+        "w": 478,
+        "h": 508
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 227,
+        "y": 269,
+        "w": 478,
+        "h": 508
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/idle/11": {
+      "frame": {
+        "x": 481,
+        "y": 2218,
+        "w": 488,
+        "h": 507
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 189,
+        "y": 269,
+        "w": 488,
+        "h": 507
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "qi-overload-warrior-v1/idle/8": {
+      "frame": {
+        "x": 971,
+        "y": 2218,
+        "w": 472,
+        "h": 507
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 212,
+        "y": 269,
+        "w": 472,
+        "h": 507
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "qi-overload-warrior-v1/attack1/3": {
+      "frame": {
+        "x": 1445,
+        "y": 2218,
+        "w": 500,
+        "h": 502
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 174,
+        "y": 276,
+        "w": 500,
+        "h": 502
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack2/5": {
+      "frame": {
+        "x": 1947,
+        "y": 2218,
+        "w": 544,
+        "h": 499
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 255,
+        "y": 279,
+        "w": 544,
+        "h": 499
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack1/2": {
+      "frame": {
+        "x": 2493,
+        "y": 2218,
+        "w": 481,
+        "h": 495
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 194,
+        "y": 282,
+        "w": 481,
+        "h": 495
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack1/1": {
+      "frame": {
+        "x": 2976,
+        "y": 2218,
+        "w": 496,
+        "h": 491
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 195,
+        "y": 286,
+        "w": 496,
+        "h": 491
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack1/6": {
+      "frame": {
+        "x": 3474,
+        "y": 2218,
+        "w": 445,
+        "h": 476
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 228,
+        "y": 304,
+        "w": 445,
+        "h": 476
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack1/4": {
+      "frame": {
+        "x": 1,
+        "y": 2728,
+        "w": 533,
+        "h": 472
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 144,
+        "y": 307,
+        "w": 533,
+        "h": 472
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack1/7": {
+      "frame": {
+        "x": 536,
+        "y": 2728,
+        "w": 523,
+        "h": 467
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 152,
+        "y": 312,
+        "w": 523,
+        "h": 467
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack1/5": {
+      "frame": {
+        "x": 1061,
+        "y": 2728,
+        "w": 504,
+        "h": 464
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 181,
+        "y": 314,
+        "w": 504,
+        "h": 464
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack2/9": {
+      "frame": {
+        "x": 1567,
+        "y": 2728,
+        "w": 478,
+        "h": 464
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 223,
+        "y": 313,
+        "w": 478,
+        "h": 464
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/attack2/6": {
+      "frame": {
+        "x": 2047,
+        "y": 2728,
+        "w": 506,
+        "h": 458
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 193,
+        "y": 321,
+        "w": 506,
+        "h": 458
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/death/2": {
+      "frame": {
+        "x": 2555,
+        "y": 2728,
+        "w": 522,
+        "h": 433
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 162,
+        "y": 341,
+        "w": 522,
+        "h": 433
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "qi-overload-warrior-v1/attack2/8": {
+      "frame": {
+        "x": 3079,
+        "y": 2728,
+        "w": 485,
+        "h": 407
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 225,
+        "y": 369,
+        "w": 485,
+        "h": 407
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "qi-overload-warrior-v1/death/3": {
+      "frame": {
+        "x": 3566,
+        "y": 2728,
+        "w": 475,
+        "h": 396
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 226,
+        "y": 378,
+        "w": 475,
+        "h": 396
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "qi-overload-warrior-v1/death/4": {
+      "frame": {
+        "x": 1,
+        "y": 3202,
+        "w": 501,
+        "h": 393
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 162,
+        "y": 388,
+        "w": 501,
+        "h": 393
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "qi-overload-warrior-v1/death/8": {
+      "frame": {
+        "x": 504,
+        "y": 3202,
+        "w": 501,
+        "h": 393
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 162,
+        "y": 388,
+        "w": 501,
+        "h": 393
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "qi-overload-warrior-v1/death/5": {
+      "frame": {
+        "x": 1007,
+        "y": 3202,
+        "w": 476,
+        "h": 317
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 219,
+        "y": 459,
+        "w": 476,
+        "h": 317
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "qi-overload-warrior-v1/death/9": {
+      "frame": {
+        "x": 1485,
+        "y": 3202,
+        "w": 476,
+        "h": 317
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 219,
+        "y": 459,
+        "w": 476,
+        "h": 317
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 360
+    },
+    "qi-overload-warrior-v1/death/6": {
+      "frame": {
+        "x": 1963,
+        "y": 3202,
+        "w": 507,
+        "h": 235
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 244,
+        "y": 540,
+        "w": 507,
+        "h": 235
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "qi-overload-warrior-v1/death/7": {
+      "frame": {
+        "x": 2472,
+        "y": 3202,
+        "w": 499,
+        "h": 204
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 258,
+        "y": 573,
+        "w": 499,
+        "h": 204
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    }
+  },
+  "animations": {
+    "idle": [
+      "qi-overload-warrior-v1/idle/0",
+      "qi-overload-warrior-v1/idle/1",
+      "qi-overload-warrior-v1/idle/2",
+      "qi-overload-warrior-v1/idle/3",
+      "qi-overload-warrior-v1/idle/4",
+      "qi-overload-warrior-v1/idle/5",
+      "qi-overload-warrior-v1/idle/6",
+      "qi-overload-warrior-v1/idle/7",
+      "qi-overload-warrior-v1/idle/8",
+      "qi-overload-warrior-v1/idle/9",
+      "qi-overload-warrior-v1/idle/10",
+      "qi-overload-warrior-v1/idle/11"
+    ],
+    "attack1": [
+      "qi-overload-warrior-v1/attack1/0",
+      "qi-overload-warrior-v1/attack1/1",
+      "qi-overload-warrior-v1/attack1/2",
+      "qi-overload-warrior-v1/attack1/3",
+      "qi-overload-warrior-v1/attack1/4",
+      "qi-overload-warrior-v1/attack1/5",
+      "qi-overload-warrior-v1/attack1/6",
+      "qi-overload-warrior-v1/attack1/7",
+      "qi-overload-warrior-v1/attack1/8",
+      "qi-overload-warrior-v1/attack1/9",
+      "qi-overload-warrior-v1/attack1/10",
+      "qi-overload-warrior-v1/attack1/11",
+      "qi-overload-warrior-v1/attack1/12",
+      "qi-overload-warrior-v1/attack1/13",
+      "qi-overload-warrior-v1/attack1/14",
+      "qi-overload-warrior-v1/attack1/15"
+    ],
+    "attack2": [
+      "qi-overload-warrior-v1/attack2/0",
+      "qi-overload-warrior-v1/attack2/1",
+      "qi-overload-warrior-v1/attack2/2",
+      "qi-overload-warrior-v1/attack2/3",
+      "qi-overload-warrior-v1/attack2/4",
+      "qi-overload-warrior-v1/attack2/5",
+      "qi-overload-warrior-v1/attack2/6",
+      "qi-overload-warrior-v1/attack2/7",
+      "qi-overload-warrior-v1/attack2/8",
+      "qi-overload-warrior-v1/attack2/9",
+      "qi-overload-warrior-v1/attack2/10",
+      "qi-overload-warrior-v1/attack2/11",
+      "qi-overload-warrior-v1/attack2/12",
+      "qi-overload-warrior-v1/attack2/13",
+      "qi-overload-warrior-v1/attack2/14",
+      "qi-overload-warrior-v1/attack2/15"
+    ],
+    "death": [
+      "qi-overload-warrior-v1/death/0",
+      "qi-overload-warrior-v1/death/1",
+      "qi-overload-warrior-v1/death/2",
+      "qi-overload-warrior-v1/death/3",
+      "qi-overload-warrior-v1/death/4",
+      "qi-overload-warrior-v1/death/5",
+      "qi-overload-warrior-v1/death/6",
+      "qi-overload-warrior-v1/death/7",
+      "qi-overload-warrior-v1/death/8",
+      "qi-overload-warrior-v1/death/9"
+    ]
+  },
+  "meta": {
+    "image": "qi-overload-warrior-v1-sheet.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 4042,
+      "h": 3596
+    },
+    "scale": "1"
+  }
+}

@@ -207,6 +207,7 @@ export const BattleCanvas = () => {
         pengClanYoungMasterSet,
         forbiddenArtFollowerSet,
         forbiddenArtDarterSet,
+        forbiddenArtQiOverloadSet,
       ] = await Promise.all([
         loadPackedAnimSet('mokhyeon-v10'),
         loadPackedAnimSet('hyeollangchae-boss-v3'),
@@ -223,6 +224,7 @@ export const BattleCanvas = () => {
         loadPackedAnimSet('peng-clan-young-master-v1'),
         loadPackedAnimSet('forbidden-art-follower-v1'),
         loadPackedAnimSet('forbidden-art-darter-v1'),
+        loadPackedAnimSet('qi-overload-warrior-v1'),
       ]);
       await Promise.all([loadDamageFont(), loadNormalHitEffect(), loadCriticalHitEffect()]);
       const normalHitFrames = normalHitEffectFrames();
@@ -296,7 +298,8 @@ export const BattleCanvas = () => {
         | 'pengClanSaberInstructor'
         | 'pengClanYoungMaster'
         | 'forbiddenArtFollower'
-        | 'forbiddenArtDarter';
+        | 'forbiddenArtDarter'
+        | 'forbiddenArtQiOverload';
       type ActiveEnemyKind = EnemyArtKind | 'none';
       const ENEMY_KINDS: EnemyArtKind[] = [
         'boss',
@@ -313,6 +316,7 @@ export const BattleCanvas = () => {
         'pengClanYoungMaster',
         'forbiddenArtFollower',
         'forbiddenArtDarter',
+        'forbiddenArtQiOverload',
       ];
       const enemyAnimByKind: Record<EnemyArtKind, AnimSet> = {
         boss: bossSet,
@@ -329,6 +333,7 @@ export const BattleCanvas = () => {
         pengClanYoungMaster: pengClanYoungMasterSet,
         forbiddenArtFollower: forbiddenArtFollowerSet,
         forbiddenArtDarter: forbiddenArtDarterSet,
+        forbiddenArtQiOverload: forbiddenArtQiOverloadSet,
       };
       const enemyScaleByKind: Record<EnemyArtKind, number> = {
         boss: ENEMY_BOSS_SCALE,
@@ -345,6 +350,7 @@ export const BattleCanvas = () => {
         pengClanYoungMaster: ENEMY_BOSS_SCALE,
         forbiddenArtFollower: ENEMY_GRUNT_SCALE,
         forbiddenArtDarter: ENEMY_ARCHER_SCALE,
+        forbiddenArtQiOverload: ENEMY_ELITE_SCALE,
       };
       // 재패킹한 적 원화는 모두 화면 왼쪽을 보므로 런타임 좌우 반전이 필요 없다.
       let currentEnemyKind: ActiveEnemyKind = 'none';
@@ -411,7 +417,11 @@ export const BattleCanvas = () => {
       for (const kind of ENEMY_KINDS) {
         const set = enemyAnimByKind[kind];
         let hitFrames: { attack1: number; attack2: number };
-        if (kind === 'forbiddenArtFollower' || kind === 'forbiddenArtDarter') {
+        if (
+          kind === 'forbiddenArtFollower' ||
+          kind === 'forbiddenArtDarter' ||
+          kind === 'forbiddenArtQiOverload'
+        ) {
           hitFrames = { attack1: 8, attack2: 8 };
         } else if (
           kind === 'blackMarketBoss' ||
@@ -445,6 +455,7 @@ export const BattleCanvas = () => {
         if (stage.major === 3 && kind === 'boss') return 'pengClanYoungMaster';
         if (stage.major === 4 && kind === 'grunt') return 'forbiddenArtFollower';
         if (stage.major === 4 && kind === 'archer') return 'forbiddenArtDarter';
+        if (stage.major === 4 && kind === 'elite') return 'forbiddenArtQiOverload';
         return 'none';
       };
 
