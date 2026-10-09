@@ -14,5 +14,7 @@ export default defineConfig({
   build: {
     target: ['es2020', 'safari14', 'ios14', 'chrome87'],
     cssTarget: ['safari14', 'ios14', 'chrome87'],
+    // 렌더러(PixiJS)는 게임 코드와 따로 묶어 게임 코드만 바뀐 배포에서는 다시 내려받지 않게 한다.
+    rollupOptions: { output: { manualChunks: { pixi: ['pixi.js'] } } },
   },
 });
