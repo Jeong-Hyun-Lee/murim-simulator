@@ -17,14 +17,8 @@ import {
   loadCriticalHitEffect,
   criticalHitEffectFrames,
 } from './hitEffect';
-import {
-  useGameStore,
-  battleViewStage,
-  isBossStage,
-  enemyKind,
-  type StageId,
-  type EnemyKind,
-} from '../game/store';
+import { useGameStore, battleViewStage, isBossStage, type StageId } from '../game/store';
+import { enemyArtForStage, enemyArtsForMajor, type EnemyArt } from './enemyArt';
 import { playHit, playCrit, playDefeat } from '../audio/sfx';
 
 // 무공 메인 상단의 낮은 전투 무대(약 1.64:1). 원본 비율로 렌더링해 인물을 자르거나 늘리지 않는다.
@@ -43,13 +37,8 @@ const NORMAL_HIT_EFFECT_SCALE = 0.22;
 const CRITICAL_HIT_EFFECT_SCALE = 0.16;
 // 목현 v2는 920px 셀(신체 높이 약 527px)을 0.5배로 표시해 무대 목표 높이 약 256px에 맞춘다.
 // 캔버스 렌더 배율 상한 2배에서 텍스처 1px이 화면 1px이 되는 크기라 해상도 낭비가 없다.
-// 신규 두목도 공통 대형 셀을 사용하며, 모션별 확대·축소 없이 하나의 런타임 배율만 적용한다.
-// 화면에서는 두 인물의 몸통 간 거리를 좁히되, 두목은 잡몹보다 조금 크게 유지한다.
+// 적 배율은 enemyArt.ts 표에 있다.
 const PLAYER_SCALE = 0.5;
-const ENEMY_BOSS_SCALE = 0.58;
-const ENEMY_GRUNT_SCALE = 0.45;
-const ENEMY_ARCHER_SCALE = 0.45;
-const ENEMY_ELITE_SCALE = 0.45;
 const ENEMY_HIT_TINT = 0xff6666;
 const HIT_FLASH_MS = 140;
 const POPUP_LIFETIME_MS = 800;
@@ -60,13 +49,6 @@ const MIN_ATTACK_INTERVAL_MS = 300; // 장구 공격속도% 최대치에서도 �
 const ENEMY_ATTACK_INTERVAL_MS = 1600;
 // 목현 attack1/attack2 모두 7번 프레임에서 칼 궤적이 처음 나온다 — 이 프레임에 피해를 넣는다.
 const PLAYER_HIT_FRAME = 7;
-// 혈랑채 적 공격 모션에서 무기가 닿는(칼 궤적·화살 발사) 프레임 — 이 프레임에 플레이어가 피해를 입는다.
-const ENEMY_HIT_FRAMES: Record<EnemyKind, { attack1: number; attack2: number }> = {
-  boss: { attack1: 9, attack2: 9 },
-  grunt: { attack1: 8, attack2: 8 },
-  archer: { attack1: 10, attack2: 10 },
-  elite: { attack1: 8, attack2: 8 },
-};
 // 10프레임 쓰러짐(총 1080ms)이 마지막 정지 자세까지 보이도록 다음 전투를 잠깐 멈춘다.
 const DEFEAT_PAUSE_MS = 1180;
 
@@ -180,8 +162,10 @@ export const BattleCanvas = () => {
         return;
       }
 
+      const sheetUrl = (prefix: string) => `/sprites/character/${prefix}-sheet.json`;
+
       const loadPackedAnimSet = async (prefix: string): Promise<AnimSet> => {
-        const jsonUrl = `/sprites/character/${prefix}-sheet.json`;
+        const jsonUrl = sheetUrl(prefix);
         const [idle, attack1, attack2, death] = await Promise.all([
           loadPackedAnimatedSprite(jsonUrl, 'idle'),
           loadPackedAnimatedSprite(jsonUrl, 'attack1'),
@@ -191,46 +175,12 @@ export const BattleCanvas = () => {
         return { idle, attack1, attack2, death };
       };
 
-      const [
-        playerAnim,
-        bossSet,
-        gruntSet,
-        archerSet,
-        eliteSet,
-        blackMarketBossSet,
-        blackMarketMinionSet,
-        blackMarketDartSet,
-        blackMarketFixerSet,
-        pengClanWarriorSet,
-        pengClanDaggerSet,
-        pengClanSaberInstructorSet,
-        pengClanYoungMasterSet,
-        forbiddenArtFollowerSet,
-        forbiddenArtDarterSet,
-        forbiddenArtQiOverloadSet,
-        forbiddenArtUserSet,
-        bloodCultAssassinSet,
-      ] = await Promise.all([
+      const [playerAnim] = await Promise.all([
         loadPackedAnimSet('mokhyeon-v10'),
-        loadPackedAnimSet('hyeollangchae-boss-v3'),
-        loadPackedAnimSet('hyeollangchae-grunt-v3'),
-        loadPackedAnimSet('hyeollangchae-archer-v3'),
-        loadPackedAnimSet('hyeollangchae-elite-v3'),
-        loadPackedAnimSet('black-market-boss-v1'),
-        loadPackedAnimSet('black-market-minion-v1'),
-        loadPackedAnimSet('black-market-dart-v1'),
-        loadPackedAnimSet('black-market-fixer-v1'),
-        loadPackedAnimSet('peng-clan-warrior-v1'),
-        loadPackedAnimSet('peng-clan-dagger-v1'),
-        loadPackedAnimSet('peng-clan-saber-instructor-v1'),
-        loadPackedAnimSet('peng-clan-young-master-v1'),
-        loadPackedAnimSet('forbidden-art-follower-v1'),
-        loadPackedAnimSet('forbidden-art-darter-v1'),
-        loadPackedAnimSet('qi-overload-warrior-v1'),
-        loadPackedAnimSet('forbidden-art-user-v1'),
-        loadPackedAnimSet('blood-cult-assassin-v1'),
+        loadDamageFont(),
+        loadNormalHitEffect(),
+        loadCriticalHitEffect(),
       ]);
-      await Promise.all([loadDamageFont(), loadNormalHitEffect(), loadCriticalHitEffect()]);
       const normalHitFrames = normalHitEffectFrames();
       const criticalHitFrames = criticalHitEffectFrames();
       if (disposed) {
@@ -290,195 +240,114 @@ export const BattleCanvas = () => {
       playerFlash.alpha = 0;
       app.stage.addChild(playerFlash);
 
-      // 완성된 적만 전용 스프라이트를 쓰고, 아직 아트가 없는 적은 enemyBox 플레이스홀더로 표시한다.
-      type EnemyArtKind =
-        | EnemyKind
-        | 'blackMarketBoss'
-        | 'blackMarketMinion'
-        | 'blackMarketDart'
-        | 'blackMarketFixer'
-        | 'pengClanWarrior'
-        | 'pengClanDagger'
-        | 'pengClanSaberInstructor'
-        | 'pengClanYoungMaster'
-        | 'forbiddenArtFollower'
-        | 'forbiddenArtDarter'
-        | 'forbiddenArtQiOverload'
-        | 'forbiddenArtUser'
-        | 'bloodCultAssassin';
-      type ActiveEnemyKind = EnemyArtKind | 'none';
-      const ENEMY_KINDS: EnemyArtKind[] = [
-        'boss',
-        'grunt',
-        'archer',
-        'elite',
-        'blackMarketBoss',
-        'blackMarketMinion',
-        'blackMarketDart',
-        'blackMarketFixer',
-        'pengClanWarrior',
-        'pengClanDagger',
-        'pengClanSaberInstructor',
-        'pengClanYoungMaster',
-        'forbiddenArtFollower',
-        'forbiddenArtDarter',
-        'forbiddenArtQiOverload',
-        'forbiddenArtUser',
-        'bloodCultAssassin',
-      ];
-      const enemyAnimByKind: Record<EnemyArtKind, AnimSet> = {
-        boss: bossSet,
-        grunt: gruntSet,
-        archer: archerSet,
-        elite: eliteSet,
-        blackMarketBoss: blackMarketBossSet,
-        blackMarketMinion: blackMarketMinionSet,
-        blackMarketDart: blackMarketDartSet,
-        blackMarketFixer: blackMarketFixerSet,
-        pengClanWarrior: pengClanWarriorSet,
-        pengClanDagger: pengClanDaggerSet,
-        pengClanSaberInstructor: pengClanSaberInstructorSet,
-        pengClanYoungMaster: pengClanYoungMasterSet,
-        forbiddenArtFollower: forbiddenArtFollowerSet,
-        forbiddenArtDarter: forbiddenArtDarterSet,
-        forbiddenArtQiOverload: forbiddenArtQiOverloadSet,
-        forbiddenArtUser: forbiddenArtUserSet,
-        bloodCultAssassin: bloodCultAssassinSet,
-      };
-      const enemyScaleByKind: Record<EnemyArtKind, number> = {
-        boss: ENEMY_BOSS_SCALE,
-        grunt: ENEMY_GRUNT_SCALE,
-        archer: ENEMY_ARCHER_SCALE,
-        elite: ENEMY_ELITE_SCALE,
-        blackMarketBoss: ENEMY_BOSS_SCALE,
-        blackMarketMinion: ENEMY_GRUNT_SCALE,
-        blackMarketDart: ENEMY_ARCHER_SCALE,
-        blackMarketFixer: ENEMY_ELITE_SCALE,
-        pengClanWarrior: ENEMY_GRUNT_SCALE,
-        pengClanDagger: ENEMY_ARCHER_SCALE,
-        pengClanSaberInstructor: ENEMY_ELITE_SCALE,
-        pengClanYoungMaster: ENEMY_BOSS_SCALE,
-        forbiddenArtFollower: ENEMY_GRUNT_SCALE,
-        forbiddenArtDarter: ENEMY_ARCHER_SCALE,
-        forbiddenArtQiOverload: ENEMY_ELITE_SCALE,
-        forbiddenArtUser: ENEMY_BOSS_SCALE,
-        bloodCultAssassin: ENEMY_GRUNT_SCALE,
-      };
+      // 적 그림은 지금 보는 대스테이지 것만 읽는다 — 시트 한 장이 GPU 메모리 약 50MB라 전부 올려 둘 수 없다.
+      // 전용 그림이 없거나 아직 읽는 중인 적은 enemyBox 대체 표시로 싸운다.
+      interface EnemyUnit {
+        art: EnemyArt;
+        set: AnimSet;
+        sprites: AnimatedSprite[];
+      }
+      const enemyLayer = new Container();
+      app.stage.addChild(enemyLayer);
+      const enemyUnits = new Map<string, EnemyUnit>();
+      const loadingArt = new Set<string>();
+      const failedArt = new Set<string>();
+      const enemyHitFrames = new WeakMap<AnimatedSprite, number>();
+      let artMajor = battleViewStage(useGameStore.getState()).major;
+      // currentArt는 지금 스테이지가 원하는 그림, currentEnemy는 그중 실제로 읽어 화면에 세운 것.
       // 재패킹한 적 원화는 모두 화면 왼쪽을 보므로 런타임 좌우 반전이 필요 없다.
-      let currentEnemyKind: ActiveEnemyKind = 'none';
+      let currentArt: EnemyArt | null = null;
+      let currentEnemy: EnemyUnit | null = null;
 
-      const enemySpritesOf = (kind: EnemyArtKind): AnimatedSprite[] => {
-        const set = enemyAnimByKind[kind];
-        return [set.idle, set.attack1, set.attack2, set.death].filter(
-          (a): a is AnimatedSprite => a !== undefined,
-        );
-      };
-
-      const hideAllEnemySprites = () => {
-        for (const kind of ENEMY_KINDS) {
-          for (const sprite of enemySpritesOf(kind)) stopAndHide(sprite);
-        }
-      };
-
-      const returnToIdle = (kind: EnemyArtKind) => {
-        if (currentEnemyKind !== kind) return;
-        const { idle } = enemyAnimByKind[kind];
+      const returnToIdle = (unit: EnemyUnit) => {
+        if (currentEnemy !== unit) return;
+        const { idle } = unit.set;
         idle.visible = true;
         idle.gotoAndPlay(0);
       };
 
       // 쓰러짐은 리워드 연출 동안 마지막 프레임을 유지한다.
-      const playEnemyOneShot = (kind: EnemyArtKind, sprite: AnimatedSprite | undefined) => {
+      const playEnemyOneShot = (unit: EnemyUnit, sprite: AnimatedSprite | undefined) => {
         if (!sprite) return;
         const anim = sprite;
-        for (const s of enemySpritesOf(kind)) stopAndHide(s);
+        for (const s of unit.sprites) stopAndHide(s);
         anim.visible = true;
         anim.gotoAndPlay(0);
       };
 
-      for (const kind of ENEMY_KINDS) {
-        const set = enemyAnimByKind[kind];
-        const scale = enemyScaleByKind[kind];
-        for (const anim of enemySpritesOf(kind)) {
-          anim.position.set(ENEMY_X, ENEMY_Y);
-          anim.scale.set(scale);
-          anim.visible = false;
-          anim.loop = false;
+      const unloadEnemyUnit = async (unit: EnemyUnit) => {
+        enemyUnits.delete(unit.art.prefix);
+        for (const sprite of unit.sprites) sprite.destroy();
+        try {
+          await Assets.unload(sheetUrl(unit.art.prefix));
+        } catch (err) {
+          // 내리지 못해도 전투는 계속한다.
+          // eslint-disable-next-line no-console
+          console.error('적 그림 정리 실패', err);
         }
-        set.idle.loop = true;
-        set.idle.visible = false;
-        // currentEnemyKind는 호출 시점(공격 애니메이션 종료 시)의 최신값을 읽어야 하는 의도적 참조 —
-        // 클로저 생성 시점이 아니라 실제 재생 완료 시점의 활성 적 종류를 확인한다.
-        // eslint-disable-next-line @typescript-eslint/no-loop-func
-        set.attack1.onComplete = () => {
-          stopAndHide(set.attack1);
-          returnToIdle(kind);
-        };
-        if (set.attack2) {
-          const { attack2 } = set;
-          // eslint-disable-next-line @typescript-eslint/no-loop-func
-          attack2.onComplete = () => {
-            stopAndHide(attack2);
-            returnToIdle(kind);
-          };
-        }
-        app.stage.addChild(...enemySpritesOf(kind));
-      }
-
-      const enemyHitFrames = new Map<AnimatedSprite, number>();
-      for (const kind of ENEMY_KINDS) {
-        const set = enemyAnimByKind[kind];
-        let hitFrames: { attack1: number; attack2: number };
-        if (
-          kind === 'forbiddenArtFollower' ||
-          kind === 'forbiddenArtDarter' ||
-          kind === 'forbiddenArtQiOverload' ||
-          kind === 'forbiddenArtUser' ||
-          kind === 'bloodCultAssassin'
-        ) {
-          hitFrames = { attack1: 8, attack2: 8 };
-        } else if (
-          kind === 'blackMarketBoss' ||
-          kind === 'blackMarketMinion' ||
-          kind === 'blackMarketDart' ||
-          kind === 'blackMarketFixer' ||
-          kind === 'pengClanWarrior' ||
-          kind === 'pengClanDagger' ||
-          kind === 'pengClanSaberInstructor' ||
-          kind === 'pengClanYoungMaster'
-        ) {
-          hitFrames = { attack1: 7, attack2: 7 };
-        } else {
-          hitFrames = ENEMY_HIT_FRAMES[kind];
-        }
-        enemyHitFrames.set(set.attack1, hitFrames.attack1);
-        if (set.attack2) enemyHitFrames.set(set.attack2, hitFrames.attack2);
-      }
-
-      // 스테이지별 적 종류는 combat.ts가 단일 기준 — 이름(monsterStats)과 스프라이트가 같은 규칙을 쓴다.
-      const enemyKindForStage = (stage: StageId): ActiveEnemyKind => {
-        const kind = enemyKind(stage);
-        if (stage.major === 1) return kind;
-        if (stage.major === 2 && kind === 'boss') return 'blackMarketBoss';
-        if (stage.major === 2 && kind === 'grunt') return 'blackMarketMinion';
-        if (stage.major === 2 && kind === 'archer') return 'blackMarketDart';
-        if (stage.major === 2 && kind === 'elite') return 'blackMarketFixer';
-        if (stage.major === 3 && kind === 'grunt') return 'pengClanWarrior';
-        if (stage.major === 3 && kind === 'archer') return 'pengClanDagger';
-        if (stage.major === 3 && kind === 'elite') return 'pengClanSaberInstructor';
-        if (stage.major === 3 && kind === 'boss') return 'pengClanYoungMaster';
-        if (stage.major === 4 && kind === 'grunt') return 'forbiddenArtFollower';
-        if (stage.major === 4 && kind === 'archer') return 'forbiddenArtDarter';
-        if (stage.major === 4 && kind === 'elite') return 'forbiddenArtQiOverload';
-        if (stage.major === 4 && kind === 'boss') return 'forbiddenArtUser';
-        if (stage.major === 5 && kind === 'grunt') return 'bloodCultAssassin';
-        return 'none';
       };
 
-      const activeEnemySprite = () => {
-        if (currentEnemyKind === 'none') return null;
-        return enemySpritesOf(currentEnemyKind).find((sprite) => sprite.visible) ?? null;
+      const loadEnemyUnit = async (art: EnemyArt) => {
+        const { prefix } = art;
+        if (enemyUnits.has(prefix) || loadingArt.has(prefix) || failedArt.has(prefix)) return;
+        loadingArt.add(prefix);
+        try {
+          const set = await loadPackedAnimSet(prefix);
+          if (disposed) return;
+          const sprites = [set.idle, set.attack1, set.attack2, set.death].filter(
+            (a): a is AnimatedSprite => a !== undefined,
+          );
+          const unit: EnemyUnit = { art, set, sprites };
+          // 읽는 사이 다른 대스테이지로 넘어갔으면 세우지 않고 내린다.
+          if (!enemyArtsForMajor(artMajor).includes(art)) {
+            await unloadEnemyUnit(unit);
+            return;
+          }
+          for (const anim of sprites) {
+            anim.position.set(ENEMY_X, ENEMY_Y);
+            anim.scale.set(art.scale);
+            anim.visible = false;
+            anim.loop = false;
+          }
+          set.idle.loop = true;
+          for (const attack of [set.attack1, set.attack2]) {
+            if (attack) {
+              attack.onComplete = () => {
+                stopAndHide(attack);
+                returnToIdle(unit);
+              };
+            }
+          }
+          enemyHitFrames.set(set.attack1, art.hitFrames.attack1);
+          if (set.attack2) enemyHitFrames.set(set.attack2, art.hitFrames.attack2);
+          enemyLayer.addChild(...sprites);
+          enemyUnits.set(prefix, unit);
+        } catch (err) {
+          // 그림 하나를 못 읽어도 전투는 대체 표시로 계속한다. 대스테이지가 바뀌면 다시 시도한다.
+          failedArt.add(prefix);
+          // eslint-disable-next-line no-console
+          console.error('적 그림 로딩 실패', err);
+        } finally {
+          loadingArt.delete(prefix);
+        }
       };
+
+      // 대스테이지가 바뀌면 새 대스테이지 그림을 읽고 나머지는 내린다.
+      const syncEnemyArt = (major: number) => {
+        artMajor = major;
+        failedArt.clear();
+        const needed = enemyArtsForMajor(major);
+        for (const unit of [...enemyUnits.values()]) {
+          if (!needed.includes(unit.art)) unloadEnemyUnit(unit);
+        }
+        for (const art of needed) loadEnemyUnit(art);
+      };
+
+      await Promise.all(enemyArtsForMajor(artMajor).map(loadEnemyUnit));
+      if (disposed) {
+        destroyApp();
+        return;
+      }
 
       const enemyBox = new Graphics();
       app.stage.addChild(enemyBox);
@@ -608,10 +477,10 @@ export const BattleCanvas = () => {
               for (const sprite of playerSprites()) stopAndHide(sprite);
               returnPlayerToIdle();
               // 적 종류가 바뀌는 경우는 아래 스테이지 전환 처리가 새 적을 세우므로 여기선 건드리지 않는다.
-              const nextKind = enemyKindForStage(battleViewStage(useGameStore.getState()));
-              if (currentEnemyKind !== 'none' && nextKind === currentEnemyKind) {
-                for (const sprite of enemySpritesOf(currentEnemyKind)) stopAndHide(sprite);
-                returnToIdle(currentEnemyKind);
+              const nextArt = enemyArtForStage(battleViewStage(useGameStore.getState()));
+              if (currentEnemy && nextArt === currentEnemy.art) {
+                for (const sprite of currentEnemy.sprites) stopAndHide(sprite);
+                returnToIdle(currentEnemy);
               }
             }
           } else {
@@ -635,12 +504,9 @@ export const BattleCanvas = () => {
               spawnNormalHitEffect(ENEMY_X, ENEMY_Y - 40);
               playHit();
             }
-            if (currentEnemyKind !== 'none') {
-              const set = enemyAnimByKind[currentEnemyKind];
-              if (enemyDefeated) {
-                pendingEnemyAttack = null;
-                playEnemyOneShot(currentEnemyKind, set.death);
-              }
+            if (currentEnemy && enemyDefeated) {
+              pendingEnemyAttack = null;
+              playEnemyOneShot(currentEnemy, currentEnemy.set.death);
             }
             // 보스 처치는 보상 팝업이 이미 화면을 멈추므로 별도 텀이 필요 없다.
             if (enemyDefeated && !useGameStore.getState().awaitingBossReward) {
@@ -689,11 +555,11 @@ export const BattleCanvas = () => {
             enemyAttackClock = 0;
             if (pendingEnemyAttack) resolveEnemyHit();
             // 스프라이트가 없는 적(대체 사각형)은 모션이 없어 바로 피해를 넣는다.
-            if (currentEnemyKind === 'none') {
+            if (!currentEnemy) {
               if (defeatPauseMs === 0) resolveEnemyHit();
             } else if (defeatPauseMs === 0) {
-              const set = enemyAnimByKind[currentEnemyKind];
-              for (const sprite of enemySpritesOf(currentEnemyKind)) stopAndHide(sprite);
+              const { set, sprites } = currentEnemy;
+              for (const sprite of sprites) stopAndHide(sprite);
               const attack = set.attack2 && Math.random() < 0.5 ? set.attack2 : set.attack1;
               attack.visible = true;
               attack.gotoAndPlay(0);
@@ -748,30 +614,36 @@ export const BattleCanvas = () => {
           })();
         }
 
-        const kind = enemyKindForStage(viewStage);
-        if (kind !== currentEnemyKind) {
+        const art = enemyArtForStage(viewStage);
+        const unit = art ? (enemyUnits.get(art.prefix) ?? null) : null;
+        if (art !== currentArt || unit !== currentEnemy) {
+          // 그림을 뒤늦게 다 읽어 같은 적을 세우는 경우(unit만 바뀜)는 플레이어를 건드리지 않는다.
+          const targetChanged = art !== currentArt;
           pendingEnemyAttack = null;
-          hideAllEnemySprites();
-          currentEnemyKind = kind;
-          if (kind !== 'none') {
-            const { idle } = enemyAnimByKind[kind];
+          if (currentEnemy) for (const sprite of currentEnemy.sprites) stopAndHide(sprite);
+          currentArt = art;
+          currentEnemy = unit;
+          if (unit) {
+            const { idle } = unit.set;
             idle.visible = true;
             idle.gotoAndPlay(0);
           }
           // 전투 대상이 바뀔 때 플레이어도 idle로 초기화 — 단 쓰러짐 연출 중이면 그 자세를
           // 유지하고(패배 후퇴로 적이 바뀌는 경우) 연출이 끝날 때 idle로 되돌린다.
-          if (defeatPauseMs === 0) {
+          if (targetChanged && defeatPauseMs === 0) {
             pendingAttack = null;
             for (const sprite of playerSprites()) stopAndHide(sprite);
             idleAnim.visible = true;
             idleAnim.gotoAndPlay(0);
           }
         }
-        enemyBox.visible = kind === 'none';
-        if (kind === 'none') {
+        // 위에서 이전 적을 화면에서 내린 뒤에 그림을 정리한다.
+        if (viewStage.major !== artMajor) syncEnemyArt(viewStage.major);
+        enemyBox.visible = !currentEnemy;
+        if (!currentEnemy) {
           drawEnemyBox(viewStage);
         } else {
-          const sprite = activeEnemySprite();
+          const sprite = currentEnemy.sprites.find((candidate) => candidate.visible);
           if (sprite) sprite.tint = enemyFlashMs > 0 ? ENEMY_HIT_TINT : 0xffffff;
         }
 

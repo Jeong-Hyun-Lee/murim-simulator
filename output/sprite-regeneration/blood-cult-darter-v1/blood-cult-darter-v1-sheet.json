@@ -1,0 +1,1427 @@
+{
+  "frames": {
+    "blood-cult-darter-v1/attack1/4": {
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 496,
+        "h": 593
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 228,
+        "y": 190,
+        "w": 496,
+        "h": 593
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack2/6": {
+      "frame": {
+        "x": 499,
+        "y": 1,
+        "w": 490,
+        "h": 580
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 240,
+        "y": 206,
+        "w": 490,
+        "h": 580
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack1/5": {
+      "frame": {
+        "x": 991,
+        "y": 1,
+        "w": 455,
+        "h": 578
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 244,
+        "y": 208,
+        "w": 455,
+        "h": 578
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack1/6": {
+      "frame": {
+        "x": 1448,
+        "y": 1,
+        "w": 528,
+        "h": 577
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 180,
+        "y": 207,
+        "w": 528,
+        "h": 577
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack1/7": {
+      "frame": {
+        "x": 1978,
+        "y": 1,
+        "w": 523,
+        "h": 576
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 148,
+        "y": 207,
+        "w": 523,
+        "h": 576
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/idle/4": {
+      "frame": {
+        "x": 2503,
+        "y": 1,
+        "w": 596,
+        "h": 575
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 136,
+        "y": 210,
+        "w": 596,
+        "h": 575
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-darter-v1/attack2/12": {
+      "frame": {
+        "x": 3101,
+        "y": 1,
+        "w": 594,
+        "h": 573
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 115,
+        "y": 213,
+        "w": 594,
+        "h": 573
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/idle/5": {
+      "frame": {
+        "x": 1,
+        "y": 596,
+        "w": 482,
+        "h": 566
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 244,
+        "y": 219,
+        "w": 482,
+        "h": 566
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-darter-v1/attack2/7": {
+      "frame": {
+        "x": 485,
+        "y": 596,
+        "w": 505,
+        "h": 564
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 215,
+        "y": 222,
+        "w": 505,
+        "h": 564
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack2/5": {
+      "frame": {
+        "x": 992,
+        "y": 596,
+        "w": 445,
+        "h": 563
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 260,
+        "y": 221,
+        "w": 445,
+        "h": 563
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack2/4": {
+      "frame": {
+        "x": 1439,
+        "y": 596,
+        "w": 563,
+        "h": 562
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 173,
+        "y": 221,
+        "w": 563,
+        "h": 562
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack2/13": {
+      "frame": {
+        "x": 2004,
+        "y": 596,
+        "w": 499,
+        "h": 561
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 218,
+        "y": 225,
+        "w": 499,
+        "h": 561
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/idle/6": {
+      "frame": {
+        "x": 2505,
+        "y": 596,
+        "w": 476,
+        "h": 559
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 246,
+        "y": 225,
+        "w": 476,
+        "h": 559
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-darter-v1/attack2/14": {
+      "frame": {
+        "x": 2983,
+        "y": 596,
+        "w": 445,
+        "h": 554
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 269,
+        "y": 232,
+        "w": 445,
+        "h": 554
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/death/4": {
+      "frame": {
+        "x": 3430,
+        "y": 596,
+        "w": 515,
+        "h": 551
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 273,
+        "y": 239,
+        "w": 515,
+        "h": 551
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-darter-v1/idle/7": {
+      "frame": {
+        "x": 1,
+        "y": 1164,
+        "w": 452,
+        "h": 546
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 257,
+        "y": 238,
+        "w": 452,
+        "h": 546
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-darter-v1/attack2/1": {
+      "frame": {
+        "x": 455,
+        "y": 1164,
+        "w": 491,
+        "h": 541
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 233,
+        "y": 241,
+        "w": 491,
+        "h": 541
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack2/3": {
+      "frame": {
+        "x": 948,
+        "y": 1164,
+        "w": 472,
+        "h": 541
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 243,
+        "y": 241,
+        "w": 472,
+        "h": 541
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack2/2": {
+      "frame": {
+        "x": 1422,
+        "y": 1164,
+        "w": 510,
+        "h": 540
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 211,
+        "y": 242,
+        "w": 510,
+        "h": 540
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/idle/2": {
+      "frame": {
+        "x": 1934,
+        "y": 1164,
+        "w": 496,
+        "h": 537
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 219,
+        "y": 247,
+        "w": 496,
+        "h": 537
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-darter-v1/idle/11": {
+      "frame": {
+        "x": 2432,
+        "y": 1164,
+        "w": 495,
+        "h": 530
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 215,
+        "y": 253,
+        "w": 495,
+        "h": 530
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-darter-v1/idle/10": {
+      "frame": {
+        "x": 2929,
+        "y": 1164,
+        "w": 460,
+        "h": 530
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 243,
+        "y": 253,
+        "w": 460,
+        "h": 530
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-darter-v1/idle/9": {
+      "frame": {
+        "x": 3391,
+        "y": 1164,
+        "w": 484,
+        "h": 529
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 257,
+        "y": 254,
+        "w": 484,
+        "h": 529
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-darter-v1/attack1/13": {
+      "frame": {
+        "x": 1,
+        "y": 1712,
+        "w": 505,
+        "h": 528
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 160,
+        "y": 264,
+        "w": 505,
+        "h": 528
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/idle/1": {
+      "frame": {
+        "x": 508,
+        "y": 1712,
+        "w": 504,
+        "h": 528
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 213,
+        "y": 256,
+        "w": 504,
+        "h": 528
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-darter-v1/idle/8": {
+      "frame": {
+        "x": 1014,
+        "y": 1712,
+        "w": 552,
+        "h": 527
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 204,
+        "y": 256,
+        "w": 552,
+        "h": 527
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-darter-v1/idle/0": {
+      "frame": {
+        "x": 1568,
+        "y": 1712,
+        "w": 518,
+        "h": 527
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 196,
+        "y": 258,
+        "w": 518,
+        "h": 527
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-darter-v1/attack1/0": {
+      "frame": {
+        "x": 2088,
+        "y": 1712,
+        "w": 518,
+        "h": 527
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 196,
+        "y": 258,
+        "w": 518,
+        "h": 527
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack1/15": {
+      "frame": {
+        "x": 2608,
+        "y": 1712,
+        "w": 518,
+        "h": 527
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 196,
+        "y": 258,
+        "w": 518,
+        "h": 527
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack2/0": {
+      "frame": {
+        "x": 3128,
+        "y": 1712,
+        "w": 518,
+        "h": 527
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 196,
+        "y": 258,
+        "w": 518,
+        "h": 527
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack2/15": {
+      "frame": {
+        "x": 1,
+        "y": 2242,
+        "w": 518,
+        "h": 527
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 196,
+        "y": 258,
+        "w": 518,
+        "h": 527
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/idle/3": {
+      "frame": {
+        "x": 521,
+        "y": 2242,
+        "w": 486,
+        "h": 526
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 217,
+        "y": 257,
+        "w": 486,
+        "h": 526
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-darter-v1/attack1/12": {
+      "frame": {
+        "x": 1009,
+        "y": 2242,
+        "w": 578,
+        "h": 522
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 64,
+        "y": 263,
+        "w": 578,
+        "h": 522
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/death/0": {
+      "frame": {
+        "x": 1589,
+        "y": 2242,
+        "w": 584,
+        "h": 514
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 202,
+        "y": 269,
+        "w": 584,
+        "h": 514
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-darter-v1/attack1/11": {
+      "frame": {
+        "x": 2175,
+        "y": 2242,
+        "w": 414,
+        "h": 514
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 306,
+        "y": 272,
+        "w": 414,
+        "h": 514
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack1/1": {
+      "frame": {
+        "x": 2591,
+        "y": 2242,
+        "w": 470,
+        "h": 513
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 253,
+        "y": 271,
+        "w": 470,
+        "h": 513
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack1/3": {
+      "frame": {
+        "x": 3063,
+        "y": 2242,
+        "w": 466,
+        "h": 513
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 246,
+        "y": 271,
+        "w": 466,
+        "h": 513
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack1/2": {
+      "frame": {
+        "x": 1,
+        "y": 2771,
+        "w": 569,
+        "h": 512
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 177,
+        "y": 272,
+        "w": 569,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack1/10": {
+      "frame": {
+        "x": 572,
+        "y": 2771,
+        "w": 505,
+        "h": 512
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 213,
+        "y": 272,
+        "w": 505,
+        "h": 512
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack1/9": {
+      "frame": {
+        "x": 1079,
+        "y": 2771,
+        "w": 525,
+        "h": 507
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 127,
+        "y": 275,
+        "w": 525,
+        "h": 507
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack1/8": {
+      "frame": {
+        "x": 1606,
+        "y": 2771,
+        "w": 557,
+        "h": 497
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 300,
+        "y": 283,
+        "w": 557,
+        "h": 497
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack1/14": {
+      "frame": {
+        "x": 2165,
+        "y": 2771,
+        "w": 482,
+        "h": 496
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 195,
+        "y": 294,
+        "w": 482,
+        "h": 496
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack2/9": {
+      "frame": {
+        "x": 2649,
+        "y": 2771,
+        "w": 534,
+        "h": 494
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 116,
+        "y": 288,
+        "w": 534,
+        "h": 494
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack2/8": {
+      "frame": {
+        "x": 3185,
+        "y": 2771,
+        "w": 563,
+        "h": 492
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 125,
+        "y": 289,
+        "w": 563,
+        "h": 492
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/death/5": {
+      "frame": {
+        "x": 1,
+        "y": 3285,
+        "w": 486,
+        "h": 489
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 277,
+        "y": 316,
+        "w": 486,
+        "h": 489
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-darter-v1/attack2/10": {
+      "frame": {
+        "x": 489,
+        "y": 3285,
+        "w": 486,
+        "h": 485
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 227,
+        "y": 303,
+        "w": 486,
+        "h": 485
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/attack2/11": {
+      "frame": {
+        "x": 977,
+        "y": 3285,
+        "w": 432,
+        "h": 485
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 271,
+        "y": 301,
+        "w": 432,
+        "h": 485
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "blood-cult-darter-v1/death/1": {
+      "frame": {
+        "x": 1411,
+        "y": 3285,
+        "w": 466,
+        "h": 483
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 262,
+        "y": 299,
+        "w": 466,
+        "h": 483
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-darter-v1/death/8": {
+      "frame": {
+        "x": 1879,
+        "y": 3285,
+        "w": 559,
+        "h": 374
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 163,
+        "y": 405,
+        "w": 559,
+        "h": 374
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-darter-v1/death/6": {
+      "frame": {
+        "x": 2440,
+        "y": 3285,
+        "w": 505,
+        "h": 368
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 282,
+        "y": 418,
+        "w": 505,
+        "h": 368
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-darter-v1/death/9": {
+      "frame": {
+        "x": 2947,
+        "y": 3285,
+        "w": 411,
+        "h": 366
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 273,
+        "y": 462,
+        "w": 411,
+        "h": 366
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 360
+    },
+    "blood-cult-darter-v1/death/2": {
+      "frame": {
+        "x": 3360,
+        "y": 3285,
+        "w": 452,
+        "h": 362
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 249,
+        "y": 420,
+        "w": 452,
+        "h": 362
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-darter-v1/death/3": {
+      "frame": {
+        "x": 1,
+        "y": 3776,
+        "w": 466,
+        "h": 299
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 242,
+        "y": 486,
+        "w": 466,
+        "h": 299
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "blood-cult-darter-v1/death/7": {
+      "frame": {
+        "x": 469,
+        "y": 3776,
+        "w": 497,
+        "h": 267
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 277,
+        "y": 516,
+        "w": 497,
+        "h": 267
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    }
+  },
+  "animations": {
+    "idle": [
+      "blood-cult-darter-v1/idle/0",
+      "blood-cult-darter-v1/idle/1",
+      "blood-cult-darter-v1/idle/2",
+      "blood-cult-darter-v1/idle/3",
+      "blood-cult-darter-v1/idle/4",
+      "blood-cult-darter-v1/idle/5",
+      "blood-cult-darter-v1/idle/6",
+      "blood-cult-darter-v1/idle/7",
+      "blood-cult-darter-v1/idle/8",
+      "blood-cult-darter-v1/idle/9",
+      "blood-cult-darter-v1/idle/10",
+      "blood-cult-darter-v1/idle/11"
+    ],
+    "attack1": [
+      "blood-cult-darter-v1/attack1/0",
+      "blood-cult-darter-v1/attack1/1",
+      "blood-cult-darter-v1/attack1/2",
+      "blood-cult-darter-v1/attack1/3",
+      "blood-cult-darter-v1/attack1/4",
+      "blood-cult-darter-v1/attack1/5",
+      "blood-cult-darter-v1/attack1/6",
+      "blood-cult-darter-v1/attack1/7",
+      "blood-cult-darter-v1/attack1/8",
+      "blood-cult-darter-v1/attack1/9",
+      "blood-cult-darter-v1/attack1/10",
+      "blood-cult-darter-v1/attack1/11",
+      "blood-cult-darter-v1/attack1/12",
+      "blood-cult-darter-v1/attack1/13",
+      "blood-cult-darter-v1/attack1/14",
+      "blood-cult-darter-v1/attack1/15"
+    ],
+    "attack2": [
+      "blood-cult-darter-v1/attack2/0",
+      "blood-cult-darter-v1/attack2/1",
+      "blood-cult-darter-v1/attack2/2",
+      "blood-cult-darter-v1/attack2/3",
+      "blood-cult-darter-v1/attack2/4",
+      "blood-cult-darter-v1/attack2/5",
+      "blood-cult-darter-v1/attack2/6",
+      "blood-cult-darter-v1/attack2/7",
+      "blood-cult-darter-v1/attack2/8",
+      "blood-cult-darter-v1/attack2/9",
+      "blood-cult-darter-v1/attack2/10",
+      "blood-cult-darter-v1/attack2/11",
+      "blood-cult-darter-v1/attack2/12",
+      "blood-cult-darter-v1/attack2/13",
+      "blood-cult-darter-v1/attack2/14",
+      "blood-cult-darter-v1/attack2/15"
+    ],
+    "death": [
+      "blood-cult-darter-v1/death/0",
+      "blood-cult-darter-v1/death/1",
+      "blood-cult-darter-v1/death/2",
+      "blood-cult-darter-v1/death/3",
+      "blood-cult-darter-v1/death/4",
+      "blood-cult-darter-v1/death/5",
+      "blood-cult-darter-v1/death/6",
+      "blood-cult-darter-v1/death/7",
+      "blood-cult-darter-v1/death/8",
+      "blood-cult-darter-v1/death/9"
+    ]
+  },
+  "meta": {
+    "image": "blood-cult-darter-v1-sheet.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 3946,
+      "h": 4076
+    },
+    "scale": "1"
+  }
+}
