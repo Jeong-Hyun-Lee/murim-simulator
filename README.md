@@ -13,7 +13,7 @@ npm run dev
 
 ## 스택
 
-Vite + TypeScript + React(화면·패널) + PixiJS(전투 캔버스) + zustand(게임 상태). 게임 에셋은 `assets/`에 두고 그대로 정적 서빙한다. 진행 곡선은 `output/balance-sim` 시뮬레이터로 검증한다.
+Vite + TypeScript + React(화면·패널) + PixiJS(전투 캔버스) + zustand(게임 상태). 게임 에셋은 `assets/`에 두고 그대로 정적 서빙한다. 빌드할 때 `scripts/optimize-sprites.mjs`가 `dist/`의 캐릭터 시트 PNG를 WebP로 바꾼다(원본 PNG는 그대로). 진행 곡선은 `output/balance-sim` 시뮬레이터로 검증한다.
 
 ## 기획
 
