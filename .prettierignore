@@ -4,3 +4,9 @@ public
 wiki
 docs
 package-lock.json
+assets
+.claude
+.omc
+output/*
+!output/balance-sim
+output/balance-sim/sim.cjs
