@@ -1,5 +1,6 @@
 // wiki/concepts/장기-플레이-시스템.md 3절 "수련탑" — 최고 기록 다음 층부터 한 층씩 오르는 도전.
-// 적은 스테이지 곡선을 5층당 대스테이지 1단계씩 따라가므로 대30 이후에도 계속 강해진다.
+// 적은 5층당 대스테이지 1단계씩 강해진다. 대21 이후의 스테이지 전용 상향(환골탈태 누적 보정)은
+// 적용하지 않아 층 난이도가 전 구간 같은 비율로 오른다.
 import { monsterStats, type StageId, type UnitStats } from './combat';
 import type { GoalReward } from './goalData';
 
@@ -12,7 +13,7 @@ const towerMajor = (floor: number): number => 1 + (floor - 1) / FLOORS_PER_MAJOR
 
 // 각 층 적은 해당 스테이지 곡선의 정예(소9) 능력치.
 export const towerEnemy = (floor: number): UnitStats => ({
-  ...monsterStats({ major: towerMajor(floor), sub: 9 }),
+  ...monsterStats({ major: towerMajor(floor), sub: 9 }, false),
   name: `수련탑 ${floor}층 수문장`,
 });
 

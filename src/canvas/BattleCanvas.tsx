@@ -253,7 +253,18 @@ export const BattleCanvas = () => {
       const loadingArt = new Set<string>();
       const failedArt = new Set<string>();
       const enemyHitFrames = new WeakMap<AnimatedSprite, number>();
-      let artMajor = battleViewStage(useGameStore.getState()).major;
+      // 지금 대스테이지의 그림 전부. 보스전 중에는 다음 대스테이지 첫 적(졸개) 그림도 미리 읽어
+      // 대스테이지가 넘어가는 순간 대체 표시가 보이지 않게 한다.
+      const neededArtFor = (stage: StageId): EnemyArt[] => {
+        const arts = enemyArtsForMajor(stage.major);
+        const next = isBossStage(stage)
+          ? enemyArtForStage({ major: stage.major + 1, sub: 1 })
+          : null;
+        return next ? [...arts, next] : arts;
+      };
+      const artKeyOf = (stage: StageId) => `${stage.major}:${isBossStage(stage)}`;
+      let artKey = artKeyOf(battleViewStage(useGameStore.getState()));
+      let neededArt = neededArtFor(battleViewStage(useGameStore.getState()));
       // currentArt는 지금 스테이지가 원하는 그림, currentEnemy는 그중 실제로 읽어 화면에 세운 것.
       // 재패킹한 적 원화는 모두 화면 왼쪽을 보므로 런타임 좌우 반전이 필요 없다.
       let currentArt: EnemyArt | null = null;
@@ -299,7 +310,7 @@ export const BattleCanvas = () => {
           );
           const unit: EnemyUnit = { art, set, sprites };
           // 읽는 사이 다른 대스테이지로 넘어갔으면 세우지 않고 내린다.
-          if (!enemyArtsForMajor(artMajor).includes(art)) {
+          if (!neededArt.includes(art)) {
             await unloadEnemyUnit(unit);
             return;
           }
@@ -332,18 +343,18 @@ export const BattleCanvas = () => {
         }
       };
 
-      // 대스테이지가 바뀌면 새 대스테이지 그림을 읽고 나머지는 내린다.
-      const syncEnemyArt = (major: number) => {
-        artMajor = major;
+      // 필요한 그림 목록이 바뀌면(대스테이지 이동, 보스전 진입·이탈) 새 그림을 읽고 나머지는 내린다.
+      const syncEnemyArt = (stage: StageId) => {
+        artKey = artKeyOf(stage);
+        neededArt = neededArtFor(stage);
         failedArt.clear();
-        const needed = enemyArtsForMajor(major);
         for (const unit of [...enemyUnits.values()]) {
-          if (!needed.includes(unit.art)) unloadEnemyUnit(unit);
+          if (!neededArt.includes(unit.art)) unloadEnemyUnit(unit);
         }
-        for (const art of needed) loadEnemyUnit(art);
+        for (const art of neededArt) loadEnemyUnit(art);
       };
 
-      await Promise.all(enemyArtsForMajor(artMajor).map(loadEnemyUnit));
+      await Promise.all(neededArt.map(loadEnemyUnit));
       if (disposed) {
         destroyApp();
         return;
@@ -638,7 +649,7 @@ export const BattleCanvas = () => {
           }
         }
         // 위에서 이전 적을 화면에서 내린 뒤에 그림을 정리한다.
-        if (viewStage.major !== artMajor) syncEnemyArt(viewStage.major);
+        if (artKeyOf(viewStage) !== artKey) syncEnemyArt(viewStage);
         enemyBox.visible = !currentEnemy;
         if (!currentEnemy) {
           drawEnemyBox(viewStage);

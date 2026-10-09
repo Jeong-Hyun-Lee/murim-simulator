@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useGameStore, realmName, rebirthGateMajor, rebirthBuffPercent } from '../../game/store';
 
 export const RebirthView = () => {
@@ -6,6 +6,8 @@ export const RebirthView = () => {
   const highestMajorCleared = useGameStore((s) => s.highestMajorCleared);
   const performRebirth = useGameStore((s) => s.performRebirth);
   const [result, setResult] = useState<{ realm: string; buff: number } | null>(null);
+  // 결과 화면으로 바뀌기 전의 연타로 두 단계가 한 번에 오르지 않게 한 번만 실행.
+  const executing = useRef(false);
 
   if (result) {
     return (
@@ -24,7 +26,10 @@ export const RebirthView = () => {
           <button
             type="button"
             className="btn btn-primary btn-block"
-            onClick={() => setResult(null)}
+            onClick={() => {
+              executing.current = false;
+              setResult(null);
+            }}
           >
             <img
               src="/ui/label/label-confirm.webp"
@@ -41,6 +46,8 @@ export const RebirthView = () => {
   const eligible = gateMajor !== null && highestMajorCleared >= gateMajor;
 
   const execute = () => {
+    if (executing.current) return;
+    executing.current = true;
     performRebirth();
     const next = useGameStore.getState().rebirthCount;
     setResult({ realm: realmName(next), buff: rebirthBuffPercent(next) });

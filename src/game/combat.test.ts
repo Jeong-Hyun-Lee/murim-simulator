@@ -39,6 +39,13 @@ describe('monsterStats', () => {
     expect(at(30).def / at(29).def).toBeCloseTo(1.25, 2);
   });
 
+  it('수련탑용 곡선은 대21 이후에도 1.5배·1.37배를 잇는다', () => {
+    const at = (major: number) => monsterStats({ major, sub: 9 }, false);
+    expect(at(25).hp / at(24).hp).toBeCloseTo(1.5, 2);
+    expect(at(25).atk / at(24).atk).toBeCloseTo(1.37, 2);
+    expect(at(20)).toEqual(monsterStats({ major: 20, sub: 9 }));
+  });
+
   it('보스(소10)는 소9 정예보다 체력이 1.8배다', () => {
     const elite = monsterStats({ major: 3, sub: 9 });
     const boss = monsterStats({ major: 3, sub: 10 });

@@ -160,10 +160,11 @@ const KIND_WEIGHTS: Record<EnemyKind, { hp: number; atk: number; def: number; re
   boss: { hp: 1.8, atk: 1.1, def: 1.5, reward: 4.3 },
 };
 
-export const monsterStats = (stage: StageId): UnitStats => {
+// lateGrowth=false는 대21 이후에도 초반 성장률을 그대로 잇는다 — 스테이지 진행과 무관한 수련탑용.
+export const monsterStats = (stage: StageId, lateGrowth = true): UnitStats => {
   const effSub = Math.min(stage.sub, 9);
-  const early = Math.min(stage.major, LATE_GROWTH_FROM) - 1;
-  const late = Math.max(0, stage.major - LATE_GROWTH_FROM);
+  const early = (lateGrowth ? Math.min(stage.major, LATE_GROWTH_FROM) : stage.major) - 1;
+  const late = lateGrowth ? Math.max(0, stage.major - LATE_GROWTH_FROM) : 0;
   const baseHp = BASE_HP_1 * HP_GROWTH ** early * LATE_HP_GROWTH ** late;
   const baseAtk = BASE_ATK_1 * ATK_GROWTH ** early * LATE_ATK_GROWTH ** late;
   const baseDef = BASE_DEF_1 * DEF_GROWTH ** (stage.major - 1);
