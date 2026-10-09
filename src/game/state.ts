@@ -33,7 +33,7 @@ export interface GameState {
   tutorialGongDone: boolean;
   // 사냥터 모드로 진입하기 전, 자동 등반이 멈춰 있던 원래 스테이지(복귀 대상). null이면 사냥터 모드가 아님.
   farmReturnStage: StageId | null;
-  // 스토리 연출 최초 1회 판정 — 환골탈태로 1-1에 돌아가도 유지한다.
+  // 스토리 연출 최초 1회 판정 — 사냥터에서 지난 스테이지를 다시 돌아도 반복하지 않는다.
   storySeenMajor: number; // 진입 카드를 본 가장 높은 대스테이지
   storySeenStage: number; // 자막을 본 가장 먼 소스테이지(storyStageIndex 일렬 번호)
   // 마지막으로 저장한 시각(ms) — 다시 열었을 때 오프라인 보상 경과 시간 계산용. 0이면 기록 없음.
