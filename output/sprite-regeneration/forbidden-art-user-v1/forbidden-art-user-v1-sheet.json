@@ -1,0 +1,1427 @@
+{
+  "frames": {
+    "forbidden-art-user-v1/attack1/3": {
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 464,
+        "h": 554
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 260,
+        "y": 227,
+        "w": 464,
+        "h": 554
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack1/4": {
+      "frame": {
+        "x": 467,
+        "y": 1,
+        "w": 487,
+        "h": 530
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 253,
+        "y": 248,
+        "w": 487,
+        "h": 530
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack1/11": {
+      "frame": {
+        "x": 956,
+        "y": 1,
+        "w": 423,
+        "h": 522
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 264,
+        "y": 258,
+        "w": 423,
+        "h": 522
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack2/14": {
+      "frame": {
+        "x": 1381,
+        "y": 1,
+        "w": 493,
+        "h": 520
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 252,
+        "y": 258,
+        "w": 493,
+        "h": 520
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack1/14": {
+      "frame": {
+        "x": 1876,
+        "y": 1,
+        "w": 438,
+        "h": 513
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 314,
+        "y": 266,
+        "w": 438,
+        "h": 513
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack2/7": {
+      "frame": {
+        "x": 2316,
+        "y": 1,
+        "w": 480,
+        "h": 511
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 202,
+        "y": 267,
+        "w": 480,
+        "h": 511
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack1/13": {
+      "frame": {
+        "x": 2798,
+        "y": 1,
+        "w": 473,
+        "h": 510
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 274,
+        "y": 272,
+        "w": 473,
+        "h": 510
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack2/13": {
+      "frame": {
+        "x": 3273,
+        "y": 1,
+        "w": 509,
+        "h": 508
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 192,
+        "y": 272,
+        "w": 509,
+        "h": 508
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack2/4": {
+      "frame": {
+        "x": 1,
+        "y": 557,
+        "w": 430,
+        "h": 507
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 228,
+        "y": 272,
+        "w": 430,
+        "h": 507
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack1/1": {
+      "frame": {
+        "x": 433,
+        "y": 557,
+        "w": 479,
+        "h": 505
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 237,
+        "y": 274,
+        "w": 479,
+        "h": 505
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack1/8": {
+      "frame": {
+        "x": 914,
+        "y": 557,
+        "w": 590,
+        "h": 501
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 88,
+        "y": 280,
+        "w": 590,
+        "h": 501
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack1/2": {
+      "frame": {
+        "x": 1506,
+        "y": 557,
+        "w": 485,
+        "h": 496
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 262,
+        "y": 285,
+        "w": 485,
+        "h": 496
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/death/4": {
+      "frame": {
+        "x": 1993,
+        "y": 557,
+        "w": 492,
+        "h": 495
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 227,
+        "y": 285,
+        "w": 492,
+        "h": 495
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-user-v1/idle/5": {
+      "frame": {
+        "x": 2487,
+        "y": 557,
+        "w": 463,
+        "h": 495
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 248,
+        "y": 282,
+        "w": 463,
+        "h": 495
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-user-v1/idle/4": {
+      "frame": {
+        "x": 2952,
+        "y": 557,
+        "w": 569,
+        "h": 493
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 186,
+        "y": 284,
+        "w": 569,
+        "h": 493
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-user-v1/attack1/10": {
+      "frame": {
+        "x": 3523,
+        "y": 557,
+        "w": 481,
+        "h": 493
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 242,
+        "y": 285,
+        "w": 481,
+        "h": 493
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/idle/2": {
+      "frame": {
+        "x": 1,
+        "y": 1066,
+        "w": 507,
+        "h": 492
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 226,
+        "y": 285,
+        "w": 507,
+        "h": 492
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-user-v1/attack1/12": {
+      "frame": {
+        "x": 510,
+        "y": 1066,
+        "w": 571,
+        "h": 490
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 166,
+        "y": 293,
+        "w": 571,
+        "h": 490
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/death/0": {
+      "frame": {
+        "x": 1083,
+        "y": 1066,
+        "w": 584,
+        "h": 489
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 140,
+        "y": 291,
+        "w": 584,
+        "h": 489
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-user-v1/attack2/10": {
+      "frame": {
+        "x": 1669,
+        "y": 1066,
+        "w": 422,
+        "h": 489
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 273,
+        "y": 287,
+        "w": 422,
+        "h": 489
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack2/9": {
+      "frame": {
+        "x": 2093,
+        "y": 1066,
+        "w": 547,
+        "h": 487
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 142,
+        "y": 293,
+        "w": 547,
+        "h": 487
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/death/1": {
+      "frame": {
+        "x": 2642,
+        "y": 1066,
+        "w": 477,
+        "h": 487
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 202,
+        "y": 294,
+        "w": 477,
+        "h": 487
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-user-v1/attack1/6": {
+      "frame": {
+        "x": 3121,
+        "y": 1066,
+        "w": 497,
+        "h": 486
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 223,
+        "y": 293,
+        "w": 497,
+        "h": 486
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/idle/1": {
+      "frame": {
+        "x": 1,
+        "y": 1560,
+        "w": 501,
+        "h": 485
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 215,
+        "y": 292,
+        "w": 501,
+        "h": 485
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-user-v1/idle/6": {
+      "frame": {
+        "x": 504,
+        "y": 1560,
+        "w": 475,
+        "h": 485
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 215,
+        "y": 291,
+        "w": 475,
+        "h": 485
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-user-v1/idle/7": {
+      "frame": {
+        "x": 981,
+        "y": 1560,
+        "w": 472,
+        "h": 485
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 197,
+        "y": 291,
+        "w": 472,
+        "h": 485
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-user-v1/idle/3": {
+      "frame": {
+        "x": 1455,
+        "y": 1560,
+        "w": 464,
+        "h": 484
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 238,
+        "y": 293,
+        "w": 464,
+        "h": 484
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-user-v1/idle/0": {
+      "frame": {
+        "x": 1921,
+        "y": 1560,
+        "w": 526,
+        "h": 483
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 179,
+        "y": 293,
+        "w": 526,
+        "h": 483
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-user-v1/attack1/0": {
+      "frame": {
+        "x": 2449,
+        "y": 1560,
+        "w": 526,
+        "h": 483
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 179,
+        "y": 293,
+        "w": 526,
+        "h": 483
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack1/15": {
+      "frame": {
+        "x": 2977,
+        "y": 1560,
+        "w": 526,
+        "h": 483
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 179,
+        "y": 293,
+        "w": 526,
+        "h": 483
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack2/0": {
+      "frame": {
+        "x": 3505,
+        "y": 1560,
+        "w": 526,
+        "h": 483
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 179,
+        "y": 293,
+        "w": 526,
+        "h": 483
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack2/15": {
+      "frame": {
+        "x": 1,
+        "y": 2047,
+        "w": 526,
+        "h": 483
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 179,
+        "y": 293,
+        "w": 526,
+        "h": 483
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack2/12": {
+      "frame": {
+        "x": 529,
+        "y": 2047,
+        "w": 592,
+        "h": 482
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 72,
+        "y": 298,
+        "w": 592,
+        "h": 482
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack1/9": {
+      "frame": {
+        "x": 1123,
+        "y": 2047,
+        "w": 505,
+        "h": 480
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 214,
+        "y": 299,
+        "w": 505,
+        "h": 480
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack1/7": {
+      "frame": {
+        "x": 1630,
+        "y": 2047,
+        "w": 472,
+        "h": 477
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 203,
+        "y": 301,
+        "w": 472,
+        "h": 477
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack1/5": {
+      "frame": {
+        "x": 2104,
+        "y": 2047,
+        "w": 538,
+        "h": 476
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 167,
+        "y": 303,
+        "w": 538,
+        "h": 476
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack2/1": {
+      "frame": {
+        "x": 2644,
+        "y": 2047,
+        "w": 451,
+        "h": 474
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 281,
+        "y": 302,
+        "w": 451,
+        "h": 474
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/idle/11": {
+      "frame": {
+        "x": 3097,
+        "y": 2047,
+        "w": 492,
+        "h": 468
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 221,
+        "y": 308,
+        "w": 492,
+        "h": 468
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-user-v1/attack2/3": {
+      "frame": {
+        "x": 1,
+        "y": 2532,
+        "w": 525,
+        "h": 465
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 207,
+        "y": 312,
+        "w": 525,
+        "h": 465
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/idle/10": {
+      "frame": {
+        "x": 528,
+        "y": 2532,
+        "w": 497,
+        "h": 465
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 221,
+        "y": 312,
+        "w": 497,
+        "h": 465
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-user-v1/idle/9": {
+      "frame": {
+        "x": 1027,
+        "y": 2532,
+        "w": 496,
+        "h": 465
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 198,
+        "y": 312,
+        "w": 496,
+        "h": 465
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-user-v1/idle/8": {
+      "frame": {
+        "x": 1525,
+        "y": 2532,
+        "w": 515,
+        "h": 461
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 198,
+        "y": 315,
+        "w": 515,
+        "h": 461
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-user-v1/attack2/2": {
+      "frame": {
+        "x": 2042,
+        "y": 2532,
+        "w": 492,
+        "h": 460
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 219,
+        "y": 317,
+        "w": 492,
+        "h": 460
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/death/5": {
+      "frame": {
+        "x": 2536,
+        "y": 2532,
+        "w": 508,
+        "h": 459
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 177,
+        "y": 318,
+        "w": 508,
+        "h": 459
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-user-v1/death/2": {
+      "frame": {
+        "x": 3046,
+        "y": 2532,
+        "w": 441,
+        "h": 455
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 246,
+        "y": 325,
+        "w": 441,
+        "h": 455
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-user-v1/attack2/5": {
+      "frame": {
+        "x": 3489,
+        "y": 2532,
+        "w": 561,
+        "h": 444
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 121,
+        "y": 339,
+        "w": 561,
+        "h": 444
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack2/8": {
+      "frame": {
+        "x": 1,
+        "y": 2999,
+        "w": 516,
+        "h": 438
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 303,
+        "y": 338,
+        "w": 516,
+        "h": 438
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack2/6": {
+      "frame": {
+        "x": 519,
+        "y": 2999,
+        "w": 527,
+        "h": 433
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 150,
+        "y": 343,
+        "w": 527,
+        "h": 433
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/attack2/11": {
+      "frame": {
+        "x": 1048,
+        "y": 2999,
+        "w": 514,
+        "h": 419
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 197,
+        "y": 357,
+        "w": 514,
+        "h": 419
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "forbidden-art-user-v1/death/6": {
+      "frame": {
+        "x": 1564,
+        "y": 2999,
+        "w": 479,
+        "h": 396
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 230,
+        "y": 383,
+        "w": 479,
+        "h": 396
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-user-v1/death/3": {
+      "frame": {
+        "x": 2045,
+        "y": 2999,
+        "w": 502,
+        "h": 368
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 185,
+        "y": 414,
+        "w": 502,
+        "h": 368
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-user-v1/death/8": {
+      "frame": {
+        "x": 2549,
+        "y": 2999,
+        "w": 578,
+        "h": 343
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 162,
+        "y": 435,
+        "w": 578,
+        "h": 343
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "forbidden-art-user-v1/death/9": {
+      "frame": {
+        "x": 3129,
+        "y": 2999,
+        "w": 519,
+        "h": 296
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 191,
+        "y": 482,
+        "w": 519,
+        "h": 296
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 360
+    },
+    "forbidden-art-user-v1/death/7": {
+      "frame": {
+        "x": 1,
+        "y": 3439,
+        "w": 525,
+        "h": 272
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 227,
+        "y": 506,
+        "w": 525,
+        "h": 272
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    }
+  },
+  "animations": {
+    "idle": [
+      "forbidden-art-user-v1/idle/0",
+      "forbidden-art-user-v1/idle/1",
+      "forbidden-art-user-v1/idle/2",
+      "forbidden-art-user-v1/idle/3",
+      "forbidden-art-user-v1/idle/4",
+      "forbidden-art-user-v1/idle/5",
+      "forbidden-art-user-v1/idle/6",
+      "forbidden-art-user-v1/idle/7",
+      "forbidden-art-user-v1/idle/8",
+      "forbidden-art-user-v1/idle/9",
+      "forbidden-art-user-v1/idle/10",
+      "forbidden-art-user-v1/idle/11"
+    ],
+    "attack1": [
+      "forbidden-art-user-v1/attack1/0",
+      "forbidden-art-user-v1/attack1/1",
+      "forbidden-art-user-v1/attack1/2",
+      "forbidden-art-user-v1/attack1/3",
+      "forbidden-art-user-v1/attack1/4",
+      "forbidden-art-user-v1/attack1/5",
+      "forbidden-art-user-v1/attack1/6",
+      "forbidden-art-user-v1/attack1/7",
+      "forbidden-art-user-v1/attack1/8",
+      "forbidden-art-user-v1/attack1/9",
+      "forbidden-art-user-v1/attack1/10",
+      "forbidden-art-user-v1/attack1/11",
+      "forbidden-art-user-v1/attack1/12",
+      "forbidden-art-user-v1/attack1/13",
+      "forbidden-art-user-v1/attack1/14",
+      "forbidden-art-user-v1/attack1/15"
+    ],
+    "attack2": [
+      "forbidden-art-user-v1/attack2/0",
+      "forbidden-art-user-v1/attack2/1",
+      "forbidden-art-user-v1/attack2/2",
+      "forbidden-art-user-v1/attack2/3",
+      "forbidden-art-user-v1/attack2/4",
+      "forbidden-art-user-v1/attack2/5",
+      "forbidden-art-user-v1/attack2/6",
+      "forbidden-art-user-v1/attack2/7",
+      "forbidden-art-user-v1/attack2/8",
+      "forbidden-art-user-v1/attack2/9",
+      "forbidden-art-user-v1/attack2/10",
+      "forbidden-art-user-v1/attack2/11",
+      "forbidden-art-user-v1/attack2/12",
+      "forbidden-art-user-v1/attack2/13",
+      "forbidden-art-user-v1/attack2/14",
+      "forbidden-art-user-v1/attack2/15"
+    ],
+    "death": [
+      "forbidden-art-user-v1/death/0",
+      "forbidden-art-user-v1/death/1",
+      "forbidden-art-user-v1/death/2",
+      "forbidden-art-user-v1/death/3",
+      "forbidden-art-user-v1/death/4",
+      "forbidden-art-user-v1/death/5",
+      "forbidden-art-user-v1/death/6",
+      "forbidden-art-user-v1/death/7",
+      "forbidden-art-user-v1/death/8",
+      "forbidden-art-user-v1/death/9"
+    ]
+  },
+  "meta": {
+    "image": "forbidden-art-user-v1-sheet.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 4051,
+      "h": 3712
+    },
+    "scale": "1"
+  }
+}
