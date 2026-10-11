@@ -1,0 +1,1427 @@
+{
+  "frames": {
+    "demon-lackey-v1/attack2/3": {
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 428,
+        "h": 592
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 301,
+        "y": 188,
+        "w": 428,
+        "h": 592
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack2/5": {
+      "frame": {
+        "x": 431,
+        "y": 1,
+        "w": 453,
+        "h": 541
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 208,
+        "y": 237,
+        "w": 453,
+        "h": 541
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack1/1": {
+      "frame": {
+        "x": 886,
+        "y": 1,
+        "w": 512,
+        "h": 539
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 194,
+        "y": 241,
+        "w": 512,
+        "h": 539
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack2/2": {
+      "frame": {
+        "x": 1400,
+        "y": 1,
+        "w": 445,
+        "h": 535
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 258,
+        "y": 245,
+        "w": 445,
+        "h": 535
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/idle/10": {
+      "frame": {
+        "x": 1847,
+        "y": 1,
+        "w": 507,
+        "h": 530
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 209,
+        "y": 251,
+        "w": 507,
+        "h": 530
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/idle/9": {
+      "frame": {
+        "x": 2356,
+        "y": 1,
+        "w": 504,
+        "h": 530
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 210,
+        "y": 251,
+        "w": 504,
+        "h": 530
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/attack1/2": {
+      "frame": {
+        "x": 2862,
+        "y": 1,
+        "w": 472,
+        "h": 528
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 229,
+        "y": 253,
+        "w": 472,
+        "h": 528
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/idle/8": {
+      "frame": {
+        "x": 3336,
+        "y": 1,
+        "w": 520,
+        "h": 527
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 194,
+        "y": 254,
+        "w": 520,
+        "h": 527
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/attack1/14": {
+      "frame": {
+        "x": 1,
+        "y": 595,
+        "w": 506,
+        "h": 526
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 234,
+        "y": 251,
+        "w": 506,
+        "h": 526
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/idle/11": {
+      "frame": {
+        "x": 509,
+        "y": 595,
+        "w": 484,
+        "h": 526
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 222,
+        "y": 255,
+        "w": 484,
+        "h": 526
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/attack1/3": {
+      "frame": {
+        "x": 995,
+        "y": 595,
+        "w": 504,
+        "h": 525
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 202,
+        "y": 257,
+        "w": 504,
+        "h": 525
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack1/13": {
+      "frame": {
+        "x": 1501,
+        "y": 595,
+        "w": 472,
+        "h": 525
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 231,
+        "y": 253,
+        "w": 472,
+        "h": 525
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack1/12": {
+      "frame": {
+        "x": 1975,
+        "y": 595,
+        "w": 489,
+        "h": 520
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 201,
+        "y": 257,
+        "w": 489,
+        "h": 520
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack2/1": {
+      "frame": {
+        "x": 2466,
+        "y": 595,
+        "w": 421,
+        "h": 514
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 256,
+        "y": 265,
+        "w": 421,
+        "h": 514
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/idle/1": {
+      "frame": {
+        "x": 2889,
+        "y": 595,
+        "w": 468,
+        "h": 509
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 195,
+        "y": 269,
+        "w": 468,
+        "h": 509
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/idle/3": {
+      "frame": {
+        "x": 3359,
+        "y": 595,
+        "w": 511,
+        "h": 503
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 184,
+        "y": 274,
+        "w": 511,
+        "h": 503
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/idle/0": {
+      "frame": {
+        "x": 1,
+        "y": 1123,
+        "w": 514,
+        "h": 501
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 178,
+        "y": 275,
+        "w": 514,
+        "h": 501
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/attack1/0": {
+      "frame": {
+        "x": 517,
+        "y": 1123,
+        "w": 514,
+        "h": 501
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 178,
+        "y": 275,
+        "w": 514,
+        "h": 501
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack1/15": {
+      "frame": {
+        "x": 1033,
+        "y": 1123,
+        "w": 514,
+        "h": 501
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 178,
+        "y": 275,
+        "w": 514,
+        "h": 501
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack2/0": {
+      "frame": {
+        "x": 1549,
+        "y": 1123,
+        "w": 514,
+        "h": 501
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 178,
+        "y": 275,
+        "w": 514,
+        "h": 501
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack2/15": {
+      "frame": {
+        "x": 2065,
+        "y": 1123,
+        "w": 514,
+        "h": 501
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 178,
+        "y": 275,
+        "w": 514,
+        "h": 501
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/idle/2": {
+      "frame": {
+        "x": 2581,
+        "y": 1123,
+        "w": 498,
+        "h": 497
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 184,
+        "y": 281,
+        "w": 498,
+        "h": 497
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/death/0": {
+      "frame": {
+        "x": 3081,
+        "y": 1123,
+        "w": 505,
+        "h": 496
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 207,
+        "y": 285,
+        "w": 505,
+        "h": 496
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/attack2/13": {
+      "frame": {
+        "x": 3588,
+        "y": 1123,
+        "w": 473,
+        "h": 491
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 200,
+        "y": 286,
+        "w": 473,
+        "h": 491
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack2/12": {
+      "frame": {
+        "x": 1,
+        "y": 1626,
+        "w": 486,
+        "h": 488
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 204,
+        "y": 289,
+        "w": 486,
+        "h": 488
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/death/4": {
+      "frame": {
+        "x": 489,
+        "y": 1626,
+        "w": 499,
+        "h": 485
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 197,
+        "y": 293,
+        "w": 499,
+        "h": 485
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/attack2/14": {
+      "frame": {
+        "x": 990,
+        "y": 1626,
+        "w": 525,
+        "h": 484
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 173,
+        "y": 295,
+        "w": 525,
+        "h": 484
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/death/1": {
+      "frame": {
+        "x": 1517,
+        "y": 1626,
+        "w": 511,
+        "h": 483
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 169,
+        "y": 298,
+        "w": 511,
+        "h": 483
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/idle/5": {
+      "frame": {
+        "x": 2030,
+        "y": 1626,
+        "w": 493,
+        "h": 479
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 208,
+        "y": 298,
+        "w": 493,
+        "h": 479
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/attack1/9": {
+      "frame": {
+        "x": 2525,
+        "y": 1626,
+        "w": 493,
+        "h": 479
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 193,
+        "y": 300,
+        "w": 493,
+        "h": 479
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/idle/4": {
+      "frame": {
+        "x": 3020,
+        "y": 1626,
+        "w": 491,
+        "h": 479
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 215,
+        "y": 298,
+        "w": 491,
+        "h": 479
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/idle/7": {
+      "frame": {
+        "x": 3513,
+        "y": 1626,
+        "w": 490,
+        "h": 479
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 209,
+        "y": 298,
+        "w": 490,
+        "h": 479
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/idle/6": {
+      "frame": {
+        "x": 1,
+        "y": 2116,
+        "w": 489,
+        "h": 479
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 205,
+        "y": 298,
+        "w": 489,
+        "h": 479
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/attack1/8": {
+      "frame": {
+        "x": 492,
+        "y": 2116,
+        "w": 551,
+        "h": 471
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 97,
+        "y": 307,
+        "w": 551,
+        "h": 471
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack1/10": {
+      "frame": {
+        "x": 1045,
+        "y": 2116,
+        "w": 491,
+        "h": 468
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 198,
+        "y": 312,
+        "w": 491,
+        "h": 468
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack1/11": {
+      "frame": {
+        "x": 1538,
+        "y": 2116,
+        "w": 426,
+        "h": 468
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 259,
+        "y": 310,
+        "w": 426,
+        "h": 468
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack2/11": {
+      "frame": {
+        "x": 1966,
+        "y": 2116,
+        "w": 410,
+        "h": 467
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 262,
+        "y": 311,
+        "w": 410,
+        "h": 467
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack2/10": {
+      "frame": {
+        "x": 2378,
+        "y": 2116,
+        "w": 470,
+        "h": 461
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 239,
+        "y": 318,
+        "w": 470,
+        "h": 461
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack2/8": {
+      "frame": {
+        "x": 2850,
+        "y": 2116,
+        "w": 578,
+        "h": 459
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 74,
+        "y": 320,
+        "w": 578,
+        "h": 459
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack1/5": {
+      "frame": {
+        "x": 3430,
+        "y": 2116,
+        "w": 590,
+        "h": 458
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 141,
+        "y": 323,
+        "w": 590,
+        "h": 458
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack2/4": {
+      "frame": {
+        "x": 1,
+        "y": 2597,
+        "w": 540,
+        "h": 458
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 152,
+        "y": 319,
+        "w": 540,
+        "h": 458
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack1/4": {
+      "frame": {
+        "x": 543,
+        "y": 2597,
+        "w": 458,
+        "h": 455
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 204,
+        "y": 324,
+        "w": 458,
+        "h": 455
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/death/2": {
+      "frame": {
+        "x": 1003,
+        "y": 2597,
+        "w": 491,
+        "h": 454
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 190,
+        "y": 327,
+        "w": 491,
+        "h": 454
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/attack1/7": {
+      "frame": {
+        "x": 1496,
+        "y": 2597,
+        "w": 435,
+        "h": 454
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 234,
+        "y": 325,
+        "w": 435,
+        "h": 454
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack2/6": {
+      "frame": {
+        "x": 1933,
+        "y": 2597,
+        "w": 460,
+        "h": 450
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 178,
+        "y": 328,
+        "w": 460,
+        "h": 450
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack2/9": {
+      "frame": {
+        "x": 2395,
+        "y": 2597,
+        "w": 524,
+        "h": 447
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 168,
+        "y": 332,
+        "w": 524,
+        "h": 447
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/attack1/6": {
+      "frame": {
+        "x": 2921,
+        "y": 2597,
+        "w": 521,
+        "h": 443
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 191,
+        "y": 336,
+        "w": 521,
+        "h": 443
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/death/5": {
+      "frame": {
+        "x": 3444,
+        "y": 2597,
+        "w": 466,
+        "h": 436
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 196,
+        "y": 341,
+        "w": 466,
+        "h": 436
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/attack2/7": {
+      "frame": {
+        "x": 1,
+        "y": 3057,
+        "w": 536,
+        "h": 431
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 119,
+        "y": 347,
+        "w": 536,
+        "h": 431
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 45
+    },
+    "demon-lackey-v1/death/3": {
+      "frame": {
+        "x": 539,
+        "y": 3057,
+        "w": 481,
+        "h": 407
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 194,
+        "y": 371,
+        "w": 481,
+        "h": 407
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/death/6": {
+      "frame": {
+        "x": 1022,
+        "y": 3057,
+        "w": 469,
+        "h": 364
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 206,
+        "y": 412,
+        "w": 469,
+        "h": 364
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/death/8": {
+      "frame": {
+        "x": 1493,
+        "y": 3057,
+        "w": 499,
+        "h": 339
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 185,
+        "y": 444,
+        "w": 499,
+        "h": 339
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/death/7": {
+      "frame": {
+        "x": 1994,
+        "y": 3057,
+        "w": 542,
+        "h": 285
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 187,
+        "y": 493,
+        "w": 542,
+        "h": 285
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 80
+    },
+    "demon-lackey-v1/death/9": {
+      "frame": {
+        "x": 2538,
+        "y": 3057,
+        "w": 565,
+        "h": 256
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 148,
+        "y": 523,
+        "w": 565,
+        "h": 256
+      },
+      "sourceSize": {
+        "w": 896,
+        "h": 896
+      },
+      "anchor": {
+        "x": 0.6830357142857143,
+        "y": 0.859375
+      },
+      "duration": 360
+    }
+  },
+  "animations": {
+    "idle": [
+      "demon-lackey-v1/idle/0",
+      "demon-lackey-v1/idle/1",
+      "demon-lackey-v1/idle/2",
+      "demon-lackey-v1/idle/3",
+      "demon-lackey-v1/idle/4",
+      "demon-lackey-v1/idle/5",
+      "demon-lackey-v1/idle/6",
+      "demon-lackey-v1/idle/7",
+      "demon-lackey-v1/idle/8",
+      "demon-lackey-v1/idle/9",
+      "demon-lackey-v1/idle/10",
+      "demon-lackey-v1/idle/11"
+    ],
+    "attack1": [
+      "demon-lackey-v1/attack1/0",
+      "demon-lackey-v1/attack1/1",
+      "demon-lackey-v1/attack1/2",
+      "demon-lackey-v1/attack1/3",
+      "demon-lackey-v1/attack1/4",
+      "demon-lackey-v1/attack1/5",
+      "demon-lackey-v1/attack1/6",
+      "demon-lackey-v1/attack1/7",
+      "demon-lackey-v1/attack1/8",
+      "demon-lackey-v1/attack1/9",
+      "demon-lackey-v1/attack1/10",
+      "demon-lackey-v1/attack1/11",
+      "demon-lackey-v1/attack1/12",
+      "demon-lackey-v1/attack1/13",
+      "demon-lackey-v1/attack1/14",
+      "demon-lackey-v1/attack1/15"
+    ],
+    "attack2": [
+      "demon-lackey-v1/attack2/0",
+      "demon-lackey-v1/attack2/1",
+      "demon-lackey-v1/attack2/2",
+      "demon-lackey-v1/attack2/3",
+      "demon-lackey-v1/attack2/4",
+      "demon-lackey-v1/attack2/5",
+      "demon-lackey-v1/attack2/6",
+      "demon-lackey-v1/attack2/7",
+      "demon-lackey-v1/attack2/8",
+      "demon-lackey-v1/attack2/9",
+      "demon-lackey-v1/attack2/10",
+      "demon-lackey-v1/attack2/11",
+      "demon-lackey-v1/attack2/12",
+      "demon-lackey-v1/attack2/13",
+      "demon-lackey-v1/attack2/14",
+      "demon-lackey-v1/attack2/15"
+    ],
+    "death": [
+      "demon-lackey-v1/death/0",
+      "demon-lackey-v1/death/1",
+      "demon-lackey-v1/death/2",
+      "demon-lackey-v1/death/3",
+      "demon-lackey-v1/death/4",
+      "demon-lackey-v1/death/5",
+      "demon-lackey-v1/death/6",
+      "demon-lackey-v1/death/7",
+      "demon-lackey-v1/death/8",
+      "demon-lackey-v1/death/9"
+    ]
+  },
+  "meta": {
+    "image": "demon-lackey-v1-sheet.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 4062,
+      "h": 3489
+    },
+    "scale": "1"
+  }
+}

@@ -55,6 +55,9 @@ const ENEMY_ART: Record<number, Partial<Record<EnemyKind, EnemyArt>>> = {
     elite: art('blood-cult-captain-v1', MOB_SCALE, 8, 8),
     boss: art('blood-cult-boss-v1', BOSS_SCALE, 8, 8),
   },
+  6: {
+    grunt: art('demon-lackey-v1', MOB_SCALE, 8, 8),
+  },
 };
 
 // 스테이지별 적 종류는 combat.ts가 단일 기준 — 이름(monsterStats)과 그림이 같은 규칙을 쓴다.

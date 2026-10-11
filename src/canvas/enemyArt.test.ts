@@ -32,6 +32,7 @@ describe('적 그림 표', () => {
     expect(enemyArtForStage({ major: 4, sub: 10 })?.prefix).toBe('forbidden-art-user-v1');
     expect(enemyArtForStage({ major: 5, sub: 9 })?.prefix).toBe('blood-cult-captain-v1');
     expect(enemyArtForStage({ major: 5, sub: 10 })?.prefix).toBe('blood-cult-boss-v1');
+    expect(enemyArtForStage({ major: 6, sub: 1 })?.prefix).toBe('demon-lackey-v1');
   });
 
   it('전용 그림이 없는 칸은 null이다', () => {
