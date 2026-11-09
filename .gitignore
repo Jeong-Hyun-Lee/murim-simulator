@@ -11,3 +11,4 @@ dist/
 .pnpm-store/
 __pycache__/
 *.stackdump
+.wrangler/

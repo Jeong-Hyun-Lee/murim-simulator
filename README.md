@@ -11,6 +11,8 @@ npm run dev
 
 `npm run build`로 프로덕션 빌드, `npm run preview`로 빌드 결과 미리보기, `npm test`로 게임 공식·저장 테스트 실행.
 
+`npm run deploy`로 빌드 후 Cloudflare Pages(`murim-simulator` 프로젝트)에 배포한다. 처음 한 번은 `npx wrangler login` 필요.
+
 ## 스택
 
 Vite + TypeScript + React(화면·패널) + PixiJS(전투 캔버스) + zustand(게임 상태). 게임 에셋은 `assets/`에 두고 그대로 정적 서빙한다. 빌드할 때 `scripts/optimize-sprites.mjs`가 `dist/`의 캐릭터 시트 PNG를 WebP로 바꾼다(원본 PNG는 그대로). 진행 곡선은 `output/balance-sim` 시뮬레이터로 검증한다.
